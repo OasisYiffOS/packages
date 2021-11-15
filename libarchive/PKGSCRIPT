@@ -1,0 +1,44 @@
+# Package information
+NAME="libarchive"
+VERSION="3.5.2"
+EPOCH=0
+DESC="A multi-format archive and compression library"
+GRPS=()
+URL="http://www.libarchive.org/"
+LICENSES=("BSD")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("libarchive")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://github.com/libarchive/libarchive/releases/download/v${VERSION}/libarchive-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("ac7c47f9ddfe5d4d5db6ca9c1bcba788af95662bf0e54ca5426fe66cd8262896e12acc426eecdf0e0d6681c180bcd37f4c4469619273607e95399c7f49b61c7c")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libarchive-${VERSION}"
+
+    ./configure --prefix=${BUILD_DATA_ROOT}/usr --disable-static
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libarchive-${VERSION}"
+
+    make install
+
+    return 0
+}
