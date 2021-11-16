@@ -1,0 +1,41 @@
+# Package information
+NAME="make-ca"
+VERSION="1.9"
+EPOCH=0
+DESC="PKI setup script from LFS"
+GRPS=()
+URL="https://github.com/lfs-book/make-ca"
+LICENSES=("MIT" "GPL3")
+DEPENDS=("p11-kit")
+OPT_DEPENDS=()
+MAKE_DEPENDS=()
+PROVIDES=("make-ca")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/lfs-book/make-ca/releases/download/v1.9/make-ca-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("3ce5a83ab8df279b6db10191d07feeebfdac1ad5d4d0cdbb68df779a1fd11074c77cf49009e4c9590f15979a11ef655d67d11a6cd4de3806c40cdc53125fc689")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -vdm755 ${BUILD_DATA_ROOT}/etc/ssl/local
+
+    return 0
+}
