@@ -1,0 +1,59 @@
+# Package information
+NAME="curl"
+VERSION="7.78.0"
+EPOCH=0
+DESC="A command line tool and library for transferring data with URL syntax"
+GRPS=()
+URL="https://curl.se/"
+LICENSES=("MIT")
+DEPENDS=("openssl" "make-ca")
+OPT_DEPENDS=()
+MAKE_DEPENDS=()
+PROVIDES=("curl")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://curl.se/download/curl-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("f72e822a0b5e28320ef547c7a441c07f3b4870579a70ab4c428751baba435a1385cb89a22b9ed4b84a7fafecf620f155911e4131e3463ec1bdad80ecde47bb7a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    grep -rl '#!.*python$' | xargs sed -i '1s/python/&3/'
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=${BUILD_DATA_ROOT}/usr      \
+            --disable-static                        \
+            --with-openssl                          \
+            --enable-threaded-resolver              \
+            --with-ca-path=/etc/ssl/certs
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make install
+
+    rm -rf docs/examples/.deps
+    find docs \( -name Makefile\* -o -name \*.1 -o -name \*.3 \) -exec rm {} \;
+
+    install -v -d -m755 ${BUILD_DATA_ROOT}/usr/share/doc/curl-7.78.0
+    cp -v -R docs/*     ${BUILD_DATA_ROOT}/usr/share/doc/curl-7.78.0
+
+    return 0
+}
