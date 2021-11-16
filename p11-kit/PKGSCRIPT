@@ -1,0 +1,68 @@
+# Package information
+NAME="p11-kit"
+VERSION="0.24.0"
+EPOCH=0
+DESC="Load and unload modules for PKCS#11"
+GRPS=()
+URL="https://p11-glue.github.io/p11-glue/p11-kit.html"
+LICENSES=("LGPL-2.1")
+DEPENDS=()
+OPT_DEPENDS=()
+MAKE_DEPENDS=("libtasn1" "ninja" "meson")
+PROVIDES=("p11-kit")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://github.com/p11-glue/p11-kit/releases/download/${VERSION}/p11-kit-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("48369d6fdae79b8c5a255c821fbdb982f0c649cce07c0d92f0ff0c16322fea8919faa94067cae2efede2da3646c0e69a71a3e399b769dc2327f247bcb113eb3c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+sed '20,$ d' -i trust/trust-extract-compat &&
+cat >> trust/trust-extract-compat << "EOF"
+# Copy existing anchor modifications to /etc/ssl/local
+/usr/libexec/make-ca/copy-trust-modifications
+
+# Generate a new trust store
+/usr/sbin/make-ca -f -g
+EOF
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir p11-build
+    cd p11-build
+
+    meson   --prefix=${BUILD_DATA_ROOT}/usr     \
+            --buildtype=release                 \
+            -Dtrust_paths=/etc/pki/anchors
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cd p11-build
+
+    ninja install
+
+    ln -sfv ${BUILD_DATA_ROOT}/usr/libexec/p11-kit/trust-extract-compat \
+        ${BUILD_DATA_ROOT}/usr/bin/update-ca-certificates
+
+    ln -sfv ./pkcs11/p11-kit-trust.so ${BUILD_DATA_ROOT}/usr/lib/libnssckbi.so
+
+    return 0
+}
