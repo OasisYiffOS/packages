@@ -1,0 +1,62 @@
+# Package information
+NAME="sqlite"
+VERSION="3.36.0"
+_DOWNLOAD_VERSION="3360000"
+EPOCH=0
+DESC="SQLite is an in-core database engine in C"
+GRPS=()
+URL="https://sqlite.org"
+LICENSES=("PDM")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("sqlite")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://sqlite.org/2021/sqlite-autoconf-${_DOWNLOAD_VERSION}.tar.gz" 
+"https://sqlite.org/2021/sqlite-doc-${_DOWNLOAD_VERSION}.zip")
+
+SUM_TYPE="sha512"
+SUM=("e59c57f421b4956c7759af528a2da929167e15179ab9d28267474683e2272f93c901203e5a648732f1a3d43e7be3ac4217c3cdd7adf108c378b9127b771a7cd0" 
+"c9b5628f823c322688e2fcce0effe7564dccaf8bcdbb3397ee09c433975bfb5fd63fd81830c5c6d573314e1e55d25cdf1b3842d798f7be63b9b88b32f6694add")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/sqlite-autoconf-${_DOWNLOAD_VERSION}"
+
+    ./configure --prefix=${BUILD_DATA_ROOT}/usr         \
+            --disable-static                            \
+            --enable-fts5                               \
+            CPPFLAGS="-DSQLITE_ENABLE_FTS3=1            \
+                      -DSQLITE_ENABLE_FTS4=1            \
+                      -DSQLITE_ENABLE_COLUMN_METADATA=1 \
+                      -DSQLITE_ENABLE_UNLOCK_NOTIFY=1   \
+                      -DSQLITE_ENABLE_DBSTAT_VTAB=1     \
+                      -DSQLITE_SECURE_DELETE=1          \
+                      -DSQLITE_ENABLE_FTS3_TOKENIZER=1"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/sqlite-autoconf-${_DOWNLOAD_VERSION}"
+
+    make install
+
+    # Install documentation
+    cd "${WORKDIR}/sqlite-doc-${_DOWNLOAD_VERSION}"
+
+    install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/doc/sqlite-${VERSION}
+    cp -v -R ./* ${BUILD_DATA_ROOT}/usr/share/doc/sqlite-${VERSION}
+
+    return 0
+}
