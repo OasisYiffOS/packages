@@ -1,0 +1,45 @@
+# Package information
+NAME="libidn2"
+VERSION="2.3.2"
+EPOCH=0
+DESC="Internationalized Domain Name library"
+GRPS=()
+URL="http://www.libarchive.org/"
+LICENSES=("BSD")
+DEPENDS=()
+OPT_DEPENDS=()
+MAKE_DEPENDS=()
+PROVIDES=("libidn2")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/libidn/libidn2-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("958dbf49a47a84c7627ac182f4cc8ea452696cec3f0d1ff102a6c48e89893e772b2aa81f75da8223dfc6326515cca3ae085268fbf997828de9330c3a351152f1")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=${BUILD_DATA_ROOT}/usr --disable-static
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make install
+
+    return 0
+}
