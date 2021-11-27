@@ -1,0 +1,45 @@
+# Package information
+NAME="dracut"
+VERSION="055"
+EPOCH=0
+DESC="An event driven initramfs infrastructure"
+GRPS=()
+URL="https://dracut.wiki.kernel.org/index.php/Main_Page"
+LICENSES=("GPL")
+DEPENDS=("")
+OPT_DEPENDS=()
+PROVIDES=("dracut")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://mirrors.edge.kernel.org/pub/linux/utils/boot/dracut/dracut-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("2d2ea2889d9013bc94245bd7d1a2154f24d02bd9c2f7dbb28e5968e17d918e6598c68d85b0f551f968218980a80b19361ca0c9e8e94997ba54f4c09afcd6d866")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/dracut-${VERSION}"
+
+    ./configure --prefix=${BUILD_DATA_ROOT}/usr         \
+            --disable-static
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/dracut-${VERSION}"
+
+    make install
+
+    return 0
+}
