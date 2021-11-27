@@ -1,0 +1,47 @@
+# Package information
+NAME="nghttp2"
+VERSION="1.46.0"
+EPOCH=0
+DESC="nghttp2 is a C library and toolkit for HTTP/2"
+GRPS=()
+URL="https://nghttp2.org/"
+LICENSES=("MIT")
+DEPENDS=("libxml2")
+OPT_DEPENDS=()
+PROVIDES=("nghttp2")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://github.com/nghttp2/nghttp2/releases/download/v${VERSION}/nghttp2-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("fcf3573bcc421705190c7cf0e3230f6f3028b669cb2976d29cfeb73e706deaae91ce60d0a615472e3f296454049ea5798f1e8defdd260a98895e94fea6a7a16b")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/nghttp2-${VERSION}"
+
+    ./configure --prefix=${BUILD_DATA_ROOT}/usr         \
+            --disable-static                            \
+            --enable-lib-only                           \
+            --docdir=/usr/share/doc/nghttp2-${VERSION}
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/nghttp2-${VERSION}"
+
+    make install
+
+    return 0
+}
