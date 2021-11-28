@@ -1,0 +1,59 @@
+# Package information
+NAME="cpio"
+VERSION="2.13"
+EPOCH=0
+DESC="Utility to work with cpio and tar archives"
+GRPS=()
+URL="https://www.gnu.org/savannah-checkouts/gnu/cpio/cpio.html"
+LICENSES=("GPL-3")
+DEPENDS=("")
+OPT_DEPENDS=()
+PROVIDES=("cpio")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/cpio/cpio-${VERSION}.tar.gz"
+"https://git.yiffos.gay/Core/patches/raw/branch/main/cpio/src-global.c-drop-duplicate-definition-of-program_na.patch")
+
+SUM_TYPE="sha512"
+SUM=("1e1ca6b3e3e64f206f9d828a152d6b4f8f6974de7a953ff96e02698b1c3c2c777c2111450e6a71c0693e29ca8bc01c3dda9f5e829b8e3221f647414df49dff6a"
+"7386367c09e013201244318a363faebf41a3a72bd11dc72fce7ec2c4b336c500a09a9173c4b6094ad529229d0debce3bb8b0aae9094ab202885d92211ca239f1")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/cpio-${VERSION}"
+
+    # Fixes an issue with building with GCC 10 and newer
+    patch -Np1 -i ${WORKDIR}/src-global.c-drop-duplicate-definition-of-program_na.patch
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/cpio-${VERSION}"
+
+    ./configure --prefix=${BUILD_DATA_ROOT}/usr     \
+            --enable-mt                             \
+            --with-rmt=/usr/libexec/rmt
+
+    make
+    makeinfo --html            -o doc/html      doc/cpio.texi
+    makeinfo --html --no-split -o doc/cpio.html doc/cpio.texi
+    makeinfo --plaintext       -o doc/cpio.txt  doc/cpio.texi
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/cpio-${VERSION}"
+
+    make install
+    install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/doc/cpio-${VERSION}/html
+    install -v -m644    doc/html/* ${BUILD_DATA_ROOT}/usr/share/doc/cpio-${VERSION}/html
+    install -v -m644    doc/cpio.{html,txt} ${BUILD_DATA_ROOT}/usr/share/doc/cpio-${VERSION}
+
+    return 0
+}
