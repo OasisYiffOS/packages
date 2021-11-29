@@ -2,7 +2,7 @@
 NAME="neofetch"
 VERSION="7.1.0"
 EPOCH=0
-DESC="A multi-format archive and compression library"
+DESC="A CLI tool that gives information about your system"
 GRPS=()
 URL="https://github.com/dylanaraps/neofetch/"
 LICENSES=("MIT")
