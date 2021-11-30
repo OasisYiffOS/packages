@@ -1,0 +1,38 @@
+# Package information
+NAME="man-pages"
+VERSION="5.13"
+EPOCH=0
+DESC="Documentation for the Linux kernel and C library interfaces"
+GRPS=()
+URL="https://www.kernel.org/doc/man-pages/"
+LICENSES=("custom" "GPL")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("man-pages")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/man-pages-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("a68c0bd5f078aff2f13f962060863e5d30734c1c562e8e9e3d5eda5a329b18ad3e9b4ebb883d31cacfc0a476f91fccb8dd4257598acd75d09dd21351893d3499")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/man-pages-${VERSION}"
+
+    make prefix="${BUILD_DATA_ROOT}" install
+
+    return 0
+}
