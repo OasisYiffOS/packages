@@ -42,7 +42,7 @@ function build() {
     mkdir p11-build
     cd p11-build
 
-    meson   --prefix=${BUILD_DATA_ROOT}/usr     \
+    meson   --prefix=/usr                       \
             --buildtype=release                 \
             -Dtrust_paths=/etc/pki/anchors
 
@@ -57,7 +57,7 @@ function postbuild() {
 
     cd p11-build
 
-    ninja install
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
 
     ln -sfv ${BUILD_DATA_ROOT}/usr/libexec/p11-kit/trust-extract-compat \
         ${BUILD_DATA_ROOT}/usr/bin/update-ca-certificates

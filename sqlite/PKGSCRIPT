@@ -30,7 +30,7 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/sqlite-autoconf-${_DOWNLOAD_VERSION}"
 
-    ./configure --prefix=${BUILD_DATA_ROOT}/usr         \
+    ./configure --prefix=/usr                           \
             --disable-static                            \
             --enable-fts5                               \
             CPPFLAGS="-DSQLITE_ENABLE_FTS3=1            \
@@ -50,7 +50,7 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/sqlite-autoconf-${_DOWNLOAD_VERSION}"
 
-    make install
+    DESTDIR="${BUILD_DATA_ROOT}" make install
 
     # Install documentation
     cd "${WORKDIR}/sqlite-doc-${_DOWNLOAD_VERSION}"

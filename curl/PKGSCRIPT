@@ -32,10 +32,10 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    ./configure --prefix=${BUILD_DATA_ROOT}/usr      \
-            --disable-static                        \
-            --with-openssl                          \
-            --enable-threaded-resolver              \
+    ./configure --prefix=/usr               \
+            --disable-static                \
+            --with-openssl                  \
+            --enable-threaded-resolver      \
             --with-ca-path=/etc/ssl/certs
 
     make
@@ -47,7 +47,7 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    make install
+    DESTDIR="${BUILD_DATA_ROOT}" make install
 
     rm -rf docs/examples/.deps
     find docs \( -name Makefile\* -o -name \*.1 -o -name \*.3 \) -exec rm {} \;

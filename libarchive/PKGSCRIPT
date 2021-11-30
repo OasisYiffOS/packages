@@ -27,7 +27,7 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/libarchive-${VERSION}"
 
-    ./configure --prefix=${BUILD_DATA_ROOT}/usr --disable-static
+    ./configure --prefix=/usr --disable-static
 
     make
 
@@ -38,7 +38,7 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/libarchive-${VERSION}"
 
-    make install
+    DESTDIR="${BUILD_DATA_ROOT}" make install
 
     return 0
 }

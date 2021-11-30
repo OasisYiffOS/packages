@@ -34,8 +34,8 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/cpio-${VERSION}"
 
-    ./configure --prefix=${BUILD_DATA_ROOT}/usr     \
-            --enable-mt                             \
+    ./configure --prefix=/usr               \
+            --enable-mt                     \
             --with-rmt=/usr/libexec/rmt
 
     make
@@ -50,7 +50,7 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/cpio-${VERSION}"
 
-    make install
+    DESTDIR="${BUILD_DATA_ROOT}" make install
     install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/doc/cpio-${VERSION}/html
     install -v -m644    doc/html/* ${BUILD_DATA_ROOT}/usr/share/doc/cpio-${VERSION}/html
     install -v -m644    doc/cpio.{html,txt} ${BUILD_DATA_ROOT}/usr/share/doc/cpio-${VERSION}
