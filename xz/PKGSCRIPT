@@ -1,0 +1,50 @@
+# Package information
+NAME="xz"
+VERSION="5.2.5"
+EPOCH=0
+DESC="A compression program with high compression ratios, higher than both gzip or bzip2"
+GRPS=()
+URL="https://tukaani.org/xz"
+LICENSES=("GPL" "LGPL")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("xz")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://tukaani.org/xz/xz-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("59266068a51cb616eb31b67cd8f07ffeb2288d1391c61665ae2ec6814465afac80fec69248f6a2f2db45b44475af001296a99af6a32287226a9c41419173ccbb")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                       \
+                --disable-static                    \
+                --docdir=/usr/share/doc/xz-5.2.5
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
