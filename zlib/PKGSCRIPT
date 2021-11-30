@@ -1,0 +1,47 @@
+# Package information
+NAME="zlib"
+VERSION="1.2.11"
+EPOCH=0
+DESC="A compression library"
+GRPS=()
+URL="https://www.zlib.net/"
+LICENSES=("custom")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("zlib")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.zlib.net/zlib-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("b7f50ada138c7f93eb7eb1631efccd1d9f03a5e77b6c13c8b757017b2d462e19d2d3e01c50fad60a4ae1bc86d431f6f94c72c11ff410c25121e571953017cb67")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+    rm -fv "${BUILD_DATA_ROOT}/usr/lib/libz.a"
+
+    return 0
+}
