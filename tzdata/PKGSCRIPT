@@ -1,0 +1,49 @@
+# Package information
+NAME="tzdata"
+VERSION="2021e"
+EPOCH=0
+DESC="Timezone data from IANA"
+GRPS=()
+URL="https://www.iana.org/time-zones"
+LICENSES=("custom")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("tzdata")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.iana.org/time-zones/repository/releases/tzdata${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("c1e8d04e049157ed5d4af0868855bbd75517e3d7e1db9c41d5283ff260109de46b6fac6be94828201d093e163d868044ac2a9db2bf0aeab800e264d0c73a9119")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    ZONEINFO=${BUILD_DATA_ROOT}/usr/share/zoneinfo
+    mkdir -pv $ZONEINFO/{posix,right}
+
+    for tz in etcetera southamerica northamerica europe africa antarctica  \
+            asia australasia backward; do
+        zic -L /dev/null   -d $ZONEINFO       ${tz}
+        zic -L /dev/null   -d $ZONEINFO/posix ${tz}
+        zic -L leapseconds -d $ZONEINFO/right ${tz}
+    done
+
+    cp -v zone.tab zone1970.tab iso3166.tab ${ZONEINFO}
+
+    zic -d $ZONEINFO -p America/Toronto
+    unset ZONEINFO
+
+    return 0
+}
