@@ -1,0 +1,41 @@
+# Package information
+NAME="iana-etc"
+VERSION="20211124"
+EPOCH=0
+DESC="IANA protocols and services"
+GRPS=()
+URL="https://www.iana.org/protocols"
+LICENSES=("custom")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("iana-etc")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/Mic92/iana-etc/releases/download/${VERSION}/iana-etc-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("72c693bac262783428e781acd1dd3fe311af60e560ed481b54918fe7a775cf0eea2520ce925132ccaaa2f4a9929e1c8308a790dc45fee4ed6397720df4609f4d")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/iana-etc-${VERSION}"
+
+    mkdir -p "${BUILD_DATA_ROOT}/etc"
+
+    cp services "${BUILD_DATA_ROOT}/etc/services"
+    cp protocols "${BUILD_DATA_ROOT}/etc/protocols"
+
+    return 0
+}
