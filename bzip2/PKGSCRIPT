@@ -1,0 +1,74 @@
+# Package information
+NAME="bzip2"
+VERSION="1.0.8"
+EPOCH=0
+DESC="A compression library with a much better yield than gzip"
+GRPS=()
+URL="https://www.sourceware.org/bzip2/"
+LICENSES=("BSD")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("bzip2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.sourceware.org/pub/bzip2/bzip2-${VERSION}.tar.gz"
+"https://git.yiffos.gay/Core/patches/raw/branch/main/bzip2/install-docs.patch"
+"https://git.yiffos.gay/Core/patches/raw/branch/main/bzip2/add-destdir-support.patch")
+
+SUM_TYPE="sha512"
+SUM=("083f5e675d73f3233c7930ebe20425a533feedeaaa9d8cc86831312a6581cefbe6ed0d08d2fa89be81082f2a5abdabca8b3c080bf97218a1bd59dc118a30b9f3"
+"77dc32bab57cef0b0a671f9db5fd36e8d0bbedd28eca9c644ad77f5ec7e32d63dfff1f90b297afc4cb12134ab052da0872c5f679e264e9cdc3f2545d72dbadc7"
+"5c4c828bc5277f2b5fc213947248cf013f651831cadfc3035d5552d46ba4db0fbc4c10a98d46a5e35d7d04b3627cd0d443c39fb6ee8949146e9cd5234e80af8f")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Ensure the documentation is installed
+    patch -Np1 -i "${WORKDIR}/install-docs.patch"
+
+    # Ensure symbolic links are relative
+    sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile
+
+    # Ensure the man pages are installed in the correct location
+    sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile
+
+    # Patch Makefile to include DESTDIR support
+    patch -Np1 -i "${WORKDIR}/add-destdir-support.patch"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Prepare for compliation
+    make -f Makefile-libbz2_so
+    make clean
+
+    make PREFIX=/usr
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR=${BUILD_DATA_ROOT} make install
+
+    cp -av libbz2.so.* ${BUILD_DATA_ROOT}/usr/lib
+    ln -sv libbz2.so.1.0.8 ${BUILD_DATA_ROOT}/usr/lib/libbz2.so
+
+    cp -v bzip2-shared ${BUILD_DATA_ROOT}/usr/bin/bzip2
+    for i in ${BUILD_DATA_ROOT}/usr/bin/{bzcat,bunzip2}; do
+        ln -sfv bzip2 $i
+    done
+
+    rm -fv ${BUILD_DATA_ROOT}/usr/lib/libbz2.a
+
+    return 0
+}
