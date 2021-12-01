@@ -1,0 +1,53 @@
+# Package information
+NAME="flex"
+VERSION="2.6.4"
+EPOCH=0
+DESC="The fast lexical analyser generator"
+GRPS=()
+URL="https://github.com/westes/flex"
+LICENSES=("custom")
+DEPENDS=("m4")
+OPT_DEPENDS=()
+PROVIDES=("flex")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/westes/flex/releases/download/v${VERSION}/flex-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("e9785f3d620a204b7d20222888917dc065c2036cae28667065bf7862dfa1b25235095a12fd04efdbd09bfd17d3452e6b9ef953a8c1137862ff671c97132a082e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+                --docdir=/usr/share/doc/flex-${VERSION} \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    # Redirect lex to flex in lex emulation mode
+    ln -sv flex ${BUILD_DATA_ROOT}/usr/bin/lex
+
+    return 0
+}
