@@ -20,14 +20,16 @@ SUM=("b7f50ada138c7f93eb7eb1631efccd1d9f03a5e77b6c13c8b757017b2d462e19d2d3e01c50
 
 # Prepare script
 function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
     return 0
 }
 
 # Build script
 function build() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
-
-    ./configure --prefix=/usr
 
     make
 
