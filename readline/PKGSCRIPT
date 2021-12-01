@@ -1,0 +1,56 @@
+# Package information
+NAME="readline"
+VERSION="8.1"
+EPOCH=0
+DESC="A set of libraries for command-line editing"
+GRPS=()
+URL="https://tiswww.case.edu/php/chet/readline/rltop.html"
+LICENSES=("GPL-3.0")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("readline")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/readline/readline-${VERSION}.tar.gz"
+"https://git.yiffos.gay/Core/patches/raw/branch/main/readline/fix-destdir.patch")
+
+SUM_TYPE="sha512"
+SUM=("27790d0461da3093a7fee6e89a51dcab5dc61928ec42e9228ab36493b17220641d5e481ea3d8fee5ee0044c70bf960f55c7d3f1a704cf6b9c42e5c269b797e00"
+"503cf980f5ee9870f56227ed7d366faba1f8405f85231fa9958f28e791cd798519b9d736c18a911fbfdc8a6d28f252515b94f5e7dba6ffd0901f2d222fc4a319")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                                   \
+                --disable-static                                \
+                --with-curses                                   \
+                --docdir=/usr/share/doc/readline-${VERSION}
+
+    # Fix bug that prevents us from setting DESTDIR
+    patch -Np1 -i "${WORKDIR}/fix-destdir.patch"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make SHLIB_LIBS="-lncursesw"
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make SHLIB_LIBS="-lncursesw" install
+
+    install -v -m644 doc/*.{ps,pdf,html,dvi} ${BUILD_DATA_ROOT}/usr/share/doc/readline-${VERSION}
+
+    return 0
+}
