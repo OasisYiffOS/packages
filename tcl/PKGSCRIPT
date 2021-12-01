@@ -1,0 +1,81 @@
+# Package information
+NAME="tcl"
+VERSION="8.6.12"
+_MAJOR_VERSION="8.6"
+_TDBC_VERSION="1.1.3"
+_ITCL_VERSION="4.2.2"
+EPOCH=0
+DESC="The tool command language, a general-purpose programming language"
+GRPS=()
+URL="http://tcl.sourceforge.net/"
+LICENSES=("custom")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("tcl")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/tcl/tcl${VERSION}-src.tar.gz"
+"https://downloads.sourceforge.net/tcl/tcl${VERSION}-html.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("15def824484309fff6831b436e33d91ab1c6b095178f427d1f58b9a04e5e676b18dfdf1d225c6ab9ec15dc233358c40789edc7daf91c5908a1837e9f337feb60"
+"dea944160ff4baf5b372a06bd2b7b69eb7cdea5593705f115ad1d8a7a64b577cee6820f5ec203d616bc4f3651670d7f55385cf4d610aa7d07ccfb25241cbd8a0")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}${VERSION}/unix"
+
+    ./configure --prefix=/usr           \
+                --mandir=/usr/share/man \
+                --enable-64bit
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}${VERSION}/unix"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}${VERSION}/unix"
+
+    # Remove references to the build directory
+    sed -e "s|${WORKDIR}/${NAME}-${VERSION}/unix|/usr/lib|" \
+        -e "s|${WORKDIR}/${NAME}-${VERSION}|/usr/include|"  \
+        -i tclConfig.sh
+
+    sed -e "s|${WORKDIR}/${NAME}-${VERSION}/unix/pkgs/tdbc${_TDBC_VERSION}|/usr/lib/tdbc${_TDBC_VERSION}|" \
+        -e "s|${WORKDIR}/${NAME}-${VERSION}/pkgs/tdbc${_TDBC_VERSION}/generic|/usr/include|"    \
+        -e "s|${WORKDIR}/${NAME}-${VERSION}/pkgs/tdbc${_TDBC_VERSION}/library|/usr/lib/tcl${_MAJOR_VERSION}|" \
+        -e "s|${WORKDIR}/${NAME}-${VERSION}/pkgs/tdbc${_TDBC_VERSION}|/usr/include|"            \
+        -i pkgs/tdbc${_TDBC_VERSION}/tdbcConfig.sh
+
+    sed -e "s|${WORKDIR}/${NAME}-${VERSION}/unix/pkgs/itcl${_ITCL_VERSION}|/usr/lib/itcl${_ITCL_VERSION}|" \
+        -e "s|${WORKDIR}/${NAME}-${VERSION}/pkgs/itcl${_ITCL_VERSION}/generic|/usr/include|"    \
+        -e "s|${WORKDIR}/${NAME}-${VERSION}/pkgs/itcl${_ITCL_VERSION}|/usr/include|"            \
+        -i pkgs/itcl${_ITCL_VERSION}/itclConfig.sh
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install-private-headers
+
+    # Make the installed libary strippable
+    chmod -v u+w ${BUILD_DATA_ROOT}/usr/lib/libtcl8.6.so
+
+    ln -sfv tclsh8.6 ${BUILD_DATA_ROOT}/usr/bin/tclsh
+
+    # Fix possible perl man page conflict
+    mv ${BUILD_DATA_ROOT}/usr/share/man/man3/{Thread,Tcl_Thread}.3
+
+    return 0
+}
