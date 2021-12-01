@@ -1,0 +1,57 @@
+# Package information
+NAME="expect"
+VERSION="5.45.4"
+EPOCH=0
+DESC="Tools for automating interactive applications"
+GRPS=()
+URL="https://core.tcl-lang.org/expect/index"
+LICENSES=("custom")
+DEPENDS=("tcl")
+OPT_DEPENDS=()
+PROVIDES=("expect")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://prdownloads.sourceforge.net/expect/expect${VERSION}.tar.gz"
+"https://git.yiffos.gay/Core/patches/raw/branch/main/expect/fix-destdir.patch")
+
+SUM_TYPE="sha512"
+SUM=("a8dc25e8175f67e029e15cbcfca1705165c1c4cb2dd37eaaaebffb61e3ba132d9519cd73ca5add4c3358a2b0b7a91e878279e8d0b72143ff2c287fce07e4659a"
+"2397ca0977b65796240af1dd68a7a9e443fced4f25b6dc1593f595698a9dc29aec078452d9e03cfdfdfab0e84d2db22309521fc323273899f27689e8f4dc54fd")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}${VERSION}"
+
+    ./configure --prefix=/usr                   \
+                --with-tcl=/usr/lib             \
+                --enable-shared                 \
+                --mandir=/usr/share/man         \
+                --with-tclinclude=/usr/include
+
+    patch -Np1 -i "${WORKDIR}/fix-destdir.patch"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}${VERSION}"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+    ln -svf expect5.45.4/libexpect5.45.4.so ${BUILD_DATA_ROOT}/usr/lib
+
+    return 0
+}
