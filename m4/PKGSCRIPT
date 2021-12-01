@@ -1,0 +1,48 @@
+# Package information
+NAME="m4"
+VERSION="1.4.19"
+EPOCH=0
+DESC="The M4 macro processor"
+GRPS=()
+URL="https://www.gnu.org/software/m4/"
+LICENSES=("GPL-3.0")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("m4")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/m4/m4-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("47f595845c89709727bda0b3fc78e3188ef78ec818965b395532e7041cabe9e49677ee4aca3d042930095a7f8df81de3da1026b23b6897be471f6cf13ddd512b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
