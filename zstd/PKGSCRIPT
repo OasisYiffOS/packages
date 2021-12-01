@@ -1,0 +1,45 @@
+# Package information
+NAME="zstd"
+VERSION="1.5.0"
+EPOCH=0
+DESC="A real-time compression library, providing high compression ratios, while being backed by a very fast decoder"
+GRPS=()
+URL="https://facebook.github.io/zstd/"
+LICENSES=("BSD")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("zstd")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/facebook/zstd/releases/download/v${VERSION}/zstd-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("b322fc1b89a556827b7fece2fb0f34c83bf65bb85b2468c791d6d9178a65c81e21f4171b7533cbf12bc1dfb2fd323d3e8c34d86167b157645c27f65186eec659")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make prefix=/usr install
+    rm -fv "${BUILD_DATA_ROOT}/usr/lib/libzstd.a"
+
+    return 0
+}
