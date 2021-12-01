@@ -1,0 +1,87 @@
+# Package information
+NAME="binutils"
+VERSION="2.37"
+EPOCH=0
+DESC="A collection of binary tools, including an assembler, linker, and binary utilities."
+GRPS=()
+URL="https://www.gnu.org/software/binutils/"
+LICENSES=("GPL")
+DEPENDS=("zlib" "elfutils")
+OPT_DEPENDS=()
+MK_DEPENDS=("dejagnu")
+PROVIDES=("binutils")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/binutils/binutils-${VERSION}.tar.xz"
+"https://git.yiffos.gay/Core/patches/raw/branch/main/binutils/binutils-2.37-upstream_fix-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("5c11aeef6935860a6819ed3a3c93371f052e52b4bdc5033da36037c1544d013b7f12cb8d561ec954fe7469a68f1b66f1a3cd53d5a3af7293635a90d69edd15e7"
+"7b01ccef5bfc0ffbcf6c4ae3265ffdac33e73c35033996cdd5560ed3fbe1c430d59c5138e14a673aff4e6062d516255738834dc143f78221c8860478a570c64a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Ensure we have PTYs for building
+    echo "We will now check if we have PTYs for building."
+
+    expect -c "spawn ls"
+
+    echo "If the output is 'spawn ls', we have PTYs for building."
+    echo "Any other output means the environment is not set up correctly. Please check your environment."
+
+    # Silently check and exit if incorrect
+    $(expect -c "spawn ls" | grep -q "spawn ls") || exit
+
+    # Apply a patch from upstream to fix an issue with building some packages
+    patch -Np1 -i "${WORKDIR}/binutils-2.37-upstream_fix-1.patch"
+
+    # Ensure the man pages will be regenerated correctly
+    sed -i '63d' etc/texi2pod.pl
+    find -name \*.1 -delete
+
+    mkdir -v build
+    cd       build
+
+    ../configure --prefix=/usr                                                  \
+                 --with-bugurl=https://git.yiffos.gay/Packaging/packages/issues \
+                 --enable-cet                                                   \
+                 --enable-deterministic-archives                                \
+                 --enable-gold                                                  \
+                 --enable-ld=default                                            \
+                 --enable-plugins                                               \
+                 --enable-shared                                                \
+                 --enable-threads                                               \
+                 --enable-lto                                                   \
+                 --disable-werror                                               \
+                 --enable-64-bit-bfd                                            \
+                 --with-system-zlib
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    make tooldir=/usr
+
+    # DO NOT SKIP THE CHECK FOR BINUTILS though some failures are exptected
+    make -k check || true
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make tooldir=/usr install -j1
+
+    rm -fv ${BUILD_DATA_ROOT}/usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes}.a
+
+    return 0
+}
