@@ -1,0 +1,65 @@
+# Package information
+NAME="bc"
+VERSION="1.07.1"
+EPOCH=0
+DESC="Arbitrary precision calculator language"
+GRPS=()
+URL="https://www.gnu.org/software/bc/"
+LICENSES=("GPL")
+DEPENDS=("readline")
+OPT_DEPENDS=()
+MK_DEPENDS=("sed")
+PROVIDES=("bc")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/bc/bc-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("02126d0db6b6ed06d56cfc292d6f5475ff1e574779d7e69c7809bbb1e13f946f57ea07da2a7666baa092507a951a822044b0970075f75eefe65a5c1999b75d34")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix issue that causes the tests to use ed instead of sed
+cat > bc/fix-libmath_h << "EOF"
+#! /bin/bash
+sed -e '1   s/^/{"/' \
+    -e     's/$/",/' \
+    -e '2,$ s/^/"/'  \
+    -e   '$ d'       \
+    -i libmath.h
+
+sed -e '$ s/$/0}/' \
+    -i libmath.h
+EOF
+
+    ./configure --prefix=/usr               \
+                --with-readline             \
+                --mandir=/usr/share/man     \
+                --infodir=/usr/share/info
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    echo "quit" | ./bc/bc -l Test/checklib.b
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
