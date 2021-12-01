@@ -1,0 +1,58 @@
+# Package information
+NAME="dejagnu"
+VERSION="1.6.3"
+EPOCH=0
+DESC="Testing framework for running test suites on GNU tools"
+GRPS=()
+URL="https://www.gnu.org/software/dejagnu/"
+LICENSES=("GPL")
+DEPENDS=("expect")
+OPT_DEPENDS=()
+PROVIDES=("dejagnu")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/dejagnu/dejagnu-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("1a737132bd912cb527e7f2fcbe70ffff8ccc8604a0ffdecff87ba2a16aeeefd800f5792aeffdbe79be6daa35cedb1c60e41002ca4aabb5370a460028191b76c4")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir -v build
+    cd       build
+
+    ../configure --prefix=/usr
+
+    makeinfo --html --no-split -o doc/dejagnu.html ../doc/dejagnu.texi
+    makeinfo --plaintext       -o doc/dejagnu.txt  ../doc/dejagnu.texi
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    make
+
+    # Ensure that bash is used for testing
+    SHELL="/bin/bash" make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -dm755  ${BUILD_DATA_ROOT}/usr/share/doc/dejagnu-${VERSION}
+    install -v -m644   doc/dejagnu.{html,txt} ${BUILD_DATA_ROOT}/usr/share/doc/dejagnu-${VERSION}
+
+    return 0
+}
