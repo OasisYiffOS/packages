@@ -1,0 +1,53 @@
+# Package information
+NAME="mpc"
+VERSION="1.2.1"
+EPOCH=0
+DESC="Library for the arithmetic of complex numbers"
+GRPS=()
+URL="http://www.multiprecision.org/mpc/"
+LICENSES=("GPL-2.0")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("mpc")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/mpc/mpc-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("3279f813ab37f47fdcc800e4ac5f306417d07f539593ca715876e43e04896e1d5bceccfb288ef2908a3f24b760747d0dbd0392a24b9b341bc3e12082e5c836ee")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+                --disable-static                        \
+                --docdir=/usr/share/doc/mpc-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make html
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+    DESTDIR="${BUILD_DATA_ROOT}" make install-html
+
+    return 0
+}
