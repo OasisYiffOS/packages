@@ -1,0 +1,54 @@
+# Package information
+NAME="mpfr"
+VERSION="4.1.0"
+EPOCH=0
+DESC="Multiple precision floating-point library"
+GRPS=()
+URL="https://www.mpfr.org/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("mpfr")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.mpfr.org/mpfr-${VERSION}/mpfr-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("1bd1c349741a6529dfa53af4f0da8d49254b164ece8a46928cdb13a99460285622d57fe6f68cef19c6727b3f9daa25ddb3d7d65c201c8f387e421c7f7bee6273")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+                --disable-static                        \
+                --enable-thread-safe                    \
+                --docdir=/usr/share/doc/mpfr-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make html
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+    DESTDIR="${BUILD_DATA_ROOT}" make install-html
+
+    return 0
+}
