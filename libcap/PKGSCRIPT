@@ -1,0 +1,51 @@
+# Package information
+NAME="libcap"
+VERSION="2.53"
+EPOCH=0
+DESC="User-space interface to the POSIX 1003.1e capabilities"
+GRPS=()
+URL="https://sites.google.com/site/fullycapable/"
+LICENSES=("GPL-2.0")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("libcap")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/libcap-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("d83ed9460658fa75a5c118d831534388ba92ddad59944088b0d81a64c86b67ed562c7be4c5a499065ec26b1baab34298da80c8d034b61759c7dd295c2455417c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Prevent static libraries from being installed
+    sed -i '/install -m.*STA/d' libcap/Makefile
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make prefix=/usr lib=lib
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make prefix=/usr lib=lib install
+
+    chmod -v 755 ${BUILD_DATA_ROOT}/usr/lib/lib{cap,psx}.so.2.53
+
+    return 0
+}
