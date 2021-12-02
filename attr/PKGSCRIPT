@@ -1,0 +1,51 @@
+# Package information
+NAME="attr"
+VERSION="2.5.1"
+EPOCH=0
+DESC="Utilities for manipulating filesystem attributes"
+GRPS=()
+URL="https://savannah.nongnu.org/projects/attr"
+LICENSES=("LGPL")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("attr")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.savannah.gnu.org/releases/attr/attr-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("8b4c043d61f8f3e0cd098e701181069f51117b85fd6ba18bfe9af77d894ea671232377d4793ffc822e9259ceee6ac71d75732eb93b2830c6cb5d0d918ba2d21b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+                --disable-static                        \
+                --sysconfdir=/etc                       \
+                --docdir=/usr/share/doc/attr-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
