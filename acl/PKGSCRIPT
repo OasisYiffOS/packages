@@ -1,0 +1,50 @@
+# Package information
+NAME="acl"
+VERSION="2.3.1"
+EPOCH=0
+DESC="Utility to control access permissions for files and directories"
+GRPS=()
+URL="https://savannah.nongnu.org/projects/acl"
+LICENSES=("LGPL")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("acl")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.savannah.gnu.org/releases/acl/acl-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("7d02f05d17305f8587ab485395b00c7fdb8e44c1906d0d04b70a43a3020803e8b2b8c707abb6147f794867dfa87bd51769c2d3e11a3db55ecbd2006a6e6231dc")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+                --disable-static                        \
+                --docdir=/usr/share/doc/acl-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
