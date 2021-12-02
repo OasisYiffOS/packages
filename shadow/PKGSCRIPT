@@ -1,0 +1,72 @@
+# Package information
+NAME="shadow"
+VERSION="4.8.1"
+EPOCH=0
+DESC="Utilities for handling user passwords"
+GRPS=()
+URL="https://shadow-maint.github.io/shadow/"
+LICENSES=("BSD")
+DEPENDS=("pam" "acl" "libcap")
+OPT_DEPENDS=()
+PROVIDES=("shadow")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/shadow-maint/shadow/releases/download/${VERSION}/shadow-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("780a983483d847ed3c91c82064a0fa902b6f4185225978241bc3bc03fcc3aa143975b46aee43151c6ba43efcfdb1819516b76ba7ad3d1d3c34fcc38ea42e917b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Disable shadow groups, we use the one from coreutils
+    sed -i 's/groups$(EXEEXT) //' src/Makefile.in
+
+    find man -name Makefile.in -exec sed -i 's/groups\.1 / /'   {} \;
+    find man -name Makefile.in -exec sed -i 's/getspnam\.3 / /' {} \;
+    find man -name Makefile.in -exec sed -i 's/passwd\.5 / /'   {} \;
+
+    # Use SHA-512 password encryption, use /var/mail, and remove /bin and /sbin from PATH
+    sed -e 's:#ENCRYPT_METHOD DES:ENCRYPT_METHOD SHA512:' \
+        -e 's:/var/spool/mail:/var/mail:'                 \
+        -e '/PATH=/{s@/sbin:@@;s@/bin:@@}'                \
+        -i etc/login.defs
+
+    # Add cracklib support (Temporarily disabled)
+    #sed -i 's:DICTPATH.*:DICTPATH\t/lib/cracklib/pw_dict:' etc/login.defs
+
+    mkdir -p ${BUILD_DATA_ROOT}/usr/bin/
+    touch ${BUILD_DATA_ROOT}/usr/bin/passwd
+
+    ./configure --prefix=/usr                   \
+                --sysconfdir=/etc               \
+                --with-libpam                   \
+                --with-group-name-max-length=32
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make exec_prefix=/usr install
+
+    make -C man install-man
+
+    mkdir -p ${BUILD_DATA_ROOT}/etc/default
+
+    return 0
+}
