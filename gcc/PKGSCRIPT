@@ -1,0 +1,90 @@
+# Package information
+NAME="gcc"
+VERSION="11.2.0"
+EPOCH=0
+DESC="The GNU Compiler Collection, including C, C++, ObjC, Fortran, Ada, and Go"
+GRPS=()
+URL="https://gcc.gnu.org/"
+LICENSES=("GPL" "LGPL")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("gcc")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/gcc/gcc-${VERSION}/gcc-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("d53a0a966230895c54f01aea38696f818817b505f1e2bfa65e508753fcd01b2aedb4a61434f41f3a2ddbbd9f41384b96153c684ded3f0fa97c82758d9de5c7cf")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Patch issue breaking libasan identified upstream
+    sed -e '/static.*SIGSTKSZ/d'                                        \
+        -e 's/return kAltStackSize/return SIGSTKSZ * 4/'                \
+        -i libsanitizer/sanitizer_common/sanitizer_posix_libcdep.cpp
+
+    # Ensure 64-bit libraries are installed into lib
+    sed -e '/m64=/s/lib64/lib/'             \
+        -i.orig gcc/config/i386/t-linux64
+
+    mkdir -v build
+    cd       build
+
+    ../configure                                            \
+        --prefix=/usr                                       \
+        --disable-multilib                                  \
+        --with-system-zlib                                  \
+        --enable-cet=auto                                   \
+        --enable-lto                                        \
+        --enable-plugin                                     \
+        --enable-shared                                     \
+        --enable-threads=posix                              \
+        --enable-languages=c,c++,d,fortran,go,objc,obj-c++
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    make
+
+    ulimit -s 32768
+    make -k check || true
+
+    ../contrib/test_summary
+    echo "Please check if all tests passed."
+    echo "102 unepxected failures are expected."
+    read -s -n 1 -p "Press any key to continue . . ."
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/share/gdb/auto-load/usr/lib
+    mv -v ${BUILD_DATA_ROOT}/usr/lib/*gdb.py ${BUILD_DATA_ROOT}/usr/share/gdb/auto-load/usr/lib
+
+    chown -v -R root:root                                                       \
+        ${BUILD_DATA_ROOT}/usr/lib/gcc/*linux-gnu/${VERSION}/include{,-fixed}
+
+    rm -rf ${BUILD_DATA_ROOT}/usr/lib/gcc/$(gcc -dumpmachine)/${VERSION}/include-fixed/bits/
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/lib
+    ln -svr ${BUILD_DATA_ROOT}/usr/bin/cpp ${BUILD_DATA_ROOT}/usr/lib/cpp
+
+    ln -v -sf gcc ${BUILD_DATA_ROOT}/usr/bin/cc
+    install -v -dm755 ${BUILD_DATA_ROOT}/usr/lib/bfd-plugins
+    ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/${VERSION}/liblto_plugin.so ${BUILD_DATA_ROOT}/usr/lib/bfd-plugins/
+
+    return 0
+}
