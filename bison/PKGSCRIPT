@@ -1,0 +1,49 @@
+# Package information
+NAME="bison"
+VERSION="3.8.2"
+EPOCH=0
+DESC="General-purpose parser generator"
+GRPS=()
+URL="https://www.gnu.org/software/bison/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("bison")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/bison/bison-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("d4d23af6671406e97257892f90651b67f2ab95219831372be032190b7156c10a3435d457857e677445df8b2327aacccc15344acbbc3808a6f332a93cce23b444")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+                --docdir=/usr/share/doc/bison-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
