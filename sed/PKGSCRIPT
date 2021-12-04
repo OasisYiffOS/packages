@@ -1,0 +1,53 @@
+# Package information
+NAME="sed"
+VERSION="4.8"
+EPOCH=0
+DESC="The GNU stream editor"
+GRPS=()
+URL="https://www.gnu.org/software/sed/"
+LICENSES=("GPL-3.0")
+DEPENDS=("acl" "attr")
+OPT_DEPENDS=()
+PROVIDES=("sed")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/sed/sed-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("7de25d9bc2981c63321c2223f3fbcab61d7b0df4fcf7d4394b72400b91993e1288d8bf53948ed5fffcf5a98c75265726a68ad4fb98e1d571bf768603a108c1c8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make html
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -d -m755           ${BUILD_DATA_ROOT}/usr/share/doc/sed-${VERSION}
+    install -m644 doc/sed.html ${BUILD_DATA_ROOT}/usr/share/doc/sed-${VERSION}
+
+    return 0
+}
