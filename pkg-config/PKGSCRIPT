@@ -1,0 +1,51 @@
+# Package information
+NAME="pkg-config"
+VERSION="0.29.2"
+EPOCH=0
+DESC="Helper tool used when compiling applications and libraries"
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/pkg-config/"
+LICENSES=("GPL")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("pkg-config")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://pkg-config.freedesktop.org/releases/pkg-config-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("4861ec6428fead416f5cbbbb0bbad10b9152967e481d4b0ff2eb396a9f297f552984c9bb72f6864a37dcd8fca1d9ccceda3ef18d8f121938dbe4fdf2b870fe75")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                                   \
+                --with-internal-glib                            \
+                --disable-host-tool                             \
+                --docdir=/usr/share/doc/pkg-config-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
