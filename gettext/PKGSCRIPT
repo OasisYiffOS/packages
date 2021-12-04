@@ -1,0 +1,51 @@
+# Package information
+NAME="gettext"
+VERSION="0.21"
+EPOCH=0
+DESC="GNU internationalization utilities"
+GRPS=()
+URL="https://www.gnu.org/software/gettext/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("gettext")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/gettext/gettext-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("f7e2968651879f8444d43a176a149db9f9411f4a03132a7f3b37c2ed97e3978ae6888169c995c1953cb78943b6e3573811abcbb8661b6631edbbe067b2699ddf")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                               \
+                --disable-static                            \
+                --docdir=/usr/share/doc/gettext-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+    chmod -v 0755 ${BUILD_DATA_ROOT}/usr/lib/preloadable_libintl.so
+
+    return 0
+}
