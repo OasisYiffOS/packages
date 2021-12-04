@@ -1,0 +1,48 @@
+# Package information
+NAME="grep"
+VERSION="3.7"
+EPOCH=0
+DESC="Search for text in files"
+GRPS=()
+URL="https://www.gnu.org/software/grep/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("grep")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/grep/grep-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("e9e45dcd40af8367f819f2b93c5e1b4e98a251a9aa251841fa67a875380fae52cfa27c68c6dbdd6a4dde1b1017ee0f6b9833ef6dd6e419d32d71b6df5e972b82")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
