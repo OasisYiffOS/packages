@@ -1,0 +1,39 @@
+# Package information
+NAME="nerdfetch"
+VERSION="4.1"
+EPOCH=0
+DESC="A fast system fetch script using Nerdfonts"
+GRPS=()
+URL="https://github.com/ThatOneCalculator/NerdFetch"
+LICENSES=("GPL-3.0")
+DEPENDS=("bc")
+OPT_DEPENDS=()
+PROVIDES=("nerdfetch")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/ThatOneCalculator/NerdFetch/archive/refs/heads/master.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("c41278b833bea5a952bf3993a6d1e2841d7ca6ccd2ea5948fe76bb937a7b66e1ce512813140fc63ebbbb09a2b3d25acf7dd7cd0b96a00a96a131418e74ed12ce")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/NerdFetch-master"
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/bin/
+    install -m755 nerdfetch ${BUILD_DATA_ROOT}/usr/bin/nerdfetch
+
+    return 0
+}
