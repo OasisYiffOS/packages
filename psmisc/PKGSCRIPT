@@ -1,0 +1,46 @@
+# Package information
+NAME="psmisc"
+VERSION="23.4"
+EPOCH=0
+DESC="Miscellaneous utilities that use the proc filesystem"
+GRPS=()
+URL="https://gitlab.com/psmisc/psmisc"
+LICENSES=("GPL-2.0")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("psmisc")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://sourceforge.net/projects/psmisc/files/psmisc/psmisc-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("b05781fdb283a6f132bd385d64437f8080e6bc0e11cd2e3e02227678682bb67b3c89edec34a6d067d77312811d072dc60b47ebb32b168c4c69bbc36df643a471")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
