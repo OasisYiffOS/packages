@@ -1,0 +1,50 @@
+# Package information
+NAME="gperf"
+VERSION="3.1"
+EPOCH=0
+DESC="Perfect hash function generator"
+GRPS=()
+URL="https://www.gnu.org/software/gperf/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("gperf")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/gperf/gperf-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("855ebce5ff36753238a44f14c95be7afdc3990b085960345ca2caf1a2db884f7db74d406ce9eec2f4a52abb8a063d4ed000a36b317c9a353ef4e25e2cca9a3f4")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+                --docdir=/usr/share/doc/gperf-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    # Run tests with a single job as they can fail if multiple are running at once
+    make -j1 check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
