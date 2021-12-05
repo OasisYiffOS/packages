@@ -1,0 +1,50 @@
+# Package information
+NAME="elfutils"
+VERSION="0.186"
+EPOCH=0
+DESC="Collection of ELF object file access utilities and libraries"
+GRPS=()
+URL="https://sourceware.org/elfutils/"
+LICENSES=("GPL-2.0-or-later" "LGPL-3.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("elfutils" "libelf")
+CONFLICTS=("libelf")
+REPLACES=()
+
+# Source information
+SRC=("https://sourceware.org/ftp/elfutils/${VERSION}/elfutils-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("c9180b27ec62935f18b9431268d176f6023d1bb938731d2af6e7626ae460af6608a70ba68483aa1ec7e6cb0fa0528b661ca8b68bc4f58ea8e18af527c5950c78")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                \
+                --disable-debuginfod         \
+                --enable-libdebuginfod=dummy
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
