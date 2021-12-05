@@ -1,0 +1,50 @@
+# Package information
+NAME="gdbm"
+VERSION="1.22"
+EPOCH=0
+DESC="The GNU Database Manager"
+GRPS=()
+URL="https://www.gnu.org.ua/software/gdbm/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("gdbm")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/gdbm/gdbm-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("67461fc4f41e825d0134175ff99c913ccb4aa7ea3d0f64f32bdedbc7677b3ecabd2c525ac6b2ee47a9561e002e4224e492b72088d57bb4862a1f8c089521ec51")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr           \
+                --disable-static        \
+                --enable-libgdbm-compat
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make -k check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
