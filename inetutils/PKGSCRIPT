@@ -1,0 +1,60 @@
+# Package information
+NAME="inetutils"
+VERSION="2.2"
+EPOCH=0
+DESC="A collection of common network utilities"
+GRPS=()
+URL="https://www.gnu.org/software/inetutils/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("inetutils")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/inetutils/inetutils-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("153bc02b2d497f927528f9aac04f16011ec5eb54a3acd98c100dfb6b0b01a63fd1cbc7d2e502b434e38d3ef70208d7a498141b930b1818181343627a525eaeef")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr        \
+                --bindir=/usr/bin    \
+                --localstatedir=/var \
+                --disable-logger     \
+                --disable-whois      \
+                --disable-rcp        \
+                --disable-rexec      \
+                --disable-rlogin     \
+                --disable-rsh        \
+                --disable-servers
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mkdir -pv "${BUILD_DATA_ROOT}/usr/sbin"
+    mv -v ${BUILD_DATA_ROOT}/usr/{,s}bin/ifconfig
+
+    return 0
+}
