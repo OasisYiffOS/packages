@@ -1,0 +1,58 @@
+# Package information
+NAME="kmod"
+VERSION="29"
+EPOCH=0
+DESC="Set of tools to handle Linux kernel modules"
+GRPS=()
+URL="https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git"
+LICENSES=("LGPL-2.0-or-later" "GPL-2.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("kmod")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("557cdcaec75e5a1ceea2d10862c944e9a65ef54f6ee9da6dc98ce4582418fdc9958aab2e14a84807db61daf36ec4fcdc23a36376c39d5dc31d1823ca7cd47998")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr          \
+                --sysconfdir=/etc      \
+                --with-xz              \
+                --with-zstd            \
+                --with-zlib
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/sbin
+
+    for target in depmod insmod modinfo modprobe rmmod; do
+        ln -sfv ../bin/kmod ${BUILD_DATA_ROOT}/usr/sbin/$target
+    done
+
+    ln -sfv kmod ${BUILD_DATA_ROOT}/usr/bin/lsmod
+
+    return 0
+}
