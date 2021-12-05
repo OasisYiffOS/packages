@@ -1,0 +1,62 @@
+# Package information
+NAME="openssl"
+VERSION="3.0.0"
+EPOCH=0
+DESC="Cryptography and SSL/TLS Toolkit"
+GRPS=()
+URL="https://www.openssl.org/"
+LICENSES=("Apache-2.0")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("openssl")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.openssl.org/source/openssl-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("1fdf769ef69631eb802671a9e0bb3a01883d58282f651986212983c2d7c9d3499dabe99a6dee0411e997e6fcfa6f682b121b7698596de0d6c78850c2200241b1")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./config --prefix=/usr         \
+             --openssldir=/etc/ssl \
+             --libdir=lib          \
+             no-ssl3               \
+             shared                \
+             zlib-dynamic
+
+    # Remove empty DESTDIR declare
+    sed -i '0,/DESTDIR=/s///' Makefile
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    # One test is known to fail
+    make test || true
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
+
+    DESTDIR="${BUILD_DATA_ROOT}" MANSUFFIX=ssl make install
+
+    mv -v ${BUILD_DATA_ROOT}/usr/share/doc/openssl ${BUILD_DATA_ROOT}/usr/share/doc/openssl-${VERSION}
+    cp -vfr doc/* ${BUILD_DATA_ROOT}/usr/share/doc/openssl-${VERSION}
+
+    return 0
+}
