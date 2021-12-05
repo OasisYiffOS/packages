@@ -1,0 +1,60 @@
+# Package information
+NAME="ninja"
+VERSION="1.10.2"
+EPOCH=0
+DESC="A small build system with a focus on speed"
+GRPS=()
+URL="https://ninja-build.org/"
+LICENSES=("Apache-2.0")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("python")
+PROVIDES=("ninja")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/ninja-build/ninja/archive/v${VERSION}/ninja-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("895412ae1cbc83c656e92f282602a29300e08274e9dea0da4464202ae556e7a1ab03bec057f23da4756bbd91bd2d744cd7a64b336740fd2782bb4db5c3b7b496")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Allow users to specify NINJAJOBS to limit the number of parallel jobs
+sed -i '/int Guess/a \
+  int   j = 0;\
+  char* jobs = getenv( "NINJAJOBS" );\
+  if ( jobs != NULL ) j = atoi( jobs );\
+  if ( j > 0 ) return j;\
+' src/ninja.cc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    python3 configure.py --bootstrap
+
+    ./ninja ninja_test
+    ./ninja_test --gtest_filter=-SubprocessTest.SetWithLots
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir -pv "${BUILD_DATA_ROOT}/usr/bin"
+
+    install -vm755 ninja ${BUILD_DATA_ROOT}/usr/bin/
+    install -vDm644 misc/bash-completion ${BUILD_DATA_ROOT}/usr/share/bash-completion/completions/ninja
+    install -vDm644 misc/zsh-completion  ${BUILD_DATA_ROOT}/usr/share/zsh/site-functions/_ninja
+
+    return 0
+}
