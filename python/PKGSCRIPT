@@ -1,0 +1,68 @@
+# Package information
+NAME="python"
+VERSION="3.10.0"
+EPOCH=0
+DESC="High-level object-oriented programming language"
+GRPS=()
+URL="https://www.python.org/"
+LICENSES=("PSF-2.0")
+DEPENDS=("libffi" "expat")
+OPT_DEPENDS=("sqlite")
+PROVIDES=("python")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tar.xz"
+"https://www.python.org/ftp/python/doc/${VERSION}/python-${VERSION}-docs-html.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("82b2729afc7d72a80882f199970667dce7d971a2e5ecfe6cf84f7b68612ab2caf6ed6d7a8cb81f24ea85cb0816464bb2e8b2e6884eda62fa40742edc674193bd"
+"50543d3db9be63db1d33f40573c979fe2e8fd0485d83eed5cba35743f57cabbed22524f27ae6e7850ca4e6bd325a9a050b0028cb731b191ae3eae56af5a03439")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/Python-${VERSION}"
+
+    ./configure --prefix=/usr                       \
+                --enable-shared                     \
+                --with-system-expat                 \
+                --with-system-ffi                   \
+                --with-ensurepip=yes                \
+                --enable-optimizations              \
+                --enable-ipv6                       \
+                --enable-loadable-sqlite-extensions
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/Python-${VERSION}"
+
+    make
+
+    # socket testing causes a hang
+    #make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/Python-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -dm755 ${BUILD_DATA_ROOT}/usr/share/doc/python-${VERSION}/html
+
+    tar --strip-components=1                                        \
+        --no-same-owner                                             \
+        --no-same-permissions                                       \
+        -C ${BUILD_DATA_ROOT}/usr/share/doc/python-${VERSION}/html  \
+        -xvf ${WORKDIR}/python-${VERSION}-docs-html.tar.bz2
+
+    ln -svfn python-${VERSION} ${BUILD_DATA_ROOT}/usr/share/doc/python-3
+
+    return 0
+}
