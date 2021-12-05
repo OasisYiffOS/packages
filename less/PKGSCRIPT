@@ -1,0 +1,50 @@
+# Package information
+NAME="less"
+VERSION="590"
+EPOCH=0
+DESC="A free, open source, file pager program"
+GRPS=()
+URL="https://www.greenwoodsoftware.com/less/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("less")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.greenwoodsoftware.com/less/less-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("426fa5840fd43c17bd5a452ad35ad24f2d6684623c6914403fd0059af62266bf2138e6828c7d73a1cef26a736c0d2b8ed4ab180eea8297281dae79a4228eb903")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr       \
+                --sysconfdir=/etc
+
+    # Remove empty DESTDIR declare
+    sed -i '0,/DESTDIR =/s///' Makefile
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
