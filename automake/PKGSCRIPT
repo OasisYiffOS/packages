@@ -1,0 +1,49 @@
+# Package information
+NAME="automake"
+VERSION="1.16.4"
+EPOCH=0
+DESC="Utilites for generating Makefiles.in files"
+GRPS=()
+URL="https://www.gnu.org/software/automake/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("autoconf")
+OPT_DEPENDS=()
+PROVIDES=("automake")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/automake/automake-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("5a8883657e73b75bfa1ee59ab04af6bf4d43f390ab62fb7a9e8e2ac66159dfe4947b2ac7bc1028afffe6a09d88f388339500e03f6cdfa1226985be45ec033246")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                               \
+                --docdir=/usr/share/doc/automake-${VERSION}    
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
