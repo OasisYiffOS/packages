@@ -1,0 +1,45 @@
+# Package information
+NAME="iproute2"
+VERSION="5.15.0"
+EPOCH=0
+DESC="Utilites for basic and advanced networking"
+GRPS=()
+URL="https://www.kernel.org/pub/linux/utils/net/iproute2/"
+LICENSES=("GPL-3.0")
+DEPENDS=("iptables" "berkeley-db")
+OPT_DEPENDS=()
+PROVIDES=("iproute2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.kernel.org/pub/linux/utils/net/iproute2/iproute2-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("e94918fa10e523224b965c7cb5303a101745e89c90d149d2d9876a002b2a894b1c689c519dc22168f3d334c3ee0810c59ec43223baab3d5f4c56f017d6281f22")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" SBINDIR=${BUILD_DATA_ROOT}/usr/sbin make install
+
+    mkdir -pv              ${BUILD_DATA_ROOT}/usr/share/doc/iproute2-${VERSION}
+    cp -v COPYING README* ${BUILD_DATA_ROOT}/usr/share/doc/iproute2-${VERSION}
+
+    return 0
+}
