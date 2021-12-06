@@ -1,0 +1,65 @@
+# Package information
+NAME="nano"
+VERSION="5.9"
+EPOCH=0
+DESC="A small, simple, and friendly text editor which replaces pico"
+GRPS=()
+URL="https://nano-editor.org/"
+LICENSES=("GPL-3.0-or-later" "BSD")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("nano")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://nano-editor.org/dist/v5/nano-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("45ff3abce4dab24a8090409e6d7bb26afa7fa7812a51e06728c2aa47d5b4de610d97ba4609cf13d9173087bd909fdf377235eee988a6fdcf52abb70341c40b5b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+                --sysconfdir=/etc                       \
+                --enable-utf8                           \
+                --docdir=/usr/share/doc/nano-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -m644 doc/{nano.html,sample.nanorc} ${BUILD_DATA_ROOT}/usr/share/doc/nano-${VERSION}
+
+    # Install default configuration
+    mkdir -pv ${BUILD_DATA_ROOT}/etc
+cat > ${BUILD_DATA_ROOT}/etc/nanorc << "EOF"
+set autoindent
+set constantshow
+set fill 72
+set historylog
+set multibuffer
+set positionlog
+set quickblank 
+set regexp
+set suspend
+EOF
+
+    return 0
+}
