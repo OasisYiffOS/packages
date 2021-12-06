@@ -1,0 +1,54 @@
+# Package information
+NAME="gawk"
+VERSION="5.1.1"
+EPOCH=0
+DESC="GNU domain-specific language for processing text"
+GRPS=()
+URL="https://www.gnu.org/software/gawk/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("gawk")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/gawk/gawk-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("794538fff03fdb9a8527a6898b26383d01988e8f8456f8d48131676387669a8bb3e706fa1a17f6b6316ddba0ebe653c24ad5dd769f357de509d6ec25f3ff1a43")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Remove unneeded files
+    sed -i 's/extras//' Makefile.in
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/share/doc/gawk-${VERSION}
+    cp    -v doc/{awkforai.txt,*.{eps,pdf,jpg}} ${BUILD_DATA_ROOT}/usr/share/doc/gawk-${VERSION}
+
+    return 0
+}
