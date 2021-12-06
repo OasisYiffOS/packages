@@ -1,0 +1,55 @@
+# Package information
+NAME="man-db"
+VERSION="2.9.4"
+EPOCH=0
+DESC="Utilities for finding and viewing man pages"
+GRPS=()
+URL="https://www.nongnu.org/man-db/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("man-db")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.savannah.gnu.org/releases/man-db/man-db-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("169f091dd0a1d0dbd1583366f8257afb8f57e030d0f7d4213c14ce0b1fc5debf8b9cf2731de503830cb2826b3a22b3cff7da993d44ec18557935bd293529133c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                               \
+                --docdir=/usr/share/doc/man-db-${VERSION}   \
+                --sysconfdir=/etc                           \
+                --disable-setuid                            \
+                --enable-cache-owner=bin                    \
+                --with-browser=/usr/bin/lynx                \
+                --with-vgrind=/usr/bin/vgrind               \
+                --with-grap=/usr/bin/grap
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
