@@ -1,0 +1,48 @@
+# Package information
+NAME="groff"
+VERSION="1.22.4"
+EPOCH=0
+DESC="Utilities for processing and formatting text"
+GRPS=()
+URL="https://www.gnu.org/software/groff/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("groff")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/groff/groff-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("1c42d3cd71efaf067b5850945d9097fa1f0fadd5e2b6ba7446bd9d4f439fe1ad058e4ddb0d4e0f503682137dfc7c822944ce1e3e5cf981673f8ba197ea77126d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # This can be changed later with /etc/papersize
+    PAGE="A4" ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # This package doesn't support parallel builds, ensure theres only one job
+    make -j1
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
