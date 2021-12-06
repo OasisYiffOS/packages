@@ -1,0 +1,46 @@
+# Package information
+NAME="rpcsvc-proto"
+VERSION="1.4.2"
+EPOCH=0
+DESC="rcpsvc protocol files and headers formerly included with glibc"
+GRPS=()
+URL="https://github.com/thkukuk/rpcsvc-proto/"
+LICENSES=("custom")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("rpcsvc-proto")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/thkukuk/rpcsvc-proto/releases/download/v${VERSION}/rpcsvc-proto-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("631fbfc00af94c5d7def0759f27e97dc14d400b4468c906719ae18ecef74815730798c882d1aaa4f90359224e7b829019b786baddc3097905b54f940ca85a714")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --sysconfdir=/etc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
