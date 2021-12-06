@@ -1,0 +1,46 @@
+# Package information
+NAME="meson"
+VERSION="0.60.2"
+EPOCH=0
+DESC="Build system meant to be both extremely fast and extremely easy to use"
+GRPS=()
+URL="https://mesonbuild.com/"
+LICENSES=("Apache-2.0")
+DEPENDS=("python" "ninja")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("meson")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/mesonbuild/meson/releases/download/${VERSION}/meson-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("96064b49a479f81d6def321b4c3c24073b307c3ecd917ab2be2020fedf102da119b205e3d88b6fd1cd13af38949600abc72d4172967d651c78d2e9011276cb80")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    python3 setup.py build
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    python3 setup.py install --root="${BUILD_DATA_ROOT}" --skip-build
+
+    install -vDm644 data/shell-completions/bash/meson ${BUILD_DATA_ROOT}/usr/share/bash-completion/completions/meson
+    install -vDm644 data/shell-completions/zsh/_meson ${BUILD_DATA_ROOT}/usr/share/zsh/site-functions/_meson
+
+    return 0
+}
