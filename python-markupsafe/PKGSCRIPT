@@ -1,0 +1,42 @@
+# Package information
+NAME="python-markupsafe"
+VERSION="2.0.1"
+EPOCH=0
+DESC="Python module that implements an XML/HTML/XHTML Markup safe string"
+GRPS=()
+URL="https://markupsafe.palletsprojects.com/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("python-markupsafe")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://files.pythonhosted.org/packages/source/M/MarkupSafe/MarkupSafe-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("77249bda784111ece15d59eb3de1cbb37a58fb9f22902fe6b73fea9eb0f23857ccbe53dc55463278e3b91f78dc35e2b027fd823ca50d88d8985d5a98ce2327f1")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/MarkupSafe-${VERSION}"
+
+    python3 setup.py build
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/MarkupSafe-${VERSION}"
+
+    python3 setup.py install --root="${BUILD_DATA_ROOT}" --optimize=1
+
+    return 0
+}
