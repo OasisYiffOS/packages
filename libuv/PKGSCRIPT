@@ -1,0 +1,52 @@
+# Package information
+NAME="libuv"
+VERSION="1.42.0"
+EPOCH=0
+DESC="Multi-platform support library for asynchronous I/O"
+GRPS=()
+URL="https://libuv.org/"
+LICENSES=("MIT")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf")
+PROVIDES=("libuv")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://dist.libuv.org/dist/v${VERSION}/libuv-v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("cc8ca797ec6e02fff7d4998fd5a509373ae6c674ff0d57960fef3418f59d3b93a655f52913ee5f712e32e3980b29df6315685c8b506790295d97c7c1f94f3425")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}"
+
+    sh autogen.sh
+
+    ./configure --prefix=/usr   \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
