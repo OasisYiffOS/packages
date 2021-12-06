@@ -1,0 +1,59 @@
+# Package information
+NAME="dbus"
+VERSION="1.12.20"
+EPOCH=0
+DESC="A message bus system"
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/dbus"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("dbus")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://dbus.freedesktop.org/releases/dbus/dbus-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("0964683bc6859374cc94e42e1ec0cdb542cca67971c205fcba4352500b6c0891665b0718e7d85eb060c81cb82e3346c313892bc02384da300ddd306c7eef0056")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                                   \
+                --sysconfdir=/etc                               \
+                --localstatedir=/var                            \
+                --disable-static                                \
+                --disable-doxygen-docs                          \
+                --disable-xml-docs                              \
+                --docdir=/usr/share/doc/dbus-${VERSION}         \
+                --with-console-auth-dir=/run/console            \
+                --with-system-pid-file=/run/dbus/pid            \
+                --with-system-socket=/run/dbus/system_bus_socket
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    # Ensure D-Bus and systemd will use the same machine id
+    mkdir -pv ${BUILD_DATA_ROOT}/var/lib/dbus/
+    ln -sfv /etc/machine-id ${BUILD_DATA_ROOT}/var/lib/dbus
+
+    return 0
+}
