@@ -1,0 +1,87 @@
+# Package information
+NAME="systemd"
+VERSION="249"
+EPOCH=0
+DESC="System and service manager"
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/systemd/"
+LICENSES=("LGPL-2.1-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("ninja")
+PROVIDES=("systemd")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/systemd/systemd/archive/v249/systemd-${VERSION}.tar.gz"
+"https://anduin.linuxfromscratch.org/LFS/systemd-man-pages-${VERSION}.tar.xz"
+"https://git.yiffos.gay/Core/patches/raw/branch/main/systemd/systemd-upstream_fixes.patch")
+
+SUM_TYPE="sha512"
+SUM=("0810d09cc32e4aaa4425ee5b7ddf129262b061ce159cbd43571fabda48285243d8f80b566379ece9215d531b9407ee45e1e72c71935644fea31c7bca1bbf540c"
+"a2e3cea71f9f645eda6ce9940748f6a2b30a50980bd0d8c9f4d6b18d686b6e6f6baa1637112355130d772ea024cb51d4b4b1e551c666fcbe1bfccae05df16613"
+"ecaf8a65f6ec0304105089912746927c2296fe3335dbd4a41d65c9b9717ced4d9ad56e722b6dfacead28ce704555216508d665b64f3ad6cf7ab59cda7bec0bd4")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    patch -Np1 -i "${WORKDIR}/systemd-upstream_fixes.patch"
+
+    # Remove unneeded groups from udex
+    sed -i -e 's/GROUP="render"/GROUP="video"/'                 \
+        -e 's/GROUP="sgx", //' rules.d/50-udev-default.rules.in
+
+    # Fix an issue with meson
+    sed -i 's/+ want_libfuzzer.*$/and want_libfuzzer/' meson.build
+
+    # Fix an issue when building with kernel headers from Linux 5.14+
+    sed -i '/ARPHRD_CAN/a#define ARPHRD_MCTP        290' src/basic/linux/if_arp.h
+
+    mkdir -p build
+    cd       build
+
+    LANG=en_US.UTF-8                                \
+    meson --prefix=/usr                             \
+          --sysconfdir=/etc                         \
+          --localstatedir=/var                      \
+          --buildtype=release                       \
+          -Dblkid=true                              \
+          -Ddefault-dnssec=no                       \
+          -Dfirstboot=false                         \
+          -Dinstall-tests=false                     \
+          -Dldconfig=false                          \
+          -Dsysusers=false                          \
+          -Db_lto=false                             \
+          -Drpmmacrosdir=no                         \
+          -Dhomed=false                             \
+          -Duserdb=false                            \
+          -Dman=false                               \
+          -Dmode=release                            \
+          -Ddocdir=/usr/share/doc/systemd-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    LANG=en_US.UTF-8 ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" LANG=en_US.UTF-8 ninja install
+
+    # Install documentation
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/share/man
+    tar -xf ${WORKDIR}/systemd-man-pages-249.tar.xz --strip-components=1 -C ${BUILD_DATA_ROOT}/usr/share/man
+
+    return 0
+}
