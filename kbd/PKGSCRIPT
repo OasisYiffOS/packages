@@ -1,0 +1,60 @@
+# Package information
+NAME="kbd"
+VERSION="2.4.0"
+EPOCH=0
+DESC="Key-table files, console fonts, and keyboard utilities"
+GRPS=()
+URL="https://kbd-project.org/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("kbd")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.kernel.org/pub/linux/utils/kbd/kbd-${VERSION}.tar.xz"
+"https://git.yiffos.gay/Core/patches/raw/branch/main/kbd/backspace.patch")
+
+SUM_TYPE="sha512"
+SUM=("c3823e40878ed4cb5b90edf753dba37a7fc3189b7b08a2e59a7830cac23a7a7daf31dedef1fcc130698c7508bc2a037c8ab54e749d0cdbf51756e346f2ed5abb"
+"d1ec0d322036073f436cdc326d9f3798c2f0dfc2e5222d6703dbb479ebd4f87ce6ea40e28a67a329f4c44c2c5f45a0fc3ee62d5ef2925766bd3358a8835a95c4")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Keep backspace and delete consistent
+    patch -Np1 -i ${WORKDIR}/backspace.patch
+
+    # Remove program that requires the defunct svgalib
+    sed -i '/RESIZECONS_PROGS=/s/yes/no/' configure
+    sed -i 's/resizecons.8 //' docs/man/man8/Makefile.in
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mkdir -pv           ${BUILD_DATA_ROOT}/usr/share/doc/kbd-${VERSION}
+    cp -R -v docs/doc/* ${BUILD_DATA_ROOT}/usr/share/doc/kbd-${VERSION}
+
+    return 0
+}
