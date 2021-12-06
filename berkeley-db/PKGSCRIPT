@@ -1,0 +1,55 @@
+# Package information
+NAME="berkeley-db"
+VERSION="5.3.28"
+EPOCH=0
+DESC="Libraries and utilities for creating, storing, and retrieving data in the Berkeley DB database system"
+GRPS=()
+URL="https://github.com/berkeleydb/libdb"
+LICENSES=("sleepycat" "BSD-3-Clause" "CDDL-1.0")
+DEPENDS=("sharutils")
+OPT_DEPENDS=()
+PROVIDES=("berkeley-db")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/berkeleydb/libdb/releases/download/v${VERSION}/db-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("e91bbe550fc147a8be7e69ade86fdb7066453814971b2b0223f7d17712bd029a8eff5b2b6b238042ff6ec1ffa6879d44cb95c5645a922fee305c26c3eeaee090")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/db-${VERSION}"
+
+    # Apply fix for building with current versions of gcc
+    sed -i 's/\(__atomic_compare_exchange\)/\1_db/' src/dbinc/atomic.h
+
+    cd build_unix
+
+    ../dist/configure --prefix=/usr      \
+                      --enable-compat185 \
+                      --enable-dbm       \
+                      --disable-static   \
+                      --enable-cxx
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/db-${VERSION}/build_unix"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/db-${VERSION}/build_unix"
+
+    DESTDIR="${BUILD_DATA_ROOT}" docdir=${BUILD_DATA_ROOT}/usr/share/doc/db-${VERSION} make install
+
+    return 0
+}
