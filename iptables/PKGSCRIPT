@@ -1,0 +1,148 @@
+# Package information
+NAME="iptables"
+VERSION="1.8.7"
+EPOCH=0
+DESC="Userspace utility to configure the Linux packet filtering ruleset"
+GRPS=()
+URL="https://www.netfilter.org/projects/iptables/"
+LICENSES=("GPL-2.0")
+DEPENDS=("libpcap")
+OPT_DEPENDS=()
+PROVIDES=("iptables")
+CONFLICTS=("nftables")
+REPLACES=()
+
+# Source information
+SRC=("http://www.netfilter.org/projects/iptables/files/iptables-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("c0a33fafbf1139157a9f52860938ebedc282a1394a68dcbd58981159379eb525919f999b25925f2cb4d6b18089bd99a94b00b3e73cff5cb0a0e47bdff174ed75")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr      \
+                --disable-nftables \
+                --enable-libipq
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    # Setup basic configuration from Linux From Scratch
+    install -v -dm755 ${BUILD_DATA_ROOT}/etc/systemd/scripts
+
+cat > ${BUILD_DATA_ROOT}/etc/systemd/scripts/iptables << "EOF"
+#!/bin/sh
+
+# Begin /etc/systemd/scripts/iptables
+
+# Insert connection-tracking modules
+# (not needed if built into the kernel)
+modprobe nf_conntrack
+modprobe xt_LOG
+
+# Enable broadcast echo Protection
+echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
+
+# Disable Source Routed Packets
+echo 0 > /proc/sys/net/ipv4/conf/all/accept_source_route
+echo 0 > /proc/sys/net/ipv4/conf/default/accept_source_route
+
+# Enable TCP SYN Cookie Protection
+echo 1 > /proc/sys/net/ipv4/tcp_syncookies
+
+# Disable ICMP Redirect Acceptance
+echo 0 > /proc/sys/net/ipv4/conf/default/accept_redirects
+
+# Do not send Redirect Messages
+echo 0 > /proc/sys/net/ipv4/conf/all/send_redirects
+echo 0 > /proc/sys/net/ipv4/conf/default/send_redirects
+
+# Drop Spoofed Packets coming in on an interface, where responses
+# would result in the reply going out a different interface.
+echo 1 > /proc/sys/net/ipv4/conf/all/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/default/rp_filter
+
+# Log packets with impossible addresses.
+echo 1 > /proc/sys/net/ipv4/conf/all/log_martians
+echo 1 > /proc/sys/net/ipv4/conf/default/log_martians
+
+# be verbose on dynamic ip-addresses  (not needed in case of static IP)
+echo 2 > /proc/sys/net/ipv4/ip_dynaddr
+
+# disable Explicit Congestion Notification
+# too many routers are still ignorant
+echo 0 > /proc/sys/net/ipv4/tcp_ecn
+
+# Set a known state
+iptables -P INPUT   DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT  DROP
+
+# These lines are here in case rules are already in place and the
+# script is ever rerun on the fly. We want to remove all rules and
+# pre-existing user defined chains before we implement new rules.
+iptables -F
+iptables -X
+iptables -Z
+
+iptables -t nat -F
+
+# Allow local-only connections
+iptables -A INPUT  -i lo -j ACCEPT
+
+# Free output on any interface to any ip for any service
+# (equal to -P ACCEPT)
+iptables -A OUTPUT -j ACCEPT
+
+# Permit answers on already established connections
+# and permit new connections related to established ones
+# (e.g. port mode ftp)
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# Log everything else.
+iptables -A INPUT -j LOG --log-prefix "FIREWALL:INPUT "
+
+# End /etc/systemd/scripts/iptables
+EOF
+    chmod 700 ${BUILD_DATA_ROOT}/etc/systemd/scripts/iptables
+
+    # Install systemd unit
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/lib/systemd/system
+
+cat > ${BUILD_DATA_ROOT}/usr/lib/systemd/system/iptables.service << "EOF"
+[Unit]
+Description=Iptables Rules
+ConditionFileIsExecutable=/etc/systemd/scripts/iptables
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/etc/systemd/scripts/iptables
+TimeoutSec=0
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+    chmod 700 ${BUILD_DATA_ROOT}/usr/lib/systemd/system/iptables.service
+
+    return 0
+}
