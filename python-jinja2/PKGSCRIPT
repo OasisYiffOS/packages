@@ -1,0 +1,38 @@
+# Package information
+NAME="python-jinja2"
+VERSION="3.0.3"
+EPOCH=0
+DESC="A fast, express, and extensible template engine for Python"
+GRPS=()
+URL="https://palletsprojects.com/p/jinja/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("python-jinja2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://files.pythonhosted.org/packages/source/J/Jinja2/Jinja2-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("51703d396ffe35155ed216922294441e20d44cd1ab69674140146375d4964654cdb32b38945f22916e0de917bbc0cf406cb680c2e569f9225dbe1fe4063be0b0")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/Jinja2-${VERSION}"
+
+    python3 setup.py install --root="${BUILD_DATA_ROOT}" --optimize=1
+
+    return 0
+}
