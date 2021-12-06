@@ -1,0 +1,83 @@
+# Package information
+NAME="vim"
+VERSION="8.2.3750"
+EPOCH=0
+DESC="A powerful, feature-rich text editor with a steep learning curve"
+GRPS=()
+URL="https://www.vim.org/"
+LICENSES=("Vim")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("vim")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/vim/vim/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("6ecd32997fa8aaad8a1762bba5e6eec420d2b08ce04693a3daaa4f5b12da27aa491945d11dcc2c89e6b6a4d263b5177b7031da817d7eba8df243aadd2d266656")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Move default configuration file to /etc/vim
+    echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    # Binary data will be shown so we'll shove the output into a file
+    make -j1 check &> vim-test.log
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    # Add vi compatibility
+    ln -sv vim ${BUILD_DATA_ROOT}/usr/bin/vi
+    for L in ${BUILD_DATA_ROOT}/usr/share/man/{,*/}man1/vim.1; do
+        ln -sv vim.1 $(dirname $L)/vi.1
+    done
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/share/doc/
+
+    ln -sv ../vim/vim82/doc ${BUILD_DATA_ROOT}/usr/share/doc/vim-${VERSION}
+
+    # Create default configuration file
+    mkdir -pv ${BUILD_DATA_ROOT}/etc
+cat > ${BUILD_DATA_ROOT}/etc/vimrc << "EOF"
+" Begin /etc/vimrc
+
+" Ensure defaults are set before customizing settings, not after
+source $VIMRUNTIME/defaults.vim
+let skip_defaults_vim=1 
+
+set nocompatible
+set backspace=2
+set mouse=
+syntax on
+if (&term == "xterm") || (&term == "putty")
+  set background=dark
+endif
+
+" End /etc/vimrc
+EOF
+
+
+    return 0
+}
