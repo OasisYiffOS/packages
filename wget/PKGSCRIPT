@@ -1,0 +1,48 @@
+# Package information
+NAME="wget"
+VERSION="1.21.2"
+EPOCH=0
+DESC="Non-interactive network downloader"
+GRPS=()
+URL="https://www.gnu.org/software/wget/"
+LICENSES=("GPL-3.0")
+DEPENDS=("make-ca")
+OPT_DEPENDS=()
+PROVIDES=("wget")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/wget/wget-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("3e35f92604486ca459f26df97d392579f1d83a9254519e8ce249b410bacf70dddf716d6caa3b29fd4865163f60410b2b8ad1ca1f7bb3dbb2456386b7647b988d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr      \
+                --sysconfdir=/etc  \
+                --with-ssl=openssl
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
