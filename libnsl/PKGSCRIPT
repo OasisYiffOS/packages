@@ -1,0 +1,50 @@
+# Package information
+NAME="libnsl"
+VERSION="2.0.0"
+EPOCH=0
+DESC="Public client interface to NIS(YP) in an IPv6 ready version"
+GRPS=()
+URL="https://github.com/thkukuk/libnsl/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("rpcsvc-proto" "libtirpc")
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf")
+PROVIDES=("libnsl")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/thkukuk/libnsl/releases/download/v${VERSION}/libnsl-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("02ff41d335b7e965182c1f47a6448c1a71ae991a4d5a86ae5472cea7b38633a36b736469cc0d9fc407c706f3f144f90e4b7c9653643976805aa96fc319a69784")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    autoreconf -fi
+
+    ./configure --sysconfdir=/etc   \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
