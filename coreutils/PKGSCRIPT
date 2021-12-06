@@ -1,0 +1,58 @@
+# Package information
+NAME="coreutils"
+VERSION="9.0"
+EPOCH=0
+DESC="Basic Unix utilities"
+GRPS=()
+URL="https://www.gnu.org/software/coreutils/"
+LICENSES=("GPL-3.0")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("coreutils")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/coreutils/coreutils-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("9be08212891dbf48e5b22e7689dc27dac50df4631ebf29313470b72b7921f0b2aa5242917d05587785358495ca56e3b21f5b3ca81043d53cab92354da6c53a03")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+                --enable-no-install-program=kill,uptime
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mv -v ${BUILD_DATA_ROOT}/usr/bin/chroot ${BUILD_DATA_ROOT}/usr/sbin
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/share/man/man8
+    mv -v ${BUILD_DATA_ROOT}/usr/share/man/man1/chroot.1 ${BUILD_DATA_ROOT}/usr/share/man/man8/chroot.8
+    sed -i 's/"1"/"8"/' ${BUILD_DATA_ROOT}/usr/share/man/man8/chroot.8
+
+    # Get around dangerous sbin link
+    unlink ${BUILD_DATA_ROOT}/usr/sbin
+
+    return 0
+}
