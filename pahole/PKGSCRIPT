@@ -1,0 +1,49 @@
+# Package information
+NAME="pahole"
+VERSION="1.22"
+EPOCH=0
+DESC="Pahole and other dwarves tools"
+GRPS=()
+URL="https://git.kernel.org/pub/scm/devel/pahole/pahole.git"
+LICENSES=("GPL-2.0")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("elfutils" "cmake")
+PROVIDES=("pahole")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("http://fedorapeople.org/~acme/dwarves/dwarves-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("d45b19505cd59eb2cbb42304ab599661355a4085262cb202757822ec1c05476c851dea85e922f9421efb8a978ab475a6a6545757c6ab080f13ac77c5f7186606")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/dwarves-${VERSION}"
+
+    mkdir -p build
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/dwarves-${VERSION}/build"
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr   \
+          -D__LIB=lib                   \
+          ..
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/dwarves-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
