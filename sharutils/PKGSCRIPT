@@ -1,0 +1,55 @@
+# Package information
+NAME="sharutils"
+VERSION="4.15.2"
+EPOCH=0
+DESC="Utilities for creating shell archives"
+GRPS=()
+URL="https://www.gnu.org/software/sharutils/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("sharutils")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/sharutils/sharutils-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("80d0b804a0617e11e5c23dc0d59b218bbf93e40aaf5e9a5401a18ef9cb700390aab711e2b2e2f26c8fd5b8ef99a91d3405e01d02cadabcba7639979314e59f8d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Patch a buffer overflow
+    sed -i 's/BUFSIZ/rw_base_size/' src/unshar.c &&
+    sed -i '/program_name/s/^/extern /' src/*opts.h
+
+    sed -i 's/IO_ftrylockfile/IO_EOF_SEEN/' lib/*.c
+    echo "#define _IO_IN_BACKUP 0x100" >> lib/stdio-impl.h
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
