@@ -1,0 +1,46 @@
+# Package information
+NAME="libpcap"
+VERSION="1.10.1"
+EPOCH=0
+DESC="Functions for user-level packet capture"
+GRPS=()
+URL="https://www.tcpdump.org/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("libpcap")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.tcpdump.org/release/libpcap-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("56c314f19c2b857742bf8abcb1e78066986aaa95cec339b75a3c8b70a9fa2b5167da98708352f9ec97a1cea2700cfb4e040bda108d58ac46cec9b7deab88d171")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
