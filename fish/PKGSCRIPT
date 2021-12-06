@@ -1,0 +1,51 @@
+# Package information
+NAME="fish"
+VERSION="3.3.1"
+EPOCH=0
+DESC="The friendly interactive shell"
+GRPS=()
+URL="https://fishshell.com/"
+LICENSES=("GPL-2.0")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("fish")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/fish-shell/fish-shell/releases/download/${VERSION}/fish-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("fc50ca44fab3f2d942284d4f714150f7ccf1e49c73da36f8d4ae4a33a9b3280f98bed15848839f5d443b4274fd0ff90174bafa6a8e9a4da226dda63d7766a660")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr       \
+          -DCMAKE_INSTALL_SYSCONFDIR=/etc   \
+          -DCMAKE_BUILD_TYPE=None           \
+          .
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
