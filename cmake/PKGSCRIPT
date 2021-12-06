@@ -1,0 +1,54 @@
+# Package information
+NAME="cmake"
+VERSION="3.22.0"
+EPOCH=0
+DESC="Modern toolset for generating Makefiles"
+GRPS=()
+URL="https://cmake.org/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=("curl" "libarchive" "nghttp2" "libuv")
+OPT_DEPENDS=()
+PROVIDES=("cmake")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/Kitware/CMake/releases/download/v${VERSION}/cmake-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("72e4e39bfd0a918572228af68391422979f89a0a5020fae7764b5d7ba86a7a56e8174e22f1b0ffeb37b741c0a6118162a2a47655a03939ea0535453186ed385c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Disable /usr/lib64
+    sed -i '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake
+
+    ./bootstrap --prefix=/usr                       \
+                --system-libs                       \
+                --mandir=/share/man                 \
+                --no-system-jsoncpp                 \
+                --no-system-librhash                \
+                --docdir=/share/doc/cmake-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
