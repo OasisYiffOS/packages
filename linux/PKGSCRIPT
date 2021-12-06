@@ -1,0 +1,67 @@
+# Package information
+NAME="linux"
+VERSION="5.15.6"
+_MAJOR_VERSION="5"
+EPOCH=0
+DESC="The Linux kernel"
+GRPS=()
+URL="https://www.kernel.org/"
+LICENSES=("GPL-2.0")
+DEPENDS=("dracut")
+OPT_DEPENDS=()
+MK_DEPENDS=("cpio" "pahole")
+PROVIDES=("linux")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://cdn.kernel.org/pub/linux/kernel/v${_MAJOR_VERSION}.x/linux-${VERSION}.tar.xz"
+"https://git.yiffos.gay/Core/patches/raw/branch/main/linux/config"
+"https://git.yiffos.gay/Core/patches/raw/branch/main/linux/good_panic_message.patch")
+
+SUM_TYPE="sha512"
+SUM=("0f69e98590e796a3ec3e04340fc41954f1cdb7a5859da8efec1ba4a6498760778744e6243d068bc91343e3e7029239ff2e9ee2572f458c6b0e31c23f3686b5f5"
+"a64be49273feaf1093fe0edb52465c7a3246bbe7b3bf24ec2d953c8fd9e89384611184f4502387c54ff774a32273e671a0646e359aeaeee6acece7ca685cfab1"
+"37f8574955ee8d440490dd756596fa256b08ea820cd85bb5844f9c1fa221731caf99d7770a362e9ff8dbb23bc4845db6a1fac2f838fb0a23748db74685b347cf")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    patch -Np1 -i ${WORKDIR}/good_panic_message.patch
+
+    make mrproper
+
+    cp -v "${WORKDIR}/config" .config
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    INSTALL_MOD_PATH=${BUILD_DATA_ROOT}/usr INSTALL_MOD_STRIP=1 make modules_install
+
+    mkdir -pv ${BUILD_DATA_ROOT}/boot/
+
+    cp -iv arch/x86/boot/bzImage ${BUILD_DATA_ROOT}/boot/vmlinuz-${VERSION}-yiffOS
+    cp -iv System.map ${BUILD_DATA_ROOT}/boot/System.map-${VERSION}-yiffOS
+    cp -iv .config ${BUILD_DATA_ROOT}/boot/config-${VERSION}-yiffOS
+
+    install -d ${BUILD_DATA_ROOT}/usr/share/doc/linux-${VERSION}
+    cp -r Documentation/* ${BUILD_DATA_ROOT}/usr/share/doc/linux-${VERSION}
+
+    return 0
+}
