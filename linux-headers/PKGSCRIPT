@@ -1,0 +1,51 @@
+# Package information
+NAME="linux-headers"
+VERSION="5.15.6"
+_MAJOR_VERSION="5"
+EPOCH=0
+DESC="The Linux kernel headers"
+GRPS=()
+URL="https://www.kernel.org/"
+LICENSES=("GPL-2.0")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("linux-headers")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://cdn.kernel.org/pub/linux/kernel/v${_MAJOR_VERSION}.x/linux-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("0f69e98590e796a3ec3e04340fc41954f1cdb7a5859da8efec1ba4a6498760778744e6243d068bc91343e3e7029239ff2e9ee2572f458c6b0e31c23f3686b5f5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/linux-${VERSION}"
+
+    make mrproper
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/linux-${VERSION}"
+
+    make headers
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/linux-${VERSION}"
+
+    find usr/include -name '.*' -delete
+    rm usr/include/Makefile
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr
+    cp -rv usr/include ${BUILD_DATA_ROOT}/usr
+
+    return 0
+}
