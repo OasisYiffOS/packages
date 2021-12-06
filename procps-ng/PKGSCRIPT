@@ -1,0 +1,53 @@
+# Package information
+NAME="procps-ng"
+VERSION="3.3.17"
+EPOCH=0
+DESC="Utilities for monitoring processes"
+GRPS=()
+URL="https://gitlab.com/procps-ng/procps"
+LICENSES=("GPL-2.0")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("procps-ng")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://sourceforge.net/projects/procps-ng/files/Production/procps-ng-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("59e9a5013430fd9da508c4655d58375dc32e025bb502bb28fb9a92a48e4f2838b3355e92b4648f7384b2050064d17079bf4595d889822ebb5030006bc154a1a7")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/procps-${VERSION}"
+
+    ./configure --prefix=/usr                                   \
+                --docdir=/usr/share/doc/procps-ng-${VERSION}    \
+                --disable-static                                \
+                --disable-kill                                  \
+                --with-systemd
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/procps-${VERSION}"
+
+    make
+
+    # 5 tests with pkill are expected to fail
+    make check || true
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/procps-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
