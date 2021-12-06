@@ -1,0 +1,49 @@
+# Package information
+NAME="libpipeline"
+VERSION="1.5.3"
+EPOCH=0
+DESC="Library for manipulating pipelines of processes"
+GRPS=()
+URL="http://libpipeline.nongnu.org/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("pkg-config" "check")
+PROVIDES=("libpipeline")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.savannah.gnu.org/releases/libpipeline/libpipeline-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("db0796bffbcdd8e875902385c7cdc140e3e0e045b3d0eba1017e55b4c66027c20cc2cd0fccaf52f59fa941d0925134011317b9c27986765a1ec2a73132ebaec6")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
