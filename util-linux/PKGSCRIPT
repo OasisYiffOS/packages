@@ -37,10 +37,6 @@ function prepare() {
                 --without-python                                \
                 runstatedir=/run
 
-    # Disable chown as root during packaging
-    sed -i '/chown root:root /d' Makefile
-    sed -i '/chgrp /d' Makefile
-
     return 0
 }
 
