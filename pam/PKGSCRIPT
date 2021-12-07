@@ -1,0 +1,115 @@
+# Package information
+NAME="pam"
+VERSION="1.5.1"
+EPOCH=0
+DESC="Pluggable Authentication Modules"
+GRPS=()
+URL="http://www.linux-pam.org/"
+LICENSES=("GPL")
+DEPENDS=("berkeley-db" "libnsl" "libtirpc")
+OPT_DEPENDS=()
+PROVIDES=("pam")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/linux-pam/linux-pam/releases/download/v${VERSION}/Linux-PAM-${VERSION}.tar.xz"
+"https://github.com/linux-pam/linux-pam/releases/download/v${VERSION}/Linux-PAM-${VERSION}-docs.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("1db091fc43b934dde220f1b85f35937fbaa0a3feec699b2e597e2cdf0c3ce11c17d36d2286d479c9eed24e8ca3ca6233214e4dff256db47249e358c01d424837"
+"95f0b0225e96386f06f5f869203163a201af3ac5c1a4fa8bd30779b9f55290e1a5b63fa49e2efafa1a51476bad1acf258b1f37f56a4bdc3935f9fe5928cbc1f7")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/Linux-PAM-${VERSION}"
+
+    tar -xf "${WORKDIR}/Linux-PAM-${VERSION}-docs.tar.xz" --strip-components=1
+
+    ./configure --prefix=/usr                               \
+                --sysconfdir=/etc                           \
+                --libdir=/usr/lib                           \
+                --enable-securedir=/usr/lib/security        \
+                --docdir=/usr/share/doc/Linux-PAM-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/Linux-PAM-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/Linux-PAM-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    chmod -v 4755 ${BUILD_DATA_ROOT}/sbin/unix_chkpwd
+
+    # Install default files
+    install -vdm755 ${BUILD_DATA_ROOT}/etc/pam.d
+
+cat > ${BUILD_DATA_ROOT}/etc/pam.d/system-account << "EOF" &&
+# Begin /etc/pam.d/system-account
+# WARNING: THIS FILE GETS OVERWRITTEN ON UPDATE
+
+account   required    pam_unix.so
+
+# End /etc/pam.d/system-account
+EOF
+
+cat > ${BUILD_DATA_ROOT}/etc/pam.d/system-auth << "EOF"
+# Begin /etc/pam.d/system-auth
+# WARNING: THIS FILE GETS OVERWRITTEN ON UPDATE
+
+auth      required    pam_unix.so
+
+# End /etc/pam.d/system-auth
+EOF
+
+cat > ${BUILD_DATA_ROOT}/etc/pam.d/system-session << "EOF"
+# Begin /etc/pam.d/system-session
+# WARNING: THIS FILE GETS OVERWRITTEN ON UPDATE
+
+session   required    pam_unix.so
+
+# End /etc/pam.d/system-session
+EOF
+
+cat > ${BUILD_DATA_ROOT}/etc/pam.d/system-password << "EOF"
+# Begin /etc/pam.d/system-password
+# WARNING: THIS FILE GETS OVERWRITTEN ON UPDATE
+
+# use sha512 hash for encryption, use shadow, and try to use any previously
+# defined authentication token (chosen password) set by any prior module
+password  required    pam_unix.so       sha512 shadow try_first_pass
+
+# End /etc/pam.d/system-password
+EOF
+
+cat > ${BUILD_DATA_ROOT}/etc/pam.d/other << "EOF"
+# Begin /etc/pam.d/other
+# WARNING: THIS FILE GETS OVERWRITTEN ON UPDATE
+
+auth        required        pam_warn.so
+auth        required        pam_deny.so
+account     required        pam_warn.so
+account     required        pam_deny.so
+password    required        pam_warn.so
+password    required        pam_deny.so
+session     required        pam_warn.so
+session     required        pam_deny.so
+
+# End /etc/pam.d/other
+EOF
+
+    return 0
+}
