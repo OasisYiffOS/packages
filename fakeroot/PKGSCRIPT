@@ -1,0 +1,48 @@
+# Package information
+NAME="fakeroot"
+VERSION="1.26"
+EPOCH=0
+DESC="Run a command appearing to be root without actually being root"
+GRPS=()
+URL="http://freshmeat.sourceforge.net/projects/fakeroot"
+LICENSES=("GPL")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("fakeroot")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_${VERSION}.orig.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("dad193b283b48a25806c5bcd06d1f5bbd183ccd40a3fc25f3e7bb88fd6579024f958321f8336654348a1d0a547d4ad19ed11aab5ec9441d6ef493ee6e4c78081")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
