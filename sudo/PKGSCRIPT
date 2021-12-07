@@ -1,0 +1,93 @@
+# Package information
+NAME="sudo"
+VERSION="1.9.8p2"
+EPOCH=0
+DESC="Allows privileged users to execute commands as root or other users"
+GRPS=()
+URL="https://www.sudo.ws/"
+LICENSES=("BSD")
+DEPENDS=("pam")
+OPT_DEPENDS=()
+PROVIDES=("sudo")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.sudo.ws/dist/sudo-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("899b252e8c219226f658dff3dd34c97b07d42004998b45175b4c0c4de42a6bf9f909598e99b4056fa1171e63378e203854b0f8608b0f5c1b00e9d3677818f6d3")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                                       \
+                --sbindir=/usr/bin                                  \
+                --libexecdir=/usr/lib                               \
+                --with-rundir=/run/sudo                             \
+                --with-vardir=/var/db/sudo                          \
+                --with-secure-path                                  \
+                --with-all-insults                                  \
+                --with-env-editor                                   \
+                --docdir=/usr/share/doc/sudo-${VERSION}             \
+                --with-passprompt="[suwudo] passwowd ^-^ fow %p: "
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    chmod -v 4755 "${BUILD_DATA_ROOT}/usr/bin/sudo"
+
+    ln -sfv libsudo_util.so.0.0.0 ${BUILD_DATA_ROOT}/usr/lib/sudo/libsudo_util.so.0
+
+    # Install default files
+    mkdir -pv "${BUILD_DATA_ROOT}/etc/sudoers.d"
+    mkdir -pv "${BUILD_DATA_ROOT}/etc/pam.d"
+
+cat > ${BUILD_DATA_ROOT}/etc/sudoers.d/sudo << "EOF"
+# WARNING: THIS FILE GETS OVERWRITTEN ON UPDATE
+
+Defaults secure_path="/usr/sbin:/usr/bin"
+%wheel ALL=(ALL) ALL
+EOF
+
+cat > ${BUILD_DATA_ROOT}/etc/pam.d/sudo << "EOF"
+# Begin /etc/pam.d/sudo
+# WARNING: THIS FILE GETS OVERWRITTEN ON UPDATE
+
+# include the default auth settings
+auth      include     system-auth
+
+# include the default account settings
+account   include     system-account
+
+# Set default environment variables for the service user
+session   required    pam_env.so
+
+# include system session defaults
+session   include     system-session
+
+# End /etc/pam.d/sudo
+EOF
+
+    chmod 644 ${BUILD_DATA_ROOT}/etc/pam.d/sudo
+
+    return 0
+}
