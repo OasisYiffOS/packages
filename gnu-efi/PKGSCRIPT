@@ -27,7 +27,7 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    make
+    make LIBDIR=/usr/lib
 
     return 0
 }
@@ -36,7 +36,7 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    make INSTALLROOT="${BUILD_DATA_ROOT}" install
+    make PREFIX=/usr LIBDIR=/usr/lib INSTALLROOT="${BUILD_DATA_ROOT}" install
 
     return 0
 }
