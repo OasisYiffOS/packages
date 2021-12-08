@@ -1,0 +1,46 @@
+# Package information
+NAME="which"
+VERSION="2.21"
+EPOCH=0
+DESC="Utility to find which executable is used to run a given command"
+GRPS=()
+URL="https://carlowood.github.io/which/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("which")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://carlowood.github.io/which/which-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("d2f04a5c5291f2d7d1226982da7cf999d36cfe24d3f7bda145508efcfb359511251d3c68b860c0ddcedd66b15a0587b648a35ab6d1f173707565305c506dfc61")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
