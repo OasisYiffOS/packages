@@ -1,0 +1,16 @@
+{
+    "name": "check",
+    "version": "0.15.2",
+    "epoch": 0,
+    "description": "Unit testing framework for C",
+    "groups": [],
+    "url": "https://libcheck.github.io/check/",
+    "license": ["LGPL-2.1"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["check"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "dosfstools",
+    "version": "4.2",
+    "epoch": 0,
+    "description": "Various utilities for manipulating FAT filesystems",
+    "groups": [],
+    "url": "https://github.com/dosfstools/dosfstools/",
+    "license": ["GPL-3.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["dosfstools"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

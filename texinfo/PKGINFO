@@ -1,0 +1,16 @@
+{
+    "name": "texinfo",
+    "version": "6.8",
+    "epoch": 0,
+    "description": "Utilities for reading, writing, and converting info pages",
+    "groups": [],
+    "url": "https://www.gnu.org/software/texinfo/",
+    "license": ["GPL-3.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["texinfo"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

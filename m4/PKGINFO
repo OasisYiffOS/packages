@@ -1,0 +1,16 @@
+{
+    "name": "m4",
+    "version": "1.4.19",
+    "epoch": 0,
+    "description": "The M4 macro processor",
+    "groups": [],
+    "url": "https://www.gnu.org/software/m4/",
+    "license": ["GPL-3.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["m4"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

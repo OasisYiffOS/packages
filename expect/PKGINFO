@@ -1,0 +1,16 @@
+{
+    "name": "expect",
+    "version": "5.45.4",
+    "epoch": 0,
+    "description": "Tools for automating interactive applications",
+    "groups": [],
+    "url": "https://core.tcl-lang.org/expect/index",
+    "license": ["custom"],
+    "depends": ["tcl"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["expect"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

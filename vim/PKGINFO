@@ -1,0 +1,16 @@
+{
+    "name": "vim",
+    "version": "8.2.3750",
+    "epoch": 0,
+    "description": "A powerful, feature-rich text editor with a steep learning curve",
+    "groups": [],
+    "url": "https://www.vim.org/",
+    "license": ["Vim"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["vim"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

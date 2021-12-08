@@ -1,0 +1,16 @@
+{
+    "name": "sudo",
+    "version": "1.9.8p2",
+    "epoch": 0,
+    "description": "Allows privileged users to execute commands as root or other users",
+    "groups": [],
+    "url": "https://www.sudo.ws/",
+    "license": ["BSD"],
+    "depends": ["pam"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["sudo"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "nerdfetch",
+    "version": "4.1",
+    "epoch": 0,
+    "description": "A fast system fetch script using Nerdfonts",
+    "groups": [],
+    "url": "https://github.com/ThatOneCalculator/NerdFetch",
+    "license": ["GPL-3.0"],
+    "depends": ["bc", "which"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["nerdfetch"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

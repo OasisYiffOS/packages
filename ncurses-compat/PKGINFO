@@ -1,0 +1,16 @@
+{
+    "name": "ncurses-compat",
+    "version": "6.3",
+    "epoch": 0,
+    "description": "A library for text-based user interfaces (non-wide characters libaries)",
+    "groups": [],
+    "url": "https://invisible-island.net/ncurses/",
+    "license": ["MIT"],
+    "depends": ["ncurses"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["ncurses-compat"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "expat",
+    "version": "2.4.1",
+    "epoch": 0,
+    "description": "A stream-oriented XML parser library written in C",
+    "groups": [],
+    "url": "https://libexpat.github.io/",
+    "license": ["MIT"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["expat"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

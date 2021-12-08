@@ -1,0 +1,16 @@
+{
+    "name": "man-db",
+    "version": "2.9.4",
+    "epoch": 0,
+    "description": "Utilities for finding and viewing man pages",
+    "groups": [],
+    "url": "https://www.nongnu.org/man-db/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["man-db"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

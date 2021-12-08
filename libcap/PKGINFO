@@ -1,0 +1,16 @@
+{
+    "name": "libcap",
+    "version": "2.53",
+    "epoch": 0,
+    "description": "User-space interface to the POSIX 1003.1e capabilities",
+    "groups": [],
+    "url": "https://sites.google.com/site/fullycapable/",
+    "license": ["GPL-2.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libcap"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

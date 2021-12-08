@@ -1,0 +1,16 @@
+{
+    "name": "iptables",
+    "version": "1.8.7",
+    "epoch": 0,
+    "description": "Userspace utility to configure the Linux packet filtering ruleset",
+    "groups": [],
+    "url": "https://www.netfilter.org/projects/iptables/",
+    "license": ["GPL-2.0"],
+    "depends": ["libpcap"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["iptables"],
+    "conflicts": ["nftables"],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

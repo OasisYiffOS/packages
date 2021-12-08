@@ -1,0 +1,16 @@
+{
+    "name": "patch",
+    "version": "2.7.6",
+    "epoch": 0,
+    "description": "Utility to apply diffs to files",
+    "groups": [],
+    "url": "https://savannah.gnu.org/projects/patch/",
+    "license": ["GPL-3.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["patch"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

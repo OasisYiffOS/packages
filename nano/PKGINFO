@@ -1,0 +1,16 @@
+{
+    "name": "nano",
+    "version": "5.9",
+    "epoch": 0,
+    "description": "A small, simple, and friendly text editor which replaces pico",
+    "groups": [],
+    "url": "https://nano-editor.org/",
+    "license": ["GPL-3.0-or-later", "BSD"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["nano"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

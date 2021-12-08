@@ -1,0 +1,16 @@
+{
+    "name": "linux-headers",
+    "version": "5.15.7",
+    "epoch": 0,
+    "description": "The Linux kernel headers",
+    "groups": [],
+    "url": "https://www.kernel.org/",
+    "license": ["GPL-2.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["linux-headers"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

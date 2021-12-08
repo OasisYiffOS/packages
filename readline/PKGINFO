@@ -1,0 +1,16 @@
+{
+    "name": "readline",
+    "version": "8.1",
+    "epoch": 0,
+    "description": "A set of libraries for command-line editing",
+    "groups": [],
+    "url": "https://tiswww.case.edu/php/chet/readline/rltop.html",
+    "license": ["GPL-3.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["readline"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "python-markupsafe",
+    "version": "2.0.1",
+    "epoch": 0,
+    "description": "Python module that implements an XML/HTML/XHTML Markup safe string",
+    "groups": [],
+    "url": "https://markupsafe.palletsprojects.com/",
+    "license": ["BSD-3-Clause"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-markupsafe"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

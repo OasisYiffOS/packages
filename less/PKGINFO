@@ -1,0 +1,16 @@
+{
+    "name": "less",
+    "version": "590",
+    "epoch": 0,
+    "description": "A free, open source, file pager program",
+    "groups": [],
+    "url": "https://www.greenwoodsoftware.com/less/",
+    "license": ["GPL-3.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["less"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

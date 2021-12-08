@@ -1,0 +1,16 @@
+{
+    "name": "flex",
+    "version": "2.6.4",
+    "epoch": 0,
+    "description": "The fast lexical analyser generator",
+    "groups": [],
+    "url": "https://github.com/westes/flex",
+    "license": ["custom"],
+    "depends": ["m4"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["flex"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

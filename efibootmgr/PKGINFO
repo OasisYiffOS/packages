@@ -1,0 +1,16 @@
+{
+    "name": "efibootmgr",
+    "version": "17",
+    "epoch": 0,
+    "description": "Utility to manage EFI boot entries",
+    "groups": [],
+    "url": "https://github.com/rhboot/efibootmgr/",
+    "license": ["GPL-2.0"],
+    "depends": ["efivar", "popt"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["efibootmgr"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

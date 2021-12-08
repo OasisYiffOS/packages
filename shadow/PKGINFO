@@ -1,0 +1,16 @@
+{
+    "name": "shadow",
+    "version": "4.8.1",
+    "epoch": 0,
+    "description": "Utilities for handling user passwords",
+    "groups": [],
+    "url": "https://shadow-maint.github.io/shadow/",
+    "license": ["BSD"],
+    "depends": ["pam", "acl", "libcap"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["shadow"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

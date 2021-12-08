@@ -1,0 +1,16 @@
+{
+    "name": "intltool",
+    "version": "0.51.0",
+    "epoch": 0,
+    "description": "Internationalization tool used for extracting translatable strings from source code",
+    "groups": [],
+    "url": "https://freedesktop.org/wiki/Software/intltool/",
+    "license": ["GPL-2.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["intltool"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

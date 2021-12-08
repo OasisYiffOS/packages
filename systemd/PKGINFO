@@ -1,0 +1,16 @@
+{
+    "name": "systemd",
+    "version": "249",
+    "epoch": 0,
+    "description": "System and service manager",
+    "groups": [],
+    "url": "https://www.freedesktop.org/wiki/Software/systemd/",
+    "license": ["LGPL-2.1-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": ["ninja"],
+    "provides": ["systemd"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

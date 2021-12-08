@@ -1,0 +1,16 @@
+{
+    "name": "file",
+    "version": "5.41",
+    "epoch": 0,
+    "description": "Utility to determine the type of a file",
+    "groups": [],
+    "url": "https://www.darwinsys.com/file/",
+    "license": ["custom"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["file"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

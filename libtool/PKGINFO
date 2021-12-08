@@ -1,0 +1,16 @@
+{
+    "name": "libtool",
+    "version": "2.4.6",
+    "epoch": 0,
+    "description": "GNU generic library support script",
+    "groups": [],
+    "url": "https://www.gnu.org/software/libtool/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libtool"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

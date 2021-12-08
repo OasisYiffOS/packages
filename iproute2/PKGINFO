@@ -1,0 +1,16 @@
+{
+    "name": "iproute2",
+    "version": "5.15.0",
+    "epoch": 0,
+    "description": "Utilites for basic and advanced networking",
+    "groups": [],
+    "url": "https://www.kernel.org/pub/linux/utils/net/iproute2/",
+    "license": ["GPL-3.0"],
+    "depends": ["iptables", "berkeley-db"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["iproute2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

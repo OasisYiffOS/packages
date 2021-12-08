@@ -1,0 +1,16 @@
+{
+    "name": "libuv",
+    "version": "1.42.0",
+    "epoch": 0,
+    "description": "Multi-platform support library for asynchronous I/O",
+    "groups": [],
+    "url": "https://libuv.org/",
+    "license": ["MIT"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": ["autoconf"],
+    "provides": ["libuv"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

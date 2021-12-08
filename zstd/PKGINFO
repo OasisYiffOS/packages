@@ -1,0 +1,16 @@
+{
+    "name": "zstd",
+    "version": "1.5.0",
+    "epoch": 0,
+    "description": "A real-time compression library, providing high compression ratios, while being backed by a very fast decoder",
+    "groups": [],
+    "url": "https://facebook.github.io/zstd/",
+    "license": ["BSD"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["zstd"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

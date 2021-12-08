@@ -1,0 +1,16 @@
+{
+    "name": "cmake",
+    "version": "3.22.0",
+    "epoch": 0,
+    "description": "Modern toolset for generating Makefiles",
+    "groups": [],
+    "url": "https://cmake.org/",
+    "license": ["BSD-3-Clause"],
+    "depends": ["curl", "libarchive", "nghttp2", "libuv"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["cmake"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

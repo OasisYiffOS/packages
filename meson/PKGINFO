@@ -1,0 +1,16 @@
+{
+    "name": "meson",
+    "version": "0.60.2",
+    "epoch": 0,
+    "description": "Build system meant to be both extremely fast and extremely easy to use",
+    "groups": [],
+    "url": "https://mesonbuild.com/",
+    "license": ["Apache-2.0"],
+    "depends": ["python", "ninja"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["meson"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

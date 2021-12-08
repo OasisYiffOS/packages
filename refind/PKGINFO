@@ -1,0 +1,16 @@
+{
+    "name": "refind",
+    "version": "0.13.2",
+    "epoch": 0,
+    "description": "An EFI boot manager utility",
+    "groups": [],
+    "url": "https://www.rodsbooks.com/refind/",
+    "license": ["BSD", "GPL-3.0"],
+    "depends": ["bash", "dosfstools", "efibootmgr"],
+    "optional_depends": [],
+    "make_depends": ["gnu-efi"],
+    "provides": ["refind"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

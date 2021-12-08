@@ -1,0 +1,16 @@
+{
+    "name": "libnsl",
+    "version": "2.0.0",
+    "epoch": 0,
+    "description": "Public client interface to NIS(YP) in an IPv6 ready version",
+    "groups": [],
+    "url": "https://github.com/thkukuk/libnsl/",
+    "license": ["LGPL-2.1"],
+    "depends": ["rpcsvc-proto", "libtirpc"],
+    "optional_depends": [],
+    "make_depends": ["autoconf"],
+    "provides": ["libnsl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

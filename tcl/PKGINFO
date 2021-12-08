@@ -1,0 +1,16 @@
+{
+    "name": "tcl",
+    "version": "8.6.12",
+    "epoch": 0,
+    "description": "The tool command language, a general-purpose programming language",
+    "groups": [],
+    "url": "http://tcl.sourceforge.net/",
+    "license": ["custom"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["tcl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

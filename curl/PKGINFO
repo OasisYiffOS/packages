@@ -1,0 +1,16 @@
+{
+    "name": "curl",
+    "version": "7.78.0",
+    "epoch": 0,
+    "description": "A command line tool and library for transferring data with URL syntax",
+    "groups": [],
+    "url": "https://curl.se/",
+    "license": ["MIT"],
+    "depends": ["openssl", "make-ca", "libidn2", "nghttp2"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["curl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

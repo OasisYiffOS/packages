@@ -1,0 +1,16 @@
+{
+    "name": "p11-kit",
+    "version": "0.24.0",
+    "epoch": 0,
+    "description": "Load and unload modules for PKCS#11",
+    "groups": [],
+    "url": "https://p11-glue.github.io/p11-glue/p11-kit.html",
+    "license": ["LGPL-2.1"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["p11-kit"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

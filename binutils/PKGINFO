@@ -1,0 +1,16 @@
+{
+    "name": "binutils",
+    "version": "2.37",
+    "epoch": 0,
+    "description": "A collection of binary tools, including an assembler, linker, and binary utilities.",
+    "groups": [],
+    "url": "https://www.gnu.org/software/binutils/",
+    "license": ["GPL"],
+    "depends": ["zlib", "elfutils"],
+    "optional_depends": [],
+    "make_depends": ["dejagnu"],
+    "provides": ["binutils"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

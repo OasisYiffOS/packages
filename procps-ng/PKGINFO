@@ -1,0 +1,16 @@
+{
+    "name": "procps-ng",
+    "version": "3.3.17",
+    "epoch": 0,
+    "description": "Utilities for monitoring processes",
+    "groups": [],
+    "url": "https://gitlab.com/procps-ng/procps",
+    "license": ["GPL-2.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["procps-ng"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

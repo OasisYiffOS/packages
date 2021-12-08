@@ -1,0 +1,16 @@
+{
+    "name": "glibc",
+    "version": "2.34",
+    "epoch": 0,
+    "description": "GNU C Library",
+    "groups": [],
+    "url": "https://www.gnu.org/software/libc/",
+    "license": ["LGPL-2.1"],
+    "depends": ["tzdata"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["glibc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

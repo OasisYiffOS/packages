@@ -1,0 +1,16 @@
+{
+    "name": "coreutils",
+    "version": "9.0",
+    "epoch": 0,
+    "description": "Basic Unix utilities",
+    "groups": [],
+    "url": "https://www.gnu.org/software/coreutils/",
+    "license": ["GPL-3.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["coreutils"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "util-linux",
+    "version": "2.37.2",
+    "epoch": 0,
+    "description": "Miscellaneous utilities",
+    "groups": [],
+    "url": "https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/",
+    "license": ["GPL-3.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["util-linux"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "perl-xml-parser",
+    "version": "2.46",
+    "epoch": 0,
+    "description": "Perl interface to expat",
+    "groups": [],
+    "url": "https://github.com/chorny/XML-Parser",
+    "license": ["GPL-1.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["perl-xml-parser"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

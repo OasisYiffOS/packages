@@ -1,0 +1,16 @@
+{
+    "name": "gnu-efi",
+    "version": "3.0.14",
+    "epoch": 0,
+    "description": "Develop EFI applications using the GNU toolchain",
+    "groups": [],
+    "url": "https://sourceforge.net/projects/gnu-efi/",
+    "license": ["BSD"],
+    "depends": ["gcc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["gnu-efi"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

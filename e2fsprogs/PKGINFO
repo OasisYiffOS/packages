@@ -1,0 +1,16 @@
+{
+    "name": "e2fsprogs",
+    "version": "1.46.4",
+    "epoch": 0,
+    "description": "Utilities for the ext2, ext3, and ext4 filesystems",
+    "groups": [],
+    "url": "http://e2fsprogs.sourceforge.net/",
+    "license": ["LGPL-2.0", "GPL-2.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["e2fsprogs"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

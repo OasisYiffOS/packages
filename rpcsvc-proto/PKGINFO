@@ -1,0 +1,16 @@
+{
+    "name": "rpcsvc-proto",
+    "version": "1.4.2",
+    "epoch": 0,
+    "description": "rcpsvc protocol files and headers formerly included with glibc",
+    "groups": [],
+    "url": "https://github.com/thkukuk/rpcsvc-proto/",
+    "license": ["custom"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["rpcsvc-proto"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

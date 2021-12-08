@@ -1,0 +1,16 @@
+{
+    "name": "libtirpc",
+    "version": "1.3.2",
+    "epoch": 0,
+    "description": "Libraries for the Remote Procedure Call (RPC) protocol",
+    "groups": [],
+    "url": "https://sourceforge.net/projects/libtirpc/",
+    "license": ["BSD"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libtirpc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

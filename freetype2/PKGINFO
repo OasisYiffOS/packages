@@ -1,0 +1,16 @@
+{
+    "name": "freetype2",
+    "version": "2.11.1",
+    "epoch": 0,
+    "description": "Small, efficient, and capable font engine",
+    "groups": [],
+    "url": "https://freetype.org/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["libpng", "which"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["freetype2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "groff",
+    "version": "1.22.4",
+    "epoch": 0,
+    "description": "Utilities for processing and formatting text",
+    "groups": [],
+    "url": "https://www.gnu.org/software/groff/",
+    "license": ["GPL-3.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["groff"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

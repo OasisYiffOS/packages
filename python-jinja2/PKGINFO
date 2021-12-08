@@ -1,0 +1,16 @@
+{
+    "name": "python-jinja2",
+    "version": "3.0.3",
+    "epoch": 0,
+    "description": "A fast, express, and extensible template engine for Python",
+    "groups": [],
+    "url": "https://palletsprojects.com/p/jinja/",
+    "license": ["BSD-3-Clause"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-jinja2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

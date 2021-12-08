@@ -1,0 +1,16 @@
+{
+    "name": "libpng",
+    "version": "1.6.37",
+    "epoch": 0,
+    "description": "Libraries for reading and writing PNG image files with APNG patch",
+    "groups": [],
+    "url": "https://libpng.sourceforge.io/",
+    "license": ["Libpng"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libpng"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

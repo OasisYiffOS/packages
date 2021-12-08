@@ -1,0 +1,16 @@
+{
+    "name": "grub2",
+    "version": "2.06",
+    "epoch": 0,
+    "description": "GNU GRand Unifed Bootloader 2 (UEFI only for now)",
+    "groups": [],
+    "url": "https://www.gnu.org/software/grub/",
+    "license": ["GPL-3"],
+    "depends": ["efibootmgr", "freetype2"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["grub2"],
+    "conflicts": ["grub-legacy"],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

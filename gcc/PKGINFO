@@ -1,0 +1,16 @@
+{
+    "name": "gcc",
+    "version": "11.2.0",
+    "epoch": 0,
+    "description": "The GNU Compiler Collection, including C, C++, ObjC, Fortran, Ada, and Go",
+    "groups": [],
+    "url": "https://gcc.gnu.org/",
+    "license": ["GPL", "LGPL"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["gcc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

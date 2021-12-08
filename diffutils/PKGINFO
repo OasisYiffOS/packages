@@ -1,0 +1,16 @@
+{
+    "name": "diffutils",
+    "version": "3.8",
+    "epoch": 0,
+    "description": "Utilities for showing the differences between files and directories",
+    "groups": [],
+    "url": "https://www.gnu.org/software/diffutils/",
+    "license": ["GPL-3.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["diffutils"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

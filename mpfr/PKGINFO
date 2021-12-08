@@ -1,0 +1,16 @@
+{
+    "name": "mpfr",
+    "version": "4.1.0",
+    "epoch": 0,
+    "description": "Multiple precision floating-point library",
+    "groups": [],
+    "url": "https://www.mpfr.org/",
+    "license": ["GPL-3.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["mpfr"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

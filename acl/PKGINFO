@@ -1,0 +1,16 @@
+{
+    "name": "acl",
+    "version": "2.3.1",
+    "epoch": 0,
+    "description": "Utility to control access permissions for files and directories",
+    "groups": [],
+    "url": "https://savannah.nongnu.org/projects/acl",
+    "license": ["LGPL"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["acl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

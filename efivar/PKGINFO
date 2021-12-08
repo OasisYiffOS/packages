@@ -1,0 +1,16 @@
+{
+    "name": "efivar",
+    "version": "37",
+    "epoch": 0,
+    "description": "Utilities and libraries for managing EFI variables",
+    "groups": [],
+    "url": "https://github.com/rhboot/efivar/",
+    "license": ["LGPL-2.1"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["efivar"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

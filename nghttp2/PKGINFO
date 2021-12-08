@@ -1,0 +1,16 @@
+{
+    "name": "nghttp2",
+    "version": "1.46.0",
+    "epoch": 0,
+    "description": "nghttp2 is a C library and toolkit for HTTP/2",
+    "groups": [],
+    "url": "https://nghttp2.org/",
+    "license": ["MIT"],
+    "depends": ["libxml2"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["nghttp2"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

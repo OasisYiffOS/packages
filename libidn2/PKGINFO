@@ -1,0 +1,16 @@
+{
+    "name": "libidn2",
+    "version": "2.3.2",
+    "epoch": 0,
+    "description": "Internationalized Domain Name library",
+    "groups": [],
+    "url": "http://www.libarchive.org/",
+    "license": ["BSD"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libidn2"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

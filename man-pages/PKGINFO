@@ -1,0 +1,16 @@
+{
+    "name": "man-pages",
+    "version": "5.13",
+    "epoch": 0,
+    "description": "Documentation for the Linux kernel and C library interfaces",
+    "groups": [],
+    "url": "https://www.kernel.org/doc/man-pages/",
+    "license": ["custom", "GPL"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["man-pages"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

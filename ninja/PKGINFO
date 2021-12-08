@@ -1,0 +1,16 @@
+{
+    "name": "ninja",
+    "version": "1.10.2",
+    "epoch": 0,
+    "description": "A small build system with a focus on speed",
+    "groups": [],
+    "url": "https://ninja-build.org/",
+    "license": ["Apache-2.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": ["python"],
+    "provides": ["ninja"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

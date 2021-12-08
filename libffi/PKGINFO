@@ -1,0 +1,16 @@
+{
+    "name": "libffi",
+    "version": "3.4.2",
+    "epoch": 0,
+    "description": "Portable Foreign Function Interface library",
+    "groups": [],
+    "url": "https://sourceware.org/libffi/",
+    "license": ["custom"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libffi"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

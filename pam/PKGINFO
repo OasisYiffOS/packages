@@ -1,0 +1,16 @@
+{
+    "name": "pam",
+    "version": "1.5.1",
+    "epoch": 0,
+    "description": "Pluggable Authentication Modules",
+    "groups": [],
+    "url": "http://www.linux-pam.org/",
+    "license": ["GPL"],
+    "depends": ["berkeley-db", "libnsl", "libtirpc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["pam"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

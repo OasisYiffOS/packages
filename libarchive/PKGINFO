@@ -1,0 +1,16 @@
+{
+    "name": "libarchive",
+    "version": "3.5.2",
+    "epoch": 0,
+    "description": "A multi-format archive and compression library",
+    "groups": [],
+    "url": "http://www.libarchive.org/",
+    "license": ["BSD"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libarchive"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

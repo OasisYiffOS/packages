@@ -1,0 +1,16 @@
+{
+    "name": "xz",
+    "version": "5.2.5",
+    "epoch": 0,
+    "description": "A compression program with high compression ratios, higher than both gzip or bzip2",
+    "groups": [],
+    "url": "https://tukaani.org/xz",
+    "license": ["GPL", "LGPL"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xz"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

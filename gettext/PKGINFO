@@ -1,0 +1,16 @@
+{
+    "name": "gettext",
+    "version": "0.21",
+    "epoch": 0,
+    "description": "GNU internationalization utilities",
+    "groups": [],
+    "url": "https://www.gnu.org/software/gettext/",
+    "license": ["GPL-3.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["gettext"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

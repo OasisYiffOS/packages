@@ -1,0 +1,16 @@
+{
+    "name": "bzip2",
+    "version": "1.0.8",
+    "epoch": 0,
+    "description": "A compression library with a much better yield than gzip",
+    "groups": [],
+    "url": "https://www.sourceware.org/bzip2/",
+    "license": ["BSD"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["bzip2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

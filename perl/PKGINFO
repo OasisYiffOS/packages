@@ -1,0 +1,16 @@
+{
+    "name": "perl",
+    "version": "5.34.0",
+    "epoch": 0,
+    "description": "Practical Extraction and Report Language",
+    "groups": [],
+    "url": "https://www.perl.org/",
+    "license": ["GPL-1.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["perl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

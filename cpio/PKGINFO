@@ -1,0 +1,16 @@
+{
+    "name": "cpio",
+    "version": "2.13",
+    "epoch": 0,
+    "description": "Utility to work with cpio and tar archives",
+    "groups": [],
+    "url": "https://www.gnu.org/savannah-checkouts/gnu/cpio/cpio.html",
+    "license": ["GPL-3"],
+    "depends": [""],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["cpio"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "automake",
+    "version": "1.16.4",
+    "epoch": 0,
+    "description": "Utilites for generating Makefiles.in files",
+    "groups": [],
+    "url": "https://www.gnu.org/software/automake/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["autoconf"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["automake"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

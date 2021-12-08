@@ -1,0 +1,16 @@
+{
+    "name": "bison",
+    "version": "3.8.2",
+    "epoch": 0,
+    "description": "General-purpose parser generator",
+    "groups": [],
+    "url": "https://www.gnu.org/software/bison/",
+    "license": ["GPL-3.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["bison"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

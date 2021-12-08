@@ -1,0 +1,16 @@
+{
+    "name": "popt",
+    "version": "1.18",
+    "epoch": 0,
+    "description": "Library for parsing command line parameters",
+    "groups": [],
+    "url": "https://github.com/rpm-software-management/popt",
+    "license": ["MIT"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["popt"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

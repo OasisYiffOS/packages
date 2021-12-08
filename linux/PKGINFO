@@ -1,0 +1,16 @@
+{
+    "name": "linux",
+    "version": "5.15.7",
+    "epoch": 0,
+    "description": "The Linux kernel",
+    "groups": [],
+    "url": "https://www.kernel.org/",
+    "license": ["GPL-2.0"],
+    "depends": ["dracut"],
+    "optional_depends": [],
+    "make_depends": ["cpio", "pahole"],
+    "provides": ["linux"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "attr",
+    "version": "2.5.1",
+    "epoch": 0,
+    "description": "Utilities for manipulating filesystem attributes",
+    "groups": [],
+    "url": "https://savannah.nongnu.org/projects/attr",
+    "license": ["LGPL"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["attr"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

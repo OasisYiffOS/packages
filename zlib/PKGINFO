@@ -1,0 +1,16 @@
+{
+    "name": "zlib",
+    "version": "1.2.11",
+    "epoch": 0,
+    "description": "A compression library",
+    "groups": [],
+    "url": "https://www.zlib.net/",
+    "license": ["custom"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["zlib"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "berkeley-db",
+    "version": "5.3.28",
+    "epoch": 0,
+    "description": "Libraries and utilities for creating, storing, and retrieving data in the Berkeley DB database system",
+    "groups": [],
+    "url": "https://github.com/berkeleydb/libdb",
+    "license": ["sleepycat", "BSD-3-Clause", "CDDL-1.0"],
+    "depends": ["sharutils"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["berkeley-db"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

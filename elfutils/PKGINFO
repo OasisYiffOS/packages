@@ -1,0 +1,16 @@
+{
+    "name": "elfutils",
+    "version": "0.186",
+    "epoch": 0,
+    "description": "Collection of ELF object file access utilities and libraries",
+    "groups": [],
+    "url": "https://sourceware.org/elfutils/",
+    "license": ["GPL-2.0-or-later", "LGPL-3.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["elfutils", "libelf"],
+    "conflicts": ["libelf"],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

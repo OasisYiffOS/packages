@@ -1,0 +1,16 @@
+{
+    "name": "gdbm",
+    "version": "1.22",
+    "epoch": 0,
+    "description": "The GNU Database Manager",
+    "groups": [],
+    "url": "https://www.gnu.org.ua/software/gdbm/",
+    "license": ["GPL-3.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["gdbm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

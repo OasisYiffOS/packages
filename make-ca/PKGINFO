@@ -1,0 +1,16 @@
+{
+    "name": "make-ca",
+    "version": "1.9",
+    "epoch": 0,
+    "description": "PKI setup script from LFS",
+    "groups": [],
+    "url": "https://github.com/lfs-book/make-ca",
+    "license": ["MIT", "GPL3"],
+    "depends": ["p11-kit"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["make-ca"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

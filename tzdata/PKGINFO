@@ -1,0 +1,16 @@
+{
+    "name": "tzdata",
+    "version": "2021e",
+    "epoch": 0,
+    "description": "Timezone data from IANA",
+    "groups": [],
+    "url": "https://www.iana.org/time-zones",
+    "license": ["custom"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["tzdata"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

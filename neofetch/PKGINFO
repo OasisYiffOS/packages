@@ -1,0 +1,16 @@
+{
+    "name": "neofetch",
+    "version": "7.1.0",
+    "epoch": 0,
+    "description": "A CLI tool that gives information about your system",
+    "groups": [],
+    "url": "https://github.com/dylanaraps/neofetch/",
+    "license": ["MIT"],
+    "depends": ["bash"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["neofetch"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "dracut",
+    "version": "055",
+    "epoch": 0,
+    "description": "An event driven initramfs infrastructure",
+    "groups": [],
+    "url": "https://dracut.wiki.kernel.org/index.php/Main_Page",
+    "license": ["GPL"],
+    "depends": [""],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["dracut"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

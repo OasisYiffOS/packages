@@ -1,0 +1,16 @@
+{
+    "name": "libxml2",
+    "version": "2.9.12",
+    "epoch": 0,
+    "description": "XML C parser and toolkit",
+    "groups": [],
+    "url": "http://xmlsoft.org/",
+    "license": ["MIT"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxml2"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

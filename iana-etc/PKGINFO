@@ -1,0 +1,16 @@
+{
+    "name": "iana-etc",
+    "version": "20211124",
+    "epoch": 0,
+    "description": "IANA protocols and services",
+    "groups": [],
+    "url": "https://www.iana.org/protocols",
+    "license": ["custom"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["iana-etc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

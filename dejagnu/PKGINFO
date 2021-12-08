@@ -1,0 +1,16 @@
+{
+    "name": "dejagnu",
+    "version": "1.6.3",
+    "epoch": 0,
+    "description": "Testing framework for running test suites on GNU tools",
+    "groups": [],
+    "url": "https://www.gnu.org/software/dejagnu/",
+    "license": ["GPL"],
+    "depends": ["expect"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["dejagnu"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
