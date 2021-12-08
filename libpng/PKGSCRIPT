@@ -1,0 +1,56 @@
+# Package information
+NAME="libpng"
+VERSION="1.6.37"
+EPOCH=0
+DESC="Libraries for reading and writing PNG image files with APNG patch"
+GRPS=()
+URL="https://libpng.sourceforge.io/"
+LICENSES=("Libpng") # Yes that's the license identifier https://spdx.org/licenses/Libpng.html
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("libpng")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/libpng/libpng-${VERSION}.tar.xz"
+"https://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-${VERSION}-apng.patch.gz")
+
+SUM_TYPE="sha512"
+SUM=("59e8c1059013497ae616a14c3abbe239322d3873c6ded0912403fc62fb260561768230b6ab997e2cccc3b868c09f539fd13635616b9fa0dd6279a3f63ec7e074"
+"226adcb3a8c60f2267fe2976ab531329ae43c2603dab4d0cf8f16217d64069936b879f3d6516b75d259c47d6f5c5b1f24f887602206c8e46abde0fb7f5c7946b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    gzip -cd ${WORKDIR}/libpng-${VERSION}-apng.patch.gz | patch -p1
+
+    ./configure --prefix=/usr       \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/share/doc/libpng-${VERSION}
+    cp -v README libpng-manual.txt ${BUILD_DATA_ROOT}/usr/share/doc/libpng-${VERSION}
+
+    return 0
+}
