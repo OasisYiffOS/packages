@@ -1,0 +1,144 @@
+# Package information
+NAME="openssh"
+VERSION="8.8p1"
+EPOCH=0
+DESC="Utilities and servers for secure shell connections"
+GRPS=()
+URL="https://www.openssh.com/"
+LICENSES=("BSD")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("openssh")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("d44cd04445f9c8963513b0d5a7e8348985114ff2471e119a6e344498719ef40f09c61c354888a3be9dabcb5870e5cbe5d3aafbb861dfa1d82a4952f3d233a8df")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    install  -v -m700 -d ${BUILD_DATA_ROOT}/var/lib/sshd
+    chown    -v root:sys ${BUILD_DATA_ROOT}/var/lib/sshd
+
+    ./configure --prefix=/usr                            \
+                --sysconfdir=/etc/ssh                    \
+                --with-md5-passwords                     \
+                --with-privsep-path=/var/lib/sshd        \
+                --with-default-path=/usr/bin             \
+                --with-superuser-path=/usr/sbin:/usr/bin \
+                --with-pam                               \
+                --with-pid-dir=/run
+
+    # Remove empty DESTDIR declare
+    sed -i '0,/DESTDIR=/s///' Makefile
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    # Tests only work with a single job
+    make -j1 tests
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -m755    contrib/ssh-copy-id ${BUILD_DATA_ROOT}/usr/bin
+
+    install -v -m644    contrib/ssh-copy-id.1                   \
+                        ${BUILD_DATA_ROOT}/usr/share/man/man1
+
+    install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/doc/openssh-8.7p1
+
+    install -v -m644    INSTALL LICENCE OVERVIEW README*                \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/openssh-8.7p1
+
+    echo "UsePAM yes" >> ${BUILD_DATA_ROOT}/etc/ssh/sshd_config
+
+    mkdir -pv ${BUILD_DATA_ROOT}/etc/pam.d
+
+cat > ${BUILD_DATA_ROOT}/etc/pam.d/sshd << "EOF"
+# Begin /etc/pam.d/sshd
+# WARNING: THIS FILE GETS OVERWRITTEN ON UPDATE
+
+# Set failure delay before next prompt to 3 seconds
+auth      optional    pam_faildelay.so  delay=3000000
+
+# Check to make sure that the user is allowed to login
+auth      requisite   pam_nologin.so
+
+# Check to make sure that root is allowed to login
+# Disabled by default. You will need to create /etc/securetty
+# file for this module to function. See man 5 securetty.
+#auth      required    pam_securetty.so
+
+# Additional group memberships - disabled by default
+#auth      optional    pam_group.so
+
+# include system auth settings
+auth      include     system-auth
+
+# check access for the user
+account   required    pam_access.so
+
+# include system account settings
+account   include     system-account
+
+# Set default environment variables for the user
+session   required    pam_env.so
+
+# Set resource limits for the user
+session   required    pam_limits.so
+
+# Display date of last login - Disabled by default
+session   optional    pam_lastlog.so
+
+# Display the message of the day - Disabled by default
+session   optional    pam_motd.so
+
+# Check user's mail - Disabled by default
+#session   optional    pam_mail.so      standard quiet
+
+# include system session and password settings
+session   include     system-session
+password  include     system-password
+
+# End /etc/pam.d/sshd
+EOF
+
+    chmod 644 /etc/pam.d/sshd
+    
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/lib/systemd/system/
+
+cat > ${BUILD_DATA_ROOT}/usr/lib/systemd/system/sshd.service << "EOF"
+[Unit]
+Description=OpenSSH Daemon
+
+[Service]
+ExecStart=/usr/sbin/sshd -D
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+EOF
+
+    return 0
+}
