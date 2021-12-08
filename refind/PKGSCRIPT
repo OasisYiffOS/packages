@@ -1,0 +1,106 @@
+# Package information
+NAME="refind"
+VERSION="0.13.2"
+EPOCH=0
+DESC="An EFI boot manager utility"
+GRPS=()
+URL="https://www.rodsbooks.com/refind/"
+LICENSES=("BSD" "GPL-3.0")
+DEPENDS=("bash" "dosfstools" "efibootmgr")
+OPT_DEPENDS=()
+MK_DEPENDS=("gnu-efi")
+PROVIDES=("refind")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/project/refind/${VERSION}/refind-src-${VERSION}.tar.gz"
+"https://git.yiffos.gay/Core/patches/raw/branch/main/refind/gnu-efi.patch")
+
+SUM_TYPE="sha512"
+SUM=("e671d44385297295c143824dd95593f2e7bc8e282745d127b041a645aa27003467a3a23f368fd30297f33faa06bd914540d7bdc3c71ec42f6b7a38d7ee8e0ddb"
+"eed5e695ae31e7553800ba2b4ee3b59b0123d9c297a47cef8075f1978dd746928f1c4aef2bf396a4215b2bfcadc1d057e5b013ac3c742d4d74596eeaa812324a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix issue with compiling with newer gnu-efi versions
+    patch -Np1 -i "${WORKDIR}/gnu-efi.patch"
+
+    # Hardcode RefindDir
+    sed -e 's|RefindDir=\"\$ThisDir/refind\"|RefindDir="/usr/share/refind/"|g' \
+        -i refind-install
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make gptsync
+  
+    make fs
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # efi binaries
+    install -vDm 644 refind/*.efi -t "${BUILD_DATA_ROOT}/usr/share/refind"
+    install -vDm 644 drivers_*/*.efi \
+        -t "${BUILD_DATA_ROOT}/usr/share/refind/drivers_${_arch}"
+    install -vDm 644 gptsync/*.efi \
+        -t "${BUILD_DATA_ROOT}/usr/share/refind/tools_${_arch}"
+
+    # sample config
+    install -vDm 644 "refind.conf-sample" -t "${BUILD_DATA_ROOT}/usr/share/refind"
+
+    # keys
+    install -vDm 644 keys/*{cer,crt} -t "${BUILD_DATA_ROOT}/usr/share/refind/keys"
+
+    # keysdir
+    install -vdm 700 "${BUILD_DATA_ROOT}/etc/refind.d/keys"
+
+    # fonts
+    install -vDm 644 fonts/*.png \
+        -t "${BUILD_DATA_ROOT}/usr/share/refind/fonts"
+
+    # icons
+    install -vDm 644 icons/*.png \
+        -t "${BUILD_DATA_ROOT}/usr/share/refind/icons"
+    install -vDm 644 icons/svg/*.svg \
+        -t "${BUILD_DATA_ROOT}/usr/share/refind/icons/svg"
+
+    # scripts
+    install -vDm 755 {refind-{install,mkdefault},mkrlconf,mvrefind} \
+        -t "${BUILD_DATA_ROOT}/usr/bin"
+    install -vDm 755 fonts/mkfont.sh "${BUILD_DATA_ROOT}/usr/bin/refind-mkfont"
+
+    # man pages
+    install -vDm 644 docs/man/*.8 -t "${BUILD_DATA_ROOT}/usr/share/man/man8"
+
+    # docs
+    install -vDm 644 {CREDITS,NEWS,README}.txt \
+        -t "${BUILD_DATA_ROOT}/usr/share/doc/refind"
+    install -vDm 644 fonts/README.txt \
+        "${BUILD_DATA_ROOT}/usr/share/doc/refind/README.refind-mkfont.txt"
+    install -vDm 644 icons/README \
+        "${BUILD_DATA_ROOT}/usr/share/doc/refind/README.icons.txt"
+    install -vDm 644 keys/README.txt \
+        "${BUILD_DATA_ROOT}/usr/share/doc/refind/README.keys.txt"
+    install -vDm 644 "docs/refind/"*.{html,png,svg,txt} \
+        -t "${BUILD_DATA_ROOT}/usr/share/doc/refind/html"
+    install -vDm 644 docs/Styles/*.css \
+        -t "${BUILD_DATA_ROOT}/usr/share/doc/refind/html"
+    install -vDm 644 images/refind-banner.{png,svg} \
+        -t "${BUILD_DATA_ROOT}/usr/share/doc/refind/html"
+
+    return 0
+}
