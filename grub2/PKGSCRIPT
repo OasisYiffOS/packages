@@ -1,0 +1,70 @@
+# Package information
+NAME="grub2"
+VERSION="2.06"
+_UNIFONT_VERSION="14.0.01"
+EPOCH=0
+DESC="GNU GRand Unifed Bootloader 2 (UEFI only for now)"
+GRPS=()
+URL="https://www.gnu.org/software/grub/"
+LICENSES=("GPL-3")
+DEPENDS=("efibootmgr" "freetype2")
+OPT_DEPENDS=()
+PROVIDES=("grub2")
+CONFLICTS=("grub-legacy")
+REPLACES=("")
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/grub/grub-${VERSION}.tar.xz"
+"https://unifoundry.com/pub/unifont/unifont-${_UNIFONT_VERSION}/font-builds/unifont-${_UNIFONT_VERSION}.pcf.gz")
+
+SUM_TYPE="sha512"
+SUM=("4f11c648f3078567e53fc0c74d5026fdc6da4be27d188975e79d9a4df817ade0fe5ad2ddd694238a07edc45adfa02943d83c57767dd51548102b375e529e8efe"
+"9f5705debebcded23b5c5d66618cdb5ef96274f401f8d2570e9ab9c868e48f313f0031c0834e2bd76d0708cf8ff2ad82027e22a21b954e3fc2539edfa1c97bf9")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/grub-${VERSION}"
+    
+    # Ensure environment is clean
+    unset {C,CPP,CXX,LD}FLAGS
+
+    # Extract font data (Should this be moved to it's own package?)
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/share/fonts/unifont
+    gunzip -c ${WORKDIR}/unifont-${_UNIFONT_VERSION}.pcf.gz > ${BUILD_DATA_ROOT}/usr/share/fonts/unifont/unifont.pcf
+
+    ./configure --prefix=/usr        \
+                --sysconfdir=/etc    \
+                --disable-efiemu     \
+                --enable-grub-mkfont \
+                --with-platform=efi  \
+                --disable-werror
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/grub-${VERSION}"
+
+    # Ensure environment is clean
+    unset {C,CPP,CXX,LD}FLAGS
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/grub-${VERSION}"
+
+    # Ensure environment is clean
+    unset {C,CPP,CXX,LD}FLAGS
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/share/bash-completion/completions
+    mv -v ${BUILD_DATA_ROOT}/etc/bash_completion.d/grub ${BUILD_DATA_ROOT}/usr/share/bash-completion/completions
+
+    return 0
+}
