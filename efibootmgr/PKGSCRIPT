@@ -1,0 +1,47 @@
+# Package information
+NAME="efibootmgr"
+VERSION="17"
+EPOCH=0
+DESC="Utility to manage EFI boot entries"
+GRPS=()
+URL="https://github.com/rhboot/efibootmgr/"
+LICENSES=("GPL-2.0")
+DEPENDS=("efivar" "popt")
+OPT_DEPENDS=()
+PROVIDES=("efibootmgr")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/rhboot/efibootmgr/archive/${VERSION}/efibootmgr-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("10c7ad9a79f23dcd4708dc4f42701196af7aa11f5e9a6468ea51f7013d4caeba6c92527ba1304f6e3b2ef3b51b3b69ea1a30f81bb099a8aea49eeb30eb631e1d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix outdated hotfix declaration
+    sed -e '/extern int efi_set_verbose/d' -i src/efibootmgr.c
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    EFIDIR=yiffOS EFI_LOADER=grubx64.efi make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" EFIDIR=yiffOS make install
+
+    return 0
+}
