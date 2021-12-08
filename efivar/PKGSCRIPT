@@ -1,0 +1,50 @@
+# Package information
+NAME="efivar"
+VERSION="37"
+EPOCH=0
+DESC="Utilities and libraries for managing EFI variables"
+GRPS=()
+URL="https://github.com/rhboot/efivar/"
+LICENSES=("LGPL-2.1")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("efivar")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/rhboot/efivar/releases/download/${VERSION}/efivar-${VERSION}.tar.bz2"
+"https://git.yiffos.gay/Core/patches/raw/branch/main/efivar/gcc_9-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("305a82ed103c7e3d8f723934019d552677c73558768dd5341f87d0364f5c60824d24f5a8e1bf90075e825908085083d4ecdccec5ac757fd38ee6ac8fea28c3e4"
+"e069f7f0ba1a31f84a452509e47c8b04359fae24bfe88d4c327e9dc316af3d9840cb3e8a96b411432cb72ad0ea0071222f58c45b92abade891a284acf0f15f3d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    patch -Np1 -i "${WORKDIR}/gcc_9-1.patch"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    CFLAGS="-Wno-stringop-truncation" make
+
+    # We do not run the tests because they can cause damage to the fimrware
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" LIBDIR=/usr/lib make install
+
+    return 0
+}
