@@ -1,0 +1,63 @@
+# Package information
+NAME="freetype2"
+VERSION="2.11.1"
+EPOCH=0
+DESC="Small, efficient, and capable font engine"
+GRPS=()
+URL="https://freetype.org/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("freetype2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/freetype/freetype-${VERSION}.tar.xz"
+"https://downloads.sourceforge.net/freetype/freetype-doc-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("0848678482fbe20603a866f02da82c91122014d6f815ba4f1d9c03601c32e3ceb781f721c2b4427b6117d7c9742018af8dbb26566faf018595c70b50f8db3f08"
+"c5e19d98425491682edc58230c48390925cc4b466169f655cf3b8575ba787a70feecdeb7a16224b132dcc32f17b041483d84056cda8e3132d98b531e46a26c36")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/freetype-${VERSION}"
+
+    tar -xf ${WORKDIR}/freetype-doc-${VERSION}.tar.xz --strip-components=2 -C docs
+
+    # Enable GX/ATT and OpenType validation
+    sed -ri "s:.*(AUX_MODULES.*valid):\1:" modules.cfg
+
+    sed -r "s:.*(#.*SUBPIXEL_RENDERING) .*:\1:" \
+        -i include/freetype/config/ftoption.h    
+
+    # We'll get harfbuzz eventually, but for now we'll disable it
+    ./configure --prefix=/usr               \
+                --enable-freetype-config    \
+                --without-harfbuzz          \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/freetype-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/freetype-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -dm755 "${BUILD_DATA_ROOT}/usr/share/doc/freetype2-${VERSION}"
+    cp -v -R docs/* "${BUILD_DATA_ROOT}/usr/share/doc/freetype2-${VERSION}"
+
+    return 0
+}
