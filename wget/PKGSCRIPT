@@ -1,3 +1,6 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
 # Package information
 NAME="wget"
 VERSION="1.21.2"

@@ -1,3 +1,6 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
 # Package information
 NAME="libtasn1"
 VERSION="4.17.0"

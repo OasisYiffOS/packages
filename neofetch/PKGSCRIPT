@@ -1,3 +1,6 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
 # Package information
 NAME="neofetch"
 VERSION="7.1.0"

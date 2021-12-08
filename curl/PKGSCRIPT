@@ -1,3 +1,6 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
 # Package information
 NAME="curl"
 VERSION="7.78.0"

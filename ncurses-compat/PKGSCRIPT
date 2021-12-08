@@ -1,3 +1,6 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
 # Package information
 NAME="ncurses-compat"
 VERSION="6.3"
