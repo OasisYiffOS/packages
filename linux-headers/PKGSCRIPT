@@ -1,6 +1,6 @@
 # Package information
 NAME="linux-headers"
-VERSION="5.15.6"
+VERSION="5.15.7"
 _MAJOR_VERSION="5"
 EPOCH=0
 DESC="The Linux kernel headers"
@@ -17,7 +17,7 @@ REPLACES=()
 SRC=("https://cdn.kernel.org/pub/linux/kernel/v${_MAJOR_VERSION}.x/linux-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("0f69e98590e796a3ec3e04340fc41954f1cdb7a5859da8efec1ba4a6498760778744e6243d068bc91343e3e7029239ff2e9ee2572f458c6b0e31c23f3686b5f5")
+SUM=("7f3e68f367ef4b56e39ffa48be29aa8c7eb6070294e9975bf60b068a518012b798469984a2ba894487e6f5a5701b91fba94413cc26e3258c81ffd759000ac7c0")
 
 # Prepare script
 function prepare() {
