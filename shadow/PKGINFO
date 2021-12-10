@@ -3,7 +3,7 @@
     "version": "4.8.1",
     "epoch": 0,
     "description": "Utilities for handling user passwords",
-    "groups": [],
+    "groups": ["base"],
     "url": "https://shadow-maint.github.io/shadow/",
     "license": ["BSD"],
     "depends": ["pam", "acl", "libcap"],

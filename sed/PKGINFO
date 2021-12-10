@@ -3,7 +3,7 @@
     "version": "4.8",
     "epoch": 0,
     "description": "The GNU stream editor",
-    "groups": [],
+    "groups": ["base"],
     "url": "https://www.gnu.org/software/sed/",
     "license": ["GPL-3.0"],
     "depends": ["acl", "attr"],

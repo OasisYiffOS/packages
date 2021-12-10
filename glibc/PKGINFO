@@ -3,7 +3,7 @@
     "version": "2.34",
     "epoch": 0,
     "description": "GNU C Library",
-    "groups": [],
+    "groups": ["base"],
     "url": "https://www.gnu.org/software/libc/",
     "license": ["LGPL-2.1"],
     "depends": ["tzdata"],

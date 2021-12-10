@@ -3,7 +3,7 @@
     "version": "5.2.5",
     "epoch": 0,
     "description": "A compression program with high compression ratios, higher than both gzip or bzip2",
-    "groups": [],
+    "groups": ["base"],
     "url": "https://tukaani.org/xz",
     "license": ["GPL", "LGPL"],
     "depends": [],

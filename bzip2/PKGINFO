@@ -3,7 +3,7 @@
     "version": "1.0.8",
     "epoch": 0,
     "description": "A compression library with a much better yield than gzip",
-    "groups": [],
+    "groups": ["base"],
     "url": "https://www.sourceware.org/bzip2/",
     "license": ["BSD"],
     "depends": [],

@@ -3,7 +3,7 @@
     "version": "5.1.1",
     "epoch": 0,
     "description": "GNU domain-specific language for processing text",
-    "groups": [],
+    "groups": ["base"],
     "url": "https://www.gnu.org/software/gawk/",
     "license": ["GPL-3.0-or-later"],
     "depends": [],

@@ -3,7 +3,7 @@
     "version": "3.3.17",
     "epoch": 0,
     "description": "Utilities for monitoring processes",
-    "groups": [],
+    "groups": ["base"],
     "url": "https://gitlab.com/procps-ng/procps",
     "license": ["GPL-2.0"],
     "depends": [],

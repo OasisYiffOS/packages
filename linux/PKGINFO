@@ -3,7 +3,7 @@
     "version": "5.15.7",
     "epoch": 0,
     "description": "The Linux kernel",
-    "groups": [],
+    "groups": ["base"],
     "url": "https://www.kernel.org/",
     "license": ["GPL-2.0"],
     "depends": ["dracut"],

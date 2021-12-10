@@ -3,7 +3,7 @@
     "version": "1.11",
     "epoch": 0,
     "description": "Data compression utility originally made as a replacement for compress",
-    "groups": [],
+    "groups": ["base"],
     "url": "https://www.gnu.org/software/gzip/",
     "license": ["GPL-3.0-or-later"],
     "depends": [],

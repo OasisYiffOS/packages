@@ -3,7 +3,7 @@
     "version": "20211124",
     "epoch": 0,
     "description": "IANA protocols and services",
-    "groups": [],
+    "groups": ["base"],
     "url": "https://www.iana.org/protocols",
     "license": ["custom"],
     "depends": [],

@@ -3,7 +3,7 @@
     "version": "2.2",
     "epoch": 0,
     "description": "A collection of common network utilities",
-    "groups": [],
+    "groups": ["base"],
     "url": "https://www.gnu.org/software/inetutils/",
     "license": ["GPL-3.0-or-later"],
     "depends": [],

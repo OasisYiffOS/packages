@@ -3,7 +3,7 @@
     "version": "11.2.0",
     "epoch": 0,
     "description": "Libraries from the GNU Compiler Collection",
-    "groups": [],
+    "groups": ["base"],
     "url": "https://gcc.gnu.org/",
     "license": ["GPL", "LGPL"],
     "depends": ["glibc"],

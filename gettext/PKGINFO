@@ -3,7 +3,7 @@
     "version": "0.21",
     "epoch": 0,
     "description": "GNU internationalization utilities",
-    "groups": [],
+    "groups": ["base"],
     "url": "https://www.gnu.org/software/gettext/",
     "license": ["GPL-3.0-or-later"],
     "depends": [],
