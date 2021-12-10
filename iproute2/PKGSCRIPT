@@ -39,7 +39,7 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    DESTDIR="${BUILD_DATA_ROOT}" SBINDIR=${BUILD_DATA_ROOT}/usr/sbin make install
+    DESTDIR="${BUILD_DATA_ROOT}" SBINDIR=/usr/sbin make install
 
     mkdir -pv              ${BUILD_DATA_ROOT}/usr/share/doc/iproute2-${VERSION}
     cp -v COPYING README* ${BUILD_DATA_ROOT}/usr/share/doc/iproute2-${VERSION}
