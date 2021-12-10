@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.freedesktop.org/wiki/Software/dbus",
     "license": ["GPL-2.0-or-later"],
-    "depends": [],
+    "depends": ["expat", "systemd"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["dbus"],
