@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.kernel.org/pub/linux/utils/net/iproute2/",
     "license": ["GPL-3.0"],
-    "depends": ["iptables", "berkeley-db"],
+    "depends": ["iptables", "berkeley-db", "libelf"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["iproute2"],
