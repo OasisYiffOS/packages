@@ -1,0 +1,16 @@
+{
+    "name": "pcre2",
+    "version": "10.39",
+    "epoch": 0,
+    "description": "Perl Compatible Regular Expressions",
+    "groups": [],
+    "url": "https://www.pcre.org/",
+    "license": ["BSD"],
+    "depends": ["readline", "zlib", "bzip2"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["pcre2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
