@@ -9,7 +9,7 @@
     "depends": [],
     "optional_depends": [],
     "make_depends": [],
-    "provides": ["gcc"],
+    "provides": ["gcc", "gcc-libs"],
     "conflicts": [],
     "replaces": [],
     "maintainers": ["Evie Viau <evie@uwueviee.live>"]

@@ -11,7 +11,7 @@ URL="https://gcc.gnu.org/"
 LICENSES=("GPL" "LGPL")
 DEPENDS=()
 OPT_DEPENDS=()
-PROVIDES=("gcc")
+PROVIDES=("gcc" "gcc-libs")
 CONFLICTS=()
 REPLACES=()
 
