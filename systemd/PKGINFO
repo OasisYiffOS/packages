@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.freedesktop.org/wiki/Software/systemd/",
     "license": ["LGPL-2.1-or-later"],
-    "depends": [],
+    "depends": ["iptables", "kmod", "p11-kit", "pam", "libffi"],
     "optional_depends": [],
     "make_depends": ["ninja"],
     "provides": ["systemd"],
