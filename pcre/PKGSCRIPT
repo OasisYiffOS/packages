@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="pcre"
+VERSION="8.45"
+EPOCH=0
+DESC="Perl Compatible Regular Expressions (Older version)"
+GRPS=()
+URL="https://www.pcre.org/"
+LICENSES=("BSD")
+DEPENDS=("readline" "zlib" "bzip2")
+OPT_DEPENDS=()
+PROVIDES=("pcre")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.sourceforge.net/project/pcre/pcre/${VERSION}/pcre-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("91bff52eed4a2dfc3f3bfdc9c672b88e7e2ffcf3c4b121540af8a4ae8c1ce05178430aa6b8000658b9bb7b4252239357250890e20ceb84b79cdfcde05154061a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                               \
+                --docdir=/usr/share/doc/pcre-${VERSION}     \
+                --enable-jit                                \
+                --enable-unicode                            \
+                --enable-pcre16                             \
+                --enable-pcre32                             \
+                --enable-pcregrep-libz                      \
+                --enable-pcregrep-libbz2                    \
+                --enable-pcretest-libreadline               \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
