@@ -6,7 +6,7 @@
     "groups": ["base"],
     "url": "https://www.darwinsys.com/file/",
     "license": ["custom"],
-    "depends": [],
+    "depends": ["glibc", "bzip2", "xz", "zlib"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["file"],
