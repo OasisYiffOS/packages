@@ -6,7 +6,7 @@
     "groups": ["base"],
     "url": "https://gitlab.com/psmisc/psmisc",
     "license": ["GPL-2.0"],
-    "depends": [],
+    "depends": ["ncurses"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["psmisc"],
