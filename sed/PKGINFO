@@ -6,7 +6,7 @@
     "groups": ["base"],
     "url": "https://www.gnu.org/software/sed/",
     "license": ["GPL-3.0"],
-    "depends": ["acl", "attr"],
+    "depends": ["glibc", "acl", "attr"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["sed"],
