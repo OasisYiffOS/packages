@@ -6,7 +6,7 @@
     "groups": ["base"],
     "url": "https://www.gnu.org/software/inetutils/",
     "license": ["GPL-3.0-or-later"],
-    "depends": [],
+    "depends": ["libcap", "readline", "ncurses"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["inetutils"],
