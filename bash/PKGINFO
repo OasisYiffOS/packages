@@ -6,7 +6,7 @@
     "groups": ["base"],
     "url": "https://www.gnu.org/software/bash/",
     "license": ["GPL-3.0-or-later"],
-    "depends": [],
+    "depends": ["glibc", "ncurses", "readline"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["bash"],
