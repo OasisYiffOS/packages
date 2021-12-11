@@ -6,7 +6,7 @@
     "groups": ["base"],
     "url": "https://www.gnu.org/software/findutils/",
     "license": ["GPL-3.0-or-later"],
-    "depends": [],
+    "depends": ["glibc"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["findutils"],
