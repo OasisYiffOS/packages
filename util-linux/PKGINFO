@@ -6,7 +6,7 @@
     "groups": ["base"],
     "url": "https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/",
     "license": ["GPL-3.0"],
-    "depends": [],
+    "depends": ["coreutils", "libcap", "file", "ncurses", "readline", "systemd", "pam", "shadow"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["util-linux"],
