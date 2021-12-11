@@ -6,7 +6,7 @@
     "groups": ["base"],
     "url": "https://www.kernel.org/",
     "license": ["GPL-2.0"],
-    "depends": ["dracut"],
+    "depends": ["dracut", "kmod", "coreutils"],
     "optional_depends": [],
     "make_depends": ["cpio", "pahole"],
     "provides": ["linux"],
