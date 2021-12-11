@@ -6,7 +6,7 @@
     "groups": ["base"],
     "url": "https://www.gnu.org/software/gawk/",
     "license": ["GPL-3.0-or-later"],
-    "depends": [],
+    "depends": ["glibc", "mpfr", "bash"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["gawk"],
