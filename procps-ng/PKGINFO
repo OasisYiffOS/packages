@@ -6,7 +6,7 @@
     "groups": ["base"],
     "url": "https://gitlab.com/procps-ng/procps",
     "license": ["GPL-2.0"],
-    "depends": [],
+    "depends": ["glibc", "nsurses", "systemd"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["procps-ng"],
