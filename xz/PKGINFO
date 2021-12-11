@@ -6,7 +6,7 @@
     "groups": ["base"],
     "url": "https://tukaani.org/xz",
     "license": ["GPL", "LGPL"],
-    "depends": [],
+    "depends": ["bash"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["xz"],
