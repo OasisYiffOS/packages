@@ -3,13 +3,13 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="openssl"
-VERSION="3.0.0"
+VERSION="3.0.1"
 EPOCH=0
 DESC="Cryptography and SSL/TLS Toolkit"
 GRPS=()
 URL="https://www.openssl.org/"
 LICENSES=("Apache-2.0")
-DEPENDS=()
+DEPENDS=("glibc" "make-ca")
 OPT_DEPENDS=()
 PROVIDES=("openssl")
 CONFLICTS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://www.openssl.org/source/openssl-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("1fdf769ef69631eb802671a9e0bb3a01883d58282f651986212983c2d7c9d3499dabe99a6dee0411e997e6fcfa6f682b121b7698596de0d6c78850c2200241b1")
+SUM=("4eb29386a6c2c47bebc668e68b61872eed1d136e5620d6f8971393ae7dd8d0f640257278735c76adc0c9569a315fdb929c175a2931d52d3fcc4c527ad6a975ce")
 
 # Prepare script
 function prepare() {
