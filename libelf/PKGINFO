@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://sourceware.org/elfutils/",
     "license": ["GPL-2.0-or-later", "LGPL-3.0-or-later"],
-    "depends": [],
+    "depends": ["gcc-libs", "bzip2", "curl", "xz", "zlib", "zstd"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["libelf"],
