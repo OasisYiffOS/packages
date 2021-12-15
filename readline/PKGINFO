@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://tiswww.case.edu/php/chet/readline/rltop.html",
     "license": ["GPL-3.0"],
-    "depends": [],
+    "depends": ["glibc", "ncurses"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["readline"],
