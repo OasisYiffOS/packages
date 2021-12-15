@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.greenwoodsoftware.com/less/",
     "license": ["GPL-3.0-or-later"],
-    "depends": [],
+    "depends": ["glibc", "ncurses", "pcre2"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["less"],
