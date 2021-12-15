@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://savannah.nongnu.org/projects/acl",
     "license": ["LGPL"],
-    "depends": [],
+    "depends": ["attr"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["acl"],
