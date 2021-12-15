@@ -6,7 +6,7 @@
     "groups": ["base"],
     "url": "https://www.gnu.org/software/gzip/",
     "license": ["GPL-3.0-or-later"],
-    "depends": ["glibc"],
+    "depends": ["glibc", "bash", "less"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["gzip"],
