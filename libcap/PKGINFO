@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://sites.google.com/site/fullycapable/",
     "license": ["GPL-2.0"],
-    "depends": [],
+    "depends": ["glibc", "pam"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["libcap"],
