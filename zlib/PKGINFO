@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.zlib.net/",
     "license": ["custom"],
-    "depends": [],
+    "depends": ["glibc"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["zlib"],
