@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.mpfr.org/",
     "license": ["GPL-3.0-or-later"],
-    "depends": [],
+    "depends": ["glibc", "gmp"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["mpfr"],
