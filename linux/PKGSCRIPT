@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="linux"
-VERSION="5.15.9"
+VERSION="5.15.10"
 _MAJOR_VERSION="5"
 EPOCH=0
 DESC="The Linux kernel"
@@ -23,7 +23,7 @@ SRC=("https://cdn.kernel.org/pub/linux/kernel/v${_MAJOR_VERSION}.x/linux-${VERSI
 "https://git.yiffos.gay/Core/patches/raw/branch/main/linux/good_panic_message.patch")
 
 SUM_TYPE="sha512"
-SUM=("541f6f5c774d3af0c04cc84a95819c2fa543ff912448a6c1483508ba66dc3498b57208cad81aad2936a320a8ddf218a661757ee6e32cdad8d7c5978d9d4366a2"
+SUM=("cd57fcb1e10ab380d3e9f99b46f3bd38bd4a05e00f53655f5a1a644da2612c9ec2dbc87fa3f87f06f1ef334f6e669025e8f144a11e9a4d64184f60e922b269f9"
 "a64be49273feaf1093fe0edb52465c7a3246bbe7b3bf24ec2d953c8fd9e89384611184f4502387c54ff774a32273e671a0646e359aeaeee6acece7ca685cfab1"
 "37f8574955ee8d440490dd756596fa256b08ea820cd85bb5844f9c1fa221731caf99d7770a362e9ff8dbb23bc4845db6a1fac2f838fb0a23748db74685b347cf")
 
