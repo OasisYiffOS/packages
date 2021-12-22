@@ -12,7 +12,7 @@ LICENSES=("GPL" "LGPL")
 DEPENDS=()
 OPT_DEPENDS=()
 PROVIDES=("gcc" "gcc-libs")
-CONFLICTS=()
+CONFLICTS=("gcc-libs")
 REPLACES=()
 
 # Source information
