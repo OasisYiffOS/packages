@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libseccomp"
+VERSION="2.5.3"
+EPOCH=0
+DESC="Easy to use and portable interface to the Linux kernel's syscall filtering mechanism"
+GRPS=()
+URL="https://github.com/seccomp/libseccomp/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+PROVIDES=("libseccomp")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/seccomp/libseccomp/releases/download/v${VERSION}/libseccomp-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("00170fe2360f0c0b33293dccfcc33e98fabb99619f34ecefbcc92bfdaa249ba91e7433226545b842b71542a3b224b6e980ea2ae656c4addf07e84a0def1870a0")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr       \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    #make check Relies on packages we don't have yet
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
