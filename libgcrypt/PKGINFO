@@ -1,0 +1,16 @@
+{
+    "name": "libgcrypt",
+    "version": "1.9.4",
+    "epoch": 0,
+    "description": "General purpose cryptographic library originally based on code from GnuPG.",
+    "groups": [],
+    "url": "https://gnupg.org/software/libgcrypt/index.html",
+    "license": ["LGPL-2.1-or-later", "GPL-2.0-or-later"],
+    "depends": ["libgpg-error"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libgcrypt"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

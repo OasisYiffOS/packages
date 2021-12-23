@@ -1,0 +1,68 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libgcrypt"
+VERSION="1.9.4"
+EPOCH=0
+DESC="General purpose cryptographic library originally based on code from GnuPG."
+GRPS=()
+URL="https://gnupg.org/software/libgcrypt/index.html"
+LICENSES=("LGPL-2.1-or-later" "GPL-2.0-or-later")
+DEPENDS=("libgpg-error")
+OPT_DEPENDS=()
+PROVIDES=("libgcrypt")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("d0e117ac73c94d70e9521ee1e6328691498cc8328f8c4e21338096908f5c04c7b838966eb63d59494565f4e19f506c07dab4f4d922150d75610d9f7b57abbf60")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    # Build documentation
+    make -C doc html
+    makeinfo --html --no-split -o doc/gcrypt_nochunks.html doc/gcrypt.texi
+    makeinfo --plaintext       -o doc/gcrypt.txt           doc/gcrypt.texi
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -dm755   ${BUILD_DATA_ROOT}/usr/share/doc/libgcrypt-${VERSION}
+    install -v -m644    README doc/{README.apichanges,fips*,libgcrypt*}         \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/libgcrypt-${VERSION}
+
+    install -v -dm755   ${BUILD_DATA_ROOT}/usr/share/doc/libgcrypt-${VERSION}/html
+    install -v -m644 doc/gcrypt.html/*                                              \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/libgcrypt-${VERSION}/html
+    install -v -m644 doc/gcrypt_nochunks.html                                   \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/libgcrypt-${VERSION}
+    install -v -m644 doc/gcrypt.{txt,texi}                                      \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/libgcrypt-${VERSION}
+
+    return 0
+}
