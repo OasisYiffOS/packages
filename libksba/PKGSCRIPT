@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libksba"
+VERSION="1.6.0"
+EPOCH=0
+DESC="A library for handling X.509 certificates and CMS data"
+GRPS=()
+URL="https://www.gnupg.org/related_software/libksba/"
+LICENSES=("LGPL-3.0" "GPL-3.0" "GPL-2.0")
+DEPENDS=("glibc" "libgpg-error" "bash")
+OPT_DEPENDS=()
+PROVIDES=("libksba")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.gnupg.org/ftp/gcrypt/libksba/libksba-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("a7c76d41dfd8ec6383ac2de3c53848cd9f066b538f6f3cd43175e3c8095df51b96d0a24a573481c0c4856b09b7c224e2b562d88f5c0801e7acfb582ea2739c2b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
