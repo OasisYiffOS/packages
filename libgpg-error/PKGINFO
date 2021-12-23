@@ -1,0 +1,16 @@
+{
+    "name": "libgpg-error",
+    "version": "1.43",
+    "epoch": 0,
+    "description": "Small library for common error values for all GnuPG components",
+    "groups": [],
+    "url": "https://gnupg.org/related_software/libgpg-error/index.html",
+    "license": ["LGPL-2.0", "GPL-2.0"],
+    "depends": ["glibc", "bash"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libgpg-error"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

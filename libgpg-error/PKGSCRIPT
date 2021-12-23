@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libgpg-error"
+VERSION="1.43"
+EPOCH=0
+DESC="Small library for common error values for all GnuPG components"
+GRPS=()
+URL="https://gnupg.org/related_software/libgpg-error/index.html"
+LICENSES=("LGPL-2.0" "GPL-2.0")
+DEPENDS=("glibc" "bash")
+OPT_DEPENDS=()
+PROVIDES=("libgpg-error")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("36769a62d0b4b219a6d58195bed692e34d3b0313f628b1036055ca34b69332edbe6bcdace9855a60d06e7be5998dc13bf1305d0b2bb211a4d8f701e85040961c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -m644 -D README /usr/share/doc/libgpg-error-${VERSION}/README
+
+    return 0
+}
