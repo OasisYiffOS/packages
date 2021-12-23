@@ -1,0 +1,16 @@
+{
+    "name": "npth",
+    "version": "1.6",
+    "epoch": 0,
+    "description": "The New GNU Portable Threads Library",
+    "groups": [],
+    "url": "https://www.gnupg.org/software/npth/index.html",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "bash"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["npth"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

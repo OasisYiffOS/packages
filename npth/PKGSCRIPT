@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="npth"
+VERSION="1.6"
+EPOCH=0
+DESC="The New GNU Portable Threads Library"
+GRPS=()
+URL="https://www.gnupg.org/software/npth/index.html"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "bash")
+OPT_DEPENDS=()
+PROVIDES=("npth")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.gnupg.org/ftp/gcrypt/npth/npth-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("2ed1012e14a9d10665420b9a23628be7e206fd9348111ec751349b93557ee69f1176bcf7e6b195b35b1c44a5e0e81ee33b713f03d79a33d1ecd9037035afeda2")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
