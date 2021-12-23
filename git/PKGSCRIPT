@@ -1,0 +1,90 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="git"
+VERSION="2.34.1"
+EPOCH=0
+DESC="fast and popular distributed version control system"
+GRPS=("devel")
+URL="https://git-scm.com/"
+LICENSES=("GPL-3.0")
+DEPENDS=("curl" "openssh" "pcre2" "expat" "grep" "openssl" "perl" "python" "zlib" "shadow")
+OPT_DEPENDS=("gnupg")
+PROVIDES=("git")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.kernel.org/pub/software/scm/git/git-${VERSION}.tar.xz" 
+"https://www.kernel.org/pub/software/scm/git/git-manpages-${VERSION}.tar.xz" 
+"https://www.kernel.org/pub/software/scm/git/git-htmldocs-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("a1a8e9e6f64b1da25508fbd2f783564dcdbe181fb5ff1ebab3bdac6db6094e18acc334479a1abf22ac17ce4f733cc3e10a664db9ab234cd523735a3f027b42db"
+"8f3b56fa477e5aafec3ef29933234c362a372f59ed95694c4fb82ebb82d2a8ebc0ac17ae36caa9185964eef1700ea8732816e73df4ddd918afc949a8371fa0d8"
+"cf9fa952d43e477528deece9f22d1bb63fa50b3a831fae20812c6af31c1dbaf193abe2fed48ac9966bcf1787442ceed19f00c00e524a1911f0ea31952a52fc8f")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                   \
+                --with-gitconfig=/etc/gitconfig \
+                --with-python=python3           \
+                --with-libpcre2
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    # make test We don't yet have the packages need to do the tests
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make perllibdir="${BUILD_DATA_ROOT}$(/usr/bin/perl -MConfig -wle 'print $Config{installvendorlib}')" install
+
+    # Extract the manpages and html docs
+
+    mkdir -vp ${BUILD_DATA_ROOT}/usr/share/man
+
+    tar -xf ../git-manpages-${VERSION}.tar.xz                                   \
+        -C ${BUILD_DATA_ROOT}/usr/share/man --no-same-owner --no-overwrite-dir
+
+    mkdir -vp   ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION}
+
+    tar -xf   ../git-htmldocs-${VERSION}.tar.xz                                                     \
+        -C    ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION} --no-same-owner --no-overwrite-dir
+
+    find ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION} -type d -exec chmod 755 {} \;
+    find ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION} -type f -exec chmod 644 {} \;
+
+    # Reorganize the documentation
+
+    mkdir -vp ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION}/man-pages/{html,text}
+    mv        ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION}/{git*.txt,man-pages/text}
+    mv        ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION}/{git*.,index.,man-pages/}html
+
+    mkdir -vp ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION}/technical/{html,text}
+    mv        ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION}/technical/{*.txt,text}
+    mv        ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION}/technical/{*.,}html
+
+    mkdir -vp ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION}/howto/{html,text}
+    mv        ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION}/howto/{*.txt,text}
+    mv        ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION}/howto/{*.,}html
+
+    sed -i '/^<a href=/s|howto/|&html/|' ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION}/howto-index.html
+    sed -i '/^\* link:/s|howto/|&html/|' ${BUILD_DATA_ROOT}/usr/share/doc/git-${VERSION}/howto-index.txt
+
+    return 0
+}
