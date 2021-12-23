@@ -1,0 +1,16 @@
+{
+    "name": "lynx",
+    "version": "2.8.9",
+    "epoch": 0,
+    "description": "A text-based web browser.",
+    "groups": [],
+    "url": "https://lynx.invisible-island.net/",
+    "license": ["GPL-2.0"],
+    "depends": ["openssl", "libidn2", "zlib", "bzip2", "ncurses"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lynx"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

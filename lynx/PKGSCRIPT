@@ -1,0 +1,81 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lynx"
+VERSION="2.8.9"
+_REL="1"
+EPOCH=0
+DESC="A text-based web browser."
+GRPS=()
+URL="https://lynx.invisible-island.net/"
+LICENSES=("GPL-2.0")
+DEPENDS=("openssl" "libidn2" "zlib" "bzip2" "ncurses")
+OPT_DEPENDS=()
+PROVIDES=("lynx")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://invisible-mirror.net/archives/lynx/tarballs/lynx${VERSION}rel.${_REL}.tar.gz"
+"https://git.yiffos.gay/Core/patches/raw/branch/main/lynx/CVE-2021-38165.patch")
+
+SUM_TYPE="sha512"
+SUM=("28e72910fe29f057a288cf950f4ee5ce490d6a6f9008714b293fc11fe840d18232570494a55ae046f316e88a5674af31de34afca0e21bf3a6f6fd88d499088df"
+"d613acc8f59177e54a489b39844c81ee6599a442644628022683207ccd1772485ffc101fb531b6371137a08254d9de6a30776a6cd8f2a9dc846bbdb7efcfabe8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}${VERSION}rel.${_REL}"
+
+    patch -Np1 -i "${WORKDIR}/CVE-2021-38165.patch"
+
+    ./configure --prefix=/usr                               \
+                --sysconfdir=/etc/lynx                      \
+                --datadir=/usr/share/doc/lynx-${VERSION}    \
+                --with-zlib                                 \
+                --with-bzlib                                \
+                --with-ssl                                  \
+                --with-screen=ncursesw                      \
+                --enable-locale-charset
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}${VERSION}rel.${_REL}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}${VERSION}rel.${_REL}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+
+    sed -i -e "s|^HELPFILE.*$|HELPFILE:file:///usr/share/doc/lynx/lynx_help/lynx_help_main.html|" "${BUILD_DATA_ROOT}/etc/lynx/lynx.cfg"
+
+    install -d "${BUILD_DATA_ROOT}/usr/share/doc/lynx"
+    cp -rf lynx_help "${BUILD_DATA_ROOT}/usr/share/doc/lynx"
+
+    # Create default config file
+
+    ## Have Lynx examine the current locale
+    sed -e '/#LOCALE/     a LOCALE_CHARSET:TRUE'     \
+        -i ${BUILD_DATA_ROOT}/etc/lynx/lynx.cfg
+
+    ## Set default editor to nano by default
+    sed -e '/#DEFAULT_ED/ a DEFAULT_EDITOR:nano'      \
+        -i ${BUILD_DATA_ROOT}/etc/lynx/lynx.cfg
+
+    ## Save cookies between sessions
+    sed -e '/#PERSIST/    a PERSISTENT_COOKIES:TRUE' \
+        -i ${BUILD_DATA_ROOT}/etc/lynx/lynx.cfg
+
+
+    return 0
+}
