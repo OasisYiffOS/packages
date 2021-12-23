@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="linux-headers"
-VERSION="5.15.10"
+VERSION="5.15.11"
 _MAJOR_VERSION="5"
 EPOCH=0
 DESC="The Linux kernel headers"
 GRPS=()
 URL="https://www.kernel.org/"
 LICENSES=("GPL-2.0")
-DEPENDS=()
+DEPENDS=("pahole")
 OPT_DEPENDS=()
 PROVIDES=("linux-headers")
 CONFLICTS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://cdn.kernel.org/pub/linux/kernel/v${_MAJOR_VERSION}.x/linux-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("cd57fcb1e10ab380d3e9f99b46f3bd38bd4a05e00f53655f5a1a644da2612c9ec2dbc87fa3f87f06f1ef334f6e669025e8f144a11e9a4d64184f60e922b269f9")
+SUM=("5abe52981a9f493174afb908bc1c1a4901bc522c38c2da7ba15d5b907f06f9c4a684a47436697d79df8f598e166064d46add5661632a48275e0268411563f6b2")
 
 # Prepare script
 function prepare() {
