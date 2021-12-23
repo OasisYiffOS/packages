@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="pinentry"
+VERSION="1.2.0"
+EPOCH=0
+DESC="Small collections of dialog programs for use with GnuPG to securely enter PINs and passphrases."
+GRPS=()
+URL="https://gnupg.org/related_software/pinentry/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "libassuan" "libgpg-error" "libcap")
+OPT_DEPENDS=()
+PROVIDES=("pinentry")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gnupg.org/ftp/gcrypt/pinentry/pinentry-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("19cea79aa3982d1f0d75220c8e24ca38d6c49475c6f4c5aa7101151b4690db23ed316096a4a411136e716ba4eb471f48f9b09556e5c9837533c2356b9b384b63")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # We don't have Qt or GTK yet, so we disable them
+    ./configure --prefix=/usr               \
+                --enable-pinentry-tty       \
+                --enable-pinentry-qt=no     \
+                --enable-pinentry-gtk2=no   \
+                --enable-pinentry-gnome3=no
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

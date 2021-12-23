@@ -1,0 +1,16 @@
+{
+    "name": "pinentry",
+    "version": "1.2.0",
+    "epoch": 0,
+    "description": "Small collections of dialog programs for use with GnuPG to securely enter PINs and passphrases.",
+    "groups": [],
+    "url": "https://gnupg.org/related_software/pinentry/",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "libassuan", "libgpg-error", "libcap"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["pinentry"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
