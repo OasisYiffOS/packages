@@ -1,0 +1,64 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libassuan"
+VERSION="2.5.5"
+EPOCH=0
+DESC="Small library for the Assuan protocol, which is used by (but not limited to) GnuPG."
+GRPS=()
+URL="https://gnupg.org/software/libassuan/index.html"
+LICENSES=("GPL-3.0")
+DEPENDS=("glibc" "libgpg-error")
+OPT_DEPENDS=()
+PROVIDES=("libassuan")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gnupg.org/ftp/gcrypt/libassuan/libassuan-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("70117f77aa43bbbe0ed28da5ef23834c026780a74076a92ec775e30f851badb423e9a2cb9e8d142c94e4f6f8a794988c1b788fd4bd2271e562071adf0ab16403")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    # Build documentation
+    make -C doc html
+    makeinfo --html --no-split -o doc/assuan_nochunks.html doc/assuan.texi
+    makeinfo --plaintext       -o doc/assuan.txt           doc/assuan.texi
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -dm755   ${BUILD_DATA_ROOT}/usr/share/doc/libassuan-${VERSION}/html
+    install -v -m644 doc/assuan.html/*                                              \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/libassuan-${VERSION}/html
+    install -v -m644 doc/assuan_nochunks.html                                   \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/libassuan-${VERSION}
+    install -v -m644 doc/assuan.{txt,texi}                                      \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/libassuan-${VERSION}
+
+    return 0
+}

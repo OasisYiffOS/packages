@@ -1,0 +1,16 @@
+{
+    "name": "libassuan",
+    "version": "2.5.5",
+    "epoch": 0,
+    "description": "Small library for the Assuan protocol, which is used by (but not limited to) GnuPG.",
+    "groups": [],
+    "url": "https://gnupg.org/software/libassuan/index.html",
+    "license": ["GPL-3.0"],
+    "depends": ["glibc", "libgpg-error"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libassuan"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
