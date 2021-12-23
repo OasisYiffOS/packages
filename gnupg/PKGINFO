@@ -1,0 +1,16 @@
+{
+    "name": "gnupg",
+    "version": "2.3.4",
+    "epoch": 0,
+    "description": "GNU tool for secure communication and data storage.",
+    "groups": [],
+    "url": "https://www.gnupg.org/",
+    "license": ["GPL-3.0"],
+    "depends": ["bzip2", "glibc", "gnutls", "libassuan", "libgcrypt", "libgpg-error", "libksba", "readline", "npth", "pinentry", "sqlite", "zlib", "curl"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["gnupg"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

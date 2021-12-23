@@ -1,0 +1,70 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnupg"
+VERSION="2.3.4"
+EPOCH=0
+DESC="GNU tool for secure communication and data storage."
+GRPS=()
+URL="https://www.gnupg.org/"
+LICENSES=("GPL-3.0")
+DEPENDS=("bzip2" "glibc" "gnutls" "libassuan" "libgcrypt" "libgpg-error" "libksba" "readline" "npth" "pinentry" "sqlite" "zlib" "curl")
+OPT_DEPENDS=()
+PROVIDES=("gnupg")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("a3cf1c759512ec561c6f01cec72d533fc099dccf8c03b3a3e4a930862ae4c6815ecb856edd41884a65f058b65553cb69519e53e134d652353a7a76144bd99758")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Install the deprecated gpg-zip, some program still use it 
+    sed -e '/noinst_SCRIPTS = gpg-zip/c sbin_SCRIPTS += gpg-zip' \
+        -i tools/Makefile.in
+
+    ./configure --prefix=/usr                               \
+                --localstatedir=/var                        \
+                --sysconfdir=/etc                           \
+                --docdir=/usr/share/doc/gnupg-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    #make check We don't have some packages required yet
+
+    makeinfo --html --no-split -o doc/gnupg_nochunks.html doc/gnupg.texi
+    makeinfo --plaintext       -o doc/gnupg.txt           doc/gnupg.texi
+
+    make -C doc html
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/doc/gnupg-${VERSION}/html
+    install -v -m644    doc/gnupg_nochunks.html                                             \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/gnupg-${VERSION}/html/gnupg.html
+    install -v -m644    doc/*.texi doc/gnupg.txt                            \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/gnupg-${VERSION}
+    install -v -m644    doc/gnupg.html/*                                        \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/gnupg-${VERSION}/html
+    return 0
+}
