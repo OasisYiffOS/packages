@@ -3,7 +3,7 @@
     "version": "2.7.6",
     "epoch": 0,
     "description": "Utility to apply diffs to files",
-    "groups": [],
+    "groups": ["devel"],
     "url": "https://savannah.gnu.org/projects/patch/",
     "license": ["GPL-3.0-or-later"],
     "depends": [],

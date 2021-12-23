@@ -3,7 +3,7 @@
     "version": "2.37",
     "epoch": 0,
     "description": "A collection of binary tools, including an assembler, linker, and binary utilities.",
-    "groups": [],
+    "groups": ["devel"],
     "url": "https://www.gnu.org/software/binutils/",
     "license": ["GPL"],
     "depends": ["zlib", "elfutils"],

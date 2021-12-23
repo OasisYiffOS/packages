@@ -3,7 +3,7 @@
     "version": "1.26",
     "epoch": 0,
     "description": "Run a command appearing to be root without actually being root",
-    "groups": [],
+    "groups": ["devel"],
     "url": "http://freshmeat.sourceforge.net/projects/fakeroot",
     "license": ["GPL"],
     "depends": [],
