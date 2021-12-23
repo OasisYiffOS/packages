@@ -1,0 +1,16 @@
+{
+    "name": "libunistring",
+    "version": "0.9.10",
+    "epoch": 0,
+    "description": "Functions for manipulating Unicode strings and for manipulating C strings according to the Unicode standard",
+    "groups": [],
+    "url": "https://www.gnu.org/software/libunistring/",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libunistring"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

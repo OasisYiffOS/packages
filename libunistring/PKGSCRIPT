@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libunistring"
+VERSION="0.9.10"
+EPOCH=0
+DESC="Functions for manipulating Unicode strings and for manipulating C strings according to the Unicode standard"
+GRPS=()
+URL="https://www.gnu.org/software/libunistring/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+PROVIDES=("libunistring")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/libunistring/libunistring-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("690082732fbbd47ab4ffbd6f21d85afece0f8e2ded24982f949f4ae52bf0a981b75ea9bc14ab289e0954cde07f31a7a4c2bb65615a8eb5b2bfa65720310b6fc9")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                                       \
+                --disable-static                                    \
+                --docdir=/usr/share/doc/libunistring-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
