@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.openssh.com/",
     "license": ["BSD"],
-    "depends": [],
+    "depends": ["glibc", "pam", "openssl", "zlib"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["openssh"],
