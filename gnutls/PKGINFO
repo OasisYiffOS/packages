@@ -1,0 +1,16 @@
+{
+    "name": "gnutls",
+    "version": "3.7.2",
+    "epoch": 0,
+    "description": "The M4 macro processor",
+    "groups": [],
+    "url": "https://www.gnutls.org/",
+    "license": ["GPL-3.0"],
+    "depends": ["nettle", "make-ca", "libunistring", "libtasn1", "p11-kit", "gcc-libs", "libidn2", "readline", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["gnutls"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,59 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnutls"
+VERSION="3.7.2"
+_MAJOR_VERSION="3.7"
+EPOCH=0
+DESC="The M4 macro processor"
+GRPS=()
+URL="https://www.gnutls.org/"
+LICENSES=("GPL-3.0")
+DEPENDS=("nettle" "make-ca" "libunistring" "libtasn1" "p11-kit" "gcc-libs" "libidn2" "readline" "zlib")
+OPT_DEPENDS=()
+PROVIDES=("gnutls")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.gnupg.org/ftp/gcrypt/gnutls/v${_MAJOR_VERSION}/gnutls-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("5d01d561a05379da71e4847e30ba13c2abe09f7a5c4359fd539d8bd19abad0ce87120f82ee7b6264e787bd3edbc5ae16beffa892983cbc3d59f11a1811c10329")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                               \
+                --docdir=/usr/share/doc/gnutls-${VERSION}   \
+                --disable-guile                             \
+                --disable-rpath                             \
+                --with-default-trust-store-pkcs11="pkcs11:" \
+                --enable-openssl-compatibility
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    #make check We don't have some packages required yet
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    DESTDIR="${BUILD_DATA_ROOT}" make -C doc/reference install-data-local
+
+    return 0
+}
