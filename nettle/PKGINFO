@@ -1,0 +1,16 @@
+{
+    "name": "nettle",
+    "version": "3.7.3",
+    "epoch": 0,
+    "description": "A low-level cryptographic library designed to fit easily in more or less any context",
+    "groups": [],
+    "url": "https://www.lysator.liu.se/~nisse/nettle/",
+    "license": ["LGPL-3.0", "GPL-3.0", "GPL-2.0"],
+    "depends": ["gmp"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["nettle"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

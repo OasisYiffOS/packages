@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="nettle"
+VERSION="3.7.3"
+EPOCH=0
+DESC="A low-level cryptographic library designed to fit easily in more or less any context"
+GRPS=()
+URL="https://www.lysator.liu.se/~nisse/nettle/"
+LICENSES=("LGPL-3.0" "GPL-3.0" "GPL-2.0")
+DEPENDS=("gmp")
+OPT_DEPENDS=()
+PROVIDES=("nettle")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/nettle/nettle-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("9901eba305421adff6d551ac7f478dff3f68a339d444c776724ab0b977fe6be792b1d2950c8705acbe76bd924fd6d898a65eded546777884be3b436d0e052437")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr       \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    # make check We don't yet have the packages to do the tests
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    chmod   -v   755 ${BUILD_DATA_ROOT}/usr/lib/lib{hogweed,nettle}.so
+
+    install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/doc/nettle-${VERSION}
+    install -v -m644 nettle.html ${BUILD_DATA_ROOT}/usr/share/doc/nettle-${VERSION}
+
+    return 0
+}
