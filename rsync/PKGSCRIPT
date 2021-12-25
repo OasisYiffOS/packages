@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="rsync"
+VERSION="3.2.3"
+EPOCH=0
+DESC="Fast file synchronization program."
+GRPS=()
+URL="https://rsync.samba.org/"
+LICENSES=("GPL-3.0")
+DEPENDS=("acl" "openssl" "perl" "popt" "zlib" "zstd")
+OPT_DEPENDS=()
+PROVIDES=("rsync")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.samba.org/ftp/rsync/src/rsync-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("48b68491f3ef644dbbbfcaec5ab90a1028593e02d50367ce161fd9d3d0bd0a3628bc57c5e5dec4be3a1d213f784f879b8a8fcdfd789ba0f99837cba16e1ae70e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+
+    ./configure --prefix=/usr               \
+                --disable-lz4               \
+                --disable-xxhash            \
+                --without-included-zlib
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+
+    return 0
+}

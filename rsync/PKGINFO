@@ -1,0 +1,16 @@
+{
+    "name": "rsync",
+    "version": "3.2.3",
+    "epoch": 0,
+    "description": "Fast file synchronization program.",
+    "groups": [],
+    "url": "https://rsync.samba.org/",
+    "license": ["GPL-3.0"],
+    "depends": ["acl", "openssl", "perl", "popt", "zlib", "zstd"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["rsync"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
