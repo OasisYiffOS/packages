@@ -1,0 +1,64 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="btrfs-progs"
+VERSION="5.15.1"
+EPOCH=0
+DESC="Utilities for the Btrfs filesystem"
+GRPS=()
+URL="https://btrfs.rtfd.io/"
+LICENSES=("GPL-2.0")
+DEPENDS=("lzo" "glibc" "libgcrypt" "util-linux" "zlib" "zstd")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("btrfs-progs")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.kernel.org/pub/linux/kernel/people/kdave/btrfs-progs/btrfs-progs-v${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("68ed89e337ae857fdaf077eaa889e259e9f162ea2222bdaa03f4187783a8682c24d45c91b0559b901d81429ba2cd3f84087d032d354092d5512fb226bdf91549")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}"
+
+    # Temporarily disable building the documentation
+    ./configure --prefix=/usr           \
+                --disable-documentation
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}"
+
+    make
+
+    # Temporarily disable testing as we're missing some packages
+    #make ffsum
+
+    #pushd tests
+    #    ./fsck-tests.sh
+    #    ./mkfs-tests.sh
+    #    ./cli-tests.sh
+    #    ./convert-tests.sh
+    #    ./misc-tests.sh
+    #    ./fuzz-tests.sh
+    #popd
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "btrfs-progs",
+    "version": "5.15.1",
+    "epoch": 0,
+    "description": "Utilities for the Btrfs filesystem",
+    "groups": [],
+    "url": "https://btrfs.rtfd.io/",
+    "license": ["GPL-2.0"],
+    "depends": ["lzo", "glibc", "libgcrypt", "util-linux", "zlib", "zstd"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["btrfs-progs"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
