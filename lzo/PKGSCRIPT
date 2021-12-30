@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lzo"
+VERSION="2.10"
+EPOCH=0
+DESC="A lossless data compression algorithm focused on decompression speed"
+GRPS=()
+URL="https://www.oberhumer.com/opensource/lzo/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("lzo")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.oberhumer.com/opensource/lzo/download/lzo-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("a3dae5e4a6b93b1f5bf7435e8ab114a9be57252e9efc5dd444947d7a2d031b0819f34bcaeb35f60b5629a01b1238d738735a64db8f672be9690d3c80094511a4")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+                --enable-shared                         \
+                --disable-static                        \
+                --docdir=/usr/share/doc/lzo-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    # Yes, there are two tests. make check must be run before the full testsuite.
+    make check
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

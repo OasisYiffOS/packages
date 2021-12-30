@@ -1,0 +1,16 @@
+{
+    "name": "lzo",
+    "version": "2.10",
+    "epoch": 0,
+    "description": "A lossless data compression algorithm focused on decompression speed",
+    "groups": [],
+    "url": "https://www.oberhumer.com/opensource/lzo/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lzo"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
