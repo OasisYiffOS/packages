@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://github.com/lfs-book/make-ca",
     "license": ["MIT", "GPL3"],
-    "depends": ["p11-kit"],
+    "depends": ["p11-kit", "libtasn1"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["make-ca"],
