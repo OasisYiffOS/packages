@@ -1,0 +1,16 @@
+{
+    "name": "nasm",
+    "version": "2.15.05",
+    "epoch": 0,
+    "description": "An assembler for the x86 architecture designed for portability and modularity",
+    "groups": [],
+    "url": "https://www.nasm.us/",
+    "license": ["BSD-2-Clause"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["nasm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
