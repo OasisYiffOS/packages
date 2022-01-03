@@ -1,0 +1,16 @@
+{
+    "name": "python2",
+    "version": "2.7.18",
+    "epoch": 0,
+    "description": "High-level object-oriented programming language (legacy 2.7 version with BLFS security patches)",
+    "groups": [],
+    "url": "https://www.python.org/",
+    "license": ["PSF-2.0"],
+    "depends": ["libffi", "expat", "bzip2", "gdbm", "libnsl", "openssl", "zlib"],
+    "optional_depends": ["sqlite"],
+    "make_depends": [],
+    "provides": ["python2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

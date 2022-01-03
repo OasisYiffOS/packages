@@ -1,0 +1,92 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="python2"
+VERSION="2.7.18"
+EPOCH=0
+DESC="High-level object-oriented programming language (legacy 2.7 version with BLFS security patches)"
+GRPS=()
+URL="https://www.python.org/"
+LICENSES=("PSF-2.0")
+DEPENDS=("libffi" "expat" "bzip2" "gdbm" "libnsl" "openssl" "zlib")
+OPT_DEPENDS=("sqlite")
+PROVIDES=("python2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tar.xz"
+"https://www.python.org/ftp/python/doc/${VERSION}/python-${VERSION}-docs-html.tar.bz2"
+"https://www.linuxfromscratch.org/patches/blfs/11.0/Python-2.7.18-security_fixes-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("a7bb62b51f48ff0b6df0b18f5b0312a523e3110f49c3237936bfe56ed0e26838c0274ff5401bda6fc21bf24337477ccac49e8026c5d651e4b4cafb5eb5086f6c"
+"db39390577ec86f13c9b6b57c01cba36fe9fd89092a773dc94f1a6a19d912759d097c4d80e765d3657b572abc731c1da9e7b4cd4c38065cd444606b906744abe"
+"98e2bf990388cb733a6c09cac1d61cff56e1fd944ae4995faa6f7feb425548d84519d2a73a2bd66482043b14be3a0509ebdd0e8ae6ccde9f75529f1a1e13eb59")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/Python-${VERSION}"
+
+    sed -i '/2to3/d' ./setup.py
+
+    patch -Np1 -i ${WORKDIR}/Python-2.7.18-security_fixes-1.patch
+
+    ./configure --prefix=/usr                       \
+                --enable-shared                     \
+                --with-system-expat                 \
+                --with-system-ffi                   \
+                --with-ensurepip=yes                \
+                --enable-optimizations              \
+                --enable-ipv6                       \
+                --enable-loadable-sqlite-extensions \
+                --enable-unicode=ucs4               \
+                --with-dbmliborder=bdb:gdbm:ndbm
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/Python-${VERSION}"
+
+    make
+
+    make -k test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/Python-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -dm755 ${BUILD_DATA_ROOT}/usr/share/doc/python-${VERSION}
+
+    tar --strip-components=1                                    \
+        --no-same-owner                                         \
+        --no-same-permissions                                   \
+        -C ${BUILD_DATA_ROOT}/usr/share/doc/python-${VERSION}   \
+        -xvf ${WORKDIR}/python-${VERSION}-docs-html.tar.bz2
+
+    find ${BUILD_DATA_ROOT}/usr/share/doc/python-${VERSION} -type d -exec chmod 0755 {} \;
+    find ${BUILD_DATA_ROOT}/usr/share/doc/python-${VERSION} -type f -exec chmod 0644 {} \;
+
+    chmod -v 755 ${BUILD_DATA_ROOT}/usr/lib/libpython2.7.so.1.0
+    
+    rm ${BUILD_DATA_ROOT}/usr/bin/python
+    rm ${BUILD_DATA_ROOT}/usr/bin/python-config
+    rm ${BUILD_DATA_ROOT}/usr/bin/pip
+    rm ${BUILD_DATA_ROOT}/usr/bin/easy_install
+    rm ${BUILD_DATA_ROOT}/usr/share/man/man1/python.1
+    rm ${BUILD_DATA_ROOT}/usr/lib/pkgconfig/python.pc
+
+    mv ${BUILD_DATA_ROOT}/usr/bin/idle ${BUILD_DATA_ROOT}/usr/bin/idle2
+    mv ${BUILD_DATA_ROOT}/usr/bin/pydoc ${BUILD_DATA_ROOT}/usr/bin/pydoc2
+    mv ${BUILD_DATA_ROOT}/usr/bin/smtpd.py ${BUILD_DATA_ROOT}/usr/bin/smtpd2.py
+
+    return 0
+}
