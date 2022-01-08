@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="curl"
-VERSION="7.78.0"
+VERSION="7.81.0"
 EPOCH=0
 DESC="A command line tool and library for transferring data with URL syntax"
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://curl.se/download/curl-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("f72e822a0b5e28320ef547c7a441c07f3b4870579a70ab4c428751baba435a1385cb89a22b9ed4b84a7fafecf620f155911e4131e3463ec1bdad80ecde47bb7a")
+SUM=("38355aaee38db04bb2babdc5fd7a88284580c836d15df754f42b104997dd344b7841be8e53b4fc91aea31db170a7d6967c4976833eb4bfe0d265c7275c4800df")
 
 # Prepare script
 function prepare() {
