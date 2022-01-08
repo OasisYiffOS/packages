@@ -1,0 +1,16 @@
+{
+    "name": "l-smash",
+    "version": "2.14.5",
+    "epoch": 0,
+    "description": "MP4 multiplexer and demultiplexer.",
+    "groups": [],
+    "url": "http://l-smash.github.io/l-smash/",
+    "license": ["ISC"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["l-smash"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
