@@ -1,0 +1,16 @@
+{
+    "name": "x264",
+    "version": "3080-8a43cc1",
+    "epoch": 0,
+    "description": "Open source H.264/MPEG-4 AVC encoder.",
+    "groups": [],
+    "url": "https://www.videolan.org/developers/x264.html",
+    "license": ["GPL-2.0"],
+    "depends": ["l-smash"],
+    "optional_depends": [],
+    "make_depends": ["nasm"],
+    "provides": ["x264"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

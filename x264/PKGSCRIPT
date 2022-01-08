@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="x264"
+
+# Version is from debian release, commit is from their git
+VERSION="3080-8a43cc1"
+_COMMIT="19856cc41ad11e434549fb3cc6a019e645ce1efe"
+
+EPOCH=0
+DESC="Open source H.264/MPEG-4 AVC encoder."
+GRPS=()
+URL="https://www.videolan.org/developers/x264.html"
+LICENSES=("GPL-2.0")
+DEPENDS=("l-smash")
+OPT_DEPENDS=()
+MK_DEPENDS=("nasm")
+PROVIDES=("x264")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://code.videolan.org/videolan/x264/-/archive/${_COMMIT}/x264-${_COMMIT}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("813e89fd07f765c46c50ac76c3f4b3cb3970cc3865523e6504bc9fd3c8dd52e1975c1fc0d872ae5e1afdb674c78d0c5fc6550da3aa4573d919ef7089ac875dc8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${_COMMIT}"
+
+    ./configure --prefix=/usr       \
+                --enable-shared
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${_COMMIT}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${_COMMIT}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
