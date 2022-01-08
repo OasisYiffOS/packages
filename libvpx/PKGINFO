@@ -1,0 +1,16 @@
+{
+    "name": "libvpx",
+    "version": "1.11.0",
+    "epoch": 0,
+    "description": "The VP8 and VP9 video codec library by the WebM project.",
+    "groups": [],
+    "url": "https://www.webmproject.org/",
+    "license": ["BSD-3-Clause"],
+    "depends": ["gcc-libs"],
+    "optional_depends": [],
+    "make_depends": ["nasm", "which", "curl"],
+    "provides": ["libvpx"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
