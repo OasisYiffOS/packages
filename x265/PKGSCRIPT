@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="x265"
+VERSION="3.5"
+EPOCH=0
+DESC="Open source HEVC video encoder"
+GRPS=()
+URL="https://bitbucket.org/multicoreware/x265_git/wiki/Home"
+LICENSES=("GPL-2.0")
+DEPENDS=("gcc-libs")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake" "nasm")
+PROVIDES=("x265")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://bitbucket.org/multicoreware/x265_git/downloads/x265_${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("230e683239c3e262096ba96246c6f67229a1625d163f86647a411733bb1cf349685858aee3017bce818bb6992448d0abaa9241615a5b620561ce47ecb164f997")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}_${VERSION}"
+
+    mkdir   build
+    cd      build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr ../source
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}_${VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}_${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    rm -vf ${BUILD_DATA_ROOT}/usr/lib/libx265.a 
+
+    return 0
+}
