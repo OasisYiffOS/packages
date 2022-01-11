@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="graphite2"
+VERSION="1.3.14"
+EPOCH=0
+DESC="A smart font system designed to handle the complexity of multiple languages and scripts."
+GRPS=()
+URL="http://graphite.sil.org/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("gcc-libs" "harfbuzz")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake" "freetype2")
+PROVIDES=("graphite2")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://github.com/silnrsi/graphite/releases/download/${VERSION}/graphite2-${VERSION}.tgz")
+
+SUM_TYPE="sha512"
+SUM=("14b5eb2ba8158b8b62ffa7fb142100a0af1de0f0c45b2673801b636714a106b46fcd423b05c722d963c9543fafcf10fec811975308211a54f20a3ba322d7b295")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Disable cmp tests
+    sed -i '/cmptest/d' tests/CMakeLists.txt
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
