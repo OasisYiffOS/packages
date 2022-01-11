@@ -1,0 +1,16 @@
+{
+    "name": "libass",
+    "version": "0.15.2",
+    "epoch": 0,
+    "description": "Portable subtitle renderer for the ASS/SSA subtitle format.",
+    "groups": [],
+    "url": "https://github.com/libass/libass",
+    "license": ["ISC"],
+    "depends": ["glibc", "freetype2", "fribidi", "harfbuzz", "fontconfig"],
+    "optional_depends": [],
+    "make_depends": ["nasm"],
+    "provides": ["libass"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

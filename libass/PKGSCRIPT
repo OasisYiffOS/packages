@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libass"
+VERSION="0.15.2"
+EPOCH=0
+DESC="Portable subtitle renderer for the ASS/SSA subtitle format."
+GRPS=()
+URL="https://github.com/libass/libass"
+LICENSES=("ISC")
+DEPENDS=("glibc" "freetype2" "fribidi" "harfbuzz" "fontconfig")
+OPT_DEPENDS=()
+MK_DEPENDS=("nasm")
+PROVIDES=("libass")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://github.com/libass/libass/releases/download/${VERSION}/libass-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("4a352d2d21d8a7f25d593f0456cd057912589e55c0709dbf33150d23253fa7859da41584238f03c51782e066a0f92c6849c36b6210324cdb57ed01539921a39b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+
+    ./configure --prefix=/usr           \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
