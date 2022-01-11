@@ -1,0 +1,16 @@
+{
+    "name": "json-c",
+    "version": "0.15",
+    "epoch": 0,
+    "description": "A JSON parser and generator for C.",
+    "groups": [],
+    "url": "https://github.com/json-c/json-c",
+    "license": ["MIT"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["json-c"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
