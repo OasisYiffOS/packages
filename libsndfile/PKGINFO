@@ -1,0 +1,16 @@
+{
+    "name": "libsndfile",
+    "version": "1.0.31",
+    "epoch": 0,
+    "description": "C library for reading and writing files containing sampled sound.",
+    "groups": [],
+    "url": "http://libsndfile.github.io/libsndfile/",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "flac", "libogg", "libvorbis", "opus"],
+    "optional_depends": [],
+    "make_depends": ["sqlite", "python"],
+    "provides": ["libsndfile"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

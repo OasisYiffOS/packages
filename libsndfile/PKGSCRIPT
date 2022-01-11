@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libsndfile"
+VERSION="1.0.31"
+EPOCH=0
+DESC="C library for reading and writing files containing sampled sound."
+GRPS=()
+URL="http://libsndfile.github.io/libsndfile/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "flac" "libogg" "libvorbis" "opus")
+OPT_DEPENDS=()
+MK_DEPENDS=("sqlite" "python")
+PROVIDES=("libsndfile")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://github.com/libsndfile/libsndfile/releases/download/${VERSION}/libsndfile-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("62202092e5cac6346fd3c0a977380e9bf888fc59d08c9c9707dc254a8ef6ed6356da2ab0430bb970c7b06ba5bb1dafa5d7b0fe13898834c1fe4acb16f409f0e1")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+
+    ./configure --prefix=/usr                                   \
+                --disable-static                                \
+                --docdir=/usr/share/doc/libsndfile-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
