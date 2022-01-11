@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="fontconfig"
+VERSION="2.13.94"
+EPOCH=0
+DESC="Font configuration and customization library."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/fontconfig/"
+LICENSES=("custom")
+DEPENDS=("freetype2" "json-c" "libxml2")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("fontconfig")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://www.freedesktop.org/software/fontconfig/release/fontconfig-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("f880c71d3fa59855a72baea7ee220dcb2067cf9afa2ee5c30b6b18a6f8252b6cb34ab8d7cd9f8631e63afbc5733ccb781ac089792217c4d98726960550e5ba37")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+
+    ./configure --prefix=/usr                                   \
+                --sysconfdir=/etc                               \
+                --localstatedir=/var                            \
+                --disable-docs                                  \
+                --docdir=/usr/share/doc/fontconfig-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

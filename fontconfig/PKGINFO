@@ -1,0 +1,16 @@
+{
+    "name": "fontconfig",
+    "version": "2.13.94",
+    "epoch": 0,
+    "description": "Font configuration and customization library.",
+    "groups": [],
+    "url": "https://www.freedesktop.org/wiki/Software/fontconfig/",
+    "license": ["custom"],
+    "depends": ["freetype2", "json-c", "libxml2"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["fontconfig"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
