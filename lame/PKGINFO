@@ -1,0 +1,16 @@
+{
+    "name": "lame",
+    "version": "3.100",
+    "epoch": 0,
+    "description": "Lame Aint an MP3 Encoder (A high quality MP3 encoder).",
+    "groups": [],
+    "url": "https://lame.sourceforge.io/",
+    "license": ["LGPL-2.0", "GPL-2.0"],
+    "depends": ["libsndfile"],
+    "optional_depends": [],
+    "make_depends": ["nasm"],
+    "provides": ["lame"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

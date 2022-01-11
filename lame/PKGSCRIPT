@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lame"
+VERSION="3.100"
+EPOCH=0
+DESC="Lame Aint an MP3 Encoder (A high quality MP3 encoder)."
+GRPS=()
+URL="https://lame.sourceforge.io/"
+LICENSES=("LGPL-2.0" "GPL-2.0")
+DEPENDS=("libsndfile")
+OPT_DEPENDS=()
+MK_DEPENDS=("nasm")
+PROVIDES=("lame")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://downloads.sourceforge.net/lame/lame-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("0844b9eadb4aacf8000444621451277de365041cc1d97b7f7a589da0b7a23899310afd4e4d81114b9912aa97832621d20588034715573d417b2923948c08634b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+
+    ./configure --prefix=/usr       \
+                --disable-static    \
+                --enable-mp3rtp
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make pkghtmldir=${BUILD_DATA_ROOT}/usr/share/doc/lame-${VERSION} install
+
+    return 0
+}
