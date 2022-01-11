@@ -1,0 +1,16 @@
+{
+    "name": "libtheora",
+    "version": "1.1.1",
+    "epoch": 0,
+    "description": "Implentation of the Theora video compression format.",
+    "groups": [],
+    "url": "https://www.theora.org/",
+    "license": ["BSD-3-Clause"],
+    "depends": ["libogg", "libvorbis"],
+    "optional_depends": [],
+    "make_depends": ["libpng"],
+    "provides": ["libtheora"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

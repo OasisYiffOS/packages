@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libtheora"
+VERSION="1.1.1"
+EPOCH=0
+DESC="Implentation of the Theora video compression format."
+GRPS=()
+URL="https://www.theora.org/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=("libogg" "libvorbis")
+OPT_DEPENDS=()
+MK_DEPENDS=("libpng")
+PROVIDES=("libtheora")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://downloads.xiph.org/releases/theora/libtheora-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("9ab9b3af1c35d16a7d6d84f61f59ef3180132e30c27bdd7c0fa2683e0d00e2c791accbc7fd2c90718cc947d8bd10ee4a5940fb55f90f1fd7b0ed30583a47dbbd")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix issue with newer libpng versions
+    sed -i 's/png_\(sizeof\)/\1/g' examples/png2theora.c
+
+    ./configure --prefix=/usr       \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    # We don't yet have all the packages we need to run the tests, so we'll skip them for now.
+    #make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
