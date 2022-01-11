@@ -49,7 +49,7 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    DESTDIR="${BUILD_DATA_ROOT}" make pkghtmldir=${BUILD_DATA_ROOT}/usr/share/doc/lame-${VERSION} install
+    DESTDIR="${BUILD_DATA_ROOT}" make pkghtmldir=/usr/share/doc/lame-${VERSION} install
 
     return 0
 }
