@@ -9,7 +9,7 @@ DESC="Small, efficient, and capable font engine"
 GRPS=()
 URL="https://freetype.org/"
 LICENSES=("GPL-2.0-or-later")
-DEPENDS=("libpng" "which")
+DEPENDS=("harfbuzz" "libpng" "which")
 OPT_DEPENDS=()
 PROVIDES=("freetype2")
 CONFLICTS=()
@@ -35,10 +35,8 @@ function prepare() {
     sed -r "s:.*(#.*SUBPIXEL_RENDERING) .*:\1:" \
         -i include/freetype/config/ftoption.h    
 
-    # We'll get harfbuzz eventually, but for now we'll disable it
     ./configure --prefix=/usr               \
                 --enable-freetype-config    \
-                --without-harfbuzz          \
                 --disable-static
 
     return 0

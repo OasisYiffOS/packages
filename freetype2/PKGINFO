@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://freetype.org/",
     "license": ["GPL-2.0-or-later"],
-    "depends": ["libpng", "which"],
+    "depends": ["harfbuzz", "libpng", "which"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["freetype2"],
