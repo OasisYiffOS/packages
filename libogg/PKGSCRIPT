@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libogg"
+VERSION="1.3.5"
+EPOCH=0
+DESC="Library for the Ogg container format."
+GRPS=()
+URL="https://xiph.org/ogg/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake" "ninja" "git")
+PROVIDES=("libogg")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://downloads.xiph.org/releases/ogg/libogg-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("5d1cbc2a3a1fcf5543f5729bd5eb560cfc740c5d17a2492ead137970c45e6203ec1f5de536d77c4b73ece9e3b0046eaa9181c02a09de72ac7ae51b1fca1e1ee7")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+
+    ./configure --prefix=/usr                               \
+                --disable-static                            \
+                --docdir=/usr/share/doc/libogg-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
