@@ -1,0 +1,16 @@
+{
+    "name": "icu",
+    "version": "70.1",
+    "epoch": 0,
+    "description": "C/C++ libraries for Unicode and globalization support.",
+    "groups": [],
+    "url": "https://icu.unicode.org/",
+    "license": ["custom"],
+    "depends": ["gcc-libs"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["icu"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

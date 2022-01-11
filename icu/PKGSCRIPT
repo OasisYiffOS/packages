@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="icu"
+VERSION="70.1"
+MAJOR_VERSION="70"
+MINOR_VERSION="1"
+EPOCH=0
+DESC="C/C++ libraries for Unicode and globalization support."
+GRPS=()
+URL="https://icu.unicode.org/"
+LICENSES=("custom")
+DEPENDS=("gcc-libs")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("icu")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/unicode-org/icu/releases/download/release-${MAJOR_VERSION}-${MINOR_VERSION}/icu4c-${MAJOR_VERSION}_${MINOR_VERSION}-src.tgz")
+
+SUM_TYPE="sha512"
+SUM=("0b26ae7207155cb65a8fdb25f7b2fa4431e74b12bccbed0884a17feaae3c96833d12451064dd152197fd6ea5fd3adfd95594284a463e66c82e0d860f645880c9")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}/source"
+
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}/source"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}/source"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
