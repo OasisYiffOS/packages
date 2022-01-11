@@ -1,0 +1,16 @@
+{
+    "name": "ffmpeg",
+    "version": "4.4.1",
+    "epoch": 0,
+    "description": "A complete, cross-platform solution to record, convert and stream audio and video.",
+    "groups": [],
+    "url": "https://ffmpeg.org/",
+    "license": ["GPL-3.0"],
+    "depends": ["libass", "freetype2", "lame", "libtheora", "libvorbis", "libvpx", "opus", "x264", "x265", "fontconfig", "fribidi", "xz", "zlib", "libxml2", "gnutls", "gmp", "bzip2"],
+    "optional_depends": [],
+    "make_depends": ["nasm"],
+    "provides": ["ffmpeg"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

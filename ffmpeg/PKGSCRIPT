@@ -1,0 +1,67 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="ffmpeg"
+VERSION="4.4.1"
+EPOCH=0
+DESC="A complete, cross-platform solution to record, convert and stream audio and video."
+GRPS=()
+URL="https://ffmpeg.org/"
+LICENSES=("GPL-3.0")
+DEPENDS=("libass" "freetype2" "lame" "libtheora" "libvorbis" "libvpx" "opus" "x264" "x265" "fontconfig" "fribidi" "xz" "zlib" "libxml2" "gnutls" "gmp" "bzip2")
+OPT_DEPENDS=()
+MK_DEPENDS=("nasm")
+PROVIDES=("ffmpeg")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://ffmpeg.org/releases/ffmpeg-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("c651c120b71db6991ffc54abc291986e7d35d776203af327f9a28853d1d0af468ca0956e2d3d893f55a211f70a40c041d5aa9aa9664ef581302b27494be9374e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # If compiling yourself, you might want to enable --enable-nonfree and --enable-libfdk-aac or check out https://git.yiffos.gay/evie/ffmpeg-nonfree c:
+    ./configure --prefix=/usr        \
+                --enable-gpl         \
+                --enable-version3    \
+                --disable-static     \
+                --enable-shared      \
+                --disable-debug      \
+                --enable-libass      \
+                --enable-libfreetype \
+                --enable-libmp3lame  \
+                --enable-libopus     \
+                --enable-libtheora   \
+                --enable-libvorbis   \
+                --enable-libvpx      \
+                --enable-libx264     \
+                --enable-libx265     \
+                --enable-gnutls      \
+                --disable-doc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
