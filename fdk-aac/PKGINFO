@@ -1,0 +1,16 @@
+{
+    "name": "fdk-aac",
+    "version": "2.0.2",
+    "epoch": 0,
+    "description": "Standalone library for decoding AAC audio files using Fraunhofer FDK AAC from Android.",
+    "groups": [],
+    "url": "https://sourceforge.net/projects/opencore-amr/",
+    "license": ["custom"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["fdk-aac"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

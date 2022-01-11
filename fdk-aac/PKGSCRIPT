@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="fdk-aac"
+VERSION="2.0.2"
+EPOCH=0
+DESC="Standalone library for decoding AAC audio files using Fraunhofer FDK AAC from Android."
+GRPS=()
+URL="https://sourceforge.net/projects/opencore-amr/"
+LICENSES=("custom")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("fdk-aac")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/opencore-amr/fdk-aac-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("8e5a7992869a7e649bee6d41bf7c6e408cec7ba1931a6cd7a9ad8a01e6ac49bd299ddd147b18823e8ee379ce7c6373d7f5a94f0f859ed973a30c61eccd53fa7e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+
+    ./configure --prefix=/usr       \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
