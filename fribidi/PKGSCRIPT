@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="fribidi"
+VERSION="1.0.11"
+EPOCH=0
+DESC="Free implementation of the Unicode Bidirectional Algorithm."
+GRPS=()
+URL="https://github.com/fribidi/fribidi/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("fribidi")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://github.com/fribidi/fribidi/releases/download/v${VERSION}/fribidi-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("6afde86784de06759f18235ccb44f23261a975f7cce0021b16755065a6a8ed84d7d5fb7fdcaadd691b48011efb4bfc2ee67555e5133a294a418cca1a0c85476c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson   --prefix=/usr           \
+            --buildtype=release
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
