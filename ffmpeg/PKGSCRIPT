@@ -54,6 +54,8 @@ function build() {
 
     make
 
+    gcc tools/qt-faststart.c -o tools/qt-faststart
+
     return 0
 }
 
@@ -62,6 +64,8 @@ function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
     DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -m755 tools/qt-faststart ${BUILD_DATA_ROOT}/usr/bin
 
     return 0
 }
