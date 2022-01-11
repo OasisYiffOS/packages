@@ -1,0 +1,16 @@
+{
+    "name": "libvorbis",
+    "version": "1.3.7",
+    "epoch": 0,
+    "description": "Implentation of the Ogg Vorbis format.",
+    "groups": [],
+    "url": "https://xiph.org/ogg/",
+    "license": ["BSD-3-Clause"],
+    "depends": ["libogg"],
+    "optional_depends": [],
+    "make_depends": ["git"],
+    "provides": ["libvorbis"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

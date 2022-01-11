@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libvorbis"
+VERSION="1.3.7"
+EPOCH=0
+DESC="Implentation of the Ogg Vorbis format."
+GRPS=()
+URL="https://xiph.org/ogg/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=("libogg")
+OPT_DEPENDS=()
+MK_DEPENDS=("git")
+PROVIDES=("libvorbis")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://downloads.xiph.org/releases/vorbis/libvorbis-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("bbf5f11f623d959b3ba98d6b52806521b0b918b59b867f0658c153ea1013293364eead4987e9e71f8798021379310860a2e548fcf89d10caf23d45e41aba45cd")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+
+    ./configure --prefix=/usr       \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -m644 doc/Vorbis* ${BUILD_DATA_ROOT}/usr/share/doc/libvorbis-${VERSION}
+
+    return 0
+}
