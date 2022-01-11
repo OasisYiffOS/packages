@@ -1,0 +1,16 @@
+{
+    "name": "harfbuzz",
+    "version": "3.2.0",
+    "epoch": 0,
+    "description": "The HarfBuzz text shaping engine.",
+    "groups": [],
+    "url": "https://harfbuzz.github.io/",
+    "license": ["MIT"],
+    "depends": ["graphite2", "icu", "freetype2"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["harfbuzz"],
+    "conflicts": [""],
+    "replaces": [""],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

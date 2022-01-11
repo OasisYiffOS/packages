@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="harfbuzz"
+VERSION="3.2.0"
+EPOCH=0
+DESC="The HarfBuzz text shaping engine."
+GRPS=()
+URL="https://harfbuzz.github.io/"
+LICENSES=("MIT")
+DEPENDS=("graphite2" "icu" "freetype2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("harfbuzz")
+CONFLICTS=("")
+REPLACES=("")
+
+# Source information
+SRC=("https://github.com/harfbuzz/harfbuzz/releases/download/${VERSION}/harfbuzz-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("c9d88068d8017046842f444f02f31dbae109026ede943aaf265db5508de8b4b2be84203950f274a237f515bf7cbd361629d2032c6e8ee8f50354b430bba3a8ca")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr        \
+          --buildtype=release  \
+          -Dgraphite=enabled   \
+          -Dbenchmark=disabled
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
