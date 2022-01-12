@@ -3,13 +3,13 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="make-ca"
-VERSION="1.9"
+VERSION="1.10"
 EPOCH=0
 DESC="PKI setup script from LFS"
 GRPS=()
 URL="https://github.com/lfs-book/make-ca"
 LICENSES=("MIT" "GPL3")
-DEPENDS=("p11-kit" "libtasn1")
+DEPENDS=("p11-kit" "libtasn1" "nss")
 OPT_DEPENDS=()
 MAKE_DEPENDS=()
 PROVIDES=("make-ca")
@@ -17,10 +17,10 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://github.com/lfs-book/make-ca/releases/download/v1.9/make-ca-${VERSION}.tar.xz")
+SRC=("https://github.com/lfs-book/make-ca/releases/download/v${VERSION}/make-ca-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("3ce5a83ab8df279b6db10191d07feeebfdac1ad5d4d0cdbb68df779a1fd11074c77cf49009e4c9590f15979a11ef655d67d11a6cd4de3806c40cdc53125fc689")
+SUM=("8e3c612b7fe3716ff7e9b2954b5a24b77df85808daf3dfe6832791b0df162ab4fdb58844d082df1fab2b07db93387370599ac66f24c4c0189a82cc602e67cfe9")
 
 # Prepare script
 function prepare() {
