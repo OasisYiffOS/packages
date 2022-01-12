@@ -1,0 +1,79 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="nss"
+VERSION="3.74"
+EPOCH=0
+DESC="A set of libraries supporting SSL, TLS, PKCS, S/MIME, X.509, and more."
+GRPS=()
+URL="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS"
+LICENSES=("MPL")
+DEPENDS=("nspr" "sqlite" "p11-kit" "bash" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("nss")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+# Patch from LFS fixes NSS requiring NSPR to be in the source tree
+SRC=("https://archive.mozilla.org/pub/security/nss/releases/NSS_3_74_RTM/src/nss-3.74.tar.gz"
+"https://www.linuxfromscratch.org/patches/blfs/svn/nss-3.74-standalone-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("6fb322b64a5b42e5e22e803c8985986240d2990849d576cfc4b94cdc5c4ab27f683ebc4e1cf5e0ad16c636fc32debb24ec3b2d02d5baedc8fbaedec79c908226"
+"3bf13e8c94d941f7205141100feabb3759e37901a4ccec2e1e568a94687221ebeeb81ebe657a78ec6d9d3dd3f40382bce2a02a007c7505bdc566260c9cd2e6cb")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    patch -Np1 -i ${WORKDIR}/nss-3.74-standalone-1.patch
+
+    cd nss
+
+    make BUILD_OPT=1                                     \
+         NSPR_INCLUDE_DIR=/usr/include/nspr              \
+         USE_SYSTEM_ZLIB=1                               \
+         ZLIB_LIBS=-lz                                   \
+         NSS_ENABLE_WERROR=0                             \
+         NSS_USE_SYSTEM_SQLITE=1                         \
+         $([ $(uname -m) = x86_64 ] && echo USE_64=1)
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/nss"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/dist"
+
+    install -v -m755 -d                           ${BUILD_DATA_ROOT}/usr/lib
+    install -v -m755 Linux*/lib/*.so              ${BUILD_DATA_ROOT}/usr/lib
+    install -v -m644 Linux*/lib/{*.chk,libcrmf.a} ${BUILD_DATA_ROOT}/usr/lib
+
+    install -v -m755 -d                           ${BUILD_DATA_ROOT}/usr/include/nss
+    cp -v -RL {public,private}/nss/*              ${BUILD_DATA_ROOT}/usr/include/nss
+    chmod -v 644                                  ${BUILD_DATA_ROOT}/usr/include/nss/*
+
+    install -v -m755 -d                                         ${BUILD_DATA_ROOT}/usr/bin
+    install -v -m755 Linux*/bin/{certutil,nss-config,pk12util}  ${BUILD_DATA_ROOT}/usr/bin
+
+    install -v -m755 -d                             ${BUILD_DATA_ROOT}/usr/lib/pkgconfig
+    install -v -m644 Linux*/lib/pkgconfig/nss.pc    ${BUILD_DATA_ROOT}/usr/lib/pkgconfig
+
+    ln -sfv ./pkcs11/p11-kit-trust.so ${BUILD_DATA_ROOT}/usr/lib/libnssckbi.so
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "nss",
+    "version": "3.74",
+    "epoch": 0,
+    "description": "A set of libraries supporting SSL, TLS, PKCS, S/MIME, X.509, and more.",
+    "groups": [],
+    "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS",
+    "license": ["MPL"],
+    "depends": ["nspr", "sqlite", "p11-kit", "bash", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["nss"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
