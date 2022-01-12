@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="nspr"
+VERSION="4.33"
+EPOCH=0
+DESC="The Netscape Portable Runtime by Mozilla."
+GRPS=()
+URL="https://hg.mozilla.org/projects/nspr"
+LICENSES=("MPL")
+DEPENDS=("glibc" "bash")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("nspr")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://archive.mozilla.org/pub/nspr/releases/v${VERSION}/src/nspr-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("8064f826c977f1302a341ca7a7aaf7977b5d10102062c030b1d42b856638e3408ab262447e8c7cfd5a98879b9b1043d17ceae66fbb1e5ed86d6bc3531f26667e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/nspr"
+
+    sed -ri '/^RELEASE/s/^/#/' pr/src/misc/Makefile.in
+    sed -i 's#$(LIBRARY) ##'   config/rules.mk
+
+    ./configure --prefix=/usr                                       \
+                --with-mozilla                                      \
+                --with-pthreads                                     \
+                $([ $(uname -m) = x86_64 ] && echo --enable-64bit)
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/nspr"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/nspr"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

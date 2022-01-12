@@ -1,0 +1,16 @@
+{
+    "name": "nspr",
+    "version": "4.33",
+    "epoch": 0,
+    "description": "The Netscape Portable Runtime by Mozilla.",
+    "groups": [],
+    "url": "https://hg.mozilla.org/projects/nspr",
+    "license": ["MPL"],
+    "depends": ["glibc", "bash"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["nspr"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
