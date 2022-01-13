@@ -1,0 +1,16 @@
+{
+    "name": "libevent",
+    "version": "2.1.12",
+    "epoch": 0,
+    "description": "An asynchronous event library.",
+    "groups": [],
+    "url": "https://libevent.org/",
+    "license": ["BSD-3-Clause"],
+    "depends": ["openssl", "python"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libevent"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
