@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libaio"
+VERSION="0.3.112"
+EPOCH=0
+DESC="An asynchronous I/O library that has a richer API than the POSIX AIO library."
+GRPS=()
+URL="https://pagure.io/libaio"
+LICENSES=("LGPL-2.1")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("libaio")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://releases.pagure.org/libaio/libaio-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("5f984529c9f747a6c82f1e4457fc0832bb1fc299ae6e700f2ac5a8ea7b9bfc6ea1e75809728cc115a020cff6685ed1f4e38c6aeacc1ea98dfccce04dd19dafaa")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Disable static library
+    sed -i '/install.*libaio.a/s/^/#/' src/Makefile
+
+    # Fix an issue with running the testsuite on glibc 2.34 or later
+    sed 's/-Werror//' -i harness/Makefile
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make partcheck
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

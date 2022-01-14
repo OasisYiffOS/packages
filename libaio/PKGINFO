@@ -1,0 +1,16 @@
+{
+    "name": "libaio",
+    "version": "0.3.112",
+    "epoch": 0,
+    "description": "An asynchronous I/O library that has a richer API than the POSIX AIO library.",
+    "groups": [],
+    "url": "https://pagure.io/libaio",
+    "license": ["LGPL-2.1"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libaio"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
