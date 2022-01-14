@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="boost"
+VERSION="1.78.0"
+_URL_VERSION="1_78_0"
+EPOCH=0
+DESC="A set of free peer-reviewed portable C++ source libraries."
+GRPS=()
+URL="https://www.boost.org/"
+LICENSES=("BSL-1.0")
+DEPENDS=("which" "icu")
+OPT_DEPENDS=()
+MK_DEPENDS=("bzip2" "zlib" "zstd" "python")
+PROVIDES=("boost")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://boostorg.jfrog.io/artifactory/main/release/${VERSION}/source/boost_${_URL_VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("6ab652c77dddc5a69cfc3f09974ba66f1413d699e49734c7ed31c629f5368230e0adaf95f599eafbf9316660d67b0b011b52ac1552d814564cbb2967bd927fdd")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}_${_URL_VERSION}"
+
+    ./bootstrap.sh  --prefix=/usr           \
+                    --with-python=python3
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}_${_URL_VERSION}"
+
+    ./b2 stage ${MAKEFLAGS} threading=multi link=shared
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}_${_URL_VERSION}"
+
+    ./b2 install threading=multi link=shared --prefix="${BUILD_DATA_ROOT}/usr"
+
+    return 0
+}

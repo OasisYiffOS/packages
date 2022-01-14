@@ -1,0 +1,16 @@
+{
+    "name": "boost",
+    "version": "1.78.0",
+    "epoch": 0,
+    "description": "A set of free peer-reviewed portable C++ source libraries.",
+    "groups": [],
+    "url": "https://www.boost.org/",
+    "license": ["BSL-1.0"],
+    "depends": ["which", "icu"],
+    "optional_depends": [],
+    "make_depends": ["bzip2", "zlib", "zstd", "python"],
+    "provides": ["boost"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
