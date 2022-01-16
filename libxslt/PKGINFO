@@ -1,0 +1,16 @@
+{
+    "name": "libxslt",
+    "version": "1.1.34",
+    "epoch": 0,
+    "description": "A C library to define transformation for XML documents.",
+    "groups": [],
+    "url": "http://xmlsoft.org/XSLT/",
+    "license": ["MIT"],
+    "depends": ["libgcrypt", "libxml2"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxslt"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
