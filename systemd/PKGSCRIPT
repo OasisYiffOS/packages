@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="systemd"
-VERSION="249"
+VERSION="250"
 EPOCH=0
 DESC="System and service manager"
 GRPS=("base")
@@ -17,13 +17,13 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://github.com/systemd/systemd/archive/v249/systemd-${VERSION}.tar.gz"
+SRC=("https://github.com/systemd/systemd/archive/v${VERSION}/systemd-${VERSION}.tar.gz"
 "https://anduin.linuxfromscratch.org/LFS/systemd-man-pages-${VERSION}.tar.xz"
 "https://gitlab.com/yiffos/core/patches/-/raw/main/systemd/systemd-upstream_fixes.patch")
 
 SUM_TYPE="sha512"
-SUM=("0810d09cc32e4aaa4425ee5b7ddf129262b061ce159cbd43571fabda48285243d8f80b566379ece9215d531b9407ee45e1e72c71935644fea31c7bca1bbf540c"
-"a2e3cea71f9f645eda6ce9940748f6a2b30a50980bd0d8c9f4d6b18d686b6e6f6baa1637112355130d772ea024cb51d4b4b1e551c666fcbe1bfccae05df16613"
+SUM=("7894ea63793dd0c6ae12f6acab04ba02e247e537c404693f69174bf4a10d85f01f51c4938912c9a43c35e526b3ae945a1774d45249b58b31a393332b6c01f4f8"
+"e112f525c6c27fcaca0ae930cf13c95ba98251b4e664d450f906afb2966e396984ea5baedafe5172c13a38cc8bea4d920827aa28024471708d6aca3e6644e13d"
 "ecaf8a65f6ec0304105089912746927c2296fe3335dbd4a41d65c9b9717ced4d9ad56e722b6dfacead28ce704555216508d665b64f3ad6cf7ab59cda7bec0bd4")
 
 # Prepare script
@@ -45,23 +45,24 @@ function prepare() {
     mkdir -p build
     cd       build
 
-    LANG=en_US.UTF-8                                \
-    meson --prefix=/usr                             \
-          --sysconfdir=/etc                         \
-          --localstatedir=/var                      \
-          --buildtype=release                       \
-          -Dblkid=true                              \
-          -Ddefault-dnssec=no                       \
-          -Dfirstboot=false                         \
-          -Dinstall-tests=false                     \
-          -Dldconfig=false                          \
-          -Dsysusers=false                          \
-          -Db_lto=false                             \
-          -Drpmmacrosdir=no                         \
-          -Dhomed=false                             \
-          -Duserdb=false                            \
-          -Dman=false                               \
-          -Dmode=release                            \
+    LANG=en_US.UTF-8                                            \
+    meson --prefix=/usr                                         \
+          --sysconfdir=/etc                                     \
+          --localstatedir=/var                                  \
+          --buildtype=release                                   \
+          -Dsbat-distro-url=https://yiffos.atlassian.net/jira   \
+          -Dblkid=true                                          \
+          -Ddefault-dnssec=no                                   \
+          -Dfirstboot=false                                     \
+          -Dinstall-tests=false                                 \
+          -Dldconfig=false                                      \
+          -Dsysusers=false                                      \
+          -Db_lto=false                                         \
+          -Drpmmacrosdir=no                                     \
+          -Dhomed=false                                         \
+          -Duserdb=false                                        \
+          -Dman=false                                           \
+          -Dmode=release                                        \
           -Ddocdir=/usr/share/doc/systemd-${VERSION}
 
     return 0
@@ -84,7 +85,7 @@ function postbuild() {
 
     # Install documentation
     mkdir -pv ${BUILD_DATA_ROOT}/usr/share/man
-    tar -xf ${WORKDIR}/systemd-man-pages-249.tar.xz --strip-components=1 -C ${BUILD_DATA_ROOT}/usr/share/man
+    tar -xf ${WORKDIR}/systemd-man-pages-${VERSION}.tar.xz --strip-components=1 -C ${BUILD_DATA_ROOT}/usr/share/man
 
     return 0
 }
