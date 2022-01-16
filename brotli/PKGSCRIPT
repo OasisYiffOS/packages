@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="brotli"
+VERSION="1.0.9"
+EPOCH=0
+DESC="A generic-purpose lossless compression algorithm."
+GRPS=()
+URL="https://github.com/google/brotli"
+LICENSES=("MIT")
+DEPENDS=("gcc-libs" "glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake")
+PROVIDES=("brotli")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/google/brotli/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("b8e2df955e8796ac1f022eb4ebad29532cb7e3aa6a4b6aee91dbd2c7d637eee84d9a144d3e878895bb5e62800875c2c01c8f737a1261020c54feacf9f676b5f5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix An issue in pkg-config files
+    sed -i 's@-R..libdir.@@' scripts/*.pc.in
+
+    mkdir out
+    cd    out
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr   \
+          -DCMAKE_BUILD_TYPE=Release    \
+          .. 
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/out"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/out"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

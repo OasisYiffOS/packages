@@ -1,0 +1,16 @@
+{
+    "name": "brotli",
+    "version": "1.0.9",
+    "epoch": 0,
+    "description": "A generic-purpose lossless compression algorithm.",
+    "groups": [],
+    "url": "https://github.com/google/brotli",
+    "license": ["MIT"],
+    "depends": ["gcc-libs", "glibc"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["brotli"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
