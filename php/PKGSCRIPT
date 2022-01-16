@@ -1,0 +1,99 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="php"
+VERSION="8.1.1"
+EPOCH=0
+DESC="A general-purpose scripting language that is especially suited to web development."
+GRPS=()
+URL="https://www.php.net/"
+LICENSES=("PHP-3.01")
+DEPENDS=("libxml2" "libxslt" "pcre2" "freetype2" "libpng" "libwebp" "curl" "readline" "berkeley-db" "gdbm" "zlib" "bzip2" "openssl" "gmp" )
+OPT_DEPENDS=("mariadb" "postgresql" "sqlite")
+MK_DEPENDS=()
+PROVIDES=("php")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.php.net/distributions/php-${VERSION}.tar.xz"
+"https://www.php.net/distributions/manual/php_manual_en.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ab1cca08eb49fc2316f19d9e136a2d6462fe5b33967ecb671564dd9def2a765cc1b864a764c9cfbb8e7853936fb2d4939e7ed4f97220ca30eaf08c3badeb44da"
+"a057774523234c1614e0767a120eab12817ba4d42de335aa90211436658ad585dca14166eb5627798ae0ee1bee6ae8ad56014d7afc6dda3ba1184377d2728b98")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                               \
+                --sysconfdir=/etc                           \
+                --localstatedir=/var                        \
+                --datadir=/usr/share/php                    \
+                --mandir=/usr/share/man                     \
+                --enable-fpm                                \
+                --without-pear                              \
+                --with-fpm-user=http                        \
+                --with-fpm-group=http                       \
+                --with-fpm-systemd                          \
+                --with-config-file-path=/etc                \
+                --enable-bcmath=shared                      \
+                --enable-calendar=shared                    \
+                --enable-dba=shared                         \
+                --enable-ftp=shared                         \
+                --enable-intl=shared                        \
+                --enable-pcntl                              \
+                --enable-shmop=shared                       \
+                --enable-soap=shared                        \
+                --enable-sockets=shared                     \
+                --with-bz2=shared                           \
+                --with-curl=shared                          \
+                --with-external-pcre                        \
+                --with-ffi=shared                           \
+                --with-gdbm                                 \
+                --with-gettext=shared                       \
+                --with-gmp=shared                           \
+                --with-iconv=shared                         \
+                --with-mysql-sock=/run/mysqld/mysqld.sock   \
+                --with-mysqli=shared,mysqlnd                \
+                --with-openssl                              \
+                --with-pdo-mysql=shared,mysqlnd             \
+                --with-pdo-pgsql=shared                     \
+                --with-pdo-sqlite=shared                    \
+                --with-pgsql=shared                         \
+                --with-readline                             \
+                --with-sqlite3=shared                       \
+                --with-xsl=shared                           \
+                --with-zlib
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    INSTALL_ROOT="${BUILD_DATA_ROOT}" make install
+
+    install -v -m644 php.ini-production ${BUILD_DATA_ROOT}/etc/php.ini
+
+    install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/doc/php-${VERSION}
+    install -v -m644    CODING_STANDARDS* EXTENSIONS NEWS README* UPGRADING* \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/php-${VERSION}
+
+    mv -v ${BUILD_DATA_ROOT}/etc/php-fpm.conf{.default,}
+    mv -v ${BUILD_DATA_ROOT}/etc/php-fpm.d/www.conf{.default,}
+
+    return 0
+}

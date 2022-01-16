@@ -1,0 +1,16 @@
+{
+    "name": "php",
+    "version": "8.1.1",
+    "epoch": 0,
+    "description": "A general-purpose scripting language that is especially suited to web development.",
+    "groups": [],
+    "url": "https://www.php.net/",
+    "license": ["PHP-3.01"],
+    "depends": ["libxml2", "libxslt", "pcre2", "freetype2", "libpng", "libwebp", "curl", "readline", "berkeley-db", "gdbm", "zlib", "bzip2", "openssl", "gmp"],
+    "optional_depends": ["mariadb", "postgresql", "sqlite"],
+    "make_depends": [],
+    "provides": ["php"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
