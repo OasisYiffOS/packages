@@ -1,0 +1,171 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="mariadb"
+VERSION="10.6.5"
+EPOCH=0
+DESC="Community-maintained fork and drop-in replacement of MySQL."
+GRPS=()
+URL="https://mariadb.org/"
+LICENSES=("GPL-2.0")
+DEPENDS=("libxml2" "systemd" "zstd" "curl" "libevent" "libaio" "pcre2")
+OPT_DEPENDS=()
+MK_DEPENDS=("boost" "bzip2" "cmake" "curl" "libxcrypt")
+PROVIDES=("mariadb")
+CONFLICTS=("mysql")
+REPLACES=("mysql")
+
+# Source information
+SRC=("https://downloads.mariadb.org/interstitial/mariadb-${VERSION}/source/mariadb-${VERSION}.tar.gz"
+"https://www.linuxfromscratch.org/patches/blfs/svn/mariadb-10.6.5-openssl3_fix-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("5aafe0a8d5ae54a6f798a6fd0cf922521f5b8e54ef5fb5c7db1cf798a7755f5910bb0b8a6c371cb8253dfb48f4ebca0becd6eb543b68473d564d2092df3185a1"
+"2843b6583c2b1629904b394902e027459cfb5fbe1e2871896787169528febd5f147421d3eb58966c2267d71ec68cf154627fe3811150baa5059a1733f51307c9")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix a stack smashing error introduced by OpenSSL 3.0.0+
+    patch -Np1 -i ${WORKDIR}/mariadb-10.6.5-openssl3_fix-1.patch
+
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_BUILD_TYPE=Release                            \
+          -DCMAKE_INSTALL_PREFIX=/usr                           \
+          -DINSTALL_DOCDIR=share/doc/mariadb-${VERSION}         \
+          -DINSTALL_DOCREADMEDIR=share/doc/mariadb-${VERSION}   \
+          -DINSTALL_MANDIR=share/man                            \
+          -DINSTALL_MYSQLSHAREDIR=share/mysql                   \
+          -DINSTALL_MYSQLTESTDIR=share/mysql/test               \
+          -DINSTALL_PLUGINDIR=lib/mysql/plugin                  \
+          -DINSTALL_SBINDIR=sbin                                \
+          -DINSTALL_SCRIPTDIR=bin                               \
+          -DINSTALL_SQLBENCHDIR=share/mysql/bench               \
+          -DINSTALL_SUPPORTFILESDIR=share/mysql                 \
+          -DMYSQL_DATADIR=/srv/mysql                            \
+          -DMYSQL_UNIX_ADDR=/run/mysqld/mysqld.sock             \
+          -DWITH_EXTRA_CHARSETS=complex                         \
+          -DWITH_EMBEDDED_SERVER=ON                             \
+          -DSKIP_TESTS=ON                                       \
+          -DTOKUDB_OK=0                                         \
+          ..    
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    make
+
+    # test-connect is known to fail
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -dm 755 ${BUILD_DATA_ROOT}/etc/mysql
+cat > ${BUILD_DATA_ROOT}/etc/mysql/my.cnf << "EOF"
+# Begin /etc/mysql/my.cnf
+
+# The following options will be passed to all MySQL clients
+[client]
+#password       = your_password
+port            = 3306
+socket          = /run/mysqld/mysqld.sock
+
+# The MySQL server
+[mysqld]
+port            = 3306
+socket          = /run/mysqld/mysqld.sock
+datadir         = /srv/mysql
+skip-external-locking
+key_buffer_size = 16M
+max_allowed_packet = 1M
+sort_buffer_size = 512K
+net_buffer_length = 16K
+myisam_sort_buffer_size = 8M
+
+# Don't listen on a TCP/IP port at all.
+skip-networking
+
+# required unique id between 1 and 2^32 - 1
+server-id       = 1
+
+# Uncomment the following if you are using BDB tables
+#bdb_cache_size = 4M
+#bdb_max_lock = 10000
+
+# InnoDB tables are now used by default
+innodb_data_home_dir = /srv/mysql
+innodb_log_group_home_dir = /srv/mysql
+# All the innodb_xxx values below are the default ones:
+innodb_data_file_path = ibdata1:12M:autoextend
+# You can set .._buffer_pool_size up to 50 - 80 %
+# of RAM but beware of setting memory usage too high
+innodb_buffer_pool_size = 128M
+innodb_log_file_size = 48M
+innodb_log_buffer_size = 16M
+innodb_flush_log_at_trx_commit = 1
+innodb_lock_wait_timeout = 50
+
+[mysqldump]
+quick
+max_allowed_packet = 16M
+
+[mysql]
+no-auto-rehash
+# Remove the next comment character if you are not familiar with SQL
+#safe-updates
+
+[isamchk]
+key_buffer = 20M
+sort_buffer_size = 20M
+read_buffer = 2M
+write_buffer = 2M
+
+[myisamchk]
+key_buffer_size = 20M
+sort_buffer_size = 20M
+read_buffer = 2M
+write_buffer = 2M
+
+[mysqlhotcopy]
+interactive-timeout
+
+# End /etc/mysql/my.cnf
+EOF
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/lib/systemd/system/
+
+cat > ${BUILD_DATA_ROOT}/usr/lib/systemd/system/mysql.service << "EOF"
+[Unit]
+Description=MySQL Server
+After=network.target
+
+[Service]
+User=mysql
+Group=mysql
+ExecStart=/usr/sbin/mysqld --pid-file=/run/mysqld/mysqld.pid
+Restart=always
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+
+    return 0
+}

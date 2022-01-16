@@ -1,0 +1,16 @@
+{
+    "name": "mariadb",
+    "version": "10.6.5",
+    "epoch": 0,
+    "description": "Community-maintained fork and drop-in replacement of MySQL.",
+    "groups": [],
+    "url": "https://mariadb.org/",
+    "license": ["GPL-2.0"],
+    "depends": ["libxml2", "systemd", "zstd", "curl", "libevent", "libaio", "pcre2"],
+    "optional_depends": [],
+    "make_depends": ["boost", "bzip2", "cmake", "curl", "libxcrypt"],
+    "provides": ["mariadb"],
+    "conflicts": ["mysql"],
+    "replaces": ["mysql"],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
