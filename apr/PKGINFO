@@ -1,0 +1,16 @@
+{
+    "name": "apr",
+    "version": "1.7.0",
+    "epoch": 0,
+    "description": "The Apache Portable Runtime (APR) library.",
+    "groups": [],
+    "url": "https://apr.apache.org/",
+    "license": ["Apache-2.0"],
+    "depends": ["util-linux"],
+    "optional_depends": [],
+    "make_depends": ["python"],
+    "provides": ["apr"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
