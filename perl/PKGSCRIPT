@@ -19,7 +19,7 @@ REPLACES=()
 
 # Source information
 SRC=("https://www.cpan.org/src/${_MAJOR_VERSION}/perl-${VERSION}.tar.xz"
-"https://git.yiffos.gay/Core/patches/raw/branch/main/perl/perl-upstream_fixes.patch")
+"https://gitlab.com/yiffos/core/patches/-/raw/main/perl/perl-upstream_fixes.patch")
 
 SUM_TYPE="sha512"
 SUM=("691b4b31eacec357191fba777612b4e3eae59e946a22998a50766697c0d61db1d42a9b3bc1e41abf0d1ca1893e4a7c06d7bf3290480cf03d7f79befd7a8a3267"

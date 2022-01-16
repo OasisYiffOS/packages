@@ -17,7 +17,7 @@ REPLACES=()
 
 # Source information
 SRC=("https://ftp.gnu.org/gnu/readline/readline-${VERSION}.tar.gz"
-"https://git.yiffos.gay/Core/patches/raw/branch/main/readline/fix-destdir.patch")
+"https://gitlab.com/yiffos/core/patches/-/raw/main/readline/fix-destdir.patch")
 
 SUM_TYPE="sha512"
 SUM=("27790d0461da3093a7fee6e89a51dcab5dc61928ec42e9228ab36493b17220641d5e481ea3d8fee5ee0044c70bf960f55c7d3f1a704cf6b9c42e5c269b797e00"

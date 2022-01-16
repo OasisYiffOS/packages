@@ -18,7 +18,7 @@ REPLACES=()
 
 # Source information
 SRC=("https://invisible-mirror.net/archives/lynx/tarballs/lynx${VERSION}rel.${_REL}.tar.gz"
-"https://git.yiffos.gay/Core/patches/raw/branch/main/lynx/CVE-2021-38165.patch")
+"https://gitlab.com/yiffos/core/patches/-/raw/main/lynx/CVE-2021-38165.patch")
 
 SUM_TYPE="sha512"
 SUM=("28e72910fe29f057a288cf950f4ee5ce490d6a6f9008714b293fc11fe840d18232570494a55ae046f316e88a5674af31de34afca0e21bf3a6f6fd88d499088df"

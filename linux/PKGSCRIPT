@@ -19,8 +19,8 @@ REPLACES=()
 
 # Source information
 SRC=("https://cdn.kernel.org/pub/linux/kernel/v${_MAJOR_VERSION}.x/linux-${VERSION}.tar.xz"
-"https://git.yiffos.gay/Core/patches/raw/branch/main/linux/config"
-"https://git.yiffos.gay/Core/patches/raw/branch/main/linux/good_panic_message.patch")
+"https://gitlab.com/yiffos/core/patches/-/raw/main/linux/config"
+"https://gitlab.com/yiffos/core/patches/-/raw/main/linux/good_panic_message.patch")
 
 SUM_TYPE="sha512"
 SUM=("7a257dd576bc8493595ec7d6f3c9cb6e22c772a8b2dbe735d2485c4f5c56e26a08695546e7e0f1f1cd04a533f25e829361958d4da0b98bf0ba8094dd57a85aaf"

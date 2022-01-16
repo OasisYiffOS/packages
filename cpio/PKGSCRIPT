@@ -17,7 +17,7 @@ REPLACES=("")
 
 # Source information
 SRC=("https://ftp.gnu.org/gnu/cpio/cpio-${VERSION}.tar.gz"
-"https://git.yiffos.gay/Core/patches/raw/branch/main/cpio/src-global.c-drop-duplicate-definition-of-program_na.patch")
+"https://gitlab.com/yiffos/core/patches/-/raw/main/cpio/src-global.c-drop-duplicate-definition-of-program_na.patch")
 
 SUM_TYPE="sha512"
 SUM=("1e1ca6b3e3e64f206f9d828a152d6b4f8f6974de7a953ff96e02698b1c3c2c777c2111450e6a71c0693e29ca8bc01c3dda9f5e829b8e3221f647414df49dff6a"

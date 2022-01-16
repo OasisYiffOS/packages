@@ -19,7 +19,7 @@ REPLACES=()
 # Source information
 SRC=("https://github.com/systemd/systemd/archive/v249/systemd-${VERSION}.tar.gz"
 "https://anduin.linuxfromscratch.org/LFS/systemd-man-pages-${VERSION}.tar.xz"
-"https://git.yiffos.gay/Core/patches/raw/branch/main/systemd/systemd-upstream_fixes.patch")
+"https://gitlab.com/yiffos/core/patches/-/raw/main/systemd/systemd-upstream_fixes.patch")
 
 SUM_TYPE="sha512"
 SUM=("0810d09cc32e4aaa4425ee5b7ddf129262b061ce159cbd43571fabda48285243d8f80b566379ece9215d531b9407ee45e1e72c71935644fea31c7bca1bbf540c"

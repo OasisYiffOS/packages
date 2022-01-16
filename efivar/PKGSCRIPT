@@ -17,7 +17,7 @@ REPLACES=()
 
 # Source information
 SRC=("https://github.com/rhboot/efivar/releases/download/${VERSION}/efivar-${VERSION}.tar.bz2"
-"https://git.yiffos.gay/Core/patches/raw/branch/main/efivar/gcc_9-1.patch")
+"https://gitlab.com/yiffos/core/patches/-/raw/main/efivar/gcc_9-1.patch")
 
 SUM_TYPE="sha512"
 SUM=("305a82ed103c7e3d8f723934019d552677c73558768dd5341f87d0364f5c60824d24f5a8e1bf90075e825908085083d4ecdccec5ac757fd38ee6ac8fea28c3e4"
