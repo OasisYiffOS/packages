@@ -1,6 +1,6 @@
 {
     "name": "linux",
-    "version": "5.16",
+    "version": "5.16.1",
     "epoch": 0,
     "description": "The Linux kernel",
     "groups": ["base"],
