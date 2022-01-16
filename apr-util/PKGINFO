@@ -1,0 +1,16 @@
+{
+    "name": "apr-util",
+    "version": "1.6.1",
+    "epoch": 0,
+    "description": "Utilities for the Apache Portable Runtime (APR) library.",
+    "groups": [],
+    "url": "https://apr.apache.org/",
+    "license": ["Apache-2.0"],
+    "depends": ["apr", "expat", "libxcrypt", "berkeley-db", "gdbm", "nss", "openssl", "sqlite"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["apr-util"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

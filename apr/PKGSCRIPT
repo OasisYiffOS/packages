@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="apr"
+VERSION="1.7.0"
+EPOCH=0
+DESC="The Apache Portable Runtime (APR) library."
+GRPS=()
+URL="https://apr.apache.org/"
+LICENSES=("Apache-2.0")
+DEPENDS=("util-linux")
+OPT_DEPENDS=()
+MK_DEPENDS=("python")
+PROVIDES=("apr")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://dlcdn.apache.org//apr/apr-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("daa140c83c7e2c45c3980d9dc81d34fa662bebd050653562c39572d0ddf2eaedb71767c518a59d77f59db9b32e00221ef48b9f72ec3666c4521dd511969f3706")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    sed -e "/shift/i \
+    \    if (xt->tm_mon < 0 || xt->tm_mon >= 12) return APR_EBADDATE;" \
+        -i time/unix/time.c
+
+    ./configure --prefix=/usr                                   \
+                --disable-static                                \
+                --with-installbuilddir=/usr/share/apr-1/build
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

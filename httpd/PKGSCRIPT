@@ -1,0 +1,107 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="httpd"
+VERSION="2.4.52"
+EPOCH=0
+DESC="The Apache HTTP Server, a high-performance, popular, and stable web server."
+GRPS=()
+URL="https://httpd.apache.org/"
+LICENSES=("Apache-2.0")
+DEPENDS=("apr-util" "pcre" "brotli" "berkeley-db" "libxml2" "lynx" "nghttp2" "rsync" "openssl" "libxcrypt" "zlib" "curl" "perl")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("httpd")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://archive.apache.org/dist/httpd/httpd-${VERSION}.tar.bz2"
+"https://gitlab.com/yiffos/core/patches/-/raw/main/httpd/yiffOS-layout.patch"
+"https://gitlab.com/yiffos/core/patches/-/raw/main/httpd/website.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("97c021c576022a9d32f4a390f62e07b5f550973aef2f299fd52defce1a9fa5d27bd4a676e7bf214373ba46063d34aecce42de62fdd93678a4e925cfcbb2afdf6"
+"02eb0ee8555f95125c0bcc490c65e7db5428873c3153ad99ddd4b40b357567a8f7cce54dad58f5c1461651a411b1f9795313985de2ae90764622d80cc27af604"
+"2a63f613e2a7e197a7ce01e8ac5ac5995819e457f90bd1cf30316a6ba46a40d7999c0b957f0ec517fd631f3e0a8b0dcadf7f98edaf19aab5047bebdc2cb47348")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix paths to match system layout
+    patch -Np1 -i ${WORKDIR}/yiffOS-layout.patch
+
+    # Force the apxs utility to use abolute paths when told to
+    sed '/dir.*CFG_PREFIX/s@^@#@' -i support/apxs.in
+
+    ./configure --enable-authnz-fcgi                                                        \
+                --enable-layout=yiffOS                                                      \
+                --enable-mods-shared="all cgi"                                              \
+                --enable-mpms-shared=all                                                    \
+                --enable-suexec=shared                                                      \
+                --with-apr=/usr/bin/apr-1-config                                            \
+                --with-apr-util=/usr/bin/apu-1-config                                       \
+                --with-suexec-bin=/usr/lib/httpd/suexec                                     \
+                --with-suexec-caller=apache                                                 \
+                --with-suexec-docroot=/srv/www                                              \
+                --with-suexec-logfile=/var/log/httpd/suexec.log                             \
+                --with-suexec-uidmin=100                                                    \
+                --with-suexec-userdir=public_html                                           \
+                --enable-cache --enable-disk-cache --enable-mem-cache --enable-file-cache   \
+                --enable-ssl --with-ssl                                                     \
+                --enable-deflate --enable-cgi --enable-cgid                                 \
+                --enable-proxy --enable-proxy-connect                                       \
+                --enable-proxy-http --enable-proxy-ftp                                      \
+                --enable-dbd --enable-imagemap --enable-ident --enable-cern-meta            \
+                --enable-xml2enc --enable-http2                                             \
+                --enable-proxy-http2 --enable-brotli                                        \
+                --with-pcre=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mv -v ${BUILD_DATA_ROOT}/usr/sbin/suexec ${BUILD_DATA_ROOT}/usr/lib/httpd/suexec
+    chmod 4754                               ${BUILD_DATA_ROOT}/usr/lib/httpd/suexec
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/lib/systemd/system/
+
+    # Use yiffOS's custom "It Works!" page
+    rm ${BUILD_DATA_ROOT}/srv/www/index.html
+    tar xvf ${WORKDIR}/website.tar.xz -C ${BUILD_DATA_ROOT}/srv/www
+
+cat > ${BUILD_DATA_ROOT}/usr/lib/systemd/system/httpd.service << "EOF"
+[Unit]
+Description=Apache Web Server
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/apachectl start
+ExecStop=/usr/sbin/apachectl graceful-stop
+ExecReload=/usr/sbin/apachectl graceful
+PrivateTmp=true
+LimitNOFILE=infinity
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+    return 0
+}

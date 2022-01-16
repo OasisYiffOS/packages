@@ -1,0 +1,16 @@
+{
+    "name": "libxcrypt",
+    "version": "4.4.27",
+    "epoch": 0,
+    "description": "Extended crypt library for descrypt, md5crypt, bcrypt, and others.",
+    "groups": [],
+    "url": "https://github.com/besser82/libxcrypt",
+    "license": ["LGPL-2.1-or-later"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxcrypt"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
