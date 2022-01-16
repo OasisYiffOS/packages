@@ -1,0 +1,94 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="postgresql"
+VERSION="14.1"
+EPOCH=0
+DESC="An advanced open source object-relational database management system, derived from the Berkeley Postgres database management system."
+GRPS=()
+URL="https://www.postgresql.org/"
+LICENSES=("PostgreSQL")
+DEPENDS=("icu" "libxml2" "libxslt" "openssl" "pam" "readline" "systemd" "python")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("postgresql")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.postgresql.org/pub/source/v${VERSION}/postgresql-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("33b86beed1a70ae5d86a8c83b371e9d1c0904cdda54329f4b5c7ecc8fde3ca09e14d8b4fc73f836b30abb526221986ddf10a0577f3bb7f419057b601af1e71fa")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Move socket from /tmp to /var/run
+    sed -i '/DEFAULT_PGSOCKET_DIR/s@/tmp@/run/postgresql@' src/include/pg_config_manual.h
+
+    ./configure --prefix=/usr                                   \
+                --enable-thread-safety                          \
+                --with-openssl                                  \
+                --with-perl                                     \
+                --with-python                                   \
+                --with-tcl                                      \
+                --docdir=/usr/share/doc/postgresql-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+    DESTDIR="${BUILD_DATA_ROOT}" make install-docs
+
+    install -v -dm700 ${BUILD_DATA_ROOT}/srv/pgsql/data
+    install -v -dm755 ${BUILD_DATA_ROOT}/run/postgresql
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/lib/systemd/system/
+cat > ${BUILD_DATA_ROOT}/usr/lib/systemd/system/postgresql.service << "EOF"
+[Unit]
+Description=PostgreSQL database server
+After=network.target
+
+[Service]
+Type=forking
+TimeoutSec=120
+User=postgres
+Group=postgres
+
+Environment=PGROOT=/srv/pgsql
+
+SyslogIdentifier=postgres
+PIDFile=/srv/pgsql/data/postmaster.pid
+
+ExecStart= /usr/bin/pg_ctl -s -D ${PGROOT}/data start -w -t 120
+ExecReload=/usr/bin/pg_ctl -s -D ${PGROOT}/data reload
+ExecStop=  /usr/bin/pg_ctl -s -D ${PGROOT}/data stop -m fast
+
+# Due to PostgreSQL's use of shared memory, OOM killer is often overzealous in
+# killing Postgres, so adjust it downward
+OOMScoreAdjust=-200
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+    return 0
+}
