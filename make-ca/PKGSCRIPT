@@ -4,12 +4,12 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 # Package information
 NAME="make-ca"
 VERSION="1.10"
-EPOCH=0
-DESC="PKI setup script from LFS"
+EPOCH=1
+DESC="PKI setup script from LFS, modified by yiffOS."
 GRPS=()
-URL="https://github.com/lfs-book/make-ca"
+URL="https://gitlab.com/yiffos/misc/make-ca"
 LICENSES=("MIT" "GPL3")
-DEPENDS=("p11-kit" "libtasn1" "nss")
+DEPENDS=("p11-kit" "libtasn1" "nss" "openssl" "coreutils" "sed" "gawk")
 OPT_DEPENDS=()
 MAKE_DEPENDS=()
 PROVIDES=("make-ca")
@@ -17,10 +17,10 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://github.com/lfs-book/make-ca/releases/download/v${VERSION}/make-ca-${VERSION}.tar.xz")
+SRC=("https://gitlab.com/yiffos/misc/make-ca/-/archive/v${VERSION}-${EPOCH}/make-ca-v${VERSION}-${EPOCH}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("8e3c612b7fe3716ff7e9b2954b5a24b77df85808daf3dfe6832791b0df162ab4fdb58844d082df1fab2b07db93387370599ac66f24c4c0189a82cc602e67cfe9")
+SUM=("3cd5ef494eb49f32eed8d5039ca6dbb56be85be941aaa47ad5933b94ff856bc0e89e770106cd96d4265ee76524d3896315d89548243765ae888fe31830c277bb")
 
 # Prepare script
 function prepare() {
@@ -34,7 +34,7 @@ function build() {
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/${NAME}-${VERSION}"
+    cd "${WORKDIR}/${NAME}-v${VERSION}-${EPOCH}"
 
     DESTDIR="${BUILD_DATA_ROOT}" make install
 
