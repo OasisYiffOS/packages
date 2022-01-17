@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="ffmpeg"
-VERSION="4.4.1"
+VERSION="5.0"
 EPOCH=0
 DESC="A complete, cross-platform solution to record, convert and stream audio and video."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=("")
 SRC=("https://ffmpeg.org/releases/ffmpeg-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("c651c120b71db6991ffc54abc291986e7d35d776203af327f9a28853d1d0af468ca0956e2d3d893f55a211f70a40c041d5aa9aa9664ef581302b27494be9374e")
+SUM=("112bdd566243927000c6f78dbb3a2ba045f66ec24150c691c993a73ef6da1ab3978b403af6f8149f95dbdcfd2d82b4e539b83ee39af89b0137638351c9f1bae7")
 
 # Prepare script
 function prepare() {
