@@ -4,7 +4,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 # Package information
 NAME="make-ca"
 VERSION="1.10"
-EPOCH=1
+EPOCH=2
 DESC="PKI setup script from LFS, modified by yiffOS."
 GRPS=()
 URL="https://gitlab.com/yiffos/misc/make-ca"
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://gitlab.com/yiffos/misc/make-ca/-/archive/v${VERSION}-${EPOCH}/make-ca-v${VERSION}-${EPOCH}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("3cd5ef494eb49f32eed8d5039ca6dbb56be85be941aaa47ad5933b94ff856bc0e89e770106cd96d4265ee76524d3896315d89548243765ae888fe31830c277bb")
+SUM=("e7d3404347fe7213aa67f0390eb358dc02a814bec61aac92114745452af9e0176c600ca6b484372a146a7172c9e84d7d60f84a3a2e4f2e1870883b183c556b41")
 
 # Prepare script
 function prepare() {
