@@ -3,7 +3,8 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="systemd"
-VERSION="250"
+VERSION="250.3"
+_MAJOR_VERSION="250"
 EPOCH=0
 DESC="System and service manager"
 GRPS=("base")
@@ -17,18 +18,18 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://github.com/systemd/systemd/archive/v${VERSION}/systemd-${VERSION}.tar.gz"
-"https://anduin.linuxfromscratch.org/LFS/systemd-man-pages-${VERSION}.tar.xz"
+SRC=("https://github.com/systemd/systemd-stable/archive/refs/tags/v${VERSION}.tar.gz"
+"https://anduin.linuxfromscratch.org/LFS/systemd-man-pages-${_MAJOR_VERSION}.tar.xz"
 "https://gitlab.com/yiffos/core/patches/-/raw/main/systemd/systemd-upstream_fixes.patch")
 
 SUM_TYPE="sha512"
-SUM=("7894ea63793dd0c6ae12f6acab04ba02e247e537c404693f69174bf4a10d85f01f51c4938912c9a43c35e526b3ae945a1774d45249b58b31a393332b6c01f4f8"
+SUM=("81847fb088ff271138b1ea318995a2ca2ee5d4c5d839c9dd81f0210d366198049199d59c49b25ef8783df2c6b8dd9fcdf2d916777788b1a6d42deec9da8e9da5"
 "e112f525c6c27fcaca0ae930cf13c95ba98251b4e664d450f906afb2966e396984ea5baedafe5172c13a38cc8bea4d920827aa28024471708d6aca3e6644e13d"
 "ecaf8a65f6ec0304105089912746927c2296fe3335dbd4a41d65c9b9717ced4d9ad56e722b6dfacead28ce704555216508d665b64f3ad6cf7ab59cda7bec0bd4")
 
 # Prepare script
 function prepare() {
-    cd "${WORKDIR}/${NAME}-${VERSION}"
+    cd "${WORKDIR}/${NAME}-stable-${VERSION}"
 
     patch -Np1 -i "${WORKDIR}/systemd-upstream_fixes.patch"
 
@@ -70,7 +71,7 @@ function prepare() {
 
 # Build script
 function build() {
-    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+    cd "${WORKDIR}/${NAME}-stable-${VERSION}/build"
 
     LANG=en_US.UTF-8 ninja
 
@@ -79,13 +80,13 @@ function build() {
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+    cd "${WORKDIR}/${NAME}-stable-${VERSION}/build"
 
     DESTDIR="${BUILD_DATA_ROOT}" LANG=en_US.UTF-8 ninja install
 
     # Install documentation
     mkdir -pv ${BUILD_DATA_ROOT}/usr/share/man
-    tar -xf ${WORKDIR}/systemd-man-pages-${VERSION}.tar.xz --strip-components=1 -C ${BUILD_DATA_ROOT}/usr/share/man
+    tar -xf ${WORKDIR}/systemd-man-pages-${_MAJOR_VERSION}.tar.xz --strip-components=1 -C ${BUILD_DATA_ROOT}/usr/share/man
 
     return 0
 }
