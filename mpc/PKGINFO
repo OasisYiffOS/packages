@@ -4,7 +4,7 @@
     "epoch": 0,
     "description": "Library for the arithmetic of complex numbers",
     "groups": [],
-    "url": "http://www.multiprecision.org/mpc/",
+    "url": "https://www.multiprecision.org/mpc/",
     "license": ["GPL-2.0"],
     "depends": [],
     "optional_depends": [],
