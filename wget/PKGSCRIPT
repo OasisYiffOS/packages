@@ -3,27 +3,27 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="wget"
-VERSION="1.21.2"
+VERSION="2.0.0"
 EPOCH=0
 DESC="Non-interactive network downloader"
 GRPS=()
 URL="https://www.gnu.org/software/wget/"
 LICENSES=("GPL-3.0")
-DEPENDS=("make-ca")
+DEPENDS=("make-ca" "bzip2" "openssl" "libidn2" "nghttp2" "pcre2" "xz" "zlib" "zstd")
 OPT_DEPENDS=()
 PROVIDES=("wget")
 CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://ftp.gnu.org/gnu/wget/wget-${VERSION}.tar.gz")
+SRC=("https://ftp.gnu.org/gnu/wget/wget2-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("3e35f92604486ca459f26df97d392579f1d83a9254519e8ce249b410bacf70dddf716d6caa3b29fd4865163f60410b2b8ad1ca1f7bb3dbb2456386b7647b988d")
+SUM=("59be98a43057220f4eb4314d0876990c21bbc2606a82444e03282ca55d6de18a382fb75b3fcbb1e7f5a5930cd9a81c6c73cdac2ffba3932b55816fb8140c00eb")
 
 # Prepare script
 function prepare() {
-    cd "${WORKDIR}/${NAME}-${VERSION}"
+    cd "${WORKDIR}/${NAME}2-${VERSION}"
 
     ./configure --prefix=/usr      \
                 --sysconfdir=/etc  \
@@ -34,7 +34,7 @@ function prepare() {
 
 # Build script
 function build() {
-    cd "${WORKDIR}/${NAME}-${VERSION}"
+    cd "${WORKDIR}/${NAME}2-${VERSION}"
 
     make
 
@@ -43,9 +43,12 @@ function build() {
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/${NAME}-${VERSION}"
+    cd "${WORKDIR}/${NAME}2-${VERSION}"
 
     DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    # link old wget to wget2
+    ln -sfv ${BUILD_DATA_ROOT}/usr/bin/wget2 ${BUILD_DATA_ROOT}/usr/bin/wget
 
     return 0
 }
