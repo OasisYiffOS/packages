@@ -1,6 +1,6 @@
 {
     "name": "gnutls",
-    "version": "3.7.2",
+    "version": "3.7.3",
     "epoch": 0,
     "description": "Secure communications library implementing the SSL, TLS and DTLS protocols",
     "groups": [],
