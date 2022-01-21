@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="libunistring"
-VERSION="0.9.10"
+VERSION="1.0"
 EPOCH=0
 DESC="Functions for manipulating Unicode strings and for manipulating C strings according to the Unicode standard"
 GRPS=()
@@ -16,10 +16,10 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://ftp.gnu.org/gnu/libunistring/libunistring-${VERSION}.tar.gz")
+SRC=("https://ftp.gnu.org/gnu/libunistring/libunistring-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("690082732fbbd47ab4ffbd6f21d85afece0f8e2ded24982f949f4ae52bf0a981b75ea9bc14ab289e0954cde07f31a7a4c2bb65615a8eb5b2bfa65720310b6fc9")
+SUM=("70d5ad82722844dbeacdfcb4d7593358e4a00a9222a98537add4b7f0bf4a2bb503dfb3cd627e52e2a5ca1d3da9e5daf38a6bd521197f92002e11e715fb1662d1")
 
 # Prepare script
 function prepare() {
