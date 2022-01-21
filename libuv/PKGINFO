@@ -1,6 +1,6 @@
 {
     "name": "libuv",
-    "version": "1.42.0",
+    "version": "1.43.0",
     "epoch": 0,
     "description": "Multi-platform support library for asynchronous I/O",
     "groups": [],

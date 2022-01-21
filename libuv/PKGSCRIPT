@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="libuv"
-VERSION="1.42.0"
+VERSION="1.43.0"
 EPOCH=0
 DESC="Multi-platform support library for asynchronous I/O"
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://dist.libuv.org/dist/v${VERSION}/libuv-v${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("cc8ca797ec6e02fff7d4998fd5a509373ae6c674ff0d57960fef3418f59d3b93a655f52913ee5f712e32e3980b29df6315685c8b506790295d97c7c1f94f3425")
+SUM=("ba48140ac5733e09462a731fe9194c902b011a1a93a63175949c616367bde56bd1c114e8487c5580bee2d4656b45ab8cdc4fc335f67dd35e793c1a943f69fb34")
 
 # Prepare script
 function prepare() {
