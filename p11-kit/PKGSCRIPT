@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="p11-kit"
-VERSION="0.24.0"
+VERSION="0.24.1"
 EPOCH=0
 DESC="Load and unload modules for PKCS#11"
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=("")
 SRC=("https://github.com/p11-glue/p11-kit/releases/download/${VERSION}/p11-kit-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("48369d6fdae79b8c5a255c821fbdb982f0c649cce07c0d92f0ff0c16322fea8919faa94067cae2efede2da3646c0e69a71a3e399b769dc2327f247bcb113eb3c")
+SUM=("8cf170c714bb9e0cf3df93e8ec55b8e3c55cabf2c6a27f177ac6de8b8028985df2ca0216d3215d6828dc2ae3095c4e1a4febe8cb26b88ec321defc66bb011e81")
 
 # Prepare script
 function prepare() {
