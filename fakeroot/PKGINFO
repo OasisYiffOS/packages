@@ -1,6 +1,6 @@
 {
     "name": "fakeroot",
-    "version": "1.26",
+    "version": "1.27",
     "epoch": 0,
     "description": "Run a command appearing to be root without actually being root",
     "groups": ["devel"],
