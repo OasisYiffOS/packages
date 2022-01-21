@@ -1,6 +1,6 @@
 {
     "name": "readline",
-    "version": "8.1",
+    "version": "8.1.2",
     "epoch": 0,
     "description": "A set of libraries for command-line editing",
     "groups": [],
