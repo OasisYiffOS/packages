@@ -1,6 +1,6 @@
 {
     "name": "iana-etc",
-    "version": "20211124",
+    "version": "20220110",
     "epoch": 0,
     "description": "IANA protocols and services",
     "groups": ["base"],

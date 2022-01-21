@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="iana-etc"
-VERSION="20211124"
+VERSION="20220110"
 EPOCH=0
 DESC="IANA protocols and services"
 GRPS=("base")
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://github.com/Mic92/iana-etc/releases/download/${VERSION}/iana-etc-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("72c693bac262783428e781acd1dd3fe311af60e560ed481b54918fe7a775cf0eea2520ce925132ccaaa2f4a9929e1c8308a790dc45fee4ed6397720df4609f4d")
+SUM=("fddc2798c33f081a212b490c414c93b79929899a00160440a775ab72b9531e8e93a7923b89eba5a34bb09a08e4543d18f14b6aa3118f02fef2cc1c031efa544c")
 
 # Prepare script
 function prepare() {
