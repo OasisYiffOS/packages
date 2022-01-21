@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="iproute2"
-VERSION="5.15.0"
+VERSION="5.16.0"
 EPOCH=0
 DESC="Utilites for basic and advanced networking"
 GRPS=("base")
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://www.kernel.org/pub/linux/utils/net/iproute2/iproute2-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("e94918fa10e523224b965c7cb5303a101745e89c90d149d2d9876a002b2a894b1c689c519dc22168f3d334c3ee0810c59ec43223baab3d5f4c56f017d6281f22")
+SUM=("11ebe1951c97a072d3374d14149e94e44d2f309ff6b00a3f163dae3e174c156ca802ebeeddead069c01ccc6275a65b4396fda78d67144f80cea69297f655de93")
 
 # Prepare script
 function prepare() {
