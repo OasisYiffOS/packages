@@ -1,0 +1,16 @@
+{
+    "name": "gpm",
+    "version": "1.20.7",
+    "epoch": 0,
+    "description": "A mouse server for the terminal.",
+    "groups": [],
+    "url": "https://www.nico.schottelius.org/software/gpm/",
+    "license": ["GPL-2.0"],
+    "depends": ["bash", "procps-ng"],
+    "optional_depends": [],
+    "make_depends": ["automake"],
+    "provides": ["gpm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

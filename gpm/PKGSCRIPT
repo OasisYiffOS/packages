@@ -1,0 +1,97 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gpm"
+VERSION="1.20.7"
+EPOCH=0
+DESC="A mouse server for the terminal."
+GRPS=()
+URL="https://www.nico.schottelius.org/software/gpm/"
+LICENSES=("GPL-2.0")
+DEPENDS=("bash" "procps-ng")
+OPT_DEPENDS=()
+MK_DEPENDS=("automake")
+PROVIDES=("gpm")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.nico.schottelius.org/software/gpm/archives/gpm-${VERSION}.tar.gz"
+"https://www.linuxfromscratch.org/patches/blfs/svn/gpm-1.20.7-consolidated-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("39b6ec1d78c03981a2298ce8fd92987dd7e070c767d8135bbb94d6f5fea2d1b9c75b39806c3e99618e2c40cbc29d1c1e4177714ce63ac86b8d9e7e07234feb54"
+"b7f6814672b0034e791901a1ac5542b17eab87265581fae1b11259e598c009c02c67408625809a01184d3498f94aea3e1fa349afd0d9124a422d3e407a9c2933")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    patch -Np1 -i ${WORKDIR}/gpm-1.20.7-consolidated-1.patch
+
+    ./autogen.sh
+
+    ./configure --prefix=/usr       \
+                --disable-static    \
+                --sysconfdir=/etc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install-info --dir-file=${BUILD_DATA_ROOT}/usr/share/info/dir           \
+                            ${BUILD_DATA_ROOT}/usr/share/info/gpm.info
+
+    rm -fv ${BUILD_DATA_ROOT}/usr/lib/libgpm.a
+    ln -sfv libgpm.so.2.1.0 ${BUILD_DATA_ROOT}/usr/lib/libgpm.so
+    install -v -m644 conf/gpm-root.conf ${BUILD_DATA_ROOT}/etc
+
+    install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/doc/gpm-${VERSION}/support
+    install -v -m644    doc/support/*                     \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/gpm-${VERSION}/support
+    install -v -m644    doc/{FAQ,HACK_GPM,README*}        \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/gpm-${VERSION}
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/lib/systemd/system/
+
+cat > ${BUILD_DATA_ROOT}/usr/lib/systemd/system/gpm.path << "EOF"
+[Unit]
+Description=Virtual console mouse server
+
+[Path]
+PathExists=/dev/input/mice
+EOF
+    
+cat > ${BUILD_DATA_ROOT}/usr/lib/systemd/system/gpm.service << "EOF"
+[Unit]
+Description=Virtual console mouse server
+Requires=systemd-udevd.service
+After=systemd-udevd.service
+Wants=gpm.path
+ConditionPathExists=/dev/input/mice
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/gpm -m /dev/input/mice -t imps2
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+    return 0
+}
