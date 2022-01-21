@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="python"
-VERSION="3.10.0"
+VERSION="3.10.2"
 EPOCH=0
 DESC="High-level object-oriented programming language"
 GRPS=()
@@ -20,8 +20,8 @@ SRC=("https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tar.xz"
 "https://www.python.org/ftp/python/doc/${VERSION}/python-${VERSION}-docs-html.tar.bz2")
 
 SUM_TYPE="sha512"
-SUM=("82b2729afc7d72a80882f199970667dce7d971a2e5ecfe6cf84f7b68612ab2caf6ed6d7a8cb81f24ea85cb0816464bb2e8b2e6884eda62fa40742edc674193bd"
-"50543d3db9be63db1d33f40573c979fe2e8fd0485d83eed5cba35743f57cabbed22524f27ae6e7850ca4e6bd325a9a050b0028cb731b191ae3eae56af5a03439")
+SUM=("215a7159face84788fe547c1e2689b8d0ae510275157cf01636bef2902d0ff465f844eb0328c9f39fd1cd03a1d1736d4cf258992f2788e492a801a372032c08b"
+"0b9aac91a7b5bfd98954bae88d248f9bd3c3de5465661b116758a41c274751fa2209596694c8db05ea87c055870a92c4e310ff8466f13e012f8c295c93446522")
 
 # Prepare script
 function prepare() {
