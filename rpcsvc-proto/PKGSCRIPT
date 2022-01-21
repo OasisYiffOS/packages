@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="rpcsvc-proto"
-VERSION="1.4.2"
+VERSION="1.4.3"
 EPOCH=0
 DESC="rcpsvc protocol files and headers formerly included with glibc"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://github.com/thkukuk/rpcsvc-proto/releases/download/v${VERSION}/rpcsvc-proto-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("631fbfc00af94c5d7def0759f27e97dc14d400b4468c906719ae18ecef74815730798c882d1aaa4f90359224e7b829019b786baddc3097905b54f940ca85a714")
+SUM=("e46ba9ccdd6c520128bf3a154db90742f288a4d593b094a630141cdc5aeb834ffebf9b0eb6d5d0aad9faef3c445c75e2355cbc3e1382b50d29f4d2799441c6e9")
 
 # Prepare script
 function prepare() {
