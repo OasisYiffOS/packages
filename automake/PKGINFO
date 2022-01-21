@@ -1,6 +1,6 @@
 {
     "name": "automake",
-    "version": "1.16.4",
+    "version": "1.16.5",
     "epoch": 0,
     "description": "Utilites for generating Makefiles.in files",
     "groups": [],

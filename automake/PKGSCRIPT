@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="automake"
-VERSION="1.16.4"
+VERSION="1.16.5"
 EPOCH=0
 DESC="Utilites for generating Makefiles.in files"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://ftp.gnu.org/gnu/automake/automake-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("5a8883657e73b75bfa1ee59ab04af6bf4d43f390ab62fb7a9e8e2ac66159dfe4947b2ac7bc1028afffe6a09d88f388339500e03f6cdfa1226985be45ec033246")
+SUM=("3084ae543aa3fb5a05104ffb2e66cfa9a53080f2343c44809707fd648516869511500dba50dae67ff10f92a1bf3b5a92b2a0fa01cda30adb69b9da03994d9d88")
 
 # Prepare script
 function prepare() {
