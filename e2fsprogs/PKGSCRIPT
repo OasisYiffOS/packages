@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="e2fsprogs"
-VERSION="1.46.4"
+VERSION="1.46.5"
 EPOCH=0
 DESC="Utilities for the ext2, ext3, and ext4 filesystems"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v${VERSION}/e2fsprogs-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("3fc4c71b6a951b9701d1943dab092dc8598869e1d4f1fabb236c49e6d5349cda809ba2cfc3957160e334824a2fe18e9000624dc02a35fc794ab09a098db13e81")
+SUM=("1a3496cb6ac575c7a5c523cc4eede39bc77c313a6d1fea2d303fc967792d75d94e42d7821e1a61b7513509320aae4a7170506decf5753ddbd1dda9d304cc392e")
 
 # Prepare script
 function prepare() {
