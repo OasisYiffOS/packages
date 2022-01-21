@@ -1,6 +1,6 @@
 {
     "name": "meson",
-    "version": "0.60.2",
+    "version": "0.61.1",
     "epoch": 0,
     "description": "Build system meant to be both extremely fast and extremely easy to use",
     "groups": [],
