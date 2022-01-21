@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="zstd"
-VERSION="1.5.0"
+VERSION="1.5.2"
 EPOCH=0
 DESC="A real-time compression library, providing high compression ratios, while being backed by a very fast decoder"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://github.com/facebook/zstd/releases/download/v${VERSION}/zstd-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("b322fc1b89a556827b7fece2fb0f34c83bf65bb85b2468c791d6d9178a65c81e21f4171b7533cbf12bc1dfb2fd323d3e8c34d86167b157645c27f65186eec659")
+SUM=("96dbd2eb6623e3564a0fd36489b61bc3cb27758a584fdc9f064f3985d2e8b5605d7022890d00a6d15464d3cd0707d7e75d8cf6210323782d0af406b90a6d6784")
 
 # Prepare script
 function prepare() {
