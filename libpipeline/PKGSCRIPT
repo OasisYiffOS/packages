@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="libpipeline"
-VERSION="1.5.3"
+VERSION="1.5.5"
 EPOCH=0
 DESC="Library for manipulating pipelines of processes"
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://download.savannah.gnu.org/releases/libpipeline/libpipeline-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("db0796bffbcdd8e875902385c7cdc140e3e0e045b3d0eba1017e55b4c66027c20cc2cd0fccaf52f59fa941d0925134011317b9c27986765a1ec2a73132ebaec6")
+SUM=("adb228325c1f11e9f3566f2fc63541a90c88fe24656fc74ed0294d1eb3b80073bf4741fe7c289f53b340702145b11637d37682e3036dce41ec0fe45dcc6d62c5")
 
 # Prepare script
 function prepare() {
