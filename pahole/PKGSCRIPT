@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="pahole"
-VERSION="1.22"
+VERSION="1.23"
 EPOCH=0
 DESC="Pahole and other dwarves tools"
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("http://fedorapeople.org/~acme/dwarves/dwarves-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("d45b19505cd59eb2cbb42304ab599661355a4085262cb202757822ec1c05476c851dea85e922f9421efb8a978ab475a6a6545757c6ab080f13ac77c5f7186606")
+SUM=("5255930d6898ce35a41e3e553363964663d2b686d12732ff6140fa1d06fcc3806adf28e24ec35ab0712eec0562c52c3943afe9ecce468b0053b852ffeb04c3dc")
 
 # Prepare script
 function prepare() {

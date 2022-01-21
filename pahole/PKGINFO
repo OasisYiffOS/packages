@@ -1,6 +1,6 @@
 {
     "name": "pahole",
-    "version": "1.22",
+    "version": "1.23",
     "epoch": 0,
     "description": "Pahole and other dwarves tools",
     "groups": [],
