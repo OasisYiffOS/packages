@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="mariadb"
-VERSION="10.6.5"
+VERSION="10.7.1"
 EPOCH=0
 DESC="Community-maintained fork and drop-in replacement of MySQL."
 GRPS=()
@@ -21,7 +21,7 @@ SRC=("https://downloads.mariadb.org/interstitial/mariadb-${VERSION}/source/maria
 "https://www.linuxfromscratch.org/patches/blfs/svn/mariadb-10.6.5-openssl3_fix-1.patch")
 
 SUM_TYPE="sha512"
-SUM=("5aafe0a8d5ae54a6f798a6fd0cf922521f5b8e54ef5fb5c7db1cf798a7755f5910bb0b8a6c371cb8253dfb48f4ebca0becd6eb543b68473d564d2092df3185a1"
+SUM=("d104df9c4b7c1dc0f6accebd4da381280b070e100b43a57869d21767ea34f0d2451f41b03d4eec6632958c206a6c555a18b79c64ba59724569d7e088ba4bbd6a"
 "2843b6583c2b1629904b394902e027459cfb5fbe1e2871896787169528febd5f147421d3eb58966c2267d71ec68cf154627fe3811150baa5059a1733f51307c9")
 
 # Prepare script

@@ -1,6 +1,6 @@
 {
     "name": "mariadb",
-    "version": "10.6.5",
+    "version": "10.7.1",
     "epoch": 0,
     "description": "Community-maintained fork and drop-in replacement of MySQL.",
     "groups": [],
