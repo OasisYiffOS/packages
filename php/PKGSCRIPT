@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="php"
-VERSION="8.1.1"
+VERSION="8.1.2"
 EPOCH=0
 DESC="A general-purpose scripting language that is especially suited to web development."
 GRPS=()
@@ -21,8 +21,8 @@ SRC=("https://www.php.net/distributions/php-${VERSION}.tar.xz"
 "https://www.php.net/distributions/manual/php_manual_en.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("ab1cca08eb49fc2316f19d9e136a2d6462fe5b33967ecb671564dd9def2a765cc1b864a764c9cfbb8e7853936fb2d4939e7ed4f97220ca30eaf08c3badeb44da"
-"a057774523234c1614e0767a120eab12817ba4d42de335aa90211436658ad585dca14166eb5627798ae0ee1bee6ae8ad56014d7afc6dda3ba1184377d2728b98")
+SUM=("ec68587fc14d4e5aaa19d4a189c74b85e67b8ab4d5a15ef36115b564fc9e2f2b63bd608ea8c0e4a99615a24f38711b233f4e65b3672c3bfb69e1ab9d554a88cd"
+"0e3577d9c4936606707ab2af600bf029e9a10cf52df2e0516f72b626491d9796a6d95cf826287f2e061484e8cdeae60a37ecf4a7b9be048aa4701f27e9e1c055")
 
 # Prepare script
 function prepare() {
