@@ -3,7 +3,8 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="lynx"
-VERSION="2.8.9"
+VERSION="2.8.9.r1"
+_URL_VERSION="${VERSION%.*}"
 _REL="1"
 EPOCH=0
 DESC="A text-based web browser."
@@ -17,7 +18,7 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://invisible-mirror.net/archives/lynx/tarballs/lynx${VERSION}rel.${_REL}.tar.gz"
+SRC=("https://invisible-mirror.net/archives/lynx/tarballs/lynx${_URL_VERSION}rel.${_REL}.tar.gz"
 "https://gitlab.com/yiffos/core/patches/-/raw/main/lynx/CVE-2021-38165.patch")
 
 SUM_TYPE="sha512"
@@ -26,7 +27,7 @@ SUM=("28e72910fe29f057a288cf950f4ee5ce490d6a6f9008714b293fc11fe840d18232570494a5
 
 # Prepare script
 function prepare() {
-    cd "${WORKDIR}/${NAME}${VERSION}rel.${_REL}"
+    cd "${WORKDIR}/${NAME}${_URL_VERSION}rel.${_REL}"
 
     patch -Np1 -i "${WORKDIR}/CVE-2021-38165.patch"
 
@@ -44,7 +45,7 @@ function prepare() {
 
 # Build script
 function build() {
-    cd "${WORKDIR}/${NAME}${VERSION}rel.${_REL}"
+    cd "${WORKDIR}/${NAME}${_URL_VERSION}rel.${_REL}"
 
     make
 
@@ -53,7 +54,7 @@ function build() {
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/${NAME}${VERSION}rel.${_REL}"
+    cd "${WORKDIR}/${NAME}${_URL_VERSION}rel.${_REL}"
 
     make DESTDIR="${BUILD_DATA_ROOT}" install
 
