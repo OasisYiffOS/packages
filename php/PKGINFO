@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.php.net/",
     "license": ["PHP-3.01"],
-    "depends": ["libxml2", "libxslt", "pcre2", "freetype2", "libpng", "libwebp", "curl", "readline", "berkeley-db", "gdbm", "zlib", "bzip2", "openssl", "gmp"],
+    "depends": ["libxml2", "libxslt", "pcre2", "freetype2", "libpng", "curl", "readline", "berkeley-db", "gdbm", "zlib", "bzip2", "openssl", "gmp"],
     "optional_depends": ["mariadb", "postgresql", "sqlite"],
     "make_depends": [],
     "provides": ["php"],
