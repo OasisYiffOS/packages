@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="bash"
-VERSION="5.1.8"
+VERSION="5.1.16"
 EPOCH=0
 DESC="The Bourne Again SHell"
 GRPS=("base")
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://ftp.gnu.org/gnu/bash/bash-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("74e0f73bf9231b51ae6ddecf33d9242b339cabbb859e6b54bf0c71eeac76a798e1f067482c19e1bf153f4eb8246e4522890fd65c0879081afa25d607bfc03ded")
+SUM=("a32a343b6dde9a18eb6217602655f72c4098b0d90f04cf4e686fb21b81fc4ef26ade30f7226929fbb7c207cde34617dbad2c44f6103161d1141122bb31dc6c80")
 
 # Prepare script
 function prepare() {
