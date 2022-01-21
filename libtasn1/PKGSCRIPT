@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="libtasn1"
-VERSION="4.17.0"
+VERSION="4.18.0"
 EPOCH=0
 DESC="DER/BER encoding and decoding library"
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=("")
 SRC=("https://ftp.gnu.org/gnu/libtasn1/libtasn1-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("9cbd920196d1e4c8f5aa613259cded2510d40edb583ce20cc2702e2dee9bf32bee85a159c74600ffbebc2af2787e28ed0fe0adf15fc46839283747f4fe166d3d")
+SUM=("4f2f4afc7561fda7a1f1c6c525c3c3b08228a1a4aa8c3d3d5e02e993d8f83ccee1dd0f1b201cec0fbfc97043d4b1d7a95ffd34d65422a38b85b931ac7a015831")
 
 # Prepare script
 function prepare() {

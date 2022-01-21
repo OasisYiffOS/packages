@@ -1,6 +1,6 @@
 {
     "name": "libtasn1",
-    "version": "4.17.0",
+    "version": "4.18.0",
     "epoch": 0,
     "description": "DER/BER encoding and decoding library",
     "groups": [],
