@@ -3,7 +3,8 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="nano"
-VERSION="5.9"
+VERSION="6.0"
+_MAJOR_VERSION="6"
 EPOCH=0
 DESC="A small, simple, and friendly text editor which replaces pico"
 GRPS=()
@@ -16,10 +17,10 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://nano-editor.org/dist/v5/nano-${VERSION}.tar.xz")
+SRC=("https://nano-editor.org/dist/v${_MAJOR_VERSION}/nano-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("45ff3abce4dab24a8090409e6d7bb26afa7fa7812a51e06728c2aa47d5b4de610d97ba4609cf13d9173087bd909fdf377235eee988a6fdcf52abb70341c40b5b")
+SUM=("5f9487e710385888fb6d0aadbac1f5d58e0a5d05eb07de4d59b6ef65bdf54b07da490a48282d20c422b5177fbaa9d867237f7472effbe5e6f3be958e660b6c99")
 
 # Prepare script
 function prepare() {
