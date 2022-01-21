@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="shadow"
-VERSION="4.8.1"
+VERSION="4.11.1"
 EPOCH=0
 DESC="Utilities for handling user passwords"
 GRPS=("base")
@@ -16,10 +16,10 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://github.com/shadow-maint/shadow/releases/download/${VERSION}/shadow-${VERSION}.tar.xz")
+SRC=("https://github.com/shadow-maint/shadow/releases/download/v${VERSION}/shadow-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("780a983483d847ed3c91c82064a0fa902b6f4185225978241bc3bc03fcc3aa143975b46aee43151c6ba43efcfdb1819516b76ba7ad3d1d3c34fcc38ea42e917b")
+SUM=("12fbe4d6ac929ad3c21525ed0f1026b5b678ccec9762f2ec7e611d9c180934def506325f2835fb750dd30af035b592f827ff151cd6e4c805aaaf8e01425c279f")
 
 # Prepare script
 function prepare() {
@@ -65,9 +65,9 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    DESTDIR="${BUILD_DATA_ROOT}" make exec_prefix=/usr install
+    make DESTDIR="${BUILD_DATA_ROOT}" exec_prefix=/usr install
 
-    make -C man install-man
+    make -C man DESTDIR="${BUILD_DATA_ROOT}" install-man
 
     mkdir -p ${BUILD_DATA_ROOT}/etc/default
 
