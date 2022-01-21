@@ -3,13 +3,13 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="vim"
-VERSION="8.2.3750"
+VERSION="8.2.4160"
 EPOCH=0
 DESC="A powerful, feature-rich text editor with a steep learning curve"
 GRPS=()
 URL="https://www.vim.org/"
 LICENSES=("Vim")
-DEPENDS=()
+DEPENDS=("acl" "glibc" "gpm" "libgcrypt" "pcre" "zlib")
 OPT_DEPENDS=()
 PROVIDES=("vim")
 CONFLICTS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://github.com/vim/vim/archive/refs/tags/v${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("6ecd32997fa8aaad8a1762bba5e6eec420d2b08ce04693a3daaa4f5b12da27aa491945d11dcc2c89e6b6a4d263b5177b7031da817d7eba8df243aadd2d266656")
+SUM=("8f9ccfc9c810441b5cd0c126f3ca7b9fbc838e8223b79c1e00554d4356fd2d0d0bfd7af4bb3b207a640b8f972932ba3b164a2287b2a2f29b675c768c29927500")
 
 # Prepare script
 function prepare() {
