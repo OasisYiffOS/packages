@@ -1,6 +1,6 @@
 {
     "name": "libcap",
-    "version": "2.53",
+    "version": "2.62",
     "epoch": 0,
     "description": "User-space interface to the POSIX 1003.1e capabilities",
     "groups": [],

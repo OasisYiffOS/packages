@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="libcap"
-VERSION="2.53"
+VERSION="2.62"
 EPOCH=0
 DESC="User-space interface to the POSIX 1003.1e capabilities"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/libcap-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("d83ed9460658fa75a5c118d831534388ba92ddad59944088b0d81a64c86b67ed562c7be4c5a499065ec26b1baab34298da80c8d034b61759c7dd295c2455417c")
+SUM=("61ac004920c5cd3382a5443db2eacfc2041b7a8c0814b27084c1d111125639fe3950dea4325d0f7fb6bfb0d5de114452c3a62230cc958edb05ffdb83b213f9b3")
 
 # Prepare script
 function prepare() {
@@ -37,7 +37,7 @@ function build() {
 
     make prefix=/usr lib=lib
 
-    make test
+    make -k test
 
     return 0
 }
@@ -48,7 +48,7 @@ function postbuild() {
 
     DESTDIR="${BUILD_DATA_ROOT}" make prefix=/usr lib=lib install
 
-    chmod -v 755 ${BUILD_DATA_ROOT}/usr/lib/lib{cap,psx}.so.2.53
+    chmod -v 755 ${BUILD_DATA_ROOT}/usr/lib/lib{cap,psx}.so.${VERSION}
 
     return 0
 }
