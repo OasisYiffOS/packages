@@ -6,7 +6,7 @@
     "groups": [],
     "url": "http://www.linux-pam.org/",
     "license": ["GPL"],
-    "depends": ["berkeley-db", "libnsl", "libtirpc", "glibc"],
+    "depends": ["db", "libnsl", "libtirpc", "glibc"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["pam"],

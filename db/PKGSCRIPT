@@ -2,7 +2,7 @@
 MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
-NAME="berkeley-db"
+NAME="db"
 VERSION="5.3.28"
 EPOCH=0
 DESC="Libraries and utilities for creating, storing, and retrieving data in the Berkeley DB database system"
@@ -11,8 +11,8 @@ URL="https://github.com/berkeleydb/libdb"
 LICENSES=("sleepycat" "BSD-3-Clause" "CDDL-1.0")
 DEPENDS=("sharutils" "gcc-libs")
 OPT_DEPENDS=()
-PROVIDES=("berkeley-db")
-CONFLICTS=("berkeley-db-agpl")
+PROVIDES=("db")
+CONFLICTS=("db-agpl")
 REPLACES=()
 
 # Source information

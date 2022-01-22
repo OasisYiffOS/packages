@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://httpd.apache.org/",
     "license": ["Apache-2.0"],
-    "depends": ["apr-util", "pcre", "brotli", "berkeley-db", "libxml2", "lynx", "nghttp2", "rsync", "openssl", "libxcrypt", "zlib", "curl", "perl"],
+    "depends": ["apr-util", "pcre", "brotli", "db", "libxml2", "lynx", "nghttp2", "rsync", "openssl", "libxcrypt", "zlib", "curl", "perl"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["httpd"],

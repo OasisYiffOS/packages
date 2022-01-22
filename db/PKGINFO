@@ -1,5 +1,5 @@
 {
-    "name": "berkeley-db",
+    "name": "db",
     "version": "5.3.28",
     "epoch": 0,
     "description": "Libraries and utilities for creating, storing, and retrieving data in the Berkeley DB database system",
@@ -9,8 +9,8 @@
     "depends": ["sharutils", "gcc-libs"],
     "optional_depends": [],
     "make_depends": [],
-    "provides": ["berkeley-db"],
-    "conflicts": ["berkeley-db-agpl"],
+    "provides": ["db"],
+    "conflicts": ["db-agpl"],
     "replaces": [],
     "maintainers": ["Evie Viau <evie@uwueviee.live>"]
 }

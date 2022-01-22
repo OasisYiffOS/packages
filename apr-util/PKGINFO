@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://apr.apache.org/",
     "license": ["Apache-2.0"],
-    "depends": ["apr", "expat", "libxcrypt", "berkeley-db", "gdbm", "nss", "openssl", "sqlite"],
+    "depends": ["apr", "expat", "libxcrypt", "db", "gdbm", "nss", "openssl", "sqlite"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["apr-util"],
