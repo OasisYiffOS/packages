@@ -1,5 +1,5 @@
 {
-    "name": "db-agpl",
+    "name": "db18",
     "version": "18.1.40",
     "epoch": 0,
     "description": "Libraries and utilities for creating, storing, and retrieving data in the Berkeley DB database system. (Newer version by Oracle, licensed under the AGPL)",
@@ -9,7 +9,7 @@
     "depends": ["sharutils", "gcc-libs"],
     "optional_depends": [],
     "make_depends": [],
-    "provides": ["db-agpl", "db"],
+    "provides": ["db18", "db"],
     "conflicts": ["db"],
     "replaces": [],
     "maintainers": ["Evie Viau <evie@uwueviee.live>"]

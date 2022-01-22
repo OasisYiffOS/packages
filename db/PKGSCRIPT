@@ -12,7 +12,7 @@ LICENSES=("sleepycat" "BSD-3-Clause" "CDDL-1.0")
 DEPENDS=("sharutils" "gcc-libs")
 OPT_DEPENDS=()
 PROVIDES=("db")
-CONFLICTS=("db-agpl")
+CONFLICTS=("db18")
 REPLACES=()
 
 # Source information

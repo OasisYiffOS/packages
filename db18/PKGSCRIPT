@@ -2,7 +2,7 @@
 MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
-NAME="db-agpl"
+NAME="db18"
 VERSION="18.1.40"
 EPOCH=0
 DESC="Libraries and utilities for creating, storing, and retrieving data in the Berkeley DB database system. (Newer version by Oracle, licensed under the AGPL)"
@@ -11,7 +11,7 @@ URL="https://www.oracle.com/database/berkeley-db/"
 LICENSES=("AGPL-3.0-only")
 DEPENDS=("sharutils" "gcc-libs")
 OPT_DEPENDS=()
-PROVIDES=("db-agpl" "db")
+PROVIDES=("db18" "db")
 CONFLICTS=("db")
 REPLACES=()
 
