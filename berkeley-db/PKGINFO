@@ -10,7 +10,7 @@
     "optional_depends": [],
     "make_depends": [],
     "provides": ["berkeley-db"],
-    "conflicts": [],
+    "conflicts": ["berkeley-db-agpl"],
     "replaces": [],
     "maintainers": ["Evie Viau <evie@uwueviee.live>"]
 }

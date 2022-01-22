@@ -1,0 +1,16 @@
+{
+    "name": "berkeley-db-agpl",
+    "version": "18.1.40",
+    "epoch": 0,
+    "description": "Libraries and utilities for creating, storing, and retrieving data in the Berkeley DB database system. (Newer version by Oracle, licensed under the AGPL)",
+    "groups": [],
+    "url": "https://www.oracle.com/database/berkeley-db/",
+    "license": ["AGPL-3.0-only"],
+    "depends": ["sharutils", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["berkeley-db-agpl", "berkeley-db"],
+    "conflicts": ["berkeley-db"],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
