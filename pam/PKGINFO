@@ -1,6 +1,6 @@
 {
     "name": "pam",
-    "version": "1.5.1",
+    "version": "1.5.2",
     "epoch": 0,
     "description": "Pluggable Authentication Modules",
     "groups": [],
