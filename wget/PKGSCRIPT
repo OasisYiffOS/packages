@@ -48,7 +48,7 @@ function postbuild() {
     DESTDIR="${BUILD_DATA_ROOT}" make install
 
     # link old wget to wget2
-    ln -sfv ${BUILD_DATA_ROOT}/usr/bin/wget2 ${BUILD_DATA_ROOT}/usr/bin/wget
+    ln -sfv ${BUILD_DATA_ROOT}/usr/bin/wget2 /usr/bin/wget
 
     return 0
 }
