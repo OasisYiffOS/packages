@@ -3,7 +3,7 @@
     "version": "2.6.4",
     "epoch": 0,
     "description": "The fast lexical analyser generator",
-    "groups": [],
+    "groups": ["devel"],
     "url": "https://github.com/westes/flex",
     "license": ["custom"],
     "depends": ["m4"],
