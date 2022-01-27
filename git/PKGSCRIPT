@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="git"
-VERSION="2.34.1"
+VERSION="2.35.0"
 EPOCH=0
 DESC="fast and popular distributed version control system"
 GRPS=("devel")
@@ -21,9 +21,9 @@ SRC=("https://www.kernel.org/pub/software/scm/git/git-${VERSION}.tar.xz"
 "https://www.kernel.org/pub/software/scm/git/git-htmldocs-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("a1a8e9e6f64b1da25508fbd2f783564dcdbe181fb5ff1ebab3bdac6db6094e18acc334479a1abf22ac17ce4f733cc3e10a664db9ab234cd523735a3f027b42db"
-"8f3b56fa477e5aafec3ef29933234c362a372f59ed95694c4fb82ebb82d2a8ebc0ac17ae36caa9185964eef1700ea8732816e73df4ddd918afc949a8371fa0d8"
-"cf9fa952d43e477528deece9f22d1bb63fa50b3a831fae20812c6af31c1dbaf193abe2fed48ac9966bcf1787442ceed19f00c00e524a1911f0ea31952a52fc8f")
+SUM=("ae391e1cda7b4e7d49e09e7412cd2da8d643c71f20967fd7b600be00a13d3b126c2bc3a2deece935742084ecbbd1eb51455b10365e0d65423979241e9e7b94a9"
+"288a443780c395ee9c9738ab544d4bb666e9e549fa499f52af81f2f581d45d7f04976d98491dbae1a30b213ddeb544829f643d86c2cfc424e9b17df23fb3c8fc"
+"9a428212d6327c8b0bbeb7591d12c42ca78864d3cc839f0c3d5053281a00ed0fdcc67c71fe13203fadf3a7e7b5dc47034fc452a8dfb59d980ee441f908790845")
 
 # Prepare script
 function prepare() {
