@@ -1,6 +1,6 @@
 {
     "name": "util-linux",
-    "version": "2.37.2",
+    "version": "2.37.3",
     "epoch": 0,
     "description": "Miscellaneous utilities",
     "groups": ["base"],
@@ -8,7 +8,7 @@
     "license": ["GPL-3.0"],
     "depends": ["coreutils", "libcap", "file", "ncurses", "readline", "systemd", "pam", "shadow"],
     "optional_depends": [],
-    "make_depends": [],
+    "make_depends": ["diffutils"],
     "provides": ["util-linux"],
     "conflicts": [],
     "replaces": [],
