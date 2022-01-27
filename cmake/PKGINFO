@@ -1,6 +1,6 @@
 {
     "name": "cmake",
-    "version": "3.22.1",
+    "version": "3.22.2",
     "epoch": 0,
     "description": "Modern toolset for generating Makefiles.",
     "groups": [],
