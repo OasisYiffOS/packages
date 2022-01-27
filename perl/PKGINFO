@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.perl.org/",
     "license": ["GPL-1.0"],
-    "depends": [],
+    "depends": ["libxcrypt", "db", "gdbm", "glibc", "zlib", "bzip2"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["perl"],
