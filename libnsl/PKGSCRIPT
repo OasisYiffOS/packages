@@ -49,5 +49,9 @@ function postbuild() {
 
     DESTDIR="${BUILD_DATA_ROOT}" make install
 
+    # Provide backwards compatibility for libnsl.so.2 since perl seems to get angry if it's not there
+    ln -sfv /usr/lib/libnsl.so "${BUILD_DATA_ROOT}/usr/lib/libnsl.so.2"
+    ln -sfv /usr/lib/libnsl.so "${BUILD_DATA_ROOT}/usr/lib/libnsl.so.2.0.0"
+
     return 0
 }
