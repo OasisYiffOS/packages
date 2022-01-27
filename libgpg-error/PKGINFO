@@ -1,6 +1,6 @@
 {
     "name": "libgpg-error",
-    "version": "1.43",
+    "version": "1.44",
     "epoch": 0,
     "description": "Small library for common error values for all GnuPG components",
     "groups": [],

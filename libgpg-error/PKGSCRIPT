@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="libgpg-error"
-VERSION="1.43"
+VERSION="1.44"
 EPOCH=0
 DESC="Small library for common error values for all GnuPG components"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-${VERSION}.tar.bz2")
 
 SUM_TYPE="sha512"
-SUM=("36769a62d0b4b219a6d58195bed692e34d3b0313f628b1036055ca34b69332edbe6bcdace9855a60d06e7be5998dc13bf1305d0b2bb211a4d8f701e85040961c")
+SUM=("a0eef310b9d44532d1ae6e7266226ea3e82d908aa31f775a026e56a7f8303b78adfdceb3ae5a40f7d242987635e764c539a024ce8dc0d66590e1a3fa50f6b784")
 
 # Prepare script
 function prepare() {
