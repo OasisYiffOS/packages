@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="lua"
-VERSION="5.4.3"
+VERSION="5.4.4"
 _MAJOR_VERSION="5.4"
 EPOCH=0
 DESC="A lightweight programming language designed for extending applications."
@@ -22,7 +22,7 @@ SRC=("https://www.lua.org/ftp/lua-${VERSION}.tar.gz"
 "https://www.linuxfromscratch.org/patches/blfs/svn/lua-5.4.3-shared_library-1.patch")
 
 SUM_TYPE="sha512"
-SUM=("3a1a3ee8694b72b4ec9d3ce76705fe179328294353604ca950c53f41b41161b449877d43318ef4501fee44ecbd6c83314ce7468d7425ba9b2903c9c32a28bbc0"
+SUM=("af0c35d5ba00fecbb2dd617bd7b825edf7418a16a73076e04f2a0df58cdbf098dc3ff4402e974afd789eb5d86d2e12ec6df9c84b99b23656ea694a85f83bcd21"
 "593572a370240165827e1a3646f629c0e01147707367faf8846c2fe6322161710174d0dfbdc18ac0e44344704117252dc924efeefe4e9a1b0d7f1465d13ae392")
 
 # Prepare script
