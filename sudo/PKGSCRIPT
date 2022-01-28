@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="sudo"
-VERSION="1.9.8p2"
+VERSION="1.9.9"
 EPOCH=0
 DESC="Allows privileged users to execute commands as root or other users"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://www.sudo.ws/dist/sudo-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("899b252e8c219226f658dff3dd34c97b07d42004998b45175b4c0c4de42a6bf9f909598e99b4056fa1171e63378e203854b0f8608b0f5c1b00e9d3677818f6d3")
+SUM=("53064240431ae3d9409dc5cb7d72ab55d9ab5f802af4de99fadd987855461b3cca53f261d6256e3b6f35e30c7e162f4dfa3978ef6976415cf5be874fb2026614")
 
 # Prepare script
 function prepare() {

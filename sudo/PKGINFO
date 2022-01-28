@@ -1,6 +1,6 @@
 {
     "name": "sudo",
-    "version": "1.9.8p2",
+    "version": "1.9.9",
     "epoch": 0,
     "description": "Allows privileged users to execute commands as root or other users",
     "groups": [],
