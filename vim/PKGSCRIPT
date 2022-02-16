@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="vim"
-VERSION="8.2.4341"
+VERSION="8.2.4396"
 EPOCH=0
 DESC="A powerful, feature-rich text editor with a steep learning curve"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://github.com/vim/vim/archive/refs/tags/v${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("f91ec0f31b13399a081ffbd59d08847bd7a363e35fc18a4f4623dc4a315d968f4614037e5d65c0ae4eb8f31b599ab8c5bcdf272fd3de262db1539a7290970a45")
+SUM=("d5458180637796aea69e779f3ad43fb6171487f76bf1b679c491a175c8bb60e1c3b2da6a1623e760d5dfe5c031ff16c338a67e859b53a77a8e89bbdbdb990fb5")
 
 # Prepare script
 function prepare() {
