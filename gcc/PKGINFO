@@ -6,10 +6,10 @@
     "groups": ["devel"],
     "url": "https://gcc.gnu.org/",
     "license": ["GPL", "LGPL"],
-    "depends": [],
+    "depends": ["mpc", "flex"],
     "optional_depends": [],
     "make_depends": [],
-    "provides": ["gcc", "gcc-libs"],
+    "provides": ["gcc", "gcc-libs", "gcc-go"],
     "conflicts": ["gcc-libs"],
     "replaces": [],
     "maintainers": ["Evie Viau <evie@uwueviee.live>"]

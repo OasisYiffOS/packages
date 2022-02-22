@@ -9,9 +9,9 @@ DESC="The GNU Compiler Collection, including C, C++, ObjC, Fortran, Ada, and Go"
 GRPS=("devel")
 URL="https://gcc.gnu.org/"
 LICENSES=("GPL" "LGPL")
-DEPENDS=()
+DEPENDS=("mpc" "flex")
 OPT_DEPENDS=()
-PROVIDES=("gcc" "gcc-libs")
+PROVIDES=("gcc" "gcc-libs" "gcc-go")
 CONFLICTS=("gcc-libs")
 REPLACES=()
 
@@ -88,6 +88,11 @@ function postbuild() {
     ln -v -sf gcc ${BUILD_DATA_ROOT}/usr/bin/cc
     install -v -dm755 ${BUILD_DATA_ROOT}/usr/lib/bfd-plugins
     ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/${VERSION}/liblto_plugin.so ${BUILD_DATA_ROOT}/usr/lib/bfd-plugins/
+
+    # Rename go to gcc-go
+    mv -v ${BUILD_DATA_ROOT}/usr/bin/go ${BUILD_DATA_ROOT}/usr/bin/gcc-go
+    mv -v ${BUILD_DATA_ROOT}/usr/bin/gofmt ${BUILD_DATA_ROOT}/usr/bin/gcc-gofmt
+    mv -v ${BUILD_DATA_ROOT}/usr/share/man/man1/go.1 ${BUILD_DATA_ROOT}/usr/share/man/man1/gcc-go.1
 
     return 0
 }
