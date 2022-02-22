@@ -1,0 +1,16 @@
+{
+    "name": "caddy",
+    "version": "2.4.6",
+    "epoch": 0,
+    "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server.",
+    "groups": [],
+    "url": "https://caddyserver.com/",
+    "license": ["Apache-2.0"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["go"],
+    "provides": ["caddy"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
