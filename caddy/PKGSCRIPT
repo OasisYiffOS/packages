@@ -30,16 +30,11 @@ SUM=("adbf59825fc7b2ad561db936e77272d2f6867212e1dd0099df80a0aefd41d1c67ad112094a
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    # Go uses other enviromenent variables for flags, set them here
-    export CGO_LDFLAGS="${LDFLAGS}"
-    export CGO_CPPFLAGS="${CPPFLAGS}"
-    export CGO_CFLAGS="${CFLAGS}"
-    export CGO_CXXFLAGS="${CXXFLAGS}"
-    export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
 
     # Ensure it says /srv/www to stay consistent with other web servers on yiffOS
     cp ${WORKDIR}/dist-${VERSION}/welcome/index.html .
-    sed 's|/srv/www|/srv/http|g' -i index.html
+    sed 's|/var/www/html|/srv/www|g' -i index.html
+    sed 's|<li>Change the site root to <code>/srv/www</code></li>||g' -i index.html
 
     return 0
 }
@@ -47,6 +42,13 @@ function prepare() {
 # Build script
 function build() {
     cd "${WORKDIR}/${NAME}-${VERSION}/cmd/caddy"
+
+    # Go uses other enviromenent variables for flags, set them here
+    export CGO_LDFLAGS="${LDFLAGS}"
+    export CGO_CPPFLAGS="${CPPFLAGS}"
+    export CGO_CFLAGS="${CFLAGS}"
+    export CGO_CXXFLAGS="${CXXFLAGS}"
+    export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
 
     go build .
 
