@@ -1,0 +1,86 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="go"
+VERSION="1.17.7"
+EPOCH=0
+DESC="An open source programming language supported by Google."
+GRPS=()
+URL="https://go.dev/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("gcc-go")
+PROVIDES=("go")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://go.dev/dl/go${VERSION}.src.tar.gz"
+"https://go.dev/dl/go${VERSION}.linux-amd64.tar.gz|go-bin")
+
+SUM_TYPE="sha512"
+SUM=("ee20a97d19e501ee2c11930548bcacfa8b1e8499bbae15659231548f4b03c13bc92bb20c4ce879f0956c02268e748c73ba56d8b140ce8f134501c33cc8b58d3c"
+"cf832fea4a7ba511e0192b1ec7dd4975ea96e0add518d9eef34240b91f58b7392ec30d9ffcc2e7a407ee92568dd72e2e3680cc9c4b02440b76a5e5aa5848e482")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/go/src"
+
+    # Mostly stolen from Arch
+    export GOARCH=amd64
+    export GOAMD64=v1
+    export GOROOT_FINAL=/usr
+    # NOTE: GCC 11.2's gcc-go is broken with boostrapping, so we're gonna use a binary for now
+    export GOROOT_BOOTSTRAP=${WORKDIR}/go-bin/go
+    #export GOROOT_BOOTSTRAP=${WORKDIR}/bootstrap
+
+    export CGO_LDFLAGS="${LDFLAGS}"
+    export CGO_CPPFLAGS="${CPPFLAGS}"
+    export CGO_CFLAGS="${CFLAGS}"
+    export CGO_CXXFLAGS="${CXXFLAGS}"
+
+    export GO_TEST_TIMEOUT_SCALE=3
+
+    # HACK: Go really really really wants gcc-go to be at go
+    #mkdir -pv ${WORKDIR}/bootstrap/bin/
+    #cp /usr/bin/gcc-go "${WORKDIR}/bootstrap/bin/go"
+
+    # Build Go
+    ./make.bash -v
+
+    # Test Go
+    ./run.bash --no-rebuild -v -v -v -k
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/go"
+
+    install -d "${BUILD_DATA_ROOT}/usr/bin" "${BUILD_DATA_ROOT}/usr/lib/go" "${BUILD_DATA_ROOT}/usr/share/doc/go" \
+        "${BUILD_DATA_ROOT}/usr/lib/go/pkg/linux_amd64_"{dynlink,race}
+
+    cp -a bin pkg src lib misc api test "${BUILD_DATA_ROOT}/usr/lib/go"
+    cp -r doc/* "${BUILD_DATA_ROOT}/usr/share/doc/go"
+
+    ln -sf /usr/lib/go/bin/go "${BUILD_DATA_ROOT}/usr/bin/go"
+    ln -sf /usr/lib/go/bin/gofmt "${BUILD_DATA_ROOT}/usr/bin/gofmt"
+    ln -sf /usr/share/doc/go "${BUILD_DATA_ROOT}/usr/lib/go/doc"
+
+    install -Dm644 VERSION "${BUILD_DATA_ROOT}/usr/lib/go/VERSION"
+
+    rm -rf "${BUILD_DATA_ROOT}/usr/lib/go/pkg/bootstrap" "${BUILD_DATA_ROOT}/usr/lib/go/pkg/tool/*/api"
+
+
+    install -Dm644 LICENSE "${BUILD_DATA_ROOT}/usr/share/licenses/$pkgname/LICENSE"
+
+    return 0
+}
