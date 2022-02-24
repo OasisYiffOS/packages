@@ -1,0 +1,16 @@
+{
+    "name": "dialog",
+    "version": "1.3-20220117",
+    "epoch": 0,
+    "description": "Script driven curses widgets.",
+    "groups": [],
+    "url": "https://invisible-island.net/dialog",
+    "license": ["LGPL-2.1"],
+    "depends": ["bash", "ncurses"],
+    "optional_depends": [],
+    "make_depends": ["libtool"],
+    "provides": ["dialog"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
