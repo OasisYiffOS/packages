@@ -1,6 +1,6 @@
 {
     "name": "nano",
-    "version": "6.0",
+    "version": "6.2",
     "epoch": 0,
     "description": "A small, simple, and friendly text editor which replaces pico",
     "groups": [],

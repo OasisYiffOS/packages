@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="nano"
-VERSION="6.0"
+VERSION="6.2"
 _MAJOR_VERSION="6"
 EPOCH=0
 DESC="A small, simple, and friendly text editor which replaces pico"
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://nano-editor.org/dist/v${_MAJOR_VERSION}/nano-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("5f9487e710385888fb6d0aadbac1f5d58e0a5d05eb07de4d59b6ef65bdf54b07da490a48282d20c422b5177fbaa9d867237f7472effbe5e6f3be958e660b6c99")
+SUM=("cee43c7e72fa9dbfc79fd5c602eb37cba55c8cde849a3bfd283c0dc3d35162f46551a0401b9f865c6f7d5c6dce6e7a894d97e22a4e6729cd20b9929221b46583")
 
 # Prepare script
 function prepare() {
