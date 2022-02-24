@@ -1,0 +1,16 @@
+{
+    "name": "linux-firmware",
+    "version": "20220209",
+    "epoch": 0,
+    "description": "Linux firmware images not allowed in the kernel.",
+    "groups": [],
+    "url": "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/about/",
+    "license": ["custom"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["linux-firmware"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,45 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="linux-firmware"
+VERSION="20220209"
+EPOCH=0
+DESC="Linux firmware images not allowed in the kernel."
+GRPS=()
+URL="https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/about/"
+LICENSES=("custom")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("linux-firmware")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20220209.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("f96af6be24ebcac6547abaaa3b2bbf32597481fad8e67356d97be46b9910a86aec6cbdf2245ba3c5ee1e13a98dfbdb68d2a465be8b30798b99e7c77004d1fe41")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir -pv "${BUILD_DATA_ROOT}/lib/firmware"
+    cp -r ./* "${BUILD_DATA_ROOT}/lib/firmware"
+
+    chmod -R 644 "${BUILD_DATA_ROOT}/lib/firmware"
+
+    return 0
+}   
