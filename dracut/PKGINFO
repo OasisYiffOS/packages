@@ -1,6 +1,6 @@
 {
     "name": "dracut",
-    "version": "055",
+    "version": "056",
     "epoch": 0,
     "description": "An event driven initramfs infrastructure",
     "groups": [],

@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="dracut"
-VERSION="055"
+VERSION="056"
 EPOCH=0
 DESC="An event driven initramfs infrastructure"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=("")
 SRC=("https://mirrors.edge.kernel.org/pub/linux/utils/boot/dracut/dracut-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("2d2ea2889d9013bc94245bd7d1a2154f24d02bd9c2f7dbb28e5968e17d918e6598c68d85b0f551f968218980a80b19361ca0c9e8e94997ba54f4c09afcd6d866")
+SUM=("19268763e128984d20cab766bbdf2de12fe534ce2562fc688203099ef9b4cf83d0ccd2129499c70cdc6dd4ad53f0ffc2f3378eff5b8a15fda27c23b20f903df2")
 
 # Prepare script
 function prepare() {
@@ -31,7 +31,7 @@ function build() {
     cd "${WORKDIR}/dracut-${VERSION}"
 
     ./configure --prefix=/usr         \
-            --disable-static
+                --disable-static
 
     make
 
