@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="unzip"
+VERSION="6.0"
+_DOWNLOAD_VERSION="60"
+EPOCH=0
+DESC="An extraction utility for archives compressed in the zip format."
+GRPS=()
+URL="http://infozip.sourceforge.net/UnZip.html"
+LICENSES=("Info-ZIP")
+DEPENDS=("bash" "bzip2")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("unzip")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/infozip/unzip${_DOWNLOAD_VERSION}.tar.gz"
+"https://www.linuxfromscratch.org/patches/blfs/svn/unzip-${VERSION}-consolidated_fixes-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("0694e403ebc57b37218e00ec1a406cae5cc9c5b52b6798e0d4590840b6cdbf9ddc0d9471f67af783e960f8fa2e620394d51384257dca23d06bcd90224a80ce5d"
+"3b58de5eed94f65b5cbb1e81271caceac2f423b4ee0ca460de955daaae46993e4633d09966561b1fcef3e44c77d6084601aa63d2f002ae714e59800657d33834")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}${_DOWNLOAD_VERSION}"
+
+    patch -Np1 -i ${WORKDIR}/unzip-6.0-consolidated_fixes-1.patch
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}${_DOWNLOAD_VERSION}"
+
+    make -f unix/Makefile generic
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}${_DOWNLOAD_VERSION}"
+
+    make prefix=${BUILD_DATA_ROOT}/usr -f unix/Makefile install
+
+    return 0
+}
