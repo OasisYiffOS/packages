@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="flac"
-VERSION="1.3.3"
+VERSION="1.3.4"
 EPOCH=0
 DESC="The free lossless audio codec."
 GRPS=()
@@ -17,22 +17,14 @@ CONFLICTS=("")
 REPLACES=("")
 
 # Source information
-SRC=("https://downloads.xiph.org/releases/flac/flac-${VERSION}.tar.xz"
-"https://github.com/xiph/flac/commit/ced7f68.patch"
-"https://github.com/xiph/flac/commit/2e7931c.patch")
+SRC=("https://downloads.xiph.org/releases/flac/flac-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("d6417e14fab0c41b2df369e5e39ce62a5f588e491af4d465b0162f74e171e5549b2f061867f344bfbf8aaccd246bf5f2acd697e532a2c7901c920c69429b1a28"
-"4c9745438ebc0d1d3dd6fad2176c31b6fe4bd6080a7d116b8e6cb4ddc296b2cea0828865f4754bb4513f86df0a639d9b9c67270cfed9bde31b19487c182f183d"
-"31452c309d7a873ccfe777fea0806189381973a2d13d9674d7df05af8fa80499e94cf57dff5c96172393194efd78acfdb9a62e44344686c4940f8cdab82b5185")
+SUM=("4a626e8a1bd126e234c0e5061e3b46f3a27c2065fdfa228fd8cf00d3c7fa2c05fafb5cec36acce7bfce4914bfd7db0b2a27ee15decf2d8c4caad630f62d44ec9")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
-
-    # Apply security patches
-    patch -Np1 -i "${WORKDIR}/ced7f68.patch"
-    patch -Np1 -i "${WORKDIR}/2e7931c.patch"
 
     ./configure --prefix=/usr                               \
                 --disable-thorough-tests                    \

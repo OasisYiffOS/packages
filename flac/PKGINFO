@@ -1,6 +1,6 @@
 {
     "name": "flac",
-    "version": "1.3.3",
+    "version": "1.3.4",
     "epoch": 0,
     "description": "The free lossless audio codec.",
     "groups": [],
