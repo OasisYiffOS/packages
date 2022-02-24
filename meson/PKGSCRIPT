@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="meson"
-VERSION="0.61.1"
+VERSION="0.61.2"
 EPOCH=0
 DESC="Build system meant to be both extremely fast and extremely easy to use"
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://github.com/mesonbuild/meson/releases/download/${VERSION}/meson-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("6c9fabd6f70c276f6daa4bab14de148692d4ab55da964143b73a4e3197ad84c0074d64b729d4492a0c1e0fbea116fa82bd349ed22cb8f53981d492b515e2fb00")
+SUM=("0cbc686b23a4d0b74e723a97869898c1e44977ee354ed9186ccac3e527c00b7407f62a15435cb9588e9d63f4e87de54da0a7fac5b251079d1a13851f17d61529")
 
 # Prepare script
 function prepare() {
