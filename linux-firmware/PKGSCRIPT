@@ -17,7 +17,7 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20220209.tar.gz")
+SRC=("https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
 SUM=("f96af6be24ebcac6547abaaa3b2bbf32597481fad8e67356d97be46b9910a86aec6cbdf2245ba3c5ee1e13a98dfbdb68d2a465be8b30798b99e7c77004d1fe41")
