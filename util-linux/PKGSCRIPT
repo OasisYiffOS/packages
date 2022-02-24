@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="util-linux"
-VERSION="2.37.3"
+VERSION="2.37.4"
 _MAJOR_VERSION="2.37"
 EPOCH=0
 DESC="Miscellaneous utilities"
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://www.kernel.org/pub/linux/utils/util-linux/v${_MAJOR_VERSION}/util-linux-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("2303b5c55b1fd932c73b0a079d37e56e10b6a20270b72d0b7e81ec7a6b715b42ebaa336714c3e1722d05e5aa4499f8be17ceaf61bb1341532bf9697c9a2174e9")
+SUM=("ada2629b0a8e83ea83513e04f7b1ccceb3b8ab82acd119c5d8389d1abc48c92d0b591f39fb34b1fd65db3ab630f03a672a9f3dacf1a6e4f124bdb083fc1be6d7")
 
 # Prepare script
 function prepare() {
