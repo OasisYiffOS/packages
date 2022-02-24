@@ -3,13 +3,13 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="btrfs-progs"
-VERSION="5.16"
+VERSION="5.16.2"
 EPOCH=0
 DESC="Utilities for the Btrfs filesystem"
 GRPS=()
 URL="https://btrfs.rtfd.io/"
 LICENSES=("GPL-2.0")
-DEPENDS=("lzo" "glibc" "libgcrypt" "util-linux" "zlib" "zstd")
+DEPENDS=("lzo" "glibc" "libgcrypt" "util-linux" "zlib" "zstd" "e2fsprogs")
 OPT_DEPENDS=()
 MK_DEPENDS=()
 PROVIDES=("btrfs-progs")
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://www.kernel.org/pub/linux/kernel/people/kdave/btrfs-progs/btrfs-progs-v${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("3ba557134b19f1abb6c63bf3e2092852f92e988677c4bcf9421c824824b87565ae5cc0e5bca0370be81766a8c8fbda21dfb443dcd159f705f31e70b6bf19aa63")
+SUM=("c89a763e8b099e0e9d04ff239dfee156a15fc783c515bbd48597f5645f720c377dbb4f2dfe9065971a65d3ade9d8fcb24cf37d527811bf4204153a06f7c8c3a7")
 
 # Prepare script
 function prepare() {
