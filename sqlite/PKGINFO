@@ -1,6 +1,6 @@
 {
     "name": "sqlite",
-    "version": "3.37.2",
+    "version": "3.38.0",
     "epoch": 0,
     "description": "SQLite is an in-core database engine in C",
     "groups": [],
@@ -10,7 +10,7 @@
     "optional_depends": [],
     "make_depends": [],
     "provides": ["sqlite"],
-    "conflicts": [""],
-    "replaces": [""],
+    "conflicts": [],
+    "replaces": [],
     "maintainers": ["Evie Viau <evie@uwueviee.live>"]
 }
