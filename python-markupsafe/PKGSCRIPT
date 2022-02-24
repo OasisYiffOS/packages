@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="python-markupsafe"
-VERSION="2.0.1"
+VERSION="2.1.0"
 EPOCH=0
 DESC="Python module that implements an XML/HTML/XHTML Markup safe string"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://files.pythonhosted.org/packages/source/M/MarkupSafe/MarkupSafe-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("77249bda784111ece15d59eb3de1cbb37a58fb9f22902fe6b73fea9eb0f23857ccbe53dc55463278e3b91f78dc35e2b027fd823ca50d88d8985d5a98ce2327f1")
+SUM=("2a340f4f4cc7de0638cc32bf04f0daa8a0db579ebe7b514b296498c5c05ea0e36e164bfcce929a92bea9051e8211b6683602431dac1aaf490bc0e279dee520a6")
 
 # Prepare script
 function prepare() {

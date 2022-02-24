@@ -1,6 +1,6 @@
 {
     "name": "python-markupsafe",
-    "version": "2.0.1",
+    "version": "2.1.0",
     "epoch": 0,
     "description": "Python module that implements an XML/HTML/XHTML Markup safe string",
     "groups": [],
