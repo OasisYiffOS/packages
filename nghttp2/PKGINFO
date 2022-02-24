@@ -1,6 +1,6 @@
 {
     "name": "nghttp2",
-    "version": "1.46.0",
+    "version": "1.47.0",
     "epoch": 0,
     "description": "nghttp2 is a C library and toolkit for HTTP/2",
     "groups": [],
