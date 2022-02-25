@@ -1,0 +1,16 @@
+{
+    "name": "cursh",
+    "version": "9.10.21.2",
+    "epoch": 0,
+    "description": "the cursed shell :3",
+    "groups": [],
+    "url": "https://github.com/floppydiskette/cursh",
+    "license": ["MIT"],
+    "depends": ["readline"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["cursh"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="cursh"
+VERSION="9.10.21.2"
+_TAG_VERSION="second-vershun!!!"
+_TAR_VERSION="second-vershun-"
+EPOCH=0
+DESC="the cursed shell :3"
+GRPS=()
+URL="https://github.com/floppydiskette/cursh"
+LICENSES=("MIT")
+DEPENDS=("readline")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake")
+PROVIDES=("cursh")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/floppydiskette/cursh/archive/refs/tags/${_TAG_VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("a23fcf4b697f8c02376a18553e2fb65d6a7daf0a4aae2a2b275a73e56d2943be29c2bfd061b5e301b628d9de7f3510e9fbe24cd475b0fa1e60cd465f252e7199")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${_TAR_VERSION}"
+
+    mkdir build && cd build
+
+    cmake ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${_TAR_VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${_TAR_VERSION}/build"
+
+
+    mkdir -pv "${BUILD_DATA_ROOT}/usr/bin"
+    install -Dm 755 ./cursh -t "${BUILD_DATA_ROOT}/usr/bin"
+
+    return 0
+}   
