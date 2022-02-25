@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="libarchive"
-VERSION="3.5.2"
+VERSION="3.6.0"
 EPOCH=0
 DESC="A multi-format archive and compression library"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=("")
 SRC=("https://github.com/libarchive/libarchive/releases/download/v${VERSION}/libarchive-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("ac7c47f9ddfe5d4d5db6ca9c1bcba788af95662bf0e54ca5426fe66cd8262896e12acc426eecdf0e0d6681c180bcd37f4c4469619273607e95399c7f49b61c7c")
+SUM=("eeffec08a632cdf55d46b0f4b8261de20128163c39f63422aa5af081c9c5159a9445bca5f89ebaff984d9d5387b5c6901166949df09a2e46fe5adec31bfad0e5")
 
 # Prepare script
 function prepare() {
