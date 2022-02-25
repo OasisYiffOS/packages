@@ -25,9 +25,6 @@ SUM=("04bd38ea6fe4be31acc8c4e83de7d3dda66fb7207be2e4ba25d3b8118d13d098a283769da9
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    install  -v -m700 -d ${BUILD_DATA_ROOT}/var/lib/sshd
-    chown    -v root:sys ${BUILD_DATA_ROOT}/var/lib/sshd
-
     ./configure --prefix=/usr                            \
                 --sysconfdir=/etc/ssh                    \
                 --with-md5-passwords                     \
@@ -59,17 +56,20 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
+    install  -v -m700 -d ${BUILD_DATA_ROOT}/var/lib/sshd
+    chown    -v root:sys ${BUILD_DATA_ROOT}/var/lib/sshd
+
     DESTDIR="${BUILD_DATA_ROOT}" make install
 
     install -v -m755    contrib/ssh-copy-id ${BUILD_DATA_ROOT}/usr/bin
 
     install -v -m644    contrib/ssh-copy-id.1                   \
-                        ${BUILD_DATA_ROOT}/usr/share/man/man1
+                        ${BUILD_DATA_ROOT}/usr/share/man/man1/ssh-copy-id.1
 
-    install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/doc/openssh-8.7p1
+    install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/doc/openssh-${VERSION}
 
     install -v -m644    INSTALL LICENCE OVERVIEW README*                \
-                        ${BUILD_DATA_ROOT}/usr/share/doc/openssh-8.7p1
+                        ${BUILD_DATA_ROOT}/usr/share/doc/openssh-${VERSION}
 
     echo "UsePAM yes" >> ${BUILD_DATA_ROOT}/etc/ssh/sshd_config
 
@@ -124,7 +124,7 @@ password  include     system-password
 # End /etc/pam.d/sshd
 EOF
 
-    chmod 644 /etc/pam.d/sshd
+    chmod 644 ${BUILD_DATA_ROOT}/etc/pam.d/sshd
     
     mkdir -pv ${BUILD_DATA_ROOT}/usr/lib/systemd/system/
 
