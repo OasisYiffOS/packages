@@ -3,15 +3,15 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="cursh"
-VERSION="9.10.21.2"
-_TAG_VERSION="second-vershun!!!"
-_TAR_VERSION="second-vershun-"
+VERSION="9.10.21.3"
+_TAG_VERSION="banana"
+_TAR_VERSION="banana"
 EPOCH=0
 DESC="the cursed shell :3"
 GRPS=()
 URL="https://github.com/floppydiskette/cursh"
 LICENSES=("MIT")
-DEPENDS=("readline")
+DEPENDS=("readline" "ncurses")
 OPT_DEPENDS=()
 MK_DEPENDS=("cmake")
 PROVIDES=("cursh")
@@ -22,11 +22,14 @@ REPLACES=()
 SRC=("https://github.com/floppydiskette/cursh/archive/refs/tags/${_TAG_VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("a23fcf4b697f8c02376a18553e2fb65d6a7daf0a4aae2a2b275a73e56d2943be29c2bfd061b5e301b628d9de7f3510e9fbe24cd475b0fa1e60cd465f252e7199")
+SUM=("065a9d3bd4eaadbda23f84191f12157144939fb761ce3439eb7e6e4f6c99d257c2aaa70e00d48f38f37eb18321d02fb68b135693948d8e4b9f3623ac9bc10040")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${_TAR_VERSION}"
+
+    # Cursh's default release huild is static only so we manually remove the static flag as we don't have static ncurses or readline
+    sed -i 's/\-static//' CMakeLists.txt
 
     mkdir build && cd build
 
