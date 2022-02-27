@@ -4,7 +4,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 # Package information
 NAME="ncurses"
 VERSION="6.3"
-EPOCH=0
+EPOCH=1
 DESC="A library for text-based user interfaces"
 GRPS=()
 URL="https://invisible-island.net/ncurses/"
@@ -25,12 +25,14 @@ SUM=("5373f228cba6b7869210384a607a2d7faecfcbfef6dbfcd7c513f4e84fbd8bcad53ac7db2e
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    ./configure --prefix=/usr           \
-                --mandir=/usr/share/man \
-                --with-shared           \
-                --without-debug         \
-                --without-normal        \
-                --enable-pc-files       \
+    ./configure --prefix=/usr                               \
+                --mandir=/usr/share/man                     \
+                --with-shared                               \
+                --with-cxx-binding                          \
+                --with-cxx-shared                           \
+                --with-pkg-config-libdir=/usr/lib/pkgconfig \
+                --without-debug                             \
+                --enable-pc-files                           \
                 --enable-widec
 
     # Remove empty DESTDIR declare
@@ -60,6 +62,13 @@ function postbuild() {
         rm -vf                    ${BUILD_DATA_ROOT}/usr/lib/lib${lib}.so
         echo "INPUT(-l${lib}w)" > ${BUILD_DATA_ROOT}/usr/lib/lib${lib}.so
         ln -sfv ${lib}w.pc        ${BUILD_DATA_ROOT}/usr/lib/pkgconfig/${lib}.pc
+    done
+
+    # Link tinfo and tic to ncurses
+    for lib in tic tinfo; do
+        printf "INPUT(libncursesw.so.%s)\n"     "${VERSION:0:1}" > "${BUILD_DATA_ROOT}/usr/lib/lib${lib}.so"
+        ln -sfv libncursesw.so.${VERSION:0:1}   ${BUILD_DATA_ROOT}/usr/lib/lib${lib}.so.${VERSION:0:1}
+        ln -sfv ncursesw.pc                     ${BUILD_DATA_ROOT}/usr/lib/pkgconfig/${lib}.pc
     done
 
     # Remove static libraries not needed

@@ -1,7 +1,7 @@
 {
     "name": "ncurses",
     "version": "6.3",
-    "epoch": 0,
+    "epoch": 1,
     "description": "A library for text-based user interfaces",
     "groups": [],
     "url": "https://invisible-island.net/ncurses/",
