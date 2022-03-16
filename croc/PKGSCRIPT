@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="croc"
+VERSION="9.5.2"
+EPOCH=0
+DESC="A simple, secure, and fast way to transfer data."
+GRPS=()
+URL="https://schollz.com/blog/croc6/"
+LICENSES=("MIT")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("go")
+PROVIDES=("croc")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/schollz/croc/releases/download/v${VERSION}/croc_${VERSION}_src.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("d407379da195a0fb69b3fdd2b220e3c700d16380e495a30012628e08e5876cccb09ce3eb285285a1c4c63bfe08d0f7c3d6d64d28edc5332b0f4cd6c87b90a0f3")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Go uses other enviromenent variables for flags, set them here
+    export CGO_LDFLAGS="${LDFLAGS}"
+    export CGO_CPPFLAGS="${CPPFLAGS}"
+    export CGO_CFLAGS="${CFLAGS}"
+    export CGO_CXXFLAGS="${CXXFLAGS}"
+    export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
+
+    go build .
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # We don't use go install
+    install -Dm 755 croc -t "${BUILD_DATA_ROOT}/usr/bin"
+
+    install -Dm 644 croc.service -t "${BUILD_DATA_ROOT}/usr/lib/systemd/system"
+
+    return 0
+}

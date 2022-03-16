@@ -1,0 +1,16 @@
+{
+    "name": "croc",
+    "version": "9.5.2",
+    "epoch": 0,
+    "description": "A simple, secure, and fast way to transfer data.",
+    "groups": [],
+    "url": "https://schollz.com/blog/croc6/",
+    "license": ["MIT"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["go"],
+    "provides": ["croc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
