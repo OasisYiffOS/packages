@@ -1,6 +1,6 @@
 {
     "name": "harfbuzz",
-    "version": "3.4.0",
+    "version": "4.0.1",
     "epoch": 0,
     "description": "The HarfBuzz text shaping engine.",
     "groups": [],
