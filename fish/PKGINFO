@@ -1,6 +1,6 @@
 {
     "name": "fish",
-    "version": "3.3.1",
+    "version": "3.4.0",
     "epoch": 0,
     "description": "The friendly interactive shell",
     "groups": [],

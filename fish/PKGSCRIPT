@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="fish"
-VERSION="3.3.1"
+VERSION="3.4.0"
 EPOCH=0
 DESC="The friendly interactive shell"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://github.com/fish-shell/fish-shell/releases/download/${VERSION}/fish-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("fc50ca44fab3f2d942284d4f714150f7ccf1e49c73da36f8d4ae4a33a9b3280f98bed15848839f5d443b4274fd0ff90174bafa6a8e9a4da226dda63d7766a660")
+SUM=("463ee8d86815520c6de9777fd2b5975f06cc0842137c86cca7ae0331e95d74e755bf6f4b0bdea7e96c11371436ff9f97ce483ae026daa1e8d385f6cad8860ed4")
 
 # Prepare script
 function prepare() {
