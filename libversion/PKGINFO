@@ -1,0 +1,16 @@
+{
+    "name": "libversion",
+    "version": "3.0.1",
+    "epoch": 0,
+    "description": "Advanced version string comparison library.",
+    "groups": [],
+    "url": "https://github.com/repology/libversion",
+    "license": ["MIT"],
+    "depends": ["gcc-libs"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["libversion"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

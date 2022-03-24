@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libversion"
+VERSION="3.0.1"
+EPOCH=0
+DESC="Advanced version string comparison library."
+GRPS=()
+URL="https://github.com/repology/libversion"
+LICENSES=("MIT")
+DEPENDS=("gcc-libs")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake")
+PROVIDES=("libversion")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/repology/libversion/archive/refs/tags/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("b7b10d2d71eba53972e51cf25b32ef429f703efc83810e4f480db34216bd0dc43382a492af947f6f3da65e1a3b939c9a61fe90f9d1d3b1737a5ba7615934d5b8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cmake -B build -D CMAKE_INSTALL_PREFIX=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cmake --build build
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" cmake --install build
+
+    return 0
+}
