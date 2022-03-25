@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="ngtcp2"
+VERSION="0.2.1"
+EPOCH=0
+DESC="An effort to implement IETF QUIC protocol. Call it TCP/2. One More Time."
+GRPS=()
+URL="https://github.com/ngtcp2/ngtcp2"
+LICENSES=("MIT")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("ngtcp2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/ngtcp2/ngtcp2/releases/download/v${VERSION}/ngtcp2-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("8570f84eaa21190c2abd8140bbaa5495e06331cbc60efb42466eab218d3ac42f51810e0cf2a15bf81d16139de26728ee5009db66930e23bf6732252b7bf38737")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+            --disable-static                            \
+            --enable-lib-only                           \
+            --with-gnutls                               \
+            --docdir=/usr/share/doc/nghttp3-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
