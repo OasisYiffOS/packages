@@ -1,0 +1,16 @@
+{
+    "name": "x11-util-macros",
+    "version": "1.19.3",
+    "epoch": 0,
+    "description": "m4 macros used by Xorg packages.",
+    "groups": ["x11-dev"],
+    "url": "https://xorg.freedesktop.org/wiki/",
+    "license": ["custom"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["x11-util-macros"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

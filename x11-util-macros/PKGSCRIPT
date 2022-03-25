@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="x11-util-macros"
+VERSION="1.19.3"
+EPOCH=0
+DESC="m4 macros used by Xorg packages."
+GRPS=()
+URL="https://xorg.freedesktop.org/wiki/"
+LICENSES=("custom")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("x11-util-macros")
+CONFLICTS=()
+REPLACES=()
+GRPS=("x11-dev")
+
+# Source information
+SRC=("https://www.x.org/pub/individual/util/util-macros-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("b9c7398a912c688a782eab5b1e0f6da2df11a430775c5c98fc3269f73a665de6eeb60d300a849e38d345714a6e51f74e9334cb6039767304cca4b93d823a53a2")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/util-macros-${VERSION}"
+
+    ./configure --prefix=/usr           \
+                --sysconfdir=/etc       \
+                --localstatedir=/var    \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/util-macros-${VERSION}"
+
+    make  DESTDIR="${BUILD_DATA_ROOT}" install
+    
+    return 0
+}
