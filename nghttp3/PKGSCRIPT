@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="nghttp3"
+VERSION="0.2.0"
+EPOCH=0
+DESC="A C library for HTTP/3"
+GRPS=()
+URL="https://github.com/ngtcp2/nghttp3"
+LICENSES=("MIT")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("nghttp3")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/ngtcp2/nghttp3/releases/download/v${VERSION}/nghttp3-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("b842949b246fff15816951c320cd0dc31274ccf6092451f71cc8e7af881dae15fe7132d82ad1ffca13cad9e9207ee8c560d887424e6a94a51aa7b0659cecbdd1")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+            --disable-static                            \
+            --enable-lib-only                           \
+            --docdir=/usr/share/doc/nghttp3-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

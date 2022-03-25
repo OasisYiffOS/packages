@@ -1,0 +1,16 @@
+{
+    "name": "nghttp3",
+    "version": "0.2.0",
+    "epoch": 0,
+    "description": "A C library for HTTP/3",
+    "groups": [],
+    "url": "https://github.com/ngtcp2/nghttp3",
+    "license": ["MIT"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["nghttp3"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
