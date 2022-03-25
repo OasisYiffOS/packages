@@ -4,12 +4,12 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 # Package information
 NAME="curl"
 VERSION="7.82.0"
-EPOCH=0
-DESC="A command line tool and library for transferring data with URL syntax"
+EPOCH=1
+DESC="A command line tool and library for transferring data with URL syntax."
 GRPS=()
 URL="https://curl.se/"
 LICENSES=("MIT")
-DEPENDS=("openssl" "make-ca" "libidn2" "nghttp2")
+DEPENDS=("make-ca" "libidn2" "nghttp2" "nghttp3" "ngtcp2" "gnutls" "brotli" "zlib" "zstd")
 OPT_DEPENDS=()
 MAKE_DEPENDS=()
 PROVIDES=("curl")
@@ -37,7 +37,11 @@ function build() {
 
     ./configure --prefix=/usr               \
             --disable-static                \
-            --with-openssl                  \
+            --enable-ipv6                   \
+            --with-gnutls                   \
+            --without-openssl               \
+            --with-nghttp3                  \
+            --with-ngtcp2                   \
             --enable-threaded-resolver      \
             --with-ca-path=/etc/ssl/certs
 
@@ -55,8 +59,8 @@ function postbuild() {
     rm -rf docs/examples/.deps
     find docs \( -name Makefile\* -o -name \*.1 -o -name \*.3 \) -exec rm {} \;
 
-    install -v -d -m755 ${BUILD_DATA_ROOT}/usr/share/doc/curl-7.78.0
-    cp -v -R docs/*     ${BUILD_DATA_ROOT}/usr/share/doc/curl-7.78.0
+    install -v -d -m755 ${BUILD_DATA_ROOT}/usr/share/doc/curl-${VERSION}
+    cp -v -R docs/*     ${BUILD_DATA_ROOT}/usr/share/doc/curl-${VERSION}
 
     return 0
 }
