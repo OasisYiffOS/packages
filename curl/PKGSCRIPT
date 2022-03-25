@@ -4,7 +4,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 # Package information
 NAME="curl"
 VERSION="7.82.0"
-EPOCH=1
+EPOCH=2
 DESC="A command line tool and library for transferring data with URL syntax."
 GRPS=()
 URL="https://curl.se/"
@@ -43,7 +43,7 @@ function build() {
             --with-nghttp3                  \
             --with-ngtcp2                   \
             --enable-threaded-resolver      \
-            --with-ca-path=/etc/ssl/certs
+            --with-ca-bundle='/etc/ssl/cert.pem'
 
     make
 
