@@ -1,0 +1,16 @@
+{
+    "name": "libnl",
+    "version": "3.5.0",
+    "epoch": 0,
+    "description": "Collection of libraries providing APIs to netlink protocol based Linux kernel interfaces.",
+    "groups": [],
+    "url": "https://github.com/thom311/libnl/",
+    "license": ["LGPL-2.1"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libnl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

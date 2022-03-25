@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libnl"
+VERSION="3.5.0"
+_DOWNLOAD_VERSION="3_5_0"
+EPOCH=0
+DESC="Collection of libraries providing APIs to netlink protocol based Linux kernel interfaces."
+GRPS=()
+URL="https://github.com/thom311/libnl/"
+LICENSES=("LGPL-2.1")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("libnl")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/thom311/libnl/releases/download/libnl${_DOWNLOAD_VERSION}/libnl-${VERSION}.tar.gz"
+    "https://github.com/thom311/libnl/releases/download/libnl${_DOWNLOAD_VERSION}/libnl-doc-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("9c94c09bac34297493b3ea482713d7c0865d2839b5042e5c7d1ed008e2402ab63df35a18e272f40b2cce27d0c31dc733fe7e4b2d376e7ca847a2b0d5e90de50c"
+    "806cacbcf40df676ee9f77db1054bb5233fbd87f330fdea4aa7f60d8e1696b290fcdcee80bb407ffecfaf39f668273d9b127bb88067a1cb4f2c15e344a4baf42")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr     \
+                --sysconfdir=/etc \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mkdir -vp ${BUILD_DATA_ROOT}/usr/share/doc/libnl-${VERSION}
+    tar -xf ${WORKDIR}/libnl-doc-${VERSION}.tar.gz --strip-components=1 --no-same-owner \
+        -C  ${BUILD_DATA_ROOT}/usr/share/doc/libnl-${VERSION}
+
+    return 0
+}
