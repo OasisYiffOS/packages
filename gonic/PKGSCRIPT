@@ -26,7 +26,7 @@ SUM=("b518b42e102d834ba04d82f5e4a64f38cb6a1d6b34a025f3f76c4a571ff377c1566c6126c8
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    sed -i 's\ExecStart=/usr/local/bin/gonic -config-path /etc/gonic/config\ExecStart=/usr/bin/gonic -config-path /etc/gonic/config\g' ./contrib/gonic.service
+    sed -i 's\ExecStart=/usr/local/bin/gonic -config-path /etc/gonic/config\ExecStart=/usr/bin/gonic -config-path /var/lib/gonic/config\g' ./contrib/gonic.service
 
     return 0
 }
