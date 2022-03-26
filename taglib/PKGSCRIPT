@@ -26,7 +26,7 @@ SUM=("7e369faa5e3c6c6401052b7a19e35b0cf8c1e5ed9597053ac731a7718791d5d4803d1b18a9
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release .
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON .
 
     return 0
 }
