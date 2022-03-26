@@ -1,0 +1,16 @@
+{
+    "name": "gonic",
+    "version": "0.14.0",
+    "epoch": 0,
+    "description": "Music streaming server / subsonic server API implementation.",
+    "groups": [],
+    "url": "https://github.com/sentriz/gonic",
+    "license": ["GPL-3.0"],
+    "depends": ["taglib", "sqlite", "ffmpeg", "alsa-lib"],
+    "optional_depends": [],
+    "make_depends": ["go"],
+    "provides": ["gonic"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gonic"
+VERSION="0.14.0"
+EPOCH=0
+DESC="Music streaming server / subsonic server API implementation."
+GRPS=()
+URL="https://github.com/sentriz/gonic"
+LICENSES=("GPL-3.0")
+DEPENDS=("taglib" "sqlite" "ffmpeg" "alsa-lib")
+OPT_DEPENDS=()
+MK_DEPENDS=("go")
+PROVIDES=("gonic")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/sentriz/gonic/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("b518b42e102d834ba04d82f5e4a64f38cb6a1d6b34a025f3f76c4a571ff377c1566c6126c8de9e69440c5420a2091070713f9a6e5b4ad5ae51bb8170cacd2ba9")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    sed -i 's\ExecStart=/usr/local/bin/gonic -config-path /etc/gonic/config\ExecStart=/usr/bin/gonic -config-path /etc/gonic/config\g' ./contrib/gonic.service
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/cmd/gonic"
+
+    # Go uses other enviromenent variables for flags, set them here
+    export CGO_LDFLAGS="${LDFLAGS}"
+    export CGO_CPPFLAGS="${CPPFLAGS}"
+    export CGO_CFLAGS="${CFLAGS}"
+    export CGO_CXXFLAGS="${CXXFLAGS}"
+    export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
+
+    go build .
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    install -Dm 755 ./cmd/gonic/gonic -t "${BUILD_DATA_ROOT}/usr/bin"
+
+    install -Dm 644 ./contrib/config -t "${BUILD_DATA_ROOT}/var/lib/gonic"
+    install -Dm 644 ./contrib/gonic.service -t "${BUILD_DATA_ROOT}/usr/lib/systemd/system"
+
+    return 0
+}
