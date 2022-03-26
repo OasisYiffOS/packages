@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="taglib"
+VERSION="1.12"
+EPOCH=0
+DESC="A library for reading and editing the metadata of several popular audio formats."
+GRPS=()
+URL="https://taglib.org/"
+LICENSES=("LGPL-2.1" "MPL-1.1")
+DEPENDS=("zlib")
+MK_DEPENDS=("cmake")
+OPT_DEPENDS=()
+PROVIDES=("taglib")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://taglib.org/releases/taglib-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("7e369faa5e3c6c6401052b7a19e35b0cf8c1e5ed9597053ac731a7718791d5d4803d1b18a93e903ec8c3fc6cb92e34d9616daa2ae4d326965d4c4d5624dcdaba")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release .
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

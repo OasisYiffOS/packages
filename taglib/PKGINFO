@@ -1,0 +1,16 @@
+{
+    "name": "taglib",
+    "version": "1.12",
+    "epoch": 0,
+    "description": "A library for reading and editing the metadata of several popular audio formats.",
+    "groups": [],
+    "url": "https://taglib.org/",
+    "license": ["LGPL-2.1", "MPL-1.1"],
+    "depends": ["zlib"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["taglib"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
