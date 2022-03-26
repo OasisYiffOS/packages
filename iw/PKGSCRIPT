@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="iw"
+VERSION="5.16"
+EPOCH=0
+DESC="nl80211 based CLI configuration utility for wireless devices."
+GRPS=()
+URL="https://git.kernel.org/pub/scm/linux/kernel/git/jberg/iw.git/"
+LICENSES=("ISC")
+DEPENDS=("libnl")
+OPT_DEPENDS=()
+PROVIDES=("iw")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.kernel.org/pub/software/network/iw/iw-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("4537a7844b652b890bdafd21ff087137e04cb1b8c9c352c33ef15476c08d02fb530b7a2d920c6c581529bba6a62a9eb5460d04db8917426fb5d759033fd55408")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Install uncompressed manpages instead of compressed ones
+    sed -i "/INSTALL.*gz/s/.gz//" Makefile
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

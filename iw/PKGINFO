@@ -1,0 +1,16 @@
+{
+    "name": "iw",
+    "version": "5.16",
+    "epoch": 0,
+    "description": "nl80211 based CLI configuration utility for wireless devices.",
+    "groups": [],
+    "url": "https://git.kernel.org/pub/scm/linux/kernel/git/jberg/iw.git/",
+    "license": ["ISC"],
+    "depends": ["libnl"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["iw"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
