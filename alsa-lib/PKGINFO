@@ -1,0 +1,16 @@
+{
+    "name": "alsa-lib",
+    "version": "1.2.6.1",
+    "epoch": 0,
+    "description": "A library to interface with ALSA in the Linux kernel and virtual devices using a plugin system.",
+    "groups": [],
+    "url": "https://www.alsa-project.org",
+    "license": ["LGPL-2.1"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["alsa-lib"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

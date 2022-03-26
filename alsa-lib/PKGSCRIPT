@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="alsa-lib"
+VERSION="1.2.6.1"
+EPOCH=0
+DESC="A library to interface with ALSA in the Linux kernel and virtual devices using a plugin system."
+GRPS=()
+URL="https://www.alsa-project.org"
+LICENSES=("LGPL-2.1")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("alsa-lib")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("http://www.alsa-project.org/files/pub/lib/alsa-lib-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("70e539cf092b5d43e00e4134d8a3e184f0dc34312823e4b58a574320cbf06cb7369bc3251ecb1858033756a7a8c35d36faa8da48d49f6efe0cec905784adbd45")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
