@@ -1,0 +1,16 @@
+{
+    "name": "pixman",
+    "version": "0.40.0",
+    "epoch": 0,
+    "description": "A library that provides low-level pixel manipulation features such as image compositing and trapezoid rasterization.",
+    "groups": [],
+    "url": "https://www.cairographics.org/",
+    "license": ["MIT"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["ninja", "meson"],
+    "provides": ["pixman"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
