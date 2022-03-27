@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="python-pycairo"
+VERSION="1.21.0"
+EPOCH=0
+DESC="A Python 3 module providing bindings for the Cairo graphics library."
+GRPS=()
+URL="https://pycairo.readthedocs.io/en/latest/"
+LICENSES=("LGPL-2.1" "MPL-1.1")
+DEPENDS=("cairo" "python")
+OPT_DEPENDS=()
+MK_DEPENDS=("ninja" "meson")
+PROVIDES=("python-pycairo")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/pygobject/pycairo/releases/download/v${VERSION}/pycairo-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("0de226b05d0a358f3546e4a0d5bf342f124373718d4900c891a09c1ede11e3ed1fb9bee163c00acfc215044683ddf0b29c8573b7454f9c39f957a47d63c34baf")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/pycairo-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/pycairo-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/pycairo-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
