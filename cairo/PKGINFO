@@ -1,0 +1,16 @@
+{
+    "name": "cairo",
+    "version": "1.17.6",
+    "epoch": 0,
+    "description": "Cairo is a 2D graphics library with support for multiple output devices.",
+    "groups": [],
+    "url": "https://www.cairographics.org/",
+    "license": ["LGPL-2.1", "MPL-1.1"],
+    "depends": ["glibc", "libpng", "pixman", "fontconfig", "glib2", "libxml2", "lzo"],
+    "optional_depends": [],
+    "make_depends": ["binutils"],
+    "provides": ["cairo"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
