@@ -1,0 +1,16 @@
+{
+    "name": "dhclient",
+    "version": "4.4.3",
+    "epoch": 0,
+    "description": "A DHCP client from the ISC DHCP project.",
+    "groups": [],
+    "url": "https://www.isc.org/dhcp/",
+    "license": ["MPL-2.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["dhclient"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

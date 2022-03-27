@@ -1,0 +1,63 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="dhclient"
+VERSION="4.4.3"
+EPOCH=0
+DESC="A DHCP client from the ISC DHCP project."
+GRPS=()
+URL="https://www.isc.org/dhcp/"
+LICENSES=("MPL-2.0")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("dhclient")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.isc.org/isc/dhcp/${VERSION}/dhcp-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("4472d6794af80b482560956cee6895889cc1aca39980f851faf56824627e95731f2983cf7c7454bc3decb0a12c874fcbd29bd6c5a9695412def6bc14c6df17e0")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/dhcp-${VERSION}"
+
+    ( export CFLAGS="${CFLAGS:--g -O2} -Wall -fno-strict-aliasing                   \
+            -D_PATH_DHCLIENT_SCRIPT='\"/usr/sbin/dhclient-script\"'                 \
+            -D_PATH_DHCPD_CONF='\"/etc/dhcp/dhcpd.conf\"'                           \
+            -D_PATH_DHCLIENT_CONF='\"/etc/dhcp/dhclient.conf\"'"        &&
+
+    ./configure --prefix=/usr                                                       \
+                --sysconfdir=/etc/dhcp                                              \
+                --localstatedir=/var                                                \
+                --with-srv-lease-file=/var/lib/dhcpd/dhcpd.leases                   \
+                --with-srv6-lease-file=/var/lib/dhcpd/dhcpd6.leases                 \
+                --with-cli-lease-file=/var/lib/dhclient/dhclient.leases             \
+                --with-cli6-lease-file=/var/lib/dhclient/dhclient6.leases
+    )
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/dhcp-${VERSION}"
+
+    make -j1
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/dhcp-${VERSION}"
+
+    # Only install the sclient
+    DESTDIR="${BUILD_DATA_ROOT}" make -C client install
+    install -v -m755 client/scripts/linux ${BUILD_DATA_ROOT}/usr/sbin/dhclient-script
+
+    return 0
+}
