@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://gi.readthedocs.io/en/latest/",
     "license": ["GPL-2.0-or-later", "LGPL-2.0-or-later", "MIT"],
-    "depends": ["glib", "cairo"],
+    "depends": ["glib2", "cairo"],
     "optional_depends": [],
     "make_depends": ["ninja", "meson"],
     "provides": ["gobject-introspection"],
