@@ -1,0 +1,16 @@
+{
+    "name": "newt",
+    "version": "0.52.21",
+    "epoch": 0,
+    "description": "A rogramming library for color text mode, widget based user interfaces.",
+    "groups": [],
+    "url": "https://pagure.io/newt",
+    "license": ["GPL-2.0"],
+    "depends": ["popt", "slang"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["newt"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
