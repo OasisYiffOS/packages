@@ -1,0 +1,16 @@
+{
+    "name": "wpa_supplicant",
+    "version": "2.10",
+    "epoch": 0,
+    "description": "A WPA Supplicant for nl80211 devices.",
+    "groups": [],
+    "url": "https://w1.fi/wpa_supplicant/",
+    "license": ["BSD-3-Clause"],
+    "depends": ["libnl", "libxml2", "dbus"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["wpa_supplicant"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
