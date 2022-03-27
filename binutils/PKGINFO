@@ -1,6 +1,6 @@
 {
     "name": "binutils",
-    "version": "2.37",
+    "version": "2.38",
     "epoch": 0,
     "description": "A collection of binary tools, including an assembler, linker, and binary utilities.",
     "groups": ["devel"],
@@ -8,7 +8,7 @@
     "license": ["GPL"],
     "depends": ["zlib", "elfutils"],
     "optional_depends": [],
-    "make_depends": ["dejagnu"],
+    "make_depends": ["dejagnu", "texinfo"],
     "provides": ["binutils"],
     "conflicts": [],
     "replaces": [],

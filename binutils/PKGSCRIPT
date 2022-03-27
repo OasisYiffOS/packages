@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="binutils"
-VERSION="2.37"
+VERSION="2.38"
 EPOCH=0
 DESC="A collection of binary tools, including an assembler, linker, and binary utilities."
 GRPS=("devel")
@@ -11,18 +11,18 @@ URL="https://www.gnu.org/software/binutils/"
 LICENSES=("GPL")
 DEPENDS=("zlib" "elfutils")
 OPT_DEPENDS=()
-MK_DEPENDS=("dejagnu")
+MK_DEPENDS=("dejagnu" "texinfo")
 PROVIDES=("binutils")
 CONFLICTS=()
 REPLACES=()
 
 # Source information
 SRC=("https://ftp.gnu.org/gnu/binutils/binutils-${VERSION}.tar.xz"
-"https://gitlab.com/yiffos/core/patches/-/raw/main/binutils/binutils-2.37-upstream_fix-1.patch")
+"https://www.linuxfromscratch.org/patches/lfs/development/binutils-2.38-lto_fix-1.patch")
 
 SUM_TYPE="sha512"
-SUM=("5c11aeef6935860a6819ed3a3c93371f052e52b4bdc5033da36037c1544d013b7f12cb8d561ec954fe7469a68f1b66f1a3cd53d5a3af7293635a90d69edd15e7"
-"7b01ccef5bfc0ffbcf6c4ae3265ffdac33e73c35033996cdd5560ed3fbe1c430d59c5138e14a673aff4e6062d516255738834dc143f78221c8860478a570c64a")
+SUM=("8bf0b0d193c9c010e0518ee2b2e5a830898af206510992483b427477ed178396cd210235e85fd7bd99a96fc6d5eedbeccbd48317a10f752b7336ada8b2bb826d"
+"71ffe517119e217ef0ec827d74a289f901b4c8a5ca220942204e0733176289adc44412c1f85b31eb5103b8881c74518137bf3686d5e48c42a5368f9255385d31")
 
 # Prepare script
 function prepare() {
@@ -40,7 +40,11 @@ function prepare() {
     $(expect -c "spawn ls" | grep -q "spawn ls") || exit
 
     # Apply a patch from upstream to fix an issue with building some packages
-    patch -Np1 -i "${WORKDIR}/binutils-2.37-upstream_fix-1.patch"
+    patch -Np1 -i "${WORKDIR}/binutils-2.38-lto_fix-1.patch"
+
+    # Fix issue identified upstream when building some packages
+    sed -e '/R_386_TLS_LE /i \   || (TYPE) == R_386_TLS_IE \\' \
+        -i ./bfd/elfxx-x86.h
 
     # Ensure the man pages will be regenerated correctly
     sed -i '63d' etc/texi2pod.pl
@@ -61,6 +65,7 @@ function prepare() {
                  --enable-lto                                       \
                  --disable-werror                                   \
                  --enable-64-bit-bfd                                \
+                 --enable-install-libiberty                         \
                  --with-system-zlib
 
     return 0
@@ -85,6 +90,8 @@ function postbuild() {
     DESTDIR="${BUILD_DATA_ROOT}" make tooldir=/usr install -j1
 
     rm -fv ${BUILD_DATA_ROOT}/usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes}.a
+
+    install -m644 libiberty/pic/libiberty.a "${BUILD_DATA_ROOT}/usr/lib"
 
     return 0
 }
