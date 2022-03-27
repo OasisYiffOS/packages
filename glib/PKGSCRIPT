@@ -1,0 +1,64 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="glib2"
+VERSION="2.72.0"
+_MAJOR_VERSION="2.72"
+EPOCH=0
+DESC="Low-level core library that forms the basis for projects such as GTK+ and GNOME."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/glib"
+LICENSES=("LGPL-2.1")
+DEPENDS=("libffi" "util-linux" "libxslt" "pcre" "dbus" "zlib")
+OPT_DEPENDS=()
+PROVIDES=("glib2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/glib/${_MAJOR_VERSION}/glib-${VERSION}.tar.xz"
+"https://www.linuxfromscratch.org/patches/blfs/svn/glib-2.72.0-skip_warnings-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("351ff025d26348112584bed2c1052427150a8a2f8642c813dae1583fb105184528ad20e264cdf44bbca658a26c280e36acd0e642add112d29edc1b25dfc94fad"
+"0f41e9b57606e430977c765af9ea78b1f7f79f69b108731c45a800e3b5f6046e4e162ebfdd297cc330a3647e21fa7c7ac7f57d0488c1d91b5cc46f3efd6cb5a7")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/glib-${VERSION}"
+
+    # Patch that allows users to select the log warning level with variable GLIB_LOG_LEVEL
+    patch -Np1 -i ${WORKDIR}/glib-2.72.0-skip_warnings-1.patch
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr       \
+          --buildtype=release \
+          -Dman=false         \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/glib-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/glib-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    mkdir -p ${BUILD_DATA_ROOT}/usr/share/doc/glib-${VERSION}
+    cp -r ../docs/reference/{gio,glib,gobject} ${BUILD_DATA_ROOT}/usr/share/doc/glib-${VERSION}
+
+    return 0
+}
