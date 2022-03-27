@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libndp"
+VERSION="1.8"
+EPOCH=0
+DESC="Library for the IPv6 Neighbor Discovery Protocol."
+GRPS=()
+URL="http://libndp.org/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+PROVIDES=("libndp")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("http://libndp.org/files/libndp-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("bce17095f01eb9df6601a2ff0597b0373f4b0005b1edac8c085e4c9d54f9cd18f08faf1604624e0e0992be66fa6f22a71106af46bc73c9e326663c7cf0c5a7fd")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr        \
+                --sysconfdir=/etc    \
+                --localstatedir=/var \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

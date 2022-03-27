@@ -1,0 +1,16 @@
+{
+    "name": "libndp",
+    "version": "1.8",
+    "epoch": 0,
+    "description": "Library for the IPv6 Neighbor Discovery Protocol.",
+    "groups": [],
+    "url": "http://libndp.org/",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libndp"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
