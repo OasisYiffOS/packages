@@ -1,0 +1,16 @@
+{
+    "name": "networkmanager",
+    "version": "1.36.4",
+    "epoch": 0,
+    "description": "Networking that Just Works — A network management daemon.",
+    "groups": [],
+    "url": "https://gitlab.freedesktop.org/NetworkManager/NetworkManager",
+    "license": ["LGPL-2.1"],
+    "depends": ["jansson", "libndp", "curl", "dhclient", "iptables", "newt", "wpa_supplicant", "gnutls", "systemd", "nss", "gobject-introspection", "python-pycairo", "python-pygobject"],
+    "optional_depends": [],
+    "make_depends": ["ninja", "meson", "intltool", "libxslt"],
+    "provides": ["networkmanager"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
