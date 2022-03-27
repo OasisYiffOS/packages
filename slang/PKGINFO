@@ -1,0 +1,16 @@
+{
+    "name": "slang",
+    "version": "2.3.2",
+    "epoch": 0,
+    "description": "A programmer's library that includes an array-based scripting language with a C-like syntax.",
+    "groups": [],
+    "url": "https://www.jedsoft.org/slang/",
+    "license": ["GPL-2.0"],
+    "depends": ["libpng", "pcre"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["slang"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

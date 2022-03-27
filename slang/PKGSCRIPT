@@ -1,0 +1,77 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="slang"
+VERSION="2.3.2"
+_MAJOR="2"
+EPOCH=0
+DESC="A programmer's library that includes an array-based scripting language with a C-like syntax."
+GRPS=()
+URL="https://www.jedsoft.org/slang/"
+LICENSES=("GPL-2.0")
+DEPENDS=("libpng" "pcre")
+OPT_DEPENDS=()
+PROVIDES=("slang")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.jedsoft.org/releases/slang/slang-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("35cdfe8af66dac62ee89cca60fa87ddbd02cae63b30d5c0e3786e77b1893c45697ace4ac7e82d9832b8a9ac342560bc35997674846c5022341481013e76f74b5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr       \
+                --sysconfdir=/etc   \
+                --with-readline=gnu
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make -j1
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # /usr/bin
+    install -Dm 755 slsh/objs/slsh_exe -t "${BUILD_DATA_ROOT}/usr/bin/"
+    mv "${BUILD_DATA_ROOT}/usr/bin/slsh_exe" "${BUILD_DATA_ROOT}/usr/bin/slsh"
+    chmod +x "${BUILD_DATA_ROOT}/usr/bin/slsh"
+
+    # /usr/lib
+    install -Dm 755 src/elfobjs/libslang.so.${VERSION} -t "${BUILD_DATA_ROOT}/usr/lib/"
+    ln -sf libslang.so.${VERSION} ${BUILD_DATA_ROOT}/usr/lib/libslang.so.${_MAJOR}
+    ln -sf libslang.so.${VERSION} ${BUILD_DATA_ROOT}/usr/lib/libslang.so
+
+    install -Dm 755 modules/objs/*-module.so -t "${BUILD_DATA_ROOT}/usr/lib/slang/v${_MAJOR}/modules/"
+
+    install -Dm 755 slang.pc -t "${BUILD_DATA_ROOT}/usr/lib/pkgconfig/"
+
+    # /usr/include
+    install -Dm 755 src/slang.h -t "${BUILD_DATA_ROOT}/usr/include/"
+    install -Dm 755 src/slcurses.h -t "${BUILD_DATA_ROOT}/usr/include/"
+
+    # /usr/share
+    install -Dm 755 doc/text/*.txt -t "${BUILD_DATA_ROOT}/usr/share/doc/slang-${VERSION}/"
+    install -Dm 755 slsh/doc/html/*.html -t "${BUILD_DATA_ROOT}/usr/share/doc/slang-${VERSION}/slsh"
+
+    # /etc
+    install -Dm 755 slsh/etc/slsh.rc -t "${BUILD_DATA_ROOT}/etc/"
+
+    return 0
+}
