@@ -1,0 +1,16 @@
+{
+    "name": "python-pygobject",
+    "version": "3.42.0",
+    "epoch": 0,
+    "description": "A Python 3 module providing Python bindings to the GObject class from GLib.",
+    "groups": [],
+    "url": "https://pygobject.readthedocs.io/en/latest/",
+    "license": ["LGPL-2.1"],
+    "depends": ["python-pycairo", "python", "gobject-introspection"],
+    "optional_depends": [],
+    "make_depends": ["ninja", "meson"],
+    "provides": ["python-pygobject"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

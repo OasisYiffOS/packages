@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="python-pygobject"
+VERSION="3.42.0"
+_MAJOR_VERSION="3.42"
+EPOCH=0
+DESC="A Python 3 module providing Python bindings to the GObject class from GLib."
+GRPS=()
+URL="https://pygobject.readthedocs.io/en/latest/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("python-pycairo" "python" "gobject-introspection")
+OPT_DEPENDS=()
+MK_DEPENDS=("ninja" "meson")
+PROVIDES=("python-pygobject")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/pygobject/${_MAJOR_VERSION}/pygobject-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("2f3e9187cb8dd7ccbf139a58ea348732fc7cb95dbf4bee2ba8f78003a7540d90c0b29153d93f50bf613c2d43f0de0ec8971c61c358d48552e42ce17775a178dd")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/pygobject-${VERSION}"
+
+    # Remove fault test
+    mv -v tests/test_gdbus.py{,.nouse}
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/pygobject-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/pygobject-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
