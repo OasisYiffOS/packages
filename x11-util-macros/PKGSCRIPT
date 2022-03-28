@@ -6,7 +6,7 @@ NAME="x11-util-macros"
 VERSION="1.19.3"
 EPOCH=0
 DESC="m4 macros used by Xorg packages."
-GRPS=()
+GRPS=("x11-devel")
 URL="https://xorg.freedesktop.org/wiki/"
 LICENSES=("custom")
 DEPENDS=()
@@ -14,7 +14,6 @@ OPT_DEPENDS=()
 PROVIDES=("x11-util-macros")
 CONFLICTS=()
 REPLACES=()
-GRPS=("x11-dev")
 
 # Source information
 SRC=("https://www.x.org/pub/individual/util/util-macros-${VERSION}.tar.bz2")

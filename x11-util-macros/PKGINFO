@@ -3,7 +3,7 @@
     "version": "1.19.3",
     "epoch": 0,
     "description": "m4 macros used by Xorg packages.",
-    "groups": ["x11-dev"],
+    "groups": ["x11-devel"],
     "url": "https://xorg.freedesktop.org/wiki/",
     "license": ["custom"],
     "depends": [],
