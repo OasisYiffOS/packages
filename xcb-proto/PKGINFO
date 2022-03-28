@@ -1,0 +1,16 @@
+{
+    "name": "xcb-proto",
+    "version": "1.14.1",
+    "epoch": 0,
+    "description": "The XML-XCB protocol descriptions that libxcb uses to generate the majority of its code and API.",
+    "groups": ["x11-devel"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": ["libxml2"],
+    "provides": ["xcb-proto"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

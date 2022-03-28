@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xcb-proto"
+VERSION="1.14.1"
+EPOCH=0
+DESC="The XML-XCB protocol descriptions that libxcb uses to generate the majority of its code and API."
+GRPS=("x11-devel")
+URL="https://www.x.org/"
+LICENSES=("custom")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("libxml2")
+PROVIDES=("xcb-proto")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://xorg.freedesktop.org/archive/individual/proto/xcb-proto-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("140fbf48483bacc7f6b70fdcf76f9e4ff0e87df9cb3a071cea47d8fe4574407cdefcfbd674099014d297e5fc010748e71d8609fca4cc32e8b25c634f928b727d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Ensure python3 is used
+    PYTHON=python3  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
