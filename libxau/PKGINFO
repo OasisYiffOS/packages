@@ -1,0 +1,16 @@
+{
+    "name": "libxau",
+    "version": "1.0.9",
+    "epoch": 0,
+    "description": "A library implementing the X11 Authorization Protocol. This is useful for restricting client access to the display.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["xorgproto"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxau"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
