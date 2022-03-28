@@ -1,0 +1,16 @@
+{
+    "name": "libxcb",
+    "version": "1.14",
+    "epoch": 0,
+    "description": "An interface to the X Window System protocol, which replaces the current Xlib interface.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["libxau", "libxdmcp"],
+    "optional_depends": [],
+    "make_depends": ["libxslt", "xcb-proto"],
+    "provides": ["libxcb"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libxcb"
+VERSION="1.14"
+EPOCH=0
+DESC="An interface to the X Window System protocol, which replaces the current Xlib interface."
+GRPS=("x11")
+URL="https://www.x.org/"
+LICENSES=("custom")
+DEPENDS=("libxau" "libxdmcp")
+OPT_DEPENDS=()
+MK_DEPENDS=("libxslt" "xcb-proto")
+PROVIDES=("libxcb")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://xorg.freedesktop.org/archive/individual/lib/libxcb-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("b90a23204b0d2c29d8b115577edb01df0465e02d6a8876550fecd62375d24a5d5f872ddd5946772ddba077cadce75b12c7a6d218469dc30b5b92bc82188e8bc6")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fixes an issue with building using GCC 10+
+    CFLAGS="${CFLAGS:--O2 -g} -Wno-error=format-extra-args"                             \
+    PYTHON=python3                                                                      \
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static   \
+                --without-doxygen                                                       \
+                --docdir=/usr/share/doc/libxcb-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
