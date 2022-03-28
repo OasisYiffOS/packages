@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xorgproto"
+VERSION="2021.5"
+EPOCH=0
+DESC="Header files required to build the X Window system and related applications."
+GRPS=("x11-devel")
+URL="https://xorg.freedesktop.org/"
+LICENSES=("custom")
+DEPENDS=("x11-util-macros" "libxslt")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("xorgproto")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://xorg.freedesktop.org/archive/individual/proto/xorgproto-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("0f5c4ee4fd56cd46f4d5850bcf3e04c92d2e98de54d0113987cb49fc83cf1f4d0e50e976333179c72fe2178cfa15ec6c1bfc4e76fc3bc2a4be80616ce079da87")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr -Dlegacy=true ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    mv -v ${BUILD_DATA_ROOT}/usr/share/doc/xorgproto{,-${VERSION}}
+
+    return 0
+}

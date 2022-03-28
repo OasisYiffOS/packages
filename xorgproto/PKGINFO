@@ -1,0 +1,16 @@
+{
+    "name": "xorgproto",
+    "version": "2021.5",
+    "epoch": 0,
+    "description": "Header files required to build the X Window system and related applications.",
+    "groups": ["x11-devel"],
+    "url": "https://xorg.freedesktop.org/",
+    "license": ["custom"],
+    "depends": ["x11-util-macros", "libxslt"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["xorgproto"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
