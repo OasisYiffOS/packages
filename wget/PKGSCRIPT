@@ -25,9 +25,6 @@ SUM=("59be98a43057220f4eb4314d0876990c21bbc2606a82444e03282ca55d6de18a382fb75b3f
 function prepare() {
     cd "${WORKDIR}/${NAME}2-${VERSION}"
 
-    # Fix PAC-152 (https://yiffos.atlassian.net/browse/PAC-152)
-    patch -Np1 -i ${WORKDIR}069b4dbde7c967875911891f0a4ec83bf8f7b19c.diff
-
     ./configure --prefix=/usr      \
                 --sysconfdir=/etc
 
