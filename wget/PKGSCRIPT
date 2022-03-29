@@ -4,12 +4,12 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 # Package information
 NAME="wget"
 VERSION="2.0.0"
-EPOCH=0
+EPOCH=1
 DESC="Non-interactive network downloader"
 GRPS=()
 URL="https://www.gnu.org/software/wget/"
 LICENSES=("GPL-3.0")
-DEPENDS=("make-ca" "bzip2" "openssl" "libidn2" "nghttp2" "pcre2" "xz" "zlib" "zstd")
+DEPENDS=("make-ca" "bzip2" "gnutls" "libidn2" "nghttp2" "pcre2" "xz" "zlib" "zstd")
 OPT_DEPENDS=()
 PROVIDES=("wget")
 CONFLICTS=()
@@ -25,9 +25,11 @@ SUM=("59be98a43057220f4eb4314d0876990c21bbc2606a82444e03282ca55d6de18a382fb75b3f
 function prepare() {
     cd "${WORKDIR}/${NAME}2-${VERSION}"
 
+    # Fix PAC-152 (https://yiffos.atlassian.net/browse/PAC-152)
+    patch -Np1 -i ${WORKDIR}069b4dbde7c967875911891f0a4ec83bf8f7b19c.diff
+
     ./configure --prefix=/usr      \
-                --sysconfdir=/etc  \
-                --with-ssl=openssl
+                --sysconfdir=/etc
 
     return 0
 }
