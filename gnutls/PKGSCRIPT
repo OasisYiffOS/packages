@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="gnutls"
-VERSION="3.7.3"
+VERSION="3.7.4"
 _MAJOR_VERSION="3.7"
 EPOCH=0
 DESC="Secure communications library implementing the SSL, TLS and DTLS protocols"
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://www.gnupg.org/ftp/gcrypt/gnutls/v${_MAJOR_VERSION}/gnutls-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("3ace744affe23e284342658d6d2d2de49dd50065489cbc8be18fc7d38187253e5268ca54027ce5cd517056c249ac039a7481e4548cec04325de37ae85617d077")
+SUM=("38b488ca1223d9aa8fc25756df08db6f29aaf76fb5816fdeaa14bd89fb431a2e1c495fefc64094f726337d5b89e198146ec7dc22e9a1bca6841a9d881b0d99e6")
 
 # Prepare script
 function prepare() {
@@ -31,6 +31,7 @@ function prepare() {
                 --disable-guile                             \
                 --disable-rpath                             \
                 --with-default-trust-store-pkcs11="pkcs11:" \
+                --with-idn                                  \
                 --enable-openssl-compatibility
 
     return 0
