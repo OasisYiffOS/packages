@@ -1,0 +1,44 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="genfstab"
+VERSION="2.0"
+EPOCH=0
+DESC="A standalone version of the genfstab tool found in Arch Linux's install scripts."
+GRPS=()
+URL="https://github.com/glacion/genfstab"
+LICENSES=("GPL-3.0")
+DEPENDS=("bash")
+OPT_DEPENDS=()
+PROVIDES=("genfstab")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/glacion/genfstab/releases/download/${VERSION}/genfstab")
+
+SUM_TYPE="sha512"
+SUM=("265c76ac6ad9fdee9ce6ddf3088c7feff0def9eaaa50c18c5feef787912ba0e75309303669fd74005b5f1c2e2b3e0abbb753d9079d1587751c27783ee6b9214f")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/"
+
+    mkdir -p "${BUILD_DATA_ROOT}/usr/bin"
+    cp "genfstab" "${BUILD_DATA_ROOT}/usr/bin/genfstab"
+
+    chmod +x "${BUILD_DATA_ROOT}/usr/bin/genfstab"
+
+    return 0
+}
