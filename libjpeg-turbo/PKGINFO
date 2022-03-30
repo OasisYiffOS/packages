@@ -1,0 +1,16 @@
+{
+    "name": "libjpeg-turbo",
+    "version": "2.1.3",
+    "epoch": 0,
+    "description": "A MMX/SSE2/SIMD accelerated library for manipulating JPEG image files.",
+    "groups": [],
+    "url": "https://sourceforge.net/projects/libjpeg-turbo/",
+    "license": ["IJG"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["cmake", "nasm"],
+    "provides": ["libjpeg-turbo", "libjpeg"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
