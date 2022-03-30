@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="wayland-protocols"
+VERSION="1.25"
+EPOCH=0
+DESC="Additional Wayland protocols that add functionality outside of protocols already in the Wayland core."
+GRPS=("wayland")
+URL="https://wayland.freedesktop.org"
+LICENSES=("MIT")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("ninja" "meson" "wayland")
+PROVIDES=("wayland-protocols")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://wayland.freedesktop.org/releases/wayland-protocols-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("8269694a0780e4d32f1982ff4cbb50b1ef85f08157b9486bc6d7e489c64665a9d9f959121d0eede7c7b108a604d974b64d74cfdef8b5f14304465309afb0768f")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
