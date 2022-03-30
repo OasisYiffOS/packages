@@ -1,0 +1,16 @@
+{
+    "name": "libwebp",
+    "version": "1.2.2",
+    "epoch": 0,
+    "description": "A library and support programs to encode and decode images in WebP format.",
+    "groups": [],
+    "url": "https://developers.google.com/speed/webp/",
+    "license": ["BSD"],
+    "depends": ["glibc", "libjpeg-turbo", "libpng"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libwebp"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
