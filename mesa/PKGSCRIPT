@@ -1,0 +1,69 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="mesa"
+VERSION="22.0.1"
+EPOCH=0
+DESC="An open-source implementation of the OpenGL/CL/MAX and Vulkan specifications."
+GRPS=()
+URL="https://www.mesa3d.org"
+LICENSES=("custom")
+DEPENDS=("glibc" "gcc-libs" "libdrm" "libelf" "expat" "libxshmfence" "libxxf86vm" "libgcrypt" "nettle" "llvm")
+OPT_DEPENDS=()
+MK_DEPENDS=("python-mako" "libxml2" "zstd" "meson" "ninja")
+PROVIDES=("mesa")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("ftp://ftp.freedesktop.org/pub/mesa/mesa-${VERSION}.tar.xz"
+"https://www.linuxfromscratch.org/patches/blfs/svn/mesa-21.3.7-nouveau_fixes-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("cc8012b8f3fcbecfbb153d0e009e6522c3776023501da8499c06f1eaa9ab0a555ca597e16e4d7a2b954b05c8c0737ae6567e0d8549fb63aa86ae587eb31cd01e"
+"aa0855251a1869330960acc9e3e3c7f14b002d93e45a4f650d5c8569ff260cfb7b7c9e56916f395339c9ffb14fb24d45480d2f577da4de286296fa06b2825f1c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build 
+
+    GALLIUM_DRV="r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,d3d12,i915"
+
+    meson --prefix=/usr                     \
+          --buildtype=release               \
+          -Dgallium-drivers=$GALLIUM_DRV    \
+          -Dgallium-nine=true               \
+          -Dglx=dri                         \
+          -Dvalgrind=disabled               \
+          -Dlibunwind=disabled              \
+          ..
+
+    unset GALLIUM_DRV DRI_DRIVERS
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    install -v -dm755 ${BUILD_DATA_ROOT}/usr/share/doc/mesa-${VERSION}
+    cp -rfv ../docs/* ${BUILD_DATA_ROOT}/usr/share/doc/mesa-${VERSION}
+
+    return 0
+}
