@@ -1,0 +1,16 @@
+{
+    "name": "xkeyboard-config",
+    "version": "2.35.1",
+    "epoch": 0,
+    "description": "The keyboard configuration database for the X Window System.",
+    "groups": [],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["xkeyboard-config"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

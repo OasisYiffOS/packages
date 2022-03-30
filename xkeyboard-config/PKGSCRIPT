@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xkeyboard-config"
+VERSION="2.35.1"
+EPOCH=0
+DESC="The keyboard configuration database for the X Window System."
+GRPS=()
+URL="https://www.x.org/"
+LICENSES=("custom")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("xkeyboard-config")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.x.org/pub/individual/data/xkeyboard-config/xkeyboard-config-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("0c62246aa45c9cb883979cc32ba01a6ebf1c3e40673603ddd304a46f1583b997b17ade708849102285f01fe0caafb35abf9c7686ef8be49f4f2b521e03418f94")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Force create a symlink
+    sed -i -E 's/(ln -s)/\1f/' rules/meson.build
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
