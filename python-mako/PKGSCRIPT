@@ -1,0 +1,41 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="python-mako"
+VERSION="1.2.0"
+EPOCH=0
+DESC="A template library written in Python."
+GRPS=()
+URL="https://www.makotemplates.org"
+LICENSES=("MIT")
+DEPENDS=("python-markupsafe")
+OPT_DEPENDS=()
+PROVIDES=("python-mako")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://files.pythonhosted.org/packages/source/M/Mako/Mako-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ad608016d7785a735a28ea18f697be4882da747e3da32e4a7c7be4bf846d37e4d3374d78e62ef85607ae9f3f73ee35dc78b473347e4110c059a504be2c497c6e")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/Mako-${VERSION}"
+
+    python3 setup.py install --root="${BUILD_DATA_ROOT}" --optimize=1
+
+    return 0
+}

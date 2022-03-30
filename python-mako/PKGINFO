@@ -1,0 +1,16 @@
+{
+    "name": "python-mako",
+    "version": "1.2.0",
+    "epoch": 0,
+    "description": "A template library written in Python.",
+    "groups": [],
+    "url": "https://www.makotemplates.org",
+    "license": ["MIT"],
+    "depends": ["python-markupsafe"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-mako"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
