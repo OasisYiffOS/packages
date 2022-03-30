@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libwacom"
+VERSION="2.2.0"
+EPOCH=0
+DESC="A library used to identify wacom tablets and their model-specific features."
+GRPS=()
+URL="https://github.com/linuxwacom/libwacom/"
+LICENSES=("MIT")
+DEPENDS=("glib2" "libgudev" "systemd")
+OPT_DEPENDS=()
+MK_DEPENDS=("libxml2" "meson" "ninja")
+PROVIDES=("libwacom")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/linuxwacom/libwacom/releases/download/libwacom-${VERSION}/libwacom-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("3bded4a72bec230f3318e72bdfd81fa577d4a86103a89367e01e993319f4dbb9ccc73c834c04d5a63f43a8b94457bf64e567d7e3f8d2a0e08b189300c63782a8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dtests=disabled ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

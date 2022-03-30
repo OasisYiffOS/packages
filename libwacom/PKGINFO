@@ -1,0 +1,16 @@
+{
+    "name": "libwacom",
+    "version": "2.2.0",
+    "epoch": 0,
+    "description": "A library used to identify wacom tablets and their model-specific features.",
+    "groups": [],
+    "url": "https://github.com/linuxwacom/libwacom/",
+    "license": ["MIT"],
+    "depends": ["glib2", "libgudev", "systemd"],
+    "optional_depends": [],
+    "make_depends": ["libxml2", "meson", "ninja"],
+    "provides": ["libwacom"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
