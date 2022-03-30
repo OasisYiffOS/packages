@@ -1,0 +1,16 @@
+{
+    "name": "libinput",
+    "version": "1.20.0",
+    "epoch": 0,
+    "description": "Input device management and event handling library.",
+    "groups": [],
+    "url": "https://www.freedesktop.org/wiki/Software/libinput/",
+    "license": ["custom"],
+    "depends": ["systemd", "mtdev", "libwacom", "libevdev"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["libinput"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,59 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libinput"
+VERSION="1.20.0"
+EPOCH=0
+DESC="Input device management and event handling library."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/libinput/"
+LICENSES=("custom")
+DEPENDS=("systemd" "mtdev" "libwacom" "libevdev")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("libinput")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/libinput/libinput/-/archive/${VERSION}/libinput-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("b92345809f4e18b2335e3c377d1a8edda523462ff23fba6abcc5f8cf01b80fc4c6e4e06886088788c4b04873d37da210876f201bb81203af2f9f614bc659e6eb")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr             \
+          --buildtype=release       \
+          -Ddocumentation=false     \
+          -Dudev-dir=/usr/lib/udev  \
+          -Ddebug-gui=false         \
+          -Dtests=false             \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
