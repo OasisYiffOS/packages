@@ -1,0 +1,16 @@
+{
+    "name": "mtdev",
+    "version": "1.1.6",
+    "epoch": 0,
+    "description": "The Multitouch Protocol Translation Library which is used to transform all variants of kernel MT (Multitouch) events to the slotted type B protocol.",
+    "groups": [],
+    "url": "https://bitmath.org/code/mtdev/",
+    "license": ["MIT"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["mtdev"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
