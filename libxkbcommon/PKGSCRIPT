@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libxkbcommon"
+VERSION="1.4.0"
+EPOCH=0
+DESC="A keymap compiler and support library which processes a reduced subset of keymaps as defined by the XKB specification."
+GRPS=()
+URL="https://xkbcommon.org"
+LICENSES=("MIT")
+DEPENDS=("libxcb" "wayland" "wayland-protocols" "xkeyboard-config")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("libxkbcommon")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://xkbcommon.org/download/libxkbcommon-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("7dd86952c036a6a78455b1ba05b53fcff9d6f133bb01c83fa860b4eaec3fc26bb0b5535948bcc2dafbd27204c3c91d01404ca9fc52896cc36af509384797d4f1")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Denable-docs=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

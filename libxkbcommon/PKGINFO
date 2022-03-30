@@ -1,0 +1,16 @@
+{
+    "name": "libxkbcommon",
+    "version": "1.4.0",
+    "epoch": 0,
+    "description": "A keymap compiler and support library which processes a reduced subset of keymaps as defined by the XKB specification.",
+    "groups": [],
+    "url": "https://xkbcommon.org",
+    "license": ["MIT"],
+    "depends": ["libxcb", "wayland", "wayland-protocols", "xkeyboard-config"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["libxkbcommon"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
