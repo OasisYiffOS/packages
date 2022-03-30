@@ -40,6 +40,13 @@ function prepare() {
           -Dglx=dri                         \
           -Dvalgrind=disabled               \
           -Dlibunwind=disabled              \
+          -D dri3=enabled                   \
+          -D egl=enabled                    \
+          -D gallium-nine=true              \
+          -D gles1=disabled                 \
+          -D gles2=enabled                  \
+          -D glx=dri                        \
+          -D llvm=enabled                   \
           ..
 
     unset GALLIUM_DRV DRI_DRIVERS
