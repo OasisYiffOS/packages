@@ -1,0 +1,16 @@
+{
+    "name": "libdmx",
+    "version": "1.1.4",
+    "epoch": 0,
+    "description": "Xlib-based library for the DMX (Distributed Multihead X) extension.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11", "libxext"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libdmx"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

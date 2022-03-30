@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libxkbfile"
+VERSION="1.1.0"
+EPOCH=0
+DESC="XKB file handling routines."
+GRPS=("x11")
+URL="https://www.x.org/"
+LICENSES=("custom")
+DEPENDS=("glibc" "libx11")
+OPT_DEPENDS=()
+PROVIDES=("libxkbfile")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.x.org/pub/individual/lib/libxkbfile-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("1c6a57564e916ccdc3df3c49b9f3589f701df0cec55112c12ddc35ac3ed556608c28fe98e5ba0ac1962e9a65ed1e90eb7e6169b564951bf55a7cf3499b745826")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/libxkbfile-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static -docdir=/usr/share/doc/libxkbfile-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libxkbfile-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libxkbfile-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "libxvmc",
+    "version": "1.0.13",
+    "epoch": 0,
+    "description": "Xlib-based X-Video Motion Compensation API.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11", "libxext", "libxv"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxvmc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

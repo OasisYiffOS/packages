@@ -1,0 +1,16 @@
+{
+    "name": "xtrans",
+    "version": "1.4.0",
+    "epoch": 0,
+    "description": "A library of code that is shared among various X packages to handle network protocol transport in a modular fashion.",
+    "groups": ["x11-devel"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["fontconfig", "libxcb"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xtrans"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

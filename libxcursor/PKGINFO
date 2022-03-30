@@ -1,0 +1,16 @@
+{
+    "name": "libxcursor",
+    "version": "1.2.0",
+    "epoch": 0,
+    "description": "X Window System Cursor management library.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11", "libxfixes", "libxrender"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxcursor"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

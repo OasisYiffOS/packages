@@ -1,0 +1,16 @@
+{
+    "name": "libfontenc",
+    "version": "1.1.4",
+    "epoch": 0,
+    "description": "X font encoding library.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libfontenc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

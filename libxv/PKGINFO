@@ -1,0 +1,16 @@
+{
+    "name": "libxv",
+    "version": "1.0.11",
+    "epoch": 0,
+    "description": "Xlib-based library for the X Video (Xv) extension to the X Window System.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11", "libxext"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxv"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

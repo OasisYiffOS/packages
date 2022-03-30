@@ -1,0 +1,16 @@
+{
+    "name": "libxft",
+    "version": "2.3.4",
+    "epoch": 0,
+    "description": "X client side font rendering library.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["fontconfig", "freetype2", "glibc", "libx11", "libxrender"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxft"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

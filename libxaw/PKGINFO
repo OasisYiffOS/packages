@@ -1,0 +1,16 @@
+{
+    "name": "libxaw",
+    "version": "1.0.14",
+    "epoch": 0,
+    "description": "A GUI widget library for the X Window System.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11", "libxext", "libxmu", "libxpm", "libxt"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxaw"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

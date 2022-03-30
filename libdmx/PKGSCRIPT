@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libdmx"
+VERSION="1.1.4"
+EPOCH=0
+DESC="Xlib-based library for the DMX (Distributed Multihead X) extension."
+GRPS=("x11")
+URL="https://www.x.org/"
+LICENSES=("custom")
+DEPENDS=("glibc" "libx11" "libxext")
+OPT_DEPENDS=()
+PROVIDES=("libdmx")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.x.org/pub/individual/lib/libdmx-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("77aba6cadfd17db0cc7e1bc26f14d908223a0fdb135d46f86c3be34e3bc7e2f843f08d4d0ef773357e83b17122bffe56a0442d12908378c05a22177b10ae10e9")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/libdmx-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static -docdir=/usr/share/doc/libdmx-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libdmx-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libdmx-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

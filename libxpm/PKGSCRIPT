@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libxpm"
+VERSION="3.5.13"
+EPOCH=0
+DESC="X Pixmap (XPM) image file format library."
+GRPS=("x11")
+URL="https://www.x.org/"
+LICENSES=("custom")
+DEPENDS=("glibc" "libx11")
+OPT_DEPENDS=()
+PROVIDES=("libxpm")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.x.org/pub/individual/lib/libXpm-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("3b8f6e926272f39b1d95135c2274c00f5aaee1f9fb2ef79f71628df5edeb7ba20158819ef6a778101cc4092493a3b5b613c53634fdccadcc0fc85f0605e5e9a5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/libXpm-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static -docdir=/usr/share/doc/libxpm-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libXpm-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libXpm-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

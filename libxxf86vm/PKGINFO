@@ -1,0 +1,16 @@
+{
+    "name": "libxxf86vm",
+    "version": "1.1.4",
+    "epoch": 0,
+    "description": "Xlib-based library for the XFree86-VidMode X extension.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11", "libxext"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxxf86vm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

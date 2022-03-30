@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libxcursor"
+VERSION="1.2.0"
+EPOCH=0
+DESC="X Window System Cursor management library."
+GRPS=("x11")
+URL="https://www.x.org/"
+LICENSES=("custom")
+DEPENDS=("glibc" "libx11" "libxfixes" "libxrender")
+OPT_DEPENDS=()
+PROVIDES=("libxcursor")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.x.org/pub/individual/lib/libXcursor-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("2b12d0fd17e311ce269dbba58588698885815eb07aa44d48525ed5cd9e5f379bb90138a792a191e2f74888ab10b3ca9a4f507f21de0984ed79748973ab927a03")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/libXcursor-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static -docdir=/usr/share/doc/libxcursor-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libXcursor-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libXcursor-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

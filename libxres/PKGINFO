@@ -1,0 +1,16 @@
+{
+    "name": "libxres",
+    "version": "1.2.1",
+    "epoch": 0,
+    "description": "Xlib-based X-Resource extension client library.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11", "libxext"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxres"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

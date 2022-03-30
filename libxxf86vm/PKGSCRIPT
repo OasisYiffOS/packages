@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libxxf86vm"
+VERSION="1.1.4"
+EPOCH=0
+DESC="Xlib-based library for the XFree86-VidMode X extension."
+GRPS=("x11")
+URL="https://www.x.org/"
+LICENSES=("custom")
+DEPENDS=("glibc" "libx11" "libxext")
+OPT_DEPENDS=()
+PROVIDES=("libxxf86vm")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.x.org/pub/individual/lib/libXxf86vm-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("c5f92d86e143db02ebb36bcd25618acaa2cb2831f5a23800a06dd431cd73b6702d95de8fe7407ce626336bf614c288d5256f4d87ea7781fad2ab6c517cbf09e0")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/libXxf86vm-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static -docdir=/usr/share/doc/libxxf86vm-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libXxf86vm-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libXxf86vm-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

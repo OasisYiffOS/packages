@@ -1,0 +1,16 @@
+{
+    "name": "libxfont2",
+    "version": "2.0.5",
+    "epoch": 0,
+    "description": "X font handling library for server <package_description> utilities.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["freetype2", "glibc", "libfontenc", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxfont2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

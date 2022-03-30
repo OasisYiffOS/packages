@@ -1,0 +1,16 @@
+{
+    "name": "libxkbfile",
+    "version": "1.1.0",
+    "epoch": 0,
+    "description": "XKB file handling routines.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxkbfile"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

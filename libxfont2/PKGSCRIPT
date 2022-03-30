@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libxfont2"
+VERSION="2.0.5"
+EPOCH=0
+DESC="X font handling library for server <package_description> utilities."
+GRPS=("x11")
+URL="https://www.x.org/"
+LICENSES=("custom")
+DEPENDS=("freetype2" "glibc" "libfontenc" "zlib")
+OPT_DEPENDS=()
+PROVIDES=("libxfont2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.x.org/pub/individual/lib/libXfont2-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("64d0635d14676bb645d61932afb177eb3808a46525b26e7ee31abc975eca75207743e85523fdd82b08010ce124eb4802338b508ee7b126875d2a3c12f8ac4faa")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/libXfont2-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static -docdir=/usr/share/doc/libxfont2-${VERSION} --disable-devel-docs
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libXfont2-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libXfont2-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

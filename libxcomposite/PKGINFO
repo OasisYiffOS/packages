@@ -1,0 +1,16 @@
+{
+    "name": "libxcomposite",
+    "version": "0.4.5",
+    "epoch": 0,
+    "description": "An X Window System client interface to the Composite extension to the X protocol.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxcomposite"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

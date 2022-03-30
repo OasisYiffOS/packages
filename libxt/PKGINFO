@@ -1,0 +1,16 @@
+{
+    "name": "libxt",
+    "version": "1.2.1",
+    "epoch": 0,
+    "description": "A library that implements an API to facilitate the development of programs with a graphical user interface for the X Window System.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libice", "libsm", "libx11"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxt"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "libx11",
+    "version": "1.7.3.1",
+    "epoch": 0,
+    "description": "Core X11 protocol client library (aka Xlib).",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libxcb"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libx11"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

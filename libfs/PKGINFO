@@ -1,0 +1,16 @@
+{
+    "name": "libfs",
+    "version": "1.0.8",
+    "epoch": 0,
+    "description": "The X Font Service client library.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libfs"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

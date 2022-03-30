@@ -1,0 +1,16 @@
+{
+    "name": "libxext",
+    "version": "1.3.4",
+    "epoch": 0,
+    "description": "Xlib-based library for common extensions to the X11 protocol.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxext"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

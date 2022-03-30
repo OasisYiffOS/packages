@@ -1,0 +1,16 @@
+{
+    "name": "libxxf86dga",
+    "version": "1.1.5",
+    "epoch": 0,
+    "description": "Client library for the XFree86-DGA extension.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11", "libxext"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxxf86dga"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

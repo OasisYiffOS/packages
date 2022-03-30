@@ -1,0 +1,16 @@
+{
+    "name": "libxpm",
+    "version": "3.5.13",
+    "epoch": 0,
+    "description": "X Pixmap (XPM) image file format library.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxpm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

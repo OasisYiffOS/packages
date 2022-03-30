@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libice"
+VERSION="1.0.10"
+EPOCH=0
+DESC="Inter-Client Exchange Library"
+GRPS=("x11")
+URL="https://www.x.org/"
+LICENSES=("custom")
+DEPENDS=("glibc" "libxcb")
+OPT_DEPENDS=()
+PROVIDES=("libice")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.x.org/pub/individual/lib/libICE-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("2f1ef2c32c833c71894a08fa7e7ed53f301f6c7bd22485d71c12884d8e8b36b99f362ec886349dcc84d08edc81c8b2cea035320831d64974edeba021b433c468")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/libICE-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static -docdir=/usr/share/doc/libice-${VERSION} ICE_LIBS=-lpthread
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libICE-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libICE-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

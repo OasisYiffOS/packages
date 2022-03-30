@@ -1,0 +1,16 @@
+{
+    "name": "libxrandr",
+    "version": "1.5.2",
+    "epoch": 0,
+    "description": "Xlib Resize, Rotate and Reflection (RandR) extension library.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11", "libxext", "libxrender"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxrandr"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

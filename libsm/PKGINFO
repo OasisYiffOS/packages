@@ -1,0 +1,16 @@
+{
+    "name": "libsm",
+    "version": "1.2.3",
+    "epoch": 0,
+    "description": "X11 Session Management library.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libice"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libsm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

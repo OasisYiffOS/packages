@@ -1,0 +1,16 @@
+{
+    "name": "libice",
+    "version": "1.0.10",
+    "epoch": 0,
+    "description": "Inter-Client Exchange Library",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libxcb"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libice"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

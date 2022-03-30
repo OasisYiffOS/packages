@@ -1,0 +1,16 @@
+{
+    "name": "libxtst",
+    "version": "1.2.3",
+    "epoch": 0,
+    "description": "X.Org X11 libXtst runtime library.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11", "libxext", "libxi"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxtst"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

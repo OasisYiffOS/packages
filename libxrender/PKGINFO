@@ -1,0 +1,16 @@
+{
+    "name": "libxrender",
+    "version": "0.9.10",
+    "epoch": 0,
+    "description": "Xlib library for the Render Extension to the X11 protocol.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxrender"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,16 @@
+{
+    "name": "libxi",
+    "version": "1.8",
+    "epoch": 0,
+    "description": "Library for the X Input Extension.",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glibc", "libx11", "libxext"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxi"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
