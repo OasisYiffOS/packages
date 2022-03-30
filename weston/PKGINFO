@@ -1,0 +1,16 @@
+{
+    "name": "weston",
+    "version": "10.0.0",
+    "epoch": 0,
+    "description": "A reference implementation of a Wayland compositor.",
+    "groups": [],
+    "url": "https://wayland.pages.freedesktop.org/weston/",
+    "license": ["MIT"],
+    "depends": ["bash", "cairo", "glib2", "glibc", "libdrm", "libevdev", "libinput", "libjpeg-turbo", "libpng", "wayland", "wayland-protocols", "libxkbcommon", "mesa", "pixman"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["weston"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

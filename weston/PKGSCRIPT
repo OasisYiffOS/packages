@@ -1,0 +1,63 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="weston"
+VERSION="10.0.0"
+EPOCH=0
+DESC="A reference implementation of a Wayland compositor."
+GRPS=()
+URL="https://wayland.pages.freedesktop.org/weston/"
+LICENSES=("MIT")
+DEPENDS=("bash" "cairo" "glib2" "glibc" "libdrm" "libevdev" "libinput" "libjpeg-turbo" "libpng" "wayland" "wayland-protocols" "libxkbcommon" "mesa" "pixman")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("weston")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/wayland/weston/-/archive/${VERSION}/weston-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("8a44012276a1123b04abb2c888c120364a218a37d7d16c73e95ef01c3ef7a0f26408d57fa83029495f8054f14803bfe207aa5a0673f389b232e1c1a86d70b004")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson   --prefix=/usr                           \
+            --buildtype=release                     \
+            -Dcolor-management-lcms=false           \
+            -Dbackend-drm-screencast-vaapi=false    \
+            -Dbackend-rdp=false                     \
+            -Dxwayland=false                        \
+            -Dcolor-management-colord=false         \
+            -Dremoting=false                        \
+            -Dpipewire=false                        \
+            -Ddemo-clients=false                    \
+            ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
