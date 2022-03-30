@@ -1,0 +1,16 @@
+{
+    "name": "x11-xauth",
+    "version": "1.1.1",
+    "epoch": 0,
+    "description": "X.Org authorization settings program.",
+    "groups": [],
+    "url": "https://xorg.freedesktop.org/",
+    "license": ["custom"],
+    "depends": ["libxmu"],
+    "optional_depends": [],
+    "make_depends": ["x11-util-macros"],
+    "provides": ["x11-xauth"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

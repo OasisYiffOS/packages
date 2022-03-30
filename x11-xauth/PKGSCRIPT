@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="x11-xauth"
+VERSION="1.1.1"
+EPOCH=0
+DESC="X.Org authorization settings program."
+GRPS=()
+URL="https://xorg.freedesktop.org/"
+LICENSES=("custom")
+DEPENDS=("libxmu")
+OPT_DEPENDS=()
+MK_DEPENDS=("x11-util-macros")
+PROVIDES=("x11-xauth")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://xorg.freedesktop.org/releases/individual/app/xauth-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("998c3158378fff50d368959c29335173b8d98e02591cb3d7b2f9534b5a44b19deb4cb7da9bf291ca5a37f69f833d72839b2c6611723306d10c1b4968ae4d4120")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/xauth-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/xauth-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/xauth-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
