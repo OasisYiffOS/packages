@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libgudev"
+VERSION="237"
+EPOCH=0
+DESC="GObject bindings for libudev."
+GRPS=()
+URL="https://www.x.org/"
+LICENSES=("custom")
+DEPENDS=("glib2" "systemd")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection")
+PROVIDES=("libgudev")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libgudev/${VERSION}/libgudev-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("2d68981e3ba5c58ee080b6ed5cd5152c1c352b2bdb3ecb5eaf2b91f6800d3369121222a7fe4f82630aabd164069ee7276c52082b2fc2ff5f318481b85b25abc6")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

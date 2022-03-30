@@ -1,0 +1,16 @@
+{
+    "name": "libgudev",
+    "version": "237",
+    "epoch": 0,
+    "description": "GObject bindings for libudev.",
+    "groups": [],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["glib2", "systemd"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection"],
+    "provides": ["libgudev"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
