@@ -1,0 +1,16 @@
+{
+    "name": "ly",
+    "version": "0.5.3",
+    "epoch": 0,
+    "description": "A lightweight TUI (ncurses-like) display manager for Linux and BSD.",
+    "groups": [],
+    "url": "https://github.com/fairyglade/ly",
+    "license": ["WTFPL"],
+    "depends": ["pam", "x11-xauth"],
+    "optional_depends": [],
+    "make_depends": ["git"],
+    "provides": ["ly"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

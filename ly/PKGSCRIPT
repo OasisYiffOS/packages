@@ -1,0 +1,65 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="ly"
+VERSION="0.5.3"
+_GIT_COMMIT_ID="609b3f9ddcb8e953884002745eca5fde8480802f"
+EPOCH=0
+DESC="A lightweight TUI (ncurses-like) display manager for Linux and BSD."
+GRPS=()
+URL="https://github.com/fairyglade/ly"
+LICENSES=("WTFPL")
+DEPENDS=("pam" "x11-xauth")
+OPT_DEPENDS=()
+MK_DEPENDS=("git")
+PROVIDES=("ly")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=()
+
+SUM_TYPE="sha512"
+SUM=()
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/"
+
+    git clone --recurse-submodules https://github.com/nullgemm/ly.git
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    rm ${BUILD_DATA_ROOT}/etc/pam.d/ly
+
+cat > ${BUILD_DATA_ROOT}/etc/pam.d/ly << "EOF"
+# Begin /etc/pam.d/ly
+# WARNING: THIS FILE GETS OVERWRITTEN ON UPDATE
+
+auth       include      login
+account    include      login
+password   include      login
+session    include      login
+
+# End /etc/pam.d/ly
+EOF
+
+    return 0
+}
