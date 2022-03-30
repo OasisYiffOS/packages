@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libevdev"
+VERSION="1.12.1"
+EPOCH=0
+DESC="Wrapper library for evdev devices."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/libevdev/"
+LICENSES=("MIT")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("libevdev")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.freedesktop.org/software/libevdev/libevdev-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("eefce287a665e4f89eb2e0437dfefd45ecf8925c7dac35a1bdd46158541f77f2032c6146900a30a01321751d55a9b537bd1d61777cca9cfa02c39a6e31c97be4")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr             \
+          --buildtype=release       \
+          -Ddocumentation=disabled  \
+          -Dtests=disabled          \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "libevdev",
+    "version": "1.12.1",
+    "epoch": 0,
+    "description": "Wrapper library for evdev devices.",
+    "groups": [],
+    "url": "https://www.freedesktop.org/wiki/Software/libevdev/",
+    "license": ["MIT"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["libevdev"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
