@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libxcvt"
+VERSION="0.1.1"
+EPOCH=0
+DESC="Standalone version of the X server implementation of the VESA CVT standard timing modelines generator."
+GRPS=()
+URL="https://x.org"
+LICENSES=("MIT")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("ninja" "meson")
+PROVIDES=("libxcvt")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.x.org/pub/individual/lib/libxcvt-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("50e9cd0283858823d4cfde75f06e23ffc42983272cb1f75408052fb5b76a4bb6f9de7d42d8ff9ec0dae6e95eefebc6273e03c919a92f237585db55eaf1a57005")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

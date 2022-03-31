@@ -1,0 +1,16 @@
+{
+    "name": "libxcvt",
+    "version": "0.1.1",
+    "epoch": 0,
+    "description": "Standalone version of the X server implementation of the VESA CVT standard timing modelines generator.",
+    "groups": [],
+    "url": "https://x.org",
+    "license": ["MIT"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["ninja", "meson"],
+    "provides": ["libxcvt"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
