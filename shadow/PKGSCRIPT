@@ -71,5 +71,7 @@ function postbuild() {
 
     mkdir -p ${BUILD_DATA_ROOT}/etc/default
 
+    rm -rf ${BUILD_DATA_ROOT}/etc/pam.d/
+
     return 0
 }
