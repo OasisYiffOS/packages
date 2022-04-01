@@ -1,0 +1,78 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="rust"
+VERSION="1.59.0"
+EPOCH=0
+DESC="Memory-safe programming language without garbage collection."
+GRPS=()
+URL="https://www.rust-lang.org"
+LICENSES=("Apache-2.0" "MIT")
+DEPENDS=("glibc" "gcc-libs" "llvm" "libffi")
+OPT_DEPENDS=()
+MK_DEPENDS=("python" "cmake" "ninja" "curl" "openssl" "git")
+PROVIDES=("rust" "cargo")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://static.rust-lang.org/dist/rustc-${VERSION}-src.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("77e02226785e964750c89b8f27d6ee0546990919b8066889043145093b733e80edecb1fd81ae068e03943ded4692f28b2866cdaa8240a23f68968c235b0d1f8e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}c-${VERSION}-src"
+
+cat << EOF > config.toml
+[llvm]
+link-shared = true
+
+[build]
+extended = true
+
+[install]
+prefix = "/usr"
+docdir = "share/doc/rust-${VERSION}"
+
+[rust]
+channel = "stable"
+rpath = false
+description = "Rust v${VERSION}-${EPOCH} - Packaged for yiffOS on $(date)"
+
+# FileCheck isn't installed, disable codegen tests
+codegen-tests = false
+
+[target.x86_64-unknown-linux-gnu]
+llvm-config = "/usr/bin/llvm-config"
+
+[target.i686-unknown-linux-gnu]
+llvm-config = "/usr/bin/llvm-config"
+EOF
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}c-${VERSION}-src"
+
+    RUSTFLAGS="$RUSTFLAGS -C link-args=-lffi" \
+    python3 ./x.py build
+
+    # Some tests do fail, about 50ish tests
+    python3 ./x.py test --verbose --no-fail-fast
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}c-${VERSION}-src"
+
+    DESTDIR="${BUILD_DATA_ROOT}" python3 ./x.py install
+
+    return 0
+}

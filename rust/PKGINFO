@@ -1,0 +1,16 @@
+{
+    "name": "rust",
+    "version": "1.59.0",
+    "epoch": 0,
+    "description": "Memory-safe programming language without garbage collection.",
+    "groups": [],
+    "url": "https://www.rust-lang.org",
+    "license": ["Apache-2.0", "MIT"],
+    "depends": ["glibc", "gcc-libs", "llvm", "libffi"],
+    "optional_depends": [],
+    "make_depends": ["python", "cmake", "ninja", "curl", "openssl", "git"],
+    "provides": ["rust", "cargo"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
