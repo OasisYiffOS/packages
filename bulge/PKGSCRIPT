@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="bulge"
+VERSION="0.1.0"
+EPOCH=0
+DESC="The yiffOS package manager."
+GRPS=("base")
+URL="https://gitlab.com/yiffos/packaging/bulge"
+LICENSES=("Apache-2.0")
+DEPENDS=("glibc" "sqlite" "curl" "openssl")
+OPT_DEPENDS=()
+MK_DEPENDS=("rust")
+PROVIDES=("bulge")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.com/yiffos/packaging/bulge/-/archive/v${VERSION}/bulge-v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("8409b9ddfc15eac523fc549ceacda3c002a155942454a30d9382d0c42eb4fb227d539f22d5eae55536fc289bd0753742cee3550db00d5e05a304768d599cbd62")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}"
+
+    cargo build --release
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}"
+
+    mkdir -p ${BUILD_DATA_ROOT}/usr/bin
+
+    cp target/release/bulge ${BUILD_DATA_ROOT}/usr/bin/bulge
+    chmod +x ${BUILD_DATA_ROOT}/usr/bin/bulge
+
+    return 0
+}

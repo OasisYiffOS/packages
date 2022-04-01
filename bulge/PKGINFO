@@ -1,0 +1,16 @@
+{
+    "name": "bulge",
+    "version": "0.1.0",
+    "epoch": 0,
+    "description": "The yiffOS package manager.",
+    "groups": ["base"],
+    "url": "https://gitlab.com/yiffos/packaging/bulge",
+    "license": ["Apache-2.0"],
+    "depends": ["glibc", "sqlite", "curl"],
+    "optional_depends": [],
+    "make_depends": ["rust"],
+    "provides": ["bulge"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
