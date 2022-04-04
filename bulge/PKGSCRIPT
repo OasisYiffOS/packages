@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="bulge"
-VERSION="0.1.0"
+VERSION="0.1.1"
 EPOCH=0
 DESC="The yiffOS package manager."
 GRPS=("base")
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://gitlab.com/yiffos/packaging/bulge/-/archive/v${VERSION}/bulge-v${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("8409b9ddfc15eac523fc549ceacda3c002a155942454a30d9382d0c42eb4fb227d539f22d5eae55536fc289bd0753742cee3550db00d5e05a304768d599cbd62")
+SUM=("818b9fd62760b318ebae97bde806ef848a6ed5abb0b4560e26852bb4529e06fbeb54c59d77dd16deaadc0d3ae02f198b8c11fe69ab3a2f24dcada048dde84e10")
 
 # Prepare script
 function prepare() {
