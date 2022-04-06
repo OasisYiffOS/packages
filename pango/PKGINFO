@@ -1,0 +1,16 @@
+{
+    "name": "pango",
+    "version": "1.50.6",
+    "epoch": 0,
+    "description": "A library for laying out and rendering text, with an emphasis on internationalization.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/pango",
+    "license": ["LGPL-2.0"],
+    "depends": ["cairo", "fontconfig", "freetype2", "fribidi", "glib2", "glibc", "harfbuzz", "libx11", "libxft", "libxrender"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection"],
+    "provides": ["pango"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

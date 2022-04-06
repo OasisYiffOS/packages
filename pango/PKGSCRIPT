@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="pango"
+VERSION="1.50.6"
+_MAJOR_VERSION="1.50"
+EPOCH=0
+DESC="A library for laying out and rendering text, with an emphasis on internationalization."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/pango"
+LICENSES=("LGPL-2.0")
+DEPENDS=("cairo" "fontconfig" "freetype2" "fribidi" "glib2" "glibc" "harfbuzz" "libx11" "libxft" "libxrender")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection")
+PROVIDES=("pango")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/pango/${_MAJOR_VERSION}/pango-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("27fe5b2398995fc9103dbb957bb10e5f35284762260fe29366eafd2ba570d90bb0d2f865bd78ed6728417dfde54931f014aaa2155e3eae054e1a45a2a07bf90f")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+	mkdir build
+	cd	  build
+
+	meson --prefix=/usr --buildtype=release --wrap-mode=nofallback ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+	# test-font and test-layout are known to fail
+    # More tests fail if no fonts are found, install cantarell-fonts if you dont have any
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
