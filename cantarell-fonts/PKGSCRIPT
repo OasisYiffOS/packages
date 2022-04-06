@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="cantarell-fonts"
+VERSION="0.303.1"
+_MAJOR_VERSION="0.303"
+EPOCH=0
+DESC="A contemporary Humanist sans serif. Optimised for legibility at small sizes and the preferred font family for GNOME."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/cantarell-fonts"
+LICENSES=("OFL-1.1")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("cantarell-fonts")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/cantarell-fonts/${_MAJOR_VERSION}/cantarell-fonts-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("f61c2df6bb04167a9623bac141773211486059a5569106c0ed096d6d1a5d57e599cc5b75b06be954859aef13c649f7617ae067d9936932faec0b2ce896fd31b5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+	mkdir build
+	cd	  build
+
+	meson --prefix=/usr --buildtype=release -Duseprebuilt=true ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
