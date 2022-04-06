@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="vulkan-headers"
+VERSION="1.3.211"
+EPOCH=0
+DESC="Vulkan header files and API registry."
+GRPS=()
+URL="https://github.com/KhronosGroup/Vulkan-Headers"
+LICENSES=("Apache-2.0")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake")
+PROVIDES=("vulkan-headers")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("95fb29ad5c79809506ce3587f974baf360d21d036995dd7297f966962380cd0504e9886a549ca34dfd5e051ccc2bf96bd0401eeac9c37ae76a2979d921572398")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/Vulkan-Headers-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr   \
+          -DCMAKE_BUILD_TYPE=Release    \
+          ..
+    
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/Vulkan-Headers-${VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/Vulkan-Headers-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
