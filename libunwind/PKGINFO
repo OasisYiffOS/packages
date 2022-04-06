@@ -1,0 +1,16 @@
+{
+    "name": "libunwind",
+    "version": "1.6.2",
+    "epoch": 0,
+    "description": "A portable and efficient C programming interface to determine the call-chain of a program.",
+    "groups": [],
+    "url": "https://www.nongnu.org/libunwind/",
+    "license": ["MIT"],
+    "depends": ["glibc", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libunwind"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
