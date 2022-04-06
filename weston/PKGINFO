@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wayland.pages.freedesktop.org/weston/",
     "license": ["MIT"],
-    "depends": ["bash", "cairo", "glib2", "glibc", "libdrm", "libevdev", "libinput", "libjpeg-turbo", "libpng", "wayland", "wayland-protocols", "libxkbcommon", "mesa", "pixman"],
+    "depends": ["bash", "cairo", "glib2", "glibc", "libdrm", "libevdev", "libinput", "libjpeg-turbo", "libpng", "wayland", "wayland-protocols", "libxkbcommon", "mesa", "pixman", "libva"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["weston"],

@@ -9,7 +9,7 @@ DESC="A reference implementation of a Wayland compositor."
 GRPS=()
 URL="https://wayland.pages.freedesktop.org/weston/"
 LICENSES=("MIT")
-DEPENDS=("bash" "cairo" "glib2" "glibc" "libdrm" "libevdev" "libinput" "libjpeg-turbo" "libpng" "wayland" "wayland-protocols" "libxkbcommon" "mesa" "pixman")
+DEPENDS=("bash" "cairo" "glib2" "glibc" "libdrm" "libevdev" "libinput" "libjpeg-turbo" "libpng" "wayland" "wayland-protocols" "libxkbcommon" "mesa" "pixman" "libva")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja")
 PROVIDES=("weston")
@@ -32,7 +32,6 @@ function prepare() {
     meson   --prefix=/usr                           \
             --buildtype=release                     \
             -Dcolor-management-lcms=false           \
-            -Dbackend-drm-screencast-vaapi=false    \
             -Dbackend-rdp=false                     \
             -Dxwayland=false                        \
             -Dcolor-management-colord=false         \
