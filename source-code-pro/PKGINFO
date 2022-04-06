@@ -1,0 +1,16 @@
+{
+    "name": "source-code-pro",
+    "version": "2.038",
+    "epoch": 0,
+    "description": "Monospaced font family for user interface and coding environments by Adobe.",
+    "groups": [],
+    "url": "https://github.com/adobe-fonts/source-code-pro",
+    "license": ["OFL-1.1"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["source-code-pro"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

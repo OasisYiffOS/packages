@@ -1,0 +1,46 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="source-code-pro"
+VERSION="2.038"
+_ITALIC_VERSION="1.058"
+_VAR_VERSION="1.018"
+EPOCH=0
+DESC="Monospaced font family for user interface and coding environments by Adobe."
+GRPS=()
+URL="https://github.com/adobe-fonts/source-code-pro"
+LICENSES=("OFL-1.1")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("source-code-pro")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+# Wow I hate the tag names!
+SRC=("https://github.com/adobe-fonts/source-code-pro/releases/download/${VERSION}R-ro%2F${_ITALIC_VERSION}R-it%2F${_VAR_VERSION}R-VAR/OTF-source-code-pro-${VERSION}R-ro-${_ITALIC_VERSION}R-it.zip")
+
+SUM_TYPE="sha512"
+SUM=("07566e6b2d5889323aa44040cab403b21a2341982f811a97039fd91a4b863732e35f3532af7b883ab751fa2f4db9080d897e403cf983e44e147a0d107c5b1838")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/"
+
+    mkdir -p "${BUILD_DATA_ROOT}/usr/share/fonts/adobe-source-code-pro/"
+
+    cp -R ./*.otf "${BUILD_DATA_ROOT}/usr/share/fonts/adobe-source-code-pro/"
+
+    return 0
+}
