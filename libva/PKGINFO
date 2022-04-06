@@ -1,0 +1,16 @@
+{
+    "name": "libva",
+    "version": "2.14.0",
+    "epoch": 0,
+    "description": "A library which provides access to hardware accelerated video processing.",
+    "groups": [],
+    "url": "https://github.com/intel/libva",
+    "license": ["MIT"],
+    "depends": ["glibc", "libx11", "libxext", "libxfixes", "libdrm", "wayland"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libva"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

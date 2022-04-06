@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libva"
+VERSION="2.14.0"
+EPOCH=0
+DESC="A library which provides access to hardware accelerated video processing."
+GRPS=()
+URL="https://github.com/intel/libva"
+LICENSES=("MIT")
+DEPENDS=("glibc" "libx11" "libxext" "libxfixes" "libdrm" "wayland")
+OPT_DEPENDS=()
+PROVIDES=("libva")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/intel/libva/releases/download/${VERSION}/libva-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("7ee6f0711929d1c6f6436b69ad0fedcee7e8a450be907d90a7c9741d55de824de471efbc20a398a47af03f5bbacb927daa1f2f780fce6ddfe6bbee21729c95ca")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
