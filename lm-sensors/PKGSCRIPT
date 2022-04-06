@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lm-sensors"
+VERSION="3.6.0"
+_DOWNLOAD_VERSION="3-6-0"
+EPOCH=0
+DESC="User-space support for the hardware monitoring drivers in Linux 2.6.5 and later."
+GRPS=()
+URL="https://hwmon.wiki.kernel.org"
+LICENSES=("GPL-2.0" "LGPL-2.1")
+DEPENDS=("glibc" "perl")
+OPT_DEPENDS=()
+MK_DPENDS=("bison" "flex")
+PROVIDES=("lm-sensors")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/lm-sensors/lm-sensors/archive/V${_DOWNLOAD_VERSION}/lm-sensors-${_DOWNLOAD_VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("4e80361913aff5403f1f0737fd4f42cffe43cc170ef48fff3914c9952f71990739d723f7b0b8120d9a01bcbbc829e964cfbd0a5cf18508af8f8dc825b49860bf")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${_DOWNLOAD_VERSION}"
+
+    make PREFIX=/usr            \
+         BUILD_STATIC_LIB=0     \
+         MANDIR=/usr/share/man
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${_DOWNLOAD_VERSION}"
+
+    make PREFIX=/usr                   \
+         DESTDIR="${BUILD_DATA_ROOT}"  \
+         BUILD_STATIC_LIB=0            \
+         MANDIR=/usr/share/man install
+
+    install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/doc/lm_sensors-${VERSION} &&
+    cp -rv              README INSTALL doc/* \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/lm_sensors-${VERSION}
+
+    return 0
+}

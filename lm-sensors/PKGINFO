@@ -1,0 +1,16 @@
+{
+    "name": "lm-sensors",
+    "version": "3.6.0",
+    "epoch": 0,
+    "description": "User-space support for the hardware monitoring drivers in Linux 2.6.5 and later.",
+    "groups": [],
+    "url": "https://hwmon.wiki.kernel.org",
+    "license": ["GPL-2.0", "LGPL-2.1"],
+    "depends": ["glibc", "perl"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lm-sensors"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
