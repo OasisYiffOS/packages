@@ -4,12 +4,12 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 # Package information
 NAME="mesa"
 VERSION="22.0.1"
-EPOCH=0
+EPOCH=1
 DESC="An open-source implementation of the OpenGL/CL/MAX and Vulkan specifications."
 GRPS=()
 URL="https://www.mesa3d.org"
 LICENSES=("custom")
-DEPENDS=("glibc" "gcc-libs" "libdrm" "libelf" "expat" "libxshmfence" "libxxf86vm" "libgcrypt" "nettle" "llvm")
+DEPENDS=("glibc" "gcc-libs" "libdrm" "libelf" "expat" "libxshmfence" "libxxf86vm" "libgcrypt" "nettle" "llvm" "libunwind" "vulkan")
 OPT_DEPENDS=()
 MK_DEPENDS=("python-mako" "libxml2" "zstd" "meson" "ninja")
 PROVIDES=("mesa")
@@ -31,25 +31,27 @@ function prepare() {
     mkdir build
     cd    build 
 
-    GALLIUM_DRV="r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,d3d12,i915"
+    GALLIUM_DRV="r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,d3d12,i915,zink"
+    VULKAN_DRV="amd,intel,swrast"
 
     meson --prefix=/usr                     \
           --buildtype=release               \
           -Dgallium-drivers=$GALLIUM_DRV    \
+          -Dvulkan-drivers=$VULKAN_DRV      \
           -Dgallium-nine=true               \
           -Dglx=dri                         \
           -Dvalgrind=disabled               \
-          -Dlibunwind=disabled              \
-          -D dri3=enabled                   \
-          -D egl=enabled                    \
-          -D gallium-nine=true              \
-          -D gles1=disabled                 \
-          -D gles2=enabled                  \
-          -D glx=dri                        \
-          -D llvm=enabled                   \
+          -Dlibunwind=enabled               \
+          -Ddri3=enabled                    \
+          -Degl=enabled                     \
+          -Dgallium-nine=true               \
+          -Dgles1=disabled                  \
+          -Dgles2=enabled                   \
+          -Dglx=dri                         \
+          -Dllvm=enabled                    \
           ..
 
-    unset GALLIUM_DRV DRI_DRIVERS
+    unset GALLIUM_DRV VULKAN_DRV
 
     return 0
 }
