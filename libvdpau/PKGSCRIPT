@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libvdpau"
+VERSION="1.5"
+EPOCH=0
+DESC="An API that allows video programs to offload portions of the video decoding process and video post-processing to the GPU video-hardware."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/VDPAU/"
+LICENSES=("MIT")
+DEPENDS=("glibc" "libx11" "libxext" "mesa")
+OPT_DEPENDS=()
+MK_DEPENDS=("ninja" "meson")
+PROVIDES=("libvdpau")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/vdpau/libvdpau/-/archive/${VERSION}/libvdpau-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("7affb14874431eba1be6e8634fcbb6247cbf6956fb88116e06e60de30a7852a407e8598176a369c2ba4bfaef4be58727e51d4bc390f705991ac83d660f611ff5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    # THis test can fail on some systems
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

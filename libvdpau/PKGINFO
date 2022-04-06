@@ -1,0 +1,16 @@
+{
+    "name": "libvdpau",
+    "version": "1.5",
+    "epoch": 0,
+    "description": "An API that allows video programs to offload portions of the video decoding process and video post-processing to the GPU video-hardware.",
+    "groups": [],
+    "url": "https://www.freedesktop.org/wiki/Software/VDPAU/",
+    "license": ["MIT"],
+    "depends": ["glibc", "libx11", "libxext", "mesa"],
+    "optional_depends": [],
+    "make_depends": ["ninja", "meson"],
+    "provides": ["libvdpau"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
