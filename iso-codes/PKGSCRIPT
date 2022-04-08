@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="iso-codes"
+VERSION="4.9.0"
+EPOCH=0
+DESC="A lists of various ISO standards (countries, languages, language scripts, and currency names) in one place."
+GRPS=()
+URL="https://salsa.debian.org/iso-codes-team/iso-codes"
+LICENSES=("LGPL-2.1")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("iso-codes")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("http://ftp.debian.org/debian/pool/main/i/iso-codes/iso-codes_${VERSION}.orig.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("b31bd77409672d2c25e5e096d2bb6a3517a5afdc0c729e71b099681ddb42f17320129895c91ba1b7d584e2340decd62fdf3bea58edab10440aa2264e2f00e852")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
