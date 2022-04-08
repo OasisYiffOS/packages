@@ -1,0 +1,86 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="polkit"
+VERSION="0.120"
+EPOCH=0
+DESC="A toolkit for defining and handling authorizations. It is used for allowing unprivileged processes to communicate with privileged processes."
+GRPS=()
+URL="http://www.freedesktop.org/wiki/Software/polkit"
+LICENSES=("LGPL-2.0")
+DEPENDS=("dbus" "expat" "glibc" "glib2" "gcc-libs" "js91" "pam" "systemd")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "meson" "ninja" "libxslt" "docbook-xml" "docbook-xsl")
+PROVIDES=("polkit")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/polkit/polkit/-/archive/${VERSION}/polkit-${VERSION}.tar.gz"
+"https://www.linuxfromscratch.org/patches/blfs/svn/polkit-${VERSION}-security_fixes-1.patch"
+"https://www.linuxfromscratch.org/patches/blfs/svn/polkit-${VERSION}-js91-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("75d6b43ffb59afc6a9facf2d948da2393bd05f8b14ab53db771d85d628fd5e220ccae4bd66da338b8c3523ac1c1cb708f9df3e89ce3afcbce14f5de49041a68c"
+"5fd217975b5b03c6b99ad34e9beeeab38ebd229c1ac0aaa3e5136eba20b653e0c296947fd69699bea573128364e0210af2346066052d2db9a8d9cbcab0ac759d"
+"4f300424240f51b5dc2ed56a7c58630e8bcf32e9b6d10f4e29ef949d6e93cc35be742552dd5b161d8c15c6920d8508b41fcdfe0b872437a2fa912b577484d4e2")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix problems with setting permissions 
+    sed '/0,/s/^/#/' -i meson_post_install.py
+    sed '/policy,/d' -i actions/meson.build     \
+                    -i src/examples/meson.build
+
+    # Fix CVE-2021-4034 and CVE-2021-4115 
+    patch -Np1 -i ${WORKDIR}/polkit-${VERSION}-security_fixes-1.patch
+
+    # Use JS (Spidermonkey) v91
+    patch -Np1 -i ${WORKDIR}/polkit-${VERSION}-js91-1.patch
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr                       \
+          --buildtype=release                 \
+          -Dman=true                          \
+          -Dsession_tracking=libsystemd-login \
+          -Dtests=true                        \
+          .. 
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+
+    mkdir -p ${BUILD_DATA_ROOT}/etc/pam.d/
+cat > ${BUILD_DATA_ROOT}/etc/pam.d/polkit-1 << "EOF"
+# Begin /etc/pam.d/polkit-1
+
+auth     include        system-auth
+account  include        system-account
+password include        system-password
+session  include        system-session
+
+# End /etc/pam.d/polkit-1
+EOF
+
+    return 0
+}
