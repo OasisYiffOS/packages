@@ -1,0 +1,16 @@
+{
+    "name": "libusb",
+    "version": "1.0.25",
+    "epoch": 0,
+    "description": "A library used by some applications for USB device access.",
+    "groups": [],
+    "url": "https://libusb.info",
+    "license": ["LGPL-2.0"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libusb"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
