@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="librsvg2"
+VERSION="2.54.0"
+_MAJOR_VERSION="2.54"
+EPOCH=0
+DESC="A library to render SVG images to Cairo surfaces."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/LibRsvg"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "cairo" "gdk-pixbuf2" "pango" "fontconfig" "freetype2" "glib2" "harfbuzz" "gcc-libs" "libpng" "libxml2" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=("python-docutils")
+PROVIDES=("librsvg2" "rust")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/librsvg/${_MAJOR_VERSION}/librsvg-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("3357ca8cf7537fe2792ee2d9a1719622656f3e1d7f30da062799a4b3ca8788cc07333a00e1c9da53a53da2b67a2aa5895a4c8fce35003da659fb7f98048b68eb")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/librsvg-${VERSION}"
+
+    # We need gi-docgen built
+    python3 -m venv pyvenv
+    ./pyvenv/bin/pip3 install gi-docgen
+
+    GI_DOCGEN=$PWD/pyvenv/bin/gi-docgen                     \
+    ./configure --prefix=/usr                               \
+                --disable-static                            \
+                --docdir=/usr/share/doc/librsvg-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/librsvg-${VERSION}"
+
+    make
+
+    make -k check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/librsvg-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
