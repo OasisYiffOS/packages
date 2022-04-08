@@ -1,0 +1,16 @@
+{
+    "name": "libepoxy",
+    "version": "1.5.10",
+    "epoch": 0,
+    "description": "A library for handling OpenGL function pointer management.",
+    "groups": [],
+    "url": "https://github.com/anholt/libepoxy",
+    "license": ["MIT"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["libepoxy"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

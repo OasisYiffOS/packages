@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libepoxy"
+VERSION="1.5.10"
+_MAJOR_VERSION="1.5"
+EPOCH=0
+DESC="A library for handling OpenGL function pointer management."
+GRPS=()
+URL="https://github.com/anholt/libepoxy"
+LICENSES=("MIT")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("libepoxy")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.acc.umu.se/pub/gnome/sources/libepoxy/${_MAJOR_VERSION}/libepoxy-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("d7b53bb34188412d93fd4c46a353038a6883fbaa9942f30df119d0e6de85cd93e0c0366fa40cbd75ffce64ac2cc509e65f94aefd710c4ff8a42324e235eabc44")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
