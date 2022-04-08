@@ -16,7 +16,7 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://github.com/libusb/libusb/releases/download/v1.0.25/libusb-1.0.25.tar.bz2")
+SRC=("https://github.com/libusb/libusb/releases/download/v${VERSION}/libusb-${VERSION}.tar.bz2")
 
 SUM_TYPE="sha512"
 SUM=("f1e6e5577d4bd1ff136927dc66c615014a06ac332ddd797b1d1ad5f7b68e2405e66068dcb210e2f0ae3e31681603ef72efbd88bf7fbe0eb41ce700fdc3f92f9d")
