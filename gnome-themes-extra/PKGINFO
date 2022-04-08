@@ -1,0 +1,16 @@
+{
+    "name": "gnome-themes-extra",
+    "version": "3.28",
+    "epoch": 0,
+    "description": "Contains various components of the default GNOME theme.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/gnome-themes-extra",
+    "license": ["LGPL-2.1"],
+    "depends": ["gtk2", "gtk3", "librsvg2"],
+    "optional_depends": [],
+    "make_depends": ["perl-xml-parser"],
+    "provides": ["gnome-themes-extra"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

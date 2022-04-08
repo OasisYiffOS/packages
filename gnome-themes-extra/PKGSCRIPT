@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-themes-extra"
+VERSION="3.28"
+EPOCH=0
+DESC="Contains various components of the default GNOME theme."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gnome-themes-extra"
+LICENSES=("LGPL-2.1")
+DEPENDS=("gtk2" "gtk3" "librsvg2")
+OPT_DEPENDS=()
+MK_DEPENDS=("perl-xml-parser")
+PROVIDES=("gnome-themes-extra")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-themes-extra/${VERSION}/gnome-themes-extra-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("bccc446e86b12476b86a0fe2e3354500c8fb3eef62a85c3823d69aaa259e032e1f94e7993bf633397b669c425ef42635b0cf17b376f0b7cf1869bb1d7160ede0")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
