@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="python-docutils"
+VERSION="0.18.1"
+EPOCH=0
+DESC="Set of Python modules and programs for processing plaintext docs into formats such as HTML, XML, or LaTeX."
+GRPS=()
+URL="https://docutils.sourceforge.io"
+LICENSES=("CC-PDDC" "BSD-3-Clause" "BSD-2-Clause" "Python-2.0" "GPL-3.0")
+DEPENDS=("python")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("python-docutils")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/docutils/docutils-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("44404a6cc9d4c1e79c73a6ffee2898e459c9925ab9661e5d41394e13b3d861334cf0c5efcd18e87eb03041374e326cfd00539a6b2ec5979678889e8a536c9542")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/docutils-${VERSION}"
+
+    python3 setup.py build
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/docutils-${VERSION}"
+
+    python3 setup.py install --root="${BUILD_DATA_ROOT}" --optimize=1
+
+    for f in ${BUILD_DATA_ROOT}/usr/bin/rst*.py; do
+        ln -svf $(basename $f) ${BUILD_DATA_ROOT}/usr/bin/$(basename $f .py)
+    done
+
+    return 0
+}

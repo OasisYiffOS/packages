@@ -1,0 +1,16 @@
+{
+    "name": "python-docutils",
+    "version": "0.18.1",
+    "epoch": 0,
+    "description": "Set of Python modules and programs for processing plaintext docs into formats such as HTML, XML, or LaTeX.",
+    "groups": [],
+    "url": "https://docutils.sourceforge.io",
+    "license": ["CC-PDDC", "BSD-3-Clause", "BSD-2-Clause", "Python-2.0", "GPL-3.0"],
+    "depends": ["python"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-docutils"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
