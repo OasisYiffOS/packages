@@ -1,0 +1,16 @@
+{
+    "name": "colord",
+    "version": "1.4.6",
+    "epoch": 0,
+    "description": "A system service that makes it easy to manage, install, and generate color profiles.",
+    "groups": [],
+    "url": "https://www.freedesktop.org/software/colord/",
+    "license": ["GPL-2.0", "LGPL-2.0"],
+    "depends": ["dbus", "glib2", "little-cms2", "polkit", "sqlite", "systemd", "glibc", "gcc-libs", "libgudev", "libgusb"],
+    "optional_depends": [],
+    "make_depends": ["vala", "meson", "ninja"],
+    "provides": ["colord"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
