@@ -1,0 +1,16 @@
+{
+    "name": "libpaper",
+    "version": "1.1.28",
+    "epoch": 0,
+    "description": "A simple way for applications to take actions based on a system or user-specified paper size.",
+    "groups": [],
+    "url": "https://tracker.debian.org/pkg/libpaper",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["autoconf"],
+    "provides": ["libpaper"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
