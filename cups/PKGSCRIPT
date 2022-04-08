@@ -1,0 +1,73 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="cups"
+VERSION="2.4.1"
+EPOCH=0
+DESC="The Common Unix Printing System (CUPS) is a print spooler and associated utilities."
+GRPS=()
+URL="https://openprinting.github.io/cups/"
+LICENSES=("ASL-2.0")
+DEPENDS=("acl" "avahi" "dbus" "glic" "grep" "gcc-libs" "pam" "sed" "systemd" "libpaper" "libusb" "xdg-utils" "colord")
+OPT_DEPENDS=()
+MK_DEPENDS=("llvm")
+PROVIDES=("cups")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/OpenPrinting/cups/releases/download/v${VERSION}/cups-${VERSION}-source.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("74e83728fcc3baf709176442b26711250fd4d4ede1e81e35b02a5607711067e28cd5a05d5bc3337953f6b2236c5a429b13f3a7f1218a08a2d3c30a8c9b0d96fd")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix unsupported compiler warning
+    sed -e "s/format-truncation//"      \
+        -i configure                    \
+        config-scripts/cups-compiler.m4
+
+    ./configure --libdir=/usr/lib                               \
+                --with-system-groups=lpadmin                    \
+                --with-docdir=/usr/share/cups/doc-${VERSION}    \
+                --enable-libpaper
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mkdir -p ${BUILD_DATA_ROOT}/usr/share/doc/
+    ln -svnf ../cups/doc-${VERSION} ${BUILD_DATA_ROOT}/usr/share/doc/cups-${VERSION}
+
+    echo "ServerName /run/cups/cups.sock" > ${BUILD_DATA_ROOT}/etc/cups/client.conf
+
+cat > ${BUILD_DATA_ROOT}/etc/pam.d/cups << "EOF"
+# Begin /etc/pam.d/cups
+
+auth    include system-auth
+account include system-account
+session include system-session
+
+# End /etc/pam.d/cups
+EOF
+
+    return 0
+}
