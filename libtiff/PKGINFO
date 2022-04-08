@@ -1,0 +1,16 @@
+{
+    "name": "libtiff",
+    "version": "4.3.0",
+    "epoch": 0,
+    "description": "A library of functions for manipulating TIFF (Tagged Image File Format) image format files.",
+    "groups": [],
+    "url": "http://www.simplesystems.org/libtiff/",
+    "license": ["ISC"],
+    "depends": ["glibc", "gcc-libs", "libwebp", "libjpeg-turbo", "zlib"],
+    "optional_depends": [],
+    "make_depends": ["cmake", "ninja"],
+    "provides": ["libtiff"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
