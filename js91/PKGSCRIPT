@@ -1,0 +1,75 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="js91"
+VERSION="91.8.0"
+EPOCH=0
+DESC="JS (also referred as SpiderMonkey) is Mozilla's JavaScript and WebAssembly Engine, written in C++ and Rust."
+GRPS=()
+URL="https://spidermonkey.dev"
+LICENSES=("MPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "icu" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=("rust")
+PROVIDES=("js91")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://archive.mozilla.org/pub/firefox/releases/${VERSION}esr/source/firefox-${VERSION}esr.source.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("edea2c7d4d3d0322091b20b623019ef041090d9f89f33c8e3140f66a54624261f278257393db70d2038154de8ee02da0bee6ecf85c281f3558338da71fc173c3")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/firefox-${VERSION}"
+
+    mkdir obj
+    cd    obj
+
+    CC=gcc CXX=g++ \
+    sh ${WORKDIR}/firefox-${VERSION}/js/src/configure.in    \
+                              --prefix=/usr                 \
+                              --with-intl-api               \
+                              --with-system-zlib            \
+                              --with-system-icu             \
+                              --disable-jemalloc            \
+                              --disable-debug-symbols       \
+                              --enable-readline             \
+                              --enable-application=js       \
+                              --enable-shared-js            \
+                              --disable-bootstrap           \
+                              --enable-release              \
+                              --enable-hardening            \
+                              --enable-optimize
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/firefox-${VERSION}/obj"
+
+
+    export MACH_USE_SYSTEM_PYTHON=1
+
+    make
+
+    unset MMACH_USE_SYSTEM_PYTHON
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/firefox-${VERSION}/obj"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    rm -v ${BUILD_DATA_ROOT}/usr/lib/libjs_static.ajs
+    sed -i '/@NSPR_CFLAGS@/d' ${BUILD_DATA_ROOT}/usr/bin/js91-config
+
+    return 0
+}
