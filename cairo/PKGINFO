@@ -1,7 +1,7 @@
 {
     "name": "cairo",
     "version": "1.17.6",
-    "epoch": 0,
+    "epoch": 1,
     "description": "Cairo is a 2D graphics library with support for multiple output devices.",
     "groups": [],
     "url": "https://www.cairographics.org/",

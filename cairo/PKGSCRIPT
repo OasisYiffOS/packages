@@ -5,7 +5,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 NAME="cairo"
 VERSION="1.17.6"
 _MAJOR_VERSION="1.17"
-EPOCH=0
+EPOCH=1
 DESC="Cairo is a 2D graphics library with support for multiple output devices."
 GRPS=()
 URL="https://www.cairographics.org/"
@@ -27,9 +27,11 @@ SUM=("15d9a82097b9c5a43071ff9fbfe90d7aaee5fddb84f519cdddfe312c5fc7248a50b73a5351
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    ./configure --prefix=/usr    \
-                --disable-static \
-                --enable-tee
+    ./configure --prefix=/usr       \
+                --disable-static    \
+                --enable-tee        \
+                --enable-xlib-xcb   \
+                --enable-gl
 
     return 0
 }
