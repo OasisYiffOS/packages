@@ -1,0 +1,16 @@
+{
+    "name": "atk",
+    "version": "2.38.0",
+    "epoch": 0,
+    "description": "Set of accessibility interfaces that are implemented by other toolkits and applications.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/atk",
+    "license": ["LGPL-2.0"],
+    "depends": ["glibc", "glib2"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection", "meson", "ninja"],
+    "provides": ["atk"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

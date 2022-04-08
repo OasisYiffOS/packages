@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="atk"
+VERSION="2.38.0"
+_MAJOR_VERSION="2.38"
+EPOCH=0
+DESC="Set of accessibility interfaces that are implemented by other toolkits and applications."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/atk"
+LICENSES=("LGPL-2.0")
+DEPENDS=("glibc" "glib2")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "meson" "ninja")
+PROVIDES=("atk")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/atk/${_MAJOR_VERSION}/atk-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("dffd0a0814a9183027c38a985d86cb6544858e9e7d655843e153440467957d6bc1abd9c9479a57078aea018053410438a30a9befb7414dc79020b223cd2c774b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
