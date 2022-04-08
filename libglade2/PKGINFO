@@ -1,0 +1,16 @@
+{
+    "name": "libglade2",
+    "version": "2.6.4",
+    "epoch": 0,
+    "description": "nl80211 based CLI configuration utility for wireless devices.",
+    "groups": [],
+    "url": "https://www.gnome.org",
+    "license": ["LGPL-2.0"],
+    "depends": ["atk", "cairo", "fontconfig", "freetype2", "gdk-pixbuf2", "glib2", "glibc", "gtk2", "harfbuzz", "libxml2", "pango"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libglade2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

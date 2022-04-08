@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libglade2"
+VERSION="2.6.4"
+_MAJOR_VERSION="2.6"
+EPOCH=0
+DESC="nl80211 based CLI configuration utility for wireless devices."
+GRPS=()
+URL="https://www.gnome.org"
+LICENSES=("LGPL-2.0")
+DEPENDS=("atk" "cairo" "fontconfig" "freetype2" "gdk-pixbuf2" "glib2" "glibc" "gtk2" "harfbuzz" "libxml2" "pango")
+OPT_DEPENDS=()
+PROVIDES=("libglade2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libglade/${_MAJOR_VERSION}/libglade-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("b725842febaf4c1f0d305a629ae1c61ea2de24dd6f41937e806c078fada2cea483195ef40f5238ce2045e47130c92559e984f677de667b840dd7fff0f8559735")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/libglade-${VERSION}"
+
+    # Use deprecated glib2 apis
+    sed -i '/DG_DISABLE_DEPRECATED/d' glade/Makefile.in
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libglade-${VERSION}"
+
+    make
+
+    # One test is known to fail: test-convert
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libglade-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
