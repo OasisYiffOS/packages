@@ -1,0 +1,16 @@
+{
+    "name": "libgusb",
+    "version": "0.3.10",
+    "epoch": 0,
+    "description": "GObject wrappers for libusb-1.0 that makes it easy to do asynchronous control, bulk and interrupt transfers with proper cancellation and integration into a mainloop.",
+    "groups": [],
+    "url": "https://github.com/hughsie/libgusb",
+    "license": ["LGPL-2.0"],
+    "depends": ["glib2", "glibc", "gcc-libs", "libusb"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection", "meson", "ninja", "vala"],
+    "provides": ["libgusb"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
