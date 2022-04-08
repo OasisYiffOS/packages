@@ -1,0 +1,72 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="avahi"
+VERSION="0.8"
+EPOCH=0
+DESC="A system which facilitates service discovery on a local network via the mDNS/DNS-SD protocol suite."
+GRPS=()
+URL="http://avahi.org"
+LICENSES=("LGPL-2.1")
+DEPENDS=("coreutils" "dbus" "expat" "glibc" "libcap" "libdaemon" "shadow" "libevent")
+MK_DEPENDS=("gobject-introspection" "libglade2" "gtk3" "gtk2")
+OPT_DEPENDS=()
+PROVIDES=("avahi")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/lathiat/avahi/releases/download/v${VERSION}/avahi-${VERSION}.tar.gz"
+"https://www.linuxfromscratch.org/patches/blfs/svn/avahi-${VERSION}-ipv6_race_condition_fix-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("c6ba76feb6e92f70289f94b3bf12e5f5c66c11628ce0aeb3cadfb72c13a5d1a9bd56d71bdf3072627a76cd103b9b056d9131aa49ffe11fa334c24ab3b596c7de"
+"e4ed3494d3bbcf5f1956e5d43988ad5d726a32ea298e28f5ac15d2ff4a64e099b3cf2336db35569173a5b7020315c552d3b8f4aded92d7fe5781c41d8a1e06ce")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix a race condition when IPv6 is in use
+    patch -Np1 -i ${WORKDIR}/avahi-0.8-ipv6_race_condition_fix-1.patch
+
+    # Fix a security vulnerability
+    sed -i '426a if (events & AVAHI_WATCH_HUP) { \
+    client_free(c); \
+    return; \
+    }' avahi-daemon/simple-protocol.c
+
+    ./configure --prefix=/usr        \
+                --sysconfdir=/etc    \
+                --localstatedir=/var \
+                --disable-static     \
+                --disable-mono       \
+                --disable-monodoc    \
+                --disable-python     \
+                --disable-qt3        \
+                --disable-qt4        \
+                --disable-qt5        \
+                --enable-core-docs   \
+                --with-distro=none
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

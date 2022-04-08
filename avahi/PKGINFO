@@ -1,0 +1,16 @@
+{
+    "name": "avahi",
+    "version": "0.8",
+    "epoch": 0,
+    "description": "A system which facilitates service discovery on a local network via the mDNS/DNS-SD protocol suite.",
+    "groups": [],
+    "url": "http://avahi.org",
+    "license": ["LGPL-2.1"],
+    "depends": ["coreutils", "dbus", "expat", "glibc", "libcap", "libdaemon", "shadow"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection", "libglade2", "gtk3", "gtk2"],
+    "provides": ["avahi"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
