@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xdg-utils"
+VERSION="1.1.3"
+EPOCH=0
+DESC="A set of command line tools that assist applications with a variety of desktop integration tasks."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/xdg-utils/"
+LICENSES=("MIT")
+DEPENDS=("coreutils" "which" "dbus")
+OPT_DEPENDS=()
+MK_DEPENDS=("xmlto")
+PROVIDES=("xdg-utils")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://portland.freedesktop.org/download/xdg-utils-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("d1f819a211eb4104a90dfdc6fedcb640fd46b15ccfc8762266f8f538c49d74cb00027b8c1af991fb2a200acb4379986ae375700e06a2aa08fb41a38f883acb3e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --mandir=/usr/share/man
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
