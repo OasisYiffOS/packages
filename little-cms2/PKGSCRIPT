@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="little-cms2"
+VERSION="2.13.1"
+EPOCH=0
+DESC="A small-footprint color management engine, with special focus on accuracy and performance."
+GRPS=()
+URL="https://www.littlecms.com"
+LICENSES=("MIT")
+DEPENDS=("glibc" "libjpeg-turbo" "libpng")
+OPT_DEPENDS=()
+PROVIDES=("little-cms2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/mm2/Little-CMS/releases/download/lcms${VERSION}/lcms2-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("214ec63fa086b580a6507d493a54ccf5faf02c40e149d71e41f9fc8510efdb16554621c96d91cc886f09682c9631b10aa194b4b67eb6ffcc871d5d4666b05617")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/lcms2-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/lcms2-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/lcms2-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

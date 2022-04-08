@@ -1,0 +1,16 @@
+{
+    "name": "little-cms2",
+    "version": "2.13.1",
+    "epoch": 0,
+    "description": "A small-footprint color management engine, with special focus on accuracy and performance.",
+    "groups": [],
+    "url": "https://www.littlecms.com",
+    "license": ["MIT"],
+    "depends": ["glibc", "libjpeg-turbo", "libpng"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["little-cms2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
