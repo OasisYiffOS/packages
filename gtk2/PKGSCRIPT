@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gtk2"
+VERSION="2.24.33"
+_MAJOR_VERSION="2.24"
+EPOCH=0
+DESC="Libraries used for creating graphical user interfaces for applications."
+GRPS=()
+URL="https://www.gtk.org"
+LICENSES=("LGPL-2.0")
+DEPENDS=("atk" "cairo" "fontconfig" "gdk-pixbuf2" "glib2" "glibc" "hicolor-icon-theme" "libx11" "libxcomposite" "libxcursor" "libxdamage" "libxext" "libxfixes" "libxi" "libxinerama" "libxrandr" "libxrender" "libtiff" "pango")
+OPT_DEPENDS=()
+PROVIDES=("gtk2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gtk+/${_MAJOR_VERSION}/gtk+-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("71b588797c81f727dfac8dcb1be193f7436f717d30ecf18eae2d3aeb0f445b3be4743400acac16435490db8f564f01032065d3f42d27871317f80c98aef929d5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/gtk+-${VERSION}"
+
+    # Fix an issue with docbook-utils
+    sed -e 's#l \(gtk-.*\).sgml#& -o \1#' \
+        -i docs/{faq,tutorial}/Makefile.in
+
+    ./configure --prefix=/usr --sysconfdir=/etc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/gtk+-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/gtk+-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
