@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="sassc"
+VERSION="3.6.2"
+EPOCH=0
+DESC="A wrapper around libsass."
+GRPS=()
+URL="https://github.com/sass/sassc"
+LICENSES=("MIT")
+DEPENDS=("glibc" "libsass")
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf")
+PROVIDES=("sassc")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/sass/sassc/archive/${VERSION}/sassc-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("fff3995ce8608bdaed5f4f1352ae4f1f882de58663b932c598d6168df421e4dbf907ec0f8caebb1e56490a71ca11105726f291b475816dd53e705bc53121969f")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    autoreconf -fi
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

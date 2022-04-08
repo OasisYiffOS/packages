@@ -1,0 +1,16 @@
+{
+    "name": "sassc",
+    "version": "3.6.2",
+    "epoch": 0,
+    "description": "A wrapper around libsass.",
+    "groups": [],
+    "url": "https://github.com/sass/sassc",
+    "license": ["MIT"],
+    "depends": ["glibc", "libsass"],
+    "optional_depends": [],
+    "make_depends": ["autoconf"],
+    "provides": ["sassc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
