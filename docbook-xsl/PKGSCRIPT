@@ -1,0 +1,67 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="docbook-xsl"
+VERSION="1.79.2"
+EPOCH=0
+DESC="Contains XSL stylesheets. These are useful for performing transformations on XML DocBook files."
+GRPS=()
+URL="https://docbook.org"
+LICENSES=("MIT")
+DEPENDS=("libxml2" "libxslt")
+OPT_DEPENDS=()
+PROVIDES=("docbook-xsl")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/docbook/xslt10-stylesheets/releases/download/release/${VERSION}/docbook-xsl-nons-${VERSION}.tar.bz2"
+"https://www.linuxfromscratch.org/patches/blfs/svn/docbook-xsl-nons-${VERSION}-stack_fix-1.patch"
+"https://github.com/docbook/xslt10-stylesheets/releases/download/release/${VERSION}/docbook-xsl-doc-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("d19aad5ae91c7f9a9690836bd472ec6e01a29eaeac6b1838b5c9ea54e2ef4cc90f515d7b6640fe94e909a5a51eee80cd32e2ccbee457de6f0c6652ea43325d7d"
+"b4413d5816d72e1804f47b0292ccad20647a15ad90eff8f1333a02caa14a2dc376f426340b84ff1d65e9276b94681382fc8f254bdb072e05b40c4b3b9d36a22e"
+"98390d47f0052913746b1449331c4aee9a710f500d4c844d89c72a1ee84212f74006abbd553c8d60ffd613df4bd298226bd4bcb23d8cca5df05545af45376f8e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/docbook-xsl-nons-${VERSION}"
+
+    # Fix a stack overflow when doing recursion
+    patch -Np1 -i ${WORKDIR}/docbook-xsl-nons-${VERSION}-stack_fix-1.patch
+
+    mv ${WORKDIR}/docbook-xsl-${VERSION}/* ./
+
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/docbook-xsl-nons-${VERSION}"
+
+    install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/xml/docbook/xsl-stylesheets-nons-${VERSION}
+
+    cp -v -R VERSION assembly common eclipse epub epub3 extensions fo           \
+            highlighting html htmlhelp images javahelp lib manpages params      \
+            profiling roundtrip slides template tests tools webhelp website     \
+            xhtml xhtml-1_1 xhtml5                                              \
+        ${BUILD_DATA_ROOT}/usr/share/xml/docbook/xsl-stylesheets-nons-${VERSION}
+
+    ln -s VERSION ${BUILD_DATA_ROOT}/usr/share/xml/docbook/xsl-stylesheets-nons-${VERSION}/VERSION.xsl
+
+    install -v -m644 -D README \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/docbook-xsl-nons-${VERSION}/README.txt
+    install -v -m644    RELEASE-NOTES* NEWS* \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/docbook-xsl-nons-${VERSION}
+
+    cp -v -R doc/* ${BUILD_DATA_ROOT}/usr/share/doc/docbook-xsl-nons-${VERSION}
+
+    return 0
+}

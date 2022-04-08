@@ -1,0 +1,16 @@
+{
+    "name": "docbook-xsl",
+    "version": "1.79.2",
+    "epoch": 0,
+    "description": "Contains XSL stylesheets. These are useful for performing transformations on XML DocBook files.",
+    "groups": [],
+    "url": "https://docbook.org",
+    "license": ["MIT"],
+    "depends": ["libxml2", "libxslt"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["docbook-xsl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
