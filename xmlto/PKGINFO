@@ -1,0 +1,16 @@
+{
+    "name": "xmlto",
+    "version": "0.0.28",
+    "epoch": 0,
+    "description": "A front-end to a XSL toolchain.",
+    "groups": [],
+    "url": "https://pagure.io/xmlto",
+    "license": ["GPL-2.0"],
+    "depends": ["docbook-xml", "docbook-xsl", "libxslt"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xmlto"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
