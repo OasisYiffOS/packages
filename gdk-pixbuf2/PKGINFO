@@ -1,0 +1,16 @@
+{
+    "name": "gdk-pixbuf2",
+    "version": "2.42.8",
+    "epoch": 0,
+    "description": "A toolkit for image loading and pixel buffer manipulation.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/gdk-pixbuf",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "libjpeg-turbo", "libpng", "shared-mime-info", "librsvg2", "libtiff"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection", "meson", "ninja"],
+    "provides": ["gdk-pixbuf2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

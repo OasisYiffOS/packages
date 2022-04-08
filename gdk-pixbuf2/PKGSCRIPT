@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gdk-pixbuf2"
+VERSION="2.42.8"
+_MAJOR_VERSION="2.42"
+EPOCH=0
+DESC="A toolkit for image loading and pixel buffer manipulation."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gdk-pixbuf"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "libjpeg-turbo" "libpng" "shared-mime-info" "librsvg2" "libtiff")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "meson" "ninja")
+PROVIDES=("gdk-pixbuf2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gdk-pixbuf/${_MAJOR_VERSION}/gdk-pixbuf-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("994a1374becec6235d347f4980afcc8b85f43ac373e4d7e00b7445880d0a51932e63b54429b28ab5af09e7c4437f9d6008e1c25b2d44a2c9ef7cc9821b478387")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/gdk-pixbuf-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dbuiltin_loaders=all -Dman=false -Dinstalled_tests=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/gdk-pixbuf-${VERSION}/build"
+
+    ninja
+
+    #ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/gdk-pixbuf-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
