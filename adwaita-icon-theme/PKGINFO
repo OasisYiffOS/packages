@@ -1,0 +1,16 @@
+{
+    "name": "adwaita-icon-theme",
+    "version": "42.0",
+    "epoch": 0,
+    "description": "The Adwaita icon theme used by the GNOME desktop.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/adwaita-icon-theme",
+    "license": ["LGPL-3.0", "CC-BY-SA-3.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["adwaita-icon-theme"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
