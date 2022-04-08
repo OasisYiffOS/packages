@@ -1,0 +1,16 @@
+{
+    "name": "sgml-common",
+    "version": "0.6.3",
+    "epoch": 0,
+    "description": "A collection of entities and DTDs that are useful for processing SGML.",
+    "groups": [],
+    "url": "https://www.w3.org/2003/entities/",
+    "license": ["GPL-1.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": ["autoconf"],
+    "provides": ["sgml-common"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

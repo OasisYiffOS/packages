@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="sgml-common"
+VERSION="0.6.3"
+EPOCH=0
+DESC="A collection of entities and DTDs that are useful for processing SGML."
+GRPS=()
+URL="https://www.w3.org/2003/entities/"
+LICENSES=("GPL-1.0")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf")
+PROVIDES=("sgml-common")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://sourceware.org/ftp/docbook-tools/new-trials/SOURCES/sgml-common-${VERSION}.tgz"
+"https://www.linuxfromscratch.org/patches/blfs/svn/sgml-common-${VERSION}-manpage-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("3c4a55f555596b2a6bf6af66c497679226e7b40625ac16832150488311cba7f9fc523435eea5837262a5517f5c09c4c0e07fe4a2cf02184d4027609c26e4bc0c"
+"c584ff6e66e1d58456c07849bf96fedd3f1df0b93430f6301c4d4ab9906821dea0cbac82eada19197540b5e31f13febd04fadda5b6e2ba4b0b6ee8f0328292f7")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    patch -Np1 -i ${WORKDIR}/sgml-common-${VERSION}-manpage-1.patch
+
+    autoreconf -f -i
+
+    ./configure --prefix=/usr --sysconfdir=/etc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make docdir=/usr/share/doc install
+
+    return 0
+}
