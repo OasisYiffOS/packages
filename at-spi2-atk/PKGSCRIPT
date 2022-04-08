@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="at-spi2-atk"
+VERSION="2.38.0"
+_MAJOR_VERSION="2.38"
+EPOCH=0
+DESC="A library that bridges ATK to At-Spi2 D-Bus service."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/at-spi2-core"
+LICENSES=("LGPL-2.0")
+DEPENDS=("glibc" "glib2" "dbus" "atk" "at-spi2-core")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("at-spi2-atk")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/at-spi2-atk/${_MAJOR_VERSION}/at-spi2-atk-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("2f40ecbc55b0fbaa57ade952a75583bc8fbfde234cce9248489e9ae06e0597d98c2f4c77d8279758dec29da97e06cde5708d30a1238d91bebd023b2320f38528")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
