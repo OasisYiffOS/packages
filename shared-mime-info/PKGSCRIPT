@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="shared-mime-info"
+VERSION="2.2"
+EPOCH=0
+DESC="The freedesktop.org shared MIME info database."
+GRPS=()
+URL="https://freedesktop.org/wiki/Software/shared-mime-info/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "glib2" "libxml2")
+OPT_DEPENDS=()
+MK_DEPENDS=("itstool" "meson" "ninja")
+PROVIDES=("shared-mime-info")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/xdg/shared-mime-info/-/archive/${VERSION}/shared-mime-info-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("490d96daf4214ab6ac537761b67f3ff4716b95d7ea3fedd2e2ab7b0b02d946acad49790a25efcb5e949551dc4c39ba08911e59f06b198b61dcb1bc44799a2b2e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build 
+
+    meson --prefix=/usr --buildtype=release -Dupdate-mimedb=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "shared-mime-info",
+    "version": "2.2",
+    "epoch": 0,
+    "description": "The freedesktop.org shared MIME info database.",
+    "groups": [],
+    "url": "https://freedesktop.org/wiki/Software/shared-mime-info/",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "glib2", "libxml2"],
+    "optional_depends": [],
+    "make_depends": ["itstool", "meson", "ninja"],
+    "provides": ["shared-mime-info"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
