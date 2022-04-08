@@ -1,0 +1,16 @@
+{
+    "name": "hicolor-icon-theme",
+    "version": "0.17",
+    "epoch": 0,
+    "description": "Default fallback theme for implementations of the icon theme specification.",
+    "groups": [],
+    "url": "https://www.freedesktop.org/wiki/Software/icon-theme/",
+    "license": ["GPL-2.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["hicolor-icon-theme"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

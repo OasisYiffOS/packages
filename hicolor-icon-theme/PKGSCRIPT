@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="hicolor-icon-theme"
+VERSION="0.17"
+EPOCH=0
+DESC="Default fallback theme for implementations of the icon theme specification."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/icon-theme/"
+LICENSES=("GPL-2.0")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("hicolor-icon-theme")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://icon-theme.freedesktop.org/releases/hicolor-icon-theme-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("eca8655930aa7e234f42630041c0053fde067b970fad1f81c55fcd4c5046c03edfdf2ede72a3e78fba2908e7da53e9463d3c5ae12ab9f5ef261e29a49f9c7a8d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
