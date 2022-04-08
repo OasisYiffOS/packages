@@ -1,7 +1,7 @@
 {
     "name": "pcre",
     "version": "8.45",
-    "epoch": 0,
+    "epoch": 1,
     "description": "Perl Compatible Regular Expressions (Older version)",
     "groups": [],
     "url": "https://www.pcre.org/",
