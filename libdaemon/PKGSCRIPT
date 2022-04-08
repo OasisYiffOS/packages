@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libdaemon"
+VERSION="0.14"
+EPOCH=0
+DESC="A lightweight C library that eases the writing of UNIX daemons."
+GRPS=()
+URL="http://0pointer.de/lennart/projects/libdaemon/"
+LICENSES=("LGPL-2.0")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+PROVIDES=("libdaemon")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("http://0pointer.de/lennart/projects/libdaemon/libdaemon-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("a96b25c09bd63cc192c1c5f8b5bf34cc6ad0c32d42ac14b520add611423b6ad3d64091a47e0c7ab9a94476a5e645529abccea3ed6b23596567163fba88131ff2")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make docdir=/usr/share/doc/libdaemon-${VERSION} install
+
+    return 0
+}

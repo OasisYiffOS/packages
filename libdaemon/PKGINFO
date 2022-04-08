@@ -1,0 +1,16 @@
+{
+    "name": "libdaemon",
+    "version": "0.14",
+    "epoch": 0,
+    "description": "A lightweight C library that eases the writing of UNIX daemons.",
+    "groups": [],
+    "url": "http://0pointer.de/lennart/projects/libdaemon/",
+    "license": ["LGPL-2.0"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libdaemon"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
