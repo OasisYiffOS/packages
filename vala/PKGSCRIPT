@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="vala"
+VERSION="0.56.0"
+_MAJOR_VERSION="0.56"
+EPOCH=0
+DESC="An object-oriented programming language with a self-hosting compiler that generates C code and uses the GObject system."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/Vala"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "gobject-introspection")
+OPT_DEPENDS=()
+PROVIDES=("vala")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/vala/${_MAJOR_VERSION}/vala-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("dfaad6fc143835d601c586b270e7ee63309341fb9b7f023541bac75e96759d0eb9c563c67aa26acdcd1fb89a4a08759107f8a6c8e887f7d402fa2aa50a2e4038")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-valadoc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
