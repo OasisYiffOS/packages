@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libsass"
+VERSION="3.6.5"
+EPOCH=0
+DESC="An implementation of Sass in C/C++, designed to be easy to integrate into many different languages."
+GRPS=()
+URL="https://sass-lang.com/libsass"
+LICENSES=("MIT")
+DEPENDS=("glibc" "gcc-libs")
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf")
+PROVIDES=("libsass")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/sass/libsass/archive/${VERSION}/libsass-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("98cc7e12fdf74cd9e92d8d4a62b821956d3ad186fcee9a8d77b677a621342aa161b73d9adad4c1849678a3bac890443120cc8febe1b7429aab374321d635b8f7")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    autoreconf -fi
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

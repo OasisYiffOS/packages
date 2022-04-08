@@ -1,0 +1,16 @@
+{
+    "name": "libsass",
+    "version": "3.6.5",
+    "epoch": 0,
+    "description": "An implementation of Sass in C/C++, designed to be easy to integrate into many different languages.",
+    "groups": [],
+    "url": "https://sass-lang.com/libsass",
+    "license": ["MIT"],
+    "depends": ["glibc", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": ["autoconf"],
+    "provides": ["libsass"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
