@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="graphene"
+VERSION="1.10.8"
+_MAJOR_VERSION="1.10"
+EPOCH=0
+DESC="A thin layer of types for graphics libraries."
+GRPS=()
+URL="https://github.com/ebassi/graphene"
+LICENSES=("MIT")
+DEPENDS=("glibc" "glib2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection")
+PROVIDES=("graphene")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.acc.umu.se/pub/gnome/sources/graphene/${_MAJOR_VERSION}/graphene-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("c56dab6712cf58387d0512a213cd0cd456679e46a495ee5cfd9bc25440cda2d72d56974af4e462f3c863869a1e2e506b702f468933045609d35fdf006212c67d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "graphene",
+    "version": "1.10.8",
+    "epoch": 0,
+    "description": "A thin layer of types for graphics libraries.",
+    "groups": [],
+    "url": "https://github.com/ebassi/graphene",
+    "license": ["MIT"],
+    "depends": ["glibc", "glib2"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection"],
+    "provides": ["graphene"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
