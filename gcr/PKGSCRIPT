@@ -1,0 +1,66 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gcr"
+VERSION="3.40.0"
+_MAJOR_VERSION="3.40"
+EPOCH=0
+DESC="Libraries used for displaying certificates and accessing key stores."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gcr"
+LICENSES=("LGPL-2.0")
+DEPENDS=("glibc" "glib2" "libgcrypt" "p11-kit")
+OPT_DEPENDS=("gtk3")
+MK_DEPENDS=("gobject-introspection" "vala" "libxslt" "meson" "ninja" "gtk3")
+PROVIDES=("gcr")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gcr/${_MAJOR_VERSION}/gcr-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("7118608e7bef7d0cf2eea33cb3286b7f9c3622a38892ce88cf33ed453d343cc33e070831e7b4d0c5cdb43c2e57b3f0b91c7cbd6aa8463982d3af8844b59bcb81")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix an issue when building with new meson versions
+    find . -name meson.build | xargs sed -i /packages.\*deps/d
+
+    # Fix another issue when building with new meson versions
+    sed -e '208 s/@BASENAME@/gcr-viewer.desktop/'   \
+        -e '231 s/@BASENAME@/gcr-prompter.desktop/' \
+        -i ui/meson.build
+
+
+    # Fix a deprecated entry in the schema
+    sed -i 's:"/desktop:"/org:' schema/*.xml
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dgtk_doc=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

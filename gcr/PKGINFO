@@ -1,0 +1,16 @@
+{
+    "name": "gcr",
+    "version": "3.40.0",
+    "epoch": 0,
+    "description": "Libraries used for displaying certificates and accessing key stores.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/gcr",
+    "license": ["LGPL-2.0"],
+    "depends": ["glibc", "glib2", "libgcrypt", "p11-kit"],
+    "optional_depends": ["gtk3"],
+    "make_depends": ["gobject-introspection", "vala", "libxslt", "meson", "ninja", "gtk3"],
+    "provides": ["gcr"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
