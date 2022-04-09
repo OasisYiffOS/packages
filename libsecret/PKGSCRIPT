@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libsecret"
+VERSION="0.20.5"
+_MAJOR_VERSION="0.20"
+EPOCH=0
+DESC="A GObject based library for accessing the Secret Service API."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/Libsecret"
+LICENSES=("LGPL-2.0")
+DEPENDS=("glibc" "glib2" "gcc-libs" "libgcrypt" "pam" "gnome-keyring")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "vala" "meson" "ninja" "libxslt" "docbook-xsl" "docbook-xml")
+PROVIDES=("libsecret")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libsecret/${_MAJOR_VERSION}/libsecret-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("61ca248aafd265e1f31d56c9084c68d880ebf03660ace3d4a6c6622ab306b56e921ac24647b6a60633bfa99c8a0407d4ae1aa6148511f289bf5ce2025b72692a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir bld
+    cd    bld
+
+    meson --prefix=/usr --buildtype=release -Dgtk_doc=false .. 
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/bld"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/bld"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

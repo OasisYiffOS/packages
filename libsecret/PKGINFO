@@ -1,0 +1,16 @@
+{
+    "name": "libsecret",
+    "version": "0.20.5",
+    "epoch": 0,
+    "description": "A GObject based library for accessing the Secret Service API.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/Libsecret",
+    "license": ["LGPL-2.0"],
+    "depends": ["glibc", "glib2", "gcc-libs", "libgcrypt", "pam", "gnome-keyring"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection", "vala", "meson", "ninja", "libxslt", "docbook-xsl", "docbook-xml"],
+    "provides": ["libsecret"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
