@@ -4,13 +4,13 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 # Package information
 NAME="weston"
 VERSION="10.0.0"
-EPOCH=0
+EPOCH=1
 DESC="A reference implementation of a Wayland compositor."
 GRPS=()
 URL="https://wayland.pages.freedesktop.org/weston/"
 LICENSES=("MIT")
-DEPENDS=("bash" "cairo" "glib2" "glibc" "libdrm" "libevdev" "libinput" "libjpeg-turbo" "libpng" "wayland" "wayland-protocols" "libxkbcommon" "mesa" "pixman" "libva")
-OPT_DEPENDS=()
+DEPENDS=("bash" "cairo" "glib2" "glibc" "libdrm" "libevdev" "libinput" "libjpeg-turbo" "libpng" "wayland" "wayland-protocols" "libxkbcommon" "mesa" "pixman" "libva" "colord")
+OPT_DEPENDS=("xwayland" "pipewire" "gstreamer")
 MK_DEPENDS=("meson" "ninja")
 PROVIDES=("weston")
 CONFLICTS=()
@@ -31,13 +31,13 @@ function prepare() {
 
     meson   --prefix=/usr                           \
             --buildtype=release                     \
-            -Dcolor-management-lcms=false           \
+            -Dcolor-management-lcms=true            \
             -Dbackend-rdp=false                     \
-            -Dxwayland=false                        \
-            -Dcolor-management-colord=false         \
-            -Dremoting=false                        \
-            -Dpipewire=false                        \
-            -Ddemo-clients=false                    \
+            -Dxwayland=true                         \
+            -Dcolor-management-colord=true          \
+            -Dremoting=true                         \
+            -Dpipewire=true                         \
+            -Ddemo-clients=true                     \
             ..
 
     return 0
