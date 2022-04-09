@@ -1,0 +1,16 @@
+{
+    "name": "x11-font-util",
+    "version": "1.3.2",
+    "epoch": 0,
+    "description": "Font utilities for X.Org.",
+    "groups": [],
+    "url": "https://www.x.org/wiki/",
+    "license": ["MIT"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["x11-util-macros"],
+    "provides": ["x11-font-util"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
