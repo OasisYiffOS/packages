@@ -1,0 +1,59 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gstreamer"
+VERSION="1.20.1"
+EPOCH=0
+DESC="A streaming media framework that enables applications to share a common set of plugins for tasks such as video encoding and decoding."
+GRPS=()
+URL="https://gstreamer.freedesktop.org"
+LICENSES=("LGPL-2.0")
+DEPENDS=("glibc" "libelf" "glib2" "libcap" "libunwind")
+OPT_DEPENDS=("gtk3")
+MK_DEPENDS=("gobject-introspection" "meson" "ninja")
+PROVIDES=("gstreamer")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("d6f67cce81ba15fba3fcf70850e3c84b25e8da3e53fd56e6f2c87c7ee1701071ea44deb754a0ea371b3cb17877f26aab94d9eccb6729cbb370d6d6d5c324aa1a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr                                     \
+          --buildtype=release                               \
+          -Dgst_debug=false                                 \
+          -Dpackage-origin=https://yiffos.gay/              \
+          -Dpackage-name="GStreamer ${VERSION} for yiffOS"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

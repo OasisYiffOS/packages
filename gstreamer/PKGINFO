@@ -1,0 +1,16 @@
+{
+    "name": "gstreamer",
+    "version": "1.20.1",
+    "epoch": 0,
+    "description": "A streaming media framework that enables applications to share a common set of plugins for tasks such as video encoding and decoding.",
+    "groups": [],
+    "url": "https://gstreamer.freedesktop.org",
+    "license": ["LGPL-2.0"],
+    "depends": ["glibc", "libelf", "glib2", "libcap", "libunwind"],
+    "optional_depends": ["gtk3"],
+    "make_depends": ["gobject-introspection", "meson", "ninja"],
+    "provides": ["gstreamer"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
