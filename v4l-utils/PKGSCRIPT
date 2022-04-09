@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="v4l-utils"
+VERSION="1.22.1"
+EPOCH=0
+DESC="Collection of various video4linux (v4l) utilities."
+GRPS=()
+URL="https://linuxtv.org/wiki/index.php/V4l-utils"
+LICENSES=("GPL-2.0" "LGPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "systemd" "libjpeg-turbo" "alsa-lib")
+OPT_DEPENDS=()
+PROVIDES=("v4l-utils")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.linuxtv.org/downloads/v4l-utils/v4l-utils-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("8a634d8995d13f453dfaf90ca5d0dfb26f2f4b10a0d200d76a949c46f77040d12fc0a5b35e05d7b1ba68bcfc85a445be5a5ab1d4a7d4eabfe3a254038ccc6170")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr     \
+                --sysconfdir=/etc \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make -j1 install
+
+    return 0
+}

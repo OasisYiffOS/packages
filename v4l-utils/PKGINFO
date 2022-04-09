@@ -1,0 +1,16 @@
+{
+    "name": "v4l-utils",
+    "version": "1.22.1",
+    "epoch": 0,
+    "description": "Collection of various video4linux (v4l) utilities.",
+    "groups": [],
+    "url": "https://linuxtv.org/wiki/index.php/V4l-utils",
+    "license": ["GPL-2.0", "LGPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "systemd", "libjpeg-turbo", "alsa-lib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["v4l-utils"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
