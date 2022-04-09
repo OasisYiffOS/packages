@@ -60,5 +60,7 @@ function postbuild() {
     install -v -dm755 ${BUILD_DATA_ROOT}/usr/share/doc/bluez-${VERSION}
     install -v -m644 doc/*.txt ${BUILD_DATA_ROOT}/usr/share/doc/bluez-${VERSION}
 
+    install -dm700 ${BUILD_DATA_ROOT}/var/lib/bluetooth
+
     return 0
 }
