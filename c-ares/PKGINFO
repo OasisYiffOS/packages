@@ -1,0 +1,16 @@
+{
+    "name": "c-ares",
+    "version": "1.18.1",
+    "epoch": 0,
+    "description": "A C library for asynchronous DNS requests.",
+    "groups": [],
+    "url": "https://c-ares.org",
+    "license": ["MIT"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["c-ares"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
