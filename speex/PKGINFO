@@ -1,0 +1,16 @@
+{
+    "name": "speex",
+    "version": "1.2.0",
+    "epoch": 0,
+    "description": "An audio compression format designed especially for speech.",
+    "groups": [],
+    "url": "https://www.speex.org",
+    "license": ["BSD"],
+    "depends": ["glibc", "libogg"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["speex"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

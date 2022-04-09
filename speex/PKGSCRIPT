@@ -1,0 +1,69 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="speex"
+VERSION="1.2.0"
+EPOCH=0
+DESC="An audio compression format designed especially for speech."
+GRPS=()
+URL="https://www.speex.org"
+LICENSES=("BSD")
+DEPENDS=("glibc" "libogg")
+OPT_DEPENDS=()
+PROVIDES=("speex")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.xiph.org/releases/speex/speex-${VERSION}.tar.gz"
+"https://downloads.xiph.org/releases/speex/speexdsp-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("7fe10838c7d1bafcbe42295b82b79262420dba793b8a4388e2f73a3007850b5572face1b5308d9f4e8d7dfc9cb1c016cbad88cd65b2892667986107ed946836b"
+"e357cd5377415ea66c862302c7cf8bf6a10063cacd903f0846478975b87974cf5bdf00e2c6759d8f4f453c4c869cf284e9dc948a84a83d7b2ab96bd5405c05ec")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+                --disable-static                        \
+                --enable-binaries                       \
+                --docdir=/usr/share/doc/speex-${VERSION}
+
+    cd "${WORKDIR}/${NAME}dsp-${VERSION}"
+
+    ./configure --prefix=/usr                               \
+                --disable-static                            \
+                --enable-binaries                           \
+                --docdir=/usr/share/doc/speexdsp-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    cd "${WORKDIR}/${NAME}dsp-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    cd "${WORKDIR}/${NAME}dsp-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
