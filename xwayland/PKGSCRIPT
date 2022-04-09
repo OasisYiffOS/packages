@@ -1,0 +1,61 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xwayland"
+VERSION="22.1.1"
+EPOCH=0
+DESC="An Xorg server running on top of the Wayland server."
+GRPS=()
+URL="https://www.x.org/wiki/"
+LICENSES=("MIT")
+DEPENDS=("glibc" "libxau" "libxdmcp" "libxfont2" "libxcvt" "libxshmfence" "libdrm" "libepoxy" "libtirpc"  "pixman" "wayland-protocols" "x11-font-util" "x11-xkbcomp")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("xwayland")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.x.org/pub/individual/xserver/xwayland-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("435cdf59f2be1ff7cb3dbb04e7a8920d9c48471fbeffca96c9dab2be400b168bfdb73b9e818829c555ab5d6fd83345eb693b3ba785d4ef701bdb27c8344077b5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Prevent installing xserver man page
+    sed -i '/install_man/,$d' meson.build
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr                 \
+          -Dxvfb=false                  \
+          -Dxkb_output_dir=/var/lib/xkb \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    mkdir -pv ${BUILD_DATA_ROOT}/etc/X11/xorg.conf.d
+
+    return 0
+}

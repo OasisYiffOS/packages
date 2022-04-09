@@ -1,0 +1,16 @@
+{
+    "name": "xwayland",
+    "version": "22.1.1",
+    "epoch": 0,
+    "description": "An Xorg server running on top of the Wayland server.",
+    "groups": [],
+    "url": "https://www.x.org/wiki/",
+    "license": ["MIT"],
+    "depends": ["glibc", "libxau", "libxdmcp", "libxfont2", "libxcvt", "libxshmfence", "libdrm", "libepoxy", "libtirpc", "pixman", "wayland-protocols", "x11-font-util", "x11-xkbcomp"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["xwayland"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
