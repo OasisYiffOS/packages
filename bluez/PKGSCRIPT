@@ -1,0 +1,64 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="bluez"
+VERSION="5.64"
+EPOCH=0
+DESC="The Bluetooth protocol stack for Linux."
+GRPS=()
+URL="http://www.bluez.org"
+LICENSES=("GPL-2.0")
+DEPENDS=("dbus" "glibc" "glib2" "libical" "readline" "systemd")
+OPT_DEPENDS=()
+MK_DEPENDS=("python-docutils")
+PROVIDES=("bluez")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.kernel.org/pub/linux/bluetooth/bluez-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("f11f9974b29c5c6fce3890d7e42425c1cb02e42c1b8f49c5cc4b249234e67b64317d0e5e82721e2fbf1b53269c8569a9c869d59ce42b5e927f6622f0753e53cd")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr         \
+                --sysconfdir=/etc     \
+                --localstatedir=/var  \
+                --enable-library
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/sbin/
+    ln -svf ../libexec/bluetooth/bluetoothd ${BUILD_DATA_ROOT}/usr/sbin/bluetoothd
+
+    install -v -dm755 ${BUILD_DATA_ROOT}/etc/bluetooth
+    install -v -m644 src/main.conf ${BUILD_DATA_ROOT}/etc/bluetooth/main.conf
+
+    install -v -dm755 ${BUILD_DATA_ROOT}/usr/share/doc/bluez-${VERSION}
+    install -v -m644 doc/*.txt ${BUILD_DATA_ROOT}/usr/share/doc/bluez-${VERSION}
+
+    return 0
+}

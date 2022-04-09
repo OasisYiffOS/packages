@@ -1,0 +1,16 @@
+{
+    "name": "bluez",
+    "version": "5.64",
+    "epoch": 0,
+    "description": "The Bluetooth protocol stack for Linux.",
+    "groups": [],
+    "url": "http://www.bluez.org",
+    "license": ["GPL-2.0"],
+    "depends": ["dbus", "glibc", "glib2", "libical", "readline", "systemd"],
+    "optional_depends": [],
+    "make_depends": ["python-docutils"],
+    "provides": ["bluez"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
