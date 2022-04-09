@@ -1,0 +1,62 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libical"
+VERSION="3.0.14"
+EPOCH=0
+DESC="An implementation of the iCalendar protocols and data formats."
+GRPS=()
+URL="https://libical.github.io/libical/"
+LICENSES=("LGPL-2.0" "MPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "icu" "tzdata")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake" "vala" "gobject-introspection" "python-pygobject")
+PROVIDES=("libical")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/libical/libical/releases/download/v${VERSION}/libical-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("36da5516672976c71b049a12af36164d91f9b655f81f1884766558149f25e80c30e64d15da848842f8a629295d708f39ce6fa63a3b0da39b5cbeb91911a4e6d8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr  \
+          -DCMAKE_BUILD_TYPE=Release   \
+          -DSHARED_ONLY=yes            \
+          -DICAL_BUILD_DOCS=false      \
+          -DGOBJECT_INTROSPECTION=true \
+          -DICAL_GLIB_VAPI=true        \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    # Can break when building with multiple jobs
+    make -j1
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

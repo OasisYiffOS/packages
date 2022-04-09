@@ -1,0 +1,16 @@
+{
+    "name": "libical",
+    "version": "3.0.14",
+    "epoch": 0,
+    "description": "An implementation of the iCalendar protocols and data formats.",
+    "groups": [],
+    "url": "https://libical.github.io/libical/",
+    "license": ["LGPL-2.0", "MPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "icu", "tzdata"],
+    "optional_depends": [],
+    "make_depends": ["cmake", "vala", "gobject-introspection", "python-pygobject"],
+    "provides": ["libical"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
