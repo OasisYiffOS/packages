@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-keyring"
+VERSION="40.0"
+_MAJOR_VERSION="40"
+EPOCH=0
+DESC="A daemon that keeps passwords and other secrets for users."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/GnomeKeyring"
+LICENSES=("GPL-2.0" "LGPL-2.0")
+DEPENDS=("gcr" "glibc" "glib2" "libgcrypt" "pam")
+OPT_DEPENDS=()
+PROVIDES=("gnome-keyring")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-keyring/${_MAJOR_VERSION}/gnome-keyring-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("c9cb0dca8c46ee712200c96c20663a8d5cd39f07801a04e1afca26550a04af6cb369b53a1f29638bf4c8a29f418a69f565befcf4d08df5b0d30fb31894ecf95e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix a deprecated entry in the schema
+    sed -i 's:"/desktop:"/org:' schema/*.xml
+
+    ./configure --prefix=/usr     \
+                --sysconfdir=/etc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
