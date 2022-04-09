@@ -1,0 +1,16 @@
+{
+    "name": "gst-plugins-base",
+    "version": "1.20.1",
+    "epoch": 0,
+    "description": "A well-maintained collection of GStreamer plug-ins and elements.",
+    "groups": [],
+    "url": "https://gstreamer.freedesktop.org",
+    "license": ["LGPL-2.0"],
+    "depends": ["alsa-lib", "graphene", "libjpeg-turbo", "libpng", "libogg", "libtheora", "libvorbis", "pango", "opus"],
+    "optional_depends": ["gtk3"],
+    "make_depends": ["gobject-introspection", "meson", "ninja"],
+    "provides": ["gst-plugins-base"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

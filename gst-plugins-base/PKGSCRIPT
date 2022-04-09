@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gst-plugins-base"
+VERSION="1.20.1"
+EPOCH=0
+DESC="A well-maintained collection of GStreamer plug-ins and elements."
+GRPS=()
+URL="https://gstreamer.freedesktop.org"
+LICENSES=("LGPL-2.0")
+DEPENDS=("alsa-lib" "graphene" "libjpeg-turbo" "libpng" "libogg" "libtheora" "libvorbis" "pango" "opus")
+OPT_DEPENDS=("gtk3")
+MK_DEPENDS=("gobject-introspection" "meson" "ninja")
+PROVIDES=("gst-plugins-base")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("679a0eee1973fa9612e2e24978e2c2d9d8fdc5732e1699b4a87712881f1549d0811719a13ff4fe77b91322ca4425c39623b371703f6b3a36fb7238b977d3e541")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr                                     \
+          --buildtype=release                               \
+          -Dpackage-origin=https://yiffos.gay/              \
+          -Dpackage-name="GStreamer ${VERSION} for yiffOS"  \
+          --wrap-mode=nodownload
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
