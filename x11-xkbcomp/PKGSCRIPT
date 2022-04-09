@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="x11-xkbcomp"
+VERSION="1.4.5"
+EPOCH=0
+DESC="The X.Org XKB keymap compiler."
+GRPS=()
+URL="https://www.x.org/wiki/"
+LICENSES=("MIT")
+DEPENDS=("glibc" "libx11" "libxkbfile")
+OPT_DEPENDS=()
+PROVIDES=("x11-xkbcomp")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.x.org/archive//individual/app/xkbcomp-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("c80a854779aa2c6ab79953870fbf712eb866e427643803bdecc129932b07f10c90482dfda178719808547d65aedfec44fca0ee3c271625bd77edf995fafaf4a0")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/xkbcomp-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static 
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/xkbcomp-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/xkbcomp-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

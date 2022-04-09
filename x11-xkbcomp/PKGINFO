@@ -1,0 +1,16 @@
+{
+    "name": "x11-xkbcomp",
+    "version": "1.4.5",
+    "epoch": 0,
+    "description": "The X.Org XKB keymap compiler.",
+    "groups": [],
+    "url": "https://www.x.org/wiki/",
+    "license": ["MIT"],
+    "depends": ["glibc", "libx11", "libxkbfile"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["x11-xkbcomp"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
