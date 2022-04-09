@@ -1,0 +1,16 @@
+{
+    "name": "sbc",
+    "version": "1.5",
+    "epoch": 0,
+    "description": "A digital audio encoder and decoder used to transfer data to Bluetooth audio output devices like headphones or loudspeakers.",
+    "groups": [],
+    "url": "http://www.bluez.org",
+    "license": ["GPL-2.0", "LGPL-2.0"],
+    "depends": ["glibc", "libsndfile"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["sbc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

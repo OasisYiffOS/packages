@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="sbc"
+VERSION="1.5"
+EPOCH=0
+DESC="A digital audio encoder and decoder used to transfer data to Bluetooth audio output devices like headphones or loudspeakers."
+GRPS=()
+URL="http://www.bluez.org"
+LICENSES=("GPL-2.0" "LGPL-2.0")
+DEPENDS=("glibc" "libsndfile")
+OPT_DEPENDS=()
+PROVIDES=("sbc")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.kernel.org/pub/linux/bluetooth/sbc-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("0243586188acede595317f2afbfdb41be5850d2a6133c374edbe5cbcf59a2a0fd4570d0b8f2d13ce9637ce48b2f1910c3e4ab1c0354dbf273ee67b09db8c4915")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
