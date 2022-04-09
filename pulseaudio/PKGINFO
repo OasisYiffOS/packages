@@ -1,0 +1,16 @@
+{
+    "name": "pulseaudio",
+    "version": "15.0",
+    "epoch": 0,
+    "description": "A sound system for POSIX OSes, meaning that it is a proxy for sound applications.",
+    "groups": [],
+    "url": "https://www.freedesktop.org/wiki/Software/PulseAudio/",
+    "license": ["LGPL-2.0"],
+    "depends": ["libsndfile", "alsa-lib", "dbus", "glib2", "libcap", "avahi", "bluez", "sbc", "libx11", "gcc-libs", "glibc", "libxcb", "gstreamer", "db", "speex"],
+    "optional_depends": ["gtk3"],
+    "make_depends": ["meson", "ninja", "checksh"],
+    "provides": ["pulseaudio"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

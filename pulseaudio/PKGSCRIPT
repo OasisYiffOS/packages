@@ -1,0 +1,63 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="pulseaudio"
+VERSION="15.0"
+EPOCH=0
+DESC="A sound system for POSIX OSes, meaning that it is a proxy for sound applications."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/PulseAudio/"
+LICENSES=("LGPL-2.0")
+DEPENDS=("libsndfile" "alsa-lib" "dbus" "glib2" "libcap" "avahi" "bluez" "sbc" "libx11" "gcc-libs" "glibc" "libxcb" "gstreamer" "db" "speex")
+OPT_DEPENDS=("gtk3")
+MK_DEPENDS=("meson" "ninja" "checksh")
+PROVIDES=("pulseaudio")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.freedesktop.org/software/pulseaudio/releases/pulseaudio-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("352ef20384c76c631c0faa73b08e2318902a433712e0c086a5ac7a0ae58873c8d4be8f35879bdec71a93b19ae8e2ba073cacac4d56215bcf58375a0cd9d88833")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr       \
+          --buildtype=release \
+          -Ddatabase=gdbm     \
+          -Ddoxygen=false     \
+          -Dspeex=enabled
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    # One test will fail because we don't run as root
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    # Upstream does not support system wide pulseaudio
+    rm -fv ${BUILD_DATA_ROOT}/etc/dbus-1/system.d/pulseaudio-system.conf
+
+    return 0
+}
