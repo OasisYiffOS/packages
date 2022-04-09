@@ -1,0 +1,16 @@
+{
+    "name": "pipewire",
+    "version": "0.3.49",
+    "epoch": 0,
+    "description": "A server and user-space API to handle multimedia pipelines. (Includes pipewire-media-session)",
+    "groups": [],
+    "url": "https://pipewire.org",
+    "license": ["MIT"],
+    "depends": ["glibc", "systemd", "bluez", "gstreamer", "ffmpeg", "gst-plugins-base", "libva", "pulseaudio", "sbc", "v4l-utils", "ffmpeg", "fdk-aac"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["pipewire"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
