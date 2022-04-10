@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libpsl"
+VERSION="0.21.1"
+EPOCH=0
+DESC="A library for accessing and resolving information from the Public Suffix List (PSL)."
+GRPS=()
+URL="https://github.com/rockdaboot/libpsl"
+LICENSES=("MIT")
+DEPENDS=("glibc" "libidn2" "libunistring")
+OPT_DEPENDS=()
+PROVIDES=("libpsl")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/rockdaboot/libpsl/releases/download/${VERSION}/libpsl-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("a5084b9df4ff2a0b1f5074b20972efe0da846473396d27b57967c7f6aa190ab3c910b4bfc4f8f03802f08decbbad5820d850c36ad59610262ae37fe77de0c7f5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Force use python 3
+    sed -i 's/env python/&3/' src/psl-make-dafsa
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

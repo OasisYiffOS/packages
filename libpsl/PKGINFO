@@ -1,0 +1,16 @@
+{
+    "name": "libpsl",
+    "version": "0.21.1",
+    "epoch": 0,
+    "description": "A library for accessing and resolving information from the Public Suffix List (PSL).",
+    "groups": [],
+    "url": "https://github.com/rockdaboot/libpsl",
+    "license": ["MIT"],
+    "depends": ["glibc", "libidn2", "libunistring"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libpsl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
