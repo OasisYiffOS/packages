@@ -1,0 +1,16 @@
+{
+    "name": "nodejs",
+    "version": "16.14.2",
+    "epoch": 0,
+    "description": "Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications.",
+    "groups": [],
+    "url": "http://nodejs.org/",
+    "license": ["MIT", "ASL-2.0", "ISC", "BSD"],
+    "depends": ["glibc", "nghttp2", "libuv", "openssl", "make-ca", "c-ares", "icu"],
+    "optional_depends": [],
+    "make_depends": ["which"],
+    "provides": ["nodejs"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
