@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libgtop2"
+VERSION="2.40.0"
+_MAJOR_VERSION="2.40"
+EPOCH=0
+DESC="A library for collecting system monitoring data."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/libgtop"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "glib2")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection")
+PROVIDES=("libgtop2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libgtop/${_MAJOR_VERSION}/libgtop-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("a9b2135796d7e41c63a6621f672c385d1baeb74d4af3e55c9164aaaae18c66a8a76b09a6ae8b37f89f120092123c38830e0da840c6613a09035ea62339117861")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/libgtop-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libgtop-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libgtop-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    rm ${BUILD_DATA_ROOT}/usr/share/info/dir
+
+    return 0
+}

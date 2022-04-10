@@ -1,0 +1,16 @@
+{
+    "name": "libgtop2",
+    "version": "2.40.0",
+    "epoch": 0,
+    "description": "A library for collecting system monitoring data.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/libgtop",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "glib2"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection"],
+    "provides": ["libgtop2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
