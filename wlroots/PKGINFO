@@ -1,0 +1,16 @@
+{
+    "name": "wlroots",
+    "version": "0.15.1",
+    "epoch": 0,
+    "description": "A modular Wayland compositor library.",
+    "groups": [],
+    "url": "https://gitlab.freedesktop.org/wlroots/wlroots/",
+    "license": ["MIT"],
+    "depends": ["glibc", "wayland", "wayland-protocols", "mesa", "vulkan-loader", "libdrm", "libinput", "xkbcommon", "pixman", "seatd", "libxcb", "xcb-util-wm", "xcb-util-renderutil"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "vulkan-headers", "xwayland", "glslang"],
+    "provides": ["wlroots"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

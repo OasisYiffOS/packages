@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="wlroots"
+VERSION="0.15.1"
+EPOCH=0
+DESC="A modular Wayland compositor library."
+GRPS=()
+URL="https://gitlab.freedesktop.org/wlroots/wlroots/"
+LICENSES=("MIT")
+DEPENDS=("glibc" "wayland" "wayland-protocols" "mesa" "vulkan-loader" "libdrm" "libinput" "xkbcommon" "pixman" "seatd" "libxcb" "xcb-util-wm" "xcb-util-renderutil")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vulkan-headers" "xwayland" "glslang")
+PROVIDES=("wlroots")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/wlroots/wlroots/-/archive/${VERSION}/wlroots-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("6228160f2f350a406c612f1048d7075cf2f78206cc84bc16f889d5d0acd614f9e98845fffed03d7067cfdbd7558b77fcc5d8cedc3868d866e476523126a63677")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr                     \
+          --buildtype=release               \
+          -Dxwayland="enabled"              \
+          -Drenderers="gles2","vulkan"      \
+          -Dbackends="drm","libinput","x11" \
+          -Dexamples=false                  \
+          -Dwerror=false                    \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
