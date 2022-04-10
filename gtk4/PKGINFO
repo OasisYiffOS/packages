@@ -1,0 +1,16 @@
+{
+    "name": "gtk4",
+    "version": "4.6.2",
+    "epoch": 0,
+    "description": "Libraries used for creating graphical user interfaces for applications.",
+    "groups": [],
+    "url": "https://gtk.org",
+    "license": ["LGPL-2.0"],
+    "depends": ["at-spi2-atk", "gdk-pixbuf2", "graphene", "colord", "libepoxy", "pango", "adwaita-icon-theme", "hicolor-icon-theme", "iso-codes", "libxkbcommon", "wayland", "wayland-protocols", "cairo", "fontconfig", "fribidi", "glib2", "glibc", "harfbuzz", "libx11", "libxcomposite", "libxcursor", "libxdamage", "libxext", "libxfixes", "libxi", "libxrandr", "tracker", "gstreamer", "gst-plugins-bad", "gst-plugins-good", "libpng", "libjpeg-turbo", "libtiff", "wayland"],
+    "optional_depends": ["highlight"],
+    "make_depends": ["sassc", "gobject-introspection", "meson", "ninja", "python-pygobject", "librsvg"],
+    "provides": ["gtk4"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
