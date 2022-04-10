@@ -1,7 +1,7 @@
 {
     "name": "binutils",
     "version": "2.38",
-    "epoch": 0,
+    "epoch": 1,
     "description": "A collection of binary tools, including an assembler, linker, and binary utilities.",
     "groups": ["devel"],
     "url": "https://www.gnu.org/software/binutils/",
