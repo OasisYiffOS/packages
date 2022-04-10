@@ -1,0 +1,16 @@
+{
+    "name": "libyaml",
+    "version": "0.2.5",
+    "epoch": 0,
+    "description": "A C library for parsing and emitting YAML (YAML Ain't Markup Language) code.",
+    "groups": [],
+    "url": "https://pyyaml.org/wiki/LibYAML",
+    "license": ["MIT"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libyaml"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

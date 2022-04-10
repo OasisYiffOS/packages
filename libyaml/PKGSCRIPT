@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libyaml"
+VERSION="0.2.5"
+EPOCH=0
+DESC="A C library for parsing and emitting YAML (YAML Ain't Markup Language) code."
+GRPS=()
+URL="https://pyyaml.org/wiki/LibYAML"
+LICENSES=("MIT")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+PROVIDES=("libyaml")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/yaml/libyaml/releases/download/${VERSION}/yaml-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("dadd7d8e0d88b5ebab005e5d521d56d541580198aa497370966b98c904586e642a1cd4f3881094eb57624f218d50db77417bbfd0ffdce50340f011e35e8c4c02")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/yaml-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/yaml-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/yaml-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
