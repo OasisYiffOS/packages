@@ -1,0 +1,16 @@
+{
+    "name": "glslang",
+    "version": "11.9.0",
+    "epoch": 0,
+    "description": "OpenGL and OpenGL ES shader front end and validator.",
+    "groups": [],
+    "url": "https://github.com/KhronosGroup/glslang",
+    "license": ["BSD", "GPL-3.0", "ASL-2.0"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["cmake", "ninja"],
+    "provides": ["glslang"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
