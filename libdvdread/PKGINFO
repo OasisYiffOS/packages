@@ -1,0 +1,16 @@
+{
+    "name": "libdvdread",
+    "version": "6.1.2",
+    "epoch": 0,
+    "description": "A library which provides a simple foundation for reading DVDs.",
+    "groups": [],
+    "url": "http://dvdnav.mplayerhq.hu",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libdvdread"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
