@@ -1,0 +1,16 @@
+{
+    "name": "labwc",
+    "version": "0.5.1",
+    "epoch": 0,
+    "description": "A wlroots-based stacking compositor aiming to be lightweight and independent.",
+    "groups": [],
+    "url": "https://github.com/labwc/labwc",
+    "license": ["GPL-2.0"],
+    "depends": ["wayland", "wayland-protocols", "libinput", "libxml2", "cairo", "pango", "glib2", "xwayland", "libxcb", "glibc", "vulkan-loader", "libdrm", "xkbcommon", "pixman", "seatd", "xcb-util-wm", "xcb-util-renderutil"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "git", "vulkan-headers", "xwayland", "glslang"],
+    "provides": ["labwc", "wlroots"],
+    "conflicts": ["wlroots"],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

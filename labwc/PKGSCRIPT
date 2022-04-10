@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="labwc"
+VERSION="0.5.1"
+EPOCH=0
+DESC="A wlroots-based stacking compositor aiming to be lightweight and independent."
+GRPS=()
+URL="https://github.com/labwc/labwc"
+LICENSES=("GPL-2.0")
+DEPENDS=("wayland" "wayland-protocols" "libinput" "libxml2" "cairo" "pango" "glib2" "xwayland" "libxcb" "glibc" "vulkan-loader" "libdrm" "xkbcommon" "pixman" "seatd" "xcb-util-wm" "xcb-util-renderutil")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "git" "vulkan-headers" "xwayland" "glslang")
+PROVIDES=("labwc" "wlroots")
+CONFLICTS=("wlroots")
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/labwc/labwc/archive/refs/tags/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("bb73bd97dd8f92701abbb415da70dc51947651b993076a3ecb50eee4289798a5008758077bc08c94554c38caf910d164bbd18f3a6ec7dd4348a082564ac85eb3")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
