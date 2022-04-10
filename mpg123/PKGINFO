@@ -1,0 +1,16 @@
+{
+    "name": "mpg123",
+    "version": "1.29.3",
+    "epoch": 0,
+    "description": "A console-based MP3 player. It claims to be the fastest MP3 decoder for Unix.",
+    "groups": [],
+    "url": "https://mpg123.org",
+    "license": ["LGPL-2.1"],
+    "depends": ["alsa-lib", "glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["mpg123"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

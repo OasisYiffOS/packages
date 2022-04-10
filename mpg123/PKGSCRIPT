@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="mpg123"
+VERSION="1.29.3"
+EPOCH=0
+DESC="A console-based MP3 player. It claims to be the fastest MP3 decoder for Unix."
+GRPS=()
+URL="https://mpg123.org"
+LICENSES=("LGPL-2.1")
+DEPENDS=("alsa-lib" "glibc")
+OPT_DEPENDS=()
+PROVIDES=("mpg123")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/mpg123/mpg123-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("0d8db63f9bae1507887bc5241a56abccfeb767b7ba8362eb0fce9de2f63369e57fdd6f25a953f8ef5f9ead4f400237db51914816e278566fdf8e6f205ebca5d6")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
