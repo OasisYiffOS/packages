@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="vte"
+VERSION="0.68.0"
+EPOCH=0
+DESC="A library implementing a terminal emulator widget for GTK."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/vte"
+LICENSES=("LGPL-3.0" "MIT")
+DEPENDS=("atk" "cairo" "fribidi" "glib2" "glibc" "gnutls" "gtk3" "gcc-libs" "icu" "pango" "pcre2" "systemd" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "vala" "meson" "ninja")
+PROVIDES=("vte")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.gnome.org/GNOME/vte/-/archive/${VERSION}/vte-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("fb2260ae1363203cdccd0e0c6cafe29e5fb25947d2830a7ce1051f672fdc11c067791a8b74cb3017548e366976763fec2022e0c196ed501f46abb08876ad24d6")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+    
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
