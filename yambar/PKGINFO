@@ -1,0 +1,16 @@
+{
+    "name": "yambar",
+    "version": "1.8.0",
+    "epoch": 0,
+    "description": "Modular status panel for X11 and Wayland, inspired by polybar.",
+    "groups": [],
+    "url": "https://codeberg.org/dnkl/yambar",
+    "license": ["MIT"],
+    "depends": ["alsa-lib", "fontconfig", "libxcb", "libyaml", "pixman", "systemd", "wayland", "wayland-protocols", "xcb-util", "xcb-util-cursor", "xcb-util-wm", "fcft", "tllist"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "scdoc"],
+    "provides": ["yambar"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

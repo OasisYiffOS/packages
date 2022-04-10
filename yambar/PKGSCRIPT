@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="yambar"
+VERSION="1.8.0"
+EPOCH=0
+DESC="Modular status panel for X11 and Wayland, inspired by polybar."
+GRPS=()
+URL="https://codeberg.org/dnkl/yambar"
+LICENSES=("MIT")
+DEPENDS=("alsa-lib" "fontconfig" "libxcb" "libyaml" "pixman" "systemd" "wayland" "wayland-protocols" "xcb-util" "xcb-util-cursor" "xcb-util-wm" "fcft" "tllist")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "scdoc")
+PROVIDES=("yambar")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://codeberg.org/dnkl/yambar/archive/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("db2c3669162923b4ca2b1f13f50d203de2a0eb6963e6d2bfe8b03e41c7cb4ad9acf6607eef08b6da837c901374c89affb915aa44f2bc2e0eb4694ad91ae66a67")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
