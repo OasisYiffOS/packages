@@ -1,0 +1,61 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="tracker"
+VERSION="3.2.1"
+_MAJOR_VERSION="3.2"
+EPOCH=0
+DESC="The file indexing and search provider used in the GNOME desktop environment."
+GRPS=()
+URL="https://gnome.pages.gitlab.gnome.org/tracker/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glib2" "glibc" "gcc-libs" "icu" "sqlite")
+OPT_DEPENDS=()
+MK_DEPENDS=("vala" "meson" "ninja" "libsecconp" "libsoup" "gobject-introspection")
+PROVIDES=("tracker")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/tracker/${_MAJOR_VERSION}/tracker-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("3e8f33de0f77d45af2ed82e8fd216d6fb4c3aa080648cf490bdaef233fac1c635e10660ac0bfcdf0a43af48d454e0d4d7c04cb650f5f89660e8e4efc10104f56")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr       \
+          --buildtype=release \
+          -Ddocs=false        \
+          -Dman=false .. 
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    if [ "$DISPLAY" != "" ] || [ "$WAYLAND_DISPLAY" != "" ]; then
+        ninja test
+    fi
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

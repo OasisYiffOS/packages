@@ -1,0 +1,16 @@
+{
+    "name": "tracker",
+    "version": "3.2.1",
+    "epoch": 0,
+    "description": "The file indexing and search provider used in the GNOME desktop environment.",
+    "groups": [],
+    "url": "https://gnome.pages.gitlab.gnome.org/tracker/",
+    "license": ["GPL-2.0"],
+    "depends": ["glib2", "glibc", "gcc-libs", "icu", "sqlite"],
+    "optional_depends": [],
+    "make_depends": ["vala", "meson", "ninja", "libsecconp", "libsoup", "gobject-introspection"],
+    "provides": ["tracker"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
