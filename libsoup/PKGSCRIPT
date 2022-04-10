@@ -1,0 +1,59 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libsoup"
+VERSION="2.74.2"
+_MAJOR_VERSION="2.74"
+EPOCH=0
+DESC="An HTTP client/server library for GNOME."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/libsoup"
+LICENSES=("LGPL-2.0")
+DEPENDS=("brotli" "glib-networking" "glib2" "glibc" "libpsl" "libxml2" "sqlite" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "vala" "meson" "ninja")
+PROVIDES=("libsoup")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libsoup/${_MAJOR_VERSION}/libsoup-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("6f9da3296364e210103093cef9ef34fb40f694a8ef90966fc1fbd834c11f3db1031784a0901e9181bf3124e0682708148bd3598a31d60f1cce61eaae2e19ba7a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr       \
+          --buildtype=release \
+          -Dvapi=enabled      \
+          -Dgssapi=disabled   \
+          -Dsysprof=disabled  \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

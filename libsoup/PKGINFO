@@ -1,0 +1,16 @@
+{
+    "name": "libsoup",
+    "version": "2.74.2",
+    "epoch": 0,
+    "description": "An HTTP client/server library for GNOME.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/libsoup",
+    "license": ["LGPL-2.0"],
+    "depends": ["brotli", "glib-networking", "glib2", "glibc", "libpsl", "libxml2", "sqlite", "zlib"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection", "vala", "meson", "ninja"],
+    "provides": ["libsoup"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
