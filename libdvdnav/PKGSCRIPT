@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libdvdnav"
+VERSION="6.1.1"
+EPOCH=0
+DESC="A library that allows easy use of sophisticated DVD navigation features such as DVD menus, multiangle playback and even interactive DVD games."
+GRPS=()
+URL="http://dvdnav.mplayerhq.hu/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "libdvdread")
+OPT_DEPENDS=()
+PROVIDES=("libdvdnav")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://get.videolan.org/libdvdnav/${VERSION}/libdvdnav-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("889bc987113189bfdfc1ebf603b256e5b228be37196455dcfdc7f66debe18e7298b82b807e86ff18a8925e491395ed4007c87cf18ba1ff1ccc213d86f5342a10")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr    \
+                --disable-static \
+                --docdir=/usr/share/doc/libdvdnav-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
