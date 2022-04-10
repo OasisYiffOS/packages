@@ -1,0 +1,59 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="seatd"
+VERSION="0.6.4"
+EPOCH=0
+DESC="Seat management daemon and library."
+GRPS=()
+URL="https://sr.ht/~kennylevinsen/seatd/"
+LICENSES=("MIT")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("seatd")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://git.sr.ht/~kennylevinsen/seatd/archive/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("0e2b23eca2e7978e3f914433caa6f84243a20487c6fe9fe3e42a7bf663a4a0872482aa334a3f5dc9b6625c565b408c3c78310b5575b9fb2e2919efdb9620ec57")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr                 \
+          --buildtype=release           \
+          -Dlibseat-logind=systemd      \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    install -D -m 0644 -pv ../contrib/systemd/seatd.service \
+            ${BUILD_DATA_ROOT}/usr/lib/systemd/system/seatd.service
+
+    return 0
+}
