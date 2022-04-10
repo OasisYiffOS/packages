@@ -1,0 +1,16 @@
+{
+    "name": "fcft",
+    "version": "3.0.1",
+    "epoch": 0,
+    "description": "A simple library for font loading and glyph rasterization using FontConfig, FreeType and pixman.",
+    "groups": [],
+    "url": "https://codeberg.org/dnkl/fcft",
+    "license": ["MIT"],
+    "depends": ["glibc", "fontconfig", "freetype2", "pixman", "harfbuzz", "tllist"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["fcft"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

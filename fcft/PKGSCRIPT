@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="fcft"
+VERSION="3.0.1"
+EPOCH=0
+DESC="A simple library for font loading and glyph rasterization using FontConfig, FreeType and pixman."
+GRPS=()
+URL="https://codeberg.org/dnkl/fcft"
+LICENSES=("MIT")
+DEPENDS=("glibc" "fontconfig" "freetype2" "pixman" "harfbuzz" "tllist")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("fcft")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://codeberg.org/dnkl/fcft/archive/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("856bec504a253678a2962c0a7c5029e5fd3d26e305ca3fcae8d9df398bcc84a03e9d67522673d1f1bb0ec91606c0627d6ab4bf2780cbb5965a01c91e6f0aac89")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Ddocs=disabled ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
