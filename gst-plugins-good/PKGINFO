@@ -1,0 +1,16 @@
+{
+    "name": "gst-plugins-good",
+    "version": "1.20.1",
+    "epoch": 0,
+    "description": "A collection of GStreamer plug-ins and elements considered by the GStreamer developers to have good quality code.",
+    "groups": [],
+    "url": "https://gstreamer.freedesktop.org",
+    "license": ["LGPL-2.0"],
+    "depends": ["cairo", "flac", "gdk-pixbuf2", "lame", "libvpx", "mpg123", "gst-plugins-base", "glib2", "glibc", "speex", "taglib", "v4l-utils"],
+    "optional_depends": ["gtk3", "wayland"],
+    "make_depends": ["gobject-introspection", "meson", "ninja", "nasm", "libsoup"],
+    "provides": ["gst-plugins-good"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

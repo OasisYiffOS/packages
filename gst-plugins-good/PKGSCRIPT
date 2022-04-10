@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gst-plugins-good"
+VERSION="1.20.1"
+EPOCH=0
+DESC="A collection of GStreamer plug-ins and elements considered by the GStreamer developers to have good quality code."
+GRPS=()
+URL="https://gstreamer.freedesktop.org"
+LICENSES=("LGPL-2.0")
+DEPENDS=("cairo" "flac" "gdk-pixbuf2" "lame" "libvpx" "mpg123" "gst-plugins-base" "glib2" "glibc" "speex" "taglib" "v4l-utils")
+OPT_DEPENDS=("gtk3" "wayland")
+MK_DEPENDS=("gobject-introspection" "meson" "ninja" "nasm" "libsoup")
+PROVIDES=("gst-plugins-good")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("6e56f6290465da03bfe162228829e51091896b2c5fe9d1d0718f663a3ab14edf5c790b37998a783981b9c77034252e7dee9fec5136f92ced44c4898e2fbd402e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr                                     \
+          --buildtype=release                               \
+          -Dpackage-origin=https://yiffos.gay/              \
+          -Dpackage-name="GStreamer ${VERSION} for yiffOS"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
