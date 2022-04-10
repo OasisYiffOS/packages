@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="fuzzel"
+VERSION="1.7.0"
+EPOCH=0
+DESC="Application launcher for wlroots based Wayland compositors, similar to rofi's 'drun' mode."
+GRPS=()
+URL="https://codeberg.org/dnkl/yambar"
+LICENSES=("MIT")
+DEPENDS=("pixman" "wayland" "fcft" "cairo" "libpng" "librsvg2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "scdoc" "wayland-protocols" "tllist")
+PROVIDES=("fuzzel")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://codeberg.org/dnkl/fuzzel/archive/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("a1c1f97c5964e0afb6ae449d8d2a06635b12719445e3a5f139fa592fa773bf7f9592cdeb2eb81054356831793e91a3c5eb6677b93092982eff346a7fb9078b4e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dwerror=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
