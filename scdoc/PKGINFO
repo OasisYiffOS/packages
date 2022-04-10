@@ -1,0 +1,16 @@
+{
+    "name": "scdoc",
+    "version": "1.11.2",
+    "epoch": 0,
+    "description": "A simple man page generator for POSIX systems written in C99.",
+    "groups": [],
+    "url": "https://git.sr.ht/~sircmpwn/scdoc",
+    "license": ["MIT"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["scdoc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
