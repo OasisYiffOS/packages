@@ -1,0 +1,16 @@
+{
+    "name": "gsettings-desktop-schemas",
+    "version": "42.0",
+    "epoch": 0,
+    "description": "A collection of GSettings schemas for settings shared by various components of a GNOME Desktop.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas",
+    "license": ["LGPL-2.1"],
+    "depends": ["glib2"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection", "meson", "ninja"],
+    "provides": ["gsettings-desktop-schemas"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

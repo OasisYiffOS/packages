@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gsettings-desktop-schemas"
+VERSION="42.0"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="A collection of GSettings schemas for settings shared by various components of a GNOME Desktop."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glib2")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "meson" "ninja")
+PROVIDES=("gsettings-desktop-schemas")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gsettings-desktop-schemas/${_MAJOR_VERSION}/gsettings-desktop-schemas-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("db73988a6b38857d1aa6588ccac42099c57dcc187ef01776567cc7c28aff67dc06d6a8a067e0c69167d03cd865f0c1d58e75469a40f969084bb2537b088f8664")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix deprecated entries
+    sed -i -r 's:"(/system):"/org/gnome\1:g' schemas/*.in
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
