@@ -1,0 +1,16 @@
+{
+    "name": "xcb-util-renderutil",
+    "version": "0.3.9",
+    "epoch": 0,
+    "description": "Additional extensions to the XCB library.",
+    "groups": [],
+    "url": "https://cgit.freedesktop.org/xcb/util-wm/",
+    "license": ["MIT"],
+    "depends": ["glibc", "libxcb"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xcb-util-wm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
