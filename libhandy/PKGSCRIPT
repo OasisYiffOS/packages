@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libhandy"
+VERSION="1.6.1"
+_MAJOR_VERSION="1.6"
+EPOCH=0
+DESC="Additional GTK UI widgets for use in developing user interfaces."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/libhandy"
+LICENSES=("LGPL-2.1")
+DEPENDS=("atk" "cairo" "fribidi" "gdk-pixbuf2" "glib2" "glibc" "gtk3" "gcc-libs" "pango")
+OPT_DEPENDS=()
+MK_DEPENDS=("vala" "meson" "ninja")
+PROVIDES=("libhandy")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libhandy/${_MAJOR_VERSION}/libhandy-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("1fddf72d7e6d97f12c879a512baeef80e32be4108640b2ff64c5b7dec68d8e2da8f9a2da3c1cb6cde8c2e672f4225e7db698f794641264e64ee9af3c68dbfbb3")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    if [ "$DISPLAY" != "" ] || [ "$WAYLAND_DISPLAY" != "" ]; then
+        ninja test
+    fi
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

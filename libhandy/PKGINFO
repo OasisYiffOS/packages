@@ -1,0 +1,16 @@
+{
+    "name": "libhandy",
+    "version": "1.6.1",
+    "epoch": 0,
+    "description": "Additional GTK UI widgets for use in developing user interfaces.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/libhandy",
+    "license": ["LGPL-2.1"],
+    "depends": ["atk", "cairo", "fribidi", "gdk-pixbuf2", "glib2", "glibc", "gtk3", "gcc-libs", "pango"],
+    "optional_depends": [],
+    "make_depends": ["vala", "meson", "ninja"],
+    "provides": ["libhandy"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
