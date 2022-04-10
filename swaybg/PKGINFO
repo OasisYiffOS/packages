@@ -1,0 +1,16 @@
+{
+    "name": "swaybg",
+    "version": "1.1.1",
+    "epoch": 0,
+    "description": "A wallpaper utility for Wayland compositors.",
+    "groups": [],
+    "url": "https://github.com/swaywm/swaybg",
+    "license": ["MIT"],
+    "depends": ["wayland", "cairo", "gdk-pixbuf2"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "wayland-protocols"],
+    "provides": ["swaybg"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="swaybg"
+VERSION="1.1.1"
+EPOCH=0
+DESC="A wallpaper utility for Wayland compositors."
+GRPS=()
+URL="https://github.com/swaywm/swaybg"
+LICENSES=("MIT")
+DEPENDS=("wayland" "cairo" "gdk-pixbuf2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "wayland-protocols")
+PROVIDES=("swaybg")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/swaywm/swaybg/releases/download/v${VERSION}/swaybg-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("e5ac7af1690974206f916e1d99a8dde0e837acbc686e2de2c46d505201f239a059f998adc22192205d1ad75b5905222f16aed243b31920e19c0ff2229b8eda2c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
