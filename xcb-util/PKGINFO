@@ -1,0 +1,16 @@
+{
+    "name": "xcb-util",
+    "version": "0.4.0",
+    "epoch": 0,
+    "description": "Additional extensions to the XCB library, many that were previously found in Xlib, but are not part of core X protocol.",
+    "groups": [],
+    "url": "https://cgit.freedesktop.org/xcb/util-wm/",
+    "license": ["MIT"],
+    "depends": ["glibc", "libxcb"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xcb-util"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

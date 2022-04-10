@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xcb-util"
+VERSION="0.4.0"
+EPOCH=0
+DESC="Additional extensions to the XCB library, many that were previously found in Xlib, but are not part of core X protocol."
+GRPS=()
+URL="https://cgit.freedesktop.org/xcb/util-wm/"
+LICENSES=("MIT")
+DEPENDS=("glibc" "libxcb")
+OPT_DEPENDS=()
+PROVIDES=("xcb-util")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://xcb.freedesktop.org/dist/xcb-util-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("e60aaa6f582eacd05896c5fd7c8417938318a1288146f3a5b339f77eed24e211c6099963f8813daa621c94173d2934228936b491c0ed79b09a8a67d835867d0e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
