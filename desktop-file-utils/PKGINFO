@@ -1,0 +1,16 @@
+{
+    "name": "desktop-file-utils",
+    "version": "0.26",
+    "epoch": 0,
+    "description": "Command line utilities for working with desktop entries.",
+    "groups": [],
+    "url": "https://www.freedesktop.org/software/desktop-file-utils",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "glib2"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["desktop-file-utils"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
