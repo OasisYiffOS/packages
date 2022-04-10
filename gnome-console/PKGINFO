@@ -1,0 +1,16 @@
+{
+    "name": "gnome-console",
+    "version": "42-beta",
+    "epoch": 0,
+    "description": "Simple user-friendly terminal emulator for the GNOME desktop.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/console",
+    "license": ["GPL-3.0"],
+    "depends": ["glib2", "glibc", "gtk3", "libgtop2", "libhandy", "pango", "vte"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["gnome-console"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-console"
+VERSION="42-beta"
+_DOWNLOAD_VERSION="42.beta"
+EPOCH=0
+DESC="Simple user-friendly terminal emulator for the GNOME desktop."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/console"
+LICENSES=("GPL-3.0")
+DEPENDS=("glib2" "glibc" "gtk3" "libgtop2" "libhandy" "pango" "vte")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("gnome-console")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.gnome.org/GNOME/console/-/archive/${_DOWNLOAD_VERSION}/console-${_DOWNLOAD_VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("3bb8308daf6de8f7e8e96a4b1f026b910e80d9b6ae091a2c7be5666b13c05c49fb4bfcdd55dda5c077efc1d45e475ba46d0de3a503efedb2ddeb6cdaf41b29fb")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/console-${_DOWNLOAD_VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/console-${_DOWNLOAD_VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/console-${_DOWNLOAD_VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
