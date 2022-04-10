@@ -1,0 +1,16 @@
+{
+    "name": "gst-plugins-bad",
+    "version": "1.20.1",
+    "epoch": 0,
+    "description": "A collection of plug-ins that aren't up to par compared to the rest.",
+    "groups": [],
+    "url": "https://gstreamer.freedesktop.org",
+    "license": ["LGPL-2.0"],
+    "depends": ["gst-plugins-base", "glib2", "glibc", "fdk-aac", "libass", "libsndfile", "libwebp", "libxkbcommon", "libgcrypt", "opus", "sbc", "x265", "libdvdread", "libdvdnav", "soundtouch"],
+    "optional_depends": ["gtk3", "wayland"],
+    "make_depends": ["gobject-introspection", "meson", "ninja", "nasm", "libsoup"],
+    "provides": ["gst-plugins-bad"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

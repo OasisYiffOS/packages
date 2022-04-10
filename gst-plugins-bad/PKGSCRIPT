@@ -1,0 +1,61 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gst-plugins-bad"
+VERSION="1.20.1"
+EPOCH=0
+DESC="A collection of plug-ins that aren't up to par compared to the rest."
+GRPS=()
+URL="https://gstreamer.freedesktop.org"
+LICENSES=("LGPL-2.0")
+DEPENDS=("gst-plugins-base" "glib2" "glibc" "fdk-aac" "libass" "libsndfile" "libwebp" "libxkbcommon" "libgcrypt" "opus" "sbc" "x265" "libdvdread" "libdvdnav" "soundtouch")
+OPT_DEPENDS=("gtk3" "wayland")
+MK_DEPENDS=("gobject-introspection" "meson" "ninja" "nasm" "libsoup")
+PROVIDES=("gst-plugins-bad")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("3113fc93bba59716e7a506cf00f88cb05ccfe3406515ecf7e377dcfd3a8f4e555ff45126c048dc736ae6a28acf430c96422be4a120889fbe04ed69c5acb1cad6")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr                                     \
+          --buildtype=release                               \
+          -Dgpl=enabled                                     \
+          -Dpackage-origin=https://yiffos.gay/              \
+          -Dpackage-name="GStreamer ${VERSION} for yiffOS"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    if [ "$DISPLAY" != "" ] || [ "$WAYLAND_DISPLAY" != "" ]; then
+        ninja test
+    fi
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
