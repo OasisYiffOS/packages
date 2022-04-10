@@ -1,0 +1,16 @@
+{
+    "name": "soundtouch",
+    "version": "2.3.1",
+    "epoch": 0,
+    "description": "An open-source audio processing library that allows changing the sound tempo, pitch and playback rate.",
+    "groups": [],
+    "url": "http://www.surina.net/soundtouch/",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": ["autoconf", "automake"],
+    "provides": ["soundtouch"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

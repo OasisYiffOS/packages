@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="soundtouch"
+VERSION="2.3.1"
+EPOCH=0
+DESC="An open-source audio processing library that allows changing the sound tempo, pitch and playback rate."
+GRPS=()
+URL="http://www.surina.net/soundtouch/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs")
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf" "automake")
+PROVIDES=("soundtouch")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.surina.net/soundtouch/soundtouch-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("1eea5c06dc5af633b5c16902c6a951593190daf75bd6aa12e00c745080f9363e9c45ab52ddc434bd905e4195b306cc38c9143e813430c15c19a275ae1a82df24")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./bootstrap
+
+    ./configure --prefix=/usr \
+                --docdir=/usr/share/doc/soundtouch-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
