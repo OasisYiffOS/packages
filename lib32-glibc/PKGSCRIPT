@@ -1,0 +1,89 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lib32-glibc"
+VERSION="2.35"
+EPOCH=0
+DESC="GNU C Library (32 bit version)"
+GRPS=()
+URL="https://www.gnu.org/software/libc/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("tzdata" "glibc")
+OPT_DEPENDS=()
+PROVIDES=("lib32-glibc")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/glibc/glibc-${VERSION}.tar.xz"
+"https://gitlab.com/yiffos/core/patches/-/raw/main/glibc/fhs-runtime.patch")
+
+SUM_TYPE="sha512"
+SUM=("e7336ce27561be5d7c217832a1136fb327e057bd8d3f92925b35c97e3e9f9e486948b5a1e03e5e4090772ef06437a074d10b82e68f17f1ad8f22077ee39e1b66"
+"5b24f292cc87a133f45d743a95a8e706884e05ccf68024a0a88c0605c437928e111498feebca0259581da12d1ddb8e24726a67428e590240a1cbae48f7c2cc35")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/glibc-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    CC="gcc -m32" CXX="g++ -m32"                                     \
+    ../configure --prefix=/usr                                       \
+                 --disable-werror                                    \
+                 --host=i686-linux-gnu                               \
+                 --build=i686-linux-gnu                              \
+                 --enable-kernel=4.4                                 \
+                 --enable-stack-protector=strong                     \
+                 --with-headers=/usr/include                         \
+                 --with-bugurl=https://yiffos.atlassian.net/jira/    \
+                 --enable-add-ons                                    \
+                 --enable-bind-now                                   \
+                 --enable-cet                                        \
+                 --enable-kernel=4.4                                 \
+                 --enable-lock-elision                               \
+                 --enable-stack-protector=strong                     \
+                 --enable-stackguard-randomization                   \
+                 --disable-profile                                   \
+                 --disable-werror                                    \
+                 --libdir=/usr/lib32                                 \
+                 --libexecdir=/usr/lib32                             \
+                 --enable-multi-arch                                 \
+                 libc_cv_slibdir=/usr/lib32 
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/glibc-${VERSION}/build"
+
+    CC="gcc -m32" CXX="g++ -m32" \
+    make
+
+    # DO NOT SKIP THE CHECK FOR GLIBC though some failures are exptected
+    CC="gcc -m32" CXX="g++ -m32" \
+    make check || true
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/glibc-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -vm644 DESTDIR/usr/include/gnu/{lib-names,stubs}-32.h \
+                /usr/include/gnu/
+
+    mkdir -pv ${BUILD_DATA_ROOT}/etc/ld.so.conf.d
+
+cat >> ${BUILD_DATA_ROOT}/etc/ld.so.conf.d/lib32.conf << "EOF"
+/usr/lib32
+EOF
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "lib32-glibc",
+    "version": "2.35",
+    "epoch": 0,
+    "description": "GNU C Library (32 bit version)",
+    "groups": [],
+    "url": "https://www.gnu.org/software/libc/",
+    "license": ["LGPL-2.1"],
+    "depends": ["tzdata", "glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lib32-glibc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
