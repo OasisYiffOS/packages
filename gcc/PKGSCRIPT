@@ -4,14 +4,14 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 # Package information
 NAME="gcc"
 VERSION="11.2.0"
-EPOCH=0
+EPOCH=1
 DESC="The GNU Compiler Collection, including C, C++, ObjC, Fortran, Ada, and Go"
 GRPS=("devel")
 URL="https://gcc.gnu.org/"
 LICENSES=("GPL" "LGPL")
 DEPENDS=("mpc" "flex")
 OPT_DEPENDS=()
-PROVIDES=("gcc" "gcc-libs" "gcc-go")
+PROVIDES=("gcc" "gcc-libs"  "gcc-go")
 CONFLICTS=("gcc-libs")
 REPLACES=()
 
@@ -31,22 +31,32 @@ function prepare() {
         -i libsanitizer/sanitizer_common/sanitizer_posix_libcdep.cpp
 
     # Ensure 64-bit libraries are installed into lib
-    sed -e '/m64=/s/lib64/lib/'             \
+    sed -e '/m64=/s/lib64/lib/' \
+        -e '/m32=/s/m32=.*/m32=..\/lib32$(call if_multiarch,:i386-linux-gnu)/' \
         -i.orig gcc/config/i386/t-linux64
+
+    # Fix an issue causing libstdc++ to fail
+    sed 's/gnu++17/& -nostdinc++/' \
+        -i libstdc++-v3/src/c++17/Makefile.in
+
+    # Allow building with POSIX threads
+    sed '/thread_header =/s/@.*@/gthr-posix.h/' \
+        -i libgcc/Makefile.in libstdc++-v3/include/Makefile.in
 
     mkdir -v build
     cd       build
 
     ../configure                                            \
-        --prefix=/usr                                       \
-        --disable-multilib                                  \
-        --with-system-zlib                                  \
-        --enable-cet=auto                                   \
-        --enable-lto                                        \
-        --enable-plugin                                     \
-        --enable-shared                                     \
-        --enable-threads=posix                              \
-        --enable-languages=c,c++,d,fortran,go,objc,obj-c++
+       --prefix=/usr                                       \
+       --enable-multilib                                   \
+       --with-multilib-list=m64,m32                        \
+       --with-system-zlib                                  \
+       --enable-cet=auto                                   \
+       --enable-lto                                        \
+       --enable-plugin                                     \
+       --enable-shared                                     \
+       --enable-threads=posix                              \
+       --enable-languages=c,c++,d,fortran,go,objc,obj-c++
 
     return 0
 }
@@ -59,7 +69,7 @@ function build() {
 
     ulimit -s 32768
     make -k check || true
-
+    
     ../contrib/test_summary
     echo "Please check if all tests passed."
     echo "102 unepxected failures are expected."

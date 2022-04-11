@@ -1,7 +1,7 @@
 {
     "name": "gcc",
     "version": "11.2.0",
-    "epoch": 0,
+    "epoch": 1,
     "description": "The GNU Compiler Collection, including C, C++, ObjC, Fortran, Ada, and Go",
     "groups": ["devel"],
     "url": "https://gcc.gnu.org/",
