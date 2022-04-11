@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="grim"
+VERSION="1.4.0"
+EPOCH=0
+DESC="Grab images from a Wayland compositor."
+GRPS=()
+URL="https://wayland.emersion.fr/grim/"
+LICENSES=("MIT")
+DEPENDS=("wayland" "pixman" "libpng" "libjpeg-turbo")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("grim")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://git.sr.ht/~emersion/grim/refs/download/v${VERSION}/grim-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("d0b33528a00528b3ef7488a0984cde5034de4f5a211eb5c8d3299aea356d9348c5d02d08171802bc0315afb19d2446f5f132ea9dca0579ace803b7d5d90a89cc")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

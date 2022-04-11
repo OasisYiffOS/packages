@@ -1,0 +1,16 @@
+{
+    "name": "grim",
+    "version": "1.4.0",
+    "epoch": 0,
+    "description": "Grab images from a Wayland compositor.",
+    "groups": [],
+    "url": "https://wayland.emersion.fr/grim/",
+    "license": ["MIT"],
+    "depends": ["wayland", "pixman", "libpng", "libjpeg-turbo"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["grim"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
