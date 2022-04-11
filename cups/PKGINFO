@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://openprinting.github.io/cups/",
     "license": ["ASL-2.0"],
-    "depends": ["acl", "avahi", "dbus", "glic", "grep", "gcc-libs", "pam", "sed", "systemd", "libpaper", "libusb", "xdg-utils", "colord"],
+    "depends": ["acl", "avahi", "dbus", "glibc", "grep", "gcc-libs", "pam", "sed", "systemd", "libpaper", "libusb", "xdg-utils", "colord"],
     "optional_depends": [],
     "make_depends": ["llvm"],
     "provides": ["cups"],
