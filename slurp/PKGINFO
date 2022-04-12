@@ -1,0 +1,16 @@
+{
+    "name": "slurp",
+    "version": "1.3.2",
+    "epoch": 0,
+    "description": "Select a region in a Wayland compositor and print it to the standard output.",
+    "groups": [],
+    "url": "https://wayland.emersion.fr/slurp/",
+    "license": ["MIT"],
+    "depends": ["wayland", "cairo", "libxkbcommon"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "scdoc"],
+    "provides": ["grim"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
