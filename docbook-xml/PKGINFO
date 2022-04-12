@@ -1,8 +1,8 @@
 {
     "name": "docbook-xml",
-    "version": "4.5",
+    "version": "5.1",
     "epoch": 0,
-    "description": "Document type definitions for verification of XML data files against the DocBook rule set.",
+    "description": "Document type definitions for verification of XML data files against the DocBook rule set. (Includes 4.1.2 to 5.1)",
     "groups": [],
     "url": "https://docbook.org",
     "license": ["MIT"],
