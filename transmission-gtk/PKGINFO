@@ -1,0 +1,16 @@
+{
+    "name": "transmission-gtk",
+    "version": "3.00",
+    "epoch": 0,
+    "description": "A cross-platform, open source BitTorrent client.",
+    "groups": [],
+    "url": "https://transmissionbt.com",
+    "license": ["GPL-2.0", "GPL-3.0"],
+    "depends": ["glibc", "curl", "libevent", "openssl", "zlib", "gtk3", "transmission"],
+    "optional_depends": [],
+    "make_depends": ["intltool"],
+    "provides": ["transmission-gtk"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

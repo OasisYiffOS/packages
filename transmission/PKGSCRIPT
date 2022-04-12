@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="transmission"
+VERSION="3.00"
+EPOCH=0
+DESC="A cross-platform, open source BitTorrent client."
+GRPS=()
+URL="https://transmissionbt.com"
+LICENSES=("GPL-2.0" "GPL-3.0")
+DEPENDS=("glibc" "curl" "libevent" "openssl" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=("intltool")
+PROVIDES=("transmission")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://raw.githubusercontent.com/transmission/transmission-releases/master/transmission-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("eeaf7fe46797326190008776a7fa641b6341c806b0f1684c2e7326c1284832a320440013e42a37acda9fd0ee5dca695f215d6263c8acb39188c5d9a836104a61")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --enable-cli --without-gtk
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
