@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="isl"
+VERSION="0.24"
+EPOCH=0
+DESC="A thread-safe C library for manipulating sets and relations of integer points bounded by affine constraints."
+GRPS=()
+URL="https://libisl.sourceforge.io"
+LICENSES=("MIT")
+DEPENDS=("gmp")
+OPT_DEPENDS=()
+PROVIDES=("isl")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://libisl.sourceforge.io/isl-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("ff6bdcff839e1cd473f2a0c1e4dd4a3612ec6fee4544ccbc62b530a7248db2cf93b4b99bf493a86ddf2aba00e768927265d5d411f92061ea85fd7929073428e8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr    \
+                --disable-static \
+                --docdir=/usr/share/doc/isl-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -vd ${BUILD_DATA_ROOT}/usr/share/doc/isl-${VERSION}
+    install -m644 doc/{CodingStyle,manual.pdf,SubmittingPatches,user.pod} \
+            ${BUILD_DATA_ROOT}/usr/share/doc/isl-${VERSION}
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/share/gdb/auto-load/usr/lib
+    mv -v ${BUILD_DATA_ROOT}/usr/lib/libisl*gdb.py ${BUILD_DATA_ROOT}/usr/share/gdb/auto-load/usr/lib
+
+    return 0
+}

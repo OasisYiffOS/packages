@@ -1,0 +1,16 @@
+{
+    "name": "isl",
+    "version": "0.24",
+    "epoch": 0,
+    "description": "A thread-safe C library for manipulating sets and relations of integer points bounded by affine constraints.",
+    "groups": [],
+    "url": "https://libisl.sourceforge.io",
+    "license": ["MIT"],
+    "depends": ["gmp"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["isl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
