@@ -1,0 +1,16 @@
+{
+    "name": "drawing",
+    "version": "1.0.1",
+    "epoch": 0,
+    "description": "Simple application to draw or edit pictures, for the GNOME desktop.",
+    "groups": [],
+    "url": "https://maoschanz.github.io/drawing/",
+    "license": ["GPL-3.0"],
+    "depends": ["gtk3", "python", "python-pycairo"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "itstool", "gobject-introspection", "python-pygobject"],
+    "provides": ["drawing"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

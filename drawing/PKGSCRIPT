@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="drawing"
+VERSION="1.0.1"
+EPOCH=0
+DESC="Simple application to draw or edit pictures, for the GNOME desktop."
+GRPS=()
+URL="https://maoschanz.github.io/drawing/"
+LICENSES=("GPL-3.0")
+DEPENDS=("gtk3" "python" "python-pycairo")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "itstool" "gobject-introspection" "python-pygobject")
+PROVIDES=("drawing")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/maoschanz/drawing/archive/refs/tags/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("68d1381e56233eded1562aa3632a4ae3e0afb0b2835530cfab8d30c56557d2e04915ef153b7965abe3ba00d603c7b0e354f37c088df382bb4345d55dc3fe7c2e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr -Dbuildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
