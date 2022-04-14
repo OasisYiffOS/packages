@@ -1,6 +1,6 @@
 {
     "name": "git",
-    "version": "2.35.1",
+    "version": "2.35.2",
     "epoch": 0,
     "description": "fast and popular distributed version control system",
     "groups": ["devel"],

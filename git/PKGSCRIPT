@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="git"
-VERSION="2.35.1"
+VERSION="2.35.2"
 EPOCH=0
 DESC="fast and popular distributed version control system"
 GRPS=("devel")
@@ -21,9 +21,9 @@ SRC=("https://www.kernel.org/pub/software/scm/git/git-${VERSION}.tar.xz"
 "https://www.kernel.org/pub/software/scm/git/git-htmldocs-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("926c6813ef61931e1a1c43dfd7b15e20dc5878c1752876bd08f039249c9ed09f20f096b2f01947de9c9522c942e9fa8c1363d7d31a488bbe3f93c0cff31fcbcb"
-"0f4c46880f0e6d493112dcd4753fbe3702c06aa68be09bcbfc90263a355deba080995a08916b1f2404e4e17d720ee0de46a55e450c6cabeb1c147dcb2cd919d5"
-"52a40644a7cd38caddecc43182863ca2f456644fff918ed4c8f826cbf269352c73d6bdc9119d25fcf537bc2fa38750791013329e4b0e32c8d14f0769dab85804")
+SUM=("fac143daf547f4f1952101bc0006b53ac50c1741394a8c75dc517f595ce58b183c7daabcb23a7f9fc87fe22250e298441b0b7cc7af93820110877d65c036b76a"
+"70d483f2b14f5957c0b71cfc1131b0cfd8038e824ed93dea4b866fa539d582eb531edc284d89b70c188c85d0bd74096c171bbe42f0be550c6c14711b101a4046"
+"118576bfeafd92b8b0dd92318504d74341a003358d937545c16fefcfde6b956fbaee0601e50b9a21719d2575a5a37585e36628b4ade8e42d9d0fec4ae616eaa0")
 
 # Prepare script
 function prepare() {
@@ -52,10 +52,9 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    DESTDIR="${BUILD_DATA_ROOT}" make perllibdir="${BUILD_DATA_ROOT}$(/usr/bin/perl -MConfig -wle 'print $Config{installvendorlib}')" install
+    DESTDIR="${BUILD_DATA_ROOT}" make perllibdir="$(/usr/bin/perl -MConfig -wle 'print $Config{installvendorlib}')" install
 
     # Extract the manpages and html docs
-
     mkdir -vp ${BUILD_DATA_ROOT}/usr/share/man
 
     tar -xf ../git-manpages-${VERSION}.tar.xz                                   \
