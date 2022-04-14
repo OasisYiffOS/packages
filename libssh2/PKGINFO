@@ -1,0 +1,16 @@
+{
+    "name": "libssh2",
+    "version": "1.10.0",
+    "epoch": 0,
+    "description": "A library implementing the SSH2 protocol.",
+    "groups": [],
+    "url": "https://www.libssh2.org",
+    "license": ["BSD-3-Clause"],
+    "depends": ["glibc", "openssl", "zlib"],
+    "optional_depends": [],
+    "make_depends": ["gnupg", "libgcrypt", "openssh"],
+    "provides": ["libssh2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

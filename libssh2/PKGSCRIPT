@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libssh2"
+VERSION="1.10.0"
+EPOCH=0
+DESC="A library implementing the SSH2 protocol."
+GRPS=()
+URL="https://www.libssh2.org"
+LICENSES=("BSD-3-Clause")
+DEPENDS=("glibc" "openssl" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=("gnupg" "libgcrypt" "openssh")
+PROVIDES=("libssh2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.libssh2.org/download/libssh2-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("e064ee1089eb8e6cd5fa2617f4fd8ff56c2721c5476775a98bdb68c6c4ee4d05c706c3bb0eb479a27a8ec0b17a8a5ef43e1d028ad3f134519aa582d3981a3a30")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    # ssh2.sh is known to fail
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
