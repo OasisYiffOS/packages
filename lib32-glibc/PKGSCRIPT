@@ -76,8 +76,25 @@ function postbuild() {
 
     DESTDIR="${BUILD_DATA_ROOT}" make install
 
-    install -vm644 DESTDIR/usr/include/gnu/{lib-names,stubs}-32.h \
-                /usr/include/gnu/
+    find ${BUILD_DATA_ROOT} -mindepth 1 -maxdepth 1 -type d -not -name usr \
+    	                    -exec rm -r '{}' \;
+    	                    
+    find ${BUILD_DATA_ROOT}/usr -mindepth 1 -maxdepth 1 -type d -not -name lib32  \
+                                -exec rm -r '{}' \;
+
+   mkdir -p ${BUILD_DATA_ROOT}/usr/lib/
+
+   install -vm755 ${BUILD_DATA_ROOT}/usr/lib32/ld-linux.so.2 \
+           ${BUILD_DATA_ROOT}/usr/lib/
+
+    mkdir -p ${BUILD_DATA_ROOT}/usr/include/gnu/
+
+    install -vm644 gnu/lib-names-32.h \
+                ${BUILD_DATA_ROOT}/usr/include/gnu/
+
+    # Is there a better place to get this? Tried doing a find for this file and only found it in the test roots.
+    install -vm644 testroot.pristine/usr/include/gnu/stubs-32.h \
+                ${BUILD_DATA_ROOT}/usr/include/gnu/
 
     mkdir -pv ${BUILD_DATA_ROOT}/etc/ld.so.conf.d
 
