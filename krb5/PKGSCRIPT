@@ -1,0 +1,79 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="krb5"
+VERSION="1.19.3"
+_MAJOR_VERSION="1.19"
+EPOCH=0
+DESC="A free implementation of the Kerboscript 5 protocol, a centralized authentication system for the Internet."
+GRPS=()
+URL="https://kerberos.org"
+LICENSES=("MIT")
+DEPENDS=("coreutils" "gawk" "glibc" "openssl" "sed" "e2fsprogs")
+OPT_DEPENDS=()
+MK_DEPENDS=("bison")
+PROVIDES=("krb5")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://kerberos.org/dist/krb5/${_MAJOR_VERSION}/krb5-${VERSION}.tar.gz"
+"https://www.linuxfromscratch.org/patches/blfs/svn/mitkrb-${VERSION}-openssl3_fixes-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("18235440d6f7d8a72c5d7ca5cd8c6465e8adf091d85c483225c7b00d64b4688c1c7924cb800c2fc17e590b2709f1a9de48e6ec79f6debd11dcb7d6fa16c6f351"
+"fc4264ffaede92b66c5e980a614e7e928693af0419b14a8b0643f0cea244d077af93a6667e7200424a9fdc5c2386b33bf59e91df79b9e8a7eae1b9e5ecff1065")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix issues when building with OpenSSL 3
+    patch -Np1 -i "${WORKDIR}/mitkrb-${VERSION}-openssl3_fixes-1.patch"
+
+    cd src
+
+    # Increase the width of the terminal to prevent a test failure
+    sed -i -e 's@\^u}@^u cols 300}@' tests/dejagnu/config/default.exp
+
+    # Remove a test known to fail
+    sed -i -e '/eq 0/{N;s/12 //}'    plugins/kdb/db2/libdb2/test/run.test
+
+    # Remove a test known to hang
+    sed -i '/t_iprop.py/d'           tests/Makefile.in
+
+    autoreconf -fiv
+
+    ./configure --prefix=/usr            \
+                --sysconfdir=/etc        \
+                --localstatedir=/var/lib \
+                --runstatedir=/run       \
+                --with-system-et         \
+                --with-system-ss         \
+                --with-system-verto=no   \
+                --enable-dns-for-realm
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/src"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/src"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -dm755 ${BUILD_DATA_ROOT}/usr/share/doc/krb5-${VERSION}
+    cp -vfr ../doc/*  ${BUILD_DATA_ROOT}/usr/share/doc/krb5-${VERSION}
+
+    return 0
+}

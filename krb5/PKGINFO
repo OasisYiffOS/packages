@@ -1,0 +1,16 @@
+{
+    "name": "krb5",
+    "version": "1.19.3",
+    "epoch": 0,
+    "description": "A free implementation of the Kerboscript 5 protocol, a centralized authentication system for the Internet.",
+    "groups": [],
+    "url": "https://kerberos.org",
+    "license": ["MIT"],
+    "depends": ["coreutils", "gawk", "glibc", "openssl", "sed", "e2fsprogs"],
+    "optional_depends": [],
+    "make_depends": ["bison"],
+    "provides": ["krb5"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
