@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libssh"
+VERSION="0.9.6"
+_MAJOR_VERSION="0.9"
+EPOCH=0
+DESC="A library implementing the SSH protocol."
+GRPS=()
+URL="https://www.libssh.org/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "krb5" "openssl" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake")
+PROVIDES=("libssh")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.libssh.org/files/${_MAJOR_VERSION}/libssh-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("4040ec4af937e95be2e41313ef6d4db60b46b8d4dea10c09402398127c1d1ca8843392d207088aeee3c7ef631c6ae7b66861327dcebf78ed3af0723777619fd1")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+
+    cmake ..                        \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DWITH_GSSAPI=OFF           \
+        -DUNIT_TESTING=OFF
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "libssh",
+    "version": "0.9.6",
+    "epoch": 0,
+    "description": "A library implementing the SSH protocol.",
+    "groups": [],
+    "url": "https://www.libssh.org/",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "krb5", "openssl", "zlib"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["libssh"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
