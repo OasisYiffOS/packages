@@ -1,0 +1,16 @@
+{
+    "name": "libnotify",
+    "version": "0.7.9",
+    "epoch": 0,
+    "description": "A library used to send desktop notifications to a notification daemon, as defined in the Desktop Notifications spec.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/libnotify",
+    "license": ["LGPL-2.1"],
+    "depends": ["gtk3", "glib2", "glibc", "gdk-pixbuf2"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection"],
+    "provides": ["libnotify"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

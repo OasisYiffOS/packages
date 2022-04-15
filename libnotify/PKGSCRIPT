@@ -1,0 +1,59 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libnotify"
+VERSION="0.7.9"
+_MAJOR_VERSION="0.7"
+EPOCH=0
+DESC="A library used to send desktop notifications to a notification daemon, as defined in the Desktop Notifications spec."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/libnotify"
+LICENSES=("LGPL-2.1")
+DEPENDS=("gtk3" "glib2" "glibc" "gdk-pixbuf2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection")
+PROVIDES=("libnotify")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libnotify/${_MAJOR_VERSION}/libnotify-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("8a842b50777279efdb7d96a836a546c47decad158a4f03f7ffc818860d1f6276a657619e4f4a19a4e2f5ad55e0371c793420d50d802983700e8c342273b73874")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr       \
+          --buildtype=release \
+          -Dgtk_doc=false     \
+          -Dman=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    mv -v ${BUILD_DATA_ROOT}/usr/share/doc/libnotify{,-${VERSION}}
+
+    return 0
+}
