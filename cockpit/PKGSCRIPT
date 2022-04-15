@@ -1,0 +1,96 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="cockpit"
+VERSION="267"
+EPOCH=0
+DESC="The easy-to-use, integrated, glanceable, and open web-based interface for your servers."
+GRPS=()
+URL="https://cockpit-project.org"
+LICENSES=("LGPL-2.1")
+DEPENDS=("krb5" "libssh" "json-glib" "glib-networking" "openssl" "polkit")
+OPT_DEPENDS=("polkit" "sudo" "networkmanager")
+PROVIDES=("cockpit")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/cockpit-project/cockpit/releases/download/${VERSION}/cockpit-${VERSION}.tar.xz"
+"branding/branding.css"
+"branding/logo.png")
+
+SUM_TYPE="sha512"
+SUM=("23aba77cbb902ed693dc148e2c2f164eb20bffb85907879fe6764e6cc69a2802252edd8527d63df1317b143901ba869b6ad3a135b65e7262f7068fa2e8d0ef28")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure                         \
+        --prefix=/usr                   \
+        --sbindir=/usr/bin              \
+        --libexecdir=/usr/lib/cockpit/  \
+        --sysconfdir=/etc               \
+        --localstatedir=/var            \
+        --disable-dependency-tracking   \
+        --disable-silent-rules          \
+        --disable-pcp                   \
+        --with-cockpit-user=cockpit-ws  \
+        --with-cockpit-ws-instance-user=cockpit-wsinstance
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mkdir -p ${BUILD_DATA_ROOT}/etc/pam.d/
+cat > ${BUILD_DATA_ROOT}/etc/pam.d/cockpit << "EOF"
+# Begin /etc/pam.d/cockpit
+
+auth       include      system-auth
+auth       optional     pam_ssh_add.so
+account    include      system-account
+password   include      system-password
+session    optional     pam_ssh_add.so
+session    include      system-session
+
+# End /etc/pam.d/cockpit
+EOF
+
+    mkdir -p ${BUILD_DATA_ROOT}/usr/lib/sysusers.d/
+cat > ${BUILD_DATA_ROOT}/usr/lib/sysusers.d/cockpit-ws.conf << "EOF"
+u cockpit-ws - "User for Cockpit web service"
+EOF
+
+cat > ${BUILD_DATA_ROOT}/usr/lib/sysusers.d/cockpit-wsinstance.conf << "EOF"
+u cockpit-wsinstance - "User for cockpit-ws instances"
+EOF
+
+    mkdir -p ${BUILD_DATA_ROOT}/usr/lib/tmpfiles.d/
+cat > ${BUILD_DATA_ROOT}/usr/lib/tmpfiles.d/cockpit-tempfiles.conf << "EOF"
+z /usr/lib/cockpit/cockpit-session - - cockpit-wsinstance -
+EOF
+
+    mkdir -p ${BUILD_DATA_ROOT}/usr/share/cockpit/branding/yiffOS
+    cp -r ${WORKDIR}/branding.css ${BUILD_DATA_ROOT}/usr/share/cockpit/branding/yiffOS/branding.css
+    cp -r ${WORKDIR}/logo.png ${BUILD_DATA_ROOT}/usr/share/cockpit/branding/yiffOS/logo.png
+
+    rm -r ${BUILD_DATA_ROOT}/usr/share/cockpit/{playground,packagekit,selinux}
+    rm -r ${BUILD_DATA_ROOT}/usr/share/metainfo/org.cockpit-project.cockpit-selinux.metainfo.xml
+
+    return 0
+}

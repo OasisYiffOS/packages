@@ -1,0 +1,16 @@
+{
+    "name": "cockpit",
+    "version": "267",
+    "epoch": 0,
+    "description": "The easy-to-use, integrated, glanceable, and open web-based interface for your servers.",
+    "groups": [],
+    "url": "https://cockpit-project.org",
+    "license": ["LGPL-2.1"],
+    "depends": ["krb5", "libssh", "json-glib", "glib-networking", "openssl", "polkit"],
+    "optional_depends": ["polkit", "sudo", "networkmanager"],
+    "make_depends": [],
+    "provides": ["cockpit"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

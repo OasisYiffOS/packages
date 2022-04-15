@@ -1,0 +1,40 @@
+/* yiffOS Branding */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap');
+
+:root {
+    --ct-color-host-accent: #715AFF !important;
+}
+
+body.login-pf {
+    background: url("bg-plain.jpg") no-repeat 50% 0;
+    background-size: cover;
+    background-color: #101010;
+}
+
+
+#badge {
+    width: 225px;
+    height: 80px;
+    background-image: url("logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#brand {
+    font-size: 18pt;
+    text-transform: uppercase;
+    font-family: 'Manrope', sans-serif;
+}
+
+#brand:before {
+    content: "<b>${NAME}</b> ${VERSION}";
+}
+
+#index-brand {
+    font-weight: bold;
+}
+
+#index-brand:before {
+    content: "<b>${NAME}</b> ${VERSION}";
+}
