@@ -1,0 +1,16 @@
+{
+    "name": "glu",
+    "version": "9.0.2",
+    "epoch": 0,
+    "description": "The Mesa OpenGL Utility library.",
+    "groups": [],
+    "url": "https://www.mesa3d.org",
+    "license": ["MIT"],
+    "depends": ["glibc", "gcc-libs", "mesa"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["glu"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
