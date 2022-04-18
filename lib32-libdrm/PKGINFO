@@ -1,0 +1,16 @@
+{
+    "name": "lib32-libdrm",
+    "version": "2.4.110",
+    "epoch": 0,
+    "description": "Direct Rendering Manager library. (32-bit)",
+    "groups": [],
+    "url": "https://dri.freedesktop.org/wiki/",
+    "license": ["MIT"],
+    "depends": ["lib32-glibc", "lib32-libpciaccess", "libdrm"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["lib32-libdrm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

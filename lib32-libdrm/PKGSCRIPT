@@ -1,0 +1,68 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lib32-libdrm"
+VERSION="2.4.110"
+EPOCH=0
+DESC="Direct Rendering Manager library. (32-bit)"
+GRPS=()
+URL="https://dri.freedesktop.org/wiki/"
+LICENSES=("MIT")
+DEPENDS=("lib32-glibc" "lib32-libpciaccess" "libdrm")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("lib32-libdrm")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://dri.freedesktop.org/libdrm/libdrm-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("52f92ef1fe4c218a1d7dba53ef43334dbfca80e3209afe59f3a32c4bf67473126534e990df07a931a12d46a3b997c21ef17c1c4d8a0c88d44d5c6c040e3b6be3")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/libdrm-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    # Required to build 32-bit libraries
+    export CC="gcc -m32"
+    export CXX="g++ -m32"
+    export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+    meson --prefix=/usr         \
+          --libdir=/usr/lib32   \
+          --buildtype=release   \
+          -Dudev=true           \
+          -Dvalgrind=false      \
+          -Dcairo-tests=false
+        ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libdrm-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libdrm-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    rm -r ${BUILD_DATA_ROOT}/usr/{bin,include,share}
+
+    return 0
+}
