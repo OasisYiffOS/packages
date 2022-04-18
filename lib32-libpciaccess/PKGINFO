@@ -1,0 +1,16 @@
+{
+    "name": "lib32-libpciaccess",
+    "version": "0.16",
+    "epoch": 0,
+    "description": "Generic PCI access library. (32-bit)",
+    "groups": ["x11"],
+    "url": "https://www.x.org/",
+    "license": ["custom"],
+    "depends": ["lib32-glibc", "libpciaccess"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lib32-libpciaccess"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
