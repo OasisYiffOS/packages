@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="mako"
+VERSION="1.6"
+EPOCH=0
+DESC="A lightweight notification daemon for Wayland. Works on Sway."
+GRPS=()
+URL="https://wayland.emersion.fr/mako/"
+LICENSES=("MIT")
+DEPENDS=("wayland" "pango" "cairo" "systemd" "gdk-pixbuf2" "dbus")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "scdoc")
+PROVIDES=("mako")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/emersion/mako/releases/download/v${VERSION}/mako-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("1b503779b5607ae072d72ba43a2c4557fdf9fdad113e5a2370eb2e603e51422b3a483ac5f4a948ae33d62e7d9e86a6bbc89b2cba98647c4789505a49981c8baf")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

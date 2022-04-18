@@ -1,0 +1,16 @@
+{
+    "name": "mako",
+    "version": "1.6",
+    "epoch": 0,
+    "description": "A lightweight notification daemon for Wayland. Works on Sway.",
+    "groups": [],
+    "url": "https://wayland.emersion.fr/mako/",
+    "license": ["MIT"],
+    "depends": ["wayland", "pango", "cairo", "systemd", "gdk-pixbuf2", "dbus"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "scdoc"],
+    "provides": ["mako"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
