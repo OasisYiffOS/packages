@@ -1,0 +1,65 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="fuse"
+VERSION="3.10.5"
+EPOCH=0
+DESC="The reference implementation of the Linux FUSE (Filesystem in Userspace) interface."
+GRPS=()
+URL="https://github.com/libfuse/libfuse"
+LICENSES=("LGPL-2.1" "GPL-2.0")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("ninja" "meson")
+PROVIDES=("fuse")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/libfuse/libfuse/releases/download/fuse-${VERSION}/fuse-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("da17788acc3fabef3dc7b736b7319c1638d7de27e163699f7dbc0fe9159aeba35964af6afa77a7654f1f321e2fc03ee167909f21516cbb585ead33cad95620fe")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Disable boot script and udev rule
+    sed -i '/^udev/,$ s/^/#/' util/meson.build
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    chmod u+s ${BUILD_DATA_ROOT}/usr/bin/fusermount3
+
+    cd ..
+
+    install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/doc/fuse-${VERSION}
+    install -v -m644    doc/{README.NFS,kernel.txt} \
+                        ${BUILD_DATA_ROOT}/usr/share/doc/fuse-${VERSION}
+    cp -Rv doc/html     ${BUILD_DATA_ROOT}/usr/share/doc/fuse-${VERSION}
+
+    return 0
+}

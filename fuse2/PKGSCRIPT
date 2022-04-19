@@ -1,0 +1,67 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="fuse2"
+VERSION="2.9.9"
+EPOCH=0
+DESC="The reference implementation of the Linux FUSE (Filesystem in Userspace) interface. (v2 edition)"
+GRPS=()
+URL="https://github.com/libfuse/libfuse"
+LICENSES=("LGPL-2.1" "GPL-2.0")
+DEPENDS=("glibc" "fuse")
+OPT_DEPENDS=()
+MK_DEPENDS=("automake" "autoconf" "libtool")
+PROVIDES=("fuse2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/libfuse/libfuse/releases/download/fuse-${VERSION}/fuse-${VERSION}.tar.gz"
+"https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-fs/fuse/files/fuse-2.9.9-avoid-calling-umount.patch"
+"https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-fs/fuse/files/fuse-2.9.9-closefrom-glibc-2-34.patch")
+
+SUM_TYPE="sha512"
+SUM=("3d82fafd04f2924299bb09d2bb144935fa004a43fb9a6568e2e1cc5a60fded2efa1711029a0d7f12b3e6e4501f7217f2ee3545646d89da8dece083cb390f23e2"
+"24f6c7ccf8b3d291e0e477685532854a21aeb65a90f7c428db039e6c7ba8a4cdb5435f2effba3a397448c0f6a44e056f2580eb55357a0b29c6c78bf5b364830c"
+"77bca6a67c235d7d22b156a9c3a8b906de59029d28fa0c985cb15e30d306b0dd6b9437d75eabe307aca7e159ecd90e47bd8fb723a582e95d0c491a6cb308e8a5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/fuse-${VERSION}"
+
+    # Patch to avoid calling umount (From Gentoo)
+    patch -Np1 -i "${WORKDIR}/fuse-2.9.9-avoid-calling-umount.patch"
+
+    # Use closefrom from GlibC 2.34+ (From Gentoo)
+    patch -Np1 -i "${WORKDIR}/fuse-2.9.9-closefrom-glibc-2-34.patch"
+
+    autoreconf -fiv
+
+    ./configure --prefix=/usr    \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/fuse-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/fuse-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    rm -r ${BUILD_DATA_ROOT}/{dev,etc}
+
+    rm -r ${BUILD_DATA_ROOT}/usr/share/man
+
+    return 0
+}

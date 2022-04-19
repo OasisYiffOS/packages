@@ -1,0 +1,16 @@
+{
+    "name": "fuse",
+    "version": "3.10.5",
+    "epoch": 0,
+    "description": "The reference implementation of the Linux FUSE (Filesystem in Userspace) interface.",
+    "groups": [],
+    "url": "https://github.com/libfuse/libfuse",
+    "license": ["LGPL-2.1", "GPL-2.0"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["ninja", "meson"],
+    "provides": ["fuse"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

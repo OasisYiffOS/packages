@@ -1,0 +1,16 @@
+{
+    "name": "fuse2",
+    "version": "2.9.9",
+    "epoch": 0,
+    "description": "The reference implementation of the Linux FUSE (Filesystem in Userspace) interface. (v2 edition)",
+    "groups": [],
+    "url": "https://github.com/libfuse/libfuse",
+    "license": ["LGPL-2.1", "GPL-2.0"],
+    "depends": ["glibc", "fuse"],
+    "optional_depends": [],
+    "make_depends": ["automake", "autoconf", "libtool"],
+    "provides": ["fuse2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
