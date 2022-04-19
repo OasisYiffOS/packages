@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="php"
-VERSION="8.1.2"
+VERSION="8.1.5"
 EPOCH=0
 DESC="A general-purpose scripting language that is especially suited to web development."
 GRPS=()
@@ -21,8 +21,8 @@ SRC=("https://www.php.net/distributions/php-${VERSION}.tar.xz"
 "https://www.php.net/distributions/manual/php_manual_en.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("ec68587fc14d4e5aaa19d4a189c74b85e67b8ab4d5a15ef36115b564fc9e2f2b63bd608ea8c0e4a99615a24f38711b233f4e65b3672c3bfb69e1ab9d554a88cd"
-"0e3577d9c4936606707ab2af600bf029e9a10cf52df2e0516f72b626491d9796a6d95cf826287f2e061484e8cdeae60a37ecf4a7b9be048aa4701f27e9e1c055")
+SUM=("184d3738dbd8207a84cfb11dcc1edf352c57da49f484fe791d8c786ab8921189fdaf459b98e3bd6a5f73ae968510e8a8566f41a69640c74adb35363d6c07c439"
+"be2c4ecaed3881bf1d2397735bc51745ca6fd35f1b8ccb3f5c86db8824452cb564abcb5df28dba5c940977ecb8535d8e993d193ef2e033ad11e1da8fe08c1286")
 
 # Prepare script
 function prepare() {
@@ -94,6 +94,23 @@ function postbuild() {
 
     mv -v ${BUILD_DATA_ROOT}/etc/php-fpm.conf{.default,}
     mv -v ${BUILD_DATA_ROOT}/etc/php-fpm.d/www.conf{.default,}
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/lib/systemd/system/
+
+cat > ${BUILD_DATA_ROOT}/usr/lib/systemd/system/php-fpm.service << "EOF"
+[Unit]
+Description=The PHP FastCGI Process Manager
+After=network.target
+
+[Service]
+Type=notify
+PIDFile=/run/php-fpm.pid
+PrivateTmp=true
+ExecStart=/usr/sbin/php-fpm --nodaemonize --fpm-config /etc/php-fpm.conf --pid /run/php-fpm.pid
+ExecReload=/bin/kill -USR2 $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+EOF
 
     return 0
 }
