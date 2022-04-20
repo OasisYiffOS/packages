@@ -1,0 +1,16 @@
+{
+    "name": "helvum",
+    "version": "0.3.4",
+    "epoch": 0,
+    "description": "A GTK patchbay for pipewire.",
+    "groups": [],
+    "url": "https://gitlab.freedesktop.org/pipewire/helvum",
+    "license": ["GPL-3.0"],
+    "depends": ["gtk4", "pipewire"],
+    "optional_depends": [],
+    "make_depends": ["rust", "meson", "ninja"],
+    "provides": ["helvum"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

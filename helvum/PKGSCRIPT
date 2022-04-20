@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="helvum"
+VERSION="0.3.4"
+EPOCH=0
+DESC="A GTK patchbay for pipewire."
+GRPS=()
+URL="https://gitlab.freedesktop.org/pipewire/helvum"
+LICENSES=("GPL-3.0")
+DEPENDS=("gtk4" "pipewire")
+OPT_DEPENDS=()
+MK_DEPENDS=("rust" "meson" "ninja")
+PROVIDES=("helvum")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/pipewire/helvum/-/archive/${VERSION}/helvum-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("e1d36f5dd354dcdd41db1fcdc7aea31c8e6449c14e0f7b627a380fefb2174487cf648d56354da4439773203b9990611ec47681cdde5f31f244cd80148ed4b7da")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
