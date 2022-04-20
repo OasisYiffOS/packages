@@ -1,0 +1,16 @@
+{
+    "name": "aria2",
+    "version": "1.36.0",
+    "epoch": 0,
+    "description": "A lightweight multi-protocol & multi-source command-line download utility.",
+    "groups": [],
+    "url": "https://aria2.github.io",
+    "license": ["GPL-2.0"],
+    "depends": ["gnutls", "libssh2", "libxml2", "nettle", "libgcrypt", "zlib", "c-ares", "sqlite", "expat", "glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["aria2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

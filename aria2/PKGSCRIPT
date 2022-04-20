@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="aria2"
+VERSION="1.36.0"
+EPOCH=0
+DESC="A lightweight multi-protocol & multi-source command-line download utility."
+GRPS=()
+URL="https://aria2.github.io"
+LICENSES=("GPL-2.0")
+DEPENDS=("gnutls" "libssh2" "libxml2" "nettle" "libgcrypt" "zlib" "c-ares" "sqlite" "expat" "glibc")
+OPT_DEPENDS=()
+PROVIDES=("aria2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/aria2/aria2/releases/download/release-${VERSION}/aria2-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("8203dbb75274455a78c50dd4f894e631de6931ac889f26896dceed78ec38c98cdbcf07e164744f308f2bfffeae1016beec1bfdbe8cad7f3280d11376aa0c2542")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr       \
+                --with-out=openssl
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
