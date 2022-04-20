@@ -9,11 +9,11 @@ DESC="XML C parser and toolkit"
 GRPS=()
 URL="http://xmlsoft.org/"
 LICENSES=("MIT")
-DEPENDS=()
+DEPENDS=("icu" "readline" "ncurses" "readline" "xz" "zlib")
 OPT_DEPENDS=()
 PROVIDES=("libxml2")
-CONFLICTS=("")
-REPLACES=("")
+CONFLICTS=()
+REPLACES=()
 
 # Source information
 SRC=("http://xmlsoft.org/sources/libxml2-${VERSION}.tar.gz")
@@ -31,9 +31,10 @@ function build() {
     cd "${WORKDIR}/libxml2-${VERSION}"
 
     ./configure --prefix=/usr                   \
-            --disable-static                    \
-            --with-history                      \
-            --with-python=/usr/bin/python3
+                --disable-static                \
+                --with-history                  \
+                --with-icu                      \
+                --with-python=/usr/bin/python3
 
     make
 

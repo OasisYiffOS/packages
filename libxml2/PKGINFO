@@ -6,11 +6,11 @@
     "groups": [],
     "url": "http://xmlsoft.org/",
     "license": ["MIT"],
-    "depends": [],
+    "depends": ["icu", "readline", "ncurses", "readline", "xz", "zlib"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["libxml2"],
-    "conflicts": [""],
-    "replaces": [""],
+    "conflicts": [],
+    "replaces": [],
     "maintainers": ["Evie Viau <evie@uwueviee.live>"]
 }
