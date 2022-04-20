@@ -1,0 +1,16 @@
+{
+    "name": "lib32-libffi",
+    "version": "3.4.2",
+    "epoch": 0,
+    "description": "Portable Foreign Function Interface library (32-bit)",
+    "groups": [],
+    "url": "https://sourceware.org/libffi/",
+    "license": ["custom"],
+    "depends": ["lib32-glibc", "libffi"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lib32-libffi"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

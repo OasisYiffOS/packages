@@ -1,0 +1,67 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lib32-libffi"
+VERSION="3.4.2"
+EPOCH=0
+DESC="Portable Foreign Function Interface library (32-bit)"
+GRPS=()
+URL="https://sourceware.org/libffi/"
+LICENSES=("custom")
+DEPENDS=("lib32-glibc" "libffi")
+OPT_DEPENDS=()
+PROVIDES=("lib32-libffi")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/libffi/libffi/releases/download/v${VERSION}/libffi-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("31bad35251bf5c0adb998c88ff065085ca6105cf22071b9bd4b5d5d69db4fadf16cadeec9baca944c4bb97b619b035bb8279de8794b922531fddeb0779eb7fb1")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/libffi-${VERSION}"
+
+    # Required to build 32-bit libraries
+    export CC="gcc -m32"
+    export CXX="g++ -m32"
+    export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+    ./configure --prefix=/usr               \
+                --disable-static            \
+                --libdir=/usr/lib32         \
+                --with-gcc-arch=core2       \
+                --disable-exec-static-tramp \
+                --build=i686-pc-linux-gnu
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libffi-${VERSION}"
+
+    # Ensure libffi is built with core2 support
+    export CFLAGS="${CFLAGS} -march=core2"
+    export CXXFLAGS="${CXXFLAGS} -march=core2"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libffi-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    rm -r ${BUILD_DATA_ROOT}/usr/{include,share}
+
+    return 0
+}
