@@ -1,0 +1,78 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lib32-ncurses"
+VERSION="6.3"
+EPOCH=1
+DESC="A library for text-based user interfaces"
+GRPS=()
+URL="https://invisible-island.net/ncurses/"
+LICENSES=("MIT")
+DEPENDS=("lib32-gcc-libs" "lib32-glibc" "ncurses")
+OPT_DEPENDS=()
+PROVIDES=("lib32-ncurses")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/ncurses/ncurses-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("5373f228cba6b7869210384a607a2d7faecfcbfef6dbfcd7c513f4e84fbd8bcad53ac7db2e7e84b95582248c1039dcfc7c4db205a618f7da22a166db482f0105")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/ncurses-${VERSION}"
+
+    ./configure --prefix=/usr                                   \
+                --mandir=/usr/share/man                         \
+                --libdir=/usr/lib32                             \
+                --with-shared                                   \
+                --with-cxx-binding                              \
+                --with-cxx-shared                               \
+                --with-pkg-config-libdir=/usr/lib32/pkgconfig   \
+                --without-debug                                 \
+                --enable-pc-files                               \
+                --enable-widec                                  \
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/ncurses-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/ncurses-${VERSION}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+
+    # Add compatibility symlinks
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/lib32/pkgconfig
+    for lib in ncurses form panel menu ; do
+        rm -vf                    ${BUILD_DATA_ROOT}/usr/lib32/lib${lib}.so
+        echo "INPUT(-l${lib}w)" > ${BUILD_DATA_ROOT}/usr/lib32/lib${lib}.so
+        ln -sfv ${lib}w.pc        ${BUILD_DATA_ROOT}/usr/lib32/pkgconfig/${lib}.pc
+    done
+
+    # Link tinfo and tic to ncurses
+    for lib in tic tinfo; do
+        printf "INPUT(libncursesw.so.%s)\n"     "${VERSION:0:1}" > "${BUILD_DATA_ROOT}/usr/lib32/lib${lib}.so"
+        ln -sfv libncursesw.so.${VERSION:0:1}   ${BUILD_DATA_ROOT}/usr/lib32/lib${lib}.so.${VERSION:0:1}
+        ln -sfv ncursesw.pc                     ${BUILD_DATA_ROOT}/usr/lib32/pkgconfig/${lib}.pc
+    done
+
+    # Remove static libraries not needed
+    rm -fv ${BUILD_DATA_ROOT}/usr/lib32/libncurses++w.a
+
+    rm -r ${BUILD_DATA_ROOT}/usr/{bin,share,include}
+
+    return 0
+}
