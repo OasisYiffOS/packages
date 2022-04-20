@@ -1,0 +1,45 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="pipewire-alsa"
+VERSION="0.3.49"
+EPOCH=0
+DESC="ALSA configuration for Pipewire, A server and user-space API to handle multimedia pipelines."
+GRPS=()
+URL="https://pipewire.org"
+LICENSES=("MIT")
+DEPENDS=("pipewire")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("pipewire-alsa")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/PipeWire/pipewire/archive/${VERSION}/pipewire-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("36398872f7d7b31193d7a8885bbdfb415a122bd779874107a0642202dfd8408f39fddf769bfbae4533c2cc99fe9ef67903d50cc721e936aa4802229f1c46d809")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/pipewire-${VERSION}/${NAME}/conf"
+
+    install -m755 -d "${BUILD_DATA_ROOT}/etc/alsa/conf.d/"
+
+    install -m644 -t "${BUILD_DATA_ROOT}/etc/alsa/conf.d/" 50-pipewire.conf
+    install -m644 -t "${BUILD_DATA_ROOT}/etc/alsa/conf.d/" 99-pipewire-default.conf
+
+    return 0
+}

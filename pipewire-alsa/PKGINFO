@@ -1,0 +1,16 @@
+{
+    "name": "pipewire-alsa",
+    "version": "0.3.49",
+    "epoch": 0,
+    "description": "ALSA configuration for Pipewire, A server and user-space API to handle multimedia pipelines.",
+    "groups": [],
+    "url": "https://pipewire.org",
+    "license": ["MIT"],
+    "depends": ["pipewire"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["pipewire-alsa"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
