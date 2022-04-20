@@ -1,0 +1,64 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lib32-icu"
+VERSION="71.1"
+MAJOR_VERSION="71"
+MINOR_VERSION="1"
+EPOCH=0
+DESC="C/C++ libraries for Unicode and globalization support. (32-bit)"
+GRPS=()
+URL="https://icu.unicode.org/"
+LICENSES=("custom")
+DEPENDS=("lib32-gcc-libs" "icu")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("lib32-icu")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/unicode-org/icu/releases/download/release-${MAJOR_VERSION}-${MINOR_VERSION}/icu4c-${MAJOR_VERSION}_${MINOR_VERSION}-src.tgz")
+
+SUM_TYPE="sha512"
+SUM=("1fd2a20aef48369d1f06e2bb74584877b8ad0eb529320b976264ec2db87420bae242715795f372dbc513ea80047bc49077a064e78205cd5e8b33d746fd2a2912")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/icu/source"
+
+    # Required to build 32-bit libraries
+    export CC="gcc -m32"
+    export CXX="g++ -m32"
+    export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+    ./configure --prefix=/usr --libdir=/usr/lib32
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/icu/source"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/icu/source"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    rm -r ${BUILD_DATA_ROOT}/usr/{sbin,share,include}
+
+    find ${BUILD_DATA_ROOT}/usr/bin -type f -not -name icu-config -delete
+    mv ${BUILD_DATA_ROOT}/usr/bin/icu-config{,-32}
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "lib32-icu",
+    "version": "71.1",
+    "epoch": 0,
+    "description": "C/C++ libraries for Unicode and globalization support. (32-bit)",
+    "groups": [],
+    "url": "https://icu.unicode.org/",
+    "license": ["custom"],
+    "depends": ["lib32-gcc-libs", "icu"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lib32-icu"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
