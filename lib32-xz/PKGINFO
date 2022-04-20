@@ -1,0 +1,16 @@
+{
+    "name": "lib32-xz",
+    "version": "5.2.5",
+    "epoch": 0,
+    "description": "A compression program with high compression ratios, higher than both gzip or bzip2. (32-bit)",
+    "groups": [],
+    "url": "https://tukaani.org/xz",
+    "license": ["GPL", "LGPL"],
+    "depends": ["bash"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lib32-xz"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
