@@ -1,6 +1,6 @@
 {
     "name": "icu",
-    "version": "70.1",
+    "version": "71.1",
     "epoch": 0,
     "description": "C/C++ libraries for Unicode and globalization support.",
     "groups": [],
