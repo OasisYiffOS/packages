@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lib32-readline"
+VERSION="8.1.2"
+EPOCH=0
+DESC="A set of libraries for command-line editing. (32-bit)"
+GRPS=()
+URL="https://tiswww.case.edu/php/chet/readline/rltop.html"
+LICENSES=("GPL-3.0")
+DEPENDS=("lib32-glibc" "lib32-ncurses" "readline")
+OPT_DEPENDS=()
+PROVIDES=("lib32-readline")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/readline/readline-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("b512275c8aa8b3b3178366c6d681f867676fc1c881e375134a88e9c860a448535e04ca43df727817fd0048261e48203e88bd1c086e86572022d1d65fb0350e4d"
+"503cf980f5ee9870f56227ed7d366faba1f8405f85231fa9958f28e791cd798519b9d736c18a911fbfdc8a6d28f252515b94f5e7dba6ffd0901f2d222fc4a319")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/readline-${VERSION}"
+
+    # Required to build 32-bit libraries
+    export CC="gcc -m32"
+    export CXX="g++ -m32"
+    export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+    ./configure --prefix=/usr       \
+                --libdir=/usr/lib32 \
+                --disable-static    \
+                --with-curses
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/readline-${VERSION}"
+
+    make SHLIB_LIBS="-lncursesw"
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/readline-${VERSION}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+
+    rm -rf "${BUILD_DATA_ROOT}"/usr/{include,share,bin}
+
+    return 0
+}

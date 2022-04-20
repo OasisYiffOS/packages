@@ -1,0 +1,16 @@
+{
+    "name": "lib32-readline",
+    "version": "8.1.2",
+    "epoch": 0,
+    "description": "A set of libraries for command-line editing. (32-bit)",
+    "groups": [],
+    "url": "https://tiswww.case.edu/php/chet/readline/rltop.html",
+    "license": ["GPL-3.0"],
+    "depends": ["lib32-glibc", "lib32-ncurses", "readline"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lib32-readline"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
