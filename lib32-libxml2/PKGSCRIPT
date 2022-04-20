@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lib32-libxml2"
+VERSION="2.9.12"
+EPOCH=0
+DESC="XML C parser and toolkit. (32-bit)"
+GRPS=()
+URL="http://xmlsoft.org/"
+LICENSES=("MIT")
+DEPENDS=("lib32-icu" "lib32-readline" "lib32-ncurses" "lib32-zlib" "lib32-xz" "libxml2")
+OPT_DEPENDS=()
+PROVIDES=("lib32-libxml2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("http://xmlsoft.org/sources/libxml2-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("df1c6486e80f0fcf3c506f3599bcfb94b620c00d0b5d26831bc983daa78d58ec58b5057b1ec7c1a26c694f40199c6234ee2a6dcabf65abfa10c447cb5705abbd")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libxml2-${VERSION}"
+
+    # Required to build 32-bit libraries
+    export CC="gcc -m32"
+    export CXX="g++ -m32"
+    export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+    ./configure --prefix=/usr                  \
+                --libdir=/usr/lib32            \
+                --disable-static               \
+                --with-history                 \
+                --with-icu                     \
+                --without-python
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libxml2-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    rm -rf "${BUILD_DATA_ROOT}"/usr/{include,share,bin}
+    rm -r ${BUILD_DATA_ROOT}/usr/lib32/xml2Conf.sh
+
+    return 0
+}

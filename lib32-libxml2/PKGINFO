@@ -1,0 +1,16 @@
+{
+    "name": "lib32-libxml2",
+    "version": "2.9.12",
+    "epoch": 0,
+    "description": "XML C parser and toolkit. (32-bit)",
+    "groups": [],
+    "url": "http://xmlsoft.org/",
+    "license": ["MIT"],
+    "depends": ["lib32-icu", "lib32-readline", "lib32-ncurses", "lib32-zlib", "lib32-xz", "libxml2"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lib32-libxml2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
