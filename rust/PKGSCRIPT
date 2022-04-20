@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="rust"
-VERSION="1.59.0"
+VERSION="1.60.0"
 EPOCH=0
 DESC="Memory-safe programming language without garbage collection."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://static.rust-lang.org/dist/rustc-${VERSION}-src.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("77e02226785e964750c89b8f27d6ee0546990919b8066889043145093b733e80edecb1fd81ae068e03943ded4692f28b2866cdaa8240a23f68968c235b0d1f8e")
+SUM=("ae626482287949eb73a5467245b8e21b7624713a29d4bbdf1c1e1232e10f5497ba3435427e08df4fd5d2277c456213e5d04529e841d50924a4211fdb8c6acfd0")
 
 # Prepare script
 function prepare() {
