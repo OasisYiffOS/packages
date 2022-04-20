@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://tukaani.org/xz",
     "license": ["GPL", "LGPL"],
-    "depends": ["bash"],
+    "depends": ["bash", "xz", "lib32-glibc"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["lib32-xz"],
