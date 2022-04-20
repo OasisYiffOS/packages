@@ -1,0 +1,16 @@
+{
+    "name": "lib32-zlib",
+    "version": "1.2.12",
+    "epoch": 0,
+    "description": "A compression library (32-bit)",
+    "groups": [],
+    "url": "https://www.zlib.net/",
+    "license": ["custom"],
+    "depends": ["lib32-glibc", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lib32-zlib"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

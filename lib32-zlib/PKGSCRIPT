@@ -1,0 +1,62 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lib32-zlib"
+VERSION="1.2.12"
+EPOCH=0
+DESC="A compression library (32-bit)"
+GRPS=()
+URL="https://www.zlib.net/"
+LICENSES=("custom")
+DEPENDS=("lib32-glibc" "zlib")
+OPT_DEPENDS=()
+PROVIDES=("lib32-zlib")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.zlib.net/zlib-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("12940e81e988f7661da52fa20bdc333314ae86a621fdb748804a20840b065a1d6d984430f2d41f3a057de0effc6ff9bcf42f9ee9510b88219085f59cbbd082bd")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/zlib-${VERSION}"
+
+    # Required to build 32-bit libraries
+    export CC="gcc -m32"
+    export CXX="g++ -m32"
+    export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+
+    # Not sure why this is required, but zlib will fail to pass the link test and complain about missing shared library support
+    export CFLAGS="-m32"
+
+    ./configure --prefix=/usr --libdir=/usr/lib32
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/zlib-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/zlib-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+    rm "${BUILD_DATA_ROOT}/usr/lib32/libz.a"
+
+    rm -r ${BUILD_DATA_ROOT}/usr/{share,include}
+
+    return 0
+}
