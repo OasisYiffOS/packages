@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gst-libav"
+VERSION="1.20.1"
+EPOCH=0
+DESC="A collection of GStreamer plug-ins for Libav."
+GRPS=()
+URL="https://gstreamer.freedesktop.org"
+LICENSES=("LGPL-2.0")
+DEPENDS=("glibc" "glib2" "ffmpeg" "gst-plugins-base" "gstreamer")
+OPT_DEPENDS=()
+MK_DEPENDS=("yasm" "meson" "ninja")
+PROVIDES=("gst-libav")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gstreamer.freedesktop.org/src/gst-libav/gst-libav-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("5f4169ac03aec715b56d8bff5e45f471150b1997f785f1ad3dc687f9c76060d5bfaafe0ee51f460e53394adceaf41cb64875ce818c16c0111ee171b5dff46854")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr                                     \
+          --buildtype=release                               \
+          -Dpackage-origin=https://yiffos.gay/              \
+          -Dpackage-name="GStreamer ${VERSION} for yiffOS"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "gst-libav",
+    "version": "1.20.1",
+    "epoch": 0,
+    "description": "A collection of GStreamer plug-ins for Libav.",
+    "groups": [],
+    "url": "https://gstreamer.freedesktop.org",
+    "license": ["LGPL-2.0"],
+    "depends": ["glibc", "glib2", "ffmpeg", "gst-plugins-base", "gstreamer"],
+    "optional_depends": [],
+    "make_depends": ["yasm", "meson", "ninja"],
+    "provides": ["gst-libav"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
