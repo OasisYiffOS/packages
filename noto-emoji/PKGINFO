@@ -1,0 +1,16 @@
+{
+    "name": "noto-emoji",
+    "version": "2.034",
+    "epoch": 0,
+    "description": "Google's color and black-and-white Noto emoji fonts.",
+    "groups": [],
+    "url": "https://fonts.google.com/noto",
+    "license": ["OFL-1.1"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["noto-emoji"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

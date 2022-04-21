@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="noto-emoji"
+VERSION="2.034"
+EPOCH=0
+DESC="Google's color and black-and-white Noto emoji fonts."
+GRPS=()
+URL="https://fonts.google.com/noto"
+LICENSES=("OFL-1.1")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("noto-emoji")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/googlefonts/noto-emoji/archive/refs/tags/v${VERSION}.tar.gz"
+"66-noto-color-emoji.conf")
+
+SUM_TYPE="sha512"
+SUM=("a7ea0c33f4703749d8a30f4be2fac5971429dcec7b6feed2645854d9ae1eebb428597a56ad148c3732e320a65d4133da30c0003ed39f07c5270462e31fdf3d0b"
+"767e1526e22b0a314f8191e4ea1dfd850580520149b8c51b5ff8751fc06f1a67279aa64d67be2790cc6500bb2ba484e342e6ee78c082e2ee12c3ced24433ad8b")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/fonts"
+
+    install -Dt "${BUILD_DATA_ROOT}/usr/share/fonts/ttf" -m644 NotoColorEmoji.ttf
+
+    cd "${WORKDIR}"
+
+    install -Dm644 66-noto-color-emoji.conf -t "${BUILD_DATA_ROOT}"/usr/share/fontconfig/conf.avail
+    install -d "${BUILD_DATA_ROOT}"/etc/fonts/conf.d
+    ln -rs "${BUILD_DATA_ROOT}"/usr/share/fontconfig/conf.avail/* "${BUILD_DATA_ROOT}"/etc/fonts/conf.d
+
+    return 0
+}
