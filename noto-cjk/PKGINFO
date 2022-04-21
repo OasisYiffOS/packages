@@ -1,0 +1,16 @@
+{
+    "name": "noto-cjk",
+    "version": "20220127",
+    "epoch": 0,
+    "description": "Google Noto's Chinese, Japanese, and Korean fonts.",
+    "groups": [],
+    "url": "https://fonts.google.com/noto",
+    "license": ["OFL-1.1"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["noto-cjk"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

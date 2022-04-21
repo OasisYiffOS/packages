@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="noto-cjk"
+VERSION="20220127"
+_SANS_VERSION="2.004"
+_SANS_FOLDER_NUMBER="03"
+_SERIF_VERSION="2.001"
+_SERIF_FOLDER_NUMBER="04"
+EPOCH=0
+DESC="Google Noto's Chinese, Japanese, and Korean fonts."
+GRPS=()
+URL="https://fonts.google.com/noto"
+LICENSES=("OFL-1.1")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("noto-cjk")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/googlefonts/noto-cjk/releases/download/Sans${_SANS_VERSION}/${_SANS_FOLDER_NUMBER}_NotoSansCJK-OTC.zip|${_SANS_FOLDER_NUMBER}_NotoSansCJK-OTC"
+"https://github.com/googlefonts/noto-cjk/releases/download/Serif${_SERIF_VERSION}/${_SERIF_FOLDER_NUMBER}_NotoSerifCJKOTC.zip|${_SERIF_FOLDER_NUMBER}_NotoSerifCJKOTC"
+"70-noto-cjk.conf")
+
+SUM_TYPE="sha512"
+SUM=("3ab2f5f8a6437885ef5f1948aaa0fbbd4cbba2205c20869baaa680bb54641d32e38e7dce7eae07c3ebc1e3fcf7095fa5c23db557a473b4cf63efc7ac18a64b4a"
+"8b68426cddd95bd31e8c8d6134c4a8b2a28756dc3dc2ac4e50b69baa200284c31f2619f5a159a2dfa7bd355b33697e0c76203c6bd8001686c5f915239e17a13e"
+"37ecbc5364b6fd980bf166848a403ae6999af0cde3d43ade3cf6fcaf296273eef2b5dd16e1019345dc607ac0511497cb5d2e2b280164b327bf5a5d7ae65d689c")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_SANS_FOLDER_NUMBER}_NotoSansCJK-OTC"
+
+    install -Dt "${BUILD_DATA_ROOT}/usr/share/fonts/ttc" -m644 *.ttc
+
+    cd "${WORKDIR}/${_SERIF_FOLDER_NUMBER}_NotoSerifCJKOTC/OTC"
+
+    install -Dt "${BUILD_DATA_ROOT}/usr/share/fonts/ttc" -m644 *.ttc
+
+    cd "${WORKDIR}"
+
+    install -Dm644 70-noto-cjk.conf -t "${BUILD_DATA_ROOT}"/usr/share/fontconfig/conf.avail
+    install -d "${BUILD_DATA_ROOT}"/etc/fonts/conf.d
+    ln -rs "${BUILD_DATA_ROOT}"/usr/share/fontconfig/conf.avail/* "${BUILD_DATA_ROOT}"/etc/fonts/conf.d
+
+    return 0
+}
