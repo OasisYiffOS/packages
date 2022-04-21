@@ -1,0 +1,16 @@
+{
+    "name": "liberation-fonts",
+    "version": "2.1.5",
+    "epoch": 0,
+    "description": "A font family which aims at metric compatibility with Arial, Times New Roman, and Courier New.",
+    "groups": [],
+    "url": "https://github.com/liberationfonts/liberation-fonts",
+    "license": ["OFL-1.1"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["liberation-fonts"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

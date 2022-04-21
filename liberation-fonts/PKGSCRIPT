@@ -1,0 +1,43 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="liberation-fonts"
+VERSION="2.1.5"
+_DOWNLOAD_VERSION="7261482"
+EPOCH=0
+DESC="A font family which aims at metric compatibility with Arial, Times New Roman, and Courier New."
+GRPS=()
+URL="https://github.com/liberationfonts/liberation-fonts"
+LICENSES=("OFL-1.1")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("liberation-fonts")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/liberationfonts/liberation-fonts/files/${_DOWNLOAD_VERSION}/liberation-fonts-ttf-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("b9f178fae43c9214ba6de36c6da613fcf59bd98084058afaaa9151d00f2406942bc360430be0a8f35ea6b5529146eef371c7cf75bdd7910403d449254f943fed")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-ttf-${VERSION}"
+
+    install -Dt "${BUILD_DATA_ROOT}/usr/share/fonts/ttf" -m644 *.ttf
+
+    return 0
+}
