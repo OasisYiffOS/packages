@@ -4,7 +4,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 # Package information
 NAME="avahi"
 VERSION="0.8"
-EPOCH=0
+EPOCH=1
 DESC="A system which facilitates service discovery on a local network via the mDNS/DNS-SD protocol suite."
 GRPS=()
 URL="http://avahi.org"
@@ -37,18 +37,20 @@ function prepare() {
     return; \
     }' avahi-daemon/simple-protocol.c
 
-    ./configure --prefix=/usr        \
-                --sysconfdir=/etc    \
-                --localstatedir=/var \
-                --disable-static     \
-                --disable-mono       \
-                --disable-monodoc    \
-                --disable-python     \
-                --disable-qt3        \
-                --disable-qt4        \
-                --disable-qt5        \
-                --enable-core-docs   \
-                --with-distro=none
+    ./configure --prefix=/usr               \
+                --sysconfdir=/etc           \
+                --localstatedir=/var        \
+                --disable-static            \
+                --disable-mono              \
+                --disable-monodoc           \
+                --disable-python            \
+                --disable-qt3               \
+                --disable-qt4               \
+                --disable-qt5               \
+                --enable-core-docs          \
+                --with-distro=none          \
+                --enable-compat-libdns_sd   \
+                --enable-compat-howl
 
     return 0
 }
