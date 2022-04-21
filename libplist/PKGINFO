@@ -1,0 +1,16 @@
+{
+    "name": "libplist",
+    "version": "2.2.0",
+    "epoch": 0,
+    "description": "A library to handle Apple Property List format in binary or XML.",
+    "groups": [],
+    "url": "https://github.com/libimobiledevice/libplist",
+    "license": ["LGPL-2.1"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libplist"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

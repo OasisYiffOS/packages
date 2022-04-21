@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libplist"
+VERSION="2.2.0"
+EPOCH=0
+DESC="A library to handle Apple Property List format in binary or XML."
+GRPS=()
+URL="https://github.com/libimobiledevice/libplist"
+LICENSES=("LGPL-2.1")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("libplist")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/libimobiledevice/libplist/releases/download/${VERSION}/libplist-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("dcd922ebb28efa3c507253dd4671fdb3e4d367540734765b8d545756f6be2731fc401e7992cc6b06cdbde866fd7e17ff6188895505988b41f738226a004d7291")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
