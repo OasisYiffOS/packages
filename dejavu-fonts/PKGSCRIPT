@@ -1,0 +1,43 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="dejavu-fonts"
+VERSION="2.37"
+EPOCH=0
+DESC="A font family based upon Bitstream Vera. Its purpose is to provide a wider range of characters while maintaining the original look-and-feel."
+GRPS=()
+URL="https://dejavu-fonts.github.io/"
+LICENSES=("custom")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("dejavu-fonts")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/dejavu/${VERSION}/dejavu-fonts-ttf-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("bafa39321021097432777f0825d700190c23f917d754a4504722cd8946716c22c083836294dab7f3ae7cf20af63c4d0944f3423bf4aa25dbca562d1f30e00654")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-ttf-${VERSION}"
+
+    install -Dt "${BUILD_DATA_ROOT}/usr/share/fonts/ttf" -m644 ttf/*.ttf
+    install -Dt "${BUILD_DATA_ROOT}/usr/share/fontconfig/conf.avail" -m644 fontconfig/*.conf
+
+    return 0
+}

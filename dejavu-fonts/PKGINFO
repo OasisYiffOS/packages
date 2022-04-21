@@ -1,0 +1,16 @@
+{
+    "name": "dejavu-fonts",
+    "version": "2.37",
+    "epoch": 0,
+    "description": "A font family based upon Bitstream Vera. Its purpose is to provide a wider range of characters while maintaining the original look-and-feel.",
+    "groups": [],
+    "url": "https://dejavu-fonts.github.io/",
+    "license": ["custom"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["dejavu-fonts"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
