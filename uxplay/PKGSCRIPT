@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="uxplay"
+VERSION="1.49"
+EPOCH=0
+DESC="AirPlay/AirPlay-Mirror server for Linux, macOS, and Unix."
+GRPS=()
+URL="https://github.com/FDH2/UxPlay"
+LICENSES=("GPL-3.0")
+DEPENDS=("gstreamer" "gst-plugins-base" "gst-plugins-bad" "gst-plugins-good" "gst-libav" "libplist" "avahi")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake")
+PROVIDES=("uxplay")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/FDH2/UxPlay/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("d37c963303c2f366f9c78d620f2e6055370ff5c2096991704c7a55e4e80761b7cd53c944a8bab986c989c034e6a31c6fc534b2434522cda711efd7ef318b24fb")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/UxPlay-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DNO_MARCH_NATIVE=ON ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/UxPlay-${VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/UxPlay-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

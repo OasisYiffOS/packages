@@ -1,0 +1,16 @@
+{
+    "name": "uxplay",
+    "version": "1.49",
+    "epoch": 0,
+    "description": "AirPlay/AirPlay-Mirror server for Linux, macOS, and Unix.",
+    "groups": [],
+    "url": "https://github.com/FDH2/UxPlay",
+    "license": ["GPL-3.0"],
+    "depends": ["gstreamer", "gst-plugins-base", "gst-plugins-bad", "gst-plugins-good", "gst-libav", "libplist", "avahi"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["uxplay"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
