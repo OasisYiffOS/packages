@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gstreamer-vaapi"
+VERSION="1.20.1"
+EPOCH=0
+DESC="A collection of GStreamer plugins to let you make use of VA API video acceleration from GStreamer applications."
+GRPS=()
+URL="https://gstreamer.freedesktop.org"
+LICENSES=("LGPL-2.0")
+DEPENDS=("gst-plugins-base" "glibc" "glib2" "gstreamer" "libva")
+OPT_DEPENDS=("gtk3")
+MK_DEPENDS=("yasm" "meson" "ninja")
+PROVIDES=("gstreamer-vaapi")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gstreamer.freedesktop.org/src/gstreamer-vaapi/gstreamer-vaapi-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("0ef33c4ec6d439aa957ab74bef910706d093540b2b6a95deac5e6524415fdbba00dacd72cba67b778140efa0bea49479e5fd356cae4882eec37d5bbb0f44568d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr                                     \
+          --buildtype=release                               \
+          -Dpackage-origin=https://yiffos.gay/
+          
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

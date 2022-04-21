@@ -1,0 +1,16 @@
+{
+    "name": "gstreamer-vaapi",
+    "version": "1.20.1",
+    "epoch": 0,
+    "description": "A collection of GStreamer plugins to let you make use of VA API video acceleration from GStreamer applications.",
+    "groups": [],
+    "url": "https://gstreamer.freedesktop.org",
+    "license": ["LGPL-2.0"],
+    "depends": ["gst-plugins-base", "glibc", "glib2", "gstreamer", "libva"],
+    "optional_depends": ["gtk3"],
+    "make_depends": ["yasm", "meson", "ninja"],
+    "provides": ["gstreamer-vaapi"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
