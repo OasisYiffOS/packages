@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="modemmanager"
+VERSION="1.18.6"
+EPOCH=0
+DESC="A unified high level API for communicating with mobile broadband modems, regardless of the protocol used to communicate with the actual device."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/ModemManager/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "glib2" "gcc-lib" "libgudev" "libmbim" "libqmi" "polkit" "systemd")
+OPT_DEPENDS=()
+MK_DEPENDS=("vala" "gobject-introspection")
+PROVIDES=("modemmanager")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.freedesktop.org/software/ModemManager/ModemManager-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("3b154d459e1196494d7f99303f88088215992aadb57a8cc66f838b068e762fa3d25f19a597922c26a138f670e1da46d627de11cf41d83ce96b3197a086f8e91b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/ModemManager-${VERSION}"
+
+    ./configure --prefix=/usr                 \
+                --sysconfdir=/etc             \
+                --localstatedir=/var          \
+                --disable-static              \
+                --disable-maintainer-mode     \
+                --with-systemd-journal        \
+                --with-systemd-suspend-resume
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/ModemManager-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/ModemManager-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
