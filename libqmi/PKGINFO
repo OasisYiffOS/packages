@@ -1,0 +1,16 @@
+{
+    "name": "libqmi",
+    "version": "1.30.4",
+    "epoch": 0,
+    "description": "A GLib-based library for talking to WWAN modems and devices which speak the Qualcomm MSM Interface (QMI) protocol.",
+    "groups": [],
+    "url": "https://freedesktop.org/software/libqmi/",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "gcc-libs", "libmbim"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection"],
+    "provides": ["libqmi"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

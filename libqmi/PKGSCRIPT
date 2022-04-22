@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libqmi"
+VERSION="1.30.4"
+EPOCH=0
+DESC="A GLib-based library for talking to WWAN modems and devices which speak the Qualcomm MSM Interface (QMI) protocol."
+GRPS=()
+URL="https://freedesktop.org/software/libqmi/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "gcc-libs" "libmbim")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection")
+PROVIDES=("libqmi")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.freedesktop.org/software/libqmi/libqmi-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("969c3e3fc8086c38e9192070eca155f5309947cdd1cfc9b883c27d80c6af2d069098a59e193bf1786260ab4fe4d05375555b5081dd173a88b33d84d409fa4a59")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    PYTHON=python3 ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
