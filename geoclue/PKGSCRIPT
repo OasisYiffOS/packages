@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="geoclue"
+VERSION="2.6.0"
+EPOCH=0
+DESC="A modular geoinformation service built on top of the D-Bus messaging system."
+GRPS=()
+URL="https://gitlab.freedesktop.org/geoclue/geoclue"
+LICENSES=("GPL-2.0" "LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "modemmanager" "dbus" "json-glib" "libnotify" "libsoup" "avahi")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vala")
+PROVIDES=("geoclue")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/geoclue/geoclue/-/archive/${VERSION}/geoclue-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("13205ab88cbd9748c155081318ae1909fddedce4250e3ece39a9f379b8cfea91dfe571961e278406ba54f8efd3a1070967479feb8256f50170112b28246b3103")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dgtk-doc=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
