@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libportal"
+VERSION="0.6"
+EPOCH=0
+DESC="A library that provides GIO-style async APIs for most Flatpak portals."
+GRPS=()
+URL="https://libportal.org"
+LICENSES=("LGPL-3.0")
+DEPENDS=("glibc" "gcc-libs" "glib2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gtk3" "gtk4" "vala" "gobject-introspection")
+PROVIDES=("libportal")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/flatpak/libportal/releases/download/${VERSION}/libportal-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("f5f76a0dd0c66521b745c276e41f298addbbd41dd5fb3df9381ea85c122387878cb0e51ffac1e17f9e82548ab222d2c2fe92ab0d018de8a9ae9b2dfd65e454c4")
+
+# QT support to be added later
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Ddocs=false -Dbackends="gtk3","gtk4" ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
