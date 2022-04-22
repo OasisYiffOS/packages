@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libdazzle"
+VERSION="3.44.0"
+_MAJOR_VERSION="3.44"
+EPOCH=0
+DESC="A companion library to GObject and GTK+."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/libdazzle"
+LICENSES=("GPL-3.0")
+DEPENDS=("glibc" "glib2" "gcc-libs" "cairo" "gdk-pixbuf2" "gtk3" "pango")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vala")
+PROVIDES=("libdazzle")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libdazzle/${_MAJOR_VERSION}/libdazzle-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("eff3f65cbfd4f780afb4bda6137e8d4f1ee2cd0ab21288d07315415944ced1aa2d7ef89c2b7ebb373ac4c46b91d341bed063e9c7d1c21fa083514c8c3c9c518f")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
