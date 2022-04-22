@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="ruby"
+VERSION="3.1.2"
+_MAJOR_VERSION="3.1"
+EPOCH=0
+DESC="A dynamic, open source programming language with a focus on simplicity and productivity."
+GRPS=()
+URL="https://www.ruby-lang.org/"
+LICENSES=("Ruby")
+DEPENDS=("glibc" "gmp" "libxcrypt" "zlib")
+OPT_DEPENDS=()
+PROVIDES=("ruby")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://cache.ruby-lang.org/pub/ruby/${_MAJOR_VERSION}/ruby-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("4a74e9efc6ea4b3eff4fec7534eb1fff4794d021531defc2e9937e53c6668db8ecdc0fff2bc23d5e6602d0df344a2caa85b31c5414309541e3d5313ec82b6e21")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                           \
+                --enable-shared                         \
+                --docdir=/usr/share/doc/ruby-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+
+    return 0
+}
