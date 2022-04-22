@@ -1,0 +1,16 @@
+{
+    "name": "cracklib",
+    "version": "2.9.7",
+    "epoch": 0,
+    "description": "A library to try to prevent users from choosing passwords that could be guessed by filtering them out, at source.",
+    "groups": [],
+    "url": "https://github.com/cracklib/cracklib/",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gzip", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["cracklib"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

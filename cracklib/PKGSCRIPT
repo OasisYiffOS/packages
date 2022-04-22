@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="cracklib"
+VERSION="2.9.7"
+EPOCH=0
+DESC="A library to try to prevent users from choosing passwords that could be guessed by filtering them out, at source."
+GRPS=()
+URL="https://github.com/cracklib/cracklib/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gzip" "zlib")
+OPT_DEPENDS=()
+PROVIDES=("cracklib")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/cracklib/cracklib/releases/download/v${VERSION}/cracklib-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("f6bf65ac092ba46ff78ddbc115692260fb76dc71219cd679d2ea935ebfb9e709fbb30259a7406743ed00dbdc415335b3ac9d9fcba1d204ea36d5eb96bf1333a2")
+
+_PYTHON_VERSION="3.10"
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Remove meaningless warning
+    sed -i '/skipping/d' util/packer.c
+
+    # Use the correct python version
+    sed -i "15209 s/.*/am_cv_python_version=${_PYTHON_VERSION}/" configure
+
+    PYTHON=python3 CPPFLAGS=-I/usr/include/python${_PYTHON_VERSION} \
+    ./configure --prefix=/usr                                   \
+                --disable-static                                \
+                --with-default-dict=/usr/lib/cracklib/pw_dict
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
