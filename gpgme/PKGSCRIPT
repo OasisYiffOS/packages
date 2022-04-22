@@ -1,0 +1,62 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gpgme"
+VERSION="1.17.1"
+EPOCH=0
+DESC="A library designed to make access to GnuPG easier for applications."
+GRPS=()
+URL="https://gnupg.org/related_software/gpgme/"
+LICENSES=("LGPL-2.1" "MIT")
+DEPENDS=("glibc" "gnupg" "libassuan" "libgpg-error")
+OPT_DEPENDS=()
+PROVIDES=("gpgme")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("e6399c3de1e430e38f2692bf5ec0c02ecb36ea3dbb56ff29dc3a438a5be4900a77a0559dc5b673dc1ffbff5e7f589e548e19176b2644fe8f63e00c6b9181b920")
+
+_PYTHON_VERSION="3.10"
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix issue with building Glibc 2.34+
+    sed 's/defined(__sun.*$/1/' -i src/posix-io.c
+
+    # Update to use Python 3.10+
+    sed -e "s/3\.9/${_PYTHON_VERSION}/"      \
+        -e 's/:3/:4/'                        \
+        -e '23653 s/distutils"/setuptools"/' \
+        -i configure
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make -k check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

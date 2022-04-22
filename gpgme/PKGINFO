@@ -1,0 +1,16 @@
+{
+    "name": "gpgme",
+    "version": "1.17.1",
+    "epoch": 0,
+    "description": "A library designed to make access to GnuPG easier for applications.",
+    "groups": [],
+    "url": "https://gnupg.org/related_software/gpgme/",
+    "license": ["LGPL-2.1", "MIT"],
+    "depends": ["glibc", "gnupg", "libassuan", "libgpg-error"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["gpgme"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
