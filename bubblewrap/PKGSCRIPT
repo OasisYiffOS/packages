@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="bubblewrap"
+VERSION="0.6.1"
+EPOCH=0
+DESC="A core execution engine for unprivileged containers that works as a setuid binary on kernels without user namespaces."
+GRPS=()
+URL="https://github.com/containers/bubblewrap"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "libcap")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("bubblewrap")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/containers/bubblewrap/releases/download/v${VERSION}/bubblewrap-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("68e07812ff5e01de2b7a0ce66e8386ca3662fd071d4e9b4c4afa611c1589c0ed116e0ebb4c03eae3f707f908d86945e157f8b26ff872c2814889dde92df9c60b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix issue with with the test suite
+    sed 's@symlink usr/lib64@ro-bind-try /lib64@' -i tests/libtest.sh
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

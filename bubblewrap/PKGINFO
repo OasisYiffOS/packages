@@ -1,0 +1,16 @@
+{
+    "name": "bubblewrap",
+    "version": "0.6.1",
+    "epoch": 0,
+    "description": "A core execution engine for unprivileged containers that works as a setuid binary on kernels without user namespaces.",
+    "groups": [],
+    "url": "https://github.com/containers/bubblewrap",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs", "libcap"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["bubblewrap"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
