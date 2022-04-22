@@ -1,0 +1,16 @@
+{
+    "name": "libwpe",
+    "version": "1.12.0",
+    "epoch": 0,
+    "description": "General-purpose library specifically developed for the WPE-flavored port of WebKit.",
+    "groups": [],
+    "url": "https://github.com/WebPlatformForEmbedded/libwpe",
+    "license": ["BSD-2-Clause"],
+    "depends": ["glibc", "gcc-libs", "libxkbcommon"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["libwpe"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libwpe"
+VERSION="1.12.0"
+EPOCH=0
+DESC="General-purpose library specifically developed for the WPE-flavored port of WebKit."
+GRPS=()
+URL="https://github.com/WebPlatformForEmbedded/libwpe"
+LICENSES=("BSD-2-Clause")
+DEPENDS=("glibc" "gcc-libs" "libxkbcommon")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("libwpe")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://wpewebkit.org/releases/libwpe-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("d85865fd6f2dd907589a4d2c1b956d9a2093f72f5b7f755ab2bef040f7f26a73ddadd47a607a78578dec6eb6d59f44e18fa8b96a71f7bd19f3d62073f3ca6fee")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
