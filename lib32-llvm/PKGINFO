@@ -1,0 +1,16 @@
+{
+    "name": "lib32-llvm",
+    "version": "14.0.1",
+    "epoch": 0,
+    "description": "A collection of modular and reusable compiler and toolchain technologies. (32-bit)",
+    "groups": [],
+    "url": "https://llvm.org",
+    "license": ["Apache-2.0"],
+    "depends": ["lib32-glibc", "lib32-gcc-libs", "lib32-ncurses", "lib32-libffi", "lib32-zlib"],
+    "optional_depends": [],
+    "make_depends": ["cmake", "lib32-libxml2", "rsync", "ninja"],
+    "provides": ["lib32-llvm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
