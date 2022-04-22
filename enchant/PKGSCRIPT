@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="enchant"
+VERSION="2.3.3"
+EPOCH=0
+DESC="A generic interface into various existing spell checking libraries."
+GRPS=()
+URL="https://github.com/AbiWord/enchant"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "gcc-libs")
+OPT_DEPENDS=()
+PROVIDES=("enchant")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/AbiWord/enchant/releases/download/v${VERSION}/enchant-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("c97764a8f219033b440cbfb820624f54993b19ba1f38b56f20336889304f753c7c513008bb92cd1424bfbf528c2d473f35bef93d9140063612e3a270fd000deb")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

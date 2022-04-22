@@ -1,0 +1,16 @@
+{
+    "name": "enchant",
+    "version": "2.3.3",
+    "epoch": 0,
+    "description": "A generic interface into various existing spell checking libraries.",
+    "groups": [],
+    "url": "https://github.com/AbiWord/enchant",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["enchant"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
