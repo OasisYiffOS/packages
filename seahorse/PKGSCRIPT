@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="seahorse"
+VERSION="41.0"
+_MAJOR_VERSION="41"
+EPOCH=0
+DESC="A graphical interface for managing and using encryption keys. Currently it supports PGP keys (using GPG/GPGME) and SSH keys."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/Seahorse"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "gcr" "gpgme" "gnupg" "libhandy" "libpwquality" "libsecret" "libsoup" "p11-kit" "avahi" "gnome-keyring")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "istool" "vala")
+PROVIDES=("seahorse")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/seahorse/${_MAJOR_VERSION}/seahorse-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("cc51e27a55ed646ee376aa1b1bffe28369d80e4b8c484c9711de6bdf190694714ef208579d0399b5c199b5619491d72dede1b1f6c03b89cf3a53e8519a4d4fcf")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+    
+    # Fix deprecated entries in the schema
+    sed -i -r 's:"(/apps):"/org/gnome\1:' data/*.xml
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dldap-support=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
