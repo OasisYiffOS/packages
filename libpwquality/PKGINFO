@@ -1,0 +1,16 @@
+{
+    "name": "libpwquality",
+    "version": "1.4.4",
+    "epoch": 0,
+    "description": "Common functions for password quality checking and also scoring them based on their apparent randomness.",
+    "groups": [],
+    "url": " https://github.com/libpwquality/libpwquality/",
+    "license": ["GPL-2.0", "LGPL-2.1"],
+    "depends": ["glibc", "cracklib", "pam"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libpwquality"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

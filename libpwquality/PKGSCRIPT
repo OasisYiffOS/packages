@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libpwquality"
+VERSION="1.4.4"
+EPOCH=0
+DESC="Common functions for password quality checking and also scoring them based on their apparent randomness."
+GRPS=()
+URL=" https://github.com/libpwquality/libpwquality/"
+LICENSES=("GPL-2.0" "LGPL-2.1")
+DEPENDS=("glibc" "cracklib" "pam")
+OPT_DEPENDS=()
+PROVIDES=("libpwquality")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/libpwquality/libpwquality/releases/download/libpwquality-${VERSION}/libpwquality-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("2d49b79105361663f009f7183fde9123e6f1e63bd678dfe5418143f611e763af8dd44374b826b3c22a00e721047c539741dc44d99a2289b9ab229791768d6e76")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                      \
+                --disable-static                   \
+                --with-securedir=/usr/lib/security \
+                --with-python-binary=python3
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
