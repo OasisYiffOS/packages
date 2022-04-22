@@ -1,0 +1,16 @@
+{
+    "name": "wpebackend-fdo",
+    "version": "1.12.0",
+    "epoch": 0,
+    "description": "The Freedesktop.org backend for WPE WebKit and the WPE renderer.",
+    "groups": [],
+    "url": "https://github.com/Igalia/wpebackend-fdo",
+    "license": ["BSD-2-Clause"],
+    "depends": ["glibc", "glib2", "gcc-libs", "libepoxy", "wayland", "wayland-protocols", "libwpe"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["wpebackend-fdo"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

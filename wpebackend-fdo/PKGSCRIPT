@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="wpebackend-fdo"
+VERSION="1.12.0"
+EPOCH=0
+DESC="The Freedesktop.org backend for WPE WebKit and the WPE renderer."
+GRPS=()
+URL="https://github.com/Igalia/wpebackend-fdo"
+LICENSES=("BSD-2-Clause")
+DEPENDS=("glibc" "glib2" "gcc-libs" "libepoxy" "wayland" "wayland-protocols" "libwpe")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("wpebackend-fdo")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://wpewebkit.org/releases/wpebackend-fdo-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("856885394872ad3f205b600caecbae48ae0c51185a8e19e66add93222e49bb1b060cdc77f5c9269d43509a0b85af0b5642c27f951d1c9836d8616aa51a9180a5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
