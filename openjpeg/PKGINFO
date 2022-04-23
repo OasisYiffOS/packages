@@ -1,0 +1,16 @@
+{
+    "name": "openjpeg",
+    "version": "2.4.0",
+    "epoch": 0,
+    "description": "An open-source implementation of the JPEG-2000 standard.",
+    "groups": [],
+    "url": "https://github.com/uclouvain/openjpeg",
+    "license": ["BSD-2-Clause"],
+    "depends": ["glibc", "little-cms2", "libpng", "libtiff"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["openjpeg"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

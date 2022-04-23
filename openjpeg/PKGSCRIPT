@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="openjpeg"
+VERSION="2.4.0"
+EPOCH=0
+DESC="An open-source implementation of the JPEG-2000 standard."
+GRPS=()
+URL="https://github.com/uclouvain/openjpeg"
+LICENSES=("BSD-2-Clause")
+DEPENDS=("glibc" "little-cms2" "libpng" "libtiff")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake")
+PROVIDES=("openjpeg")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/uclouvain/openjpeg/archive/v${VERSION}/openjpeg-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("55daab47d33823af94e32e5d345b52c251a5410f0c8e0a13b693f17899eedc8b2bb107489ddcba9ab78ef17dfd7cd80d3c5ec80c1e429189cb041124b67e07a8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_BUILD_TYPE=Release  \
+          -DCMAKE_INSTALL_PREFIX=/usr \
+          -DBUILD_STATIC_LIBS=OFF ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
