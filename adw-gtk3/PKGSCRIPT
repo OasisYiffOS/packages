@@ -1,0 +1,46 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="adw-gtk3"
+VERSION="1.7"
+_DOWNLOAD_VERSION="1-7"
+EPOCH=0
+DESC="The default theme from libadwaita ported to GTK-3."
+GRPS=()
+URL="https://github.com/lassekongo83/adw-gtk3"
+LICENSES=("LGPL-2.1")
+DEPENDS=("gtk3")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("adw-gtk3")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/lassekongo83/adw-gtk3/releases/download/v${VERSION}/adw-gtk3v${_DOWNLOAD_VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("d70008abc819fcf1932d1942e23149cb321ba081095ec3861ca441b361f81ca97c39ed6bf12c9d756599dde746de44b5f84d34e4089bec3115ad1389fa410d76")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}"
+
+    mkdir -p ${BUILD_DATA_ROOT}/usr/share/themes/
+
+    cp -r adw-gtk3      ${BUILD_DATA_ROOT}/usr/share/themes/
+    cp -r adw-gtk3-dark ${BUILD_DATA_ROOT}/usr/share/themes/
+
+    return 0
+}

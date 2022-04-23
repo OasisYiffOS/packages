@@ -1,0 +1,16 @@
+{
+    "name": "adw-gtk3",
+    "version": "1.7",
+    "epoch": 0,
+    "description": "The default theme from libadwaita ported to GTK-3.",
+    "groups": [],
+    "url": "https://github.com/lassekongo83/adw-gtk3",
+    "license": ["LGPL-2.1"],
+    "depends": ["gtk3"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["adw-gtk3"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
