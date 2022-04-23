@@ -1,0 +1,16 @@
+{
+    "name": "woff2",
+    "version": "1.0.2",
+    "epoch": 0,
+    "description": "The Web Open Font Format 2.0 library.",
+    "groups": [],
+    "url": "https://github.com/google/woff2",
+    "license": ["MIT"],
+    "depends": ["glibc", "brotli", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["woff2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
