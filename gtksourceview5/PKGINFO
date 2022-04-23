@@ -1,0 +1,16 @@
+{
+    "name": "gtksourceview5",
+    "version": "5.4.0",
+    "epoch": 0,
+    "description": "A library used for extending the GTK text functions to include syntax highlighting.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/GtkSourceView",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gtk4", "libxml2", "freebidi", "pcre2"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection", "vala"],
+    "provides": ["gtksourceview5"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

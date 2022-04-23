@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gtksourceview5"
+VERSION="5.4.0"
+_MAJOR_VERSION="5.4"
+EPOCH=0
+DESC="A library used for extending the GTK text functions to include syntax highlighting."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/GtkSourceView"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gtk4" "libxml2" "freebidi" "pcre2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection" "vala")
+PROVIDES=("gtksourceview5")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gtksourceview/${_MAJOR_VERSION}/gtksourceview-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("0a84e2012639aa29613896e36bb8e73656661dbd9c045507cae3c0d9863dc1ed0390432091d2d2e62fd4a9a0f1853820a2edb406ef2deecd0996b202c7b741c3")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/gtksourceview-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/gtksourceview-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/gtksourceview-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
