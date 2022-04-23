@@ -74,5 +74,9 @@ function postbuild() {
 
     DESTDIR="${BUILD_DATA_ROOT}" python3 ./x.py install
 
+    # Install stdlib
+    DESTDIR="${BUILD_DATA_ROOT}" python3 ./x.py install --target=x86_64-unknown-linux-gnu std
+    DESTDIR="${BUILD_DATA_ROOT}" python3 ./x.py install --target=i686-unknown-linux-gnu std
+
     return 0
 }
