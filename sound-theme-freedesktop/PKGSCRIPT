@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="sound-theme-freedesktop"
+VERSION="0.8"
+EPOCH=0
+DESC="Sound themes for the desktop."
+GRPS=()
+URL="http://www.freedesktop.org/wiki/Specifications/sound-theme-spec"
+LICENSES=("GPL-2.0" "LGPL-2.0")
+DEPENDS=("coreutils")
+OPT_DEPENDS=()
+PROVIDES=("sound-theme-freedesktop")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://people.freedesktop.org/~mccann/dist/sound-theme-freedesktop-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("f08e0414443f3a47bc433a69a7226d2b9383bc7c64e0711e8a605bd761ac69ea052a6db7f0037d88fbf0900efddaae6466ca96391eb71295ee1d0edbd0364621")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

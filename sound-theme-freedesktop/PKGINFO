@@ -1,0 +1,16 @@
+{
+    "name": "sound-theme-freedesktop",
+    "version": "0.8",
+    "epoch": 0,
+    "description": "Sound themes for the desktop.",
+    "groups": [],
+    "url": "http://www.freedesktop.org/wiki/Specifications/sound-theme-spec",
+    "license": ["GPL-2.0", "LGPL-2.0"],
+    "depends": ["coreutils"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["sound-theme-freedesktop"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
