@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-desktop"
+VERSION="42.0"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="A library that provides an API shared by several applications on the GNOME Desktop."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gnome-desktop"
+LICENSES=("GPL-2.0" "LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "bubblewrap" "cairo" "gdk-pixbuf2" "gsettings-desktop-schemas" "gtk3" "libseccomp" "xkeyboard-config" "shared-mime-info" "systemd")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection" "libxml2" "istool" "iso-codes")
+PROVIDES=("gnome-desktop")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-desktop/${_MAJOR_VERSION}/gnome-desktop-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("b9d37765d3cc43bb709e1e9b97deb6ef16d2a8e6ef7cc3c577ba465d4856bbfe8774fb7fc6eaae4d88064081aeeea0c0c77fe2b4ef79b4d9af1232c918526b44")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dgnome_distributor="yiffOS" ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

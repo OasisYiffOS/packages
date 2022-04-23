@@ -1,0 +1,16 @@
+{
+    "name": "gnome-desktop",
+    "version": "42.0",
+    "epoch": 0,
+    "description": "A library that provides an API shared by several applications on the GNOME Desktop.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/gnome-desktop",
+    "license": ["GPL-2.0", "LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs", "bubblewrap", "cairo", "gdk-pixbuf2", "gsettings-desktop-schemas", "gtk3", "libseccomp", "xkeyboard-config", "shared-mime-info", "systemd"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection", "libxml2", "istool", "iso-codes"],
+    "provides": ["gnome-desktop"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
