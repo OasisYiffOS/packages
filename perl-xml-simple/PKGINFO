@@ -1,0 +1,16 @@
+{
+    "name": "perl-xml-simple",
+    "version": "2.25",
+    "epoch": 0,
+    "description": "A perl module that provides a simple API layer on top of an underlying XML parsing module.",
+    "groups": [],
+    "url": "https://metacpan.org/dist/XML-Simple",
+    "license": ["GPL-1.0"],
+    "depends": ["perl", "perl-xml-parser"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["perl-xml-parser"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

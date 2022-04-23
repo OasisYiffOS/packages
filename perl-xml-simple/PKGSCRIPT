@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="perl-xml-simple"
+VERSION="2.25"
+EPOCH=0
+DESC="A perl module that provides a simple API layer on top of an underlying XML parsing module."
+GRPS=()
+URL="https://metacpan.org/dist/XML-Simple"
+LICENSES=("GPL-1.0")
+DEPENDS=("perl" "perl-xml-parser")
+OPT_DEPENDS=()
+PROVIDES=("perl-xml-parser")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.cpan.org/authors/id/G/GR/GRANTM/XML-Simple-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("0f1a6a1bdb8f6ac6fa4deef33d09930eb4758b4a3ed4431624004ffa2b1eb02f0d6ce14cb4942162cb76f7aa39fea4ec6a71e1eb9ebd464b710db7024bdd990c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/XML-Simple-${VERSION}"
+
+    perl Makefile.PL
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/XML-Simple-${VERSION}"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/XML-Simple-${VERSION}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+
+    return 0
+}
