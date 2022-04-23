@@ -1,0 +1,16 @@
+{
+    "name": "epiphany",
+    "version": "42.2",
+    "epoch": 0,
+    "description": "Simple yet powerful GNOME web browser targeted at non-technical users. Its principles are simplicity and standards compliance.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/Web",
+    "license": ["GPL-3.0"],
+    "depends": ["glibc", "gcc-libs", "atk", "cairo", "gcr", "gdk-pixbuf2", "gmp", "gsettings-desktop-schemas", "gtk3", "iso-codes", "json-glib", "libarchive", "libdazzle", "libhandy", "libportal", "libsecret", "libsoup", "libxml2", "nettle", "pango", "sqlite", "webkitgtk", "gnome-keyring"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["epiphany"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

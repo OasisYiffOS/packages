@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="epiphany"
+VERSION="42.2"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="Simple yet powerful GNOME web browser targeted at non-technical users. Its principles are simplicity and standards compliance."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/Web"
+LICENSES=("GPL-3.0")
+DEPENDS=("glibc" "gcc-libs" "atk" "cairo" "gcr" "gdk-pixbuf2" "gmp" "gsettings-desktop-schemas" "gtk3" "iso-codes" "json-glib" "libarchive" "libdazzle" "libhandy" "libportal" "libsecret" "libsoup" "libxml2" "nettle" "pango" "sqlite" "webkitgtk" "gnome-keyring")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("epiphany")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/epiphany/${_MAJOR_VERSION}/epiphany-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("3b7bcd9225f06caca547e8d822818e7d9b5a178028cd97b17b8e2474fec7337c4d6b4d718b3cf014784939d0b2f36e84305d6e9115521fdf762af178e5fc07d3")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
