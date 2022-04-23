@@ -1,0 +1,16 @@
+{
+    "name": "gnome-text-editor",
+    "version": "42.1",
+    "epoch": 0,
+    "description": "A simple text editor that focuses on session management.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/gnome-text-editor",
+    "license": ["BSD-2-Clause"],
+    "depends": ["glibc", "gcc-libs", "gtk4", "libadwaita", "pcre", "icu", "enchant"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["gnome-text-editor"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

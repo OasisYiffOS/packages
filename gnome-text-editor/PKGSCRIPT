@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-text-editor"
+VERSION="42.1"
+EPOCH=0
+DESC="A simple text editor that focuses on session management."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gnome-text-editor"
+LICENSES=("BSD-2-Clause")
+DEPENDS=("glibc" "gcc-libs" "gtk4" "libadwaita" "pcre" "icu" "enchant")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("gnome-text-editor")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.gnome.org/GNOME/gnome-text-editor/-/archive/${VERSION}/gnome-text-editor-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("465ebb2fbfab15832e0ff52e915dc0869a17e0fd8e7b4a2c2e50c3c46e5ec305a2b329e5b3b01251334102fb8ee3f7c1bcc575e9b0dc99299daa72af20fe8462")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
