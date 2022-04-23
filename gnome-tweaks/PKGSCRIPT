@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-tweaks"
+VERSION="42.beta"
+EPOCH=0
+DESC="An application that allows adjusting advanced configuration settings in GNOME 3."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/Tweaks"
+LICENSES=("GPL-3.0")
+DEPENDS=("glibc" "gcc-libs" "gtk3" "libhandy" "python" "python-pygobject" "sound-theme-freedesktop" "gsettings-desktop-schemas" "gnome-desktop" "libsoup" "libnotify" "pango")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("gnome-tweaks")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.gnome.org/GNOME/gnome-tweaks/-/archive/${VERSION}/gnome-tweaks-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("eb77e2e1fba0af7e017c9dce9d06d72308f5e90069e9b8a0b0dd625cd6a1a772184096488bbd879efb205926dd01758af8329eb0eaeaf6c86dcf7abf3eae97ba")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix issue when building with newer meson
+    sed -i '/merge_file/s/(.*/(/' data/meson.build
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
