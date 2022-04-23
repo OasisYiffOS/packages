@@ -1,6 +1,6 @@
 {
     "name": "gtksourceview5",
-    "version": "5.4.0",
+    "version": "5.4.1",
     "epoch": 0,
     "description": "A library used for extending the GTK text functions to include syntax highlighting.",
     "groups": [],
