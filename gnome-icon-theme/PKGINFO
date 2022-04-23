@@ -1,0 +1,16 @@
+{
+    "name": "gnome-icon-theme",
+    "version": "3.12.0",
+    "epoch": 0,
+    "description": "An assortment of non-scalable icons of different sizes and themes.",
+    "groups": [],
+    "url": "https://www.gnome.org",
+    "license": ["LGPL-3.0"],
+    "depends": ["hicolor-icon-theme"],
+    "optional_depends": [],
+    "make_depends": ["icon-naming-utils", "gtk3"],
+    "provides": ["gnome-icon-theme"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

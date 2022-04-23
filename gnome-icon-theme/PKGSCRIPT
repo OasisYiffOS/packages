@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-icon-theme"
+VERSION="3.12.0"
+_MAJOR_VERSION="3.12"
+EPOCH=0
+DESC="An assortment of non-scalable icons of different sizes and themes."
+GRPS=()
+URL="https://www.gnome.org"
+LICENSES=("LGPL-3.0")
+DEPENDS=("hicolor-icon-theme")
+OPT_DEPENDS=()
+MK_DEPENDS=("icon-naming-utils" "gtk3")
+PROVIDES=("gnome-icon-theme")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-icon-theme/${_MAJOR_VERSION}/gnome-icon-theme-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("9dab14a5d30b1fa6655fbd44f15357158dc49ef01d27be678eaed35cb4a9f21546dee2a5d7fb50dac5e3595e161b0be7e7bc79daf47b772f0bb37109b0078bea")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

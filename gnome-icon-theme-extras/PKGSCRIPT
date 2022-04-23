@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-icon-theme-extras"
+VERSION="3.12.0"
+_MAJOR_VERSION="3.12"
+EPOCH=0
+DESC="Extra icons for the GNOME Desktop."
+GRPS=()
+URL="https://www.gnome.org"
+LICENSES=("LGPL-3.0")
+DEPENDS=("gnome-icon-theme")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("gnome-icon-theme-extras")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-icon-theme-extras/${_MAJOR_VERSION}/gnome-icon-theme-extras-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("e74b1b31cdc6bc2d9410c874b8e0891521a657cd3cc86c391f58709fa2d35d9e983bd50faaca1f1378a11d716502143bc2b41942a9cdcd3caa2280429bb3f6f5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

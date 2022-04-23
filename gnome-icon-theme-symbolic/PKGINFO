@@ -1,0 +1,16 @@
+{
+    "name": "gnome-icon-theme-symbolic",
+    "version": "3.12.0",
+    "epoch": 0,
+    "description": "Symbolic icons for the default GNOME icon theme.",
+    "groups": [],
+    "url": "https://www.gnome.org",
+    "license": ["LGPL-3.0"],
+    "depends": ["gnome-icon-theme"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["gnome-icon-theme-symbolic"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

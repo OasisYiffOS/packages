@@ -1,0 +1,16 @@
+{
+    "name": "gnome-icon-theme-extras",
+    "version": "3.12.0",
+    "epoch": 0,
+    "description": "Extra icons for the GNOME Desktop.",
+    "groups": [],
+    "url": "https://www.gnome.org",
+    "license": ["LGPL-3.0"],
+    "depends": ["gnome-icon-theme"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["gnome-icon-theme-extras"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

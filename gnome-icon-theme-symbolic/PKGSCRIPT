@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-icon-theme-symbolic"
+VERSION="3.12.0"
+_MAJOR_VERSION="3.12"
+EPOCH=0
+DESC="Symbolic icons for the default GNOME icon theme."
+GRPS=()
+URL="https://www.gnome.org"
+LICENSES=("LGPL-3.0")
+DEPENDS=("gnome-icon-theme")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("gnome-icon-theme-symbolic")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-icon-theme-symbolic/${_MAJOR_VERSION}/gnome-icon-theme-symbolic-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("e2a662d38c5c1328f384d9bdd73ce54f4e1174a1d88763e4a5f772c2479081f11c81937ba2dc159ce250e433762f14de824516fc68209200d95dc47790471eda")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
