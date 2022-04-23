@@ -1,0 +1,16 @@
+{
+    "name": "libadwaita",
+    "version": "1.1.1",
+    "epoch": 0,
+    "description": "Additional GTK4 UI widgets for use in developing user interfaces.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/libadwaita",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gtk4"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "vala"],
+    "provides": ["libadwaita"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

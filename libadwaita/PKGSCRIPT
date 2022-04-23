@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libadwaita"
+VERSION="1.1.1"
+_MAJOR_VERSION="1.1"
+EPOCH=0
+DESC="Additional GTK4 UI widgets for use in developing user interfaces."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/libadwaita"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gtk4")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vala")
+PROVIDES=("libadwaita")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libadwaita/${_MAJOR_VERSION}/libadwaita-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("9700c9db2085d1f30399716e164bd338963353190fbe8161c3d50791ab56f4be8db2fbd939dde2553487944f3227a2582f5bd03cf1b6e867afa59eead16feab9")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
