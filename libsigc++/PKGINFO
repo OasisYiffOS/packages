@@ -1,0 +1,16 @@
+{
+    "name": "libsigc++",
+    "version": "2.10.8",
+    "epoch": 0,
+    "description": "A typesafe callback system for standard C++.",
+    "groups": [],
+    "url": "https://libsigcplusplus.github.io/libsigcplusplus/",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "boost", "libxslt"],
+    "provides": ["libsigc++"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
