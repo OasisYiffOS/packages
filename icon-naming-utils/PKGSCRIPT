@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="icon-naming-utils"
+VERSION="0.8.90"
+EPOCH=0
+DESC="A Perl script used for maintaining backwards compatibility with current desktop icon themes, while migrating to the names specified in the Icon Naming Specification."
+GRPS=()
+URL="http://tango.freedesktop.org/Standard_Icon_Naming_Specification"
+LICENSES=("GPL-2.0")
+DEPENDS=("perl" "perl-xml-simple")
+OPT_DEPENDS=()
+PROVIDES=("icon-naming-utils")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("http://tango.freedesktop.org/releases/icon-naming-utils-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("7b2e3aa4c7a4857d3c190fb12d69d665bf63596a84735adddf7e67bc5e6b493eccd0b914bc32776934f04720c7071d6de35d55452ffd4966d7dbd8360907f727")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

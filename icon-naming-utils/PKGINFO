@@ -1,0 +1,16 @@
+{
+    "name": "icon-naming-utils",
+    "version": "0.8.90",
+    "epoch": 0,
+    "description": "A Perl script used for maintaining backwards compatibility with current desktop icon themes, while migrating to the names specified in the Icon Naming Specification.",
+    "groups": [],
+    "url": "http://tango.freedesktop.org/Standard_Icon_Naming_Specification",
+    "license": ["GPL-2.0"],
+    "depends": ["perl", "perl-xml-simple"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["icon-naming-utils"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
