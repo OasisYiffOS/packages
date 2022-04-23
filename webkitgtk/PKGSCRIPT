@@ -1,0 +1,71 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="webkitgtk"
+VERSION="2.36.1"
+EPOCH=0
+DESC="A port of the portable web rendering engine WebKit to the GTK platform."
+GRPS=()
+URL="https://www.webkitgtk.org"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "atk" "bubblewrap" "cairo" "enchant" "fontconfig" "freetype2" "glib2" "gdk-pixbuf2" "gstreamer" "gst-plugins-base" "gst-plugins-bad" "gtk3" "gtk4" "harfbuzz" "little-cms2" "libx11" "libxcomposite" "libxdamage" "libxt" "libgcrypt" "icu" "libgudev" "libjpeg-turbo" "libsecret" "libsoup" "libtasn1" "libwebp" "mesa" "sqlite3" "wpebackend-fdo" "wayland" "wayland-protocols" "pango" "woff2" "zlib" "libnotify" "hicolor-icon-theme" "xdg-dbus-proxy" "openjpeg")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake" "ninja" "gobject-introspection" "ruby" "which" "gperf")
+PROVIDES=("webkitgtk")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://webkitgtk.org/releases/webkitgtk-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("c0574bd8924df89c1a82905a8c0c09b4be49f75639db659b38fc3123922128a22fa6f4cf099f08ef7742ecefbbde765177a77e00fd641db3a5eb509586e96ae4")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_BUILD_TYPE=Release     \
+          -DCMAKE_INSTALL_PREFIX=/usr    \
+          -DCMAKE_SKIP_RPATH=ON          \
+          -DPORT=GTK                     \
+          -DLIB_INSTALL_DIR=/usr/lib     \
+          -DUSE_LIBHYPHEN=OFF            \
+          -DENABLE_GAMEPAD=OFF           \
+          -DENABLE_MINIBROWSER=ON        \
+          -DUSE_WOFF2=ON                 \
+          -DUSE_SOUP2=ON                 \
+          -DUSE_WPE_RENDERER=ON          \
+          -DENABLE_BUBBLEWRAP_SANDBOX=ON \
+          -Wno-dev -G Ninja ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    install -vdm755 ${BUILD_DATA_ROOT}/usr/share/gtk-doc/html/webkit{2,dom}gtk-4.0 &&
+    install -vm644  ../Documentation/webkit2gtk-4.0/html/*   \
+                    ${BUILD_DATA_ROOT}/usr/share/gtk-doc/html/webkit2gtk-4.0       &&
+    install -vm644  ../Documentation/webkitdomgtk-4.0/html/* \
+                    ${BUILD_DATA_ROOT}/usr/share/gtk-doc/html/webkitdomgtk-4.0
+
+    return 0
+}
