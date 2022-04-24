@@ -1,0 +1,48 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="python2-pycairo"
+VERSION="1.18.2"
+EPOCH=0
+DESC="A Python 2 module providing bindings for the Cairo graphics library."
+GRPS=()
+URL="https://pycairo.readthedocs.io/en/latest/"
+LICENSES=("LGPL-2.1" "MPL-1.1")
+DEPENDS=("cairo" "python2")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("python2-pycairo")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/pygobject/pycairo/releases/download/v${VERSION}/pycairo-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("279ea80413ba55d493d51455685da09afa1f5c45e2930c3fca3e417a8afe6645a0d8131201f79482de59e5ec56cfef62eac65ed88fe88866bfcc06503dcc59e0")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/pycairo-${VERSION}"
+
+    python2 setup.py build
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/pycairo-${VERSION}"
+
+    python2 setup.py install --root="${BUILD_DATA_ROOT}" --optimize=1
+    python2 setup.py install_pycairo_header install --root="${BUILD_DATA_ROOT}"
+    python2 setup.py install_pkgconfig install --root="${BUILD_DATA_ROOT}"
+
+    return 0
+}

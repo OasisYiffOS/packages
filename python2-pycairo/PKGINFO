@@ -1,0 +1,16 @@
+{
+    "name": "python2-pycairo",
+    "version": "1.18.2",
+    "epoch": 0,
+    "description": "A Python 2 module providing bindings for the Cairo graphics library.",
+    "groups": [],
+    "url": "https://pycairo.readthedocs.io/en/latest/",
+    "license": ["LGPL-2.1", "MPL-1.1"],
+    "depends": ["cairo", "python2"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python2-pycairo"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
