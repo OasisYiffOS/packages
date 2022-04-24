@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="fmt"
+VERSION="8.1.1"
+EPOCH=0
+DESC="A Small, safe and fast formatting library for C++."
+GRPS=()
+URL="https://fmt.dev/"
+LICENSES=("BSD-1-Clause")
+DEPENDS=("glibc" "gcc-libs")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake")
+PROVIDES=("fmt")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/fmtlib/fmt/releases/download/${VERSION}/fmt-${VERSION}.zip")
+
+SUM_TYPE="sha512"
+SUM=("fb09916e219796e5acdf19a4c30129d26227770ed75249ddadc28f6955861ec21ce4043ac8c22c5c1e5ef12be1fea5b6052ec066da6daf348370ad3ec867e309")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake -DBUILD_SHARED_LIBS=TRUE -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

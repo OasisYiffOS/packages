@@ -1,0 +1,16 @@
+{
+    "name": "fmt",
+    "version": "8.1.1",
+    "epoch": 0,
+    "description": "A Small, safe and fast formatting library for C++.",
+    "groups": [],
+    "url": "https://fmt.dev/",
+    "license": ["BSD-1-Clause"],
+    "depends": ["glibc", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["fmt"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
