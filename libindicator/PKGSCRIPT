@@ -1,0 +1,66 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libindicator"
+VERSION="12.10.1"
+_MAJOR_VERSION="12.10"
+EPOCH=0
+DESC="A set of symbols and convenience functions for Ayatana indicators."
+GRPS=()
+URL="https://launchpad.net/libindicator"
+LICENSES=("LGPL-3.0" "LGPL-2.1")
+DEPENDS=("glibc" "glib2" "gdk-pixbuf2" "gtk2" "gtk3")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "json-glib" "vala" "autoconf" "automake")
+PROVIDES=("libindicator")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://launchpad.net/libindicator/${_MAJOR_VERSION}/${VERSION}/+download/libindicator-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("d6d77d0309b15cf6b52539323920ab0c1594cb1c1cef8a8d67cd0f76f8ceeeac28eb6db6227563df1932e6f1fadcffac68d82982182b745257dfaf91f1c945af")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Don't treat warnings as errors
+    sed -i 's/-Werror//' {libindicator,tools}/Makefile.am
+
+    autoreconf -fi
+
+    sed -i 's/LIBINDICATOR_LIBS+="$LIBM"/LIBINDICATOR_LIBS+=" $LIBM"/g' "configure"
+
+    ./configure --prefix=/usr                       \
+                --localstatedir=/var                \
+                --libexecdir=/usr/lib/libindicator  \
+                --sysconfdir=/etc                   \
+                --with-gtk={2,3}                    \
+                --disable-static                    \
+                --disable-tests
+
+    sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make -j1
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make -j1 install
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "libindicator",
+    "version": "12.10.1",
+    "epoch": 0,
+    "description": "A set of symbols and convenience functions for Ayatana indicators.",
+    "groups": [],
+    "url": "https://launchpad.net/libindicator",
+    "license": ["LGPL-3.0", "LGPL-2.1"],
+    "depends": ["glibc", "glib2", "gdk-pixbuf2", "gtk2", "gtk3"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection", "json-glib", "vala", "autoconf", "automake"],
+    "provides": ["libindicator"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
