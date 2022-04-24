@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gtkmm3"
+VERSION="3.24.5"
+_MAJOR_VERSION="3.24"
+EPOCH=0
+DESC="The official C++ interface for the popular GUI library GTK+. (GTK 3)"
+GRPS=()
+URL="http://www.gtkmm.org/en/index.html"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "glib2" "libsigc++" "atkmm" "pangomm" "cairomm" "gdk-pixbuf2" "glibmm2" "gtk3")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("gtkmm3")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gtkmm/${_MAJOR_VERSION}/gtkmm-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("8cc5aed26cc631123a5b38bc19643cf9e900beb38681b29ead9049f6b8f930f0b8ace317b8290279ab89cad85075dcb66863174082f77a2b67e4d8bd3c29de49")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/gtkmm-${VERSION}"
+
+    mkdir bld
+    cd    bld
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/gtkmm-${VERSION}/bld"
+
+    ninja
+
+    if [ "$DISPLAY" != "" ] || [ "$WAYLAND_DISPLAY" != "" ]; then
+        ninja test
+    fi
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/gtkmm-${VERSION}/bld"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
