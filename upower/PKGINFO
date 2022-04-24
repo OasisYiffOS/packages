@@ -1,0 +1,16 @@
+{
+    "name": "upower",
+    "version": "0.99.17",
+    "epoch": 0,
+    "description": "An interface for enumerating power devices, listening to device events and querying history and statistics.",
+    "groups": [],
+    "url": "https://upower.freedesktop.org",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "glib2", "libgudev", "systemd", "polkit", "libusb"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection", "python-pygobject"],
+    "provides": ["upower"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

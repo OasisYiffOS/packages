@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="upower"
+VERSION="0.99.17"
+EPOCH=0
+DESC="An interface for enumerating power devices, listening to device events and querying history and statistics."
+GRPS=()
+URL="https://upower.freedesktop.org"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "glib2" "libgudev" "systemd" "polkit" "libusb")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection" "python-pygobject")
+PROVIDES=("upower")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/upower/upower/-/archive/v${VERSION}/upower-v${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("fcb2f344e82f04af85eee3a4ef42a4d119f7b55fd4e1c6bc2633845135bf524957b54c849bf6501d89cfbd285a7e1fbeecb8e846aa108e2b36d1550347150c04")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}"
+
+    # Disable GTK Doc
+    sed '/subdir.*doc/d' -i meson.build
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dgtk-doc=false -Dman=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
