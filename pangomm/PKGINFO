@@ -1,0 +1,16 @@
+{
+    "name": "pangomm",
+    "version": "2.46.2",
+    "epoch": 0,
+    "description": "A C++ interface to Pango.",
+    "groups": [],
+    "url": "http://www.gtkmm.org/en/index.html",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs", "glib2", "libsigc++", "cairomm", "glibmm24", "pango"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["pangomm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

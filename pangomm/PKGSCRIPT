@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="pangomm"
+VERSION="2.46.2"
+_MAJOR_VERSION="2.46"
+EPOCH=0
+DESC="A C++ interface to Pango."
+GRPS=()
+URL="http://www.gtkmm.org/en/index.html"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "glib2" "libsigc++" "cairomm" "glibmm24" "pango")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("pangomm")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/pangomm/${_MAJOR_VERSION}/pangomm-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("79cad137ec9f22e57a177332df6c6e735aa3baf81df36fc706e81e7a89f23ce3179337507388f65a0d0a74733990dc3547c50243a4559dfd0bb065b1828c0474")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
