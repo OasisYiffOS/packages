@@ -1,0 +1,16 @@
+{
+    "name": "cairomm",
+    "version": "1.14.2",
+    "epoch": 0,
+    "description": "A C++ interface to Cairo.",
+    "groups": [],
+    "url": "https://www.cairographics.org",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs", "cairo", "libsigc++"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "boost"],
+    "provides": ["cairomm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

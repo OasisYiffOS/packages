@@ -1,0 +1,59 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="cairomm"
+VERSION="1.14.2"
+EPOCH=0
+DESC="A C++ interface to Cairo."
+GRPS=()
+URL="https://www.cairographics.org"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "cairo" "libsigc++")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "boost")
+PROVIDES=("cairomm")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.cairographics.org/releases/cairomm-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("aef374fca25ad22770407e36512046b266d71ebeccd47fb629cfbf2f67783aa314bb335b972088a88d98417a4774d6f144cd2769c452f8aa23770eae08dca592")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir bld
+    cd    bld
+
+    meson --prefix=/usr       \
+          --buildtype=release \
+          -Dbuild-tests=true  \
+          -Dboost-shared=true \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/bld"
+
+    ninja
+    
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/bld"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
