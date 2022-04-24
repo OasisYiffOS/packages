@@ -1,0 +1,16 @@
+{
+    "name": "spdlog",
+    "version": "1.10.0",
+    "epoch": 0,
+    "description": "A Fast C++ logging library.",
+    "groups": [],
+    "url": "https://github.com/gabime/spdlog",
+    "license": ["MIT"],
+    "depends": ["glibc", "gcc-libs", "fmt"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["spdlog"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
