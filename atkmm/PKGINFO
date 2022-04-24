@@ -1,0 +1,16 @@
+{
+    "name": "atkmm",
+    "version": "2.28.2",
+    "epoch": 0,
+    "description": "The official C++ interface for the ATK accessibility toolkit library.",
+    "groups": [],
+    "url": "http://www.gtkmm.org/en/index.html",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs", "glib2", "libsigc++", "glibmm24", "atk"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["atkmm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

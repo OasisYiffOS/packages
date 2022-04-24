@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="atkmm"
+VERSION="2.28.2"
+_MAJOR_VERSION="2.28"
+EPOCH=0
+DESC="The official C++ interface for the ATK accessibility toolkit library."
+GRPS=()
+URL="http://www.gtkmm.org/en/index.html"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "glib2" "libsigc++" "glibmm24" "atk")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("atkmm")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/atkmm/${_MAJOR_VERSION}/atkmm-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("df20b89b603a6ae419db24b21acbd6a9d0e91c07e374b4b774f6a67581ce1581affb0d079a264f0d7f2e6d8b63210639dd7aa15e7e94fb5904d161e9a2aac286")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
