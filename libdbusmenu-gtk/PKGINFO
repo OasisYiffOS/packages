@@ -1,0 +1,16 @@
+{
+    "name": "libdbusmenu-gtk",
+    "version": "16.04.0",
+    "epoch": 0,
+    "description": "A library designed to make sharing and displaying of menu structures over DBus simple and easy to use.",
+    "groups": [],
+    "url": "https://launchpad.net/libdbusmenu",
+    "license": ["GPL-3.0", "LGPL-3.0", "LGPL-2.1"],
+    "depends": ["glibc", "gtk2", "gtk3"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection", "json-glib", "vala"],
+    "provides": ["libdbusmenu-gtk"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libdbusmenu-glib"
+VERSION="16.04.0"
+_MAJOR_VERSION="16.04"
+EPOCH=0
+DESC="A library designed to make sharing and displaying of menu structures over DBus simple and easy to use."
+GRPS=()
+URL="https://launchpad.net/libdbusmenu"
+LICENSES=("GPL-3.0" "LGPL-3.0" "LGPL-2.1")
+DEPENDS=("glibc" "glib2")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "json-glib" "vala")
+PROVIDES=("libdbusmenu-glib")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://launchpad.net/libdbusmenu/${_MAJOR_VERSION}/${VERSION}/+download/libdbusmenu-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ee9654ac4ed94bdebc94a6db83b126784273a417a645b2881b2ba676a5f67d7fc95dd2bb37bfb0890aa47299ed73cb21ed7de8b75f3fed6b69bfd39065062241")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/libdbusmenu-${VERSION}"
+
+    # Don't treat warnings as errors
+    sed -i 's/-Werror//' Makefile.{am,in}
+    sed -i 's/-Werror//' libdbusmenu-*/Makefile.{am,in}
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libdbusmenu-${VERSION}"
+
+    make -C libdbusmenu-glib 
+
+    make -C libdbusmenu-glib check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libdbusmenu-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make -C libdbusmenu-glib  install
+
+    return 0
+}
