@@ -1,0 +1,16 @@
+{
+    "name": "python2-pygtk",
+    "version": "2.24.0",
+    "epoch": 0,
+    "description": "An extension module for Python that gives you access to the GTK+ widget set.",
+    "groups": [],
+    "url": "https://pygobject.readthedocs.io/en/latest/",
+    "license": ["LGPL-2.1"],
+    "depends": ["python2-pycairo", "python2", "glib2", "atk", "python2-pygobject", "pango", "gtk2"],
+    "optional_depends": [],
+    "make_depends": ["libxslt"],
+    "provides": ["python2-pygtk"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

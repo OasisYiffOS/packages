@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="python2-pygtk"
+VERSION="2.24.0"
+_MAJOR_VERSION="2.24"
+EPOCH=0
+DESC="An extension module for Python that gives you access to the GTK+ widget set."
+GRPS=()
+URL="https://pygobject.readthedocs.io/en/latest/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("python2-pycairo" "python2" "glib2" "atk" "python2-pygobject" "pango" "gtk2")
+OPT_DEPENDS=()
+MK_DEPENDS=("libxslt")
+PROVIDES=("python2-pygtk")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/pygtk/${_MAJOR_VERSION}/pygtk-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("64f4344fcf7636e0b2016ffd5310250b5c02a1bf87e44aef39b5d4cf4a5fc50d27cb4f030d4c6802cff61fffb88dee7752821e3d8a4cd1c34dc3745d9ff2f0da")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/pygtk-${VERSION}"
+
+    # Fix Pango undefined APIs
+    sed -i '1394,1402 d' pango.defs
+
+    ./configure --prefix=/usr --enable-docs
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/pygtk-${VERSION}"
+
+    make
+
+    if [ "$DISPLAY" != "" ]; then
+        make check
+    fi
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/pygtk-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
