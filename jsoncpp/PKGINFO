@@ -1,0 +1,16 @@
+{
+    "name": "jsoncpp",
+    "version": "1.9.5",
+    "epoch": 0,
+    "description": "A C++ library for interacting with JSON.",
+    "groups": [],
+    "url": "https://github.com/open-source-parsers/jsoncpp",
+    "license": ["MIT"],
+    "depends": ["glibc", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["jsoncpp"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
