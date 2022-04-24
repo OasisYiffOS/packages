@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gtk-layer-shell"
+VERSION="0.7.0"
+EPOCH=0
+DESC="A library to write GTK applications that use Layer Shell."
+GRPS=()
+URL="https://github.com/wmww/gtk-layer-shell"
+LICENSES=("GPL-3.0" "MIT")
+DEPENDS=("glibc" "gcc-libs" "gtk3" "wayland")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection" "vala")
+PROVIDES=("gtk-layer-shell")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/wmww/gtk-layer-shell/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("97463b4bd90318e95576e3f4b05c0acae401b8103b389cb9a0dc7716871d8d8285595ddda76419883c98c6f00fcd4ffdfd9dba48385cb8a6edcbdc7f202e2818")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

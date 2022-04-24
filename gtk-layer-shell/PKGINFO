@@ -1,0 +1,16 @@
+{
+    "name": "gtk-layer-shell",
+    "version": "0.7.0",
+    "epoch": 0,
+    "description": "A library to write GTK applications that use Layer Shell.",
+    "groups": [],
+    "url": "https://github.com/wmww/gtk-layer-shell",
+    "license": ["GPL-3.0", "MIT"],
+    "depends": ["glibc", "gcc-libs", "gtk3", "wayland"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection", "vala"],
+    "provides": ["gtk-layer-shell"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
