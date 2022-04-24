@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="python2-pygobject"
+VERSION="2.28.7"
+_MAJOR_VERSION="2.28"
+EPOCH=0
+DESC="A Python 2 module providing Python bindings to the GObject class from GLib."
+GRPS=()
+URL="https://pygobject.readthedocs.io/en/latest/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("python2-pycairo" "python2" "glib2" "gobject-introspection")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("python2-pygobject")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/pygobject/${_MAJOR_VERSION}/pygobject-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("a5f3ae39f8156bd6234fb6d0ea31eba782fbdd4c292656c31b33e098abe3dcf0774d492cf602a4637cb679af9ecd511b24263349fbfd25708ca70f16cb052dfb")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/pygobject-${VERSION}"
+
+    ./configure --prefix=/usr --disable-introspection
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/pygobject-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/pygobject-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

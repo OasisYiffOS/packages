@@ -1,0 +1,16 @@
+{
+    "name": "python2-pygobject",
+    "version": "2.28.7",
+    "epoch": 0,
+    "description": "A Python 2 module providing Python bindings to the GObject class from GLib.",
+    "groups": [],
+    "url": "https://pygobject.readthedocs.io/en/latest/",
+    "license": ["LGPL-2.1"],
+    "depends": ["python2-pycairo", "python2", "glib2", "gobject-introspection"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python2-pygobject"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
