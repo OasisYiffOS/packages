@@ -1,0 +1,16 @@
+{
+    "name": "libappindicator",
+    "version": "12.10.0",
+    "epoch": 0,
+    "description": "A library to allow applications to export a menu into the Unity Menu bar.",
+    "groups": [],
+    "url": "https://launchpad.net/libdbusmenu",
+    "license": ["LGPL-3.0", "LGPL-2.1"],
+    "depends": ["glibc", "glib2", "atk", "cairo", "fontconfig", "freetype2", "gdk-pixbuf2", "gtk2", "gtk3", "harfbuzz", "libdbusmenu-glib", "libdbusmenu-gtk", "pango", "dbus", "libindicator", "dbus-glib"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection", "json-glib", "vala", "autoconf", "automake", "python2", "python2-pygobject", "python2-pygtk"],
+    "provides": ["libappindicator"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

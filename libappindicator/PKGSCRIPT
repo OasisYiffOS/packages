@@ -1,0 +1,81 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libappindicator"
+VERSION="12.10.0"
+_MAJOR_VERSION="12.10"
+EPOCH=0
+DESC="A library to allow applications to export a menu into the Unity Menu bar."
+GRPS=()
+URL="https://launchpad.net/libdbusmenu"
+LICENSES=("LGPL-3.0" "LGPL-2.1")
+DEPENDS=("glibc" "glib2" "atk" "cairo" "fontconfig" "freetype2" "gdk-pixbuf2" "gtk2" "gtk3" "harfbuzz" "libdbusmenu-glib" "libdbusmenu-gtk" "pango" "dbus" "libindicator" "dbus-glib")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "json-glib" "vala" "autoconf" "automake" "python2" "python2-pygobject" "python2-pygtk")
+PROVIDES=("libappindicator")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://launchpad.net/libappindicator/${_MAJOR_VERSION}/${VERSION}/+download/libappindicator-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("317a22a23c8ed84e74207b64b2e9683992d1fb7208176637a051dfe925974f966d1cfa31e650b45eaf839ab61641dee8fbebc8a07882a09b0dd766d88b8d5b9a")
+
+# Prepare script
+function prepare() {
+    mkdir "${WORKDIR}/gtk2"
+    mkdir "${WORKDIR}/gtk3"
+
+    cp -r "${WORKDIR}/libappindicator-${VERSION}"/* "${WORKDIR}/gtk2"
+    cp -r "${WORKDIR}/libappindicator-${VERSION}"/* "${WORKDIR}/gtk3"
+
+    cd "${WORKDIR}/gtk2"
+
+    # Don't treat warnings as errors
+    sed -i 's/-Werror//' src/Makefile.{am,in}
+
+    ./configure --prefix=/usr --with-gtk=2
+
+    sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
+    cd "${WORKDIR}/gtk3"
+
+    # Don't treat warnings as errors
+    sed -i 's/-Werror//' src/Makefile.{am,in}
+
+    ./configure --prefix=/usr --with-gtk=3
+
+    sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/gtk2"
+
+    make -j1
+    
+    cd "${WORKDIR}/gtk3"
+
+    make -j1
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cd "${WORKDIR}/gtk2"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make -j1 install
+
+    cd "${WORKDIR}/gtk3"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make -j1 install
+
+    return 0
+}
