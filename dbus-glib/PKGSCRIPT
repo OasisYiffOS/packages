@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="dbus-glib"
+VERSION="0.112"
+EPOCH=0
+DESC="GLib interfaces to the D-Bus API."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/dbus/"
+LICENSES=("GPL-2.0" "AFL")
+DEPENDS=("glibc" "glib2" "dbus" "expat")
+OPT_DEPENDS=()
+PROVIDES=("dbus-glib")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("7c9f393f065dfb3d698f35e6554caf15fe539f5dd52d2b2bb6ed1770e130f5dab8e45379232520301455bae9bb77e25a109faf175153fcd4b9dd11d7de4a546e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr     \
+                --sysconfdir=/etc \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

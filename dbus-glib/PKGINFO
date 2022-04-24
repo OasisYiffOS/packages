@@ -1,0 +1,16 @@
+{
+    "name": "dbus-glib",
+    "version": "0.112",
+    "epoch": 0,
+    "description": "GLib interfaces to the D-Bus API.",
+    "groups": [],
+    "url": "https://www.freedesktop.org/wiki/Software/dbus/",
+    "license": ["GPL-2.0", "AFL"],
+    "depends": ["glibc", "glib2", "dbus", "expat"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["dbus-glib"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
