@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="date"
+VERSION="3.0.1"
+EPOCH=0
+DESC="A date and time library based on the C++11/14/17 <chrono> header."
+GRPS=()
+URL="https://github.com/HowardHinnant/date"
+LICENSES=("MIT")
+DEPENDS=("glibc" "gcc-libs" "tzdata")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake")
+PROVIDES=("date")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/HowardHinnant/date/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("6bdc7cba821d66e17a559250cc0ce0095808e9db81cec9e16eaa4c31abdfa705299c67b72016d9b06b302bc306d063e83a374eb00728071b83a5ad650d59034f")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake -DBUILD_SHARED_LIBS=TRUE -DBUILD_TZ_LIB=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

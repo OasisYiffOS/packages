@@ -1,0 +1,16 @@
+{
+    "name": "date",
+    "version": "3.0.1",
+    "epoch": 0,
+    "description": "A date and time library based on the C++11/14/17 <chrono> header.",
+    "groups": [],
+    "url": "https://github.com/HowardHinnant/date",
+    "license": ["MIT"],
+    "depends": ["glibc", "gcc-libs", "tzdata"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["date"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
