@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xcb-util-keysyms"
+VERSION="0.4.0"
+EPOCH=0
+DESC="A library for handling standard X key constants and conversion to/from keycodes."
+GRPS=()
+URL="https://cgit.freedesktop.org/xcb/util-keysyms"
+LICENSES=("MIT")
+DEPENDS=("glibc" "libxcb")
+OPT_DEPENDS=()
+PROVIDES=("xcb-util-keysyms")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://xcb.freedesktop.org/dist/xcb-util-keysyms-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("b14b3100c3ae2379f9df799c0780a1ee39267101e58e4c1c6f390f039348ca2b370bb1df203b9bc68a170d664188d9c73e3553a7ba24d98abea3ed353e8dc0c4")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
