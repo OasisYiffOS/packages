@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xrandr"
+VERSION="1.5.1"
+EPOCH=0
+DESC="Commandline utility to set the size, orientation and/or reflection of the outputs for an X screen."
+GRPS=()
+URL="https://www.x.org/wiki/"
+LICENSES=("MIT")
+DEPENDS=("glibc" "libx11" "libxrandr")
+OPT_DEPENDS=()
+PROVIDES=("xrandr")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.x.org/pub/individual/app/xrandr-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("3d0d37e974b9dffb996276ee7fd676327fd0956e5f5f572dd142a651a35d3cdfa2f6dd415cf27bf87f306981957aba4cc014c12baebefcabaa5d66b78a114922")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    rm ${BUILD_DATA_ROOT}/usr/bin/xkeystone
+
+    return 0
+}

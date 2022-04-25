@@ -1,0 +1,16 @@
+{
+    "name": "xrandr",
+    "version": "1.5.1",
+    "epoch": 0,
+    "description": "Commandline utility to set the size, orientation and/or reflection of the outputs for an X screen.",
+    "groups": [],
+    "url": "https://www.x.org/wiki/",
+    "license": ["MIT"],
+    "depends": ["glibc", "libx11", "libxrandr"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xrandr"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
