@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libmng"
+VERSION="2.0.3"
+EPOCH=0
+DESC="Library for accessing graphics in MNG (Multi-image NetworkGraphics) and JNG (JPEG Network Graphics) formats."
+GRPS=()
+URL="https://libmng.com"
+LICENSES=("zlib")
+DEPENDS=("glibc" "little-cms2" "libjpeg-turbo" "zlib")
+OPT_DEPENDS=()
+PROVIDES=("libmng")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/libmng/libmng-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("764efd94643c17c449abcb8f676ec2aa750a2461cf46bc961343f8d443a16ac2caa135c27d846deb2351b9f25d6170c42a500d21f63c13276905fdd743b8fec6")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -m755 -d        ${BUILD_DATA_ROOT}/usr/share/doc/libmng-${VERSION}
+    install -v -m644 doc/*.txt ${BUILD_DATA_ROOT}/usr/share/doc/libmng-${VERSION}
+
+    return 0
+}

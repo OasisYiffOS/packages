@@ -1,0 +1,16 @@
+{
+    "name": "libmng",
+    "version": "2.0.3",
+    "epoch": 0,
+    "description": "Library for accessing graphics in MNG (Multi-image NetworkGraphics) and JNG (JPEG Network Graphics) formats.",
+    "groups": [],
+    "url": "https://libmng.com",
+    "license": ["zlib"],
+    "depends": ["glibc", "little-cms2", "libjpeg-turbo", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libmng"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
