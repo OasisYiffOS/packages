@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="jasper"
+VERSION="3.0.3"
+EPOCH=0
+DESC="Free software-based reference implementation of the JPEG-2000 codec."
+GRPS=()
+URL="https://github.com/jasper-software/jasper/"
+LICENSES=("JasPer-2.0")
+DEPENDS=("glibc" "libjpeg-turbo")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake")
+PROVIDES=("jasper")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/jasper-software/jasper/archive/version-${VERSION}/jasper-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("e407e24db2c8b279421070feadb71e79e8603729ed8170d84d21bced92eb18a91fb67ec9e99c27366f9afb26b6d5f38ff918c88afb8ce3f3ce87a76189d296c0")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-version-${VERSION}"
+
+    mkdir BUILD
+    cd    BUILD
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr                               \
+          -DCMAKE_BUILD_TYPE=Release                                \
+          -DCMAKE_SKIP_INSTALL_RPATH=YES                            \
+          -DJAS_ENABLE_DOC=NO                                       \
+          -DCMAKE_INSTALL_DOCDIR=/usr/share/doc/jasper-${VERSION}   \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-version-${VERSION}/BUILD"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-version-${VERSION}/BUILD"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

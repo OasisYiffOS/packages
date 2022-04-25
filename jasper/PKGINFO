@@ -1,0 +1,16 @@
+{
+    "name": "jasper",
+    "version": "3.0.3",
+    "epoch": 0,
+    "description": "Free software-based reference implementation of the JPEG-2000 codec.",
+    "groups": [],
+    "url": "https://github.com/jasper-software/jasper/",
+    "license": ["JasPer-2.0"],
+    "depends": ["glibc", "libjpeg-turbo"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["jasper"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
