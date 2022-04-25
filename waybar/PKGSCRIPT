@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="waybar"
+VERSION="0.9.12"
+EPOCH=0
+DESC="Highly customizable Wayland bar for Sway and Wlroots based compositors."
+GRPS=()
+URL="https://github.com/Alexays/Waybar"
+LICENSES=("MIT")
+DEPENDS=("glibc" "gcc-libs" "glibc" "glibmm24" "cairomm" "fmt" "gtk-layer-shell" "gtk3" "gtkmm3" "jsoncpp" "date" "libdbusmenu" "libevdev" "libnl" "libsigc++" "wayland" "libxkbcommon" "spdlog" "pulseaudio" "systemd")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("waybar")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/Alexays/Waybar/archive/refs/tags/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("c035140ca0d47ae2cbc0313e25dc206c116b5b6f7a4e6192c7d40a9bd0ef18b8bfafdc8aeea2a85d670dccceda1e3942b6b3e3a451f51a6e68d25edf0ccb1b05")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/Waybar-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/Waybar-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/Waybar-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
