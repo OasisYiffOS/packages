@@ -1,0 +1,16 @@
+{
+    "name": "qt5",
+    "version": "5.15.3",
+    "epoch": 0,
+    "description": "Cross-platform application framework that is widely used for developing application software with a graphical user interface.",
+    "groups": [],
+    "url": "https://www.qt.io",
+    "license": ["LGPL-2.1", "GPL-3.0"],
+    "depends": ["glibc", "glib2", "gcc-libs", "icu", "zstd", "openssl", "pcre2", "sqlite", "systemd", "dbus", "zlib", "harfbuzz", "jasper", "libjpeg-turbo", "libpng", "libtiff", "libwebp", "libxkbcommon", "mtdev", "wayland", "xcb-util-image", "xcb-util-keysyms", "xcb-util-renderutil", "xcb-util-wm", "libinput", "libmng", "ibus"],
+    "optional_depends": [],
+    "make_depends": ["git"],
+    "provides": ["qt5"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
