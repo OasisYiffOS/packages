@@ -115,7 +115,7 @@ cat > ${BUILD_DATA_ROOT}/usr/share/applications/assistant-qt5.desktop << EOF
 [Desktop Entry]
 Name=Qt5 Assistant
 Comment=Shows Qt5 documentation and examples
-Exec=$QT5BINDIR/assistant
+Exec=/usr/bin/assistant
 Icon=assistant-qt5.png
 Terminal=false
 Encoding=UTF-8
@@ -128,7 +128,7 @@ cat > ${BUILD_DATA_ROOT}/usr/share/applications/designer-qt5.desktop << EOF
 Name=Qt5 Designer
 GenericName=Interface Designer
 Comment=Design GUIs for Qt5 applications
-Exec=$QT5BINDIR/designer
+Exec=/usr/bin/designer
 Icon=designer-qt5.png
 MimeType=application/x-designer;
 Terminal=false
@@ -141,7 +141,7 @@ cat > ${BUILD_DATA_ROOT}/usr/share/applications/linguist-qt5.desktop << EOF
 [Desktop Entry]
 Name=Qt5 Linguist
 Comment=Add translations to Qt5 applications
-Exec=$QT5BINDIR/linguist
+Exec=/usr/bin/linguist
 Icon=linguist-qt5.png
 MimeType=text/vnd.trolltech.linguist;application/x-linguist;
 Terminal=false
@@ -155,7 +155,7 @@ cat > ${BUILD_DATA_ROOT}/usr/share/applications/qdbusviewer-qt5.desktop << EOF
 Name=Qt5 QDbusViewer
 GenericName=D-Bus Debugger
 Comment=Debug D-Bus applications
-Exec=$QT5BINDIR/qdbusviewer
+Exec=/usr/bin/qdbusviewer
 Icon=qdbusviewer-qt5.png
 Terminal=false
 Encoding=UTF-8
