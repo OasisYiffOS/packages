@@ -1,0 +1,70 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="ibus"
+VERSION="1.5.26"
+_UNICODE_VERSION="14.0.0"
+EPOCH=0
+DESC="The Intelligent Input Bus. It is an input framework for the Linux OS."
+GRPS=()
+URL="hhttps://github.com/ibus/ibus"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "atk" "cairo" "dconf" "gdk-pixbuf2" "gtk2" "gtk3" "gtk4" "ibus" "iso-codes" "libx11" "libxfixes" "libxi" "libnotify" "pango" "python2" "python" "python3-pygobject" "wayland" "libxkbcommon")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "vala")
+PROVIDES=("ibus")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/ibus/ibus/releases/download/${VERSION}/ibus-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("923607c17114af673dcc36532fb44a278b61161ee1b7d4e01b2e0dcffc40c95eb91c6416acc9c0da0333e933863e15263e9a5ff1e467cfc02b71398d601b9714")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix issue with depercated schema entries
+    sed -i 's@/desktop/ibus@/org/freedesktop/ibus@g' \
+        data/dconf/org.freedesktop.ibus.gschema.xml
+
+    ./configure --prefix=/usr           \
+                --sysconfdir=/etc       \
+                --disable-emoji-dict    \
+                --disable-unicode-dict  \
+                --enable-gtk4           \
+                --enable-python-library \
+                --with-python=python3   \
+                --enable-wayland
+
+    # Remove generated file that was not removed when packaging
+    rm -f tools/main.c
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    # test-override-ibus.py is known to fail.
+    make -k check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    gzip -dfv ${BUILD_DATA_ROOT}/usr/share/man/man{{1,5}/ibus*.gz,5/00-upstream-settings.5.gz}
+
+    return 0
+}

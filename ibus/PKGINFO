@@ -1,0 +1,16 @@
+{
+    "name": "ibus",
+    "version": "1.5.26",
+    "epoch": 0,
+    "description": "The Intelligent Input Bus. It is an input framework for the Linux OS.",
+    "groups": [],
+    "url": "hhttps://github.com/ibus/ibus",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "atk", "cairo", "dconf", "gdk-pixbuf2", "gtk2", "gtk3", "gtk4", "ibus", "iso-codes", "libx11", "libxfixes", "libxi", "libnotify", "pango", "python2", "python", "python3-pygobject", "wayland", "libxkbcommon"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection", "vala"],
+    "provides": ["ibus"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
