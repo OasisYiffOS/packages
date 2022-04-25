@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="dconf"
+VERSION="0.40.0"
+_MAJOR_VERSION="0.40"
+EPOCH=0
+DESC="A low-level configuration system."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/dconf"
+LICENSES=("LGPL-2.1" "GPL-2.0" "GPL-3.0")
+DEPENDS=("glibc" "gcc-libs" "glib2" "dbus")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vala" "libxslt")
+PROVIDES=("dconf")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/dconf/${_MAJOR_VERSION}/dconf-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("71396d71f24f47653181482b052fdfc63795c50c373de34e2fb93e16101745daa7e81192b79a102d5389911cea34138eedf3ac32bc80562018e8a7f31963559a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dbash_completion=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
