@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="usbutils"
+VERSION="014"
+EPOCH=0
+DESC="Utilities for inspecting devices connected to a USB bus."
+GRPS=()
+URL="http://www.linux-usb.org"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "libusb")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("usbutils")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.kernel.org/pub/linux/utils/usb/usbutils/usbutils-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("43c9f6ed14f8d01e014ef39a5d50b3b09031c6bda8261e0945b4cb4287c9107104175b386c2adc61dc7f9f476afb30f9a647a6ece6dee26b4133a4f10af72792")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --datadir=/usr/share/hwdata
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    # We should eventually split this off into another package
+    install -dm755 ${BUILD_DATA_ROOT}/usr/share/hwdata/
+    curl -o ${BUILD_DATA_ROOT}/usr/share/hwdata/usb.ids http://www.linux-usb.org/usb.ids 
+
+    return 0
+}

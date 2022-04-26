@@ -1,0 +1,16 @@
+{
+    "name": "usbutils",
+    "version": "014",
+    "epoch": 0,
+    "description": "Utilities for inspecting devices connected to a USB bus.",
+    "groups": [],
+    "url": "http://www.linux-usb.org",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "libusb"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["usbutils"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
