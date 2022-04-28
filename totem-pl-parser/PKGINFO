@@ -1,0 +1,16 @@
+{
+    "name": "totem-pl-parser",
+    "version": "3.26.6",
+    "epoch": 0,
+    "description": "Simple GObject-based library used to parse multiple playlist formats.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/Videos",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs", "glib2", "libarchive", "libgcrypt", "libxml2", "libsoup"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection"],
+    "provides": ["totem-pl-parser"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

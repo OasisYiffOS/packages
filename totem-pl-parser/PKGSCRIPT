@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="totem-pl-parser"
+VERSION="3.26.6"
+_MAJOR_VERSION="3.26"
+EPOCH=0
+DESC="Simple GObject-based library used to parse multiple playlist formats."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/Videos"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "glib2" "libarchive" "libgcrypt" "libxml2" "libsoup")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection")
+PROVIDES=("totem-pl-parser")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/totem-pl-parser/${_MAJOR_VERSION}/totem-pl-parser-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("1a7aa69e147b55c3c9761328604821a7e40bac4e7b82492e5ce1b2405e3b6d5154e3b06687f2446ec923b34bf6ea96eef179ef8410c005a061d448fc6b3e754e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
