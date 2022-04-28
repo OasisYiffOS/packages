@@ -1,0 +1,16 @@
+{
+    "name": "libbytesize",
+    "version": "2.6",
+    "epoch": 0,
+    "description": "Library which facilitates the common operations with sizes in bytes.",
+    "groups": [],
+    "url": "https://github.com/storaged-project/libbytesize",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gmp", "mpfr", "pcre2", "python-pygments"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libbytesize"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libbytesize"
+VERSION="2.6"
+EPOCH=0
+DESC="Library which facilitates the common operations with sizes in bytes."
+GRPS=()
+URL="https://github.com/storaged-project/libbytesize"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gmp" "mpfr" "pcre2" "python-pygments")
+OPT_DEPENDS=()
+PROVIDES=("libbytesize")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/storaged-project/libbytesize/releases/download/${VERSION}/libbytesize-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("f6e72b763216c54c08318d090d604791c61cd5a3e683ffbe6e9d01de850661bd4e8a3adeb85c6fd0fb60244e2e128292cbae06c0aa2d1fe9f34104e64af8210e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
