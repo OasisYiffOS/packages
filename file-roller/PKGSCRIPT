@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="file-roller"
+VERSION="3.42.0"
+_MAJOR_VERSION="3.42"
+EPOCH=0
+DESC="GNOME archive manager with support for tar, bzip2, gzip, zip, jar, compress, lzop, zstd, and many other archive formats."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/FileRoller"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "glib2" "gtk3" "json-glib" "libarchive" "libhandy" "libnotify" "pango" "cairo" "gdk-pixbuf2")
+OPT_DEPENDS=("cpio" "unzip" "zip" "p7zip")
+MK_DEPENDS=("meson" "ninja" "istool")
+PROVIDES=("file-roller")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/file-roller/${_MAJOR_VERSION}/file-roller-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("ad151e1dc6546ca45550ab4c7384fb89e91dc2fc17a29437922192fefd5cbcd115d1f064e090dac48ae3fca33709a54bac918cbe03cbfd0e6fc3554913dd8322")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dpackagekit=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    chmod -v 0755 ${BUILD_DATA_ROOT}/usr/libexec/file-roller/isoinfo.sh
+
+    return 0
+}

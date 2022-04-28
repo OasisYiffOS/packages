@@ -1,0 +1,16 @@
+{
+    "name": "file-roller",
+    "version": "3.42.0",
+    "epoch": 0,
+    "description": "GNOME archive manager with support for tar, bzip2, gzip, zip, jar, compress, lzop, zstd, and many other archive formats.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/FileRoller",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "glib2", "gtk3", "json-glib", "libarchive", "libhandy", "libnotify", "pango", "cairo", "gdk-pixbuf2"],
+    "optional_depends": ["cpio", "unzip", "zip", "p7zip"],
+    "make_depends": ["meson", "ninja", "istool"],
+    "provides": ["file-roller"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
