@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="rest"
+VERSION="0.8.1"
+_MAJOR_VERSION="0.8"
+EPOCH=0
+DESC="Library that was designed to make it easier to access web services that claim to be RESTful."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/librest"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "libsoup" "libxml2")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection")
+PROVIDES=("rest")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/rest/${_MAJOR_VERSION}/rest-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("824a341db3827e4360abe03e33735918c68913c70d797699ef74271080a1985872006ec70fd994dc8fa3fbfef417e6fe979883c11286512d0ce623b8368e40c3")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

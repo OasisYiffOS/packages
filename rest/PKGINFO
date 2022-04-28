@@ -1,0 +1,16 @@
+{
+    "name": "rest",
+    "version": "0.8.1",
+    "epoch": 0,
+    "description": "Library that was designed to make it easier to access web services that claim to be RESTful.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/librest",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "libsoup", "libxml2"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection"],
+    "provides": ["rest"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
