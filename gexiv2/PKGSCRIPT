@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gexiv2"
+VERSION="0.14.0"
+_MAJOR_VERSION="0.14"
+EPOCH=0
+DESC="GObject-based wrapper around the Exiv2 library."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/gexiv2"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "glib2" "exiv2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vala" "python2")
+PROVIDES=("gexiv2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gexiv2/${_MAJOR_VERSION}/gexiv2-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("d745ae2d8ddcf0c8a2a7980eaa489f9b520af54242c5e4ddded9c3ae4a579c824c8cb659bd7e985ffa09f9fe37bdf73d6d9181d456711e0953b73023eb0f9f50")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
