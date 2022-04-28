@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libatasmart"
+VERSION="0.19"
+EPOCH=0
+DESC="Disk reporting library. It only supports a subset of the ATA S.M.A.R.T. functionality."
+GRPS=()
+URL="http://git.0pointer.net/libatasmart.git/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "systemd")
+OPT_DEPENDS=()
+PROVIDES=("libatasmart")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("http://0pointer.de/public/libatasmart-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("ec9edb019c477873b01289ba365ad0ed0946505d651c1f6f83a63ef61b3976a5db6439c8a0c74d9a55325db9a3a587ad6f655f8d1af9387b0d08356eccabdb62")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make docdir=/usr/share/doc/libatasmart-${VERSION} install
+
+    return 0
+}

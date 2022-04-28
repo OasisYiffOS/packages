@@ -1,0 +1,16 @@
+{
+    "name": "libatasmart",
+    "version": "0.19",
+    "epoch": 0,
+    "description": "Disk reporting library. It only supports a subset of the ATA S.M.A.R.T. functionality.",
+    "groups": [],
+    "url": "http://git.0pointer.net/libatasmart.git/",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "systemd"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libatasmart"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
