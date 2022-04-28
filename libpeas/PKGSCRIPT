@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libpeas"
+VERSION="1.32.0"
+_MAJOR_VERSION="1.32"
+EPOCH=0
+DESC="A GObject based plugins engine, and is targeted at giving every application the chance to assume its own extensibility."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/Libpeas"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "gobject-introspection")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "libxml2" "python-pygobject")
+PROVIDES=("libpeas")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libpeas/${_MAJOR_VERSION}/libpeas-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("520a5fd8657f75dc0e28a17ccab88a2952d018f81384eaea0fc65779e66b0ebc79b0dc8ce184e49d43406381c75c2028b402c1bb9d650eae2edf35ec8617a897")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release --wrap-mode=nofallback ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+    
+    if [ "$DISPLAY" != "" ] || [ "$WAYLAND_DISPLAY" != "" ]; then
+        ninja test
+    fi
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

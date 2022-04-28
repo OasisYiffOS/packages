@@ -1,0 +1,16 @@
+{
+    "name": "libpeas",
+    "version": "1.32.0",
+    "epoch": 0,
+    "description": "A GObject based plugins engine, and is targeted at giving every application the chance to assume its own extensibility.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/Libpeas",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "gobject-introspection"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "libxml2", "python-pygobject"],
+    "provides": ["libpeas"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
