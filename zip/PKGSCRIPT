@@ -1,0 +1,46 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="zip"
+VERSION="3.0"
+_DOWNLOAD_VERSION="30"
+EPOCH=0
+DESC="Compression and file packaging utility compatible with PKZIP."
+GRPS=()
+URL="http://infozip.sourceforge.net/Zip.html"
+LICENSES=("BSD")
+DEPENDS=("glibc" "unzip" "bzip2")
+OPT_DEPENDS=()
+PROVIDES=("zip")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/infozip/zip${_DOWNLOAD_VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("c1c3d62bf1426476c0f9919b568013d6d7b03514912035f09ee283226d94c978791ad2af5310021e96c4c2bf320bfc9d0b8f4045c48e4667e034d98197e1a9b3")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}${_DOWNLOAD_VERSION}"
+
+    make -f unix/Makefile generic_gcc
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}${_DOWNLOAD_VERSION}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" prefix=${BUILD_DATA_ROOT}/usr MANDIR=${BUILD_DATA_ROOT}/usr/share/man/man1 -f unix/Makefile install
+
+    return 0
+}

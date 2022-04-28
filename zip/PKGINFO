@@ -1,0 +1,16 @@
+{
+    "name": "zip",
+    "version": "3.0",
+    "epoch": 0,
+    "description": "Compression and file packaging utility compatible with PKZIP.",
+    "groups": [],
+    "url": "http://infozip.sourceforge.net/Zip.html",
+    "license": ["BSD"],
+    "depends": ["glibc", "unzip", "bzip2"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["zip"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
