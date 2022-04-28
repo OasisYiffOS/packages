@@ -1,0 +1,16 @@
+{
+    "name": "libgxps",
+    "version": "0.3.2",
+    "epoch": 0,
+    "description": "An interface to manipulate XPS documents.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/libgxps",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "gtk3", "freetype2", "little-cms2", "libarchive", "libpng", "libtiff", "libjpeg-turbo"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "libxslt"],
+    "provides": ["libgxps"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
