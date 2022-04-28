@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libgsf"
+VERSION="1.14.49"
+_MAJOR_VERSION="1.14"
+EPOCH=0
+DESC="Library used for providing an extensible input/output abstraction layer for structured file formats."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/libgsf"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "gdk-pixbuf2" "libxml2" "bzip2" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection")
+PROVIDES=("libgsf")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libgsf/${_MAJOR_VERSION}/libgsf-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("a847a3c7fe26865e110bb87cb7ed74c477fdaf41fdec1c97cd3ea85ab3ba2f618e609a38fb4087a2c9b58d8d4b430c2148c93cbbb8425af41b6c751efef3298e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

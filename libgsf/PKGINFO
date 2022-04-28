@@ -1,0 +1,16 @@
+{
+    "name": "libgsf",
+    "version": "1.14.49",
+    "epoch": 0,
+    "description": "Library used for providing an extensible input/output abstraction layer for structured file formats.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/libgsf",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "gdk-pixbuf2", "libxml2", "bzip2", "zlib"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection"],
+    "provides": ["libgsf"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
