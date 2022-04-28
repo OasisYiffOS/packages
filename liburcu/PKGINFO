@@ -1,0 +1,16 @@
+{
+    "name": "liburcu",
+    "version": "0.13.1",
+    "epoch": 0,
+    "description": "A set of userspace RCU (read-copy-update) libraries.",
+    "groups": [],
+    "url": "https://liburcu.org",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["liburcu"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

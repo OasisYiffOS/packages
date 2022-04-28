@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="liburcu"
+VERSION="0.13.1"
+EPOCH=0
+DESC="A set of userspace RCU (read-copy-update) libraries."
+GRPS=()
+URL="https://liburcu.org"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+PROVIDES=("liburcu")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://lttng.org/files/urcu/userspace-rcu-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("c86f2eb260cccb3cb6bd54ddbc0b46e60083fc99423e9403242ebed7f39a2a49c68af933ea6f373e2a9d4f9dc56f5befe030740891e28cf2fabe927a48ff8182")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/userspace-rcu-${VERSION}"
+
+    ./configure --prefix=/usr                               \
+                --disable-static                            \
+                --docdir=/usr/share/doc/liburcu-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/userspace-rcu-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/userspace-rcu-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
