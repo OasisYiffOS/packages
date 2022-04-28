@@ -1,0 +1,59 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libgrss"
+VERSION="0.7.0"
+_MAJOR_VERSION="0.7"
+EPOCH=0
+DESC="A library designed to manipulate RSS and Atom feeds."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/Libgrss"
+LICENSES=("LGPL-3.0")
+DEPENDS=("glibc" "glib2" "libsoup" "libxml2")
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf" "automake")
+PROVIDES=("libgrss")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libgrss/${_MAJOR_VERSION}/libgrss-${VERSION}.tar.xz"
+"libgrss-${VERSION}-bugfixes-2.patch")
+
+SUM_TYPE="sha512"
+SUM=("22a4f13ee979932575c6efd25bfd2fb184ea113aa34254d9e4bfb64cfbbd9b277dd235b8c9be037baf8c85bea7ba3bc1478ec3c7a3c87e63aeddb1774959c780"
+"f386745e0f35212688e534f20a2caa0ef7b330d78a7f9ec81c546b6750a75b591b8541cb1caa9186a4731f6aab8c31fdfd7c1c4a422f850d85949507fa0e75d8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    patch -Np1 -i "${WORKDIR}/libgrss-${VERSION}-bugfixes-2.patch"
+
+    autoreconf -fv
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
