@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="ntfsprogs"
+VERSION="2021.8.22"
+EPOCH=0
+DESC="Libraries and utilities for reading and writing NTFS filesystems."
+GRPS=()
+URL="https://github.com/tuxera/ntfs-3g"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gnutls" "libgcrypt")
+OPT_DEPENDS=()
+PROVIDES=("ntfsprogs")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://tuxera.com/opensource/ntfs-3g_ntfsprogs-${VERSION}.tgz")
+
+SUM_TYPE="sha512"   
+SUM=("e0544df78a6c352999e1206d7b5d71c56e39396b7a0936a261d728c2ac9d61c6b95ef297f8529ac2a5146f31c1c9e43066d3e281064d4f5d781a04eba51f536d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/ntfs-3g_ntfsprogs-${VERSION}"
+
+    ./configure --prefix=/usr                                   \
+                --disable-static                                \
+                --disable-ntfs-3g                               \
+                --docdir=/usr/share/doc/ntfsprogs-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/ntfs-3g_ntfsprogs-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/ntfs-3g_ntfsprogs-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+cat >> ${BUILD_DATA_ROOT}/usr/sbin/mount.ntfs <<"EOF" &&
+#!/bin/sh
+exec mount -t ntfs3 "$@"
+EOF
+chmod -v 755 ${BUILD_DATA_ROOT}/usr/sbin/mount.ntfs
+
+    return 0
+}

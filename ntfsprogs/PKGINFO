@@ -1,0 +1,16 @@
+{
+    "name": "ntfsprogs",
+    "version": "2021.8.22",
+    "epoch": 0,
+    "description": "Libraries and utilities for reading and writing NTFS filesystems.",
+    "groups": [],
+    "url": "https://github.com/tuxera/ntfs-3g",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "gnutls", "libgcrypt"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["ntfsprogs"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
