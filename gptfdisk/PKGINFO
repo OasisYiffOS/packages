@@ -1,0 +1,16 @@
+{
+    "name": "gptfdisk",
+    "version": "1.0.9",
+    "epoch": 0,
+    "description": "Set of programs for creation and maintenance of GUID Partition Table (GPT) disk drives.",
+    "groups": [],
+    "url": "http://www.rodsbooks.com/gdisk/",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "popt", "icu"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["gptfdisk"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
