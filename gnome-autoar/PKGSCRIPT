@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-autoar"
+VERSION="0.4.3"
+_MAJOR_VERSION="0.4"
+EPOCH=0
+DESC="Framework for automatic archive extraction, compression, and management."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gnome-autoar"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "glib2" "gtk3" "libarchive")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vala")
+PROVIDES=("gnome-autoar")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-autoar/${_MAJOR_VERSION}/gnome-autoar-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("9f1ba584c4fc8e82d842fb21d3a113d64faa85f8f27cb7afb5d09919f510e350608b6a4e2f3ac527162ab338d008271bd430fb5b8ead265098c1810ffcbcef30")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dvapi=true -Dtests=true ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

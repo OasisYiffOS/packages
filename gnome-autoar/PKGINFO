@@ -1,0 +1,16 @@
+{
+    "name": "gnome-autoar",
+    "version": "0.4.3",
+    "epoch": 0,
+    "description": "Framework for automatic archive extraction, compression, and management.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/gnome-autoar",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs", "glib2", "gtk3", "libarchive"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "vala"],
+    "provides": ["gnome-autoar"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
