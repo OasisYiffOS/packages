@@ -1,0 +1,16 @@
+{
+    "name": "exempi",
+    "version": "2.6.1",
+    "epoch": 0,
+    "description": "An implementation of XMP (Adobe's Extensible Metadata Platform).",
+    "groups": [],
+    "url": "https://libopenraw.freedesktop.org/exempi/",
+    "license": ["BSD-3-Clause"],
+    "depends": ["glibc", "expat", "gcc-libs", "zlib"],
+    "optional_depends": [],
+    "make_depends": ["boost", "automake", "autoconf"],
+    "provides": ["exempi"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

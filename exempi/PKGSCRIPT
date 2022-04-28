@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="exempi"
+VERSION="2.6.1"
+EPOCH=0
+DESC="An implementation of XMP (Adobe's Extensible Metadata Platform)."
+GRPS=()
+URL="https://libopenraw.freedesktop.org/exempi/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=("glibc" "expat" "gcc-libs" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=("boost" "automake" "autoconf")
+PROVIDES=("exempi")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://libopenraw.freedesktop.org/download/exempi-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("503ae0890414551489b4534266a70fdc22ef5a4f023c6d14d65a017d7f9f77f7457d5e97234a6468b43d41b5fc771a62dfd62a54d6604439d6f0b800ff12deaf")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Remove test that depends on an Adobe SDK
+    sed -i -r '/^\s?testadobesdk/d' exempi/Makefile.am
+
+    autoreconf -fiv
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
