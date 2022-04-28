@@ -1,0 +1,16 @@
+{
+    "name": "eog",
+    "version": "42.1",
+    "epoch": 0,
+    "description": "GNOME image viewer and basic editor.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/EyeOfGnome",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "glib2", "gdk-pixbuf2", "cairo", "gnome-desktop", "gobject-introspection", "gsettings-desktop-schemas", "gtk3", "little-cms2", "libexif", "exempi", "libx11", "libhandy", "libjpeg-turbo", "libpeas", "librsvg2", "zlib", "libportal"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["eog"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

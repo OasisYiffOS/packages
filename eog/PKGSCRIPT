@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="eog"
+VERSION="42.1"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="GNOME image viewer and basic editor."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/EyeOfGnome"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "glib2" "gdk-pixbuf2" "cairo" "gnome-desktop" "gobject-introspection" "gsettings-desktop-schemas" "gtk3" "little-cms2" "libexif" "exempi" "libx11" "libhandy" "libjpeg-turbo" "libpeas" "librsvg2" "zlib" "libportal")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("eog")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/eog/${_MAJOR_VERSION}/eog-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("12db6bb2218f9dcea0e0558b04c05f3f8eb298eb7170a9511a7996a37082667fe06994d1db3ee4fef759aeb763a9de87749c8defa8d749432b635d2b421d1c8a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
