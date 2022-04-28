@@ -1,0 +1,16 @@
+{
+    "name": "p7zip",
+    "version": "17.04",
+    "epoch": 0,
+    "description": "Unix command-line port of 7-Zip, a file archiver that archives with high compression ratios.",
+    "groups": [],
+    "url": "https://github.com/jinfeihan57/p7zip",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["p7zip"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
