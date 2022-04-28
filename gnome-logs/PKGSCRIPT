@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-logs"
+VERSION="42.0"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="A GNOME log viewer for the systemd journal."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/Logs"
+LICENSES=("GPL-3.0")
+DEPENDS=("glibc" "gcc-libs" "glib2" "gsettings-desktop-schemas" "gtk3" "libhandy" "pango" "systemd")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "istool" "desktop-file-utils" "docbook-xml" "docbook-xsl" "libxslt")
+PROVIDES=("gnome-logs")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-logs/${_MAJOR_VERSION}/gnome-logs-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("94634006148391bf158878e845bf04f1139f90b78bc3d63bb687bb683bb07c8b5fbec9d7c1e9f7454bf5345862578d83226207d3f78611dbf96566994190766f")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
