@@ -1,0 +1,16 @@
+{
+    "name": "python-pygments",
+    "version": "2.12.0",
+    "epoch": 0,
+    "description": "Generic syntax highlighter written in Python suitable for use in code hosting,forums, wikis or other applications that need to prettify source code.",
+    "groups": [],
+    "url": "https://pygments.org",
+    "license": ["BSD 2-Clause"],
+    "depends": ["python"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-pygments"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,45 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="python-pygments"
+VERSION="2.12.0"
+EPOCH=0
+DESC="Generic syntax highlighter written in Python suitable for use in code hosting,forums, wikis or other applications that need to prettify source code."
+GRPS=()
+URL="https://pygments.org"
+LICENSES=("BSD 2-Clause")
+DEPENDS=("python")
+OPT_DEPENDS=()
+PROVIDES=("python-pygments")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://files.pythonhosted.org/packages/source/P/Pygments/Pygments-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("70bbfaefeb34f9afb5d74aa924ac3da4a913d1c7f607c0b3f80b6cd25c88a8996e516a689062bf2009c472b29999e309eb044f0f427fa1ea8479bf921b51c524")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/Pygments-${VERSION}"
+
+    pip3 wheel -w dist --no-build-isolation --no-deps $PWD
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/Pygments-${VERSION}"
+
+    pip3 install --root=${BUILD_DATA_ROOT} --no-index --find-links dist --no-cache-dir Pygments
+
+    return 0
+}
