@@ -1,0 +1,16 @@
+{
+    "name": "mdadm",
+    "version": "4.2",
+    "epoch": 0,
+    "description": "Administration tools for software RAID.",
+    "groups": [],
+    "url": "https://git.kernel.org/pub/scm/utils/mdadm/mdadm.git/",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "coreutils", "systemd"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["mdadm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
