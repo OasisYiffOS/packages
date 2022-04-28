@@ -1,0 +1,59 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="exiv2"
+VERSION="0.27.5"
+EPOCH=0
+DESC="C++ library and a command line utility for managing image and video metadata."
+GRPS=()
+URL="https://www.exiv2.org/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "curl")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake")
+PROVIDES=("exiv2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/Exiv2/exiv2/releases/download/v${VERSION}/exiv2-${VERSION}-Source.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("0f2d2dfbc976052a428dfeb597225d3ea3c725f584d05b99316bd4aa9cbf0ba5e1e37bcde71f9041975cf003b4fdb578c559adb144268d784bfd64494f451491")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}-Source"
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr  \
+          -DCMAKE_BUILD_TYPE=Release   \
+          -DEXIV2_ENABLE_VIDEO=yes     \
+          -DEXIV2_ENABLE_WEBREADY=yes  \
+          -DEXIV2_ENABLE_CURL=yes      \
+          -DEXIV2_BUILD_SAMPLES=no     \
+          -G "Unix Makefiles" ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}-Source/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}-Source/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

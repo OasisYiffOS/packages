@@ -1,0 +1,16 @@
+{
+    "name": "exiv2",
+    "version": "0.27.5",
+    "epoch": 0,
+    "description": "C++ library and a command line utility for managing image and video metadata.",
+    "groups": [],
+    "url": "https://www.exiv2.org/",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "curl"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["exiv2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
