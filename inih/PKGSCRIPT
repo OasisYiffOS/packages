@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="inih"
+VERSION="55"
+EPOCH=0
+DESC="Simple .INI file parser written in C."
+GRPS=()
+URL="https://github.com/benhoyt/inih"
+LICENSES=("BSD-3-Clause")
+DEPENDS=("glibc" "gcc-libs")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("inih")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/benhoyt/inih/archive/r${VERSION}/inih-r${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("bcbef361a4400da017dbed811ad21672b58512d2b2b537cc0058cdeca709dd0d5a9def4045ce1c1972873c3d3d35182123337e4388676f6f0d16e8dbff967b0f")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-r${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-r${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-r${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

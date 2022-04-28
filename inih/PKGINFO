@@ -1,0 +1,16 @@
+{
+    "name": "inih",
+    "version": "55",
+    "epoch": 0,
+    "description": "Simple .INI file parser written in C.",
+    "groups": [],
+    "url": "https://github.com/benhoyt/inih",
+    "license": ["BSD-3-Clause"],
+    "depends": ["glibc", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["inih"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
