@@ -1,0 +1,16 @@
+{
+    "name": "libcddb",
+    "version": "1.3.2",
+    "epoch": 0,
+    "description": "Library that implements the different protocols (CDDBP, HTTP, SMTP) to access data on a CDDB server.",
+    "groups": [],
+    "url": "http://libcddb.sourceforge.net/",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libcddb"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
