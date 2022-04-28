@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libexif"
+VERSION="0.6.24"
+EPOCH=0
+DESC="A library for parsing, editing, and saving EXIF data."
+GRPS=()
+URL="https://libexif.github.io"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+PROVIDES=("libexif")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/libexif/libexif/releases/download/v${VERSION}/libexif-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("35c9e7af2c3d44a638dc6bbe8f96962d41c0f3fe4a257494f7a73baefab9aba507477175289ccf9002a66cc16ca53d5d1f44d6fef9e014b27f687ecdc58f5111")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                                   \
+                --disable-static                                \
+                --with-doc-dir=/usr/share/doc/libexif-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

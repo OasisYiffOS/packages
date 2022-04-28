@@ -1,0 +1,16 @@
+{
+    "name": "libexif",
+    "version": "0.6.24",
+    "epoch": 0,
+    "description": "A library for parsing, editing, and saving EXIF data.",
+    "groups": [],
+    "url": "https://libexif.github.io",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libexif"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
