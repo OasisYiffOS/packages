@@ -1,0 +1,16 @@
+{
+    "name": "mutter",
+    "version": "42.0",
+    "epoch": 0,
+    "description": "The window manager for GNOME. It is not invoked directly, but from GNOME Session (on a machine with a hardware accelerated video driver).",
+    "groups": [],
+    "url": "https://www.gnome.org",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "glib2", "gnome-settings-daemon", "graphene", "libxcvt", "libkbcommon", "pipewire", "zenity", "desktop-file-utils", "startup-notification", "libx11", "pango", "libinput", "wayland", "wayland-protocols", "xwayland", "gtk3", "xorg-server"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "sysprof", "gobject-introspection"],
+    "provides": ["mutter"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
