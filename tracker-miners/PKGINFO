@@ -1,0 +1,16 @@
+{
+    "name": "tracker-miners",
+    "version": "3.3.0",
+    "epoch": 0,
+    "description": "Set of data extractors for Tracker.",
+    "groups": [],
+    "url": "https://gnome.pages.gitlab.gnome.org/tracker/",
+    "license": ["LGPL-2.1", "GPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "glib2", "exempi", "gstreamer", "gst-plugins-base", "libexif", "gexiv2", "libgrss", "libgsf", "libgxps", "icu", "taglib", "libjpeg-turbo", "libpng", "libseccomp", "libtiff", "libxml2", "totem-pl-parser", "upower", "gdk-pixbuf2"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["tracker-miners"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

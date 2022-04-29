@@ -1,0 +1,61 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="tracker-miners"
+VERSION="3.3.0"
+_MAJOR_VERSION="3.3"
+EPOCH=0
+DESC="Set of data extractors for Tracker."
+GRPS=()
+URL="https://gnome.pages.gitlab.gnome.org/tracker/"
+LICENSES=("LGPL-2.1" "GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "glib2" "exempi" "gstreamer" "gst-plugins-base" "libexif" "gexiv2" "libgrss" "libgsf" "libgxps" "icu" "taglib" "libjpeg-turbo" "libpng" "libseccomp" "libtiff" "libxml2" "totem-pl-parser" "upower" "gdk-pixbuf2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" )
+PROVIDES=("tracker-miners")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/tracker-miners/${_MAJOR_VERSION}/tracker-miners-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("ef28abf48633125e2386cc6c9cc4afbc8c203cfd6fcd31eb6928eb6132e033be232e1141655b5d517e66170c5abb3799f9ea3c76f4b5db66e18524aea59f3969")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Increase the timeout for the build
+    sed -i s/120/200/ tests/functional-tests/meson.build
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dman=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    dbus-run-session env TRACKER_TESTS_AWAIT_TIMEOUT=20 ninja test
+
+    echo "remember to run rm -rf ~/tracker-tests as files were created in the user directory"
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
