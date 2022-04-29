@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="perl-json"
+VERSION="4.05"
+EPOCH=0
+DESC="Simple wrapper for JSON::XS-compatible modules with some additional features."
+GRPS=()
+URL="https://metacpan.org/pod/JSON"
+LICENSES=("GPL-1.0")
+DEPENDS=("perl")
+OPT_DEPENDS=()
+PROVIDES=("perl-json")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.cpan.org/authors/id/I/IS/ISHIGAKI/JSON-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("2655d78baee5d986779f66ab0bb93e9943dcd9eefb06033b76130282e64104c8eb5b702c0edeb69fe3c2b6edb2125b3bf338b7923c50bf702a8c35f09a7bde65")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/JSON-${VERSION}"
+
+    perl Makefile.PL
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/JSON-${VERSION}"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/JSON-${VERSION}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+
+    rm ${BUILD_DATA_ROOT}/usr/lib/perl5/5.34/core_perl/perllocal.pod
+
+    return 0
+}

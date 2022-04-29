@@ -1,0 +1,16 @@
+{
+    "name": "perl-json",
+    "version": "4.05",
+    "epoch": 0,
+    "description": "Simple wrapper for JSON::XS-compatible modules with some additional features.",
+    "groups": [],
+    "url": "https://metacpan.org/pod/JSON",
+    "license": ["GPL-1.0"],
+    "depends": ["perl"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["perl-json"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
