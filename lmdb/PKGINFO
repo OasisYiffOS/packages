@@ -1,0 +1,16 @@
+{
+    "name": "lmdb",
+    "version": "0.9.29",
+    "epoch": 0,
+    "description": "Fast, compact, key-value embedded data store.",
+    "groups": [],
+    "url": "https://www.symas.com/lmdb",
+    "license": ["OLDAP-2.6"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lmdb"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

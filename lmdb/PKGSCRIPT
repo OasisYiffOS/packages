@@ -1,0 +1,48 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lmdb"
+VERSION="0.9.29"
+EPOCH=0
+DESC="Fast, compact, key-value embedded data store."
+GRPS=()
+URL="https://www.symas.com/lmdb"
+LICENSES=("OLDAP-2.6")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+PROVIDES=("lmdb")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/LMDB/lmdb/archive/LMDB_${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("a29e40b1a2f2ed542fb59b6dd92cf7f5f9ac603f74b1d2a66d143b65edf0324a03dc4a0a35657ba0992b00a3e9764e33af0dcc5ae8ae91c40c90c3b0581dade3")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-LMDB_${VERSION}/libraries/liblmdb"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-LMDB_${VERSION}/libraries/liblmdb"
+
+    # Remove static libraries
+    sed -i 's| liblmdb.a||' Makefile
+
+    DESTDIR="${BUILD_DATA_ROOT}" make prefix=/usr install
+
+    return 0
+}
