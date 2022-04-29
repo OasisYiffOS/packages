@@ -1,0 +1,16 @@
+{
+    "name": "udisks",
+    "version": "2.9.4",
+    "epoch": 0,
+    "description": "A  daemon, tools and libraries to access and manipulate disks and storage devices.",
+    "groups": [],
+    "url": "https://github.com/storaged-project/udisks",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "glib2", "gcc-libs", "acl", "dbus", "dosfstools", "e2fsprogs", "libatasmart", "libblockdev", "libgudev", "ntfsprogs", "polkit", "systemd", "util-linux", "xfsprogs", "mdadm", "btrfs-progs", "gptfdisk", "lvm2"],
+    "optional_depends": [],
+    "make_depends": ["libxslt", "gobject-introspection"],
+    "provides": ["udisks"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

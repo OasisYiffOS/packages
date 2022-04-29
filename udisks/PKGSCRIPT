@@ -1,0 +1,61 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="udisks"
+VERSION="2.9.4"
+EPOCH=0
+DESC="A  daemon, tools and libraries to access and manipulate disks and storage devices."
+GRPS=()
+URL="https://github.com/storaged-project/udisks"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "glib2" "gcc-libs" "acl" "dbus" "dosfstools" "e2fsprogs" "libatasmart" "libblockdev" "libgudev" "ntfsprogs" "polkit" "systemd" "util-linux" "xfsprogs" "mdadm" "btrfs-progs" "gptfdisk" "lvm2")
+OPT_DEPENDS=()
+MK_DEPENDS=("libxslt" "gobject-introspection")
+PROVIDES=("udisks")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/storaged-project/udisks/releases/download/udisks-${VERSION}/udisks-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("35f5429bc2a7092aa659cba9296837d127e2b17c23ab23111d0d9b230d15ef5a6965e112b1f3829748a69a52fb5b09722153f86f1ef70977b3ad7b7a4ec40ec5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr        \
+                --sysconfdir=/etc    \
+                --localstatedir=/var \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mkdir -p ${BUILD_DATA_ROOT}/etc/udisk2
+cat > ${BUILD_DATA_ROOT}/etc/udisks2/mount_options.conf << "EOF"
+[defaults]
+ntfs_defaults=uid=$UID,gid=$GID
+EOF
+
+    return 0
+}
