@@ -1,0 +1,68 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="evolution-data-server"
+VERSION="3.44.1"
+_MAJOR_VERSION="3.44"
+EPOCH=0
+DESC="Unified backend for programs that work with contacts, tasks, and calendar information."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/Evolution"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "gcc-libs" "cairo" "gcr" "gnome-online-accounts" "gtk3" "json-glib" "krb5" "libcanberra" "libgdata" 
+"libgweather" "libical" "libicu" "libsecret" "libsoup" "libxml2" "nspr" "nss" "openldap" "pango" "sqlite" "webkitgtk" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake" "gobject-introspection" "vala")
+PROVIDES=("evolution-data-server")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/evolution-data-server/${_MAJOR_VERSION}/evolution-data-server-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("d09a9f79e1b93ae112c9ed58d7f71c5034db5c2bdc3db9b452475f1fb490ce7945afaaec5e4f80de033e4280d86a4f7eb8026bdda5a78d03da1f496dce000e6d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr   \
+          -DSYSCONF_INSTALL_DIR=/etc    \
+          -DENABLE_VALA_BINDINGS=ON     \
+          -DENABLE_INSTALLED_TESTS=ON   \
+          -DENABLE_GOOGLE=ON            \
+          -DWITH_OPENLDAP=ON            \
+          -DWITH_KRB5=ON                \
+          -DENABLE_INTROSPECTION=ON     \
+          -DENABLE_GTK_DOC=OFF          \
+          -DWITH_LIBDB=OFF              \
+          -DWITH_GWEATHER4=ON           \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

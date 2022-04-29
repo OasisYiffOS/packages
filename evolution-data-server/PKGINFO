@@ -1,0 +1,16 @@
+{
+    "name": "evolution-data-server",
+    "version": "3.44.1",
+    "epoch": 0,
+    "description": "Unified backend for programs that work with contacts, tasks, and calendar information.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/Evolution",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "gcc-libs", "cairo", "gcr", "gnome-online-accounts", "gtk3", "json-glib", "krb5", "libcanberra", "libgdata", "libgweather", "libical", "libicu", "libsecret", "libsoup", "libxml2", "nspr", "nss", "openldap", "pango", "sqlite", "webkitgtk", "zlib"],
+    "optional_depends": [],
+    "make_depends": ["cmake", "gobject-introspection", "vala"],
+    "provides": ["evolution-data-server"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
