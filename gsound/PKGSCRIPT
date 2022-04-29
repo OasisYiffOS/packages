@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gsound"
+VERSION="1.0.3"
+_MAJOR_VERSION="1.0"
+EPOCH=0
+DESC="Small library for playing system sounds."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/GSound"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "libcanberra")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection" "vala")
+PROVIDES=("gsound")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gsound/${_MAJOR_VERSION}/gsound-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("5d7c4f17154b840abb94b432c33ba950929ddc5aba8c2795b54834d6c6b0280d3d8846acebb1e4e02688045bfb44cfac7dbb96fef44af5a73a12a70f3ece84eb")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

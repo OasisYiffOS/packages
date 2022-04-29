@@ -1,0 +1,16 @@
+{
+    "name": "gsound",
+    "version": "1.0.3",
+    "epoch": 0,
+    "description": "Small library for playing system sounds.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/GSound",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "libcanberra"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection", "vala"],
+    "provides": ["gsound"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
