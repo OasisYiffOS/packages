@@ -1,0 +1,62 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="nautilus"
+VERSION="42.1.1"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="The GNOME file manager."
+GRPS=()
+URL="https://wiki.gnome.org/action/show/Apps/Files"
+LICENSES=("GPL-3.0")
+DEPENDS=("atk" "cairo" "glibc" "gcc-libs" "gdk-pixbuf2" "glib2" "gnome-autotar" "gnome-desktop" "gsettings-desktop-schemas" "gstreamer" "gst-plugins-base" "gtk3" "gvfs" "libhandy" "pango" "tracker-miners" "desktop-file-utils" "exempi" "libexif" "libportal" "adwaita-icon-theme" "libseccomp")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection")
+PROVIDES=("nautilus")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/nautilus/${_MAJOR_VERSION}/nautilus-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("f8961c41fa2d5109e7011311f79caa1d3b9b71a3cf946a90d1a4dd03a4f0f7daac902e61bc01f6b86c2552255b9dbe0573474dcfe2ea08e0218a3c2bcbc58e48")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr       \
+          --buildtype=release \
+          -Dselinux=false     \
+          -Dpackagekit=false  \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    if [ "$DISPLAY" != "" ] || [ "$WAYLAND_DISPLAY" != "" ]; then
+        ninja test
+    fi
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
