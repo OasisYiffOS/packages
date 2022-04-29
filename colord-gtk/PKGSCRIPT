@@ -1,0 +1,63 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="colord-gtk"
+VERSION="0.3.0"
+EPOCH=0
+DESC="GTK+ bindings for Colord."
+GRPS=()
+URL="https://www.freedesktop.org/software/colord/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "colord" "gtk3" "gtk4" "gtk2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection" "vala")
+PROVIDES=("colord-gtk")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.freedesktop.org/software/colord/releases/colord-gtk-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("95ea9e8925d56462b8e5230a6737ca8e75d2273b2803e00f7aa2f933d22f88373194dccc00117fce85579274cc0daf88876fa265510580b1610734bb45220896")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr       \
+          --buildtype=release \
+          -Dgtk2=true         \
+          -Dgtk4=true         \
+          -Dvapi=true         \
+          -Ddocs=false        \
+          -Dman=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    if [ "$DISPLAY" != "" ]; then
+        ninja test
+    fi
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
