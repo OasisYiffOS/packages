@@ -1,0 +1,16 @@
+{
+    "name": "cogl",
+    "version": "1.22.8",
+    "epoch": 0,
+    "description": "Modern 3D graphics API with associated utility APIs designed to expose the features of 3D graphics hardware using a direct state access API design, as opposed to the state-machine style of OpenGL.",
+    "groups": [],
+    "url": "https://www.clutter-project.org/",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "cairo", "gdk-pixbuf2", "harfbuzz", "libx11", "libxcomposite", "libxdamage", "libxext", "libxfixes", "libxrandr", "libdrm", "wayland", "wayland-protocols", "mesa", "glu", "pango"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection"],
+    "provides": ["cogl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="cogl"
+VERSION="1.22.8"
+_MAJOR_VERSION="1.22"
+EPOCH=0
+DESC="Modern 3D graphics API with associated utility APIs designed to expose the features of 3D graphics hardware using a direct state access API design, as opposed to the state-machine style of OpenGL."
+GRPS=()
+URL="https://www.clutter-project.org/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "cairo" "gdk-pixbuf2" "harfbuzz" "libx11" "libxcomposite" "libxdamage" "libxext" "libxfixes" "libxrandr" "libdrm" "wayland" "wayland-protocols" "mesa"  "glu" "pango")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" )
+PROVIDES=("cogl")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/cogl/${_MAJOR_VERSION}/cogl-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("702d5b1b22dc34bffaa82c9c57021caf036ee3a13fa7ca24a90cca1ebc0f8b7a86070cc1fe5125757132b02774fa874bb55675c96d1ccbc233fac0e6132da65f")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                               \
+                --enable-gles2                              \
+                --enable-{kms,wayland,xlib}-egl-platform    \
+                --enable-wayland-egl-server
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make -j1
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
