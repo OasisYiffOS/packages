@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xfsprogs"
+VERSION="5.15.0"
+EPOCH=0
+DESC="Administration and debugging tools for the XFS file system."
+GRPS=()
+URL="hhttps://xfs.wiki.kernel.org"
+LICENSES=("GPL" "LGPL-2.1")
+DEPENDS=("glibc" "inih" "liburcu" "icu")
+OPT_DEPENDS=()
+PROVIDES=("xfsprogs")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.kernel.org/pub/linux/utils/fs/xfs/xfsprogs/xfsprogs-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("be7ee319fd13c103d88c7fc939277594a386d88d65349594a33eea2899ec4f28115b4ea53b64176cacbd52f3c801e103a085388e3539fc445a4ecd2775766438")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make DEBUG=-DNDEBUG     \
+         INSTALL_USER=root  \
+         INSTALL_GROUP=root
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make PKG_DOC_DIR=/usr/share/doc/xfsprogs-${VERSION} install
+    DESTDIR="${BUILD_DATA_ROOT}" make PKG_DOC_DIR=/usr/share/doc/xfsprogs-${VERSION} install-dev
+
+    mv ${BUILD_DATA_ROOT}/lib/* ${BUILD_DATA_ROOT}/usr/lib/
+    mv ${BUILD_DATA_ROOT}/sbin/* ${BUILD_DATA_ROOT}/usr/sbin/
+
+    rm -r ${BUILD_DATA_ROOT}/lib/ ${BUILD_DATA_ROOT}/sbin/
+
+    rm -rfv ${BUILD_DATA_ROOT}/usr/lib/libhandle.{a,la}
+
+    return 0
+}

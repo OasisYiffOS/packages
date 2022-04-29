@@ -1,0 +1,16 @@
+{
+    "name": "xfsprogs",
+    "version": "5.15.0",
+    "epoch": 0,
+    "description": "Administration and debugging tools for the XFS file system.",
+    "groups": [],
+    "url": "hhttps://xfs.wiki.kernel.org",
+    "license": ["GPL", "LGPL-2.1"],
+    "depends": ["glibc", "inih", "liburcu", "icu"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xfsprogs"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
