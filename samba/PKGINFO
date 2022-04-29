@@ -1,0 +1,16 @@
+{
+    "name": "samba",
+    "version": "4.16.0",
+    "epoch": 0,
+    "description": "File and print services to SMB/CIFS clients and Windows networking to Linux clients.",
+    "groups": [],
+    "url": "https://www.samba.org",
+    "license": ["GPL-3.0", "LGPL-3.0"],
+    "depends": ["glibc", "cups", "dbus", "gnutls", "kansson", "lmdb", "libtirpc", "rpcsvc-proto", "openldap", "popt", "gpgme", "icu", "fuse", "libtasn1", "perl-parse-yapp", "pam", "systemd", "avahi", "cyrus-sasl", "libaio", "libarchive", "libcap", "libgcrypt", "libnsl", "libunwind", "krb5", "nss", "perl-json"],
+    "optional_depends": [],
+    "make_depends": ["vala", "python"],
+    "provides": ["samba"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

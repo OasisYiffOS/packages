@@ -1,0 +1,95 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="samba"
+VERSION="4.16.0"
+EPOCH=0
+DESC="File and print services to SMB/CIFS clients and Windows networking to Linux clients."
+GRPS=()
+URL="https://www.samba.org"
+LICENSES=("GPL-3.0" "LGPL-3.0")
+DEPENDS=("glibc" "cups" "dbus" "gnutls" "kansson" "lmdb" "libtirpc" "rpcsvc-proto" 
+"openldap" "popt" "gpgme" "icu" "fuse" "libtasn1" "perl-parse-yapp" "pam" "systemd"
+"avahi" "cyrus-sasl" "libaio" "libarchive" "libcap" "libgcrypt" "libnsl" "libunwind"
+"krb5" "nss" "perl-json")
+OPT_DEPENDS=()
+MK_DEPENDS=("vala" "python")
+PROVIDES=("samba")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.samba.org/pub/samba/stable/samba-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("cea6bab64021779d217669e58612d192b907c2c481ef30e40e449bc6b8f8993a9b7b7b5bfcfebe54d8f70b8f720893cfa77a9d674ef8e07dd45a55a0fbc673e2")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Use virtual env to build
+    python3 -m venv pyvenv
+    ./pyvenv/bin/pip3 install cryptography pyasn1 iso8601
+
+    # Fix test that always fails
+    echo "^samba4.rpc.echo.*on.*ncacn_np.*with.*object.*nt4_dc" >> selftest/knownfail
+
+    PYTHON=$PWD/pyvenv/bin/python3             \
+    CPPFLAGS="-I/usr/include/tirpc"            \
+    LDFLAGS="-ltirpc"                          \
+    ./configure                                \
+        --prefix=/usr                          \
+        --sysconfdir=/etc                      \
+        --localstatedir=/var                   \
+        --with-piddir=/run/samba               \
+        --with-pammodulesdir=/usr/lib/security \
+        --enable-fhs                           \
+        --without-ad-dc                        \
+        --enable-selftest
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix hardcoded paths
+    sed '1s@^.*$@#!/usr/bin/python3@' \
+        -i ./bin/default/source4/scripting/bin/samba-gpupdate.inst
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -m644    examples/smb.conf.default ${BUILD_DATA_ROOT}/etc/samba
+
+    sed -e "s;log file =.*;log file = /var/log/samba/%m.log;" \
+        -e "s;path = /usr/spool/samba;path = /var/spool/samba;" \
+        -i ${BUILD_DATA_ROOT}/etc/samba/smb.conf.default
+
+    mkdir -pv ${BUILD_DATA_ROOT}/etc/openldap/schema
+
+    install -v -m644    examples/LDAP/README \
+                        ${BUILD_DATA_ROOT}/etc/openldap/schema/README.LDAP
+
+    install -v -m644    examples/LDAP/samba* \
+                        ${BUILD_DATA_ROOT}/etc/openldap/schema
+
+    install -v -m755    examples/LDAP/{get*,ol*} \
+                        ${BUILD_DATA_ROOT}/etc/openldap/schema
+
+    install -dvm 755 ${BUILD_DATA_ROOT}/usr/lib/cups/backend
+    ln -v -sf ${BUILD_DATA_ROOT}/usr/bin/smbspool ${BUILD_DATA_ROOT}/usr/lib/cups/backend/smb
+
+    return 0
+}
