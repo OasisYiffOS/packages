@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="telepathy-mission-control"
+VERSION="5.16.6"
+EPOCH=0
+DESC="Account manager and channel dispatcher for the Telepathy framework, allowing user interfaces and other clients to share connections to real-time communication services without conflicting."
+GRPS=()
+URL="https://telepathy.freedesktop.org"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "dbus" "dbus-glib" "networkmanager" "telepathy-glib")
+OPT_DEPENDS=()
+MK_DEPENDS=("python")
+PROVIDES=("telepathy-mission-control")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://telepathy.freedesktop.org/releases/telepathy-mission-control/telepathy-mission-control-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("56d62bc7270d2d62a490361f3ef3bc39384fde05ee5d69cb7e20db4f41665bd99d05b4cd2b5992b84dbfee5400684503e44c5b8c63cfa101e0cfe6a85b005e5e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    PYTHON=python3 \
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

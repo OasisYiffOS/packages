@@ -1,0 +1,16 @@
+{
+    "name": "telepathy-mission-control",
+    "version": "5.16.6",
+    "epoch": 0,
+    "description": "Account manager and channel dispatcher for the Telepathy framework, allowing user interfaces and other clients to share connections to real-time communication services without conflicting.",
+    "groups": [],
+    "url": "https://telepathy.freedesktop.org",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "dbus", "dbus-glib", "networkmanager", "telepathy-glib"],
+    "optional_depends": [],
+    "make_depends": ["python"],
+    "provides": ["telepathy-mission-control"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
