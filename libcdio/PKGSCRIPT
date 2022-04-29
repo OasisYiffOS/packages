@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libcdio"
+VERSION="2.1.0"
+EPOCH=0
+DESC="A library for CD-ROM and CD image access."
+GRPS=()
+URL="https://www.gnu.org/software/libcdio/"
+LICENSES=("GPL-3.0")
+DEPENDS=("glibc" "gcc-libs")
+OPT_DEPENDS=()
+PROVIDES=("libcdio")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/libcdio/libcdio-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("c290821da55fd9ae366670a58857aa6efcebc9f25b7caea063cf12f9cbda84fe770c5f59f972227fda50517ca58c5f39c0137daa0f93179e3daa45303d8b610f")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

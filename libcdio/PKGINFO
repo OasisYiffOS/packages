@@ -1,0 +1,16 @@
+{
+    "name": "libcdio",
+    "version": "2.1.0",
+    "epoch": 0,
+    "description": "A library for CD-ROM and CD image access.",
+    "groups": [],
+    "url": "https://www.gnu.org/software/libcdio/",
+    "license": ["GPL-3.0"],
+    "depends": ["glibc", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libcdio"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
