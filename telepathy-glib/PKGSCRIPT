@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="telepathy-glib"
+VERSION="0.24.2"
+EPOCH=0
+DESC="Library used by GLib based Telepathy components."
+GRPS=()
+URL="https://telepathy.freedesktop.org"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "dbus" "dbus-glib")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "libxslt" "vala")
+PROVIDES=("telepathy-glib")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://telepathy.freedesktop.org/releases/telepathy-glib/telepathy-glib-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("736590c299b6522c41153e01e80d9bfdac1d4cbec646b28c9fba67a07429426ff2c8e38818f2cddd7ccdc38a061d210906f6e551f7a6059c34c4dd08b789b501")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Force use python3 in a test
+    sed -i 's%/usr/bin/python%&3%' tests/all-errors-documented.py
+
+    PYTHON=/usr/bin/python3 ./configure --prefix=/usr          \
+                                        --enable-vala-bindings \
+                                        --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
