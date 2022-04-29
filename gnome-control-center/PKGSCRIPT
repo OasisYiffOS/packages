@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-control-center"
+VERSION="42.1"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="The GNOME settings manager."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gnome-control-center/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "glib2" "accountservice" "colord-gtk" "gnome-online-accounts" "gnome-settings-daemon" 
+"gsound" "libgtop2" "libpwquality" "krb5" "shared-mime-info" "udisks" "cups" "gnome-bluetooth" "ibus" "libhandy"
+"modemmanager" "libnma" "cups-pk-helper" "gnome-color-manager" "sound-theme-freedesktop" "gcr" "gdk-pixbuf2"
+"cairo" "alsa-lib" "gnome-desktop" "gsettings-desktop-schemas" "gnutls" "gtk3" "gtk4" "iso-codes" "libx11" "libxi"
+"libadwaita" "libepoxy" "libsecret" "libwacom" "libxml2" "pango" "polkit" "pulseaudio" "samba")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("gnome-control-center")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-control-center/${_MAJOR_VERSION}/gnome-control-center-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("a29df2604d90e42a602060a7042d70238eed9e59c46b500610c6b5842e015ba0d9567528a3dfd6bf365973f274de47ccd4b8f2f50cfa35c8f88bb05cb31e774d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

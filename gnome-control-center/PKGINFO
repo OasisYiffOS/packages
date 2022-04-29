@@ -1,0 +1,16 @@
+{
+    "name": "gnome-control-center",
+    "version": "42.1",
+    "epoch": 0,
+    "description": "The GNOME settings manager.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/gnome-control-center/",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "glib2", "accountservice", "colord-gtk", "gnome-online-accounts", "gnome-settings-daemon", "gsound", "libgtop2", "libpwquality", "krb5", "shared-mime-info", "udisks", "cups", "gnome-bluetooth", "ibus", "libhandy", "modemmanager", "libnma", "cups-pk-helper", "gnome-color-manager", "sound-theme-freedesktop", "gcr", "gdk-pixbuf2", "cairo", "alsa-lib", "gnome-desktop", "gsettings-desktop-schemas", "gnutls", "gtk3", "gtk4", "iso-codes", "libx11", "libxi", "libadwaita", "libepoxy", "libsecret", "libwacom", "libxml2", "pango", "polkit", "pulseaudio", "samba"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["gnome-control-center"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
