@@ -1,0 +1,16 @@
+{
+    "name": "acpid",
+    "version": "2.0.33",
+    "epoch": 0,
+    "description": "Acpid (Advanced Configuration and Power Interface event daemon) is a completely flexible, totally extensible daemon for delivering ACPI events.",
+    "groups": [],
+    "url": "https://sourceforge.net/projects/acpid2/",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "systemd"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["acpid"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

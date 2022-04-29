@@ -1,0 +1,61 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="acpid"
+VERSION="2.0.33"
+EPOCH=0
+DESC="Acpid (Advanced Configuration and Power Interface event daemon) is a completely flexible, totally extensible daemon for delivering ACPI events."
+GRPS=()
+URL="https://sourceforge.net/projects/acpid2/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "systemd")
+OPT_DEPENDS=()
+PROVIDES=("acpid")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/acpid2/acpid-${VERSION}.tar.xz"
+"acpid.service"
+"acpid.socket")
+
+SUM_TYPE="sha512"
+SUM=("491a58c62fcad44dc57cbd9294437fbc215c2ec99a030286601cd1956ea504e723e61b11b315983073d66aace1997bc40e6421475f6073298f60b8dcda2add75"
+"3f0d9591067380cd904a351dcd979cc44f9b127a6c3667e9264450af3872d6920fa72b68affe680b9bdb7a767a6f7688fbc452bb3706e54ec204cda24e9d622a"
+"875d09e538937c58c3852a0a3457cc03cf4bc2ced095fc7b8b72e6eabd25c6071d324ae5fa10237f63f9e40f7ccabec296167d4f0c39603fc1e039e14fce7cbe")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr \
+                --docdir=/usr/share/doc/acpid-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -m755 -d ${BUILD_DATA_ROOT}/etc/acpi/events
+    cp -r samples ${BUILD_DATA_ROOT}/usr/share/doc/acpid-${VERSION}
+
+    mkdir -p ${BUILD_DATA_ROOT}/usr/lib/systemd/system/
+    cp -r ${WORKDIR}/acpid.service ${BUILD_DATA_ROOT}/usr/lib/systemd/system/
+    cp -r ${WORKDIR}/acpid.socket ${BUILD_DATA_ROOT}/usr/lib/systemd/system/
+
+    return 0
+}
