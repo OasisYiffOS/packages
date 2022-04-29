@@ -1,0 +1,16 @@
+{
+    "name": "gnome-menus",
+    "version": "3.36.0",
+    "epoch": 0,
+    "description": "An implementation of the draft Desktop Menu Specification from freedesktop.org. It also contains the GNOME menu layout configuration files and .directory files.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/gnome-menus",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection"],
+    "provides": ["gnome-menus"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-menus"
+VERSION="3.36.0"
+_MAJOR_VERSION="3.36"
+EPOCH=0
+DESC="An implementation of the draft Desktop Menu Specification from freedesktop.org. It also contains the GNOME menu layout configuration files and .directory files."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gnome-menus"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection")
+PROVIDES=("gnome-menus")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-menus/${_MAJOR_VERSION}/gnome-menus-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("e830e66639c2b6aebecf572188208d33b1515270e69af3f2c6f7a640d305a7b9c2bce10e5f520b3da1dea681b194fd14c551468ea5747aa333e649b5c46774e4")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr \
+                --sysconfdir=/etc \
+                --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
