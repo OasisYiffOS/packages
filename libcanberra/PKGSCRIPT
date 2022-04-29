@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libcanberra"
+VERSION="0.30"
+EPOCH=0
+DESC="Implementation of the XDG Sound Theme and Name Specifications, for generating event sounds on free desktops, such as GNOME."
+GRPS=()
+URL="hhttp://git.0pointer.net/libcanberra.git/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "alsa-lib" "gstreamer" "libvorbis" "pulseaudio" "sound-theme-freedesktop")
+OPT_DEPENDS=()
+MK_DEPENDS=("gtk3" "gtk2")
+PROVIDES=("libcanberra")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("http://0pointer.de/lennart/projects/libcanberra/libcanberra-${VERSION}.tar.xz"
+"libcanberra-${VERSION}-wayland-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("f7543582122256826cd01d0f5673e1e58d979941a93906400182305463d6166855cb51f35c56d807a56dc20b7a64f7ce4391368d24990c1b70782a7d0b4429c2"
+"810e9d26096178d64039bf7faa3d6ac470c686694a5d681b2975f6ae5f0780c4bde71ed46966bdf4678df8fde8cb7f04a4d42a3036b34c94f113c1e91c3e62f5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    patch -Np1 -i "${WORKDIR}/${NAME}-${VERSION}-wayland-1.patch"
+
+    ./configure --prefix=/usr --disable-oss
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make docdir=/usr/share/doc/libcanberra-${VERSION} install
+
+    return 0
+}
