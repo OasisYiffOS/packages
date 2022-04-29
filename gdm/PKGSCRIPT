@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gdm"
+VERSION="42.0"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="A system service that is responsible for providing graphical logins and managing local and remote displays."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/GDM"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "glib2" "accountsservice" "dconf" "gdk-pixbuf2" "gnome-keyring" "gnome-session" "gnome-settings-daemon"
+"gtk3" "iso-codes" "keyutils" "libx11" "libxau" "libxdmcp" "libcanberra" "libgudev" "libxcb" "pam" "systemd" "util-linux" "libdaemon")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "istool")
+PROVIDES=("gdm")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gdm/${_MAJOR_VERSION}/gdm-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("e07a4e9233573069dd5628e7b7e6dbe462e90bd8f30267d3faf1cbe3dcb8b990afe3ad6af1edf5f0ec689c6eb245aaacd4e8565a7e4feea34cc754d43904daaa")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    # We should look into a custom PAM config setting here
+    meson --prefix=/usr               \
+          --buildtype=release         \
+          -Dinitial-vt=7              \
+          -Ddefault-pam-config=lfs    \
+          -Dgdm-xsession=true ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

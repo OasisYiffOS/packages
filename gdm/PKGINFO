@@ -1,0 +1,16 @@
+{
+    "name": "gdm",
+    "version": "42.0",
+    "epoch": 0,
+    "description": "A system service that is responsible for providing graphical logins and managing local and remote displays.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/GDM",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "glib2", "accountsservice", "dconf", "gdk-pixbuf2", "gnome-keyring", "gnome-session", "gnome-settings-daemon", "gtk3", "iso-codes", "keyutils", "libx11", "libxau", "libxdmcp", "libcanberra", "libgudev", "libxcb", "pam", "systemd", "util-linux", "libdaemon"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "istool"],
+    "provides": ["gdm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
