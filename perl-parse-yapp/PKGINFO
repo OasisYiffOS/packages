@@ -1,0 +1,16 @@
+{
+    "name": "perl-parse-yapp",
+    "version": "1.21",
+    "epoch": 0,
+    "description": "Yet Another Parser Parser for Perl.",
+    "groups": [],
+    "url": "https://metacpan.org/pod/Parse::Yapp",
+    "license": ["GPL-1.0"],
+    "depends": ["perl"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["perl-parse-yapp"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

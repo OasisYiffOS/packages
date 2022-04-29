@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="perl-parse-yapp"
+VERSION="1.21"
+EPOCH=0
+DESC="Yet Another Parser Parser for Perl."
+GRPS=()
+URL="https://metacpan.org/pod/Parse::Yapp"
+LICENSES=("GPL-1.0")
+DEPENDS=("perl")
+OPT_DEPENDS=()
+PROVIDES=("perl-parse-yapp")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.cpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("dbf6182d4813ff7e355ea1713c748bfdf8290040a93f123acec645c7a1733fe457ab6e0ab51c4ec83cf82bc43d7fb35cbf89875df7b5c2ffc9635e85458cfeee")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/Parse-Yapp-${VERSION}"
+
+    perl Makefile.PL
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/Parse-Yapp-${VERSION}"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/Parse-Yapp-${VERSION}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+
+    rm ${BUILD_DATA_ROOT}/usr/lib/perl5/5.34/core_perl/perllocal.pod
+
+    return 0
+}
