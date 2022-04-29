@@ -1,0 +1,66 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gvfs"
+VERSION="1.50.1"
+_MAJOR_VERSION="1.50"
+EPOCH=0
+DESC="A userspace virtual filesystem designed to work with the I/O abstractions of GLib's GIO library."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/gvfs"
+LICENSES=("GPL-3.0" "LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "dbus" "libusb" "libsecret" "gcr" "gtk3" "libcdio" "libcdio-paranoia" "libgdata" "libgudev" "systemd" "udisks" "avahi" "bluez" "dbus-glib" "fuse" "gnome-online-accounts" "libarchive" "libgcrypt" "libxml2" "libxslt" "openssh")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("gvfs")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gvfs/${_MAJOR_VERSION}/gvfs-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("7a1ea47658dbd74673e1aea7c344d3f9e8a26fab844a26220cedcb19da6b4a0cac6b369d2b5107f649d6e7b2331894c89df04c6dce3630be4b289e23f56127a5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr       \
+          --buildtype=release \
+          -Dhttp=false        \
+          -Dfuse=true         \
+          -Dgphoto2=false     \
+          -Dafc=false         \
+          -Dbluray=false      \
+          -Dnfs=false         \
+          -Dmtp=false         \
+          -Dsmb=false         \
+          -Ddnssd=true        \
+          -Dgoa=true          \
+          -Dgoogle=true      ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
