@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-bluetooth"
+VERSION="42.0"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="Tools for managing and manipulating Bluetooth devices using the GNOME Desktop."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/GnomeBluetooth"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "glib2" "gtk4" "libadwaita" "bluez" "piepwire" "pulseaudio" "systemd" "gsound" "libnotify")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "istool" "gobject-introspection")
+PROVIDES=("gnome-bluetooth")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-bluetooth/${_MAJOR_VERSION}/gnome-bluetooth-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("769bd9300fa1d830240e84257230425fe7f2e871cbd6c8fa6416514487a26326601a21c16075a66cf886850bab17f5c8e2235463f3695ea194c9230d6e50337c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

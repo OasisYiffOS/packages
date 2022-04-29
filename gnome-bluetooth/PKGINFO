@@ -1,0 +1,16 @@
+{
+    "name": "gnome-bluetooth",
+    "version": "42.0",
+    "epoch": 0,
+    "description": "Tools for managing and manipulating Bluetooth devices using the GNOME Desktop.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/GnomeBluetooth",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "glib2", "gtk4", "libadwaita", "bluez", "piepwire", "pulseaudio", "systemd", "gsound", "libnotify"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "istool", "gobject-introspection"],
+    "provides": ["gnome-bluetooth"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
