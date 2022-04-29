@@ -1,0 +1,61 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-color-manager"
+VERSION="3.36.0"
+_MAJOR_VERSION="3.36"
+EPOCH=0
+DESC="Session framework for the GNOME desktop environment that makes it easy to manage, install and generate color profiles."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gnome-color-manager"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "glib2" "gtk3" "gdk-pixbuf2" "cairo" "colord" "little-cms2" "pango" "shared-mime-info" "libcanberra" "libexif")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "istool")
+PROVIDES=("gnome-color-manager")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-color-manager/${_MAJOR_VERSION}/gnome-color-manager-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("217c00696d7d0e99ee4cc65ee343c09682387d909feabdd6e4a52f9fd0586dda553b4796fbcb11392b880aa5c5bbaebde27906afb4e3ffd692ee3187023bfaac")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Disable manpages as they break the build right now
+    sed /subdir\(\'man/d -i meson.build
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    if [ "$DISPLAY" != "" ]; then
+        ninja test
+    fi
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
