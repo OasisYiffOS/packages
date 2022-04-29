@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-session"
+VERSION="42.0"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="The GNOME session manager."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gnome-session"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "glib2" "dbus" "dconf" "gnome-control-center" "gnome-desktop" "gsettings-desktop-schemas" "gtk3" "json-glib" "libice" "libsm" "libx11" "libxcomposite" "libepoxy" "mesa" "systemd" "upower")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "xmlto" "libxslt" "docbook-xml" "docbook-xsl")
+PROVIDES=("gnome-session")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-session/${_MAJOR_VERSION}/gnome-session-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("3d340700958b5800039e3009618709add2cdbaecb58344d9d2f93e4e761a737ef003091c380c68f95386dbb078b3d12f70732f0022611ab4a10e1c1eb988b4fa")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Allow the user to import from the system profile when using Wayland by making it a login shell. This is not supported by the Wayland developers and we may remove it.
+    # Note that there is no standard method to provide system environment variables for the users yet in Wayland as the developers are still working on it.
+    sed 's@/bin/sh@/bin/sh -l@' -i gnome-session/gnome-session.in
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    mv -v ${BUILD_DATA_ROOT}/usr/share/doc/gnome-session{,-${VERSION}}
+
+    return 0
+}
