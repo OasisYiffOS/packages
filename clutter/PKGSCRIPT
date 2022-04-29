@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="clutter"
+VERSION="1.26.4"
+_MAJOR_VERSION="1.26"
+EPOCH=0
+DESC="Open source software library used for creating fast, visually rich and animated graphical user interfaces."
+GRPS=()
+URL="https://www.clutter-project.org/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "gcc-libs" "atk" "cogl" "json-glib" "gtk3" "libgudev" "libinput" "libxkbcommon" "wayland" 
+"wayland-protocols" "cairo" "fontconfig" "freetype2" "gdk-pixbuf2" "harfbuzz" "libx11" "libxcomposite" "libxdamage" 
+"libxext" "libxfixes" "libxrandr" "libdrm" "glu" "pango" "systemd" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection")
+PROVIDES=("clutter")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/clutter/${_MAJOR_VERSION}/clutter-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("6d43ac09df7671fa2bda74d1231166e8331f3ef1dbe0d167225033b3ddae7377d1062db81b73fc498c2e9f0db467bf4febb7306a6f40c9ef0266dac2a397f43a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr               \
+                --sysconfdir=/etc           \
+                --enable-egl-backend        \
+                --enable-evdev-input        \
+                --enable-wayland-backend    \
+                --enable-wayland-compositor
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

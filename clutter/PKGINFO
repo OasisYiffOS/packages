@@ -1,0 +1,16 @@
+{
+    "name": "clutter",
+    "version": "1.26.4",
+    "epoch": 0,
+    "description": "Open source software library used for creating fast, visually rich and animated graphical user interfaces.",
+    "groups": [],
+    "url": "https://www.clutter-project.org/",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "gcc-libs", "atk", "cogl", "json-glib", "gtk3", "libgudev", "libinput", "libxkbcommon", "wayland", "wayland-protocols", "cairo", "fontconfig", "freetype2", "gdk-pixbuf2", "harfbuzz", "libx11", "libxcomposite", "libxdamage", "libxext", "libxfixes", "libxrandr", "libdrm", "glu", "pango", "systemd", "zlib"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection"],
+    "provides": ["clutter"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
