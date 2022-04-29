@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="reiserfsprogs"
+VERSION="3.6.27"
+EPOCH=0
+DESC="Various utilities for use with the Reiser file system."
+GRPS=()
+URL="https://reiser4.wiki.kernel.org/index.php/Reiserfsprogs"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf" "automake")
+PROVIDES=("reiserfsprogs")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.kernel.org/pub/linux/kernel/people/jeffm/reiserfsprogs/v${VERSION}/reiserfsprogs-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("bc524aa1ad7f8502238761fd185bfb8473048947bd579e2803c73371928c6b245e0d90bd9d458f4bebcbf163892dbc9f4bae65aec68ebbaa436be7451c13f50c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    sed -i '/parse_time.h/i #define _GNU_SOURCE' lib/parse_time.c
+
+    autoreconf -fiv
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

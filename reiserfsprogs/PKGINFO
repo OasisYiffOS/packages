@@ -1,0 +1,16 @@
+{
+    "name": "reiserfsprogs",
+    "version": "3.6.27",
+    "epoch": 0,
+    "description": "Various utilities for use with the Reiser file system.",
+    "groups": [],
+    "url": "https://reiser4.wiki.kernel.org/index.php/Reiserfsprogs",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["autoconf", "automake"],
+    "provides": ["reiserfsprogs"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
