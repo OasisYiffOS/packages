@@ -1,0 +1,16 @@
+{
+    "name": "zenity",
+    "version": "3.42.1",
+    "epoch": 0,
+    "description": "A rewrite of gdialog, the GNOME port of dialog which allows you to display GTK+ dialog boxes from the command line and shell scripts.",
+    "groups": [],
+    "url": "https://github.com/WebPlatformForEmbedded/libwpe",
+    "license": ["BSD-2-Clause"],
+    "depends": ["glibc", "gcc-libs", "glib2", "gdk-pixbuf2", "gtk3", "libnotify", "libxslt", "webkitgtk", "libx11", "pango"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "istool"],
+    "provides": ["zenity"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

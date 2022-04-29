@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="zenity"
+VERSION="3.42.1"
+_MAJOR_VERSION="3.42"
+EPOCH=0
+DESC="A rewrite of gdialog, the GNOME port of dialog which allows you to display GTK+ dialog boxes from the command line and shell scripts."
+GRPS=()
+URL="https://github.com/WebPlatformForEmbedded/libwpe"
+LICENSES=("BSD-2-Clause")
+DEPENDS=("glibc" "gcc-libs" "glib2" "gdk-pixbuf2" "gtk3" "libnotify" "libxslt" "webkitgtk" "libx11" "pango")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "istool")
+PROVIDES=("zenity")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/zenity/${_MAJOR_VERSION}/zenity-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("a8239e7dde351f3d3f75a59c95588f672c69333d4a53d50465d05fb73e61d1bbff6aca89acffc35a8d6802f465048ad2cbd7421bc3e3200a5a393ee3c9319106")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dlibnotify=true ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
