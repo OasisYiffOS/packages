@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="grilo"
+VERSION="0.3.14"
+_MAJOR_VERSION="0.3"
+EPOCH=0
+DESC="A framework focused on making media discovery and browsing easy for applications and application developers."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/Grilo"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "glib2" "gtk3" "libsoup" "totem-pl-parser" "avahi")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vala" "gobject-introspection" "libxml2")
+PROVIDES=("grilo")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/grilo/${_MAJOR_VERSION}/grilo-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("128464e51040ea121b19640c708fa996743a18e047ab11d4c3047db7d24732eac6da65393c16f987e834cb301385ef0c349eb0fabd7d67b2d10a230c8f03492a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Denable-gtk-doc=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

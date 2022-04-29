@@ -1,0 +1,16 @@
+{
+    "name": "grilo",
+    "version": "0.3.14",
+    "epoch": 0,
+    "description": "A framework focused on making media discovery and browsing easy for applications and application developers.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/Grilo",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs", "glib2", "gtk3", "libsoup", "totem-pl-parser", "avahi"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "vala", "gobject-introspection", "libxml2"],
+    "provides": ["grilo"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
