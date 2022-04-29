@@ -1,0 +1,16 @@
+{
+    "name": "xf86-video-amdgpu",
+    "version": "22.0.0",
+    "epoch": 0,
+    "description": "The X.Org Video Driver for newer AMD Radeon video cards and newer AMD-CPUs with integrated graphics (APUs).",
+    "groups": [],
+    "url": "https://www.x.org/",
+    "license": ["MIT"],
+    "depends": ["glibc", "libdrm", "mesa", "systemd"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xf86-video-amdgpu"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

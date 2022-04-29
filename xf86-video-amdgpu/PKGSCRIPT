@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xf86-video-amdgpu"
+VERSION="22.0.0"
+EPOCH=0
+DESC="The X.Org Video Driver for newer AMD Radeon video cards and newer AMD-CPUs with integrated graphics (APUs)."
+GRPS=()
+URL="https://www.x.org/"
+LICENSES=("MIT")
+DEPENDS=("glibc" "libdrm" "mesa" "systemd")
+OPT_DEPENDS=()
+PROVIDES=("xf86-video-amdgpu")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.x.org/pub/individual/driver/xf86-video-amdgpu-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("95c64e3fef7729ced6e7adc5e81c60cc218f6d8b6604f7b290e86ff52c917426b5102decbf8be8a66c9181ccde6e5dff7083dca8cc0c493a39e82625b5c7cb2a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
