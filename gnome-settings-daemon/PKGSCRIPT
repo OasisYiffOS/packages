@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-settings-daemon"
+VERSION="42.1"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="The daemon responsible for setting various parameters of a GNOME Session and the applications that run under it."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gnome-settings-daemon"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "alsa-lib" "cairo" "colord" "gcr" "geoclue" "geocode-glib" 
+"gnome-desktop" "gsettings-desktop-schema" "gtk3" "little-cms2" "nss" "pango" "polkit" 
+"pulseaudio" "upower" "networkmanager" "modemmanager" "wayland" "libwacom" "libnotify"
+"libgweather" "libgudev" "libcanberra" "libxi" "libxfixes" "libxext" "libx11" "fontconfig"
+"cups")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("gnome-settings-daemon")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-settings-daemon/${_MAJOR_VERSION}/gnome-settings-daemon-${VERSION}.tar.xz")
+SUM_TYPE="sha512"
+SUM=("20e87fc2318d77af016ec071cc6070f43ac42eaaf60a1f9bdb4278f59e038268e0a37759f0ab31068d8701b9dc64d142c0a875f0eeaa700ad47e0dbca3b9d141")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
