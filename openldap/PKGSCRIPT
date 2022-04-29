@@ -1,0 +1,64 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="openldap"
+VERSION="2.6.1"
+EPOCH=0
+DESC="An open source implementation of the Lightweight Directory Access Protocol. (Client only)"
+GRPS=()
+URL="https://www.openldap.org"
+LICENSES=("OLDAP-2.6")
+DEPENDS=("glibc" "libevent" "openssl" "cyrus-sasl")
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf" "automake" "groff")
+PROVIDES=("openldap")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-${VERSION}.tgz"
+"openldap-${VERSION}-consolidated-2.patch")
+
+SUM_TYPE="sha512"
+SUM=("bdb961225313bc2717aabac7ba1dfcaabba7c933ab1c28959315b5e88074af0575f082c329fdfc0adde61b6b0e56315305156cee7eb879bc8e48b47cb9f5cd58"
+"303eb590adef3f8629e8afe020e2a093526703c730ed17261874bb723af3168301b3a1c27ff74b4e64e1025f06eb8feb83c928fa21b7fca2d3182284fbb80681")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    patch -Np1 -i "${WORKDIR}/openldap-${VERSION}-consolidated-2.patch"
+
+    autoconf
+
+    ./configure --prefix=/usr     \
+                --sysconfdir=/etc \
+                --disable-static  \
+                --enable-dynamic  \
+                --enable-versioning=yes  \
+                --disable-debug   \
+                --disable-slapd
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make depend
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "openldap",
+    "version": "2.6.1",
+    "epoch": 0,
+    "description": "An open source implementation of the Lightweight Directory Access Protocol. (Client only)",
+    "groups": [],
+    "url": "https://www.openldap.org",
+    "license": ["OLDAP-2.6"],
+    "depends": ["glibc", "libevent", "openssl", "cyrus-sasl"],
+    "optional_depends": [],
+    "make_depends": ["autoconf", "automake", "groff"],
+    "provides": ["openldap"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
