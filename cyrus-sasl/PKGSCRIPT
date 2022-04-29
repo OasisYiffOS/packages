@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="cyrus-sasl"
+VERSION="2.1.28"
+EPOCH=0
+DESC="Simple Authentication and Security Layer implementation, a method for adding authentication support to connection-based protocols."
+GRPS=()
+URL="https://git.kernel.org/pub/scm/linux/kernel/git/jberg/iw.git/"
+LICENSES=("BSD-2-Clause")
+DEPENDS=("glibc" "krb5" "libxcrypt" "openssl" "pam" "systemd" "util-linux")
+OPT_DEPENDS=()
+PROVIDES=("cyrus-sasl")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/cyrusimap/cyrus-sasl/releases/download/cyrus-sasl-${VERSION}/cyrus-sasl-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("db15af9079758a9f385457a79390c8a7cd7ea666573dace8bf4fb01bb4b49037538d67285727d6a70ad799d2e2318f265c9372e2427de9371d626a1959dd6f78")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                       \
+                --sysconfdir=/etc                   \
+                --enable-auth-sasldb                \
+                --with-dbpath=/var/lib/sasl/sasldb2 \
+                --with-sphinx-build=no              \
+                --with-saslauthd=/var/run/saslauthd
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make -j1
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

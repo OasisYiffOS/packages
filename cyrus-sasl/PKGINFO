@@ -1,0 +1,16 @@
+{
+    "name": "cyrus-sasl",
+    "version": "2.1.28",
+    "epoch": 0,
+    "description": "Simple Authentication and Security Layer implementation, a method for adding authentication support to connection-based protocols.",
+    "groups": [],
+    "url": "https://git.kernel.org/pub/scm/linux/kernel/git/jberg/iw.git/",
+    "license": ["BSD-2-Clause"],
+    "depends": ["glibc", "krb5", "libxcrypt", "openssl", "pam", "systemd", "util-linux"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["cyrus-sasl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
