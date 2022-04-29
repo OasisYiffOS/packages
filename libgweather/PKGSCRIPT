@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libgweather"
+VERSION="4.0.0"
+_MAJOR_VERSION="4.0"
+EPOCH=0
+DESC="Library used to access weather information from online services for numerous locations."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/LibGWeather"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "glib2" "geocode-glib" "libsoup" "libxml2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection" "vala")
+PROVIDES=("libgweather")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libgweather/${_MAJOR_VERSION}/libgweather-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("1441b8996a53b277e9453d3fcf32448800c963f40c32542f9055362bc3188dcf2e706466133d53b3f1b6343dc97b15cf5eabe16b950e7c9451cb79eeef87a9c3")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dgtk_doc=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    LANG=C ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

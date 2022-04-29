@@ -1,0 +1,16 @@
+{
+    "name": "libgweather",
+    "version": "4.0.0",
+    "epoch": 0,
+    "description": "Library used to access weather information from online services for numerous locations.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/LibGWeather",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "glib2", "geocode-glib", "libsoup", "libxml2"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection", "vala"],
+    "provides": ["libgweather"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
