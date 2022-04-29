@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="accountsservice"
+VERSION="22.08.8"
+EPOCH=0
+DESC="Set of D-Bus interfaces for querying and manipulating user account information and an implementation of those interfaces based on the usermod(8), useradd(8) and userdel(8) commands."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/AccountsService/"
+LICENSES=("GPL-3.0")
+DEPENDS=("glibc" "glib2" "gcc-libs" "polkit" "shadow" "systemd")
+OPT_DEPENDS=()
+MK_DEPENDS=("ninja" "meson" "gobject-introspection" "xmlto")
+PROVIDES=("accountsservice")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.freedesktop.org/software/accountsservice/accountsservice-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("2ca3ceb1b44338d9924b86788256d4eef7ec10e0c2197bfb8cc6c31ae224fab3051f03cb406a526f90057684965bef4ba0f2cc01b26198ec1fc6baec36ad3ff8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr       \
+          --buildtype=release \
+          -Dadmin_group=adm   \
+          -Ddocbook=true      \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
