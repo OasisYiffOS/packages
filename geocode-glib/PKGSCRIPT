@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="geocode-glib"
+VERSION="3.26.2"
+_MAJOR_VERSION="3.26"
+EPOCH=0
+DESC="Convenience library for the Yahoo! Place Finder APIs."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/geocode-glib"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "glib2" "json-glib" "libsoup")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection")
+PROVIDES=("geocode-glib")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/geocode-glib/${_MAJOR_VERSION}/geocode-glib-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("b3ef81fac6959f6c4725ca721125cdafbbec69233f321872e17f9035266ed7616018ef54a9082fbd0a83395d18c664144cfe3b431d63744be433f058071cd435")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Denable-gtk-doc=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    LANG=C ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

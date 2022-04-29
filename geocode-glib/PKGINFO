@@ -1,0 +1,16 @@
+{
+    "name": "geocode-glib",
+    "version": "3.26.2",
+    "epoch": 0,
+    "description": "Convenience library for the Yahoo! Place Finder APIs.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/geocode-glib",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs", "glib2", "json-glib", "libsoup"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection"],
+    "provides": ["geocode-glib"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
