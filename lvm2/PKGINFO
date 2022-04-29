@@ -1,0 +1,16 @@
+{
+    "name": "lvm2",
+    "version": "2.03.15",
+    "epoch": 0,
+    "description": "Set of tools that manage logical partitions. It allows spanning of file systems across multiple physical disks and disk partitions and provides for dynamic growing or shrinking of logical partitions, mirroring and low storage footprint snapshots.",
+    "groups": [],
+    "url": "https://sourceware.org/lvm2//",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "libaio", "systemd"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lvm2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

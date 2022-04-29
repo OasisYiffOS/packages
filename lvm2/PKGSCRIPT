@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="lvm2"
+VERSION="2.03.15"
+EPOCH=0
+DESC="Set of tools that manage logical partitions. It allows spanning of file systems across multiple physical disks and disk partitions and provides for dynamic growing or shrinking of logical partitions, mirroring and low storage footprint snapshots."
+GRPS=()
+URL="https://sourceware.org/lvm2//"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "libaio" "systemd")
+OPT_DEPENDS=()
+PROVIDES=("lvm2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://sourceware.org/ftp/lvm2/LVM2.${VERSION}.tgz")
+
+SUM_TYPE="sha512"
+SUM=("ad3cc33b9d54eebcbb79ada71baa7fdf2e76eca01d593a6aaa3649ef9345dc2fa939f09598486520c0548afde5a7691af13a35d8c1d431e5bbe51c41bbe6c2e9")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/LVM2.${VERSION}"
+
+    PATH+=:/usr/sbin                \
+    ./configure --prefix=/usr       \
+                --enable-cmdlib     \
+                --enable-pkgconfig  \
+                --enable-udev_sync
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/LVM2.${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/LVM2.${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+    DESTDIR="${BUILD_DATA_ROOT}" make install_systemd_units
+
+    # Fix obsolete directory references
+    sed -e '/locking_dir =/{s/#//;s/var/run/}' \
+        -i ${BUILD_DATA_ROOT}/etc/lvm/lvm.conf
+
+    return 0
+}
