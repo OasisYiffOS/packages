@@ -5,7 +5,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 NAME="gnome-control-center"
 VERSION="42.1"
 _MAJOR_VERSION="42"
-EPOCH=0
+EPOCH=1
 DESC="The GNOME settings manager."
 GRPS=()
 URL="https://gitlab.gnome.org/GNOME/gnome-control-center/"
@@ -22,14 +22,21 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://download.gnome.org/sources/gnome-control-center/${_MAJOR_VERSION}/gnome-control-center-${VERSION}.tar.xz")
+SRC=("https://download.gnome.org/sources/gnome-control-center/${_MAJOR_VERSION}/gnome-control-center-${VERSION}.tar.xz"
+"yiffOSLogo.svg")
 
 SUM_TYPE="sha512"
-SUM=("a29df2604d90e42a602060a7042d70238eed9e59c46b500610c6b5842e015ba0d9567528a3dfd6bf365973f274de47ccd4b8f2f50cfa35c8f88bb05cb31e774d")
+SUM=("a29df2604d90e42a602060a7042d70238eed9e59c46b500610c6b5842e015ba0d9567528a3dfd6bf365973f274de47ccd4b8f2f50cfa35c8f88bb05cb31e774d"
+"19a715a38eba58780f8ea55a2ee3c4dd0687062799f6e64e7ac6e311e128aa26427c523aae7afab861d9b78118b97aae294c0936464882172031c689d1d2e27e")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
+
+
+    rm panels/info-overview/gnome-logo-text{,-dark}.svg
+    cp "${WORKDIR}/yiffOSLogo.svg" panels/info-overview/gnome-logo-text.svg
+    cp "${WORKDIR}/yiffOSLogo.svg" panels/info-overview/gnome-logo-text-dark.svg
 
     mkdir build
     cd    build
