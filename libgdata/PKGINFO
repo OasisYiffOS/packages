@@ -1,0 +1,16 @@
+{
+    "name": "libgdata",
+    "version": "0.18.1",
+    "epoch": 0,
+    "description": "GLib-based library for accessing online service APIs using the GData protocol, most notably, Google's services.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/libgdata",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs", "glib2", "gcr", "gnome-online-accounts", "json-glib", "libsoup", "libxml2"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection", "vala"],
+    "provides": ["libgdata"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

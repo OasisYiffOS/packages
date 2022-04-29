@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libgdata"
+VERSION="0.18.1"
+_MAJOR_VERSION="0.18"
+EPOCH=0
+DESC="GLib-based library for accessing online service APIs using the GData protocol, most notably, Google's services."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/libgdata"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "glib2" "gcr" "gnome-online-accounts" "json-glib" "libsoup" "libxml2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection" "vala")
+PROVIDES=("libgdata")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libgdata/${_MAJOR_VERSION}/libgdata-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("15ff708760ca5023b692fd565c26a7c3acf035073534c0cd3f1f90e46ee0c60d14dedf360d3ac146d37135e200d9c2bc4b657e81468d0efde4821a9219875b98")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dgtk_doc=false -Dalways_build_tests=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
