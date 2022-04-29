@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="parted"
+VERSION="3.5"
+EPOCH=0
+DESC="A disk partitioning and partition resizing tool."
+GRPS=()
+URL="https://www.gnu.org/software/parted/"
+LICENSES=("GPL-3.0")
+DEPENDS=("glibc" "readline" "ncurses" "lvm2")
+OPT_DEPENDS=()
+PROVIDES=("parted")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/parted/parted-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("87fc69e947de5f0b670ee5373a7cdf86180cd782f6d7280f970f217f73f55ee1b1b018563f48954f3a54fdde5974b33e07eee68c9ccdf08e621d3dc0e3ce126a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
