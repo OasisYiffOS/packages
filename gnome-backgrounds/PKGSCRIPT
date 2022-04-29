@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-backgrounds"
+VERSION="42.0"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="Collection of graphics files which can be used as backgrounds in the GNOME Desktop environment."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gnome-backgrounds"
+LICENSES=("CC-BY-SA")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("gnome-backgrounds")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-backgrounds/${_MAJOR_VERSION}/gnome-backgrounds-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("31cfbc52ec96bc4ce77960620a895af7f10c1fc4d474b589d49f3d1198b41792ab443bf8d7a661e71778455ab066f034c7fb6655e96db028990de0788e464e1d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
