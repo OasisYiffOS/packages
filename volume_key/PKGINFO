@@ -1,0 +1,16 @@
+{
+    "name": "volume_key",
+    "version": "0.3.12",
+    "epoch": 0,
+    "description": "A library for manipulating storage volume encryption keys and storing them separately from volumes to handle forgotten passphrases.",
+    "groups": [],
+    "url": "https://pagure.io/volume_key/",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "glib2", "nspr", "nss"],
+    "optional_depends": [],
+    "make_depends": ["autoconf", "automake"],
+    "provides": ["volume_key"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="volume_key"
+VERSION="0.3.12"
+EPOCH=0
+DESC="A library for manipulating storage volume encryption keys and storing them separately from volumes to handle forgotten passphrases."
+GRPS=()
+URL="https://pagure.io/volume_key/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "glib2" "nspr" "nss")
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf" "automake")
+PROVIDES=("volume_key")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/felixonmars/volume_key/archive/volume_key-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("97cef1e2a4604dd601681861400bac629e757c4f61f0bb2175443c92fceb1b01b4d246894ae0ad5ac6a5543d701e1bab00683429434cabf27a0ed148f61c153b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${NAME}-${VERSION}"
+
+    autoreconf -fiv
+
+    ./configure --prefix=/usr       \
+                --without-python3   \
+                --without-python
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
