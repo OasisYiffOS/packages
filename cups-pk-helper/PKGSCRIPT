@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="cups-pk-helper"
+VERSION="0.2.6"
+EPOCH=0
+DESC="PolicyKit helper used to configure Cups with fine-grained privileges."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/cups-pk-helper/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "glib2" "dbus" "polkit" "cups")
+OPT_DEPENDS=()
+PROVIDES=("cups-pk-helper")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.freedesktop.org/software/cups-pk-helper/releases/cups-pk-helper-${VERSION}.tar.xz"
+"cups-pk-helper-${VERSION}-consolidated_fixes-1.patch")
+
+SUM_TYPE="sha512"
+SUM=("33f1b6f58f4772148bd1cfb8163dacaffd3cc62f2d03731710c98b765ebb8b87541cb9cf43e886880134c32db91a43c7142b1556a0abdf1449068031b0d5fbd3"
+"34a6675f900133388d42254d4d137dfe82965ba725092ce733faaff71173dbdad18bd1cd507cda98f884b1e0ceca0f4e51689a9d1f83fc9eab491ea4c74d22ea")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    patch -Np1 -i "${WORKDIR}/${NAME}-${VERSION}-consolidated_fixes-1.patch"
+
+    ./configure --prefix=/usr --sysconfdir=/etc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
