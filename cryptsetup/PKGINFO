@@ -1,0 +1,16 @@
+{
+    "name": "cryptsetup",
+    "version": "2.4.3",
+    "epoch": 0,
+    "description": "A tool used to set up transparent encryption of block devices using the kernel crypto API.",
+    "groups": [],
+    "url": "https://gitlab.com/cryptsetup/cryptsetup",
+    "license": ["GPL-2.0", "LGPL-2.1"],
+    "depends": ["glibc", "libpwquality", "json-c", "lvm2", "popt", "libssh"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["cryptsetup"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
