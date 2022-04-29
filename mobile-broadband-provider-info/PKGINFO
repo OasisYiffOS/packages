@@ -1,0 +1,16 @@
+{
+    "name": "mobile-broadband-provider-info",
+    "version": "20220315",
+    "epoch": 0,
+    "description": "Listings of mobile broadband (3G) providers and associated network and plan information.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/NetworkManager/MobileBroadband/ServiceProviders",
+    "license": ["CC-PDDC"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["mobile-broadband-provider-info"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

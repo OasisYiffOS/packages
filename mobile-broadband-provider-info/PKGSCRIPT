@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="mobile-broadband-provider-info"
+VERSION="20220315"
+EPOCH=0
+DESC="Listings of mobile broadband (3G) providers and associated network and plan information."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/NetworkManager/MobileBroadband/ServiceProviders"
+LICENSES=("CC-PDDC")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("mobile-broadband-provider-info")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/mobile-broadband-provider-info/${VERSION}/mobile-broadband-provider-info-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("92da9e03f48d1a3e5807cab616627d0d31539dfee5c9650f78c5eb4371748366700ffe26f922ac061f877cd1bd5c3fb766e71fea0677eee007e68873c39c597c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
