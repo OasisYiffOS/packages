@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libnma"
+VERSION="1.8.38"
+_MAJOR_VERSION="1.8"
+EPOCH=0
+DESC="An implementation of the NetworkManager GUI functions."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/libnma/"
+LICENSES=("GPL-2.0" "LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "glib2" "networkmanager" "gcr" "gtk3" "gtk4" "mobile-broadband-provider-info" "iso-codes")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vala")
+PROVIDES=("libnma")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libnma/${_MAJOR_VERSION}/libnma-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("0421c598ccb6e3659f182b596eec76ffd695e51c11fd11b8325c2d08cb259536d7e74c11bbaac3ccb841016a0bc69a87f1c682b934a9eb569a74116e677eba63")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr                             \
+          --buildtype=release                       \
+          -Dgtk_doc=false                           \
+          -Dlibnma_gtk4=true                        \
+          -Dmobile_broadband_provider_info=true ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+    
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
