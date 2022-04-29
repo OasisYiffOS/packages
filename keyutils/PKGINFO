@@ -1,0 +1,16 @@
+{
+    "name": "keyutils",
+    "version": "1.6.1",
+    "epoch": 0,
+    "description": "Utilities for managing the key retention facility in the kernel, which can be used by filesystems, block devices and more to gain and retain the authorization and encryption keys required to perform secure operations.",
+    "groups": [],
+    "url": "https://people.redhat.com/~dhowells/keyutils/",
+    "license": ["GPL-2.0", "LGPL-2.1"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["keyutils"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="keyutils"
+VERSION="1.6.1"
+EPOCH=0
+DESC="Utilities for managing the key retention facility in the kernel, which can be used by filesystems, block devices and more to gain and retain the authorization and encryption keys required to perform secure operations."
+GRPS=()
+URL="https://people.redhat.com/~dhowells/keyutils/"
+LICENSES=("GPL-2.0" "LGPL-2.1")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+PROVIDES=("keyutils")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://people.redhat.com/~dhowells/keyutils/keyutils-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("ea6e20b2594234c7f51581eef2b8fd19c109fa9eacaaef8dfbb4f237bd1d6fdf071ec23b4ff334cb22a46461d09d17cf499987fd1f00e66f27506888876961e1")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Ensure pkgconfig file is place in the correct folder
+    sed -i 's:$(LIBDIR)/$(PKGCONFIG_DIR):/usr/lib/pkgconfig:' Makefile
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" NO_ARLIB=1 LIBDIR=/usr/lib BINDIR=/usr/bin SBINDIR=/usr/sbin install
+
+    return 0
+}
