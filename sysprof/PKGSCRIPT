@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="sysprof"
+VERSION="3.44.0"
+_MAJOR_VERSION="3.44"
+EPOCH=0
+DESC="A statistical and system-wide profiler for Linux."
+GRPS=()
+URL="http://www.sysprof.com"
+LICENSES=("GPL-3.0")
+DEPENDS=("glibc" "gcc-libs" "gtk3" "json-glib" "libunwind" "libdazzle" "polkit")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("sysprof")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/sysprof/${_MAJOR_VERSION}/sysprof-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("64bfe4d39e71954f7982ef06caffc39ff60d2d6005f8392a7918f83263d7c5b11bafdf7234ed86d52063586919a4dbe742c498b6f1f9db91d481337cf568451c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+    
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "sysprof",
+    "version": "3.44.0",
+    "epoch": 0,
+    "description": "A statistical and system-wide profiler for Linux.",
+    "groups": [],
+    "url": "http://www.sysprof.com",
+    "license": ["GPL-3.0"],
+    "depends": ["glibc", "gcc-libs", "gtk3", "json-glib", "libunwind", "libdazzle", "polkit"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["sysprof"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
