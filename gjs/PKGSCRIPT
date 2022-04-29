@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gjs"
+VERSION="1.72.0"
+_MAJOR_VERSION="1.72"
+EPOCH=0
+DESC="A set of Javascript bindings for GNOME."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gjs"
+LICENSES=("MIT" "MPL-1.1" "GPL-2.0" "LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "glib2" "cairo" "gobject-introspection" "libx11" "libfii" "js91" "readline" "gtk3" "gtk4")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("gjs")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gjs/${_MAJOR_VERSION}/gjs-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("224934eed511052d013cc7c2a29ccf79b14e5ed8c01db8071f07858387d7794b9156abd43ac494a13294248d9b6f2956d21c4e9581a41f5161043dff374f72f9")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir gjs-build
+    cd    gjs-build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/gjs-build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/gjs-build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

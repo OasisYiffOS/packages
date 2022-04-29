@@ -1,0 +1,16 @@
+{
+    "name": "gjs",
+    "version": "1.72.0",
+    "epoch": 0,
+    "description": "A set of Javascript bindings for GNOME.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/gjs",
+    "license": ["MIT", "MPL-1.1", "GPL-2.0", "LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs", "glib2", "cairo", "gobject-introspection", "libx11", "libfii", "js91", "readline", "gtk3", "gtk4"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["gjs"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
