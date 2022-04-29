@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libblockdev"
+VERSION="2.26"
+_DOWNLOAD_VERSION="2.26-1"
+EPOCH=0
+DESC="C library supporting GObject Introspection for manipulation of block devices."
+GRPS=()
+URL="https://github.com/storaged-project/libblockdev"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2" "gcc-libs" "systemd" "gobject-introspection" "libbytesize" "libyaml" "parted" "volume_key" "btrfs-progs" "mdadm")
+OPT_DEPENDS=()
+PROVIDES=("libblockdev")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/storaged-project/libblockdev/releases/download/${_DOWNLOAD_VERSION}/libblockdev-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ddd4e9c22135bd7dad0bb9bc254ac0c63e3bacc592e7c5a0c846e367da3fc248bf6187f1c81407c3bce599d3b0ceeec9a8a0030ad8e981e245f715b35eaec523")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr     \
+                --sysconfdir=/etc \
+                --with-python3    \
+                --without-gtk-doc \
+                --without-nvdimm  \
+                --without-dm
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

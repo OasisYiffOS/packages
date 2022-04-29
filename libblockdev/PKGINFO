@@ -1,0 +1,16 @@
+{
+    "name": "libblockdev",
+    "version": "2.26",
+    "epoch": 0,
+    "description": "C library supporting GObject Introspection for manipulation of block devices.",
+    "groups": [],
+    "url": "https://github.com/storaged-project/libblockdev",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "gcc-libs", "systemd", "gobject-introspection", "libbytesize", "libyaml", "parted", "volume_key", "btrfs-progs", "mdadm"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libblockdev"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
