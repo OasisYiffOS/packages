@@ -1,0 +1,16 @@
+{
+    "name": "gnome-online-accounts",
+    "version": "3.44.0",
+    "epoch": 0,
+    "description": "A framework used to access the user's online accounts.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/GnomeOnlineAccounts",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "glib2", "gcr", "json-glib", "rest", "webkitgtk", "krb5", "libsecret", "libsoup", "libxml2", "p11-kit", "zlib"],
+    "optional_depends": [],
+    "make_depends": ["vala", "gobject-introspection"],
+    "provides": ["gnome-online-accounts"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
