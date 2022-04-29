@@ -1,0 +1,16 @@
+{
+    "name": "clutter-gtk",
+    "version": "1.8.4",
+    "epoch": 0,
+    "description": "Library providing facilities to integrate Clutter into GTK+ applications.",
+    "groups": [],
+    "url": "https://www.clutter-project.org",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gcc-libs", "glib2", "clutter", "gtk3"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection"],
+    "provides": ["clutter-gtk"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

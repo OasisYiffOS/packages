@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="clutter-gtk"
+VERSION="1.8.4"
+_MAJOR_VERSION="1.8"
+EPOCH=0
+DESC="Library providing facilities to integrate Clutter into GTK+ applications."
+GRPS=()
+URL="https://www.clutter-project.org"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs" "glib2" "clutter" "gtk3")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection")
+PROVIDES=("clutter-gtk")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/clutter-gtk/${_MAJOR_VERSION}/clutter-gtk-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("810f879a56cd71f1e9c4678ef704a997ee652d052cfea56b3ed9478f7a813a35dd2fdcded028ce17411ae02da52fa31e0fb8d1f4130c7b9f6d25eeb774b51ada")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
