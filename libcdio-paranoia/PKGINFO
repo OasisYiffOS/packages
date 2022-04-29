@@ -1,0 +1,16 @@
+{
+    "name": "libcdio-paranoia",
+    "version": "10.2+2.0.1",
+    "epoch": 0,
+    "description": "A library that reads audio from the CD-ROM directly as data, with no analog step between, and writes the data to a file or pipe as .wav, .aifc or as raw 16 bit linear PCM.",
+    "groups": [],
+    "url": "https://www.gnu.org/software/libcdio/",
+    "license": ["GPL-3.0"],
+    "depends": ["glibc", "gcc-libs", "libcdio"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libcdio-paranoia"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

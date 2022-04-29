@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libcdio-paranoia"
+VERSION="10.2+2.0.1"
+EPOCH=0
+DESC="A library that reads audio from the CD-ROM directly as data, with no analog step between, and writes the data to a file or pipe as .wav, .aifc or as raw 16 bit linear PCM."
+GRPS=()
+URL="https://www.gnu.org/software/libcdio/"
+LICENSES=("GPL-3.0")
+DEPENDS=("glibc" "gcc-libs" "libcdio")
+OPT_DEPENDS=()
+PROVIDES=("libcdio-paranoia")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("c4a768d11e9f62038ca8081316596c89c7fee6a314229fb42e3999757fae172a5dc167175f60d555c2442266d34fce6ce627f4124e9f3a93d0456adb09ca91f0")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
