@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="networkmanager"
-VERSION="1.36.4"
-_MAJOR_VERSION="1.36"
+VERSION="1.39.2"
+_MAJOR_VERSION="1.39"
 EPOCH=0
 DESC="Networking that Just Works — A network management daemon."
 GRPS=()
 URL="https://gitlab.freedesktop.org/NetworkManager/NetworkManager"
 LICENSES=("LGPL-2.1")
-DEPENDS=("jansson" "libndp" "curl" "dhclient" "iptables" "newt" "wpa_supplicant" "gnutls" "systemd" "nss" "gobject-introspection" "python-pycairo" "python-pygobject")
+DEPENDS=("jansson" "libndp" "curl" "dhclient" "iptables" "newt" "wpa_supplicant" "gnutls" "systemd" "nss" "gobject-introspection" "python-pycairo" "python-pygobject" "polkit" "modemmanager" "libpsl")
 OPT_DEPENDS=()
 MK_DEPENDS=("ninja" "meson" "intltool" "libxslt")
 PROVIDES=("networkmanager")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/NetworkManager/${_MAJOR_VERSION}/NetworkManager-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("17b2d39ed2584fb8b805e7b9950f9c4e6d657380881e9e78a1aa85dc58615e0a3896413a6902086f516dee2f373155f69042b4a229f3b9e15fb3c0f958cd8149")
+SUM=("8648b392ed2b8a20fdf08dea3bb2b1125f074eb4a8b17b7d71d2b087d8266d1d5a2700cfa67d58f2f7e573bdfb2792c128f30785e14a07b75e907e3f998c9e8b")
 
 # Prepare script
 function prepare() {
@@ -37,16 +37,16 @@ function prepare() {
     meson --prefix=/usr                 \
           --buildtype=release           \
           -Dlibaudit=no                 \
-          -Dlibpsl=false                \
+          -Dlibpsl=true                 \
           -Dnmtui=true                  \
           -Dovs=false                   \
           -Dppp=false                   \
           -Dselinux=false               \
           -Dqt=false                    \
           -Dsession_tracking=systemd    \
-          -Dmodem_manager=false         \
+          -Dmodem_manager=true          \
           -Dtests=no                    \
-          -Dpolkit=false                \
+          -Dpolkit=true                 \
           ..
 
     return 0
