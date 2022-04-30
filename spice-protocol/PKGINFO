@@ -1,0 +1,16 @@
+{
+    "name": "spice-protocol",
+    "version": "0.14.4",
+    "epoch": 0,
+    "description": "Header files for the Spice protocol and the QXL virtual graphics card.",
+    "groups": [],
+    "url": "https://spice-space.org/",
+    "license": ["BSD-2-Clause", "LGPL-2.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["spice-protocol"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

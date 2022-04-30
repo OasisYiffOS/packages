@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="spice-protocol"
+VERSION="0.14.4"
+EPOCH=0
+DESC="Header files for the Spice protocol and the QXL virtual graphics card."
+GRPS=()
+URL="https://spice-space.org/"
+LICENSES=("BSD-2-Clause" "LGPL-2.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("spice-protocol")
+CONFLICTS=()
+REPLACES=()
+_GIT_COMMIT_ID="95dbf8e552065e35dd3cab3f7d09b347"
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/spice/spice-protocol/uploads/${_GIT_COMMIT_ID}/spice-protocol-${VERSION}.tar.xz")
+
+SUM_TYPE="sha256"
+SUM=("04ffba610d9fd441cfc47dfaa135d70096e60b1046d2119d8db2f8ea0d17d912")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
