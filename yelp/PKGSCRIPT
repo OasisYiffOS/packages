@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="yelp"
+VERSION="42.1"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="GNOME help browser used for viewing help files."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/Yelp"
+LICENSES=("LGPL-2.1" "ASL-2.0" "GPL-2.0")
+DEPENDS=("glibc" "glib2" "gtk3" "libhandy" "libunwind" "webkitgtk" "yelp-xsl" "gsettings-desktop-schemas")
+OPT_DEPENDS=()
+PROVIDES=("yelp")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/yelp/${_MAJOR_VERSION}/yelp-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("3c8150503e828c8d2994b7af6f7c673b696b01f4a82abcbbc0395909a0e0eb2d64a9e445a5b1683a0c9aa0abc7040cc563917e55b126879ce7c4dda117bbf3db")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static --with-webkit2gtk-4-0
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

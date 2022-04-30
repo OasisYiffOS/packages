@@ -1,0 +1,16 @@
+{
+    "name": "yelp",
+    "version": "42.1",
+    "epoch": 0,
+    "description": "GNOME help browser used for viewing help files.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/Yelp",
+    "license": ["LGPL-2.1", "ASL-2.0", "GPL-2.0"],
+    "depends": ["glibc", "glib2", "gtk3", "libhandy", "libunwind", "webkitgtk", "yelp-xsl", "gsettings-desktop-schemas"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["yelp"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
