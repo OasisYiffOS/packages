@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="xf86-video-qxl"
+VERSION="0.1.5"
+_COMMIT="52e975263fe88105d151297768c7ac675ed94122"
+EPOCH=0
+DESC="The X.Org Video Driver for QXL."
+GRPS=()
+URL="https://www.x.org/"
+LICENSES=("MIT")
+DEPENDS=("glibc" "xorg-server" "libxfont2" "libpciaccess" "systemd" "libdrm")
+OPT_DEPENDS=()
+MK_DEPENDS=("spice-protocol" "automake" "autoconf")
+PROVIDES=("xf86-video-qxl")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=()
+
+SUM_TYPE="sha512"
+SUM=()
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/"
+    git clone https://gitlab.freedesktop.org/xorg/driver/xf86-video-qxl.git
+
+    cd xf86-video-qxl
+
+    git reset --hard ${_COMMIT}
+
+    autoreconf -fiv
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

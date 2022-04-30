@@ -1,0 +1,16 @@
+{
+    "name": "xf86-video-qxl",
+    "version": "0.1.5",
+    "epoch": 0,
+    "description": "The X.Org Video Driver for QXL.",
+    "groups": [],
+    "url": "https://www.x.org/",
+    "license": ["MIT"],
+    "depends": ["glibc", "xorg-server", "libxfont2", "libpciaccess", "systemd", "libdrm"],
+    "optional_depends": [],
+    "make_depends": ["spice-protocol", "automake", "autoconf"],
+    "provides": ["xf86-video-qxl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
