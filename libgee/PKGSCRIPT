@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libgee"
+VERSION="0.20.5"
+_MAJOR_VERSION="0.20"
+EPOCH=0
+DESC="Collection library providing GObject based interfaces and classes for commonly used data structures."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/Libgee"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "glib2")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "vala")
+PROVIDES=("libgee")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libgee/${_MAJOR_VERSION}/libgee-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("64d498c5323c4c0978391a01fb3a36e9a00ef9d5dc8e95e3b2dc9cc33f6ad55ec1096e18629c5cad9539b083c42917d91d068824dac4d06f53ef9a682cccc8a9")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
