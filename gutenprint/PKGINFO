@@ -1,0 +1,16 @@
+{
+    "name": "gutenprint",
+    "version": "5.3.4",
+    "epoch": 0,
+    "description": "nl80211 based CLI configuration utility for wireless devices.",
+    "groups": [],
+    "url": "http://gimp-print.sourceforge.net",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["gutenprint"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
