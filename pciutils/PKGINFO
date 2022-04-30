@@ -1,0 +1,16 @@
+{
+    "name": "pciutils",
+    "version": "3.8.0",
+    "epoch": 0,
+    "description": "Set of programs and libraries for listing PCI devices, inspecting their status and setting their configuration registers.",
+    "groups": [],
+    "url": "https://mj.ucw.cz/sw/pciutils/",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["pciutils"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

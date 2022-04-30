@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="pciutils"
+VERSION="3.8.0"
+EPOCH=0
+DESC="Set of programs and libraries for listing PCI devices, inspecting their status and setting their configuration registers."
+GRPS=()
+URL="https://mj.ucw.cz/sw/pciutils/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+PROVIDES=("pciutils")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.kernel.org/pub/software/utils/pciutils/pciutils-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("de9732823c9775057a2b26967fbc170451209cd3e2be2ecffd90effb72189ed70c0199667ea4396247d996a3cb9c737f7d96c160f996507e64998ece5fd1187f")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make PREFIX=/usr                \
+         SHAREDIR=/usr/share/hwdata \
+         SHARED=yes
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make PREFIX=/usr                    \
+         DESTDIR="${BUILD_DATA_ROOT}"   \
+         SHAREDIR=/usr/share/hwdata     \
+         SHARED=yes                     \
+         install install-lib 
+
+    chmod -v 755 ${BUILD_DATA_ROOT}/usr/lib/libpci.so
+
+    return 0
+}
