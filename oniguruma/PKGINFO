@@ -1,0 +1,16 @@
+{
+    "name": "oniguruma",
+    "version": "6.9.8",
+    "epoch": 0,
+    "description": "A regular expressions library.",
+    "groups": [],
+    "url": "https://github.com/kkos/oniguruma/",
+    "license": ["BSD-2-Clause"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["oniguruma"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
