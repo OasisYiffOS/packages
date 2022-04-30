@@ -1,0 +1,16 @@
+{
+    "name": "gnome-weather",
+    "version": "42.0",
+    "epoch": 0,
+    "description": "A small application that allows you to monitor the current weather conditions for your city, or anywhere in the world, and to access updated forecasts provided by various internet services.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/Weather",
+    "license": ["GPL-2.0", "LGPL-2.1", "MIT"],
+    "depends": ["glib2", "gjs", "geoclue", "gobject-introspection", "gdk-pixbuf2", "gsettingds-desktop-schema", "gtk4", "libadwaita", "libgweather", "libhandy"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["gnome-weather"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
