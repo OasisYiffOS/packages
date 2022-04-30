@@ -1,0 +1,16 @@
+{
+    "name": "jq",
+    "version": "1.6",
+    "epoch": 0,
+    "description": "Lightweight and flexible command-line JSON processor.",
+    "groups": [],
+    "url": "https://stedolan.github.io/jq/",
+    "license": ["MIT", "ASL-2.0", "CC-BY", "GPL-3.0"],
+    "depends": ["glibc", "oniguruma"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["jq"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
