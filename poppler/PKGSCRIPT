@@ -1,0 +1,67 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="poppler"
+VERSION="22.04.0"
+_DATA_VERSION="0.4.11" # Split?
+EPOCH=0
+DESC="PDF rendering library and command line tools used to manipulate PDF files."
+GRPS=()
+URL="https://poppler.freedesktop.org"
+LICENSES=("GPL-2.0" "LGPL-2.1" "MIT")
+DEPENDS=("libnl")
+OPT_DEPENDS=("glibc" "gcc-libs" "fontconfig" "boost" "cairo" "little-cms2" "libjpeg-turbo" "libpng" "nss" "openjpeg" "gdk-pixbuf2" "libtiff")
+MK_DEPENDS=("cmake" "gobject-introspection" "gtk3" "qt5")
+PROVIDES=("poppler")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://poppler.freedesktop.org/poppler-${VERSION}.tar.xz"
+"https://poppler.freedesktop.org/poppler-data-${_DATA_VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("9dbbeb95cc4ae266f59d7fe0d25e2d8f41eecfe0315770c917cc3a2c721c3c1c47e5c8242aa06820a3146d59d33920e86782257e0604437e410fd42b417e70c5"
+"a5b7ace28d1677e12f7500ab6345b277dc22cd48ace8d472c083933416879edf4da4efe8217b0e11f75a3387ed98d832fe50567884095b6c0e09ebd8802b0f32")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake  -DCMAKE_BUILD_TYPE=Release           \
+           -DCMAKE_INSTALL_PREFIX=/usr          \
+           -DTESTDATADIR=$PWD/testfiles         \
+           -DENABLE_UNSTABLE_API_ABI_HEADERS=ON \
+           ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -m755 -d           ${BUILD_DATA_ROOT}/usr/share/doc/poppler-${VERSION}
+    cp -vr ../glib/reference/html ${BUILD_DATA_ROOT}/usr/share/doc/poppler-${VERSION}
+
+    cd "${WORKDIR}/${NAME}-data-${_DATA_VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make prefix=/usr install
+
+    return 0
+}

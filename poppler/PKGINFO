@@ -1,0 +1,16 @@
+{
+    "name": "poppler",
+    "version": "22.04.0",
+    "epoch": 0,
+    "description": "PDF rendering library and command line tools used to manipulate PDF files.",
+    "groups": [],
+    "url": "https://poppler.freedesktop.org",
+    "license": ["GPL-2.0", "LGPL-2.1", "MIT"],
+    "depends": ["libnl"],
+    "optional_depends": ["glibc", "gcc-libs", "fontconfig", "boost", "cairo", "little-cms2", "libjpeg-turbo", "libpng", "nss", "openjpeg", "gdk-pixbuf2", "libtiff"],
+    "make_depends": ["cmake", "gobject-introspection", "gtk3", "qt5"],
+    "provides": ["poppler"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
