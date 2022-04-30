@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="cbindgen"
+VERSION="0.23.0"
+EPOCH=0
+DESC="Utilities used to generate C bindings for Rust code."
+GRPS=()
+URL="https://crates.io/crates/cbindgen"
+LICENSES=("MPL-2.0" "MIT" "ASL-2.0")
+DEPENDS=("glibc" "gcc-libs")
+OPT_DEPENDS=()
+MK_DEPENDS=("rust")
+PROVIDES=("cbindgen")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/eqrion/cbindgen/archive/v${VERSION}/cbindgen-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("341071b20bfcf5cca667f20473b690e9f16109edb519ce3ff263078e246db4d4d99d2ed6a51c6914755d3e554d28d523b78819c4b9eb4f5a396274a072e70da8")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cargo build --release
+
+    # 3 tests are known to fail
+    cargo test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir -p ${BUILD_DATA_ROOT}/usr/bin/
+    install -Dm755 target/release/cbindgen ${BUILD_DATA_ROOT}/usr/bin/
+
+    return 0
+}

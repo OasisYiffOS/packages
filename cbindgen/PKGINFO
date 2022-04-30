@@ -1,0 +1,16 @@
+{
+    "name": "cbindgen",
+    "version": "0.23.0",
+    "epoch": 0,
+    "description": "Utilities used to generate C bindings for Rust code.",
+    "groups": [],
+    "url": "https://crates.io/crates/cbindgen",
+    "license": ["MPL-2.0", "MIT", "ASL-2.0"],
+    "depends": ["glibc", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": ["rust"],
+    "provides": ["cbindgen"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
