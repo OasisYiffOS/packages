@@ -1,0 +1,16 @@
+{
+    "name": "xinit",
+    "version": "1.4.1",
+    "epoch": 0,
+    "description": "A script and other utilities to start the xserver.",
+    "groups": [],
+    "url": "https://www.x.org/",
+    "license": ["MIT"],
+    "depends": ["glibc", "libx11", "xauth", "coreutils"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xinit"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
