@@ -1,0 +1,81 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="firefox"
+VERSION="99.0.1"
+_WASI_SYS_ROOT_VERSION="14.0"
+_WASI_SYS_ROOT_DOWNLOAD_VERSION="14"
+EPOCH=0
+DESC="Open-source web browser, designed for standards compliance, performance and portability."
+GRPS=()
+URL="https://www.mozilla.org/firefox/"
+LICENSES=("MPL-1.1" "GPL-2.0" "LGPL-2.1")
+DEPENDS=("glibc" "dbus-glib" "gtk3" "libnotify" "pulseaudio" "startup-notification" "icu" "libevent" "libvpx" "libwebp" "nss" "ffmpeg" "libffi" "libjpeg" "libpng" "pixman" "zlib")
+OPT_DEPENDS=("wireless-tools")
+MK_DEPENDS=("autoconf" "automake" "cbindgen" "llvm" "nodejs" "nasm" "python" "unzip" "zip")
+PROVIDES=("firefox")
+CONFLICTS=()
+REPLACES=()
+
+# For yiffOS use only! Please contact the maintainer if you would like to learn more.
+_GOOGLE_API_KEY="AIzaSyBlaXMAdugsqbuLwXKZkaEK9-oqhGELUao"
+
+# Source information
+SRC=("https://archive.mozilla.org/pub/firefox/releases/${VERSION}/source/firefox-${VERSION}.source.tar.xz"
+"firefox-${VERSION}-disable_rust_test-1.patch"
+"mozconfig"
+"firefox.desktop")
+
+SUM_TYPE="sha512"
+SUM=("0006b773ef1057a6e0b959d4f39849ad4a79272b38d565da98062b9aaf0effd2b729349c1f9fa10fccf7d2462d2c536b02c167ae6ad4556d6e519c6d22c25a7f"
+"7211159cee658c7b2a18987838b4cd32532b7e5d90d2eecc8860d20ed57d7f0da435a0e039c1cebaabc7d2119b649fdf2c8ae972a81afc20b7ddd88816763f5f"
+"95996837e8256d3aa61588c65014209c1a54d734e2aa233b79eff52c105115a167be220d2a78a26061339c7a2f480f16a5d604d88464e52725b4b606bb098c9d"
+"1ee8fe0231fc2bfd93a3358ee7d899f3e698992bd4630755b2526a8a94489489ab1fcd9034b4bf9fd3b35ff376b65e68bae6fe0b8977bdafd70bf4d3e5170d4c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    echo "${_GOOGLE_API_KEY}" > google-key
+
+    cp "${WORKDIR}/mozconfig" mozconfig
+
+    patch -Np1 -i "${WORKDIR}/firefox-${VERSION}-disable_rust_test-1.patch"
+
+    export CC=clang CXX=clang++
+    export MACH_USE_SYSTEM_PYTHON=1
+    export MOZBUILD_STATE_PATH=${PWD}/mozbuild
+
+    ./mach configure
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./mach build
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" MACH_USE_SYSTEM_PYTHON=1 ./mach install
+
+    unset CC CXX MACH_USE_SYSTEM_PYTHON MOZBUILD_STATE_PATH
+
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/share/applications
+    mkdir -pv ${BUILD_DATA_ROOT}/usr/share/pixmaps
+
+    cp "${WORKDIR}/firefox.desktop" ${BUILD_DATA_ROOT}/usr/share/applications/firefox.desktop
+
+    ln -sfv  ${BUILD_DATA_ROOT}/usr/lib/firefox/browser/chrome/icons/default/default128.png \
+             ${BUILD_DATA_ROOT}/usr/share/pixmaps/firefox.png
+
+    return 0
+}
