@@ -1,0 +1,16 @@
+{
+    "name": "yelp-xsl",
+    "version": "42.0",
+    "epoch": 0,
+    "description": "XSL stylesheets that are used by the Yelp help browser to format Docbook and Mallard documents.",
+    "groups": [],
+    "url": "https://download.gnome.org/sources/yelp-xsl/",
+    "license": ["GPL-2.0", "LGPL-2.1"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["yelp-xsl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

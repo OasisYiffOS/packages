@@ -1,0 +1,47 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="yelp-xsl"
+VERSION="42.0"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="XSL stylesheets that are used by the Yelp help browser to format Docbook and Mallard documents."
+GRPS=()
+URL="https://download.gnome.org/sources/yelp-xsl/"
+LICENSES=("GPL-2.0" "LGPL-2.1")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPEENDS=("libxslt" "istool")
+PROVIDES=("yelp-xsl")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/yelp-xsl/${_MAJOR_VERSION}/yelp-xsl-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("70d86bedd00fd38ffefb82962b591b710aa6ba59f9a12c968d5c47afeed9f4afecfb5e1228fbaba3acab5d5673cb6511d3d51674f7602f5001835d9c134fedda")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
