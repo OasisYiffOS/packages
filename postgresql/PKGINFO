@@ -1,6 +1,6 @@
 {
     "name": "postgresql",
-    "version": "14.1",
+    "version": "14.2",
     "epoch": 0,
     "description": "An advanced open source object-relational database management system, derived from the Berkeley Postgres database management system.",
     "groups": [],

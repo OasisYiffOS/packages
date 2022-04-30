@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="postgresql"
-VERSION="14.1"
+VERSION="14.2"
 EPOCH=0
 DESC="An advanced open source object-relational database management system, derived from the Berkeley Postgres database management system."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://ftp.postgresql.org/pub/source/v${VERSION}/postgresql-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("33b86beed1a70ae5d86a8c83b371e9d1c0904cdda54329f4b5c7ecc8fde3ca09e14d8b4fc73f836b30abb526221986ddf10a0577f3bb7f419057b601af1e71fa")
+SUM=("dadb2223e4f9fe2357147d607207cf3d1ede6eab11fab0221b23dc64d3fba7d25b236a570cf787606ca72d42c37eba8c614fb3d2ab038d8da0ff0b6ee5c3261e")
 
 # Prepare script
 function prepare() {
