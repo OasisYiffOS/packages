@@ -1,0 +1,16 @@
+{
+    "name": "luajit",
+    "version": "2.1.0-beta3",
+    "epoch": 0,
+    "description": "A Just-In-Time Compiler for Lua.",
+    "groups": [],
+    "url": "http://luajit.org",
+    "license": ["MIT"],
+    "depends": ["glibc", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["luajit"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
