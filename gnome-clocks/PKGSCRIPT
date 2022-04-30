@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-clocks"
+VERSION="42.0"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="A simple clock application for GNOME. It includes world clocks, alarms, a stopwatch and a timer."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/Clocks"
+LICENSES=("GPL-2.0")
+DEPENDS=("glib2" "glibc" "geoclue" "geocode-glib" "gsound" "gtk4" "libadwaita" "libgweather" "gnome-desktop")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("gnome-clocks")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-clocks/${_MAJOR_VERSION}/gnome-clocks-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("f642cb4a626de2a97ad78c25922bb933bdac917d363097fcf5149310111abd11834410b48bfb4fc9cbae06f0ab30b0a5200d45304ce292b5a9558a90b922edb4")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
