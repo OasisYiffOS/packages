@@ -1,0 +1,66 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="ghostscript"
+VERSION="9.56.1"
+_DOWNLOAD_VERSION=$(echo $VERSION | sed 's/\.//g')
+EPOCH=0
+DESC="Versatile processor for PostScript data with the ability to render PostScript to different targets."
+GRPS=()
+URL="https://ghostscript.com"
+LICENSES=("AGPL-3.0")
+DEPENDS=("glibc" "cups" "fontconfig" "freetype2" "little-cms2" "libjpeg-turbo" "libpng" "libtiff" "openjpeg" "cairo" "gtk3" "libidn" "libpaper" "zlib")
+OPT_DEPENDS=()
+PROVIDES=("ghostscript")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${_DOWNLOAD_VERSION}/ghostscript-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("fe5a5103c081dd87cf8b3e0bbbd0df004c0e4e04e41bded7c70372916e6e26249a0e8fa434b561292964c5f3820ee6c60ef1557827a6efb5676012ccb73ded85")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    rm -rf freetype lcms2mt jpeg libpng openjpeg zlib
+
+    ./configure --prefix=/usr           \
+                --disable-compile-inits \
+                --enable-dynamic        \
+                --with-system-libtiff
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make so
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    DESTDIR="${BUILD_DATA_ROOT}" make soinstall
+
+    install -v -m644 base/*.h ${BUILD_DATA_ROOT}/usr/include/ghostscript
+    ln -sfvn ghostscript ${BUILD_DATA_ROOT}/usr/include/ps
+
+    mv -v ${BUILD_DATA_ROOT}/usr/share/doc/ghostscript/${VERSION} ${BUILD_DATA_ROOT}/usr/share/doc/ghostscript-${VERSION}
+    rm -rfv ${BUILD_DATA_ROOT}/usr/share/doc/ghostscript
+    cp -r examples/ ${BUILD_DATA_ROOT}/usr/share/ghostscript/${VERSION}/
+
+    return 0
+}

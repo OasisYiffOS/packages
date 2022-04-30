@@ -1,0 +1,16 @@
+{
+    "name": "ghostscript",
+    "version": "9.56.1",
+    "epoch": 0,
+    "description": "Versatile processor for PostScript data with the ability to render PostScript to different targets.",
+    "groups": [],
+    "url": "https://ghostscript.com",
+    "license": ["AGPL-3.0"],
+    "depends": ["glibc", "cups", "fontconfig", "freetype2", "little-cms2", "libjpeg-turbo", "libpng", "libtiff", "openjpeg", "cairo", "gtk3", "libidn", "libpaper", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["ghostscript"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
