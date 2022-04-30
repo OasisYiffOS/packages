@@ -1,0 +1,61 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="cups-filters"
+VERSION="1.28.15"
+EPOCH=0
+DESC="Backends, filters and other software that was once part of the core CUPS distribution but is no longer maintained by Apple Inc."
+GRPS=()
+URL="https://wiki.linuxfoundation.org/openprinting/cups-filters"
+LICENSES=("GPL-2.0" "GPL-3.0" "MIT" "BSD-2-Clause")
+DEPENDS=("glibc" "gcc-libs" "glib2" "ghostscript" "little-cms2" "opdf" "libjpeg-turbo" "libpng" "libtiff" "avahi" "openldap" "poppler")
+OPT_DEPENDS=()
+MK_DEPENDS=("dejavu-fonts")
+PROVIDES=("cups-filters")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.openprinting.org/download/cups-filters/cups-filters-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("cc8d43bba6edb2b839f3be5fcbcdeb7633ed0f0f0c2737bcc6957cf95fb4ded8ee412358cc95fdbf289ae897dd0b7f32e689f02d191a8f15930eb4d2deefd74c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+./configure --prefix=/usr                                   \
+            --sysconfdir=/etc                               \
+            --localstatedir=/var                            \
+            --without-rcdir                                 \
+            --disable-static                                \
+            --disable-mutool                                \
+            --docdir=/usr/share/doc/cups-filters-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    mkdir -p ${BUILD_DATA_ROOT}/var/lib/systemd/system/
+    install -v -m644 utils/cups-browsed.service ${BUILD_DATA_ROOT}/var/lib/systemd/system/cups-browsed.service
+
+    return 0
+}
