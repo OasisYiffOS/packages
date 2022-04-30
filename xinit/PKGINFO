@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.x.org/",
     "license": ["MIT"],
-    "depends": ["glibc", "libx11", "xauth", "coreutils"],
+    "depends": ["glibc", "libx11", "x11-xauth", "coreutils"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["xinit"],
