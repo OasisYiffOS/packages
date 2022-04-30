@@ -1,0 +1,16 @@
+{
+    "name": "qpdf",
+    "version": "10.6.3",
+    "epoch": 0,
+    "description": "Command-line programs and a library that does structural, content-preserving transformations on PDF files.",
+    "groups": [],
+    "url": "https://qpdf.sourceforge.io",
+    "license": ["MIT"],
+    "depends": ["glibc", "gcc-libs", "libjpeg-turbo", "gnutls"],
+    "optional_depends": [],
+    "make_depends": ["libxslt"],
+    "provides": ["qpdf"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
