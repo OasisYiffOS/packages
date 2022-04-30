@@ -1,0 +1,16 @@
+{
+    "name": "swig",
+    "version": "4.0.2",
+    "epoch": 0,
+    "description": "A compiler that integrates C and C++ with languages including Perl, Python, Tcl, Ruby, PHP, Java, C#, D, Go, Lua, Octave, R, Scheme, and Ocaml.",
+    "groups": [],
+    "url": "http://swig.sourceforge.net",
+    "license": ["GPL-3.0"],
+    "depends": ["glibc", "gcc-libs", "pcre"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["swig"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

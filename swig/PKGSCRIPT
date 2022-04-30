@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="swig"
+VERSION="4.0.2"
+EPOCH=0
+DESC="A compiler that integrates C and C++ with languages including Perl, Python, Tcl, Ruby, PHP, Java, C#, D, Go, Lua, Octave, R, Scheme, and Ocaml."
+GRPS=()
+URL="http://swig.sourceforge.net"
+LICENSES=("GPL-3.0")
+DEPENDS=("glibc" "gcc-libs" "pcre")
+OPT_DEPENDS=()
+PROVIDES=("swig")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/swig/swig-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("05e7da70ce6d9a733b96c0bcfa3c1b82765bd859f48c74759bbf4bb1467acb1809caa310cba5e2b3280cd704fca249eaa0624821dffae1d2a75097c7f55d14ed")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr \
+                --without-maximum-compile-warnings
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -v -m755 -d ${BUILD_DATA_ROOT}/usr/share/doc/swig-${VERSION}
+    cp -v -R Doc/* ${BUILD_DATA_ROOT}/usr/share/doc/swig-${VERSION}
+
+    return 0
+}
