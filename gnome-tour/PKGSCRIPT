@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-tour"
+VERSION="42.0"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="A guided tour and greeter for GNOME."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gnome-tour"
+LICENSES=("GPL-2.0" "LGPL-2.1" "MIT")
+DEPENDS=("glibc" "gcc-libs" "glib2" "gtk4" "libadwaita" "graphene" "pango" "cairo" "gdk-pixbuf2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("gnome-tour")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-tour/${_MAJOR_VERSION}/gnome-tour-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("b42705ab0458ea0af99ba60c831bc9c84e6122cbbec12a9f7ae2aa83f09c847675221fc9b1867bf6562eab12daa8a4c6deac575cc137d7631d108972fe1271f8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
