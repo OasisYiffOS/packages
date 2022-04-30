@@ -5,7 +5,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 NAME="lua"
 VERSION="5.4.4"
 _MAJOR_VERSION="5.4"
-EPOCH=0
+EPOCH=1
 DESC="A lightweight programming language designed for extending applications."
 GRPS=()
 URL="https://www.lua.org/"
@@ -19,7 +19,7 @@ REPLACES=()
 
 # Source information
 SRC=("https://www.lua.org/ftp/lua-${VERSION}.tar.gz"
-"https://www.linuxfromscratch.org/patches/blfs/svn/lua-5.4.3-shared_library-1.patch")
+"lua-${VERSION}-shared_library-1.patch")
 
 SUM_TYPE="sha512"
 SUM=("af0c35d5ba00fecbb2dd617bd7b825edf7418a16a73076e04f2a0df58cdbf098dc3ff4402e974afd789eb5d86d2e12ec6df9c84b99b23656ea694a85f83bcd21"
@@ -30,27 +30,27 @@ function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
     # Create lua pkg-config file
-cat > lua.pc << "EOF"
+cat > lua.pc << EOF
 V=${_MAJOR_VERSION}
 R=${VERSION}
 
 prefix=/usr
-INSTALL_BIN=${prefix}/bin
-INSTALL_INC=${prefix}/include
-INSTALL_LIB=${prefix}/lib
-INSTALL_MAN=${prefix}/share/man/man1
-INSTALL_LMOD=${prefix}/share/lua/${V}
-INSTALL_CMOD=${prefix}/lib/lua/${V}
-exec_prefix=${prefix}
-libdir=${exec_prefix}/lib
-includedir=${prefix}/include
+INSTALL_BIN=\${prefix}/bin
+INSTALL_INC=\${prefix}/include
+INSTALL_LIB=\${prefix}/lib
+INSTALL_MAN=\${prefix}/share/man/man1
+INSTALL_LMOD=\${prefix}/share/lua/\${V}
+INSTALL_CMOD=\${prefix}/lib/lua/\${V}
+exec_prefix=\${prefix}
+libdir=\${exec_prefix}/lib
+includedir=\${prefix}/include
 
 Name: Lua
 Description: An Extensible Extension Language
-Version: ${R}
+Version: \${R}
 Requires:
-Libs: -L${libdir} -llua -lm -ldl
-Cflags: -I${includedir}
+Libs: -L\${libdir} -llua -lm -ldl
+Cflags: -I\${includedir}
 EOF
 
     # Fix issues with shared libraries
