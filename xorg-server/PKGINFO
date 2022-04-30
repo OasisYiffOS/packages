@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.x.org/",
     "license": ["MIT"],
-    "depends": ["glibc", "gcc-libs", "libxcbt", "pixman", "x11-font-util", "xkeyboard-config", "libepoxy", "libtirpc", "systemd", "acpid"],
+    "depends": ["glibc", "gcc-libs", "libxcb", "pixman", "x11-font-util", "xkeyboard-config", "libepoxy", "libtirpc", "systemd", "acpid"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["xorg-server"],
