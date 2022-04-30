@@ -3,7 +3,8 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="nss"
-VERSION="3.74"
+VERSION="3.78"
+_DOWNLOAD_VERSION="3_78"
 EPOCH=0
 DESC="A set of libraries supporting SSL, TLS, PKCS, S/MIME, X.509, and more."
 GRPS=()
@@ -18,18 +19,18 @@ REPLACES=()
 
 # Source information
 # Patch from LFS fixes NSS requiring NSPR to be in the source tree
-SRC=("https://archive.mozilla.org/pub/security/nss/releases/NSS_3_74_RTM/src/nss-3.74.tar.gz"
-"https://www.linuxfromscratch.org/patches/blfs/svn/nss-3.74-standalone-1.patch")
+SRC=("https://archive.mozilla.org/pub/security/nss/releases/NSS_${_DOWNLOAD_VERSION}_RTM/src/nss-${VERSION}.tar.gz"
+"nss-${VERSION}-standalone-1.patch")
 
 SUM_TYPE="sha512"
-SUM=("6fb322b64a5b42e5e22e803c8985986240d2990849d576cfc4b94cdc5c4ab27f683ebc4e1cf5e0ad16c636fc32debb24ec3b2d02d5baedc8fbaedec79c908226"
+SUM=("ab54d838f41f963fdd4b87477b1e769186ae1f138f7c5d764cd6873be4791146d14dcc85697a2ca92e08f3bfcbeb61d64e26e7b5398095272c18a8196d43ac6c"
 "3bf13e8c94d941f7205141100feabb3759e37901a4ccec2e1e568a94687221ebeeb81ebe657a78ec6d9d3dd3f40382bce2a02a007c7505bdc566260c9cd2e6cb")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    patch -Np1 -i ${WORKDIR}/nss-3.74-standalone-1.patch
+    patch -Np1 -i ${WORKDIR}/nss-${VERSION}-standalone-1.patch
 
     cd nss
 
