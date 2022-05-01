@@ -1,0 +1,16 @@
+{
+    "name": "xhost",
+    "version": "1.0.8",
+    "epoch": 0,
+    "description": "Utility to manage hosts or users allowed to connect to the X server.",
+    "groups": [],
+    "url": "https://www.x.org/",
+    "license": ["MIT"],
+    "depends": ["glibc", "libx11", "libxmu"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xhost"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
