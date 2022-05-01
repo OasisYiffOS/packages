@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libglvnd"
+VERSION="1.4.0"
+EPOCH=0
+DESC="The GL Vendor-Neutral Dispatch library."
+GRPS=()
+URL="https://gitlab.freedesktop.org/glvnd/libglvnd"
+LICENSES=("MIT")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("libglvnd")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/glvnd/libglvnd/-/archive/v${VERSION}/libglvnd-v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ca741bdd7ac2fba919f1f85e685e92396bc1cdc436e77bca921d87738bb273a6d48f77650e2781593ce9084dcec6b1fa8f78dc84534a225629e7f61d92df8d89")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dgles1=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

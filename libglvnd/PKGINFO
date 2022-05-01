@@ -1,0 +1,16 @@
+{
+    "name": "libglvnd",
+    "version": "1.4.0",
+    "epoch": 0,
+    "description": "The GL Vendor-Neutral Dispatch library.",
+    "groups": [],
+    "url": "https://gitlab.freedesktop.org/glvnd/libglvnd",
+    "license": ["MIT"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["libglvnd"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
