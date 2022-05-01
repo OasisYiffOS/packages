@@ -1,0 +1,16 @@
+{
+    "name": "sdl2",
+    "version": "2.0.22",
+    "epoch": 0,
+    "description": "Simple DirectMedia Layer Version 2 is a cross-platform library designed to make it easy to write multimedia software, such as games and emulators.",
+    "groups": [],
+    "url": "https://www.libsdl.org",
+    "license": ["MIT", "zlib"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["sdl2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="sdl2"
+VERSION="2.0.22"
+EPOCH=0
+DESC="Simple DirectMedia Layer Version 2 is a cross-platform library designed to make it easy to write multimedia software, such as games and emulators."
+GRPS=()
+URL="https://www.libsdl.org"
+LICENSES=("MIT" "zlib")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPEENDS=("libxkbcommon" "Wayland-protocols" "asla" "ibus" "nasm" "pulseaudio")
+PROVIDES=("sdl2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.libsdl.org/release/SDL2-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ca4b690433cd4d9d73b797da98666317128e7e817ab60e874a49d94791ea41e8a6b4fc43649593120daa0702190c0f8a6ed326c908d87375c8da9f369d994f6a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/SDL2-${VERSION}"
+
+    sed -i "s/-Werror=declaration-after-statement//" configure
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/SDL2-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/SDL2-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    # Delete a static library
+    rm ${BUILD_DATA_ROOT}/usr/lib/libSDL2*.a
+
+    return 0
+}
