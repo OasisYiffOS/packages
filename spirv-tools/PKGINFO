@@ -1,0 +1,16 @@
+{
+    "name": "spirv-tools",
+    "version": "2022.2",
+    "epoch": 0,
+    "description": "API and commands for processing SPIR-V modules.",
+    "groups": [],
+    "url": "https://github.com/KhronosGroup/SPIRV-Tools",
+    "license": ["ASL-2.0"],
+    "depends": ["glibc", "gcc-libs"],
+    "optional_depends": [],
+    "make_depends": ["cmake", "python"],
+    "provides": ["spirv-tools"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

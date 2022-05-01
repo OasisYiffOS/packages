@@ -1,0 +1,61 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="spirv-tools"
+VERSION="2022.2"
+EPOCH=0
+DESC="API and commands for processing SPIR-V modules."
+GRPS=()
+URL="https://github.com/KhronosGroup/SPIRV-Tools"
+LICENSES=("ASL-2.0")
+DEPENDS=("glibc" "gcc-libs")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake" "python" "spirv-headers")
+PROVIDES=("spirv-tools")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("027819bb68a3cb42f086cab8089e0fe0b2ebcf40607811c6848d7d9f412ed3c977498d32dc7e37b828d0e6eb6924878e7c975c461fc5b171142a4ee1da2c1caa")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/SPIRV-Tools-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr           \
+          -DCMAKE_BUILD_TYPE=Release            \
+          -DCMAKE_INSTALL_LIBDIR=lib            \
+          -DSPIRV_WERROR=OFF                    \
+          -DBUILD_SHARED_LIBS=ON                \
+          -DSPIRV_TOOLS_BUILD_STATIC=OFF        \
+          -DSPIRV-Headers_SOURCE_DIR=/usr       \
+          ..
+
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/SPIRV-Tools-${VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/SPIRV-Tools-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
