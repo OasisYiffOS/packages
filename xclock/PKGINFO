@@ -1,0 +1,16 @@
+{
+    "name": "xclock",
+    "version": "1.1.1",
+    "epoch": 0,
+    "description": "A simple X11 clock.",
+    "groups": [],
+    "url": "https://www.x.org/",
+    "license": ["MIT"],
+    "depends": ["glibc", "libx11", "libxaw", "libxft", "libxmu", "libxrender", "libxt", "libxkbfile"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xclock"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
