@@ -3,25 +3,25 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="mesa"
-VERSION="22.0.1"
+VERSION="22.0.2"
 EPOCH=1
 DESC="An open-source implementation of the OpenGL/CL/MAX and Vulkan specifications."
 GRPS=()
 URL="https://www.mesa3d.org"
 LICENSES=("custom")
-DEPENDS=("glibc" "gcc-libs" "libdrm" "libelf" "expat" "libxshmfence" "libxxf86vm" "libgcrypt" "nettle" "llvm" "libunwind" "vulkan-loader")
+DEPENDS=("glibc" "gcc-libs" "libdrm" "libelf" "expat" "libxshmfence" "libxxf86vm" "libgcrypt" "nettle" "llvm" "libunwind" "vulkan-loader" "lm-sensors" "libvdpau" "libva" "libglvnd")
 OPT_DEPENDS=()
-MK_DEPENDS=("python-mako" "libxml2" "zstd" "meson" "ninja")
+MK_DEPENDS=("python-mako" "libxml2" "zstd" "meson" "ninja" "glslang")
 PROVIDES=("mesa")
 CONFLICTS=()
 REPLACES=()
 
 # Source information
 SRC=("ftp://ftp.freedesktop.org/pub/mesa/mesa-${VERSION}.tar.xz"
-"https://www.linuxfromscratch.org/patches/blfs/svn/mesa-21.3.7-nouveau_fixes-1.patch")
+"mesa-21.3.7-nouveau_fixes-1.patch")
 
 SUM_TYPE="sha512"
-SUM=("cc8012b8f3fcbecfbb153d0e009e6522c3776023501da8499c06f1eaa9ab0a555ca597e16e4d7a2b954b05c8c0737ae6567e0d8549fb63aa86ae587eb31cd01e"
+SUM=("939ddf9acd280e1b20b3540349b3ad07bbeee5d821198f1d667e86634449bf5d0a0df5832753b8b3f8816709c2f02959cce25f3d26a33cc758dd8e25d158ddb8"
 "aa0855251a1869330960acc9e3e3c7f14b002d93e45a4f650d5c8569ff260cfb7b7c9e56916f395339c9ffb14fb24d45480d2f577da4de286296fa06b2825f1c")
 
 # Prepare script
@@ -33,22 +33,37 @@ function prepare() {
 
     GALLIUM_DRV="r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,d3d12,i915,zink"
     VULKAN_DRV="amd,intel,swrast"
+    VULKAN_LAYERS="device-select,intel-nullhw,overlay"
 
-    meson --prefix=/usr                     \
-          --buildtype=release               \
-          -Dgallium-drivers=$GALLIUM_DRV    \
-          -Dvulkan-drivers=$VULKAN_DRV      \
-          -Dgallium-nine=true               \
-          -Dglx=dri                         \
-          -Dvalgrind=disabled               \
-          -Dlibunwind=enabled               \
-          -Ddri3=enabled                    \
-          -Degl=enabled                     \
-          -Dgallium-nine=true               \
-          -Dgles1=disabled                  \
-          -Dgles2=enabled                   \
-          -Dglx=dri                         \
-          -Dllvm=enabled                    \
+    CFLAGS+=' -mtls-dialect=gnu -g1'
+    CXXFLAGS+=' -mtls-dialect=gnu -g1'
+
+    meson --prefix=/usr                                         \
+          --buildtype=release                                   \
+          -Dgallium-drivers=$GALLIUM_DRV                        \
+          -Dvulkan-drivers=$VULKAN_DRV                          \
+          -Dvulkan-layers=${VULKAN_LAYERS}                      \
+          -Dgallium-nine=true                                   \
+          -Dglx=dri                                             \
+          -Dvalgrind=disabled                                   \
+          -Dlibunwind=enabled                                   \
+          -Ddri3=enabled                                        \
+          -Degl=enabled                                         \
+          -Dgbm=enabled                                         \
+          -Dgallium-nine=true                                   \
+          -Dgles1=disabled                                      \
+          -Dgles2=enabled                                       \
+          -Dshared-glapi=enabled                                \
+          -Dllvm=enabled                                        \
+          -Dglvnd=true                                          \
+          -Dplatforms=x11,wayland                               \
+          -Dgallium-extra-hud=true                              \
+          -Dgallium-opencl=icd                                  \
+          -Dgallium-va=enabled                                  \
+          -Dgallium-vdpau=enabled                               \
+          -Dgallium-xa=enabled                                  \
+          -Dosmesa=true                                         \
+          -Dlmsensors=enabled                                   \
           ..
 
     unset GALLIUM_DRV VULKAN_DRV
