@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.mozilla.org/firefox/",
     "license": ["MPL-1.1", "GPL-2.0", "LGPL-2.1"],
-    "depends": ["glibc", "dbus-glib", "gtk3", "libnotify", "pulseaudio", "startup-notification", "icu", "libevent", "libvpx", "libwebp", "nss", "ffmpeg", "libffi", "libjpeg", "libpng", "pixman", "zlib"],
+    "depends": ["glibc", "dbus-glib", "gtk3", "libnotify", "pulseaudio", "startup-notification", "icu", "libevent", "libvpx", "libwebp", "nss", "ffmpeg", "libffi", "libjpeg-turbo", "libpng", "pixman", "zlib"],
     "optional_depends": ["wireless-tools"],
     "make_depends": ["autoconf", "automake", "cbindgen", "llvm", "nodejs", "nasm", "python", "unzip", "zip"],
     "provides": ["firefox"],
