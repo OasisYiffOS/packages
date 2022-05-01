@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Apps/Evolution",
     "license": ["LGPL-2.1"],
-    "depends": ["glibc", "glib2", "gcc-libs", "cairo", "gcr", "gnome-online-accounts", "gtk3", "json-glib", "krb5", "libcanberra", "libgdata", "libgweather", "libical", "libicu", "libsecret", "libsoup", "libxml2", "nspr", "nss", "openldap", "pango", "sqlite", "webkitgtk", "zlib"],
+    "depends": ["glibc", "glib2", "gcc-libs", "cairo", "gcr", "gnome-online-accounts", "gtk3", "json-glib", "krb5", "libcanberra", "libgdata", "libgweather", "libical", "icu", "libsecret", "libsoup", "libxml2", "nspr", "nss", "openldap", "pango", "sqlite", "webkitgtk", "zlib"],
     "optional_depends": [],
     "make_depends": ["cmake", "gobject-introspection", "vala"],
     "provides": ["evolution-data-server"],

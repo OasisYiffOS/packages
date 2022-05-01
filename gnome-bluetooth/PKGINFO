@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Projects/GnomeBluetooth",
     "license": ["GPL-2.0"],
-    "depends": ["glibc", "gcc-libs", "glib2", "gtk4", "libadwaita", "bluez", "piepwire", "pulseaudio", "systemd", "gsound", "libnotify"],
+    "depends": ["glibc", "gcc-libs", "glib2", "gtk4", "libadwaita", "bluez", "pipewire", "pulseaudio", "systemd", "gsound", "libnotify"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "istool", "gobject-introspection"],
     "provides": ["gnome-bluetooth"],

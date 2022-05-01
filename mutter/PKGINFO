@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.gnome.org",
     "license": ["GPL-2.0"],
-    "depends": ["glibc", "gcc-libs", "glib2", "gnome-settings-daemon", "graphene", "libxcvt", "libkbcommon", "pipewire", "zenity", "desktop-file-utils", "startup-notification", "libx11", "pango", "libinput", "wayland", "wayland-protocols", "xwayland", "gtk3", "xorg-server"],
+    "depends": ["glibc", "gcc-libs", "glib2", "gnome-settings-daemon", "graphene", "libxcvt", "libxkbcommon", "pipewire", "zenity", "desktop-file-utils", "startup-notification", "libx11", "pango", "libinput", "wayland", "wayland-protocols", "xwayland", "gtk3", "xorg-server"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "sysprof", "gobject-introspection"],
     "provides": ["mutter"],
