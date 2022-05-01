@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="redis"
+VERSION="7.0.0"
+EPOCH=0
+DESC="A persistent key-value database."
+GRPS=()
+URL="https://redis.io"
+LICENSES=("MIT")
+DEPENDS=("glibc" "gawk" "openssl" "shadow" "systemd")
+OPT_DEPENDS=()
+PROVIDES=("redis")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/redis/redis/archive/refs/tags/${VERSION}.tar.gz"
+"redis.service"
+"redis-sentinel.service"
+"redis.sysusers"
+"redis.tmpfiles")
+
+SUM_TYPE="sha512"
+SUM=("9209dd95511a27802f83197b037c006c5f40c50fe5315eb6a5ac2af1619a7b1c890160106157086420c1aca8a058f573681bfad1897052308ca6e64407404757"
+"9bca7fee911e6b2eaa5df1090d681220caf1a4c9ba804c1a52c25a03eb7b7b8dc5e47b9daf02de737f82abbb291761cf2de6045bc98dae0dd3a38a3d2bbd4b31"
+"c252e2604e18ff61de240f94a67fe44d053d81f01b541ea8d6360754b78f085fb25af2e660f686a0f9cc17f833eed37ed19aeafee709e286426b2b327a05eaa3"
+"c82af4df7679915e4f33ebc417c2dbb377b7b8df21e28327bcdb0e96fd867ae48d4712babebf13b4cb0d7004dcd0431e777b3d5b1d38adb2b48d09783b208d92"
+"a7a0222b9b2d595bd7eecc27a5e71f1da2b0e3d0c62ff1a4ee775dda1e0facc491666cb5a892ec3c84d182a3b1e46a809beb7fee48dd840c468f61cd2d2f077c")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make BUILD_TLS=yes USE_SYSTEMD=yes 
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make PREFIX="${BUILD_DATA_ROOT}/usr" install
+    
+    install -Dm644 -t "${BUILD_DATA_ROOT}"/etc/redis redis.conf sentinel.conf
+    install -Dm644 -t "${BUILD_DATA_ROOT}"/usr/lib/systemd/system/ ${WORKDIR}/redis.service ${WORKDIR}/redis-sentinel.service
+    install -Dm644 ${WORKDIR}/redis.sysusers "${BUILD_DATA_ROOT}"/usr/lib/sysusers.d/redis.conf
+    install -Dm644 ${WORKDIR}/redis.tmpfiles "${BUILD_DATA_ROOT}"/usr/lib/tmpfiles.d/redis.conf
+    return 0
+}

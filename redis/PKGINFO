@@ -1,0 +1,16 @@
+{
+    "name": "redis",
+    "version": "7.0.0",
+    "epoch": 0,
+    "description": "A persistent key-value database.",
+    "groups": [],
+    "url": "https://redis.io",
+    "license": ["MIT"],
+    "depends": ["glibc", "gawk", "openssl", "shadow", "systemd"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["redis"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
