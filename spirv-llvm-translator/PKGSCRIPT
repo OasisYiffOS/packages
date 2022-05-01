@@ -29,16 +29,12 @@ function prepare() {
     mkdir build
     cd    build
 
-    cmake -DBUILD_SHARED_LIBS=ON                                        \
-          -DCMAKE_BUILD_TYPE=Release                                    \
+    cmake -DCMAKE_BUILD_TYPE=Release                                    \
           -DCMAKE_INSTALL_PREFIX=/usr                                   \
-          -DCMAKE_POSITION_INDEPENDENT_CODE=ON                          \
           -DCMAKE_SKIP_RPATH=ON                                         \
-          -DLLVM_EXTERNAL_LIT=/usr/bin/lit                              \
           -DLLVM_EXTERNAL_SPIRV_HEADERS_SOURCE_DIR=/usr/include/spirv/  \
-          -Wno-dev                                                      \
+          -DLLVM_EXTERNAL_PROJECTS="SPIRV-Headers"                      \
           ..
-
 
     return 0
 }
@@ -47,7 +43,7 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/SPIRV-LLVM-Translator-${VERSION}/build"
 
-    make
+    make llvm-spirv
 
     return 0
 }
@@ -57,6 +53,8 @@ function postbuild() {
     cd "${WORKDIR}/SPIRV-LLVM-Translator-${VERSION}/build"
 
     DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -Dm755 tools/llvm-spirv/llvm-spirv "${BUILD_DATA_ROOT}/usr/bin/llvm-spirv"
 
     return 0
 }
