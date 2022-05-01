@@ -1,0 +1,16 @@
+{
+    "name": "spirv-llvm-translator",
+    "version": "14.0.0",
+    "epoch": 0,
+    "description": "Khronos LLVM to SPIRV Translator.",
+    "groups": [],
+    "url": "https://github.com/KhronosGroup/SPIRV-LLVM-Translator",
+    "license": ["NCSA"],
+    "depends": ["glibc", "llvm"],
+    "optional_depends": [],
+    "make_depends": ["cmake", "python", "spirv-tools", "spirv-headers"],
+    "provides": ["spirv-llvm-translator"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

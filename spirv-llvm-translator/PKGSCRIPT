@@ -1,0 +1,62 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="spirv-llvm-translator"
+VERSION="14.0.0"
+EPOCH=0
+DESC="Khronos LLVM to SPIRV Translator."
+GRPS=()
+URL="https://github.com/KhronosGroup/SPIRV-LLVM-Translator"
+LICENSES=("NCSA")
+DEPENDS=("glibc" "llvm")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake" "python" "spirv-tools" "spirv-headers")
+PROVIDES=("spirv-llvm-translator")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/KhronosGroup/SPIRV-LLVM-Translator/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("5659149a380ceef7acdcb274bcad9b23e4817bf88e795e0a8464dfe14fbd102dbf7199cbe67eb611a16d3a411c7a1b8afc6f0eef61fec5a2b8f9fba06748bcb1")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/SPIRV-LLVM-Translator-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake -DBUILD_SHARED_LIBS=ON                                        \
+          -DCMAKE_BUILD_TYPE=Release                                    \
+          -DCMAKE_INSTALL_PREFIX=/usr                                   \
+          -DCMAKE_POSITION_INDEPENDENT_CODE=ON                          \
+          -DCMAKE_SKIP_RPATH=ON                                         \
+          -DLLVM_EXTERNAL_LIT=/usr/bin/lit                              \
+          -DLLVM_EXTERNAL_SPIRV_HEADERS_SOURCE_DIR=/usr/include/spirv/  \
+          -Wno-dev                                                      \
+          ..
+
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/SPIRV-LLVM-Translator-${VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/SPIRV-LLVM-Translator-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
