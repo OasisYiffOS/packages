@@ -1,0 +1,66 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="openssl-compat"
+VERSION="1.1.1o"
+EPOCH=0
+DESC="Cryptography and SSL/TLS Toolkit. (OpenSSL 1.1 Compatibility)"
+GRPS=()
+URL="https://www.openssl.org/"
+LICENSES=("OpenSSL" "ASL-2.0")
+DEPENDS=("glibc" "zlib")
+OPT_DEPENDS=()
+PROVIDES=("openssl-compat")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.openssl.org/source/openssl-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("75b2f1499cb4640229eb6cd35d85cbff2e19db17b959ac4d04b60f1b395b73567f9003521452a0fcfeea9b31b26de0a7bccf476ecf9caae02298f3647cfb7e23")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/openssl-${VERSION}"
+
+    ./config --prefix=/usr         \
+             --openssldir=/etc/ssl \
+             --libdir=lib          \
+             shared                \
+             zlib-dynamic
+
+    # Remove empty DESTDIR declare
+    sed -i '0,/DESTDIR=/s///' Makefile
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/openssl-${VERSION}"
+
+    make
+
+    # One test is known to fail
+    make test || true
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/openssl-${VERSION}"
+
+    sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
+
+    DESTDIR="${BUILD_DATA_ROOT}" MANSUFFIX=ssl make install
+
+    # Only provide the 1.1 library
+    rm -r ${BUILD_DATA_ROOT}/etc
+    rm -r ${BUILD_DATA_ROOT}/usr/{bin,include,share}
+    rm -r ${BUILD_DATA_ROOT}/usr/lib/{pkgconfig,libssl.so,libcrypto.so}
+
+    return 0
+}

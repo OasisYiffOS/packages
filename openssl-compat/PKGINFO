@@ -1,0 +1,16 @@
+{
+    "name": "openssl-compat",
+    "version": "1.1.1o",
+    "epoch": 0,
+    "description": "Cryptography and SSL/TLS Toolkit. (OpenSSL 1.1 Compatibility)",
+    "groups": [],
+    "url": "https://www.openssl.org/",
+    "license": ["OpenSSL", "ASL-2.0"],
+    "depends": ["glibc", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["openssl-compat"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
