@@ -1,0 +1,16 @@
+{
+    "name": "folks",
+    "version": "0.15.5",
+    "epoch": 0,
+    "description": "Library that aggregates people from multiple sources (e.g. Telepathy connection managers and eventually evolution data server, Facebook, etc.) to create meta-contacts.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/Folks",
+    "license": ["LGPL-2.1"],
+    "depends": ["evolution-data-server", "glibc", "glib2", "libgee", "telepathy-glib"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "vala", "gobject-introspection", "python-dbusmock"],
+    "provides": ["folks"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

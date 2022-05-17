@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="folks"
+VERSION="0.15.5"
+_MAJOR_VERSION="0.15"
+EPOCH=0
+DESC="Library that aggregates people from multiple sources (e.g. Telepathy connection managers and eventually evolution data server, Facebook, etc.) to create meta-contacts."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/Folks"
+LICENSES=("LGPL-2.1")
+DEPENDS=("evolution-data-server" "glibc" "glib2" "libgee" "telepathy-glib")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vala" "gobject-introspection" "python-dbusmock")
+PROVIDES=("folks")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/folks/${_MAJOR_VERSION}/folks-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("696d158234cc5b4c504491c6e01dc45ed53c4ac02e3e62e637d229207dde396a82a850d143d8615dc838d99c756edfce145405ea3972c556951d6408fb8487ea")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
