@@ -1,0 +1,16 @@
+{
+    "name": "python-dbusmock",
+    "version": "0.27.5",
+    "epoch": 0,
+    "description": "Python library useful for writing tests for software which talks to D-Bus services.",
+    "groups": [],
+    "url": "https://github.com/martinpitt/python-dbusmock/",
+    "license": ["LGPL-3.0"],
+    "depends": ["dbus", "glibc", "glib2", "python", "python-dbus"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-dbusmock"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

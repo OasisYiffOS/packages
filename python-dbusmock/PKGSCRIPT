@@ -1,0 +1,46 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="python-dbusmock"
+VERSION="0.27.5"
+EPOCH=0
+DESC="Python library useful for writing tests for software which talks to D-Bus services."
+GRPS=()
+URL="https://github.com/martinpitt/python-dbusmock/"
+LICENSES=("LGPL-3.0")
+DEPENDS=("dbus" "glibc" "glib2" "python" "python-dbus")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("python-dbusmock")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/martinpitt/python-dbusmock/releases/download/${VERSION}/python-dbusmock-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("6e5f5eddfc949c610b64a766434988c142397893e088b8522e6895e31383ec3c14d2f053f9aab17f00137e883a01bf95be35326f7ca97ee8c9780d6704e7d1dc")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/python-dbusmock-${VERSION}/"
+
+    pip3 wheel -w dist --no-build-isolation --no-deps $PWD
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/python-dbusmock-${VERSION}/"
+
+    pip3 install --root=${BUILD_DATA_ROOT} --no-index --find-links dist --no-cache-dir python-dbusmock
+
+    return 0
+}
