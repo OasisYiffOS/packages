@@ -5,12 +5,12 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 NAME="libsoup"
 VERSION="2.74.2"
 _MAJOR_VERSION="2.74"
-EPOCH=0
+EPOCH=1
 DESC="An HTTP client/server library for GNOME."
 GRPS=()
 URL="https://wiki.gnome.org/Projects/libsoup"
 LICENSES=("LGPL-2.0")
-DEPENDS=("brotli" "glib-networking" "glib2" "glibc" "libpsl" "libxml2" "sqlite" "zlib")
+DEPENDS=("brotli" "glib-networking" "glib2" "glibc" "libpsl" "libxml2" "sqlite" "zlib" "krb5")
 OPT_DEPENDS=()
 MK_DEPENDS=("gobject-introspection" "vala" "meson" "ninja")
 PROVIDES=("libsoup")
@@ -33,7 +33,7 @@ function prepare() {
     meson --prefix=/usr       \
           --buildtype=release \
           -Dvapi=enabled      \
-          -Dgssapi=disabled   \
+          -Dgssapi=enabled    \
           -Dsysprof=disabled  \
           ..
 
