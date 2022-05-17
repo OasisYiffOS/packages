@@ -1,0 +1,16 @@
+{
+    "name": "python-dbus",
+    "version": "1.2.18",
+    "epoch": 0,
+    "description": "A Python 3 module providing Python bindings to the D-Bus API interface.",
+    "groups": [],
+    "url": "https://www.freedesktop.org/wiki/Software/DBusBindings/",
+    "license": ["MIT"],
+    "depends": ["dbus", "glibc", "glib2", "python", "python-pygobject"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-dbus"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
