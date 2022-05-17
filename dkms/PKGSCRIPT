@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="dkms"
+VERSION="3.0.3"
+EPOCH=0
+DESC="Framework for the Dynamic Kernel Module Support (DKMS) method for installing modules as originally developed by Dell."
+GRPS=()
+URL="https://github.com/dell/dkms"
+LICENSES=("GPL-2.0")
+DEPENDS=("coreutils" "cpio" "elfutils" "file" "findutils" "gawk" "gcc" "grep" "gzip" "linux-headers" "kmod" "make" "sed" "systemd" "tar" "which")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("dkms")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/dell/dkms/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("7ba3628646c24bb6ed2bb053ed6bded45eaea4006a42b03d5790be2d58b02202f9b3274c59e41568217dcbe41d505df663420ce576f812b1824b47923deeac41")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    for i in dkms{.in,.8.in,_framework.conf,.bash-completion,_common.postinst} sign_helper.sh; do
+        sed -ri 's,/lib/modules,/usr/lib/modules,g' "$i"
+    done
+
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make \
+        DESTDIR="${BUILD_DATA_ROOT}"        \
+        SBIN="${BUILD_DATA_ROOT}/usr/bin"   \
+        install
+
+    return 0
+}
