@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-contacts"
+VERSION="42.0"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="GNOME's integrated address book."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/Contacts"
+LICENSES=("GPL-2.0")
+DEPENDS=("cairo" "evolution-data-server" "folks" "glibc" "gcc-libs" "glib2" "gtk4" "gsettings-desktop-schemas" "libgee" "libportal" "libadwaita" "pango")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vala")
+PROVIDES=("gnome-contacts")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-contacts/${_MAJOR_VERSION}/gnome-contacts-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("09a0d70a1550136717c4f837f2e4526928559de4bccedb71b34a216d99c36886bfd5786fcc3487198c488b4778046453d0069da55ab283ef87513c2d668a11cd")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "gnome-contacts",
+    "version": "42.0",
+    "epoch": 0,
+    "description": "GNOME's integrated address book.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/Contacts",
+    "license": ["GPL-2.0"],
+    "depends": ["cairo", "evolution-data-server", "folks", "glibc", "gcc-libs", "glib2", "gtk4", "gsettings-desktop-schemas", "libgee", "libportal", "libadwaita", "pango"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "vala"],
+    "provides": ["gnome-contacts"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
