@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-calendar"
+VERSION="42.1"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="Simple and beautiful calendar application designed to perfectly fit the GNOME desktop."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/Calendar"
+LICENSES=("GPL-3.0")
+DEPENDS=("evolution-data-server" "glibc" "gcc-libs" "glib2" "gtk4" "graphene" "gsettings-desktop-schemas" "geoclue" "libadwaita" "libadwaita" "libgweather" "libical" "libsoup" "pango")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vala")
+PROVIDES=("gnome-calendar")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-calendar/${_MAJOR_VERSION}/gnome-calendar-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("5f50ab84f98c3ddf4c1e49f9556e47f6590c5eb8a3b598edb76d96d5c8eab48003e957d5b199a94a3955951453e3c3b783745c9b9376aee2d93d14ff95178093")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
