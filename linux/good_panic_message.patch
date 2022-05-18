@@ -1,0 +1,19 @@
+Submitted By:            Evie V. <evie at uwueviee dot live>
+Date:                    2021-09-19
+Initial Package Version: 5.14.6
+Upstream Status:         Not Applicable
+Origin:                  Self
+Description:             Changes the kernel panic message.
+
+index cefd7d82366f..f95028863fd3 100644
+--- a/kernel/panic.c
++++ b/kernel/panic.c
+@@ -223,7 +223,7 @@ void panic(const char *fmt, ...)
+ 	if (len && buf[len - 1] == '\n')
+ 		buf[len - 1] = '\0';
+ 
+-	pr_emerg("Kernel panic - not syncing: %s\n", buf);
++	pr_emerg("oopsie woopsie the linux kernel did a fucky wucky uwu: %s\n", buf);
+ #ifdef CONFIG_DEBUG_BUGVERBOSE
+ 	/*
+ 	 * Avoid nested stack-dumping if a panic occurs during oops processing
