@@ -1,0 +1,91 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="linux-src"
+VERSION="5.17.8"
+_MAJOR_VERSION="5"
+EPOCH=0
+DESC="The Linux kernel"
+GRPS=("base")
+URL="https://www.kernel.org/"
+LICENSES=("GPL-2.0")
+DEPENDS=("bison" "elfutils" "findutils" "flex" "gcc" "make" "pahole" "bc")
+OPT_DEPENDS=()
+PROVIDES=("linux-src")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://cdn.kernel.org/pub/linux/kernel/v${_MAJOR_VERSION}.x/linux-${VERSION}.tar.xz"
+"module.lds"
+"config")
+
+SUM_TYPE="sha512"
+SUM=("032feea7138d0b9b016a50769e6f10889e0ec8cb532569b1aaecac957211e60cc9207aa6ac2bb379c967c8322f8ccb19d2834bf1f88c03d0774b087e08a9a22a"
+"551361662ab1195cbecbc8b2e6c1a2909639b707ec89f556ac7767a8daf3995b8e921396bc02da1857e1bfc517e2f2da37c146386b6523c5a476f5a3b8fcb99a"
+"98a2e6928a4c508fee329d6cb7beafba70dbaa22447742051d545d613d3d0b25f93adcaac6140789d03bed385caec6220528bf52954a625b1dbe554f4be4712a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/linux-${VERSION}"
+
+    cp -v "${WORKDIR}/config" .config
+
+    make oldconfig
+    make prepare
+
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/linux-${VERSION}"
+
+    local DEST="${BUILD_DATA_ROOT}/usr/src/linux"
+
+    install -Dt "${DEST}" -m644 Makefile
+
+    install -Dt "${DEST}/kernel" -m644 kernel/Makefile
+    install -Dt "${DEST}/arch/x86" -m644 arch/x86/Makefile
+    cp -t "${DEST}" -a scripts
+
+    install -Dt "${DEST}/tools/objtool" tools/objtool/objtool
+
+    install -Dt "${DEST}/tools/bpf/resolve_btfids" tools/bpf/resolve_btfids/resolve_btfids
+
+    cp -t "${DEST}" -a include
+    cp -t "${DEST}/arch/x86" -a arch/x86/include
+
+    install -Dt "${DEST}/drivers/md" -m644 drivers/md/*.h
+    install -Dt "${DEST}/net/mac80211" -m644 net/mac80211/*.h
+
+    install -Dt "${DEST}/drivers/media/i2c" -m644 drivers/media/i2c/msp3400-driver.h
+
+    install -Dt "${DEST}/drivers/media/usb/dvb-usb" -m644 drivers/media/usb/dvb-usb/*.h
+    install -Dt "${DEST}/drivers/media/dvb-frontends" -m644 drivers/media/dvb-frontends/*.h
+    install -Dt "${DEST}/drivers/media/tuners" -m644 drivers/media/tuners/*.h
+
+    install -Dt "${DEST}/drivers/iio/common/hid-sensors" -m644 drivers/iio/common/hid-sensors/*.h
+
+    find . -name 'Kconfig*' -exec install -Dm644 {} "${DEST}/{}" \;
+    
+    rm -r "${DEST}/Documentation"
+
+    find -L "${DEST}" -type l -delete
+
+    find "${DEST}" -type f -name '*.o' -delete
+
+    ln -s /boot/config-${VERSION}-yiffOS "${DEST}/.config"
+    ln -s /boot/System.map-${VERSION}-yiffOS "${DEST}/System.map"
+    ln -s /boot/Module.symvers-${VERSION}-yiffOS "${DEST}/Module.symvers"
+
+    cp ${WORKDIR}/module.lds "${DEST}/scripts/module.lds"
+
+    return 0
+}

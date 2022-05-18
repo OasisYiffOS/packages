@@ -1,0 +1,16 @@
+{
+    "name": "linux-src",
+    "version": "5.17.8",
+    "epoch": 0,
+    "description": "The Linux kernel",
+    "groups": ["base"],
+    "url": "https://www.kernel.org/",
+    "license": ["GPL-2.0"],
+    "depends": ["bison", "elfutils", "findutils", "flex", "gcc", "make", "pahole", "bc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["linux-src"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
