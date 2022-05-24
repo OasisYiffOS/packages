@@ -1,0 +1,71 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="plymouth"
+VERSION="22.02.122"
+EPOCH=0
+DESC="An attractive graphical boot animation in place of the text messages that normally get shown."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/Plymouth/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glibc" "systemd")
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf" "automake" "libtool" "docbook-xsl")
+PROVIDES=("plymouth")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/plymouth/plymouth/-/archive/${VERSION}/${NAME}-${VERSION}.tar.gz"
+"yiffos-logo.png")
+
+SUM_TYPE="sha512"
+SUM=("9930acaff1d4d7d4974c2d9af026960d5ba3fb1d3783f7cfb5dc0e74fc1037ae7fc8c0d6995145bb942993aa940843231ccf5ded54cd2721afffb78d99ef2f4f"
+"355d78cb69ad8c773ff8a9e0f6f1dce84af1bb9061f885ac1819e05d1a0865fee768309a2c4b15e02db1856cd52d2539ee475ffed35cbe5794829793c2f80dd3")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    autoreconf -fiv
+
+    # Change the default theme
+    sed -i -e 's/spinner/bgrt/g' src/plymouthd.defaults
+
+    ./configure --prefix=/usr                                         \
+                --enable-tracing                                      \
+                --with-release-file=/etc/os-release                   \
+                --with-logo=/usr/share/plymouth/yiffos-logo.png       \
+                --with-background-start-color-stop=0xa682ff           \
+                --with-background-end-color-stop=0x715aff             \
+                --with-background-color=0xa682ff                      \
+                --with-runtimedir=/run                                \
+                --enable-systemd-integration                          \
+                --without-system-root-install                         \
+                --without-rhgb-compat-link                            \
+                --enable-drm                                          \
+                --enable-pango
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    cp -v ${WORKDIR}/yiffos-logo.png ${BUILD_DATA_ROOT}/usr/share/plymouth/yiffos-logo.png
+
+    return 0
+}

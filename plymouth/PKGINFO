@@ -1,0 +1,16 @@
+{
+    "name": "plymouth",
+    "version": "22.02.122",
+    "epoch": 0,
+    "description": "An attractive graphical boot animation in place of the text messages that normally get shown.",
+    "groups": [],
+    "url": "https://www.freedesktop.org/wiki/Software/Plymouth/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glibc", "systemd"],
+    "optional_depends": [],
+    "make_depends": ["autoconf", "automake", "libtool", "docbook-xsl"],
+    "provides": ["plymouth"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
