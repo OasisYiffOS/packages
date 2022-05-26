@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="glew"
+VERSION="2.2.0"
+EPOCH=0
+DESC="The OpenGL Extension Wrangler Library (GLEW) is a cross-platform open-source C/C++ extension loading library."
+GRPS=()
+URL="https://github.com/nigels-com/glew"
+LICENSES=("MIT")
+DEPENDS=("glibc" "libx11" "libglvnd")
+OPT_DEPENDS=()
+PROVIDES=("glew")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/glew/glew-${VERSION}.tgz")
+
+SUM_TYPE="sha512"
+SUM=("57453646635609d54f62fb32a080b82b601fd471fcfd26e109f479b3fef6dfbc24b83f4ba62916d07d62cd06d1409ad7aa19bc1cd7cf3639c103c815b8be31d1")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Ensure library is installed in /usr/lib
+    sed -i 's%lib64%lib%g' config/Makefile.linux
+
+    # Remove static libraries
+    sed -i -e '/glew.lib.static:/d' \
+           -e '/0644 .*STATIC/d'    \
+           -e 's/glew.lib.static//' Makefile
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
