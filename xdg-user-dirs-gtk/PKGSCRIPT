@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xdg-user-dirs-gtk"
+VERSION="0.10"
+EPOCH=0
+DESC="nl80211 based CLI configuration utility for wireless devices."
+GRPS=()
+URL="https://freedesktop.org/wiki/Software/xdg-user-dirs/"
+LICENSES=("GPL-2.0")
+DEPENDS=("xdg-user-dirs" "glibc" "gtk3" "glib2")
+OPT_DEPENDS=()
+MK_DEPENDS=("intltool" "gnome-common")
+PROVIDES=("xdg-user-dirs-gtk")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.gnome.org/GNOME/xdg-user-dirs-gtk/-/archive/${VERSION}/xdg-user-dirs-gtk-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("240fbd014826a130d60239b01527464ef09320a4388bd2d673aeecb2bea4fd95fe761bb0f21bd67cfb0f7f7aceeaab412f709eb61ce5e57f7663fb8b11ebbca4")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    NOCONFIGURE=1 ./autogen.sh
+
+    ./configure --prefix=/usr --sysconfdir=/etc --disable-more-warnings
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

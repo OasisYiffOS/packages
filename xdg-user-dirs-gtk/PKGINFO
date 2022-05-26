@@ -1,0 +1,16 @@
+{
+    "name": "xdg-user-dirs-gtk",
+    "version": "0.10",
+    "epoch": 0,
+    "description": "nl80211 based CLI configuration utility for wireless devices.",
+    "groups": [],
+    "url": "https://freedesktop.org/wiki/Software/xdg-user-dirs/",
+    "license": ["GPL-2.0"],
+    "depends": ["xdg-user-dirs", "glibc", "gtk3", "glib2"],
+    "optional_depends": [],
+    "make_depends": ["intltool", "gnome-common"],
+    "provides": ["xdg-user-dirs-gtk"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
