@@ -3,7 +3,8 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="linux"
-VERSION="5.17.8"
+VERSION="5.18"
+_FULL_VERSION="5.18.0"
 _MAJOR_VERSION="5"
 EPOCH=0
 DESC="The Linux kernel"
@@ -23,8 +24,8 @@ SRC=("https://cdn.kernel.org/pub/linux/kernel/v${_MAJOR_VERSION}.x/linux-${VERSI
 "good_panic_message.patch")
 
 SUM_TYPE="sha512"
-SUM=("032feea7138d0b9b016a50769e6f10889e0ec8cb532569b1aaecac957211e60cc9207aa6ac2bb379c967c8322f8ccb19d2834bf1f88c03d0774b087e08a9a22a"
-"98a2e6928a4c508fee329d6cb7beafba70dbaa22447742051d545d613d3d0b25f93adcaac6140789d03bed385caec6220528bf52954a625b1dbe554f4be4712a"
+SUM=("dbbc9d1395898a498fa4947fceda1781344fa5d360240f753810daa4fa88e519833e2186c4e582a8f1836e6413e9e85f6563c7770523b704e8702d67622f98b5"
+"65aedf1178efa424cc3558e7d1460d5193b60ec372718b8fb70403f9e1f6e63b61fbd77c04d1b97a7dc8ff39fdbf5298c8467deaba35a5c061a3b05b5d7893ef"
 "37f8574955ee8d440490dd756596fa256b08ea820cd85bb5844f9c1fa221731caf99d7770a362e9ff8dbb23bc4845db6a1fac2f838fb0a23748db74685b347cf")
 
 # Prepare script
@@ -59,17 +60,17 @@ function postbuild() {
 
     mkdir -pv ${BUILD_DATA_ROOT}/boot/
 
-    cp -iv arch/x86/boot/bzImage ${BUILD_DATA_ROOT}/boot/vmlinuz-${VERSION}-yiffOS
-    cp -iv System.map ${BUILD_DATA_ROOT}/boot/System.map-${VERSION}-yiffOS
-    cp -iv Module.symvers ${BUILD_DATA_ROOT}/boot/Module.symvers-${VERSION}-yiffOS
-    cp -iv .config ${BUILD_DATA_ROOT}/boot/config-${VERSION}-yiffOS
+    cp -iv arch/x86/boot/bzImage ${BUILD_DATA_ROOT}/boot/vmlinuz-${_FULL_VERSION}-yiffOS
+    cp -iv System.map ${BUILD_DATA_ROOT}/boot/System.map-${_FULL_VERSION}-yiffOS
+    cp -iv Module.symvers ${BUILD_DATA_ROOT}/boot/Module.symvers-${_FULL_VERSION}-yiffOS
+    cp -iv .config ${BUILD_DATA_ROOT}/boot/config-${_FULL_VERSION}-yiffOS
 
-    install -d ${BUILD_DATA_ROOT}/usr/share/doc/linux-${VERSION}
-    cp -r Documentation/* ${BUILD_DATA_ROOT}/usr/share/doc/linux-${VERSION}
+    install -d ${BUILD_DATA_ROOT}/usr/share/doc/linux-${_FULL_VERSION}
+    cp -r Documentation/* ${BUILD_DATA_ROOT}/usr/share/doc/linux-${_FULL_VERSION}
 
-    rm ${BUILD_DATA_ROOT}/usr/lib/modules/${VERSION}-yiffOS/{build,source}
-    ln -sv ../../../src/linux ${BUILD_DATA_ROOT}/usr/lib/modules/${VERSION}-yiffOS/source
-    ln -sv ../../../src/linux ${BUILD_DATA_ROOT}/usr/lib/modules/${VERSION}-yiffOS/build
+    rm ${BUILD_DATA_ROOT}/usr/lib/modules/${_FULL_VERSION}-yiffOS/{build,source}
+    ln -sv ../../../src/linux ${BUILD_DATA_ROOT}/usr/lib/modules/${_FULL_VERSION}-yiffOS/source
+    ln -sv ../../../src/linux ${BUILD_DATA_ROOT}/usr/lib/modules/${_FULL_VERSION}-yiffOS/build
 
     return 0
 }
