@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="rust"
-VERSION="1.60.0"
+VERSION="1.61.0"
 EPOCH=0
 DESC="Memory-safe programming language without garbage collection."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://static.rust-lang.org/dist/rustc-${VERSION}-src.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("ae626482287949eb73a5467245b8e21b7624713a29d4bbdf1c1e1232e10f5497ba3435427e08df4fd5d2277c456213e5d04529e841d50924a4211fdb8c6acfd0")
+SUM=("486f77041f664ea73aa7c97affd3916892c5218e69dee9c701d33e629e335d1b8da12a2d23d0c18d9e9dc75f12983f961f76006395324a705b1d15444d891640")
 
 # Prepare script
 function prepare() {
@@ -31,6 +31,9 @@ cat << EOF > config.toml
 link-shared = true
 
 [build]
+locked-deps = true
+vendor = true
+sanitizers = true
 extended = true
 
 [install]
