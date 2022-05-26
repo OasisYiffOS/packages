@@ -1,0 +1,46 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gyp"
+VERSION="20210404.9ecf45e"
+_COMMIT_VERSION="9ecf45e37677743503342ee4c6a76eaee80e4a7f"
+EPOCH=0
+DESC="The Generate Your Projects Meta-Build system."
+GRPS=()
+URL="https://gyp.gsrc.io/"
+LICENSES=("BSD")
+DEPENDS=("python" "ninja")
+OPT_DEPENDS=()
+PROVIDES=("gyp")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/chromium/gyp/archive/${_COMMIT_VERSION}.zip")
+
+SUM_TYPE="sha512"
+SUM=("8b6cb47862aa264a48d34af86b5c6a0a9c3a83ce4aab482b859e098e54d95178174f2f935c552969d5eff94b46734c7e606c340a12c75ae37282602095af1708")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${_COMMIT_VERSION}"
+
+    python3 setup.py build
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${_COMMIT_VERSION}"
+
+    python3 setup.py install --root="${BUILD_DATA_ROOT}" --optimize=1 --skip-build
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "gyp",
+    "version": "20210404.9ecf45e",
+    "epoch": 0,
+    "description": "The Generate Your Projects Meta-Build system.",
+    "groups": [],
+    "url": "https://gyp.gsrc.io/",
+    "license": ["BSD"],
+    "depends": ["python", "ninja"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["gyp"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
