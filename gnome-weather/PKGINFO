@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Apps/Weather",
     "license": ["GPL-2.0", "LGPL-2.1", "MIT"],
-    "depends": ["glib2", "gjs", "geoclue", "gobject-introspection", "gdk-pixbuf2", "gsettingds-desktop-schema", "gtk4", "libadwaita", "libgweather", "libhandy"],
+    "depends": ["glib2", "gjs", "geoclue", "gobject-introspection", "gdk-pixbuf2", "gsettings-desktop-schemas", "gtk4", "libadwaita", "libgweather", "libhandy"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["gnome-weather"],
