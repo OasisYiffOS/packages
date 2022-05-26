@@ -14,7 +14,8 @@ DEPENDS=("glibc" "gcc-libs" "glib2" "networkmanager" "accountsservice" "at-spi2-
 "gcr" "gdk-pixbuf2" "geoclue" "gjs" "gnome-autoar" "gnome-bluetooth" "gnome-control-center" "gnome-desktop" "gnome-settings-daemon"
 "gobject-introspection" "graphene" "gsettings-desktop-schemas" "gstreamer" "gst-plugins-good" "gtk3" "gtk4" "hicolor-icon-theme"
 "ibus" "json-glib" "libx11" "libxfixes" "libadwaita" "libgweather" "libical" "libnma" "librsvg2" "libsecret" "wayland" "wayland-protocols"
-"mutter" "pango" "pipewire" "polkit" "pulseaudio" "python" "systemd" "upower" "adwaita-icon-theme" "dconf" "gnome-menus" "telepathy-mission-control")
+"mutter" "pango" "pipewire" "polkit" "pulseaudio" "python" "systemd" "upower" "adwaita-icon-theme" "dconf" "gnome-menus" "telepathy-mission-control"
+"cantarell-fonts" "libtool")
 OPT_DEPENDS=("gnome-backgrounds")
 MK_DEPENDS=("meson" "ninja")
 PROVIDES=("gnome-shell")
