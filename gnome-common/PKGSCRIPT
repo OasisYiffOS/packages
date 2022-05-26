@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-common"
+VERSION="3.18.0"
+_MAJOR_VERSION="3.18"
+EPOCH=0
+DESC="Common development macros for older GNOME packages."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/GnomeCommon"
+LICENSES=("GPL-2.0")
+DEPENDS=("autoconf" "automake" "gettext" "libtool")
+OPT_DEPENDS=()
+PROVIDES=("gnome-common")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-common/${_MAJOR_VERSION}/gnome-common-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("b931c9a6668d996560549738bb2d95f86f56fa68ce930c077275bdc8fddbc2d28d215c1190099db1df851417902fca87ec81f1c0e644c5b9630a175e1cde0719")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --with-autoconf-archive
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

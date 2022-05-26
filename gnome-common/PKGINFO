@@ -1,0 +1,16 @@
+{
+    "name": "gnome-common",
+    "version": "3.18.0",
+    "epoch": 0,
+    "description": "Common development macros for older GNOME packages.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/GnomeCommon",
+    "license": ["GPL-2.0"],
+    "depends": ["autoconf", "automake", "gettext", "libtool"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["gnome-common"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
