@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="nodejs-lts"
+VERSION="16.15.0"
+EPOCH=0
+DESC="Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. (LTS Version)"
+GRPS=()
+URL="http://nodejs.org/"
+LICENSES=("MIT" "ASL-2.0" "ISC" "BSD")
+DEPENDS=("glibc" "nghttp2" "libuv" "openssl" "make-ca" "c-ares" "icu")
+OPT_DEPENDS=()
+MK_DEPENDS=("which")
+PROVIDES=("nodejs-lts")
+CONFLICTS=("nodejs")
+REPLACES=()
+
+# Source information
+SRC=("https://nodejs.org/dist/v${VERSION}/node-v${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("c85cf4a94a0dccdcf358a3e0383499fe1fd74ac0e7b6aa888e9524c070ae8be68b9f718c8c0940d51115bbc908202cd7819e370507b7191facd375a5be231c69")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/node-v${VERSION}"
+
+    ./configure --prefix=/usr          \
+                --shared-cares         \
+                --shared-libuv         \
+                --shared-openssl       \
+                --shared-nghttp2       \
+                --shared-zlib          \
+                --with-intl=system-icu
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/node-v${VERSION}"
+
+    make
+
+    make test-only
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/node-v${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    ln -sf node ${BUILD_DATA_ROOT}/usr/share/doc/node-${VERSION}
+
+    return 0
+}
