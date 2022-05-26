@@ -1,0 +1,16 @@
+{
+    "name": "mesa-utils",
+    "version": "8.4.0",
+    "epoch": 0,
+    "description": "Some essential Mesa utilities.",
+    "groups": [],
+    "url": "https://www.mesa3d.org/",
+    "license": ["custom"],
+    "depends": ["libglvnd", "freetype2", "freeglut", "mesa", "glew"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["mesa-utils"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
