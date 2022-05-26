@@ -49,7 +49,7 @@ function postbuild() {
 
     DESTDIR="${BUILD_DATA_ROOT}" make -C libelf install
 
-    install -vm644 config/libelf.pc ${BUILD_DATA_ROOT}/usr/lib/pkgconfig
+    install -vm644 config/libelf.pc ${BUILD_DATA_ROOT}/usr/lib/pkgconfig/libelf.pc
     rm ${BUILD_DATA_ROOT}/usr/lib/libelf.a
 
     return 0
