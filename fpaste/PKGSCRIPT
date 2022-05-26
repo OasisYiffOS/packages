@@ -1,0 +1,44 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="fpaste"
+VERSION="0.4.2.0"
+EPOCH=0
+DESC="A simple tool for pasting info onto the Fedora community paste server."
+GRPS=()
+URL="https://pagure.io/fpaste"
+LICENSES=("GPL-3.0")
+DEPENDS=("python")
+OPT_DEPENDS=()
+PROVIDES=("fpaste")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://pagure.io/fpaste/archive/${VERSION}/fpaste-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ab5095d1dd9bc2650f35902937ff8c3cc208795e0c6d23b61de798cf8af3b7df108dbe47a2dd3ead7b3af706b0d00e9afb45f0020fca571f20ff8694ef909f32")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir -p ${BUILD_DATA_ROOT}/usr/bin
+    mkdir -p ${BUILD_DATA_ROOT}/usr/share/man/
+
+    make BINDIR="${BUILD_DATA_ROOT}/usr/bin" MANDIR="${BUILD_DATA_ROOT}/usr/share/man/" install
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "fpaste",
+    "version": "0.4.2.0",
+    "epoch": 0,
+    "description": "A simple tool for pasting info onto the Fedora community paste server.",
+    "groups": [],
+    "url": "https://pagure.io/fpaste",
+    "license": ["GPL-3.0"],
+    "depends": ["python"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["fpaste"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
