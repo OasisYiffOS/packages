@@ -1,0 +1,63 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="os-prober"
+VERSION="1.79"
+EPOCH=0
+DESC="Utility to probe disks for other operating systems and add them to the boot loader."
+GRPS=()
+URL="https://joeyh.name/code/os-prober/"
+LICENSES=("GPL-3.0")
+DEPENDS=("bash")
+OPT_DEPENDS=()
+PROVIDES=("os-prober")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("http://cdn-fastly.deb.debian.org/debian/pool/main/o/os-prober/os-prober_${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("89b827b9b90a1d3bc11e0090ec04d808502cc1883ab10997b6d9edbe6005dcf8a0acdd7d200102c9dccde56297bda6087d68fb6dec419f0920090c2655c9c7d8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}"
+
+    # Fix issue blocking 64-bit Linux distros from being detected
+    sed -i -e "s:/lib/ld\*\.so\*:/lib*/ld*.so*:g" os-probes/mounted/common/90linux-distro
+
+    rm -r Makefile
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}"
+
+    make newns
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}"
+
+    install -Dm 755 os-prober linux-boot-prober -t "${BUILD_DATA_ROOT}/usr/bin"
+    install -Dm 755 newns -t "${BUILD_DATA_ROOT}/usr/lib/os-prober"
+    install -Dm 755 common.sh -t "${BUILD_DATA_ROOT}/usr/share/os-prober"
+
+    for dir in os-probes os-probes/mounted os-probes/init linux-boot-probes linux-boot-probes/mounted; do
+        install -dm 755 "${BUILD_DATA_ROOT}/usr/lib/${dir}"
+        install -m 755 -t "${BUILD_DATA_ROOT}/usr/lib/${dir}" "${dir}"/common/*
+        [[ -d "${dir}"/x86 ]] && cp -r "${dir}"/x86/* "${BUILD_DATA_ROOT}/usr/lib/${dir}"
+    done
+
+    install -Dm 755 os-probes/mounted/powerpc/20macosx "${BUILD_DATA_ROOT}"/usr/lib/os-probes/mounted/20macosx
+    install -dm 755 "${BUILD_DATA_ROOT}"/var/lib/os-prober
+
+    return 0
+}

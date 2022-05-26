@@ -1,0 +1,16 @@
+{
+    "name": "os-prober",
+    "version": "1.79",
+    "epoch": 0,
+    "description": "Utility to probe disks for other operating systems and add them to the boot loader.",
+    "groups": [],
+    "url": "https://joeyh.name/code/os-prober/",
+    "license": ["GPL-3.0"],
+    "depends": ["bash"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["os-prober"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
