@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="harfbuzz"
-VERSION="4.2.0"
+VERSION="4.3.0"
 EPOCH=1
 DESC="The HarfBuzz text shaping engine."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=("")
 SRC=("https://github.com/harfbuzz/harfbuzz/releases/download/${VERSION}/harfbuzz-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("d63be1c322762ef811a010e1dc5ef1d0a401fe9357251ad71e1d234ce4564b9857947170f2bdd63f974b96cafbf59a942d2061e4f273de4f62ef3bb940dcde02")
+SUM=("b258bd253b694732c22ebfc980c21d4e2c6f59beb55279bda9988c950038295635613509b9f998a7f06a99642509af6e8ef6a370a3839a918d3ac67faa8af336")
 
 # Prepare script
 function prepare() {
