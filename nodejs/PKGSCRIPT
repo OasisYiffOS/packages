@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="nodejs"
-VERSION="16.14.2"
+VERSION="18.2.0"
 EPOCH=0
 DESC="Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications."
 GRPS=()
@@ -13,14 +13,14 @@ DEPENDS=("glibc" "nghttp2" "libuv" "openssl" "make-ca" "c-ares" "icu")
 OPT_DEPENDS=()
 MK_DEPENDS=("which")
 PROVIDES=("nodejs")
-CONFLICTS=()
+CONFLICTS=("nodejs-lts")
 REPLACES=()
 
 # Source information
 SRC=("https://nodejs.org/dist/v${VERSION}/node-v${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("b97274f6e0d63f19e01497c43af36e6561f019e7b0b5b4f6ea19d0fbe2cb4d3c514c06f49e237d1e327936db03c3f437ae0d0b2f830a35f1b7c3a723fbe2a1be")
+SUM=("9d7d6017374bc14e9cd447bceb3ab9d3b4d421c30d422c6f4eb429c67f1deb2c04778216cccb11ecbe510f18b821891d9311c035f5a81cc6a5e8adae202e9b33")
 
 # Prepare script
 function prepare() {
