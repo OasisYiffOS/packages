@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="openal"
+VERSION="1.22.0"
+EPOCH=0
+DESC="Cross-platform 3D audio library, software implementation."
+GRPS=()
+URL="https://github.com/kcat/openal-soft"
+LICENSES=("LGPL-2.0")
+DEPENDS=("gcc-libs")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake" "alsa-lib" "pulseaudio" "pipewire" "sdl2")
+PROVIDES=("openal")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/kcat/openal-soft/archive/refs/tags/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("7d674f662d9f7bf0d57977296bcb5f05b5ba8f2645683add7d8eca16e578eec1b437f290a1779d3ef069902a2b5ccba20573261842c4d611a6bcd9f2816d73bc")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-soft-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr \
+          -DCMAKE_BUILD_TYPE=None     \
+          -DCMAKE_INSTALL_LIBDIR=lib  \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-soft-${VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-soft-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -Dt "${BUILD_DATA_ROOT}/usr/share/doc/openal-${VERSION}" -m644 ../docs/*
+
+    return 0
+}

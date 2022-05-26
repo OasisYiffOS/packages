@@ -1,0 +1,16 @@
+{
+    "name": "openal",
+    "version": "1.22.0",
+    "epoch": 0,
+    "description": "Cross-platform 3D audio library, software implementation.",
+    "groups": [],
+    "url": "https://github.com/kcat/openal-soft",
+    "license": ["LGPL-2.0"],
+    "depends": ["gcc-libs"],
+    "optional_depends": [],
+    "make_depends": ["cmake", "alsa-lib", "pulseaudio", "pipewire", "sdl2"],
+    "provides": ["openal"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
