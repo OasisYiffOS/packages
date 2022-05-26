@@ -1,0 +1,16 @@
+{
+    "name": "vulkan-tools",
+    "version": "1.3.212",
+    "epoch": 0,
+    "description": "Extra Vulkan utilities and tools.",
+    "groups": [],
+    "url": "https://www.vulkan.org/",
+    "license": ["Apache-2.0"],
+    "depends": ["vulkan-loader", "libx11", "Wayland"],
+    "optional_depends": [],
+    "make_depends": ["cmake", "glslang", "spirv-tools", "vulkan-headers", "wayland-protocols"],
+    "provides": ["vulkan-tools"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
