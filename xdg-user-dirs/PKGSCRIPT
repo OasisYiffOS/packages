@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xdg-user-dirs"
+VERSION="0.17"
+EPOCH=0
+DESC="Utility that handles user special directories."
+GRPS=()
+URL="https://freedesktop.org/wiki/Software/xdg-user-dirs/"
+LICENSES=("GPL-2.0-and-later" "MIT")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("docbook-xsl")
+PROVIDES=("xdg-user-dirs")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/xdg/xdg-user-dirs/-/archive/${VERSION}/xdg-user-dirs-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("d434bbf60514e7dce7a49965ae8a07216cd2917e5a21e8f5c3a1e086abdcc2a80afeace154cfb1b8c2ae73ea9993ee050af2869b8618d298362c60ec7951ec65")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+    
+    NOCONFIGURE=1 ./autogen.sh
+
+    ./configure --prefix=/usr --sysconfdir=/etc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
