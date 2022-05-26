@@ -9,9 +9,10 @@ EPOCH=0
 DESC="A system service that is responsible for providing graphical logins and managing local and remote displays."
 GRPS=()
 URL="https://wiki.gnome.org/Projects/GDM"
-LICENSES=("GPL-2.0")
+LICENSES=("GPL-2.0") 
 DEPENDS=("glibc" "gcc-libs" "glib2" "accountsservice" "dconf" "gdk-pixbuf2" "gnome-keyring" "gnome-session" "gnome-settings-daemon"
-"gtk3" "iso-codes" "keyutils" "libx11" "libxau" "libxdmcp" "libcanberra" "libgudev" "libxcb" "pam" "systemd" "util-linux" "libdaemon")
+"gtk3" "iso-codes" "keyutils" "libx11" "libxau" "libxdmcp" "libcanberra" "libgudev" "libxcb" "pam" "systemd" "util-linux" "libdaemon"
+"cantarell-fonts" "gcr" "libtool")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "istool")
 PROVIDES=("gdm")
