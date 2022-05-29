@@ -1,0 +1,71 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="usb_modeswitch"
+VERSION="2.6.1"
+_DATA_VERSION=20191128
+EPOCH=0
+DESC="Activating switchable USB devices on Linux."
+GRPS=()
+URL="https://www.draisberghof.de/usb_modeswitch/"
+LICENSES=("GPL")
+DEPENDS=("libusb" "tcl")
+OPT_DEPENDS=()
+PROVIDES=("usb_modeswitch")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.draisberghof.de/usb_modeswitch/usb-modeswitch-${VERSION}.tar.bz2"
+"https://www.draisberghof.de/usb_modeswitch/usb-modeswitch-data-${_DATA_VERSION}.tar.bz2"
+"https://www.draisberghof.de/usb_modeswitch/device_reference.txt")
+
+SUM_TYPE="sha512"
+SUM=("5d800b45257ca1182a13155dc37b614ee2d93273ed226cc9d05b6ae423f9e88b7c9aca6829604bdb86f68707ddf2c51c9ad2bcf898b8261b2c5bb56a21351e1e"
+"4b5954ad83f7281e42321c16f5cc5b956923cc0e2db5f238cc64b3ea37a419768f01f2e26310f2b4fe9a9a5b1d901517933effd6e6edd23bc9b8d0c039ed0ba2"
+"0aa8af40bc4d682cd935e4b3c8584da3664d12c08e8ec23753d2a7a38c680544aaaf526896b07621cd1136293986cd3a78197240e19d4b4b8d9a1469ff2b4373")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/usb-modeswitch-${VERSION}"
+
+    sed -i 's|/usr/sbin/usb_mode|/usr/bin/usb_mode|g' usb_modeswitch{.conf,_dispatcher.tcl,.sh}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/usb-modeswitch-${VERSION}"
+
+    make clean
+    make SBINDIR=/usr/bin
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/usb-modeswitch-${VERSION}"
+
+    mkdir -p "${BUILD_DATA_ROOT}"/usr/lib/udev
+    mkdir -p "${BUILD_DATA_ROOT}"/etc
+    mkdir -p "${BUILD_DATA_ROOT}"/usr/share/man/man1
+    mkdir -p "${BUILD_DATA_ROOT}"/usr/lib/systemd/system
+
+    make \
+        DESTDIR="${BUILD_DATA_ROOT}" \
+        UDEVDIR="${BUILD_DATA_ROOT}"/usr/lib/udev \
+        SBINDIR="${BUILD_DATA_ROOT}"/usr/bin \
+        SYSDIR="${BUILD_DATA_ROOT}"/usr/lib/systemd/system \
+        install
+
+    cp "${WORKDIR}"/device_reference.txt "${BUILD_DATA_ROOT}"/etc/usb_modeswitch.setup
+
+
+    cd "${WORKDIR}"/usb-modeswitch-data-${_DATA_VERSION}
+    make DESTDIR="${BUILD_DATA_ROOT}" install RULESDIR="${BUILD_DATA_ROOT}"/usr/lib/udev/rules.d
+
+    return 0
+}

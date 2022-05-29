@@ -1,0 +1,16 @@
+{
+    "name": "usb_modeswitch",
+    "version": "2.6.1",
+    "epoch": 0,
+    "description": "Activating switchable USB devices on Linux.",
+    "groups": [],
+    "url": "https://www.draisberghof.de/usb_modeswitch/",
+    "license": ["GPL"],
+    "depends": ["libusb", "tcl"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["usb_modeswitch"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
