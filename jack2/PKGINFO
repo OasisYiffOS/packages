@@ -1,0 +1,16 @@
+{
+    "name": "jack2",
+    "version": "1.9.21",
+    "epoch": 0,
+    "description": "The JACK low-latency audio server. (Version 2)",
+    "groups": [],
+    "url": "https://jackaudio.org/",
+    "license": ["GPL-2.0"],
+    "depends": ["db", "gcc-libs", "glibc", "opus", "alsa-lib", "dbus"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["jack2"],
+    "conflicts": ["jack"],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
