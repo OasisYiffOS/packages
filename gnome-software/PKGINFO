@@ -1,0 +1,16 @@
+{
+    "name": "gnome-software",
+    "version": "42.3",
+    "epoch": 0,
+    "description": "A software center for GNOME.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/Software",
+    "license": ["GPL-2.0"],
+    "depends": ["appstream", "appstream-glib", "cairo", "flatpak", "gdk-pixbuf2", "glib2", "glibc", "gnome-menus", "gsettings-desktop-schemas", "gtk4", "iso-codes", "json-glib", "libadwaita", "gcc-libs", "libgudev", "librsvg2", "libsoup", "libostree", "pango", "polkit"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["gnome-software"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

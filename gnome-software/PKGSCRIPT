@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="gnome-software"
+VERSION="42.3"
+_MAJOR_VERSION="42"
+EPOCH=0
+DESC="A software center for GNOME."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/Software"
+LICENSES=("GPL-2.0")
+DEPENDS=("appstream" "appstream-glib" "cairo" "flatpak" "gdk-pixbuf2" "glib2" "glibc" "gnome-menus" "gsettings-desktop-schemas" "gtk4" "iso-codes" "json-glib" "libadwaita" "gcc-libs" "libgudev" "librsvg2" "libsoup" "libostree" "pango" "polkit")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "valgrind")
+PROVIDES=("gnome-software")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-software/${_MAJOR_VERSION}/gnome-software-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("8adae64b3149145548fc80ba3491e92d47a711341020b8edb53333f07367b0e2d37864940af71a35d980f634e7a1df68e9fde3c56d17c8e482699358c8eba8b7")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dman=false -Dpackagekit=false -Dfwupd=false -Dmalcontent=false -Dgtk_doc=false -Dsoup2=true..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
