@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="cairomm"
-VERSION="1.14.2"
+VERSION="1.14.3"
 EPOCH=0
 DESC="A C++ interface to Cairo."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://www.cairographics.org/releases/cairomm-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("aef374fca25ad22770407e36512046b266d71ebeccd47fb629cfbf2f67783aa314bb335b972088a88d98417a4774d6f144cd2769c452f8aa23770eae08dca592")
+SUM=("8dc8a0de733904742c54d4935b596d4103f2e498c6735894bc6a5a81eb4962c6ea944bad94102b18b25850f78e948d38f117c566b197bc76da23a4e88b62ee4e")
 
 # Prepare script
 function prepare() {
