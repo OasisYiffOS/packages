@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libsigc++3"
+VERSION="3.2.0"
+_MAJOR_VERSION="3.2"
+EPOCH=0
+DESC="A typesafe callback system for standard C++. (Version 3)"
+GRPS=()
+URL="https://libsigcplusplus.github.io/libsigcplusplus/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gcc-libs")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "boost" "libxslt")
+PROVIDES=("libsigc++")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libsigc++/${_MAJOR_VERSION}/libsigc++-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("91315cecc79a1ad6ea165b66a13a5afd4e5bc101842f9d4c58811ea78536c07fc8821c51aa5110a032ed71c09f85790b3a02f2ad7fe8cc3aed6e03b2bafcd70c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/libsigc++-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/libsigc++-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/libsigc++-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
