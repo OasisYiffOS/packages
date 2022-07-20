@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="mutter"
-VERSION="42.0"
+VERSION="42.3"
 _MAJOR_VERSION="42"
 EPOCH=0
 DESC="The window manager for GNOME. It is not invoked directly, but from GNOME Session (on a machine with a hardware accelerated video driver)."
@@ -18,18 +18,14 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://download.gnome.org/sources/mutter/${_MAJOR_VERSION}/mutter-${VERSION}.tar.xz"
-"mutter-${VERSION}-consolidated_fixes-1.patch")
+SRC=("https://download.gnome.org/sources/mutter/${_MAJOR_VERSION}/mutter-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("ffcfbb1b6d3add84adf2d67d459905d164dc272289b645994288c376bc656481526d445cdfe6df027b88ab590258ee9d9d4ba251e03c6ef93d17f0758f75520d"
-"1ac34d0981d89116845834100369b6e305863a31b1d83272dd4d61b1ceea2adb75ef864429c0d11bfa144907c53ce54da7053d5973389a8cc56a3b9ce0fb82d7")
+SUM=("f346d2299143ceb6c9164977df2e23655b1c204f3a2d1f713377f3cc2f3609c56914c5e8a0b940d4fdd3d040a9af210f724350bb4f74ffac293e6a82e2b0785b")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
-
-    patch -Np1 -i "${WORKDIR}/${NAME}-${VERSION}-consolidated_fixes-1.patch"
 
     mkdir build
     cd    build
