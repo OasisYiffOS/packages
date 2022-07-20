@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="gtkmm3"
-VERSION="3.24.5"
+VERSION="3.24.6"
 _MAJOR_VERSION="3.24"
 EPOCH=0
 DESC="The official C++ interface for the popular GUI library GTK+. (GTK 3)"
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gtkmm/${_MAJOR_VERSION}/gtkmm-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("8cc5aed26cc631123a5b38bc19643cf9e900beb38681b29ead9049f6b8f930f0b8ace317b8290279ab89cad85075dcb66863174082f77a2b67e4d8bd3c29de49")
+SUM=("d6fc2d0689baca2b968820d1af86cc0b175b6f38f720d315bc50663d30bd0a841da57ac4336abec236542fb2893b28b2de84087419b73aba58b41f07568d4d93")
 
 # Prepare script
 function prepare() {
