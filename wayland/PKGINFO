@@ -1,6 +1,6 @@
 {
     "name": "wayland",
-    "version": "1.20.0",
+    "version": "1.21.0",
     "epoch": 0,
     "description": "A protocol for a compositor to talk to its clients as well as a C library implementation of that protocol.",
     "groups": ["wayland"],
