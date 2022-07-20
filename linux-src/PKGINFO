@@ -1,6 +1,6 @@
 {
     "name": "linux-src",
-    "version": "5.18",
+    "version": "5.18.12",
     "epoch": 0,
     "description": "The Linux kernel",
     "groups": ["base"],
