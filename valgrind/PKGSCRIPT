@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="valgrind"
+VERSION="3.19.0"
+EPOCH=0
+DESC="An instrumentation framework for building dynamic analysis tools."
+GRPS=()
+URL="https://valgrind.org/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc" "gcc-libs" "perl")
+OPT_DEPENDS=()
+PROVIDES=("valgrind")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://sourceware.org/pub/valgrind/valgrind-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("f720a89dc4c4989cc5714bff9efe97529f71990bcfad7a92b889ce099c4326d6da07fa4d5fbab2e9125e20f352354f6178471e49e419b613a3c82c2a1c667ab2")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Provide documentation in a versioned directory
+    sed -i 's|/doc/valgrind||' docs/Makefile.in
+
+    ./configure --prefix=/usr                               \
+                --enable-lto=yes                            \
+                --datadir=/usr/share/doc/valgrind-3.19.0
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

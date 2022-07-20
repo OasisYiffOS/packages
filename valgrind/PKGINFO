@@ -1,0 +1,16 @@
+{
+    "name": "valgrind",
+    "version": "3.19.0",
+    "epoch": 0,
+    "description": "An instrumentation framework for building dynamic analysis tools.",
+    "groups": [],
+    "url": "https://valgrind.org/",
+    "license": ["GPL-2.0"],
+    "depends": ["glibc", "gcc-libs", "perl"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["valgrind"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
