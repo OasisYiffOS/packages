@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="wayland-protocols"
-VERSION="1.25"
+VERSION="1.26"
 EPOCH=0
 DESC="Additional Wayland protocols that add functionality outside of protocols already in the Wayland core."
 GRPS=("wayland")
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://wayland.freedesktop.org/releases/wayland-protocols-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("8269694a0780e4d32f1982ff4cbb50b1ef85f08157b9486bc6d7e489c64665a9d9f959121d0eede7c7b108a604d974b64d74cfdef8b5f14304465309afb0768f")
+SUM=("fa9c3963b548197461c8c0b9e16ebbf9cfa5b60053fc17f51b41e63a55b8c5420dd7e42313f93946b438ab47f04e1cd17bc92aae9e1074b47177dc7ce7042167")
 
 # Prepare script
 function prepare() {
