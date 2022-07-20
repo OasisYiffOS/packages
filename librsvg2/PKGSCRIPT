@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="librsvg2"
-VERSION="2.54.0"
+VERSION="2.54.4"
 _MAJOR_VERSION="2.54"
 EPOCH=0
 DESC="A library to render SVG images to Cairo surfaces."
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/librsvg/${_MAJOR_VERSION}/librsvg-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("3357ca8cf7537fe2792ee2d9a1719622656f3e1d7f30da062799a4b3ca8788cc07333a00e1c9da53a53da2b67a2aa5895a4c8fce35003da659fb7f98048b68eb")
+SUM=("e3415044a4faa48ec83e25cbd86dfbe7bc997286269298fb913a61a13d55195f660bcef459950979c2b8d60b144b29e33b278b2c4da0c376de65c34f39687e9a")
 
 # Prepare script
 function prepare() {

@@ -1,6 +1,6 @@
 {
     "name": "librsvg2",
-    "version": "2.54.0",
+    "version": "2.54.4",
     "epoch": 0,
     "description": "A library to render SVG images to Cairo surfaces.",
     "groups": [],
