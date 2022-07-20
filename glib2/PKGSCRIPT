@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="glib2"
-VERSION="2.72.0"
+VERSION="2.72.3"
 _MAJOR_VERSION="2.72"
 EPOCH=0
 DESC="Low-level core library that forms the basis for projects such as GTK+ and GNOME."
@@ -18,10 +18,10 @@ REPLACES=()
 
 # Source information
 SRC=("https://download.gnome.org/sources/glib/${_MAJOR_VERSION}/glib-${VERSION}.tar.xz"
-"https://www.linuxfromscratch.org/patches/blfs/svn/glib-2.72.0-skip_warnings-1.patch")
+"glib-2.72.3-skip_warnings-1.patch")
 
 SUM_TYPE="sha512"
-SUM=("351ff025d26348112584bed2c1052427150a8a2f8642c813dae1583fb105184528ad20e264cdf44bbca658a26c280e36acd0e642add112d29edc1b25dfc94fad"
+SUM=("8834ab7498577c2f659d135b87c27b34e1157be27f6c1fe5af0d64a94654f78cbe6a87e6868966849674c34e88a9d51d2de8d89f78f86aa1e1af3482761f0638"
 "0f41e9b57606e430977c765af9ea78b1f7f79f69b108731c45a800e3b5f6046e4e162ebfdd297cc330a3647e21fa7c7ac7f57d0488c1d91b5cc46f3efd6cb5a7")
 
 # Prepare script
@@ -29,7 +29,7 @@ function prepare() {
     cd "${WORKDIR}/glib-${VERSION}"
 
     # Patch that allows users to select the log warning level with variable GLIB_LOG_LEVEL
-    patch -Np1 -i ${WORKDIR}/glib-2.72.0-skip_warnings-1.patch
+    patch -Np1 -i ${WORKDIR}/glib-${VERSION}-skip_warnings-1.patch
 
     mkdir build
     cd    build
