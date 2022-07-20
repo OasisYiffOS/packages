@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="appstream-glib"
+VERSION="0.8.0"
+_TAG_VERSION="0_8_0"
+EPOCH=0
+DESC="GObjects and helper methods to make it easy to read and write AppStream metadata."
+GRPS=()
+URL="https://people.freedesktop.org/~hughsient/appstream-glib/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("gdk-pixbuf2" "glib2" "glibc" "json-glib" "libarchive" "curl" "gcc-libs" "libsoup" "util-linux" "libyaml" "gperf")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("appstream-glib")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/hughsie/appstream-glib/archive/refs/tags/appstream_glib_${_TAG_VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("80ebe3ea4c27c91135d9cba64249407a92fe51ec3150505e9285c5c9217beab32232e263c953696b33e0f92220f1bda4e6737f1dbc73dfa4e81f55e2da03429b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/appstream-glib-appstream_glib_${_TAG_VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Drpm=false -Dstemmer=false ..
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/appstream-glib-appstream_glib_${_TAG_VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/appstream-glib-appstream_glib_${_TAG_VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

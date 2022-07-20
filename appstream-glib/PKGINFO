@@ -1,0 +1,16 @@
+{
+    "name": "appstream-glib",
+    "version": "0.8.0",
+    "epoch": 0,
+    "description": "GObjects and helper methods to make it easy to read and write AppStream metadata.",
+    "groups": [],
+    "url": "https://people.freedesktop.org/~hughsient/appstream-glib/",
+    "license": ["LGPL-2.1"],
+    "depends": ["gdk-pixbuf2", "glib2", "glibc", "json-glib", "libarchive", "curl", "gcc-libs", "libsoup", "libstemmer", "util-linux", "libyaml"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["appstream-glib"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
