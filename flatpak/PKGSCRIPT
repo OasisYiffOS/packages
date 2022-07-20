@@ -1,0 +1,66 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="flatpak"
+VERSION="1.12.7"
+EPOCH=0
+DESC="Linux application sandboxing and distribution framework."
+GRPS=()
+URL="https://flatpak.org/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("appstream-glib" "bubblewrap" "dconf" "fuse" "gdk-pixbuf2" "glib2" "glibc" "json-glib" "libxau" "libarchive" "curl" "gcc-libs" "librsvg2" "libseccomp" "libxml2" "zstd" "libostree" "polkit" "systemd")
+OPT_DEPENDS=()
+PROVIDES=("flatpak")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/flatpak/flatpak/releases/download/${VERSION}/flatpak-${VERSION}.tar.xz"
+    "https://flathub.org/repo/flathub.flatpakrepo")
+
+SUM_TYPE="sha512"
+SUM=("425f9d330c649de1079f3286cb6ad8cf7b6e5838921effa4fd6f51020b9bf7991ded9071566ec7032b9868ef3f7e14d1fb7c2be96f903e3af23a075592b78f50"
+    "752cdb2f0f4774ac6966033edc989456764cf8fe9a2a97918c75ecfd47b2dacb567e98ede00168f780a8fc97ae6e413bb550ebd2323cb4aefb578469d9338a4d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure                                             \
+        --prefix=/usr                                       \
+        --sysconfdir=/etc                                   \
+        --localstatedir=/var                                \
+        --sbindir=/usr/bin                                  \
+        --libexecdir=/usr/lib                               \
+        --disable-static                                    \
+        --disable-documentation                             \
+        --with-system-bubblewrap                            \
+        --with-system-dbus-proxy                            \
+        --with-dbus-config-dir=/usr/share/dbus-1/system.d
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -Dt "${BUILD_DATA_ROOT}/etc/profile.d" -m644 flatpak-bindir.sh
+    install -Dt "${BUILD_DATA_ROOT}/etc/flatpak/remotes.d/" ${WORKDIR}/flathub.flatpakrepo
+
+    install -d -o root -g 102 -m 750 "${BUILD_DATA_ROOT}/usr/share/polkit-1/rules.d"
+
+    return 0
+}

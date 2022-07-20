@@ -1,0 +1,16 @@
+{
+    "name": "flatpak",
+    "version": "1.12.7",
+    "epoch": 0,
+    "description": "Linux application sandboxing and distribution framework.",
+    "groups": [],
+    "url": "https://flatpak.org/",
+    "license": ["LGPL-2.1"],
+    "depends": ["appstream-glib", "bubblewrap", "dconf", "fuse", "gdk-pixbuf2", "glib2", "glibc", "json-glib", "libxau", "libarchive", "curl", "gcc-libs", "librsvg2", "libseccomp", "libxml2", "zstd", "libostree", "polkit", "systemd"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["flatpak"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
