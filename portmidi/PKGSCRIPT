@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="portmidi"
+VERSION="2.0.3"
+EPOCH=0
+DESC="Cross-platform MIDI input/output library."
+GRPS=()
+URL="http://portmedia.sourceforge.net/portmidi/"
+LICENSES=("MIT")
+DEPENDS=("glibc" "alsa-lib")
+OPT_DEPENDS=()
+PROVIDES=("portmidi")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/PortMidi/portmidi/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ed9a632dc3be35b5e3e48e2f4eb74d8794c993bb8e6f2686bea2fce611d3123ef1d3cc5abf212310022b5c4a19dd61efd0f2ce53611f4fe1a52026187c49e8f1")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

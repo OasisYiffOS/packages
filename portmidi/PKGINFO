@@ -1,0 +1,16 @@
+{
+    "name": "portmidi",
+    "version": "2.0.3",
+    "epoch": 0,
+    "description": "Cross-platform MIDI input/output library.",
+    "groups": [],
+    "url": "http://portmedia.sourceforge.net/portmidi/",
+    "license": ["MIT"],
+    "depends": ["glibc", "alsa-lib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["portmidi"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
