@@ -1,7 +1,7 @@
 {
     "name": "flatpak",
     "version": "1.12.7",
-    "epoch": 0,
+    "epoch": 1,
     "description": "Linux application sandboxing and distribution framework.",
     "groups": [],
     "url": "https://flatpak.org/",
