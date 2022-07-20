@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libmtp"
+VERSION="1.1.20"
+EPOCH=0
+DESC="An Initiator implementation of the Media Transfer Protocol (MTP) in the form of a library."
+GRPS=()
+URL="http://libmtp.sourceforge.net/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "libusb" "libgcrypt" "systemd")
+OPT_DEPENDS=()
+PROVIDES=("libmtp")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.sourceforge.net/project/libmtp/libmtp/${VERSION}/libmtp-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("d0892909eb9b001b727690b991c7effd8c4b78054ba07d06e060979ff2fd78d0d6303d46906d3bc86e4edba6f8a8d3c970eb875372f572ed84019bc717f74018")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

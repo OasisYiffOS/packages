@@ -1,0 +1,16 @@
+{
+    "name": "libmtp",
+    "version": "1.1.20",
+    "epoch": 0,
+    "description": "An Initiator implementation of the Media Transfer Protocol (MTP) in the form of a library.",
+    "groups": [],
+    "url": "http://libmtp.sourceforge.net/",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "libusb", "libgcrypt", "systemd"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libmtp"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
