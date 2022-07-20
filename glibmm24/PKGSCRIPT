@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="glibmm24"
-VERSION="2.66.2"
-_MAJOR_VERSION="2.66"
+VERSION="2.72.1"
+_MAJOR_VERSION="2.72"
 EPOCH=0
 DESC="A set of C++ bindings for GLib."
 GRPS=()
 URL="http://www.gtkmm.org/en/index.html"
 LICENSES=("LGPL-2.1")
-DEPENDS=("glibc" "gcc-libs" "glib2" "libsigc++")
+DEPENDS=("glibc" "gcc-libs" "glib2" "libsigc++3")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "glib-networking" "gnutls" "libxslt")
 PROVIDES=("glibmm24")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/glibmm/${_MAJOR_VERSION}/glibmm-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("097af6b140a5af3e52cc2c5d251475a5aa923d0c528c3cbc97f31d3a95868bcb3aa2328047ca94a55ef7fd188f271917dfe29faa86f477a441f0a024284216f9")
+SUM=("aa52c7b73e8f3437c2da9e8da74f84b9f07c7aa40a5fa232a7418b4af19575cbde01f6cbe9fb3fc3227bd9281a9439156a51d10a0c2c1a1beca226c7c93fe660")
 
 # Prepare script
 function prepare() {
@@ -30,7 +30,7 @@ function prepare() {
     mkdir bld
     cd    bld
 
-    meson --prefix=/usr --buildtype=release ..
+    meson --prefix=/usr --buildtype=release -Dbuild-documentation=false -Dmaintainer-mode=false ..
 
     return 0
 }
