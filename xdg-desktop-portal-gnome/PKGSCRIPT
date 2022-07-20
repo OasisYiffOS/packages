@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xdg-desktop-portal-gnome"
+VERSION="42.3"
+EPOCH=0
+DESC="A backend implementation for xdg-desktop-portal for the GNOME desktop environment."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome"
+LICENSES=("LGPL-2.1")
+DEPENDS=("cairo" "dbus" "fontconfig" "gdk-pixbuf2" "glib2" "glibc" "gnome-desktop" "gtk4" "libx11" "libadwaita" "gcc-libs" "xdg-desktop-portal")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("xdg-desktop-portal-gnome")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/-/archive/${VERSION}/xdg-desktop-portal-gnome-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("00eff9b945e946e46519d9c8d01cba128eb8e74a4864c2ecca80a811353ced493045bd5c0e56c8ffbd4988519a2d8d108eb847ac7911aabf8e36c047c3ad6c73")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

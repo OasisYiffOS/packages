@@ -1,0 +1,16 @@
+{
+    "name": "xdg-desktop-portal-gnome",
+    "version": "42.3",
+    "epoch": 0,
+    "description": "A backend implementation for xdg-desktop-portal for the GNOME desktop environment.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome",
+    "license": ["LGPL-2.1"],
+    "depends": ["cairo", "dbus", "fontconfig", "gdk-pixbuf2", "glib2", "glibc", "gnome-desktop", "gtk4", "libx11", "libadwaita", "gcc-libs", "xdg-desktop-portal"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["xdg-desktop-portal-gnome"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
