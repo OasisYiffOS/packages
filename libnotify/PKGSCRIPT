@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="libnotify"
-VERSION="0.7.9"
-_MAJOR_VERSION="0.7"
+VERSION="0.8.1"
+_MAJOR_VERSION="0.8"
 EPOCH=0
 DESC="A library used to send desktop notifications to a notification daemon, as defined in the Desktop Notifications spec."
 GRPS=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/libnotify/${_MAJOR_VERSION}/libnotify-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("8a842b50777279efdb7d96a836a546c47decad158a4f03f7ffc818860d1f6276a657619e4f4a19a4e2f5ad55e0371c793420d50d802983700e8c342273b73874")
+SUM=("464b7ff9f2f6268919f336bd9c6f8c243c29282ba6ada7e491ab514b3630977a319dfa522705c68e17fff2d87effc75e009d656bc46c5e92917ad64e66b25320")
 
 # Prepare script
 function prepare() {

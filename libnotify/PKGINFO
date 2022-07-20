@@ -1,6 +1,6 @@
 {
     "name": "libnotify",
-    "version": "0.7.9",
+    "version": "0.8.1",
     "epoch": 0,
     "description": "A library used to send desktop notifications to a notification daemon, as defined in the Desktop Notifications spec.",
     "groups": [],
