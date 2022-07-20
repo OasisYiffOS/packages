@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="appstream"
+VERSION="0.15.4"
+EPOCH=0
+DESC="Cross-distro effort for enhancing the way we interact with the software repositories provided by the distribution by standardizing sets of additional metadata."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Distributions/AppStream/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glib2" "glibc" "curl" "gcc-libs" "libxml2" "libyaml")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("appstream")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/ximion/appstream/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("8ce0d5cbbd50ba08769298c2677d5b5707c316799b146b6de649b712bd6c05b7dd88f39a3825e6c1a1fe2cdb4d8256938bde183668bfec09a8e0452cb5b45a37")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr -Dstemming=false -Ddocs=false -Dapidocs=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
