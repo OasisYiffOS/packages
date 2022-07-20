@@ -1,6 +1,6 @@
 {
     "name": "gnome-shell",
-    "version": "42.0",
+    "version": "42.3",
     "epoch": 0,
     "description": "The core user interface of the GNOME Desktop environment.",
     "groups": [],

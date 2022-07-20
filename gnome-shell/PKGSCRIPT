@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="gnome-shell"
-VERSION="42.0"
+VERSION="42.3"
 _MAJOR_VERSION="42"
 EPOCH=0
 DESC="The core user interface of the GNOME Desktop environment."
@@ -26,7 +26,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-shell/${_MAJOR_VERSION}/gnome-shell-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("39b56d3c09a238d9ca387145fdbddfaa929b124d4006f097b792de2dceb882e50cbce1255b0b4585aea04b522a92a4e7a743367f43a863f95bb6386401e73935")
+SUM=("9c8d967f7a46a3a93f9f07b2e8cdeae698fd0de9fdd61ce5fff10b89e44a68eb7ae3a4ef72d5605bf5fc78d4fbd24ccad220306749c1886919ee4668feada729")
 
 # Prepare script
 function prepare() {
