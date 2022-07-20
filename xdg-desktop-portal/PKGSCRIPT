@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="xdg-desktop-portal"
+VERSION="1.14.4"
+EPOCH=0
+DESC="APIs for file access, opening URIs, printing and others for Flatpak."
+GRPS=()
+URL="https://github.com/flatpak/xdg-desktop-portal/"
+LICENSES=("LGPL-2.1")
+DEPENDS=("dbus" "fuse" "gdk-pixbuf2" "geoclue" "glib2" "glibc" "json-glib" "gcc-libs" "pipewire" "systemd")
+OPT_DEPENDS=()
+PROVIDES=("xdg-desktop-portal")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/flatpak/xdg-desktop-portal/releases/download/${VERSION}/xdg-desktop-portal-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("23fa4f9fdf39f22d6eaa4f6020db5f81d272b85fe6051467c5e28a752c65b18a9b540fafe5b27725fafa29dffefcd113d873928cd78e3658895cd24d96b82f73")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

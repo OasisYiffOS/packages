@@ -1,0 +1,16 @@
+{
+    "name": "xdg-desktop-portal",
+    "version": "1.14.4",
+    "epoch": 0,
+    "description": "APIs for file access, opening URIs, printing and others for Flatpak.",
+    "groups": [],
+    "url": "https://github.com/flatpak/xdg-desktop-portal/",
+    "license": ["LGPL-2.1"],
+    "depends": ["dbus", "fuse", "gdk-pixbuf2", "geoclue", "glib2", "glibc", "json-glib", "gcc-libs", "pipewire", "systemd"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xdg-desktop-portal"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}
