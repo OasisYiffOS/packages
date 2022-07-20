@@ -1,0 +1,16 @@
+{
+    "name": "libgphoto2",
+    "version": "2.5.30",
+    "epoch": 0,
+    "description": "Library for accessing digital cameras.",
+    "groups": [],
+    "url": "http://www.gphoto.org/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glibc", "curl", "libexif", "libjpeg-turbo", "libtool", "libusb", "libxml2"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libgphoto2"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+}

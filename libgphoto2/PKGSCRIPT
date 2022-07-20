@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+
+# Package information
+NAME="libgphoto2"
+VERSION="2.5.30"
+EPOCH=0
+DESC="Library for accessing digital cameras."
+GRPS=()
+URL="http://www.gphoto.org/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glibc" "curl" "libexif" "libjpeg-turbo" "libtool" "libusb" "libxml2")
+OPT_DEPENDS=()
+PROVIDES=("libgphoto2")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.sourceforge.net/project/gphoto/libgphoto/${VERSION}/libgphoto2-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("969e5765dc5de9e5fb8156eda679aca069f568e744cc48b643846175eb3cff78bc6ec3a848150a4c636d948018de022f2988da7b94029f103589384f9144b7ed")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
