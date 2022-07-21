@@ -1,6 +1,6 @@
 {
     "name": "eog",
-    "version": "42.1",
+    "version": "42.2",
     "epoch": 0,
     "description": "GNOME image viewer and basic editor.",
     "groups": [],

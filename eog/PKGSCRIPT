@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="eog"
-VERSION="42.1"
+VERSION="42.2"
 _MAJOR_VERSION="42"
 EPOCH=0
 DESC="GNOME image viewer and basic editor."
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/eog/${_MAJOR_VERSION}/eog-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("12db6bb2218f9dcea0e0558b04c05f3f8eb298eb7170a9511a7996a37082667fe06994d1db3ee4fef759aeb763a9de87749c8defa8d749432b635d2b421d1c8a")
+SUM=("f2da81fe7040f7ffc63da03df4889add33d59ad8df637797d1094d95233f4ce891838dfe6f774f58de63c28a620807bc4097b3ab1f31afb7cc7c402f8501e69d")
 
 # Prepare script
 function prepare() {
