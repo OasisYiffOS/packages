@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="vte"
-VERSION="0.68.0"
+VERSION="0.69.90"
 EPOCH=0
 DESC="A library implementing a terminal emulator widget for GTK."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://gitlab.gnome.org/GNOME/vte/-/archive/${VERSION}/vte-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("fb2260ae1363203cdccd0e0c6cafe29e5fb25947d2830a7ce1051f672fdc11c067791a8b74cb3017548e366976763fec2022e0c196ed501f46abb08876ad24d6")
+SUM=("3374686b3737aedfe752a1c312a069c04c4793c0a82b94433e5c8c13bf6eda000c1d7bdbc2cf2e981a454c36e09a1f909b47bfa02c888e000b193cba180d60f3")
 
 # Prepare script
 function prepare() {
