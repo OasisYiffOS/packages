@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="gcr"
-VERSION="3.40.0"
-_MAJOR_VERSION="3.40"
+VERSION="3.41.1"
+_MAJOR_VERSION="3.41"
 EPOCH=0
 DESC="Libraries used for displaying certificates and accessing key stores."
 GRPS=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gcr/${_MAJOR_VERSION}/gcr-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("7118608e7bef7d0cf2eea33cb3286b7f9c3622a38892ce88cf33ed453d343cc33e070831e7b4d0c5cdb43c2e57b3f0b91c7cbd6aa8463982d3af8844b59bcb81")
+SUM=("dd70d41636ede863d05824b26823a8f572902f7a9b6f09b0c70586ef0d4c046864e6956130b9231850a515a9fbfcd56faf20354c1cf8f697f005827c048a2325")
 
 # Prepare script
 function prepare() {
