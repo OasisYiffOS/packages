@@ -1,6 +1,6 @@
 {
     "name": "python-pygobject",
-    "version": "3.42.0",
+    "version": "3.42.2",
     "epoch": 0,
     "description": "A Python 3 module providing Python bindings to the GObject class from GLib.",
     "groups": [],
