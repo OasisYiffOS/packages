@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
 
 # Package information
 NAME="libhandy"
-VERSION="1.6.1"
-_MAJOR_VERSION="1.6"
+VERSION="1.7.0"
+_MAJOR_VERSION="1.7"
 EPOCH=0
 DESC="Additional GTK UI widgets for use in developing user interfaces."
 GRPS=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/libhandy/${_MAJOR_VERSION}/libhandy-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("1fddf72d7e6d97f12c879a512baeef80e32be4108640b2ff64c5b7dec68d8e2da8f9a2da3c1cb6cde8c2e672f4225e7db698f794641264e64ee9af3c68dbfbb3")
+SUM=("a6fdde1c1c7fa717f82d05cd6e110de72ee21d00dfd84140bb590d68cb2cc6f0e59259258087e487006a98daae96ac575846d644f77cc0c92416ce9dfd4fc1f1")
 
 # Prepare script
 function prepare() {

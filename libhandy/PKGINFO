@@ -1,6 +1,6 @@
 {
     "name": "libhandy",
-    "version": "1.6.1",
+    "version": "1.7.0",
     "epoch": 0,
     "description": "Additional GTK UI widgets for use in developing user interfaces.",
     "groups": [],
