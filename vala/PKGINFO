@@ -1,6 +1,6 @@
 {
     "name": "vala",
-    "version": "0.56.0",
+    "version": "0.56.2",
     "epoch": 0,
     "description": "An object-oriented programming language with a self-hosting compiler that generates C code and uses the GObject system.",
     "groups": [],
