@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="protobuf"
+VERSION="21.4"
+_DOWNLOAD_VERSION="3.21.4"
+EPOCH=0
+DESC="Protocol Buffers - Google's data interchange format."
+GRPS=()
+URL="https://developers.google.com/protocol-buffers"
+LICENSES=("BSD")
+DEPENDS=("glibc" "gcc-libs" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=("libtool")
+PROVIDES=("protobuf")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/protocolbuffers/protobuf/releases/download/v${VERSION}/protobuf-cpp-${_DOWNLOAD_VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("0bb437eed7de31d230a4f3bd381ac9a36da33c8c0a4181c8857650ee839de2a895f0e18f1e0dc4ba74fd349eedb372781b972b38c94586a67ff367ed7007b840")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${_DOWNLOAD_VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${_DOWNLOAD_VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${_DOWNLOAD_VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
