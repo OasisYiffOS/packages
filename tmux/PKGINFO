@@ -1,0 +1,16 @@
+{
+    "name": "tmux",
+    "version": "3.3a",
+    "epoch": 0,
+    "description": "A terminal multiplexer.",
+    "groups": [],
+    "url": "https://github.com/tmux/tmux/wiki",
+    "license": ["ISC", "BSD"],
+    "depends": ["glibc", "libevent", "ncurses"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["tmux"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
