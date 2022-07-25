@@ -12,5 +12,5 @@
     "provides": ["labwc", "wlroots"],
     "conflicts": ["wlroots"],
     "replaces": [],
-    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
 }

@@ -12,5 +12,5 @@
     "provides": ["grub2"],
     "conflicts": ["grub-legacy"],
     "replaces": [""],
-    "maintainers": ["Evie Viau <evie@uwueviee.live>"]
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
 }

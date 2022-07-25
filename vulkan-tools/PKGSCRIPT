@@ -1,5 +1,5 @@
 # Package Maintainers
-MAINTAINERS=("Evie Viau <evie@uwueviee.live>")
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="vulkan-tools"
@@ -9,7 +9,7 @@ DESC="Extra Vulkan utilities and tools."
 GRPS=()
 URL="https://www.vulkan.org/"
 LICENSES=("Apache-2.0")
-DEPENDS=("vulkan-loader" "libx11" "Wayland")
+DEPENDS=("vulkan-loader" "libx11" "wayland")
 OPT_DEPENDS=()
 MK_DEPENDS=("cmake" "glslang" "spirv-tools" "vulkan-headers" "wayland-protocols")
 PROVIDES=("vulkan-tools")
