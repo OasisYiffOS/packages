@@ -1,0 +1,16 @@
+{
+    "name": "mosh",
+    "version": "1.3.2",
+    "epoch": 0,
+    "description": "Remote terminal application that supports intermittent connectivity, allows roaming, and provides speculative local echo and line editing of user keystrokes.",
+    "groups": [],
+    "url": "https://mosh.org/",
+    "license": ["GPL-3.0"],
+    "depends": ["openssh", "openssl", "protobuf"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["mosh"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
