@@ -1,6 +1,6 @@
 {
     "name": "linux-headers",
-    "version": "5.18.12",
+    "version": "5.18.14",
     "epoch": 0,
     "description": "The Linux kernel headers",
     "groups": [],
