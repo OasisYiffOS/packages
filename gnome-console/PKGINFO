@@ -1,6 +1,6 @@
 {
     "name": "gnome-console",
-    "version": "42-beta",
+    "version": "42.2",
     "epoch": 0,
     "description": "Simple user-friendly terminal emulator for the GNOME desktop.",
     "groups": [],

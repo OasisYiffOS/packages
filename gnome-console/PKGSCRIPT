@@ -3,8 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-console"
-VERSION="42-beta"
-_DOWNLOAD_VERSION="42.beta"
+VERSION="42.2"
 EPOCH=0
 DESC="Simple user-friendly terminal emulator for the GNOME desktop."
 GRPS=()
@@ -18,26 +17,26 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://gitlab.gnome.org/GNOME/console/-/archive/${_DOWNLOAD_VERSION}/console-${_DOWNLOAD_VERSION}.tar.gz")
+SRC=("https://gitlab.gnome.org/GNOME/console/-/archive/${VERSION}/console-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("3bb8308daf6de8f7e8e96a4b1f026b910e80d9b6ae091a2c7be5666b13c05c49fb4bfcdd55dda5c077efc1d45e475ba46d0de3a503efedb2ddeb6cdaf41b29fb")
+SUM=("7986f9e805442c174dc666b97aac8b029492cb3995e48ac6c5ec2b9f52f07ef10ceeb471d1b8aedc8a74ea51575864b2f6cec5cc26ab54f1937424c315c5bbe7")
 
 # Prepare script
 function prepare() {
-    cd "${WORKDIR}/console-${_DOWNLOAD_VERSION}"
+    cd "${WORKDIR}/console-${VERSION}"
 
     mkdir build
     cd    build
 
-    meson --prefix=/usr --buildtype=release ..
+    meson --prefix=/usr --buildtype=release -Dnautilus=enabled ..
 
     return 0
 }
 
 # Build script
 function build() {
-    cd "${WORKDIR}/console-${_DOWNLOAD_VERSION}/build"
+    cd "${WORKDIR}/console-${VERSION}/build"
 
     ninja
 
@@ -46,7 +45,7 @@ function build() {
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/console-${_DOWNLOAD_VERSION}/build"
+    cd "${WORKDIR}/console-${VERSION}/build"
 
     DESTDIR="${BUILD_DATA_ROOT}" ninja install
 
