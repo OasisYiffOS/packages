@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="flatpak"
-VERSION="1.12.7"
+VERSION="1.14.0"
 EPOCH=1
 DESC="Linux application sandboxing and distribution framework."
 GRPS=()
@@ -17,13 +17,11 @@ REPLACES=()
 
 # Source information
 SRC=("https://github.com/flatpak/flatpak/releases/download/${VERSION}/flatpak-${VERSION}.tar.xz"
-    "https://flathub.org/repo/flathub.flatpakrepo"
-    "flatpak-bindir.sh")
+    "https://flathub.org/repo/flathub.flatpakrepo")
 
 SUM_TYPE="sha512"
-SUM=("425f9d330c649de1079f3286cb6ad8cf7b6e5838921effa4fd6f51020b9bf7991ded9071566ec7032b9868ef3f7e14d1fb7c2be96f903e3af23a075592b78f50"
-    "752cdb2f0f4774ac6966033edc989456764cf8fe9a2a97918c75ecfd47b2dacb567e98ede00168f780a8fc97ae6e413bb550ebd2323cb4aefb578469d9338a4d"
-    "280a4a4686cefe29a7b0ec14fd167e0d0e9884038f3739891496192b5fb44de3554f6f7d2b2dc7b267a66443409a002393b6292f6b74631f387228a071a7c133")
+SUM=("88f011534a8da6c2421d7d24043756bfe6c46957b6d09ba96b269002a5f0d0372b51f4a8643af2020ef4ed8c5b5f102994ddab54a7052cfba15f8e3b160e8a83"
+    "752cdb2f0f4774ac6966033edc989456764cf8fe9a2a97918c75ecfd47b2dacb567e98ede00168f780a8fc97ae6e413bb550ebd2323cb4aefb578469d9338a4d")
 
 # Prepare script
 function prepare() {
@@ -59,7 +57,10 @@ function postbuild() {
 
     DESTDIR="${BUILD_DATA_ROOT}" make install
 
-    install -Dt "${BUILD_DATA_ROOT}/etc/profile.d" -m644 ${WORKDIR}/flatpak-bindir.sh
+    # Add flatpak profile scripts from repo
+    install -Dt "${BUILD_DATA_ROOT}/etc/profile.d" -m644 ${WORKDIR}/${NAME}-${VERSION}/profile/flatpak.sh
+    install -Dt "${BUILD_DATA_ROOT}/etc/profile.d" -m644 ${WORKDIR}/${NAME}-${VERSION}/profile/flatpak.fish
+
     install -Dt "${BUILD_DATA_ROOT}/etc/flatpak/remotes.d/" ${WORKDIR}/flathub.flatpakrepo
 
     install -d -o root -g 102 -m 750 "${BUILD_DATA_ROOT}/usr/share/polkit-1/rules.d"
