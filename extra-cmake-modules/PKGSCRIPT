@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="extra-cmake-modules"
+VERSION="5.97.0"
+EPOCH=0
+DESC="Extra modules and scripts for CMake."
+GRPS=()
+URL="https://invent.kde.org/frameworks/extra-cmake-modules"
+LICENSES=("BSD-3-Clause" "BSD-2-Clause" "MIT" "CC0-1.0")
+DEPENDS=("gcc-libs" "glibc")
+OPT_DEPENDS=("qt5")
+MK_DEPENDS=("cmake")
+PROVIDES=("extra-cmake-modules")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://invent.kde.org/frameworks/extra-cmake-modules/-/archive/v${VERSION}/extra-cmake-modules-v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ad0e41ed03b8075447c228d99c647ae600fd8986cedf71d8d53e7aac68b640b87b9a879b5c8bd6a3d4bb910bf20b49c4f4677854a1493319ad1c43e64ecfd745")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}"
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr   \
+          -DCMAKE_BUILD_TYPE=Release    \
+          .. 
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}/build"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-v${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
