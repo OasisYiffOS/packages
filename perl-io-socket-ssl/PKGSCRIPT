@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="perl-io-socket-ssl"
+VERSION="2.074"
+EPOCH=0
+DESC="A perl module that provides SSL sockets with an IO::Socket interface"
+GRPS=()
+URL="https://metacpan.org/pod/IO::Socket::SSL"
+LICENSES=("GPL-1.0")
+DEPENDS=("perl" "perl-xml-parser")
+OPT_DEPENDS=()
+PROVIDES=("perl-xml-parser")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://cpan.metacpan.org/authors/id/S/SU/SULLR/IO-Socket-SSL-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("cafbf11a986b8fb5ce06bdf1e7a83741e2eef74d4bf054f0e0cd490959eddf54d32d3d4e786de52750dccc07139d8a1b5d5979080d0f1c1464e0004ccf98a6b0")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/IO-Socket-SSL-${VERSION}"
+
+    perl Makefile.PL
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/IO-Socket-SSL-${VERSION}"
+
+    make
+
+    make test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/IO-Socket-SSL-${VERSION}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "perl-io-socket-ssl",
+    "version": "2.074",
+    "epoch": 0,
+    "description": "A perl module that provides SSL sockets with an IO::Socket interface",
+    "groups": [],
+    "url": "https://metacpan.org/pod/IO::Socket::SSL",
+    "license": ["GPL-1.0"],
+    "depends": ["perl", "perl-xml-parser"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["perl-xml-parser"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
