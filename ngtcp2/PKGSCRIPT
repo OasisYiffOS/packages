@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="ngtcp2"
-VERSION="0.2.1"
+VERSION="0.8.0"
 EPOCH=0
 DESC="An effort to implement IETF QUIC protocol. Call it TCP/2. One More Time."
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://github.com/ngtcp2/ngtcp2/releases/download/v${VERSION}/ngtcp2-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("8570f84eaa21190c2abd8140bbaa5495e06331cbc60efb42466eab218d3ac42f51810e0cf2a15bf81d16139de26728ee5009db66930e23bf6732252b7bf38737")
+SUM=("d8ba29d55c1ad01c04e0d62fca4c1ed97e9e0bfd5dcb889dc1cb2b0a1188554ceb9bf2f92ece15eabfffb34eb992f5ac924f14077aba0de2e11246947b16d518")
 
 # Prepare script
 function prepare() {

@@ -1,6 +1,6 @@
 {
     "name": "ngtcp2",
-    "version": "0.2.1",
+    "version": "0.8.0",
     "epoch": 0,
     "description": "An effort to implement IETF QUIC protocol. Call it TCP/2. One More Time.",
     "groups": [],
