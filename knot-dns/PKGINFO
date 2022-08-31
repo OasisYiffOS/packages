@@ -1,0 +1,16 @@
+{
+    "name": "knot-dns",
+    "version": "3.2.0",
+    "epoch": 0,
+    "description": "High-performance authoritative-only DNS server which supports all key features of the modern domain name system.",
+    "groups": [],
+    "url": "https://www.knot-dns.cz/",
+    "license": ["GPL-3.0-or-later"],
+    "depends": ["glibc", "libedit", "gnutls", "liburcu", "lmdb", "libidn2", "systemd", "libnghttp2", "ngtcp2"],
+    "optional_depends": [],
+    "make_depends": ["libtool", "autoconf"],
+    "provides": ["knot-dns"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

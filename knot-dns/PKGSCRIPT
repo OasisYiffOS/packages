@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="knot-dns"
+VERSION="3.2.0"
+EPOCH=0
+DESC="High-performance authoritative-only DNS server which supports all key features of the modern domain name system."
+GRPS=()
+URL="https://www.knot-dns.cz/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=("glibc" "libedit" "gnutls" "liburcu" "lmdb" "libidn2" "systemd" "libnghttp2" "ngtcp2")
+OPT_DEPENDS=()
+MK_DEPENDS=("libtool" "autoconf")
+PROVIDES=("knot-dns")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://secure.nic.cz/files/knot-dns/knot-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("e007d633f1debb559d47a7646b055dc970502be11a1849063da3e3d28355f77e6cba41e34f06726bc5945e4e2ba3ecb84a4b39813a8079514d3bf584d7d565a2")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/knot-${VERSION}"
+
+    ./configure --prefix=/usr --enable-quic=yes
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/knot-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/knot-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
