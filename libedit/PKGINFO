@@ -1,0 +1,16 @@
+{
+    "name": "libedit",
+    "version": "20210910-3.1",
+    "epoch": 0,
+    "description": "Autotool and libtoolized port of the NetBSD Editline library (libedit).",
+    "groups": [],
+    "url": "https://www.thrysoee.dk/editline/",
+    "license": ["BSD-3-Clause"],
+    "depends": ["glibc", "ncurses"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libedit"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

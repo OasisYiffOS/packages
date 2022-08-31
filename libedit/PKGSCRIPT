@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="libedit"
+VERSION="20210910-3.1"
+EPOCH=0
+DESC="Autotool and libtoolized port of the NetBSD Editline library (libedit)."
+GRPS=()
+URL="https://www.thrysoee.dk/editline/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=("glibc" "ncurses")
+OPT_DEPENDS=()
+PROVIDES=("libedit")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.thrysoee.dk/editline/libedit-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("b7361c277f971ebe87e0e539e5e1fb01a4ca1bbab61e199eb97774d8b60dddeb9e35796faf9cc68eb86d1890e8aac11db13b44b57ccc8302d559741fbe9d979e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    sed -i "s/lncurses/ltinfo/" configure
+
+    ./configure --prefix=/usr --disable-static --disable-silent-rules
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    rm -r ${BUILD_DATA_ROOT}/usr/share/man/man3/history.3
+
+    return 0
+}
