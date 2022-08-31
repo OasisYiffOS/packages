@@ -1,0 +1,16 @@
+{
+    "name": "gnome-disk-utility",
+    "version": "42.0",
+    "epoch": 0,
+    "description": "GNOME libraries and applications for dealing with storage devices.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/Disks",
+    "license": ["GPL-2.0", "LGPL-2.1", "MIT"],
+    "depends": ["glibc", "glib2", "atk", "cairo", "gdk-pixbuf2", "gtk3", "libcanberra", "libdvdread", "libhandy", "libnotify", "libpwquality", "libsecret", "pango", "systemd", "udisks", "xz"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["gnome-disk-utility"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
