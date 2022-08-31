@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.knot-dns.cz/",
     "license": ["GPL-3.0-or-later"],
-    "depends": ["glibc", "libedit", "gnutls", "liburcu", "lmdb", "libidn2", "systemd", "libnghttp2", "ngtcp2"],
+    "depends": ["glibc", "libedit", "gnutls", "liburcu", "lmdb", "libidn2", "systemd", "nghttp2", "ngtcp2"],
     "optional_depends": [],
     "make_depends": ["libtool", "autoconf"],
     "provides": ["knot-dns"],
