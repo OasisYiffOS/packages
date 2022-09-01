@@ -4,7 +4,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 # Package information
 NAME="knot-dns"
 VERSION="3.2.0"
-EPOCH=0
+EPOCH=1
 DESC="High-performance authoritative-only DNS server which supports all key features of the modern domain name system."
 GRPS=()
 URL="https://www.knot-dns.cz/"
@@ -45,6 +45,9 @@ function postbuild() {
     cd "${WORKDIR}/knot-${VERSION}"
 
     DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -Dm644 distro/common/knot.service -t "${BUILD_DATA_ROOT}"/usr/lib/systemd/system/
+    install -Dm644 distro/pkg/arch/knot.sysusers "${BUILD_DATA_ROOT}"/usr/lib/sysusers.d/knot.conf
 
     return 0
 }
