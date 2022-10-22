@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="linux-headers"
-VERSION="5.18.14"
-_MAJOR_VERSION="5"
+VERSION="6.0.3"
+_MAJOR_VERSION="6"
 EPOCH=0
 DESC="The Linux kernel headers"
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://cdn.kernel.org/pub/linux/kernel/v${_MAJOR_VERSION}.x/linux-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("270c27efc9557c001314dd80508d533e00c1f5dc6be496e1c4581144e2386550efd42048293f178816a01be1c18dc70ee99eeca5d0deed5dd64f4f8baf90a146")
+SUM=("953a4dfe46eeb5f4b7927c3e2af8e053b3a1a50a255f90bc33a7883fbcaa3a349044a2df1560ea2f84dab2668734ccf2cf4597b053950fd28bf07509e12f002d")
 
 # Prepare script
 function prepare() {
