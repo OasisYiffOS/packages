@@ -1,0 +1,16 @@
+{
+    "name": "libmd",
+    "version": "1.0.4",
+    "epoch": 0,
+    "description": "Message Digest function library for BSD compatibility.",
+    "groups": [],
+    "url": "https://www.hadrons.org/software/libmd/",
+    "license": ["BSD-3-Clause"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libmd"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
