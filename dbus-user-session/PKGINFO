@@ -1,0 +1,16 @@
+{
+    "name": "dbus-user-session",
+    "version": "1.12.20",
+    "epoch": 0,
+    "description": "systemd --user integration for dbus",
+    "groups": [],
+    "url": "https://www.freedesktop.org/wiki/Software/dbus/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["dbus"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["dbus-user-session"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

@@ -1,0 +1,47 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="dbus-user-session"
+VERSION="1.12.20"
+EPOCH=0
+DESC="systemd --user integration for dbus"
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/dbus/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("dbus")
+OPT_DEPENDS=()
+PROVIDES=("dbus-user-session")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("dbus.socket"
+"dbus.service"
+"20dbus_xdg-runtime")
+
+SUM_TYPE="sha512"
+SUM=("8f5a1b2463d099a4117fd11f27ee006883f383862960c215578432343ab8b2292c52401f218886a7c227abf838d354f727169c64c9d579714a80a7be1c51cf03"
+"19132f5394067074444078865af1736fba4f533878077f0959a90a69e3ba67fbd3f163e06d010d565640c961ed3ed9aba7fd262fa23a15fb3ae4309f6220fb8c"
+"7c890cdfaa9003aae95ce6b5395ab4f8ab6ffbc2320fe84ad3313b712d7a26201af7f6759236c115f7702bf375bc449288cd1ee4a282feea9c48e9c7b4926fc4")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}"
+
+    install -Dm 775 "dbus.socket" "${BUILD_DATA_ROOT}/usr/lib/systemd/user/dbus.socket"
+    install -Dm 775 "dbus.service" "${BUILD_DATA_ROOT}/usr/lib/systemd/user/dbus.service"
+    install -Dm 775 "20dbus_xdg-runtime" "${BUILD_DATA_ROOT}/etc/X11/Xsession.d/20dbus_xdg-runtime"
+
+    return 0
+}
