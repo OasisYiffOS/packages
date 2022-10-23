@@ -1,0 +1,16 @@
+{
+    "name": "giflib",
+    "version": "5.2.1",
+    "epoch": 0,
+    "description": "Library and utilities for processing GIFs",
+    "groups": [],
+    "url": "https://giflib.sourceforge.net",
+    "license": ["MIT"],
+    "depends": ["xmlto"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["giflib"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="giflib"
+VERSION="5.2.1"
+EPOCH=0
+DESC="Library and utilities for processing GIFs"
+GRPS=()
+URL="https://giflib.sourceforge.net"
+LICENSES=("MIT")
+DEPENDS=("xmlto")
+OPT_DEPENDS=()
+PROVIDES=("giflib")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/project/giflib/giflib-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("4550e53c21cb1191a4581e363fc9d0610da53f7898ca8320f0d3ef6711e76bdda2609c2df15dc94c45e28bff8de441f1227ec2da7ea827cb3c0405af4faa4736")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # attempting to make documents seems to result in an error,
+    # this seems to be due to non-existent urls
+    sed -i "/\$(MAKE) -C doc/s///" Makefile
+
+    # since this package doesn't let us do ./configure, we need
+    # to manually set it to install in /usr instead of /usr/local
+    # (:
+    sed -i "s/\/usr\/local/\/usr/" Makefile
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
