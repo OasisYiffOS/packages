@@ -1,0 +1,16 @@
+{
+    "name": "emacs",
+    "version": "28.2",
+    "epoch": 0,
+    "description": "The extensible, customizable, self-documenting real-time display editor.",
+    "groups": [],
+    "url": "https://www.gnu.org/software/emacs/",
+    "license": ["GPL-3.0-or-later"],
+    "depends": ["glibc", "glib2", "harfbuzz", "giflib", "gnutls", "jansson", "libtiff", "alsa-lib", "cairo", "dbus", "gconf", "gsettings-desktop-schemas", "gpm", "gtk3", "imagemagick", "little-cms2", "libjpeg-turbo", "libpng", "librsvg2", "libxml2"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection"],
+    "provides": ["emacs"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

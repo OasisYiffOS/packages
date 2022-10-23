@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="emacs"
+VERSION="28.2"
+EPOCH=0
+DESC="The extensible, customizable, self-documenting real-time display editor."
+GRPS=()
+URL="https://www.gnu.org/software/emacs/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=("glibc" "glib2" "harfbuzz" "giflib" "gnutls" "jansson" "libtiff" "alsa-lib" "cairo" "dbus" "gconf" "gsettings-desktop-schemas" "gpm" "gtk3" "imagemagick" "little-cms2" "libjpeg-turbo" "libpng" "librsvg2" "libxml2")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection")
+PROVIDES=("emacs")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/emacs/emacs-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("a7cec7e3e82367815a1442f69af54102dbfc434069810a9dec5938a6660cb8b076e6f1fb0bfff9695b15603dbbe05eb9c7dfd92e90cf40fc4d1e5746bce83bd8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr       \
+                --with-imagemagick  \
+
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    rm ${BUILD_DATA_ROOT}/usr/share/info/dir
+
+    chown -v -R root:root ${BUILD_DATA_ROOT}/usr/share/emacs/${VERSION}
+
+    return 0
+}
