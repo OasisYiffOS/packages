@@ -1,0 +1,16 @@
+{
+    "name": "x11-sessreg",
+    "version": "1.1.2",
+    "epoch": 0,
+    "description": "Register X sessions in system utmp/utmpx databases.",
+    "groups": [],
+    "url": "https://xorg.freedesktop.org/",
+    "license": ["MIT"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["x11-util-macros", "xorgproto"],
+    "provides": ["x11-sessreg"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
