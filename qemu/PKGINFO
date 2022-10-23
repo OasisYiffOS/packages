@@ -1,0 +1,16 @@
+{
+    "name": "qemu",
+    "version": "7.1.0",
+    "epoch": 0,
+    "description": "Virtualization solution for x86 Linux.",
+    "groups": [],
+    "url": "https://qemu-project.org/",
+    "license": ["GPL-2.0"],
+    "depends": ["glib2"],
+    "optional_depends": ["alsa-lib", "sdl2"],
+    "make_depends": ["ninja", "diffutils"],
+    "provides": ["qemu"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

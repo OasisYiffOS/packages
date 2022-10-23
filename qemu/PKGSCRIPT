@@ -1,0 +1,62 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="qemu"
+VERSION="7.1.0"
+EPOCH=0
+DESC="Virtualization solution for x86 Linux."
+GRPS=()
+URL="https://qemu-project.org/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glib2")
+OPT_DEPENDS=("alsa-lib" "sdl2")
+MK_DEPENDS=("ninja" "diffutils")
+PROVIDES=("qemu")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.qemu-project.org/qemu-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("c60c5ff8ec99b7552e485768908920658fdd8035ff7a6fa370fb6881957dc8b7e5f18ff1a8f49bd6aa22909ede2a7c084986d8244f12074ccd33ebe40a0c411f")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # check architecture
+    if [ $(uname -m) = i686 ]; then
+        QEMU_ARCH=i386-softmmu
+    else
+        QEMU_ARCH=x86_64-softmmu
+    fi
+
+    ./configure --prefix=/usr               \
+                 --sysconfdir=/etc           \
+                 --localstatedir=/var        \
+                 --audio-drv-list=alsa,pa    \
+                 --docdir=/usr/share/doc/qemu-7.1.0
+    unset QEMU_ARCH
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
