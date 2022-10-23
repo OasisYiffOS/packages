@@ -1,0 +1,16 @@
+{
+    "name": "libbsd",
+    "version": "0.11.7",
+    "epoch": 0,
+    "description": "Provides useful functions commonly found on BSD systems to make porting to GNU systems easier.",
+    "groups": [],
+    "url": "https://libbsd.freedesktop.org",
+    "license": ["BSD-3-Clause"],
+    "depends": ["libmd", "libtool"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libbsd"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
