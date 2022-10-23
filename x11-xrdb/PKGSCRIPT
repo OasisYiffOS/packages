@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="x11-xrdb"
+VERSION="1.2.1"
+EPOCH=0
+DESC="The X resource database manager."
+GRPS=()
+URL="https://www.x.org/wiki/"
+LICENSES=("MIT")
+DEPENDS=("libx11" "libxmu")
+OPT_DEPENDS=()
+MK_DEPENDS=("x11-util-macros")
+PROVIDES=("x11-xrdb")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://xorg.freedesktop.org/archive/individual/app/xrdb-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("d88135cdfea8536523dfb986249ee42761d5363c936352f12f55b4d0c849f21236f7d74d39869c5ec5b549019d6ed89d9096cde4b3c2b4816c2778a8e370b5c9")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/xrdb-${VERSION}"
+
+    ./configure --prefix=/usr --with-cpp=/usr/bin/cpp
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/xrdb-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/xrdb-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

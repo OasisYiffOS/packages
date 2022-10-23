@@ -1,0 +1,16 @@
+{
+    "name": "x11-xrdb",
+    "version": "1.2.1",
+    "epoch": 0,
+    "description": "The X resource database manager.",
+    "groups": [],
+    "url": "https://www.x.org/wiki/",
+    "license": ["MIT"],
+    "depends": ["libx11", "libxmu"],
+    "optional_depends": [],
+    "make_depends": ["x11-util-macros"],
+    "provides": ["x11-xrdb"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
