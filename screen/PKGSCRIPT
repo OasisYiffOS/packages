@@ -1,0 +1,60 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="screen"
+VERSION="4.9.0"
+EPOCH=0
+DESC="Basic terminal multiplexor."
+GRPS=()
+URL="https://www.gnu.org/software/screen/"
+LICENSES=("GPL-3.0")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("screen")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/screen/screen-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("18bbb085d77ecd02cbc02fa88a945c39f06e0c6de4eeaa16b278440dac5c9896811abbe0838144e997cd344ae08b9530399fa8fcb31a65fc571ead90e8307f84")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # from blfs
+
+    sh autogen.sh
+    ./configure --prefix=/usr                 \
+            --infodir=/usr/share/info         \
+            --mandir=/usr/share/man           \
+            --with-socket-dir=/run/screen     \
+            --with-pty-group=5                \
+            --with-sys-screenrc=/etc/screenrc
+
+    sed -i -e "s%/usr/local/etc/screenrc%/etc/screenrc%" {etc,doc}/*
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+    install -Dm 644 etc/etcscreenrc "${BUILD_DATA_ROOT}/etc/screenrc"
+
+    return 0
+}

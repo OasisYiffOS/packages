@@ -1,0 +1,16 @@
+{
+    "name": "screen",
+    "version": "4.9.0",
+    "epoch": 0,
+    "description": "Basic terminal multiplexor.",
+    "groups": [],
+    "url": "https://www.gnu.org/software/screen/",
+    "license": ["GPL-3.0"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["screen"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
