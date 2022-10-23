@@ -4,12 +4,12 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 # Package information
 NAME="intltool"
 VERSION="0.51.0"
-EPOCH=0
+EPOCH=1
 DESC="Internationalization tool used for extracting translatable strings from source code"
 GRPS=()
 URL="https://freedesktop.org/wiki/Software/intltool/"
 LICENSES=("GPL-2.0")
-DEPENDS=()
+DEPENDS=("perl-xml-parser")
 OPT_DEPENDS=()
 PROVIDES=("intltool")
 CONFLICTS=()
