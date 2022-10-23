@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://xfce.org/",
     "license": ["GPL-2.0-or-later"],
-    "depends": ["glibc", "glib2", "atk", "cairo", "gdk-pixbuf2", "gtk3", "harfbuzz", "libx11", "libxfce4ui", "libxfce4util", "pango", "util"],
+    "depends": ["glibc", "glib2", "atk", "cairo", "gdk-pixbuf2", "gtk3", "harfbuzz", "libx11", "libxfce4ui", "libxfce4util", "pango", "zlib"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["exo"],
