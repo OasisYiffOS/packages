@@ -1,0 +1,48 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="wired-notify"
+VERSION="0.10.2"
+EPOCH=0
+DESC="Lightweight notification daemon with highly customizable layout blocks, written in Rust."
+GRPS=()
+URL="https://github.com/Toqozz/wired-notify"
+LICENSES=("MIT")
+DEPENDS=("dbus" "cairo" "pango" "glib2" "libx11" "libxscrnsaver" "dbus-user-session")
+OPT_DEPENDS=()
+MK_DEPENDS=("rust")
+PROVIDES=("wired-notify")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/Toqozz/wired-notify/archive/refs/tags/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("03747d9620c38195e99e5feb14a30c803f2a883c48ec219f2952fa6472ea0d9ea1a9413b7be7f21c6fc1843186c1033b971a5cd865dc5c151b65f317e1f97f0a")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cargo build --release
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    install -Dm 755 "target/release/wired" "${BUILD_DATA_ROOT}/usr/bin/wired"
+
+    install -Dm 755 "wired.service" "${BUILD_DATA_ROOT}/usr/lib/systemd/user/wired.service"
+
+    return 0
+}

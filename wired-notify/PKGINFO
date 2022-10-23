@@ -1,0 +1,16 @@
+{
+    "name": "wired-notify",
+    "version": "0.10.2",
+    "epoch": 0,
+    "description": "Lightweight notification daemon with highly customizable layout blocks, written in Rust.",
+    "groups": [],
+    "url": "https://github.com/Toqozz/wired-notify",
+    "license": ["MIT"],
+    "depends": ["dbus", "cairo", "pango", "glib2", "libx11", "libxscrnsaver", "dbus-user-session"],
+    "optional_depends": [],
+    "make_depends": ["rust"],
+    "provides": ["wired-notify"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
