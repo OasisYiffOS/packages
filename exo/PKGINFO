@@ -1,0 +1,16 @@
+{
+    "name": "exo",
+    "version": "4.16.4",
+    "epoch": 0,
+    "description": "Application library for the Xfce desktop.",
+    "groups": [],
+    "url": "https://xfce.org/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glibc", "glib2", "atk", "cairo", "gdk-pixbuf2", "gtk3", "harfbuzz", "libx11", "libxfce4ui", "libxfce4util", "pango", "util"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["exo"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

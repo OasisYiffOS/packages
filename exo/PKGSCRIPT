@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="exo"
+VERSION="4.16.4"
+_MAJOR_VERSION="4.16"
+EPOCH=0
+DESC="Application library for the Xfce desktop."
+GRPS=()
+URL="https://xfce.org/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glibc" "glib2" "atk" "cairo" "gdk-pixbuf2" "gtk3" "harfbuzz" "libx11" "libxfce4ui" "libxfce4util" "pango" "util")
+OPT_DEPENDS=()
+PROVIDES=("exo")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://archive.xfce.org/src/xfce/exo/${_MAJOR_VERSION}/exo-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("2cf2267a0bd8526dc870cbe48a0d95573c153a990caffabb13365c6e90c155b6d3383ad1282715cb22ce413e704d170bf7fec1af09ad1b0609507a46c4d1233d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --sysconfdir=/etc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
