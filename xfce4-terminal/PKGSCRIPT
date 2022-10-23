@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="xfce4-terminal"
+VERSION="1.0.4"
+_MAJOR_VERSION="1.0"
+EPOCH=0
+DESC="Lightweight and easy to use terminal emulator for the Xfce desktop."
+GRPS=()
+URL="https://docs.xfce.org/apps/terminal/start"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glibc" "glib2" "cairo" "gdk-pixbuf2" "libx11" "libxfce4ui" "libxfce4util" "pango" "vte" "xfconf")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("xfce4-terminal")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://archive.xfce.org/src/apps/xfce4-terminal/${_MAJOR_VERSION}/xfce4-terminal-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("76ea8f296fe1c128dc70d8aabf23447300ba83405d52e844abec89049968bac51fe47fd7545a76e4a421275c6a2f230f326ed3a25083bf536f17fc3218b05fce")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+   ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

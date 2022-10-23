@@ -1,0 +1,16 @@
+{
+    "name": "xfce4-terminal",
+    "version": "1.0.4",
+    "epoch": 0,
+    "description": "Lightweight and easy to use terminal emulator for the Xfce desktop.",
+    "groups": [],
+    "url": "https://docs.xfce.org/apps/terminal/start",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glibc", "glib2", "cairo", "gdk-pixbuf2", "libx11", "libxfce4ui", "libxfce4util", "pango", "vte", "xfconf"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xfce4-terminal"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
