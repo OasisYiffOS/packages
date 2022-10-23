@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="libxfce4util"
+VERSION="4.16.0"
+_MAJOR_VERSION="4.16"
+EPOCH=0
+DESC="Basic utility non-GUI functions for Xfce4."
+GRPS=()
+URL="https://www.xfce.org/"
+LICENSES=("LGPL-2.0-or-later")
+DEPENDS=("glibc" "glib2")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "vala")
+PROVIDES=("libxfce4util")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://archive.xfce.org/src/xfce/libxfce4util/${_MAJOR_VERSION}/libxfce4util-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("dce6992c3da73367461d7464794a9b2a5503666113682e07a86e18b1c5383de2b087809448d5729097571f4fda6b4af5f4f4600848514ab2ab4b3f367ca26f5c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
