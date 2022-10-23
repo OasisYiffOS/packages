@@ -1,0 +1,16 @@
+{
+    "name": "x11-xdm",
+    "version": "1.1.13",
+    "epoch": 0,
+    "description": "The X Display Manager / XDMCP server.",
+    "groups": [],
+    "url": "https://xorg.freedesktop.org/wiki/",
+    "license": ["MIT"],
+    "depends": ["libxaw", "libxcrypt", "libxft", "libxinerama", "pam", "systemd", "x11-sessreg", "x11-xrdb"],
+    "optional_depends": [],
+    "make_depends": ["x11-util-macros", "xtrans"],
+    "provides": ["x11-xdm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

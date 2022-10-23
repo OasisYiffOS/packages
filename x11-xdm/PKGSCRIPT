@@ -1,0 +1,91 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="x11-xdm"
+VERSION="1.1.13"
+EPOCH=0
+DESC="The X Display Manager / XDMCP server."
+GRPS=()
+URL="https://xorg.freedesktop.org/wiki/"
+LICENSES=("MIT")
+DEPENDS=("libxaw" "libxcrypt" "libxft" "libxinerama" "pam" "systemd" "x11-sessreg" "x11-xrdb")
+OPT_DEPENDS=()
+MK_DEPENDS=("x11-util-macros" "xtrans")
+PROVIDES=("x11-xdm")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://xorg.freedesktop.org/releases/individual/app/xdm-${VERSION}.tar.xz"
+"nolisten.patch"
+"xdm-1.0.5-sessreg-utmp-fix-bug177890.patch"
+"xdm.pam"
+"Xsession-loginshell.patch"
+"Xsession-xsm.patch")
+
+SUM_TYPE="sha512"
+SUM=("1c7ba51dc8c6989ff6ede3a3abd06e002903609d4ebd31f06ec39fbfee3a80a690c6180f85c3ab135a0de4623261d92a191d1ca5f733cdb3bd2e7e78977b98e5"
+"36136bdec96dbe034d93b68f14dbd34663e3423520eb8674a5760c7e6379006b32e42c43691cf6d91f9d683bee07e117c7ffc326c50b9e24f7515495e12cd89b"
+"698d401899660708dc17eaa84bd2323426afa4c3c094ff8d4a8d9c54e26e073f40dafed67636855bb230f351523a88f1f1ed1ec443d77d92ef65646b5a6976d5"
+"4c9dbeb50e5e798036bcf5462e832664574bb556f62374829c16e7c3e1e6817835ee2b861ef10a1661e7c40a908fc91111e2dfcb3474ee6cd5cd15a04abace38"
+"cf79d5ced77568f346e0955d955438ce27dae99cca21fdd80df779c97cfc03b3b15b561d483f8a8206e1db0785434b816b3474d6cc20c5adb8072c0985254c69"
+"9ba9b515d18c595cec402c7d4f2a8c4b9b10d99ee1bb0a86f2c72c813962a325c3c6e85ea5387f11819f8c046761494d6e54df0cb33bb4ab1e87ef354dc61c5b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/xdm-${VERSION}"
+
+    echo "Applying Xsession-loginshell.patch"
+    patch -Np0 -i "${WORKDIR}/Xsession-loginshell.patch"
+    echo "Applying Xsession-xsm.patch"
+    patch -Np1 -i "${WORKDIR}/Xsession-xsm.patch"
+    echo "Applying xdm-1.0.5-sessreg-utmp-fix-bug177890.patch"
+    patch -Np0 -i "${WORKDIR}/xdm-1.0.5-sessreg-utmp-fix-bug177890.patch"
+    echo "Applying nolisten.patch"
+    patch -Np1 -i "${WORKDIR}/nolisten.patch"
+
+    autoreconf -vfi
+
+    unset DEF_USER_PATH
+
+    ./configure --prefix=/usr                                   \
+                --disable-xdm-auth                              \
+                --disable-static                                \
+                --with-xdmconfigdir=/etc/X11/xdm                \
+                --with-xdmscriptdir=/etc/X11/xdm                \
+                --with-pixmapdir=/usr/share/xdm/pixmaps         \
+                DEF_USER_PATH="/usr/local/bin:/usr/bin:/bin"    \
+                DEF_SYSTEM_PATH="/usr/local/bin:/usr/bin:/bin"
+
+    sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/xdm-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/xdm-${VERSION}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+
+    install -m755 -d "${BUILD_DATA_ROOT}/var/lib/xdm"
+    install -m755 -d "${BUILD_DATA_ROOT}/etc/pam.d"
+    install -m644 "${WORKDIR}/xdm.pam" "${BUILD_DATA_ROOT}/etc/pam.d/xdm"
+
+    sed -i -e 's/\/X11R6//g' "${BUILD_DATA_ROOT}"/etc/X11/xdm/*
+
+    sed -i 's|^Alias=.*|Alias=display-manager.service|' \
+      "$BUILD_DATA_ROOT/usr/lib/systemd/system/xdm.service"
+
+    return 0
+}
