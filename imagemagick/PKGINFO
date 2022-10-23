@@ -1,0 +1,16 @@
+{
+    "name": "imagemagick",
+    "version": "7.1.0",
+    "epoch": 51,
+    "description": "Versatile image display and manipulation tool.",
+    "groups": [],
+    "url": "https://imagemagick.org",
+    "license": ["Apache-2.0"],
+    "depends": ["fontconfig", "libtool", "freetype2", "libjpeg-turbo", "libxt", "libsm", "libice", "libx11", "bzip2", "cairo", "pango", "glib2", "harfbuzz"],
+    "optional_depends": [],
+    "make_depends": ["libpng", "libtiff", "libwebp", "little-cms2", "libxext", "libxml2"],
+    "provides": ["libmagick"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

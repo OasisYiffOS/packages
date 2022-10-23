@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="imagemagick"
+_TITLE="ImageMagick"
+VERSION="7.1.0"
+EPOCH=51
+DESC="Versatile image display and manipulation tool."
+GRPS=()
+URL="https://imagemagick.org"
+LICENSES=("Apache-2.0")
+DEPENDS=("fontconfig" "libtool" "freetype2" "libjpeg-turbo" "libxt" "libsm" "libice" "libx11" "bzip2" "cairo" "pango" "glib2" "harfbuzz")
+MK_DEPENDS=("libpng" "libtiff" "libwebp" "little-cms2" "libxext" "libxml2")
+OPT_DEPENDS=()
+PROVIDES=("libmagick")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://imagemagick.org/archive/ImageMagick-${VERSION}-${EPOCH}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("c9c81cb7c2affca527eab2367254e3f65786aebcef71eb313db8fbaaeb62db07fee91dceaecaf429b20440493cd0ade2e5d4705260a2176784c4deede85e12bb")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${_TITLE}-${VERSION}-${EPOCH}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_TITLE}-${VERSION}-${EPOCH}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_TITLE}-${VERSION}-${EPOCH}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
