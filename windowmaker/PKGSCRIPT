@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="windowmaker"
+_TITLE="WindowMaker"
+VERSION="0.95.9"
+EPOCH=0
+DESC="An X11 window manager designed to reproduce the look and feel of the NeXTSTEP user interface."
+GRPS=()
+URL="http://www.windowmaker.org"
+LICENSES=("GPL-2.0")
+DEPENDS=("giflib" "libbsd" "libmagick" "libpng" "libtiff" "libxft" "libxinerama" "libxmu" "libxpm" "xrandr")
+OPT_DEPENDS=()
+PROVIDES=("windowmaker")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/window-maker/wmaker/releases/download/wmaker-${VERSION}/WindowMaker-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ca3ddc863f5b5b782e90f38c0019fe14d1109d6b11d0a3d5d6c728ddc1817747eea92e22e36933d445e72c70661e039ee56efa70f2654657c8980269fd5b4584")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${_TITLE}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_TITLE}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_TITLE}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

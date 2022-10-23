@@ -1,0 +1,16 @@
+{
+    "name": "windowmaker",
+    "version": "0.95.9",
+    "epoch": 0,
+    "description": "An X11 window manager designed to reproduce the look and feel of the NeXTSTEP user interface.",
+    "groups": [],
+    "url": "http://www.windowmaker.org",
+    "license": ["GPL-2.0"],
+    "depends": ["giflib", "libbsd", "libmagick", "libpng", "libtiff", "libxft", "libxinerama", "libxmu", "libxpm", "xrandr"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["windowmaker"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
