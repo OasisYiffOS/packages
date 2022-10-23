@@ -1,0 +1,16 @@
+{
+    "name": "libxfce4ui",
+    "version": "4.16.1",
+    "epoch": 0,
+    "description": "Widgets library for the Xfce desktop environment.",
+    "groups": [],
+    "url": "https://www.xfce.org/",
+    "license": ["LGPL-2.0-or-later"],
+    "depends": ["glibc", "glib2", "atk", "cairo", "gdk-pixbuf2", "gtk3", "harfbuzz", "libice", "libsm", "libx11", "libxfce4util", "pango", "startup-notification", "xfconf", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libxfce4ui"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

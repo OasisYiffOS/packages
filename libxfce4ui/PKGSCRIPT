@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="libxfce4ui"
+VERSION="4.16.1"
+_MAJOR_VERSION="4.16"
+EPOCH=0
+DESC="Widgets library for the Xfce desktop environment."
+GRPS=()
+URL="https://www.xfce.org/"
+LICENSES=("LGPL-2.0-or-later")
+DEPENDS=("glibc" "glib2" "atk" "cairo" "gdk-pixbuf2" "gtk3" "harfbuzz" "libice" "libsm" "libx11" "libxfce4util" "pango" "startup-notification" "xfconf" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("libxfce4ui")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://archive.xfce.org/src/xfce/libxfce4ui/${_MAJOR_VERSION}/libxfce4ui-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("c183bbc75539c777fe704d0a1c4e533fdd2efb6cbc980cfedc2eaa80d0e6223db038498774ffcdc720d7f991dd8d9634183a757a4c4d1728cc9956a33cb187d0")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+   ./configure --prefix=/usr --sysconfdir=/etc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
