@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="thunar"
+VERSION="4.16.11"
+_MAJOR_VERSION="4.16"
+EPOCH=0
+DESC="Modern, fast and easy-to-use file manager for Xfce."
+GRPS=()
+URL="https://xfce.org/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glibc" "glib2" "atk" "bash" "cairo" "dbus" "exo" "gdk-pixbuf2" "gtk3" "gvfs" "harfbuzz" "libice" "libxm" "libx11" "libexif" "libgudev" "libnotify" "libxfce4ui" "libxfce4util" "pango" "pcre" "shared-mime-info" "xfconf" "zlib")
+OPT_DEPENDS=("hicolor-icon-theme")
+PROVIDES=("thunar")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://archive.xfce.org/src/xfce/thunar/${_MAJOR_VERSION}/thunar-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("41b390ce269911e4f0b83c07bf910274cf13afcd293389b156457764a0c771dcb87c03976debe0c4ce06c6a5eeca32fd043cbc3e92d4c7ea8fb00da973b06404")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                               \
+                --sysconfdir=/etc                           \
+                --docdir=/usr/share/doc/thunar-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

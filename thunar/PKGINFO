@@ -1,0 +1,16 @@
+{
+    "name": "thunar",
+    "version": "4.16.11",
+    "epoch": 0,
+    "description": "Modern, fast and easy-to-use file manager for Xfce.",
+    "groups": [],
+    "url": "https://xfce.org/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glibc", "glib2", "atk", "bash", "cairo", "dbus", "exo", "gdk-pixbuf2", "gtk3", "gvfs", "harfbuzz", "libice", "libxm", "libx11", "libexif", "libgudev", "libnotify", "libxfce4ui", "libxfce4util", "pango", "pcre", "shared-mime-info", "xfconf", "zlib"],
+    "optional_depends": ["hicolor-icon-theme"],
+    "make_depends": [],
+    "provides": ["thunar"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
