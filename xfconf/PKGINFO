@@ -1,0 +1,16 @@
+{
+    "name": "xfconf",
+    "version": "4.16.0",
+    "epoch": 0,
+    "description": "Xfce's D-Bus-based hierarchical configuration storage system.",
+    "groups": [],
+    "url": "https://www.xfce.org/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glibc", "glib2", "dbus", "libxfce4util"],
+    "optional_depends": [],
+    "make_depends": ["vala"],
+    "provides": ["xfconf"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

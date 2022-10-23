@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="xfconf"
+VERSION="4.16.0"
+_MAJOR_VERSION="4.16"
+EPOCH=0
+DESC="Xfce's D-Bus-based hierarchical configuration storage system."
+GRPS=()
+URL="https://www.xfce.org/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glibc" "glib2" "dbus" "libxfce4util")
+OPT_DEPENDS=()
+MK_DEPENDS=("vala")
+PROVIDES=("xfconf")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://archive.xfce.org/src/xfce/xfconf/${_MAJOR_VERSION}/xfconf-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("d2e6b272243d6eda71f42cb3df18cb9c0745a1864718639e9aa494902dfe5b4989b2761fee2195456e5725cad0f744978f9c95c6f01e48aa016a919ce3468344")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+   ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
