@@ -1,6 +1,6 @@
 {
     "name": "mesa-utils",
-    "version": "8.4.0",
+    "version": "8.5.0",
     "epoch": 0,
     "description": "Some essential Mesa utilities.",
     "groups": [],
@@ -8,7 +8,7 @@
     "license": ["custom"],
     "depends": ["libglvnd", "freetype2", "freeglut", "mesa", "glew"],
     "optional_depends": [],
-    "make_depends": [],
+    "make_depends": ["meson", "ninja"],
     "provides": ["mesa-utils"],
     "conflicts": [],
     "replaces": [],

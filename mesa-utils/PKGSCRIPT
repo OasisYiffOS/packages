@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="mesa-utils"
-VERSION="8.4.0"
+VERSION="8.5.0"
 EPOCH=0
 DESC="Some essential Mesa utilities."
 GRPS=()
@@ -11,39 +11,44 @@ URL="https://www.mesa3d.org/"
 LICENSES=("custom")
 DEPENDS=("libglvnd" "freetype2" "freeglut" "mesa" "glew")
 OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
 PROVIDES=("mesa-utils")
 CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("ftp://ftp.freedesktop.org/pub/mesa/demos/mesa-demos-${VERSION}.tar.bz2")
+SRC=("ftp://ftp.freedesktop.org/pub/mesa/demos/${VERSION}/mesa-demos-${VERSION}.tar.bz2")
 
 SUM_TYPE="sha512"
-SUM=("b72d03cad36e0535ff18dcfb222ec4200064b9264f6da51a6e5f03b0dd912abe188bc1d600b6698de3ce6f63b28d2ce01565886ca8e7079edc4967fbf2fb0957")
+SUM=("df6a7f09638ca389d6e8bc569e599dcc59c9aa280bcfb95976d83e5cd3edfe74bb3a31f0953956dc16faa540ee5b09990e3377e1341d836fc527e50ace6e60b8")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/mesa-demos-${VERSION}"
 
-    ./configure --prefix=/usr                                   \
-                --disable-gles1                                 \
-                --with-system-data-files=/usr/share/mesa-demos
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr                  \
+          -Dgles1=disabled               \
+          -Dwith-system-data-files=true  \
+          ..
 
     return 0
 }
 
 # Build script
 function build() {
-    cd "${WORKDIR}/mesa-demos-${VERSION}"
+    cd "${WORKDIR}/mesa-demos-${VERSION}/build"
 
-    make
+    ninja
 
     return 0
 }
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/mesa-demos-${VERSION}"
+    cd "${WORKDIR}/mesa-demos-${VERSION}/build"
 
     mkdir -p "${BUILD_DATA_ROOT}/usr/bin/"
     install -Dm 0755 src/egl/opengl/eglinfo -t "${BUILD_DATA_ROOT}/usr/bin/"
