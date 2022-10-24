@@ -1,0 +1,16 @@
+{
+    "name": "xfce4-notifyd",
+    "version": "0.6.4",
+    "epoch": 0,
+    "description": "The Xfce Notify Daemon.",
+    "groups": [],
+    "url": "https://www.xfce.org/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glibc", "glib2", "atk", "cairo", "dbus", "gdk-pixbuf2", "gtk3", "harfbuzz", "libx11", "libnotify", "libxfce4ui", "libxfce4util", "pango", "xfce4-panel", "xfconf", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xfce4-notifyd"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

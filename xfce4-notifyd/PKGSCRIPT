@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="xfce4-notifyd"
+VERSION="0.6.4"
+_MAJOR_VERSION="0.6"
+EPOCH=0
+DESC="The Xfce Notify Daemon."
+GRPS=()
+URL="https://www.xfce.org/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glibc" "glib2" "atk" "cairo" "dbus" "gdk-pixbuf2" "gtk3" "harfbuzz" "libx11" "libnotify" "libxfce4ui" "libxfce4util" "pango" "xfce4-panel" "xfconf" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("xfce4-notifyd")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://archive.xfce.org/src/apps/xfce4-notifyd/${_MAJOR_VERSION}/xfce4-notifyd-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("644e2e49092892e386a9f82edc6ab3b2b59ba67617d9217fb43dd3cf74ae5cfc9b9bea6ed0fab4c4440eca68613aa996d9f8dc73deb1f60926217b7db18cc73b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+   ./configure --prefix=/usr --sysconfdir=/etc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
