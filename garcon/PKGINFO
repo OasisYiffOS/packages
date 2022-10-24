@@ -1,0 +1,16 @@
+{
+    "name": "garcon",
+    "version": "4.16.1",
+    "epoch": 0,
+    "description": "Xfce's Freedesktop.org compliant menu library.",
+    "groups": [],
+    "url": "https://www.xfce.org/",
+    "license": ["LGPL-2.0-or-later", "GFDL-1.1-or-later"],
+    "depends": ["glibc", "glib2", "atk", "cairo", "gdk-pixbuf2", "gtk3", "harfbuzz", "libxfce4ui", "libxfce4util", "pango", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["garcon"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

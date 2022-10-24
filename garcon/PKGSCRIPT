@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="garcon"
+VERSION="4.16.1"
+_MAJOR_VERSION="4.16"
+EPOCH=0
+DESC="Xfce's Freedesktop.org compliant menu library."
+GRPS=()
+URL="https://www.xfce.org/"
+LICENSES=("LGPL-2.0-or-later" "GFDL-1.1-or-later")
+DEPENDS=("glibc" "glib2" "atk" "cairo" "gdk-pixbuf2" "gtk3" "harfbuzz" "libxfce4ui" "libxfce4util" "pango" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("garcon")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://archive.xfce.org/src/xfce/garcon/${_MAJOR_VERSION}/garcon-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("07391e72dceebd0f584beb3f9ca954bd7dc8a078a83d1025b0abf7a439bf56a98e8825868530c47f0ee8411b69bbc1f6c4127f5ea5253ecf8de259056112b42b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+   ./configure --prefix=/usr --sysconfdir=/etc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
