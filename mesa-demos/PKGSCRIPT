@@ -1,0 +1,65 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="mesa-demos"
+VERSION="8.5.0"
+EPOCH=0
+DESC="All 300 Mesa demos (minus glxgears and glxinfo)."
+GRPS=()
+URL="https://www.mesa3d.org/"
+LICENSES=("MIT")
+DEPENDS=("libglvnd" "freetype2" "freeglut" "mesa" "glew")
+OPT_DEPENDS=(mesa-utils)
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("mesa-demos")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("ftp://ftp.freedesktop.org/pub/mesa/demos/${VERSION}/mesa-demos-${VERSION}.tar.bz2"
+"meson-demos_data_dir.patch")
+
+SUM_TYPE="sha512"
+SUM=("df6a7f09638ca389d6e8bc569e599dcc59c9aa280bcfb95976d83e5cd3edfe74bb3a31f0953956dc16faa540ee5b09990e3377e1341d836fc527e50ace6e60b8"
+"977fa51946c2e75a44d8939d670aa7249089c5a5013e918d35c8d06a49ae6f5aa468045a3df16f81b6985b1a8a88ae6f3621f71656ab35a437f5772f500e60b8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/mesa-demos-${VERSION}"
+
+    patch -Np1 -i ${WORKDIR}/meson-demos_data_dir.patch
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr                  \
+          -Dgles1=disabled               \
+          -Dwith-system-data-files=true  \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/mesa-demos-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/mesa-demos-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    install -m 0755 src/egl/opengl/{eglgears_wayland,eglgears_x11,eglkms,egltri_wayland,egltri_x11,peglgears,xeglgears,xeglthreads} "${BUILD_DATA_ROOT}/usr/bin/"
+
+    # Provided by mesa-utils
+    rm "${BUILD_DATA_ROOT}"/usr/bin/{glxinfo,glxgears,eglinfo}
+
+    return 0
+}

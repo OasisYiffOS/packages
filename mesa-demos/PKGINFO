@@ -1,0 +1,16 @@
+{
+    "name": "mesa-demos",
+    "version": "8.5.0",
+    "epoch": 0,
+    "description": "All 300 Mesa demos (minus glxgears and glxinfo).",
+    "groups": [],
+    "url": "https://www.mesa3d.org/",
+    "license": ["MIT"],
+    "depends": ["libglvnd", "freetype2", "freeglut", "mesa", "glew"],
+    "optional_depends": ["mesa-utils"],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["mesa-demos"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
