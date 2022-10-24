@@ -3,13 +3,13 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="mesa"
-VERSION="22.0.2"
+VERSION="22.2.2"
 EPOCH=1
 DESC="An open-source implementation of the OpenGL/CL/MAX and Vulkan specifications."
 GRPS=()
 URL="https://www.mesa3d.org"
-LICENSES=("custom")
-DEPENDS=("glibc" "gcc-libs" "libdrm" "libelf" "expat" "libxshmfence" "libxxf86vm" "libgcrypt" "nettle" "llvm" "libunwind" "vulkan-loader" "lm-sensors" "libvdpau" "libva" "libglvnd")
+LICENSES=("MIT")
+DEPENDS=("glibc" "gcc-libs" "libdrm" "libelf" "expat" "libxshmfence" "libxxf86vm" "libgcrypt" "nettle" "llvm" "libunwind" "vulkan-loader" "lm-sensors" "libvdpau" "libva" "libglvnd" "libclc" "libxv" "libxvmc")
 OPT_DEPENDS=()
 MK_DEPENDS=("python-mako" "libxml2" "zstd" "meson" "ninja" "glslang")
 PROVIDES=("mesa")
@@ -17,12 +17,10 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("ftp://ftp.freedesktop.org/pub/mesa/mesa-${VERSION}.tar.xz"
-"mesa-21.3.7-nouveau_fixes-1.patch")
+SRC=("ftp://ftp.freedesktop.org/pub/mesa/mesa-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("939ddf9acd280e1b20b3540349b3ad07bbeee5d821198f1d667e86634449bf5d0a0df5832753b8b3f8816709c2f02959cce25f3d26a33cc758dd8e25d158ddb8"
-"aa0855251a1869330960acc9e3e3c7f14b002d93e45a4f650d5c8569ff260cfb7b7c9e56916f395339c9ffb14fb24d45480d2f577da4de286296fa06b2825f1c")
+SUM=("a1eb67e1ae4880c79b1fdc570f4389baba0b8ba796da7e695c9af19a7d92b6c06b95570e6c796548b61355989025fb7efbf9acac74cbd695f7e297dc913b933c")
 
 # Prepare script
 function prepare() {
@@ -31,7 +29,7 @@ function prepare() {
     mkdir build
     cd    build 
 
-    GALLIUM_DRV="r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,d3d12,i915,zink"
+    GALLIUM_DRV="r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,i915,zink"
     VULKAN_DRV="amd,intel,swrast"
     VULKAN_LAYERS="device-select,intel-nullhw,overlay"
 
