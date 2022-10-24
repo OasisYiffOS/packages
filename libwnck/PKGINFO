@@ -1,0 +1,16 @@
+{
+    "name": "libwnck",
+    "version": "43.0",
+    "epoch": 0,
+    "description": "The Window Navigator Construction Kit, a library to use for writing pagers and taskslists.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/libwnck",
+    "license": ["LGPL-2.0-or-later"],
+    "depends": ["glibc", "glib2", "atk", "cairo", "gdk-pixbuf2", "gtk3", "libx11", "libxrender", "libxres", "pango", "startup-notification"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["libwnck"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
