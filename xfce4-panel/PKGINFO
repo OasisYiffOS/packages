@@ -1,0 +1,16 @@
+{
+    "name": "xfce4-panel",
+    "version": "4.16.5",
+    "epoch": 0,
+    "description": "The panel for the Xfce desktop.",
+    "groups": [],
+    "url": "https://www.xfce.org/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glibc", "glib2", "atk", "cairo", "exo", "garcon", "gdk-pixbuf2", "gtk3", "harfbuzz", "libx11", "libxext", "libdbusmenu-glib", "libdbusmenu-gtk", "libwnck", "libxfce4ui", "libxfce4util", "pango", "xfconf", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xfce4-panel"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

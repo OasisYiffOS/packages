@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="xfce4-panel"
+VERSION="4.16.5"
+_MAJOR_VERSION="4.16"
+EPOCH=0
+DESC="The panel for the Xfce desktop."
+GRPS=()
+URL="https://www.xfce.org/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glibc" "glib2" "atk" "cairo" "exo" "garcon" "gdk-pixbuf2" "gtk3" "harfbuzz" "libx11" "libxext" "libdbusmenu-glib" "libdbusmenu-gtk" "libwnck" "libxfce4ui" "libxfce4util" "pango" "xfconf" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("xfce4-panel")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://archive.xfce.org/src/xfce/xfce4-panel/${_MAJOR_VERSION}/xfce4-panel-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("d72220fa2812ae3b420350dab4c9d33e01d26d27ba33e4c16ad848ed1915c3c4aaf41fef24e2e7271e31171536148ad32b55aabc3e1facd4bf8a411990fd27bb")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+   ./configure --prefix=/usr --sysconfdir=/etc
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
