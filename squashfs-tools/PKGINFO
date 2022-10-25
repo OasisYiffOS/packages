@@ -1,0 +1,16 @@
+{
+    "name": "squashfs-tools",
+    "version": "4.5.1",
+    "epoch": 0,
+    "description": "Tools to create and extract SquashFS filesystems.",
+    "groups": [],
+    "url": "https://github.com/plougher/squashfs-tools",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["zlib", "xz", "lzo", "zstd"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["squashfs-tools"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

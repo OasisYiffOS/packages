@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="squashfs-tools"
+VERSION="4.5.1"
+EPOCH=0
+DESC="Tools to create and extract SquashFS filesystems."
+GRPS=()
+URL="https://github.com/plougher/squashfs-tools"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("zlib" "xz" "lzo" "zstd" )
+OPT_DEPENDS=()
+PROVIDES=("squashfs-tools")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/plougher/squashfs-tools/archive/refs/tags/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("b3934ea1e26c7508110312711465644a6d9674b6b5332a7d011e191fa3c1d4b8be694214794a0f6005263d0f4e18bab96af2f7ed66a178f8e3bb3a781cd44896")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cd squashfs-tools
+
+    # patch makefile to build with support for compression other than gzip
+    sed -i "s/#XZ_SUPPORT/XZ_SUPPORT/" Makefile
+    sed -i "s/#LZO_SUPPORT/LZO_SUPPORT/" Makefile
+    sed -i "s/#ZSTD_SUPPORT/ZSTD_SUPPORT/" Makefile
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cd squashfs-tools
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cd squashfs-tools
+
+    make INSTALL_PREFIX="${BUILD_DATA_ROOT}" install
+
+    return 0
+}
