@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="mtools"
+VERSION="4.0.42"
+EPOCH=0
+DESC="A collection of utilities to access MS-DOS disks without mounting them."
+GRPS=()
+URL="https://www.gnu.org/software/mtools/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+PROVIDES=("mtools")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("http://ftp.gnu.org/gnu/mtools/mtools-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("143c270574f282b67383dd46e46fc0aebb28d21bf8ddbff85993435dd01be29f0c834e813afd06a897d631ea88098e2da5f919ea38f0235ee833753f09268a44")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

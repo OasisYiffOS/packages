@@ -1,0 +1,16 @@
+{
+    "name": "mtools",
+    "version": "4.0.42",
+    "epoch": 0,
+    "description": "A collection of utilities to access MS-DOS disks without mounting them.",
+    "groups": [],
+    "url": "https://www.gnu.org/software/mtools/",
+    "license": ["GPL-3.0-or-later"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["mtools"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
