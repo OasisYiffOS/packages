@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="openssl"
-VERSION="3.0.2"
+VERSION="3.0.7"
 EPOCH=0
 DESC="Cryptography and SSL/TLS Toolkit"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://www.openssl.org/source/openssl-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("f986850d5be908b4d6b5fd7091bc4652d7378c9bccebfbc5becd7753843c04c1eb61a1749c432139d263dfac33df0b1f6c773664b485cad47542266823a4eb03")
+SUM=("6c2bcd1cd4b499e074e006150dda906980df505679d8e9d988ae93aa61ee6f8c23c0fa369e2edc1e1a743d7bec133044af11d5ed57633b631ae479feb59e3424")
 
 # Prepare script
 function prepare() {

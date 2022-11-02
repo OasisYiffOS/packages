@@ -1,6 +1,6 @@
 {
     "name": "openssl",
-    "version": "3.0.2",
+    "version": "3.0.7",
     "epoch": 0,
     "description": "Cryptography and SSL/TLS Toolkit",
     "groups": [],
