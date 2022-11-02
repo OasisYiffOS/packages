@@ -1,6 +1,6 @@
 {
     "name": "pipewire-alsa",
-    "version": "0.3.49",
+    "version": "0.3.59",
     "epoch": 0,
     "description": "ALSA configuration for Pipewire, A server and user-space API to handle multimedia pipelines.",
     "groups": [],
