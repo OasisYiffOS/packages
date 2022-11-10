@@ -1,0 +1,16 @@
+{
+    "name": "iputils",
+    "version": "20211215",
+    "epoch": 0,
+    "description": "Set of small useful utilities for Linux networking.",
+    "groups": [],
+    "url": "https://github.com/iputils/iputils",
+    "license": ["GPL-2.0-or-later", "BSD-3-Clause"],
+    "depends": ["glibc", "libidn2", "libcap"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["iputils"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
