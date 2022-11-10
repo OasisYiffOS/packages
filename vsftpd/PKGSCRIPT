@@ -1,0 +1,70 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="vsftpd"
+VERSION="3.0.5"
+EPOCH=0
+DESC="Probably the most secure and fastest FTP server for UNIX-like systems."
+GRPS=()
+URL="https://security.appspot.com/vsftpd.html"
+LICENSES=("GPL-2.0-only")
+DEPENDS=("glibc" "libcap" "openssl" "pam")
+OPT_DEPENDS=()
+PROVIDES=("vsftpd")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://security.appspot.com/downloads/vsftpd-${VERSION}.tar.gz"
+"vsftpd.pam"
+"vsftpd.service")
+
+SUM_TYPE="sha512"
+SUM=("9e9f9bde8c460fbc6b1d29ca531327fb2e40e336358f1cc19e1da205ef81b553719a148ad4613ceead25499d1ac3f03301a0ecd3776e5c228acccb7f9461a7ee"
+"4e2889798ec0b34d8423f243ad63043aa2a7fd67224162e705c25ea99c4f52cc4d1f16e5b933727179994a41b7f222a190e6c72efeb2e7d595e7d2980cfd4dd8"
+"daefc56f6853eac894696916a764085e953fca1a0cf11b443eeffd618a0077aee5079cce47177ad70532219c35e44e6f99cbec1e9cd1e6bf0aea2d5969086466")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix implicit type cast with gcc 10 and later
+    sed -e "s/kVSFSysStrOpenUnknown;/(enum EVSFSysUtilOpenMode)&/" -i sysstr.c
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    install -Dm 755 vsftpd        ${BUILD_DATA_ROOT}/usr/sbin/vsftpd
+    install -Dm 644 vsftpd.8      ${BUILD_DATA_ROOT}/usr/share/man/man8/vsftpd.8
+    install -Dm 644 vsftpd.conf.5 ${BUILD_DATA_ROOT}/usr/share/man/man5/vsftpd.conf.5
+    install -Dm 644 vsftpd.conf   ${BUILD_DATA_ROOT}/etc/vsftpd.conf
+
+    # Install service file and pam config
+    install -Dm 644 "${WORKDIR}/vsftpd.pam"      ${BUILD_DATA_ROOT}/etc/pam.d/vsftpd
+    install -Dm 644 "${WORKDIR}/vsftpd.service"  ${BUILD_DATA_ROOT}/usr/lib/systemd/system/vsftpd.service
+
+    # Modify default config to enable use vsftpd user and pam
+cat >> ${BUILD_DATA_ROOT}/etc/vsftpd.conf << "EOF"
+background=YES
+nopriv_user=vsftpd
+secure_chroot_dir=/usr/share/vsftpd/empty
+session_support=YES
+pam_service_name=vsftpd
+EOF
+
+    return 0
+}

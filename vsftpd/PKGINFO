@@ -1,0 +1,16 @@
+{
+    "name": "vsftpd",
+    "version": "3.0.5",
+    "epoch": 0,
+    "description": "Probably the most secure and fastest FTP server for UNIX-like systems.",
+    "groups": [],
+    "url": "https://security.appspot.com/vsftpd.html",
+    "license": ["GPL-2.0-only"],
+    "depends": ["glibc", "libcap", "openssl", "pam"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["vsftpd"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
