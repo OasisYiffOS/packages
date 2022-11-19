@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="libxklavier"
+VERSION="5.4"
+EPOCH=0
+DESC="Library providing a high-level API for the X Keyboard Extension (XKB)."
+GRPS=()
+URL="https://www.freedesktop.org/wiki/Software/LibXklavier/"
+LICENSES=("MIT")
+DEPENDS=("glibc" "glib2" "iso-codes" "libx11" "libxi" "libxkbfile" "libxml2")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "vala")
+PROVIDES=("libxklavier")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://people.freedesktop.org/~svu/libxklavier-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("e9342d94f6cd67e900e44d9751ee0d8c75bec8e3a7b30989612bd71a5f890be52ff843465162dbbe0bfc9004da76e1d47158a4671b8f915e51c91f9d82f7baae")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

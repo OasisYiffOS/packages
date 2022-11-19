@@ -1,0 +1,16 @@
+{
+    "name": "libxklavier",
+    "version": "5.4",
+    "epoch": 0,
+    "description": "Library providing a high-level API for the X Keyboard Extension (XKB).",
+    "groups": [],
+    "url": "https://www.freedesktop.org/wiki/Software/LibXklavier/",
+    "license": ["MIT"],
+    "depends": ["glibc", "glib2", "iso-codes", "libx11", "libxi", "libxkbfile", "libxml2"],
+    "optional_depends": [],
+    "make_depends": ["gobject-introspection", "vala"],
+    "provides": ["libxklavier"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
