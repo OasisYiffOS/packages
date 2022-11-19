@@ -1,0 +1,73 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="lightdm"
+VERSION="1.32.0"
+EPOCH=0
+DESC="A cross-desktop display manager."
+GRPS=()
+URL="https://github.com/canonical/lightdm"
+LICENSES=("GPL-3.0-or-later" "LGPL-2.0-or-later" "LGPL-3.0-only")
+DEPENDS=("glibc" "glib2" "accountsservice" "dbus" "libxdmcp" "gcc-libs" "libgcrypt" "libxcb" "pam" "polkit" "psmisc" "shadow" "systemd" "xinit")
+OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection" "vala")
+PROVIDES=("lightdm")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/CanonicalLtd/lightdm/releases/download/${VERSION}/lightdm-${VERSION}.tar.xz"
+"lightdm.service")
+
+SUM_TYPE="sha512"
+SUM=("81497fb25904bc2e8687dc99992628eb534f7418f72e1908c4766e917fc1221714210d998739417e1cae2ee15e3197a2eb8d4981cb944cfeb0334dc9e356e716"
+"458a191564a0662f039357a9d5df48fb83c8eac651f3130c25ac70cb7d218a70fdc5b7e2b81eca48cd67a7aeeafc9dad327f11682719d0f0d76287328dab8f16")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr                               \
+                --libexecdir=/usr/lib/lightdm               \
+                --localstatedir=/var                        \
+                --sbindir=/usr/bin                          \
+                --sysconfdir=/etc                           \
+                --disable-static                            \
+                --disable-tests                             \
+                --with-greeter-user=lightdm                 \
+                --with-greeter-session=lightdm-gtk-greeter  \
+                --docdir=/usr/share/doc/lightdm-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    install -Dm 755 tests/src/lightdm-session ${BUILD_DATA_ROOT}/usr/bin/lightdm-session
+    sed -i '1 s/sh/bash --login/' ${BUILD_DATA_ROOT}/usr/bin/lightdm-session
+
+    rm -rf ${BUILD_DATA_ROOT}/etc/init
+
+    install -dm755 -o lightdm -g lightdm ${BUILD_DATA_ROOT}/var/lib/lightdm
+    install -dm755 -o lightdm -g lightdm ${BUILD_DATA_ROOT}/var/lib/lightdm-data
+    install -dm755 -o lightdm -g lightdm ${BUILD_DATA_ROOT}/var/cache/lightdm
+    install -dm770 -o lightdm -g lightdm ${BUILD_DATA_ROOT}/var/log/lightdm
+
+    install -Dm 644 "${WORKDIR}/lightdm.service" ${BUILD_DATA_ROOT}/usr/lib/systemd/system/lightdm.service
+
+    return 0
+}
