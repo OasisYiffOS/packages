@@ -3,13 +3,13 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="curl"
-VERSION="7.82.0"
+VERSION="7.88.1"
 EPOCH=2
 DESC="A command line tool and library for transferring data with URL syntax."
 GRPS=()
 URL="https://curl.se/"
 LICENSES=("MIT")
-DEPENDS=("make-ca" "libidn2" "nghttp2" "nghttp3" "ngtcp2" "gnutls" "brotli" "zlib" "zstd")
+DEPENDS=("make-ca" "libidn2" "nghttp2" "nghttp3" "ngtcp2" "gnutls" "brotli" "zlib" "zstd" "openldap" "libpsl" "libssh2" "krb5")
 OPT_DEPENDS=()
 MAKE_DEPENDS=()
 PROVIDES=("curl")
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://curl.se/download/curl-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("a977d69360d1793f8872096a21f5c0271e7ad145cd69ad45f4056a0657772f0f298b04bdb41aefd4ea5c4478352c60d80b5a118642280a07a7198aa80ffb1d57")
+SUM=("b8d30c52a6d1c3e272608a7a8db78dfd79aef21330f34d6f1df43839a400e13ac6aac72a383526db0b711a70ecbec89a3b934677d7ecf5094fd64d3dbcb3492f")
 
 # Prepare script
 function prepare() {
@@ -42,6 +42,7 @@ function build() {
             --without-openssl               \
             --with-nghttp3                  \
             --with-ngtcp2                   \
+	    --with-libssh2      	    \
             --enable-threaded-resolver      \
             --with-ca-bundle='/etc/ssl/cert.pem'
 

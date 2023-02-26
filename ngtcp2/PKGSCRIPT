@@ -3,13 +3,13 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="ngtcp2"
-VERSION="0.8.0"
+VERSION="0.13.1"
 EPOCH=0
 DESC="An effort to implement IETF QUIC protocol. Call it TCP/2. One More Time."
 GRPS=()
 URL="https://github.com/ngtcp2/ngtcp2"
 LICENSES=("MIT")
-DEPENDS=()
+DEPENDS=("glibc")
 OPT_DEPENDS=()
 PROVIDES=("ngtcp2")
 CONFLICTS=()
@@ -19,17 +19,17 @@ REPLACES=()
 SRC=("https://github.com/ngtcp2/ngtcp2/releases/download/v${VERSION}/ngtcp2-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("d8ba29d55c1ad01c04e0d62fca4c1ed97e9e0bfd5dcb889dc1cb2b0a1188554ceb9bf2f92ece15eabfffb34eb992f5ac924f14077aba0de2e11246947b16d518")
+SUM=("c8ff2eba9d2b7c5424e32e17ea481168ef3aa3140c0e17d210b4ef1065bc5c8d2e4393b99e7aea72693f8b6aa1cb9b44e9d48dde4e55e380bb614ec77a7b95fa")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    ./configure --prefix=/usr                           \
-            --disable-static                            \
-            --enable-lib-only                           \
-            --with-gnutls                               \
-            --docdir=/usr/share/doc/nghttp3-${VERSION}
+    ./configure --prefix=/usr                               \
+            	--disable-static                            \
+            	--enable-lib-only                           \
+            	--with-gnutls                               \
+            	--docdir=/usr/share/doc/nghttp3-${VERSION}
 
     return 0
 }

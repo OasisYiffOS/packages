@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="nghttp3"
-VERSION="0.2.0"
+VERSION="0.9.0"
 EPOCH=0
 DESC="A C library for HTTP/3"
 GRPS=()
@@ -19,16 +19,16 @@ REPLACES=()
 SRC=("https://github.com/ngtcp2/nghttp3/releases/download/v${VERSION}/nghttp3-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("b842949b246fff15816951c320cd0dc31274ccf6092451f71cc8e7af881dae15fe7132d82ad1ffca13cad9e9207ee8c560d887424e6a94a51aa7b0659cecbdd1")
+SUM=("68b57f62128dca0d4ced1c63c2c8cdda65a62fdca7bacc2aa3e8826863dad8c7e0d6d715df2bcb09da737fad8ae24c9365e01c07e066d6fd33f4b94190d252ed")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    ./configure --prefix=/usr                           \
-            --disable-static                            \
-            --enable-lib-only                           \
-            --docdir=/usr/share/doc/nghttp3-${VERSION}
+    ./configure --prefix=/usr                               \
+            	--disable-static                            \
+            	--enable-lib-only                           \
+            	--docdir=/usr/share/doc/nghttp3-${VERSION}
 
     return 0
 }
