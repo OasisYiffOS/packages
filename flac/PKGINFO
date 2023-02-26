@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://xiph.org/flac/",
     "license": ["BSD-3-Clause"],
-    "depends": ["gcc-libs", "libogg"],
+    "depends": ["libgcc", "libogg"],
     "optional_depends": [],
     "make_depends": ["nasm"],
     "provides": ["flac"],

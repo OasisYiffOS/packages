@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.cairographics.org",
     "license": ["LGPL-2.1"],
-    "depends": ["glibc", "gcc-libs", "cairo", "libsigc++"],
+    "depends": ["glibc", "libgcc", "cairo", "libsigc++"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "boost"],
     "provides": ["cairomm"],

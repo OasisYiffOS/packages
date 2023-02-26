@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://gitlab.gnome.org/GNOME/gnome-desktop",
     "license": ["GPL-2.0", "LGPL-2.1"],
-    "depends": ["glibc", "gcc-libs", "bubblewrap", "cairo", "gdk-pixbuf2", "gsettings-desktop-schemas", "gtk3", "libseccomp", "xkeyboard-config", "shared-mime-info", "systemd"],
+    "depends": ["glibc", "libgcc", "bubblewrap", "cairo", "gdk-pixbuf2", "gsettings-desktop-schemas", "gtk3", "libseccomp", "xkeyboard-config", "shared-mime-info", "systemd"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "gobject-introspection", "libxml2", "istool", "iso-codes"],
     "provides": ["gnome-desktop"],

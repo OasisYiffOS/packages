@@ -10,7 +10,7 @@ DESC="Unified backend for programs that work with contacts, tasks, and calendar 
 GRPS=()
 URL="https://wiki.gnome.org/Apps/Evolution"
 LICENSES=("LGPL-2.1")
-DEPENDS=("glibc" "glib2" "gcc-libs" "cairo" "gcr" "gnome-online-accounts" "gtk3" "json-glib" "krb5" "libcanberra" "libgdata" 
+DEPENDS=("glibc" "glib2" "libgcc" "cairo" "gcr" "gnome-online-accounts" "gtk3" "json-glib" "krb5" "libcanberra" "libgdata" 
 "libgweather" "libical" "icu" "libsecret" "libsoup" "libxml2" "nspr" "nss" "openldap" "pango" "sqlite" "webkitgtk" "zlib")
 OPT_DEPENDS=()
 MK_DEPENDS=("cmake" "gobject-introspection" "vala")

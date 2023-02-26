@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://libopenraw.freedesktop.org/exempi/",
     "license": ["BSD-3-Clause"],
-    "depends": ["glibc", "expat", "gcc-libs", "zlib"],
+    "depends": ["glibc", "expat", "libgcc", "zlib"],
     "optional_depends": [],
     "make_depends": ["boost", "automake", "autoconf"],
     "provides": ["exempi"],

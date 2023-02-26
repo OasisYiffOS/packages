@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.freedesktop.org/software/colord/",
     "license": ["GPL-2.0", "LGPL-2.0"],
-    "depends": ["dbus", "glib2", "little-cms2", "polkit", "sqlite", "systemd", "glibc", "gcc-libs", "libgudev", "libgusb"],
+    "depends": ["dbus", "glib2", "little-cms2", "polkit", "sqlite", "systemd", "glibc", "libgcc", "libgudev", "libgusb"],
     "optional_depends": [],
     "make_depends": ["vala", "meson", "ninja"],
     "provides": ["colord"],

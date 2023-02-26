@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://developers.google.com/protocol-buffers",
     "license": ["BSD"],
-    "depends": ["glibc", "gcc-libs", "zlib"],
+    "depends": ["glibc", "libgcc", "zlib"],
     "optional_depends": [],
     "make_depends": ["libtool"],
     "provides": ["protobuf"],

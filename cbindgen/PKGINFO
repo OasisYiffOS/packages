@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://crates.io/crates/cbindgen",
     "license": ["MPL-2.0", "MIT", "ASL-2.0"],
-    "depends": ["glibc", "gcc-libs"],
+    "depends": ["glibc", "libgcc"],
     "optional_depends": [],
     "make_depends": ["rust"],
     "provides": ["cbindgen"],

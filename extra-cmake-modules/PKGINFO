@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://invent.kde.org/frameworks/extra-cmake-modules",
     "license": ["BSD-3-Clause", "BSD-2-Clause", "MIT", "CC0-1.0"],
-    "depends": ["gcc-libs", "glibc"],
+    "depends": ["libgcc", "glibc"],
     "optional_depends": ["qt5"],
     "make_depends": ["cmake"],
     "provides": ["extra-cmake-modules"],

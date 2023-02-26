@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.mesa3d.org",
     "license": ["MIT"],
-    "depends": ["glibc", "gcc-libs", "libdrm", "libelf", "expat", "libxshmfence", "libxxf86vm", "libgcrypt", "nettle", "llvm", "libunwind", "vulkan-loader", "lm-sensors", "libvdpau", "libva", "libglvnd", "libclc", "libxv", "libxvmc"],
+    "depends": ["glibc", "libgcc", "libdrm", "libelf", "expat", "libxshmfence", "libxxf86vm", "libgcrypt", "nettle", "llvm", "libunwind", "vulkan-loader", "lm-sensors", "libvdpau", "libva", "libglvnd", "libclc", "libxv", "libxvmc"],
     "optional_depends": [],
     "make_depends": ["python-mako", "libxml2", "zstd", "meson", "ninja", "glslang"],
     "provides": ["mesa"],

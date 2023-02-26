@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Projects/libgdata",
     "license": ["LGPL-2.1"],
-    "depends": ["glibc", "gcc-libs", "glib2", "gcr", "gnome-online-accounts", "json-glib", "libsoup", "libxml2"],
+    "depends": ["glibc", "libgcc", "glib2", "gcr", "gnome-online-accounts", "json-glib", "libsoup", "libxml2"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "gobject-introspection", "vala"],
     "provides": ["libgdata"],

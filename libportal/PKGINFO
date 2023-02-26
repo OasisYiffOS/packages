@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://libportal.org",
     "license": ["LGPL-3.0"],
-    "depends": ["glibc", "gcc-libs", "glib2"],
+    "depends": ["glibc", "libgcc", "glib2"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "gtk3", "gtk4", "vala", "gobject-introspection"],
     "provides": ["libportal"],

@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.freedesktop.org/software/colord/",
     "license": ["LGPL-2.1"],
-    "depends": ["glibc", "gcc-libs", "colord", "gtk3", "gtk4", "gtk2"],
+    "depends": ["glibc", "libgcc", "colord", "gtk3", "gtk4", "gtk2"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "gobject-introspection", "vala"],
     "provides": ["colord-gtk"],

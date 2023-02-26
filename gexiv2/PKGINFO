@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Projects/gexiv2",
     "license": ["GPL-2.0"],
-    "depends": ["glibc", "gcc-libs", "glib2", "exiv2"],
+    "depends": ["glibc", "libgcc", "glib2", "exiv2"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "vala", "python2"],
     "provides": ["gexiv2"],

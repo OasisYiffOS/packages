@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Projects/gvfs",
     "license": ["GPL-3.0", "LGPL-2.1"],
-    "depends": ["glibc", "gcc-libs", "dbus", "libusb", "libsecret", "gcr", "gtk3", "libcdio", "libcdio-paranoia", "libgdata", "libgudev", "systemd", "udisks", "avahi", "bluez", "dbus-glib", "fuse", "gnome-online-accounts", "libarchive", "libgcrypt", "libxml2", "libxslt", "openssh", "libsoup3", "samba", "libgphoto2", "libmtp"],
+    "depends": ["glibc", "libgcc", "dbus", "libusb", "libsecret", "gcr", "gtk3", "libcdio", "libcdio-paranoia", "libgdata", "libgudev", "systemd", "udisks", "avahi", "bluez", "dbus-glib", "fuse", "gnome-online-accounts", "libarchive", "libgcrypt", "libxml2", "libxslt", "openssh", "libsoup3", "samba", "libgphoto2", "libmtp"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["gvfs"],

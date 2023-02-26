@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://people.freedesktop.org/~hughsient/appstream-glib/",
     "license": ["LGPL-2.1"],
-    "depends": ["gdk-pixbuf2", "glib2", "glibc", "json-glib", "libarchive", "curl", "gcc-libs", "libsoup", "util-linux", "libyaml", "gperf"],
+    "depends": ["gdk-pixbuf2", "glib2", "glibc", "json-glib", "libarchive", "curl", "libgcc", "libsoup", "util-linux", "libyaml", "gperf"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["appstream-glib"],

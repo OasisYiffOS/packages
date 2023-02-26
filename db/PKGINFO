@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://github.com/berkeleydb/libdb",
     "license": ["sleepycat", "BSD-3-Clause", "CDDL-1.0"],
-    "depends": ["sharutils", "gcc-libs"],
+    "depends": ["sharutils", "libgcc"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["db"],

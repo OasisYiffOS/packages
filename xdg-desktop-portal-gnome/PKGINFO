@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome",
     "license": ["LGPL-2.1"],
-    "depends": ["cairo", "dbus", "fontconfig", "gdk-pixbuf2", "glib2", "glibc", "gnome-desktop", "gtk4", "libx11", "libadwaita", "gcc-libs", "xdg-desktop-portal"],
+    "depends": ["cairo", "dbus", "fontconfig", "gdk-pixbuf2", "glib2", "glibc", "gnome-desktop", "gtk4", "libx11", "libadwaita", "libgcc", "xdg-desktop-portal"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["xdg-desktop-portal-gnome"],

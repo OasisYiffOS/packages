@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://qpdf.sourceforge.io",
     "license": ["MIT"],
-    "depends": ["glibc", "gcc-libs", "libjpeg-turbo", "gnutls"],
+    "depends": ["glibc", "libgcc", "libjpeg-turbo", "gnutls"],
     "optional_depends": [],
     "make_depends": ["libxslt"],
     "provides": ["qpdf"],

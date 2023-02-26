@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Apps/Calendar",
     "license": ["GPL-3.0"],
-    "depends": ["evolution-data-server", "glibc", "gcc-libs", "glib2", "gtk4", "graphene", "gsettings-desktop-schemas", "geoclue", "libadwaita", "libgweather", "libical", "libsoup", "pango"],
+    "depends": ["evolution-data-server", "glibc", "libgcc", "glib2", "gtk4", "graphene", "gsettings-desktop-schemas", "geoclue", "libadwaita", "libgweather", "libical", "libsoup", "pango"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "vala"],
     "provides": ["gnome-calendar"],

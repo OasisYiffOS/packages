@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Apps/Logs",
     "license": ["GPL-3.0"],
-    "depends": ["glibc", "gcc-libs", "glib2", "gsettings-desktop-schemas", "gtk3", "libhandy", "pango", "systemd"],
+    "depends": ["glibc", "libgcc", "glib2", "gsettings-desktop-schemas", "gtk3", "libhandy", "pango", "systemd"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "istool", "desktop-file-utils", "docbook-xml", "docbook-xsl", "libxslt"],
     "provides": ["gnome-logs"],

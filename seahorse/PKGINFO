@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Apps/Seahorse",
     "license": ["GPL-2.0"],
-    "depends": ["glibc", "gcc-libs", "gcr", "gpgme", "gnupg", "libhandy", "libpwquality", "libsecret", "libsoup", "p11-kit", "avahi", "gnome-keyring"],
+    "depends": ["glibc", "libgcc", "gcr", "gpgme", "gnupg", "libhandy", "libpwquality", "libsecret", "libsoup", "p11-kit", "avahi", "gnome-keyring"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "istool", "vala"],
     "provides": ["seahorse"],

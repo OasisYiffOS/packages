@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://github.com/Alexays/Waybar",
     "license": ["MIT"],
-    "depends": ["glibc", "gcc-libs", "glibc", "glibmm24", "cairomm", "fmt", "gtk-layer-shell", "gtk3", "gtkmm3", "jsoncpp", "date", "libdbusmenu", "libevdev", "libnl", "libsigc++", "wayland", "libxkbcommon", "spdlog", "pulseaudio", "systemd"],
+    "depends": ["glibc", "libgcc", "glibc", "glibmm24", "cairomm", "fmt", "gtk-layer-shell", "gtk3", "gtkmm3", "jsoncpp", "date", "libdbusmenu", "libevdev", "libnl", "libsigc++", "wayland", "libxkbcommon", "spdlog", "pulseaudio", "systemd"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["waybar"],

@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://github.com/Igalia/wpebackend-fdo",
     "license": ["BSD-2-Clause"],
-    "depends": ["glibc", "glib2", "gcc-libs", "libepoxy", "wayland", "wayland-protocols", "libwpe"],
+    "depends": ["glibc", "glib2", "libgcc", "libepoxy", "wayland", "wayland-protocols", "libwpe"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["wpebackend-fdo"],

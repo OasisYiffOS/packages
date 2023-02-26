@@ -6,7 +6,7 @@
     "groups": [],
     "url": "http://luajit.org",
     "license": ["MIT"],
-    "depends": ["glibc", "gcc-libs"],
+    "depends": ["glibc", "libgcc"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["luajit"],

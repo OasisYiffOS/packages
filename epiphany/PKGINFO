@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Apps/Web",
     "license": ["GPL-3.0"],
-    "depends": ["glibc", "gcc-libs", "atk", "cairo", "gcr", "gdk-pixbuf2", "gmp", "gsettings-desktop-schemas", "gtk3", "iso-codes", "json-glib", "libarchive", "libdazzle", "libhandy", "libportal", "libsecret", "libsoup", "libxml2", "nettle", "pango", "sqlite", "webkitgtk", "gnome-keyring"],
+    "depends": ["glibc", "libgcc", "atk", "cairo", "gcr", "gdk-pixbuf2", "gmp", "gsettings-desktop-schemas", "gtk3", "iso-codes", "json-glib", "libarchive", "libdazzle", "libhandy", "libportal", "libsecret", "libsoup", "libxml2", "nettle", "pango", "sqlite", "webkitgtk", "gnome-keyring"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["epiphany"],

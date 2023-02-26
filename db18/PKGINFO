@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.oracle.com/database/berkeley-db/",
     "license": ["AGPL-3.0-only"],
-    "depends": ["sharutils", "gcc-libs"],
+    "depends": ["sharutils", "libgcc"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["db18", "db"],

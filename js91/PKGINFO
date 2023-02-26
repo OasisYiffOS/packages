@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://spidermonkey.dev",
     "license": ["MPL-2.0"],
-    "depends": ["glibc", "gcc-libs", "icu", "zlib"],
+    "depends": ["glibc", "libgcc", "icu", "zlib"],
     "optional_depends": [],
     "make_depends": ["rust"],
     "provides": ["js91"],

@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Apps/Tweaks",
     "license": ["GPL-3.0"],
-    "depends": ["glibc", "gcc-libs", "gtk3", "libhandy", "python", "python-pygobject", "sound-theme-freedesktop", "gsettings-desktop-schemas", "gnome-desktop", "libsoup", "libnotify", "pango"],
+    "depends": ["glibc", "libgcc", "gtk3", "libhandy", "python", "python-pygobject", "sound-theme-freedesktop", "gsettings-desktop-schemas", "gnome-desktop", "libsoup", "libnotify", "pango"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["gnome-tweaks"],

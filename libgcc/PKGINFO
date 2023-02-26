@@ -1,6 +1,6 @@
 {
-    "name": "gcc-libs",
-    "version": "11.2.0",
+    "name": "libgcc",
+    "version": "12.2.0",
     "epoch": 0,
     "description": "Libraries from the GNU Compiler Collection",
     "groups": ["base"],
@@ -9,8 +9,8 @@
     "depends": ["glibc"],
     "optional_depends": [],
     "make_depends": [],
-    "provides": ["gcc-libs"],
-    "conflicts": ["gcc"],
-    "replaces": [],
+    "provides": ["libgcc"],
+    "conflicts": [],
+    "replaces": ["gcc-libs"],
     "maintainers": ["Evie Viau <evie@eviee.gay>"]
 }

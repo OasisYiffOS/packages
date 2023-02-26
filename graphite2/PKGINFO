@@ -6,7 +6,7 @@
     "groups": [],
     "url": "http://graphite.sil.org/",
     "license": ["LGPL-2.1"],
-    "depends": ["gcc-libs", "harfbuzz"],
+    "depends": ["libgcc", "harfbuzz"],
     "optional_depends": [],
     "make_depends": ["cmake", "freetype2"],
     "provides": ["graphite2"],

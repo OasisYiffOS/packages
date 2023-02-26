@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Apps/Videos",
     "license": ["LGPL-2.1"],
-    "depends": ["glibc", "gcc-libs", "glib2", "libarchive", "libgcrypt", "libxml2", "libsoup"],
+    "depends": ["glibc", "libgcc", "glib2", "libarchive", "libgcrypt", "libxml2", "libsoup"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "gobject-introspection"],
     "provides": ["totem-pl-parser"],

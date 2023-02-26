@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://gitlab.gnome.org/GNOME/libhandy",
     "license": ["LGPL-2.1"],
-    "depends": ["atk", "cairo", "fribidi", "gdk-pixbuf2", "glib2", "glibc", "gtk3", "gcc-libs", "pango"],
+    "depends": ["atk", "cairo", "fribidi", "gdk-pixbuf2", "glib2", "glibc", "gtk3", "libgcc", "pango"],
     "optional_depends": [],
     "make_depends": ["vala", "meson", "ninja"],
     "provides": ["libhandy"],

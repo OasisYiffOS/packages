@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://bitbucket.org/multicoreware/x265_git/wiki/Home",
     "license": ["GPL-2.0"],
-    "depends": ["gcc-libs"],
+    "depends": ["libgcc"],
     "optional_depends": [],
     "make_depends": ["cmake", "nasm"],
     "provides": ["x265"],

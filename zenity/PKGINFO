@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Projects/Zenity",
     "license": ["LGPL-2.1"],
-    "depends": ["glibc", "gcc-libs", "glib2", "gdk-pixbuf2", "gtk3", "libnotify", "libxslt", "webkitgtk", "libx11", "pango"],
+    "depends": ["glibc", "libgcc", "glib2", "gdk-pixbuf2", "gtk3", "libnotify", "libxslt", "webkitgtk", "libx11", "pango"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "istool"],
     "provides": ["zenity"],

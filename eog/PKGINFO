@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Apps/EyeOfGnome",
     "license": ["GPL-2.0"],
-    "depends": ["glibc", "gcc-libs", "glib2", "gdk-pixbuf2", "cairo", "gnome-desktop", "gobject-introspection", "gsettings-desktop-schemas", "gtk3", "little-cms2", "libexif", "exempi", "libx11", "libhandy", "libjpeg-turbo", "libpeas", "librsvg2", "zlib", "libportal"],
+    "depends": ["glibc", "libgcc", "glib2", "gdk-pixbuf2", "cairo", "gnome-desktop", "gobject-introspection", "gsettings-desktop-schemas", "gtk3", "little-cms2", "libexif", "exempi", "libx11", "libhandy", "libjpeg-turbo", "libpeas", "librsvg2", "zlib", "libportal"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["eog"],

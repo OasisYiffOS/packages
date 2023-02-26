@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://github.com/benhoyt/inih",
     "license": ["BSD-3-Clause"],
-    "depends": ["glibc", "gcc-libs"],
+    "depends": ["glibc", "libgcc"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["inih"],

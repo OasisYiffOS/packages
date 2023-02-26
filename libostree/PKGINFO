@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://ostreedev.github.io/ostree/",
     "license": ["GPL-2.0"],
-    "depends": ["dracut", "fuse", "glib2", "glibc", "libarchive", "gcc-libs", "systemd", "curl", "libgpg-error", "xz", "zlib", "gpgme"],
+    "depends": ["dracut", "fuse", "glib2", "glibc", "libarchive", "libgcc", "systemd", "curl", "libgpg-error", "xz", "zlib", "gpgme"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["libostree"],

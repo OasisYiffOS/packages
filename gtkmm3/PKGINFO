@@ -6,7 +6,7 @@
     "groups": [],
     "url": "http://www.gtkmm.org/en/index.html",
     "license": ["LGPL-2.1"],
-    "depends": ["glibc", "gcc-libs", "glib2", "libsigc++", "atkmm", "pangomm", "cairomm", "gdk-pixbuf2", "glibmm2", "gtk3"],
+    "depends": ["glibc", "libgcc", "glib2", "libsigc++", "atkmm", "pangomm", "cairomm", "gdk-pixbuf2", "glibmm2", "gtk3"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["gtkmm3"],

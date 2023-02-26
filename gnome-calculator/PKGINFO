@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Apps/Calculator",
     "license": ["GPL-3.0"],
-    "depends": ["glibc", "gcc-libs", "glib2", "gtk4", "gtksourceview5", "libadwaita", "libgee", "libsoup", "libxml2", "mpfr"],
+    "depends": ["glibc", "libgcc", "glib2", "gtk4", "gtksourceview5", "libadwaita", "libgee", "libsoup", "libxml2", "mpfr"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "vala"],
     "provides": ["gnome-calculator"],

@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://gitlab.freedesktop.org/geoclue/geoclue",
     "license": ["GPL-2.0", "LGPL-2.1"],
-    "depends": ["glibc", "gcc-libs", "modemmanager", "dbus", "json-glib", "libnotify", "libsoup", "avahi"],
+    "depends": ["glibc", "libgcc", "modemmanager", "dbus", "json-glib", "libnotify", "libsoup", "avahi"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "vala"],
     "provides": ["geoclue"],

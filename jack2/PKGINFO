@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://jackaudio.org/",
     "license": ["GPL-2.0"],
-    "depends": ["db", "gcc-libs", "glibc", "opus", "alsa-lib", "dbus"],
+    "depends": ["db", "libgcc", "glibc", "opus", "alsa-lib", "dbus"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["jack2"],

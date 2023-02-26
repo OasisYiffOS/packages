@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://github.com/kcat/openal-soft",
     "license": ["LGPL-2.0"],
-    "depends": ["gcc-libs"],
+    "depends": ["libgcc"],
     "optional_depends": [],
     "make_depends": ["cmake", "alsa-lib", "pulseaudio", "pipewire", "sdl2"],
     "provides": ["openal"],

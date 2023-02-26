@@ -2,8 +2,8 @@
 MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
-NAME="gcc-libs"
-VERSION="11.2.0"
+NAME="libgcc"
+VERSION="12.2.0"
 EPOCH=0
 DESC="Libraries from the GNU Compiler Collection"
 GRPS=("base")
@@ -11,24 +11,19 @@ URL="https://gcc.gnu.org/"
 LICENSES=("GPL" "LGPL")
 DEPENDS=("glibc")
 OPT_DEPENDS=()
-PROVIDES=("gcc-libs")
-CONFLICTS=("gcc")
-REPLACES=()
+PROVIDES=("libgcc")
+CONFLICTS=()
+REPLACES=("gcc-libs")
 
 # Source information
 SRC=("https://ftp.gnu.org/gnu/gcc/gcc-${VERSION}/gcc-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("d53a0a966230895c54f01aea38696f818817b505f1e2bfa65e508753fcd01b2aedb4a61434f41f3a2ddbbd9f41384b96153c684ded3f0fa97c82758d9de5c7cf")
+SUM=("e9e857bd81bf7a370307d6848c81b2f5403db8c7b5207f54bce3f3faac3bde63445684092c2bc1a2427cddb6f7746496d9fbbef05fbbd77f2810b2998f1f9173")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/gcc-${VERSION}"
-
-    # Patch issue breaking libasan identified upstream
-    sed -e '/static.*SIGSTKSZ/d'                                        \
-        -e 's/return kAltStackSize/return SIGSTKSZ * 4/'                \
-        -i libsanitizer/sanitizer_common/sanitizer_posix_libcdep.cpp
 
     # Ensure 64-bit libraries are installed into lib
     sed -e '/m64=/s/lib64/lib/'             \
@@ -81,11 +76,11 @@ function postbuild() {
     done
 
     make -C x86_64-pc-linux-gnu/libobjc DESTDIR="${BUILD_DATA_ROOT}" install-libs
-    make -C x86_64-pc-linux-gnu/libstdc++-v3/po DESTDIR="${BUILD_DATA_ROOT}" install    
+    make -C x86_64-pc-linux-gnu/libstdc++-v3/po DESTDIR="${BUILD_DATA_ROOT}" install
     make -C x86_64-pc-linux-gnu/libphobos DESTDIR="${BUILD_DATA_ROOT}" install
 
     rm -rf "${BUILD_DATA_ROOT}"/usr/lib/gcc/x86_64-pc-linux-gnu/${VERSION}/include/d/
-    rm -f "${BUILD_DATA_ROOT}"/usr/lib/libgphobos.spec  
+    rm -f "${BUILD_DATA_ROOT}"/usr/lib/libgphobos.spec
 
     for lib in libgomp \
                libitm \
@@ -96,8 +91,14 @@ function postbuild() {
     # Manually copy libgcc
     cp -v gcc/libgcc_s{.so,.so.1} "${BUILD_DATA_ROOT}/usr/lib/"
 
-    # Remove 32bit libraries
-    rm -rf "${BUILD_DATA_ROOT}"/usr/lib32/
+    # Remove 32bit libraries if built
+    rm -rv "${BUILD_DATA_ROOT}"/usr/lib32/
+
+    # Remove empty gcc folder
+    rm -rv "${BUILD_DATA_ROOT}"/usr/lib/gcc
+
+    # Remove /usr/share
+    rm -rv "${BUILD_DATA_ROOT}"/usr/share
 
     return 0
 }

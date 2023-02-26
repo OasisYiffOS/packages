@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://gitlab.gnome.org/GNOME/gnome-color-manager",
     "license": ["GPL-2.0"],
-    "depends": ["glibc", "gcc-libs", "glib2", "gtk3", "gdk-pixbuf2", "cairo", "colord", "little-cms2", "pango", "shared-mime-info", "libcanberra", "libexif"],
+    "depends": ["glibc", "libgcc", "glib2", "gtk3", "gdk-pixbuf2", "cairo", "colord", "little-cms2", "pango", "shared-mime-info", "libcanberra", "libexif"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "istool"],
     "provides": ["gnome-color-manager"],

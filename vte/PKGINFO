@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://gitlab.gnome.org/GNOME/vte",
     "license": ["LGPL-3.0", "MIT"],
-    "depends": ["atk", "cairo", "fribidi", "glib2", "glibc", "gnutls", "gtk3", "gcc-libs", "icu", "pango", "pcre2", "systemd", "zlib"],
+    "depends": ["atk", "cairo", "fribidi", "glib2", "glibc", "gnutls", "gtk3", "libgcc", "icu", "pango", "pcre2", "systemd", "zlib"],
     "optional_depends": [],
     "make_depends": ["gobject-introspection", "vala", "meson", "ninja"],
     "provides": ["vte"],

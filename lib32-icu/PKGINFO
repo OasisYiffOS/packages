@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://icu.unicode.org/",
     "license": ["custom"],
-    "depends": ["lib32-gcc-libs", "icu"],
+    "depends": ["lib32-libgcc", "icu"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["lib32-icu"],

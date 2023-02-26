@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://github.com/flatpak/xdg-desktop-portal/",
     "license": ["LGPL-2.1"],
-    "depends": ["dbus", "fuse", "gdk-pixbuf2", "geoclue", "glib2", "glibc", "json-glib", "gcc-libs", "pipewire", "systemd"],
+    "depends": ["dbus", "fuse", "gdk-pixbuf2", "geoclue", "glib2", "glibc", "json-glib", "libgcc", "pipewire", "systemd"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["xdg-desktop-portal"],

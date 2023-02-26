@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://libical.github.io/libical/",
     "license": ["LGPL-2.0", "MPL-2.0"],
-    "depends": ["glibc", "gcc-libs", "icu", "tzdata"],
+    "depends": ["glibc", "libgcc", "icu", "tzdata"],
     "optional_depends": [],
     "make_depends": ["cmake", "vala", "gobject-introspection", "python-pygobject"],
     "provides": ["libical"],

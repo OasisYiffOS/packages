@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.pcre.org/",
     "license": ["BSD"],
-    "depends": ["readline", "zlib", "bzip2", "gcc-libs", "bash"],
+    "depends": ["readline", "zlib", "bzip2", "libgcc", "bash"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["pcre2"],

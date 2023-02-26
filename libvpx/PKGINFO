@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.webmproject.org/",
     "license": ["BSD-3-Clause"],
-    "depends": ["gcc-libs"],
+    "depends": ["libgcc"],
     "optional_depends": [],
     "make_depends": ["nasm", "which", "curl"],
     "provides": ["libvpx"],

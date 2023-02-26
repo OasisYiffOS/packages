@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.freedesktop.org/wiki/Software/ModemManager/",
     "license": ["GPL-2.0"],
-    "depends": ["glibc", "glib2", "gcc-libs", "libgudev", "libmbim", "libqmi", "polkit", "systemd"],
+    "depends": ["glibc", "glib2", "libgcc", "libgudev", "libmbim", "libqmi", "polkit", "systemd"],
     "optional_depends": [],
     "make_depends": ["vala", "gobject-introspection"],
     "provides": ["modemmanager"],

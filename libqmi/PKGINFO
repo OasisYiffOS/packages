@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://freedesktop.org/software/libqmi/",
     "license": ["LGPL-2.1"],
-    "depends": ["glibc", "glib2", "gcc-libs", "libmbim"],
+    "depends": ["glibc", "glib2", "libgcc", "libmbim"],
     "optional_depends": [],
     "make_depends": ["gobject-introspection"],
     "provides": ["libqmi"],

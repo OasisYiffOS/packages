@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Apps/Software",
     "license": ["GPL-2.0"],
-    "depends": ["appstream", "appstream-glib", "cairo", "flatpak", "gdk-pixbuf2", "glib2", "glibc", "gnome-menus", "gsettings-desktop-schemas", "gtk4", "iso-codes", "json-glib", "libadwaita", "gcc-libs", "libgudev", "librsvg2", "libsoup", "libostree", "pango", "polkit"],
+    "depends": ["appstream", "appstream-glib", "cairo", "flatpak", "gdk-pixbuf2", "glib2", "glibc", "gnome-menus", "gsettings-desktop-schemas", "gtk4", "iso-codes", "json-glib", "libadwaita", "libgcc", "libgudev", "librsvg2", "libsoup", "libostree", "pango", "polkit"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["gnome-software"],

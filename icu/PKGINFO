@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://icu.unicode.org/",
     "license": ["custom"],
-    "depends": ["gcc-libs"],
+    "depends": ["libgcc"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["icu"],

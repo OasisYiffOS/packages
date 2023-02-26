@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.rust-lang.org",
     "license": ["Apache-2.0", "MIT"],
-    "depends": ["glibc", "gcc-libs", "llvm", "libffi"],
+    "depends": ["glibc", "libgcc", "llvm", "libffi"],
     "optional_depends": [],
     "make_depends": ["python", "cmake", "ninja", "curl", "openssl", "git"],
     "provides": ["rust", "cargo"],

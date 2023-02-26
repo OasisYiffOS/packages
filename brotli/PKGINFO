@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://github.com/google/brotli",
     "license": ["MIT"],
-    "depends": ["gcc-libs", "glibc"],
+    "depends": ["libgcc", "glibc"],
     "optional_depends": [],
     "make_depends": ["cmake"],
     "provides": ["brotli"],

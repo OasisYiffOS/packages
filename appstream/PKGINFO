@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.freedesktop.org/wiki/Distributions/AppStream/",
     "license": ["LGPL-2.1"],
-    "depends": ["glib2", "glibc", "curl", "gcc-libs", "libxml2", "libyaml"],
+    "depends": ["glib2", "glibc", "curl", "libgcc", "libxml2", "libyaml"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["appstream"],

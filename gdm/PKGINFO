@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Projects/GDM",
     "license": ["GPL-2.0"],
-    "depends": ["glibc", "gcc-libs", "glib2", "accountsservice", "dconf", "gdk-pixbuf2", "gnome-keyring", "gnome-session", "gnome-settings-daemon", "gtk3", "iso-codes", "keyutils", "libx11", "libxau", "libxdmcp", "libcanberra", "libgudev", "libxcb", "pam", "systemd", "util-linux", "libdaemon", "cantarell-fonts", "gcr", "libtool"],
+    "depends": ["glibc", "libgcc", "glib2", "accountsservice", "dconf", "gdk-pixbuf2", "gnome-keyring", "gnome-session", "gnome-settings-daemon", "gtk3", "iso-codes", "keyutils", "libx11", "libxau", "libxdmcp", "libcanberra", "libgudev", "libxcb", "pam", "systemd", "util-linux", "libdaemon", "cantarell-fonts", "gcr", "libtool"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "istool"],
     "provides": ["gdm"],

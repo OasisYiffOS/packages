@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.gnome.org/Projects/LibGWeather",
     "license": ["GPL-2.0"],
-    "depends": ["glibc", "gcc-libs", "glib2", "geocode-glib", "libsoup", "libxml2"],
+    "depends": ["glibc", "libgcc", "glib2", "geocode-glib", "libsoup", "libxml2"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "gobject-introspection", "vala"],
     "provides": ["libgweather"],

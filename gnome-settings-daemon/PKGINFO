@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://gitlab.gnome.org/GNOME/gnome-settings-daemon",
     "license": ["GPL-2.0"],
-    "depends": ["glibc", "gcc-libs", "alsa-lib", "cairo", "colord", "gcr", "geoclue", "geocode-glib", "gnome-desktop", "gsettings-desktop-schemas", "gtk3", "little-cms2", "nss", "pango", "polkit", "pulseaudio", "upower", "networkmanager", "modemmanager", "wayland", "libwacom", "libnotify", "libgweather", "libgudev", "libcanberra", "libxi", "libxfixes", "libxext", "libx11", "fontconfig", "cups"],
+    "depends": ["glibc", "libgcc", "alsa-lib", "cairo", "colord", "gcr", "geoclue", "geocode-glib", "gnome-desktop", "gsettings-desktop-schemas", "gtk3", "little-cms2", "nss", "pango", "polkit", "pulseaudio", "upower", "networkmanager", "modemmanager", "wayland", "libwacom", "libnotify", "libgweather", "libgudev", "libcanberra", "libxi", "libxfixes", "libxext", "libx11", "fontconfig", "cups"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["gnome-settings-daemon"],

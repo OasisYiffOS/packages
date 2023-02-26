@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://llvm.org",
     "license": ["Apache-2.0"],
-    "depends": ["lib32-glibc", "lib32-gcc-libs", "lib32-ncurses", "lib32-libffi", "lib32-zlib"],
+    "depends": ["lib32-glibc", "lib32-libgcc", "lib32-ncurses", "lib32-libffi", "lib32-zlib"],
     "optional_depends": [],
     "make_depends": ["cmake", "lib32-libxml2", "rsync", "ninja"],
     "provides": ["lib32-llvm"],

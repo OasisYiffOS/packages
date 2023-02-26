@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.gnutls.org/",
     "license": ["GPL-3.0", "LGPL-2.1"],
-    "depends": ["nettle", "make-ca", "libunistring", "libtasn1", "p11-kit", "gcc-libs", "libidn2", "readline", "zlib"],
+    "depends": ["nettle", "make-ca", "libunistring", "libtasn1", "p11-kit", "libgcc", "libidn2", "readline", "zlib"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["gnutls"],

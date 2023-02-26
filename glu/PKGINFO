@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.mesa3d.org",
     "license": ["MIT"],
-    "depends": ["glibc", "gcc-libs", "mesa"],
+    "depends": ["glibc", "libgcc", "mesa"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["glu"],

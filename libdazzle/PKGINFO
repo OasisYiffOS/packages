@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://gitlab.gnome.org/GNOME/libdazzle",
     "license": ["GPL-3.0"],
-    "depends": ["glibc", "glib2", "gcc-libs", "cairo", "gdk-pixbuf2", "gtk3", "pango"],
+    "depends": ["glibc", "glib2", "libgcc", "cairo", "gdk-pixbuf2", "gtk3", "pango"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "vala"],
     "provides": ["libdazzle"],

@@ -6,7 +6,7 @@
     "groups": [],
     "url": "http://www.sysprof.com",
     "license": ["GPL-3.0"],
-    "depends": ["glibc", "gcc-libs", "gtk3", "json-glib", "libunwind", "libdazzle", "polkit"],
+    "depends": ["glibc", "libgcc", "gtk3", "json-glib", "libunwind", "libdazzle", "polkit"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["sysprof"],

@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://invisible-island.net/ncurses/",
     "license": ["MIT"],
-    "depends": ["gcc-libs", "glibc"],
+    "depends": ["libgcc", "glibc"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["ncurses"],

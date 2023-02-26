@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://github.com/containers/bubblewrap",
     "license": ["LGPL-2.1"],
-    "depends": ["glibc", "gcc-libs", "libcap"],
+    "depends": ["glibc", "libgcc", "libcap"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["bubblewrap"],

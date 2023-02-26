@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://wiki.linuxfoundation.org/openprinting/cups-filters",
     "license": ["GPL-2.0", "GPL-3.0", "MIT", "BSD-2-Clause"],
-    "depends": ["glibc", "gcc-libs", "glib2", "ghostscript", "little-cms2", "opdf", "libjpeg-turbo", "libpng", "libtiff", "avahi", "openldap", "poppler"],
+    "depends": ["glibc", "libgcc", "glib2", "ghostscript", "little-cms2", "opdf", "libjpeg-turbo", "libpng", "libtiff", "avahi", "openldap", "poppler"],
     "optional_depends": [],
     "make_depends": ["dejavu-fonts"],
     "provides": ["cups-filters"],

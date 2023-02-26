@@ -3,50 +3,38 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gcc"
-VERSION="11.2.0"
+VERSION="12.2.0"
 EPOCH=1
 DESC="The GNU Compiler Collection, including C, C++, ObjC, Fortran, Ada, and Go"
 GRPS=("devel")
 URL="https://gcc.gnu.org/"
 LICENSES=("GPL" "LGPL")
-DEPENDS=("mpc" "flex")
+DEPENDS=("mpc" "flex" "isl" "libgcc")
 OPT_DEPENDS=()
-PROVIDES=("gcc" "gcc-libs"  "gcc-go")
-CONFLICTS=("gcc-libs")
+MK_DEPENDS=("dejagnu" "lib32-glibc")
+PROVIDES=("gcc" "gcc-go")
+CONFLICTS=()
 REPLACES=()
 
 # Source information
 SRC=("https://ftp.gnu.org/gnu/gcc/gcc-${VERSION}/gcc-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("d53a0a966230895c54f01aea38696f818817b505f1e2bfa65e508753fcd01b2aedb4a61434f41f3a2ddbbd9f41384b96153c684ded3f0fa97c82758d9de5c7cf")
+SUM=("e9e857bd81bf7a370307d6848c81b2f5403db8c7b5207f54bce3f3faac3bde63445684092c2bc1a2427cddb6f7746496d9fbbef05fbbd77f2810b2998f1f9173")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
-
-    # Patch issue breaking libasan identified upstream
-    sed -e '/static.*SIGSTKSZ/d'                                        \
-        -e 's/return kAltStackSize/return SIGSTKSZ * 4/'                \
-        -i libsanitizer/sanitizer_common/sanitizer_posix_libcdep.cpp
 
     # Ensure 64-bit libraries are installed into lib
     sed -e '/m64=/s/lib64/lib/' \
         -e '/m32=/s/m32=.*/m32=..\/lib32$(call if_multiarch,:i386-linux-gnu)/' \
         -i.orig gcc/config/i386/t-linux64
 
-    # Fix an issue causing libstdc++ to fail
-    sed 's/gnu++17/& -nostdinc++/' \
-        -i libstdc++-v3/src/c++17/Makefile.in
-
-    # Allow building with POSIX threads
-    sed '/thread_header =/s/@.*@/gthr-posix.h/' \
-        -i libgcc/Makefile.in libstdc++-v3/include/Makefile.in
-
     mkdir -v build
     cd       build
 
-    ../configure                                            \
+    ../configure                                           \
        --prefix=/usr                                       \
        --enable-multilib                                   \
        --with-multilib-list=m64,m32                        \
@@ -72,7 +60,7 @@ function build() {
     
     ../contrib/test_summary
     echo "Please check if all tests passed."
-    echo "102 unepxected failures are expected."
+    echo "80 unexpected failures are expected."
     read -s -n 1 -p "Press any key to continue . . ."
 
     return 0
@@ -103,6 +91,12 @@ function postbuild() {
     mv -v ${BUILD_DATA_ROOT}/usr/bin/go ${BUILD_DATA_ROOT}/usr/bin/gcc-go
     mv -v ${BUILD_DATA_ROOT}/usr/bin/gofmt ${BUILD_DATA_ROOT}/usr/bin/gcc-gofmt
     mv -v ${BUILD_DATA_ROOT}/usr/share/man/man1/go.1 ${BUILD_DATA_ROOT}/usr/share/man/man1/gcc-go.1
+
+    # Strip for libgcc
+    find ${BUILD_DATA_ROOT}/usr/lib/ -maxdepth 1 ! \( -name cpp -o -name libcc1.so.0 -o -name libcc1.so.0.0.0 \) -type f,l -exec rm -f {} +
+
+    # Strip for 32bit libgcc
+    find ${BUILD_DATA_ROOT}/usr/lib32/ -maxdepth 1 ! \( -name cpp -o -name libcc1.so.0 -o -name libcc1.so.0.0.0 \) -type f,l -exec rm -f {} +
 
     return 0
 }

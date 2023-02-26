@@ -6,7 +6,7 @@
     "groups": [],
     "url": "http://www.gtkmm.org/en/index.html",
     "license": ["LGPL-2.1"],
-    "depends": ["glibc", "gcc-libs", "glib2", "libsigc++3"],
+    "depends": ["glibc", "libgcc", "glib2", "libsigc++3"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "glib-networking", "gnutls", "libxslt"],
     "provides": ["glibmm24"],

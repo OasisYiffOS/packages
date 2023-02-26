@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://gitlab.gnome.org/GNOME/libnma/",
     "license": ["GPL-2.0", "LGPL-2.1"],
-    "depends": ["glibc", "gcc-libs", "glib2", "networkmanager", "gcr", "gtk3", "gtk4", "mobile-broadband-provider-info", "iso-codes"],
+    "depends": ["glibc", "libgcc", "glib2", "networkmanager", "gcr", "gtk3", "gtk4", "mobile-broadband-provider-info", "iso-codes"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja", "vala"],
     "provides": ["libnma"],

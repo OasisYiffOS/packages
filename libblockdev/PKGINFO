@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://github.com/storaged-project/libblockdev",
     "license": ["LGPL-2.1"],
-    "depends": ["glibc", "glib2", "gcc-libs", "systemd", "gobject-introspection", "libbytesize", "libyaml", "parted", "volume_key", "btrfs-progs", "mdadm"],
+    "depends": ["glibc", "glib2", "libgcc", "systemd", "gobject-introspection", "libbytesize", "libyaml", "parted", "volume_key", "btrfs-progs", "mdadm"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["libblockdev"],

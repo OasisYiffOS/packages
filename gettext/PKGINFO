@@ -6,7 +6,7 @@
     "groups": ["base"],
     "url": "https://www.gnu.org/software/gettext/",
     "license": ["GPL-3.0-or-later"],
-    "depends": ["acl", "gcc-libs"],
+    "depends": ["acl", "libgcc"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["gettext"],

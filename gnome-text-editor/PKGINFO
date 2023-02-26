@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://gitlab.gnome.org/GNOME/gnome-text-editor",
     "license": ["BSD-2-Clause"],
-    "depends": ["glibc", "gcc-libs", "gtk4", "libadwaita", "pcre", "icu", "enchant", "gtksourceview5"],
+    "depends": ["glibc", "libgcc", "gtk4", "libadwaita", "pcre", "icu", "enchant", "gtksourceview5"],
     "optional_depends": [],
     "make_depends": ["meson", "ninja"],
     "provides": ["gnome-text-editor"],

@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://github.com/HowardHinnant/date",
     "license": ["MIT"],
-    "depends": ["glibc", "gcc-libs", "tzdata"],
+    "depends": ["glibc", "libgcc", "tzdata"],
     "optional_depends": [],
     "make_depends": ["cmake"],
     "provides": ["date"],

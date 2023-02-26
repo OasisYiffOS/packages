@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://github.com/gabime/spdlog",
     "license": ["MIT"],
-    "depends": ["glibc", "gcc-libs", "fmt"],
+    "depends": ["glibc", "libgcc", "fmt"],
     "optional_depends": [],
     "make_depends": ["cmake"],
     "provides": ["spdlog"],

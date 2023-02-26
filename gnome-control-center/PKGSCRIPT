@@ -10,7 +10,7 @@ DESC="The GNOME settings manager."
 GRPS=()
 URL="https://gitlab.gnome.org/GNOME/gnome-control-center/"
 LICENSES=("GPL-2.0")
-DEPENDS=("glibc" "gcc-libs" "glib2" "accountsservice" "colord-gtk" "gnome-online-accounts" "gnome-settings-daemon" 
+DEPENDS=("glibc" "libgcc" "glib2" "accountsservice" "colord-gtk" "gnome-online-accounts" "gnome-settings-daemon" 
 "gsound" "libgtop2" "libpwquality" "krb5" "shared-mime-info" "udisks" "cups" "gnome-bluetooth" "ibus" "libhandy"
 "modemmanager" "libnma" "cups-pk-helper" "gnome-color-manager" "sound-theme-freedesktop" "gcr" "gdk-pixbuf2"
 "cairo" "alsa-lib" "gnome-desktop" "gsettings-desktop-schemas" "gnutls" "gtk3" "gtk4" "iso-codes" "libx11" "libxi"

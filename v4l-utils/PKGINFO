@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://linuxtv.org/wiki/index.php/V4l-utils",
     "license": ["GPL-2.0", "LGPL-2.0"],
-    "depends": ["glibc", "gcc-libs", "systemd", "libjpeg-turbo", "alsa-lib"],
+    "depends": ["glibc", "libgcc", "systemd", "libjpeg-turbo", "alsa-lib"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["v4l-utils"],

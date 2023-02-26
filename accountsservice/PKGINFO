@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.freedesktop.org/wiki/Software/AccountsService/",
     "license": ["GPL-3.0"],
-    "depends": ["glibc", "glib2", "gcc-libs", "polkit", "shadow", "systemd"],
+    "depends": ["glibc", "glib2", "libgcc", "polkit", "shadow", "systemd"],
     "optional_depends": [],
     "make_depends": ["ninja", "meson", "gobject-introspection", "xmlto"],
     "provides": ["accountsservice"],

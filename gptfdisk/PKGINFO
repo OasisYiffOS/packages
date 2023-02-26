@@ -6,7 +6,7 @@
     "groups": [],
     "url": "http://www.rodsbooks.com/gdisk/",
     "license": ["GPL-2.0"],
-    "depends": ["glibc", "gcc-libs", "popt", "icu"],
+    "depends": ["glibc", "libgcc", "popt", "icu"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["gptfdisk"],

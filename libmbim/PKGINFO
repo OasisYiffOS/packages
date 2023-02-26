@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://freedesktop.org/software/libmbim/",
     "license": ["LGPL-2.1"],
-    "depends": ["glibc", "glib2", "gcc-libs"],
+    "depends": ["glibc", "glib2", "libgcc"],
     "optional_depends": [],
     "make_depends": ["gobject-introspection"],
     "provides": ["libmbim"],

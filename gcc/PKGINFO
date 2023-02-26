@@ -1,16 +1,16 @@
 {
     "name": "gcc",
-    "version": "11.2.0",
+    "version": "12.2.0",
     "epoch": 1,
     "description": "The GNU Compiler Collection, including C, C++, ObjC, Fortran, Ada, and Go",
     "groups": ["devel"],
     "url": "https://gcc.gnu.org/",
     "license": ["GPL", "LGPL"],
-    "depends": ["mpc", "flex"],
+    "depends": ["mpc", "flex", "isl", "libgcc"],
     "optional_depends": [],
-    "make_depends": [],
-    "provides": ["gcc", "gcc-libs", "gcc-go"],
-    "conflicts": ["gcc-libs"],
+    "make_depends": ["dejagnu", "lib32-glibc"],
+    "provides": ["gcc", "gcc-go"],
+    "conflicts": [],
     "replaces": [],
     "maintainers": ["Evie Viau <evie@eviee.gay>"]
 }
