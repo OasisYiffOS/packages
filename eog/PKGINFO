@@ -1,6 +1,6 @@
 {
     "name": "eog",
-    "version": "42.2",
+    "version": "43.2",
     "epoch": 0,
     "description": "GNOME image viewer and basic editor.",
     "groups": [],
@@ -8,7 +8,7 @@
     "license": ["GPL-2.0"],
     "depends": ["glibc", "libgcc", "glib2", "gdk-pixbuf2", "cairo", "gnome-desktop", "gobject-introspection", "gsettings-desktop-schemas", "gtk3", "little-cms2", "libexif", "exempi", "libx11", "libhandy", "libjpeg-turbo", "libpeas", "librsvg2", "zlib", "libportal"],
     "optional_depends": [],
-    "make_depends": ["meson", "ninja"],
+    "make_depends": ["meson", "ninja", "itstool"],
     "provides": ["eog"],
     "conflicts": [],
     "replaces": [],

@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="eog"
-VERSION="42.2"
-_MAJOR_VERSION="42"
+VERSION="43.2"
+_MAJOR_VERSION="43"
 EPOCH=0
 DESC="GNOME image viewer and basic editor."
 GRPS=()
@@ -12,7 +12,7 @@ URL="https://wiki.gnome.org/Apps/EyeOfGnome"
 LICENSES=("GPL-2.0")
 DEPENDS=("glibc" "libgcc" "glib2" "gdk-pixbuf2" "cairo" "gnome-desktop" "gobject-introspection" "gsettings-desktop-schemas" "gtk3" "little-cms2" "libexif" "exempi" "libx11" "libhandy" "libjpeg-turbo" "libpeas" "librsvg2" "zlib" "libportal")
 OPT_DEPENDS=()
-MK_DEPENDS=("meson" "ninja")
+MK_DEPENDS=("meson" "ninja" "itstool")
 PROVIDES=("eog")
 CONFLICTS=()
 REPLACES=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/eog/${_MAJOR_VERSION}/eog-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("f2da81fe7040f7ffc63da03df4889add33d59ad8df637797d1094d95233f4ce891838dfe6f774f58de63c28a620807bc4097b3ab1f31afb7cc7c402f8501e69d")
+SUM=("aa3bb2e2684140f6a35770f6f6b80f64f09ff0f36f25ddc561c9cbbf6f22fdb4bbb1a48392a29d59dcf4852c224146ac847c62c8196e9198b34e7015bf4bb760")
 
 # Prepare script
 function prepare() {
