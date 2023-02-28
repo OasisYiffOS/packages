@@ -3,15 +3,15 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="wlroots"
-VERSION="0.15.1"
+VERSION="0.16.2"
 EPOCH=0
 DESC="A modular Wayland compositor library."
 GRPS=()
 URL="https://gitlab.freedesktop.org/wlroots/wlroots/"
 LICENSES=("MIT")
-DEPENDS=("glibc" "wayland" "wayland-protocols" "mesa" "vulkan-loader" "libdrm" "libinput" "xkbcommon" "pixman" "seatd" "libxcb" "xcb-util-wm" "xcb-util-renderutil")
+DEPENDS=("glibc" "wayland" "wayland-protocols" "mesa" "vulkan-loader" "libdrm" "libinput" "libxkbcommon" "pixman" "libxcb" "xcb-util-wm" "xcb-util-renderutil" "seatd" "libdrm")
 OPT_DEPENDS=()
-MK_DEPENDS=("meson" "ninja" "vulkan-headers" "xwayland" "glslang")
+MK_DEPENDS=("meson" "ninja" "vulkan-headers" "xwayland" "glslang" "hwdata")
 PROVIDES=("wlroots")
 CONFLICTS=()
 REPLACES=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://gitlab.freedesktop.org/wlroots/wlroots/-/archive/${VERSION}/wlroots-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("6228160f2f350a406c612f1048d7075cf2f78206cc84bc16f889d5d0acd614f9e98845fffed03d7067cfdbd7558b77fcc5d8cedc3868d866e476523126a63677")
+SUM=("3c1d4fecb3b751987e7051e69849fd62bd4eed95f2d2e548f06e42e4829d0fc24f20c1bfe056a53ede2d1fd05e0c566269a7b9f2bab0de0057a32b55e826a7c0")
 
 # Prepare script
 function prepare() {
