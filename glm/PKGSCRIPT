@@ -1,0 +1,63 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="glm"
+VERSION="0.9.9.8"
+EPOCH=0
+DESC="Header-only C++ mathematics library for graphics software."
+GRPS=()
+URL="https://glm.g-truc.net"
+LICENSES=("MIT")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("unzip")
+PROVIDES=("glm")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/g-truc/glm/releases/download/${VERSION}/glm-${VERSION}.zip"
+glm.pc.in
+glmConfigVersion.cmake.in
+glmConfig.cmake.in
+glmTargets.cmake)
+
+SUM_TYPE="sha512"
+SUM=("8c6bdaacfac600a22d7e92b86f70bfcfe7bf7f56b05ad93c503520adbdb8432ca20c01e93a5c782cf457fe4512b29defffdc94a1316bc7f3d6747f989fff0286"
+"37f3973b9913fb820a355160717cbe881586a00210c76061c436784d240eec0094132d8fb772126f8ab9cd75d3ed2da9ccb5a5c33dbdd007d77e5eca82990d25"
+"e8342b07a44fd3fab9c1262e670dda27ac22758d2bd9a682e1d82b1caba1846c2ae8b53a75a556f8cd75e961a175d6a035abd6cf545b8c05b12d2898567119fa"
+"517b080a50f9ba80b5d1e15c27e9c1905912c1db640eb087272be853ad4e451a302e6b4bee4f7e5c936cadfda3a7a75421c4df1bab3759b147fbb770061cfa9a"
+"ebaf7ad8ded0abe56074cb67f8238224458587bb16223e19493819a867f0dc536114f7ddb83285b990a8bdeca246b29dacae90998386be2225397681e7c0e77d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}"
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}"
+
+    # sorry
+    mkdir -p "${BUILD_DATA_ROOT}"/usr/include
+    cp -r glm "${BUILD_DATA_ROOT}"/usr/include
+    
+    mkdir -p "${BUILD_DATA_ROOT}"/usr/lib/pkgconfig/
+    sed "s/@VERSION@/${VERSION}/" "${WORKDIR}"/glm.pc.in > "${BUILD_DATA_ROOT}"/usr/lib/pkgconfig/glm.pc
+    mkdir -p "${BUILD_DATA_ROOT}"/usr/lib/cmake/glm/
+    sed "s/@VERSION@/${VERSION}/" "${WORKDIR}"/glmConfigVersion.cmake.in > "${BUILD_DATA_ROOT}"/usr/lib/cmake/glm/glmConfigVersion.cmake
+    sed "s/@VERSION@/${VERSION}/" "${WORKDIR}"/glmConfig.cmake.in > "${BUILD_DATA_ROOT}"/usr/lib/cmake/glm/glmConfig.cmake
+    install -Dm644 "${WORKDIR}"/glmTargets.cmake "${BUILD_DATA_ROOT}"/usr/lib/cmake/glm/glmTargets.cmake
+
+    return 0
+}

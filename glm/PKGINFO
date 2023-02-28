@@ -1,0 +1,16 @@
+{
+    "name": "glm",
+    "version": "0.9.9.8",
+    "epoch": 0,
+    "description": "Header-only C++ mathematics library for graphics software.",
+    "groups": [],
+    "url": "https://glm.g-truc.net",
+    "license": ["MIT"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": ["unzip"],
+    "provides": ["glm"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
