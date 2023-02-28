@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="at-spi2-core"
-VERSION="2.45.1"
-_MAJOR_VERSION="2.45"
+VERSION="2.46.0"
+_MAJOR_VERSION="2.46"
 EPOCH=0
 DESC="Provides a Service Provider Interface for the Assistive Technologies available on the GNOME platform and a library against which applications can be linked."
 GRPS=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/at-spi2-core/${_MAJOR_VERSION}/at-spi2-core-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("989d696aec54b5148f938614c96fbc6c04f72af6ed863ab076b945954c5bf7ce205a41b2739b68968e18c1c014f18273c95bb8967e1cdc853440fffd7a441a77")
+SUM=("633af2c02fab3b8cb02e37f929ce80dd5ce28ca5641046ef5e25cb29299530b90028e6c6f318a0c098a4270bed3eab48fb55d6967a76bfadd2520f49de47c770")
 
 # Prepare script
 function prepare() {
