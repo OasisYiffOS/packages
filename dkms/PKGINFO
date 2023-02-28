@@ -1,11 +1,11 @@
 {
     "name": "dkms",
-    "version": "3.0.3",
+    "version": "3.0.10",
     "epoch": 0,
     "description": "Framework for the Dynamic Kernel Module Support (DKMS) method for installing modules as originally developed by Dell.",
     "groups": [],
     "url": "https://github.com/dell/dkms",
-    "license": ["GPL-2.0"],
+    "license": ["GPL-2.0-or-later"],
     "depends": ["coreutils", "cpio", "elfutils", "file", "findutils", "gawk", "gcc", "grep", "gzip", "linux-headers", "kmod", "make", "sed", "systemd", "tar", "which"],
     "optional_depends": [],
     "make_depends": [],
