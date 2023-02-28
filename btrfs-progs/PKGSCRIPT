@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="btrfs-progs"
-VERSION="5.16.2"
+VERSION="6.1.3"
 EPOCH=0
 DESC="Utilities for the Btrfs filesystem"
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://www.kernel.org/pub/linux/kernel/people/kdave/btrfs-progs/btrfs-progs-v${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("c89a763e8b099e0e9d04ff239dfee156a15fc783c515bbd48597f5645f720c377dbb4f2dfe9065971a65d3ade9d8fcb24cf37d527811bf4204153a06f7c8c3a7")
+SUM=("7c40d8bc3fcef0b2a7bf4be7d52923015b5b11c3f14bfc550ffa95a47d673f640b7deb840fee22fb7cc2743b6098fb12b5caea586fbf0972a1bc9a7606f3f375")
 
 # Prepare script
 function prepare() {
