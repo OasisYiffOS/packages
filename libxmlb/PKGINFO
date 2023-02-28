@@ -1,0 +1,16 @@
+{
+    "name": "libxmlb",
+    "version": "0.3.11",
+    "epoch": 0,
+    "description": "A library to help create and query binary XML blobs.",
+    "groups": [],
+    "url": "https://github.com/hughsie/libxmlb",
+    "license": ["LGPL-2.1-or-later"],
+    "depends": ["glibc", "libgcc", "glib2", "shared-mime-info", "zstd", "xz"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection"],
+    "provides": ["libxmlb"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

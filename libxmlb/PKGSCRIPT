@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="libxmlb"
+VERSION="0.3.11"
+EPOCH=0
+DESC="A library to help create and query binary XML blobs."
+GRPS=()
+URL="https://github.com/hughsie/libxmlb"
+LICENSES=("LGPL-2.1-or-later")
+DEPENDS=("glibc" "libgcc" "glib2" "shared-mime-info" "zstd" "xz")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection")
+PROVIDES=("libxmlb")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/hughsie/libxmlb/releases/download/${VERSION}/libxmlb-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("26537c763f082d482f29355b86b9875b3db75283adbade2c7c07dd1ab1e60dfd231590c98a5f8fdd9a308a39f87021d1c3e87cb5b52ffec387700cff977715ea")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr -Dgtkdoc=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
