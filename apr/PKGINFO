@@ -1,6 +1,6 @@
 {
     "name": "apr",
-    "version": "1.7.0",
+    "version": "1.7.2",
     "epoch": 0,
     "description": "The Apache Portable Runtime (APR) library.",
     "groups": [],
@@ -8,7 +8,7 @@
     "license": ["Apache-2.0"],
     "depends": ["util-linux"],
     "optional_depends": [],
-    "make_depends": ["python"],
+    "make_depends": ["python", "libtool"],
     "provides": ["apr"],
     "conflicts": [],
     "replaces": [],

@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="apr"
-VERSION="1.7.0"
+VERSION="1.7.2"
 EPOCH=0
 DESC="The Apache Portable Runtime (APR) library."
 GRPS=()
@@ -11,7 +11,7 @@ URL="https://apr.apache.org/"
 LICENSES=("Apache-2.0")
 DEPENDS=("util-linux")
 OPT_DEPENDS=()
-MK_DEPENDS=("python")
+MK_DEPENDS=("python" "libtool")
 PROVIDES=("apr")
 CONFLICTS=()
 REPLACES=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://dlcdn.apache.org//apr/apr-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("daa140c83c7e2c45c3980d9dc81d34fa662bebd050653562c39572d0ddf2eaedb71767c518a59d77f59db9b32e00221ef48b9f72ec3666c4521dd511969f3706")
+SUM=("3fc607af4b8d7e92dc22e35099ebedec5b6ad7c9457ef971bcbdd715d8b1100a76215f75cedf1fc216ac55ae4919c6ea38fb0517025f153c53ec426f0a34f7c2")
 
 # Prepare script
 function prepare() {
