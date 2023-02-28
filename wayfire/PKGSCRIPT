@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="wayfire"
+VERSION="0.7.5"
+EPOCH=0
+DESC="3D Wayland compositor, inspired by Compiz and based on wlroots"
+GRPS=()
+URL="https://github.com/WayfireWM/wayfire"
+LICENSES=("MIT")
+DEPENDS=("cairo" "freetype2" "glm" "libdrm" "libevdev" "mesa" "libinput" "libjpeg-turbo" "libpng" "libxkbcommon" "libxml2" "pixman" "wayland" "wayland-protocols" "wlroots" "pango")
+OPT_DEPENDS=()
+MK_DEPENDS=("pkg-config" "meson" "ninja")
+PROVIDES=("wayfire")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/WayfireWM/wayfire/releases/download/v${VERSION}/wayfire-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("fce6d4c81fa3675df1e656f8bf504f7fc9d1b7104687bcc6d669950582f46bd0ad084c6a487434077df029438243cd91cf6ec60dc7d584b40bfd7a4c8d069f53")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd build
+
+    meson --prefix=/usr                \
+          --libdir=lib                 \
+          --buildtype=release          \
+          -Duse_system_wlroots=enabled \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

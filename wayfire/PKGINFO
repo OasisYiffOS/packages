@@ -1,0 +1,16 @@
+{
+    "name": "wayfire",
+    "version": "0.7.5",
+    "epoch": 0,
+    "description": "3D Wayland compositor, inspired by Compiz and based on wlroots",
+    "groups": [],
+    "url": "https://github.com/WayfireWM/wayfire",
+    "license": ["MIT"],
+    "depends": ["cairo", "freetype2", "glm", "libdrm", "libevdev", "mesa", "libinput", "libjpeg-turbo", "libpng", "libxkbcommon", "libxml2", "pixman", "wayland", "wayland-protocols", "wlroots", "pango"],
+    "optional_depends": [],
+    "make_depends": ["pkg-config", "meson", "ninja"],
+    "provides": ["wayfire"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
