@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="cups"
-VERSION="2.4.1"
+VERSION="2.4.2"
 EPOCH=0
 DESC="The Common Unix Printing System (CUPS) is a print spooler and associated utilities."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://github.com/OpenPrinting/cups/releases/download/v${VERSION}/cups-${VERSION}-source.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("74e83728fcc3baf709176442b26711250fd4d4ede1e81e35b02a5607711067e28cd5a05d5bc3337953f6b2236c5a429b13f3a7f1218a08a2d3c30a8c9b0d96fd")
+SUM=("07474643bffe11c79b3226b70d28f1bb803dc19daa10711938cea303feacdcce3945ba8ff0334d94fdd5922ea7d6bf37a28c1ea62cce8ce946c2f90a0faf002f")
 
 # Prepare script
 function prepare() {
