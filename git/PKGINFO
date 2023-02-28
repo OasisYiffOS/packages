@@ -1,6 +1,6 @@
 {
     "name": "git",
-    "version": "2.35.2",
+    "version": "2.39.2",
     "epoch": 0,
     "description": "fast and popular distributed version control system",
     "groups": ["devel"],
@@ -8,7 +8,7 @@
     "license": ["GPL-3.0"],
     "depends": ["curl", "openssh", "pcre2", "expat", "grep", "openssl", "perl", "python", "zlib", "shadow"],
     "optional_depends": ["gnupg"],
-    "make_depends": [],
+    "make_depends": ["valgrind"],
     "provides": ["git"],
     "conflicts": [],
     "replaces": [],
