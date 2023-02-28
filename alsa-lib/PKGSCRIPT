@@ -3,13 +3,13 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="alsa-lib"
-VERSION="1.2.6.1"
+VERSION="1.2.8"
 EPOCH=0
 DESC="A library to interface with ALSA in the Linux kernel and virtual devices using a plugin system."
 GRPS=()
 URL="https://www.alsa-project.org"
-LICENSES=("LGPL-2.1")
-DEPENDS=()
+LICENSES=("LGPL-2.1-or-later")
+DEPENDS=("glibc")
 OPT_DEPENDS=()
 PROVIDES=("alsa-lib")
 CONFLICTS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("http://www.alsa-project.org/files/pub/lib/alsa-lib-${VERSION}.tar.bz2")
 
 SUM_TYPE="sha512"
-SUM=("70e539cf092b5d43e00e4134d8a3e184f0dc34312823e4b58a574320cbf06cb7369bc3251ecb1858033756a7a8c35d36faa8da48d49f6efe0cec905784adbd45")
+SUM=("865ff05a8f589996f8d63d43a91c961f1b64144f3e1d17c7074b7ac16f25b3fd1c371d46ed63a8cc20fa01e63c76b75f1a9802b56889ae1073854dd050d27688")
 
 # Prepare script
 function prepare() {
