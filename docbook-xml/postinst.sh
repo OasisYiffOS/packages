@@ -1,5 +1,7 @@
 #!/bin/bash
 
+if [ ! -d /etc/xml ]; then install -v -m755 -d /etc/xml; fi &&
+
 if [ ! -e /etc/xml/docbook ]; then
     xmlcatalog --noout --create /etc/xml/docbook
 fi
