@@ -3,15 +3,15 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libdrm"
-VERSION="2.4.110"
+VERSION="2.4.115"
 EPOCH=0
 DESC="Direct Rendering Manager library."
 GRPS=()
 URL="https://dri.freedesktop.org/wiki/"
 LICENSES=("MIT")
-DEPENDS=("glibc" "libpciaccess")
+DEPENDS=("glibc" "libpciaccess" "cairo" "valgrind")
 OPT_DEPENDS=()
-MK_DEPENDS=("meson" "ninja" "cairo")
+MK_DEPENDS=("meson" "ninja")
 PROVIDES=("libdrm")
 CONFLICTS=()
 REPLACES=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://dri.freedesktop.org/libdrm/libdrm-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("52f92ef1fe4c218a1d7dba53ef43334dbfca80e3209afe59f3a32c4bf67473126534e990df07a931a12d46a3b997c21ef17c1c4d8a0c88d44d5c6c040e3b6be3")
+SUM=("0c38d3cfd76f627b899f052527c2939d5fc87a417422dceb0761839ba21e69736703a87ba170b5ba7a4aca2506a240760c8c97ca1781a7fb78468225295293bd")
 
 # Prepare script
 function prepare() {
@@ -33,7 +33,8 @@ function prepare() {
     meson --prefix=/usr         \
           --buildtype=release   \
           -Dudev=true           \
-          -Dvalgrind=false
+          -Dvalgrind=enabled    \
+          ..
 
     return 0
 }
