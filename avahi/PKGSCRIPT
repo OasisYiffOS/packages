@@ -4,21 +4,21 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 # Package information
 NAME="avahi"
 VERSION="0.8"
-EPOCH=1
+EPOCH=2
 DESC="A system which facilitates service discovery on a local network via the mDNS/DNS-SD protocol suite."
 GRPS=()
 URL="http://avahi.org"
 LICENSES=("LGPL-2.1")
 DEPENDS=("coreutils" "dbus" "expat" "glibc" "libcap" "libdaemon" "shadow" "libevent")
-MK_DEPENDS=("gobject-introspection" "libglade2" "gtk3" "gtk2")
-OPT_DEPENDS=()
+MK_DEPENDS=("gobject-introspection")
+OPT_DEPENDS=("gtk3" "gtk2" "qt5" "libglade2")
 PROVIDES=("avahi")
 CONFLICTS=()
 REPLACES=()
 
 # Source information
 SRC=("https://github.com/lathiat/avahi/releases/download/v${VERSION}/avahi-${VERSION}.tar.gz"
-"https://www.linuxfromscratch.org/patches/blfs/svn/avahi-${VERSION}-ipv6_race_condition_fix-1.patch")
+"avahi-0.8-ipv6_race_condition_fix-1.patch")
 
 SUM_TYPE="sha512"
 SUM=("c6ba76feb6e92f70289f94b3bf12e5f5c66c11628ce0aeb3cadfb72c13a5d1a9bd56d71bdf3072627a76cd103b9b056d9131aa49ffe11fa334c24ab3b596c7de"
@@ -43,10 +43,9 @@ function prepare() {
                 --disable-static            \
                 --disable-mono              \
                 --disable-monodoc           \
-                --disable-python            \
                 --disable-qt3               \
                 --disable-qt4               \
-                --disable-qt5               \
+                --disable-python            \
                 --enable-core-docs          \
                 --with-distro=none          \
                 --enable-compat-libdns_sd   \
