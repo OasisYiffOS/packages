@@ -1,6 +1,6 @@
 {
     "name": "glib2",
-    "version": "2.72.3",
+    "version": "2.74.5",
     "epoch": 0,
     "description": "Low-level core library that forms the basis for projects such as GTK+ and GNOME.",
     "groups": [],
@@ -8,7 +8,7 @@
     "license": ["LGPL-2.1"],
     "depends": ["libffi", "util-linux", "libxslt", "pcre", "dbus", "zlib"],
     "optional_depends": [],
-    "make_depends": [],
+    "make_depends": ["meson", "ninja"],
     "provides": ["glib2"],
     "conflicts": [],
     "replaces": [],

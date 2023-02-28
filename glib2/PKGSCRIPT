@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="glib2"
-VERSION="2.72.3"
-_MAJOR_VERSION="2.72"
+VERSION="2.74.5"
+_MAJOR_VERSION="2.74"
 EPOCH=0
 DESC="Low-level core library that forms the basis for projects such as GTK+ and GNOME."
 GRPS=()
@@ -12,16 +12,17 @@ URL="https://gitlab.gnome.org/GNOME/glib"
 LICENSES=("LGPL-2.1")
 DEPENDS=("libffi" "util-linux" "libxslt" "pcre" "dbus" "zlib")
 OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
 PROVIDES=("glib2")
 CONFLICTS=()
 REPLACES=()
 
 # Source information
 SRC=("https://download.gnome.org/sources/glib/${_MAJOR_VERSION}/glib-${VERSION}.tar.xz"
-"glib-2.72.3-skip_warnings-1.patch")
+"glib-${VERSION}-skip_warnings-1.patch")
 
 SUM_TYPE="sha512"
-SUM=("8834ab7498577c2f659d135b87c27b34e1157be27f6c1fe5af0d64a94654f78cbe6a87e6868966849674c34e88a9d51d2de8d89f78f86aa1e1af3482761f0638"
+SUM=("2716e0fe984cc5d0714e91fe0de47ee71a8bd0b4c85caee337ddb7e02ac2fb3c8c007ccc1207b29cf901c30a7ec8e3bcca75d69c6fab2a32a8cf14bff974e614"
 "0f41e9b57606e430977c765af9ea78b1f7f79f69b108731c45a800e3b5f6046e4e162ebfdd297cc330a3647e21fa7c7ac7f57d0488c1d91b5cc46f3efd6cb5a7")
 
 # Prepare script
