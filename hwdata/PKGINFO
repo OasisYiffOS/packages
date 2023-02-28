@@ -1,0 +1,16 @@
+{
+    "name": "hwdata",
+    "version": "0.367",
+    "epoch": 0,
+    "description": "Various hardware identification and configuration data.",
+    "groups": [],
+    "url": "https://github.com/vcrhonek/hwdata",
+    "license": ["GPL-2.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["hwdata"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

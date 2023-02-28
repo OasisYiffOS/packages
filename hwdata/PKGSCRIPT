@@ -1,0 +1,47 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="hwdata"
+VERSION="0.367"
+EPOCH=0
+DESC="Various hardware identification and configuration data."
+GRPS=()
+URL="https://github.com/vcrhonek/hwdata"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+PROVIDES=("hwdata")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/vcrhonek/hwdata/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ed04282c4046193debb02b325b57cd0ef78d5ceb485d104f10d8aa1fe3ba42aeee8071ac806db95c03b40e6fc1d7c8c5f036adca7744a9d9376b0a146f6ec5a8")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --disable-blacklist
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
