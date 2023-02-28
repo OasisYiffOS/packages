@@ -1,6 +1,6 @@
 {
     "name": "openssl",
-    "version": "3.0.7",
+    "version": "3.0.8",
     "epoch": 0,
     "description": "Cryptography and SSL/TLS Toolkit",
     "groups": [],
@@ -8,7 +8,7 @@
     "license": ["Apache-2.0"],
     "depends": ["glibc", "make-ca"],
     "optional_depends": [],
-    "make_depends": [],
+    "make_depends": ["perl"],
     "provides": ["openssl"],
     "conflicts": [],
     "replaces": [],

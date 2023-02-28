@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="openssl"
-VERSION="3.0.7"
+VERSION="3.0.8"
 EPOCH=0
 DESC="Cryptography and SSL/TLS Toolkit"
 GRPS=()
@@ -11,6 +11,7 @@ URL="https://www.openssl.org/"
 LICENSES=("Apache-2.0")
 DEPENDS=("glibc" "make-ca")
 OPT_DEPENDS=()
+MK_DEPENDS=("perl")
 PROVIDES=("openssl")
 CONFLICTS=()
 REPLACES=()
@@ -19,7 +20,7 @@ REPLACES=()
 SRC=("https://www.openssl.org/source/openssl-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("6c2bcd1cd4b499e074e006150dda906980df505679d8e9d988ae93aa61ee6f8c23c0fa369e2edc1e1a743d7bec133044af11d5ed57633b631ae479feb59e3424")
+SUM=("8ce10be000d7d4092c8efc5b96b1d2f7da04c1c3a624d3a7923899c6b1de06f369016be957e36e8ab6d4c9102eaeec5d1973295d547f7893a7f11f132ae42b0d")
 
 # Prepare script
 function prepare() {
@@ -32,9 +33,6 @@ function prepare() {
              shared                \
              zlib-dynamic
 
-    # Remove empty DESTDIR declare
-    sed -i '0,/DESTDIR=/s///' Makefile
-
     return 0
 }
 
@@ -44,8 +42,7 @@ function build() {
 
     make
 
-    # One test is known to fail
-    make test || true
+    make test
 
     return 0
 }
@@ -56,7 +53,7 @@ function postbuild() {
 
     sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
 
-    DESTDIR="${BUILD_DATA_ROOT}" MANSUFFIX=ssl make install
+    make DESTDIR="${BUILD_DATA_ROOT}" MANSUFFIX=ssl install
 
     mv -v ${BUILD_DATA_ROOT}/usr/share/doc/openssl ${BUILD_DATA_ROOT}/usr/share/doc/openssl-${VERSION}
     cp -vfr doc/* ${BUILD_DATA_ROOT}/usr/share/doc/openssl-${VERSION}
