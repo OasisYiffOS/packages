@@ -1,0 +1,16 @@
+{
+    "name": "zsh",
+    "version": "5.9",
+    "epoch": 0,
+    "description": "A shell designed for interactive use.",
+    "groups": [],
+    "url": "https://zsh.sourceforge.io/",
+    "license": ["BSD-1-Clause"],
+    "depends": ["glibc", "pcre", "gdbm"],
+    "optional_depends": [],
+    "make_depends": ["valgrind"],
+    "provides": ["zsh"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

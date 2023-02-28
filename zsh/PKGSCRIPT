@@ -1,0 +1,71 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="zsh"
+VERSION="5.9"
+EPOCH=0
+DESC="A shell designed for interactive use."
+GRPS=()
+URL="https://zsh.sourceforge.io/"
+LICENSES=("BSD-1-Clause")
+DEPENDS=("glibc" "pcre" "gdbm")
+OPT_DEPENDS=()
+MK_DEPENDS=("valgrind" "texinfo")
+PROVIDES=("zsh")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.zsh.org/pub/zsh-${VERSION}.tar.xz"
+"https://www.zsh.org/pub/zsh-${VERSION}-doc.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("d9138b7f379ad942a5f46819d2dd52d31f3a1129f2a0d1b53d4c5cd43c318b60396da6d37c57c477b8e958fb750209aca0ae93f8c9dd42ac958de006a0ff067e"
+"5cc6abcdcfb4f5ad7bc4a31364ca49dfd87ae03e0082d89cc2ba1f00570f6757266ee60894ad31b562408de91494c22f177b414b03cb78c31d92328686be9860")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    tar --strip-components=1 -xvf ${WORKDIR}/zsh-${VERSION}-doc.tar.xz
+
+    ./configure --prefix=/usr            \
+		--sysconfdir=/etc/zsh    \
+		--enable-etcdir=/etc/zsh \
+	        --enable-cap             \
+		--enable-gdbm
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    make check
+
+    makeinfo  Doc/zsh.texi --plaintext 			  -o Doc/zsh.txt
+    makeinfo  Doc/zsh.texi --html      			  -o Doc/html
+    makeinfo  Doc/zsh.texi --html --no-split --no-headers -o Doc/zsh.html
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+    make infodir=${BUILD_DATA_ROOT}/usr/share/info install.info
+    make htmldir=${BUILD_DATA_ROOT}/usr/share/doc/zsh-${VERSION}/html install.html
+
+    install -v -m755 -d                 ${BUILD_DATA_ROOT}/usr/share/doc/zsh-${VERSION}/html
+    install -v -m644 Doc/html/*         ${BUILD_DATA_ROOT}/usr/share/doc/zsh-${VERSION}/html
+    install -v -m644 Doc/zsh.{html,txt} ${BUILD_DATA_ROOT}/usr/share/doc/zsh-${VERSION}
+    install -v -m644 Doc/zsh.dvi	${BUILD_DATA_ROOT}/usr/share/doc/zsh-${VERSION}
+
+    return 0
+}
