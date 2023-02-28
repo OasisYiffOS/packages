@@ -3,13 +3,13 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="texinfo"
-VERSION="6.8"
+VERSION="7.0.2"
 EPOCH=0
 DESC="Utilities for reading, writing, and converting info pages"
 GRPS=()
 URL="https://www.gnu.org/software/texinfo/"
 LICENSES=("GPL-3.0-or-later")
-DEPENDS=()
+DEPENDS=("perl")
 OPT_DEPENDS=()
 PROVIDES=("texinfo")
 CONFLICTS=()
@@ -19,17 +19,13 @@ REPLACES=()
 SRC=("https://ftp.gnu.org/gnu/texinfo/texinfo-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("0ff9290b14e4d83e32b889cfa24e6d065f98b2a764daf6b92c6c895fddbb35258398da6257c113220d5a4d886f7b54b09c4b117ca5eacfee6797f9bffde0f909")
+SUM=("26dd5bb1392f2197ecde296ba157d4533f4b11fadf1238481da4cf2b3796c665ce96049df8d2f9a6d4fa22b7e9013d9978d195e525288663f0a54482bbc22b2b")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
     ./configure --prefix=/usr
-
-    # Fix a bug with building for glibc 2.34+
-    sed -e 's/__attribute_nonnull__/__nonnull/' \
-        -i gnulib/lib/malloc/dynarray-skeleton.c
 
     return 0
 }
