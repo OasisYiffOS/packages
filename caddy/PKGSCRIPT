@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="caddy"
-VERSION="2.4.6"
+VERSION="2.6.4"
 EPOCH=0
 DESC="A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server."
 GRPS=()
@@ -19,11 +19,11 @@ REPLACES=()
 # Source information
 SRC=("https://github.com/caddyserver/caddy/archive/refs/tags/v${VERSION}.tar.gz"
 "https://github.com/caddyserver/dist/archive/refs/tags/v${VERSION}.tar.gz"
-"https://gitlab.com/yiffos/packaging/packages/-/raw/main/caddy/Caddyfile")
+"Caddyfile")
 
 SUM_TYPE="sha512"
-SUM=("adbf59825fc7b2ad561db936e77272d2f6867212e1dd0099df80a0aefd41d1c67ad112094a4aa3a14492aa3818b02d331ab51987c3d84fdf980954ad1fa6852b"
-"13073b5a7b754cb9f8bb28fb6bcd093a7eebf08a9bc2bd6502ed069f0974a912b26b7c8867d2f66d6569ffacc30b580c015dc4b6222a8b9aa73434502b324db2"
+SUM=("438869a24c0f68e8d742752d3573cf7894c566344f85d0e262ddf26d91c711dd27a0422396bfdd94823c8ee4c7fd24ce222938f3339f1c19e706e64207fc483f"
+"195dab5ccb6ff1cc2555ab46d99631d1133ddd645efd6ad5c5d81a47d1c242f9e183a8aa60984312d66a6c6324915d10ab0f653a960208fb7fba387160d7d2f9"
 "7f5bac1464acc158302d79808e784c42734ea0e657259ba9591a7d419c8e6c8cd4ebb39155d14cf731ea32c5bd1659ff241db4a38a8286170adadef10b15e244")
 
 # Prepare script
@@ -68,9 +68,6 @@ function postbuild() {
     install -d "${BUILD_DATA_ROOT}/etc/caddy/conf.d"
 
     install -Dm 644 index.html "${BUILD_DATA_ROOT}/srv/www/index.html"
-
-    install -Dm 644 ${WORKDIR}/dist-${VERSION}/scripts/completions/_caddy -t "${BUILD_DATA_ROOT}/usr/share/zsh/site-functions"
-    install -Dm 644 ${WORKDIR}/dist-${VERSION}/scripts/completions/bash-completion "${BUILD_DATA_ROOT}/usr/share/bash-completion/completions/caddy"
 
     return 0
 }

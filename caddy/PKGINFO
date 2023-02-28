@@ -1,6 +1,6 @@
 {
     "name": "caddy",
-    "version": "2.4.6",
+    "version": "2.6.4",
     "epoch": 0,
     "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server.",
     "groups": [],
