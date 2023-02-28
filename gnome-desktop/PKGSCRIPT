@@ -3,16 +3,16 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-desktop"
-VERSION="42.3"
-_MAJOR_VERSION="42"
+VERSION="43.1"
+_MAJOR_VERSION="43"
 EPOCH=0
 DESC="A library that provides an API shared by several applications on the GNOME Desktop."
 GRPS=()
 URL="https://gitlab.gnome.org/GNOME/gnome-desktop"
 LICENSES=("GPL-2.0" "LGPL-2.1")
-DEPENDS=("glibc" "libgcc" "bubblewrap" "cairo" "gdk-pixbuf2" "gsettings-desktop-schemas" "gtk3" "libseccomp" "xkeyboard-config" "shared-mime-info" "systemd")
+DEPENDS=("glibc" "libgcc" "bubblewrap" "cairo" "gdk-pixbuf2" "gsettings-desktop-schemas" "gtk3" "gtk4" "libseccomp" "xkeyboard-config" "shared-mime-info" "systemd" "libxinerama")
 OPT_DEPENDS=()
-MK_DEPENDS=("meson" "ninja" "gobject-introspection" "libxml2" "istool" "iso-codes")
+MK_DEPENDS=("meson" "ninja" "gobject-introspection" "libxml2" "itstool" "iso-codes" "vulkan-headers")
 PROVIDES=("gnome-desktop")
 CONFLICTS=()
 REPLACES=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-desktop/${_MAJOR_VERSION}/gnome-desktop-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("aa8e492fc09bc409619747ad53dbfd13b80251dc849db9a82fcf15c2373582af9a89f769302c8ae12330580f4a7d068f22f7fce4c42983e7848acbcd9be09d15")
+SUM=("6b6c9597629ec32453ba1823a3508616a951c0274400e4814cd5b39438ee2c752842cbd37a8dc4f19e9a667a7f171546895ebb15a2a79802171466e395e9b3a4")
 
 # Prepare script
 function prepare() {
@@ -30,7 +30,7 @@ function prepare() {
     mkdir build
     cd    build
 
-    meson --prefix=/usr --buildtype=release -Dgnome_distributor="yiffOS" ..
+    meson --prefix=/usr --buildtype=release ..
 
     return 0
 }
