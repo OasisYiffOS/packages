@@ -2,4 +2,4 @@ pipeline:
   assert-pkginfo:
     image: debian:unstable-slim
     commands:
-      - bash ./asset-pkginfo.sh
+      - bash ./assert-pkginfo.sh
