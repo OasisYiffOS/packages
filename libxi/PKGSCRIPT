@@ -4,12 +4,12 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 # Package information
 NAME="libxi"
 VERSION="1.8"
-EPOCH=0
+EPOCH=1
 DESC="Library for the X Input Extension."
 GRPS=("x11")
 URL="https://www.x.org/"
 LICENSES=("custom")
-DEPENDS=("glibc" "libx11" "libxext")
+DEPENDS=("glibc" "libx11" "libxext" "libxfixes")
 OPT_DEPENDS=()
 PROVIDES=("libxi")
 CONFLICTS=()
