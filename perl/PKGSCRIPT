@@ -3,9 +3,9 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="perl"
-VERSION="5.34.0"
+VERSION="5.36.0"
 _MAJOR_VERSION="5.0"
-_MAJOR_MINOR_VERSION="5.34"
+_MAJOR_MINOR_VERSION="5.36"
 EPOCH=0
 DESC="Practical Extraction and Report Language"
 GRPS=()
@@ -18,19 +18,14 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://www.cpan.org/src/${_MAJOR_VERSION}/perl-${VERSION}.tar.xz"
-"https://gitlab.com/yiffos/core/patches/-/raw/main/perl/perl-upstream_fixes.patch")
+SRC=("https://www.cpan.org/src/${_MAJOR_VERSION}/perl-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("691b4b31eacec357191fba777612b4e3eae59e946a22998a50766697c0d61db1d42a9b3bc1e41abf0d1ca1893e4a7c06d7bf3290480cf03d7f79befd7a8a3267"
-"c2bb6be88f0144f76aa7c70499819c86c3b081ce9a90203478f7f531fd4607aa04f734d17025484c53fd1af7ceb3fa2f1a5697be1f000fab4a87dd144fef063a")
+SUM=("6dd6ac2a77566c173c5ab9c238cf555f2c3e592e89abb5600bc23ce1cbd0c349e0233f6417cbbf1f6d0aefc6a734ba491285af0d3dc68a605b658b65c89f1dab")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
-
-    # Patch an issue with recent versions of GDBM
-    patch -Np1 -i ${WORKDIR}/perl-upstream_fixes.patch
 
     # Use system zlib and bzip2 libraries
     export BUILD_ZLIB=False
