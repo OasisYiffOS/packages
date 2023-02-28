@@ -3,13 +3,13 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnu-efi"
-VERSION="3.0.14"
+VERSION="3.0.15"
 EPOCH=0
 DESC="Develop EFI applications using the GNU toolchain"
 GRPS=()
 URL="https://sourceforge.net/projects/gnu-efi/"
 LICENSES=("BSD")
-DEPENDS=("gcc")
+DEPENDS=()
 OPT_DEPENDS=()
 PROVIDES=("gnu-efi")
 CONFLICTS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://downloads.sourceforge.net/project/gnu-efi/gnu-efi-${VERSION}.tar.bz2")
 
 SUM_TYPE="sha512"
-SUM=("37420ba3804e8547451a7b143a689ceb6af0557234fa7801efdeba3c2fc581a5354fe34cbaacb338d7b394d913e7274098ebf07026b7c1d50b2236d7f86c470c")
+SUM=("64d408b6d115bdc6eebae12fbd6cd907ed5f847f54e506c1e8f8ea5de38a95cf6fac66ab1009bd1d0bd2d54ad45ad598d29bcc303926a5899bf5cc25448cbb2f")
 
 # Prepare script
 function prepare() {
@@ -30,7 +30,7 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    make LIBDIR=/usr/lib
+    make PREFIX=/usr LIBDIR=/usr/lib
 
     return 0
 }
