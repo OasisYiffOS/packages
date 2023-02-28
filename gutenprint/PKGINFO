@@ -2,7 +2,7 @@
     "name": "gutenprint",
     "version": "5.3.4",
     "epoch": 0,
-    "description": "nl80211 based CLI configuration utility for wireless devices.",
+    "description": "Collection of high quality printer drivers.",
     "groups": [],
     "url": "http://gimp-print.sourceforge.net",
     "license": ["GPL-2.0"],

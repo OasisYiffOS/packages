@@ -2,7 +2,7 @@
     "name": "libglade2",
     "version": "2.6.4",
     "epoch": 0,
-    "description": "nl80211 based CLI configuration utility for wireless devices.",
+    "description": "Library for loading user interfaces from XML at runtime.",
     "groups": [],
     "url": "https://www.gnome.org",
     "license": ["LGPL-2.0"],
