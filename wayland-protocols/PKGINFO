@@ -1,6 +1,6 @@
 {
     "name": "wayland-protocols",
-    "version": "1.26",
+    "version": "1.31",
     "epoch": 0,
     "description": "Additional Wayland protocols that add functionality outside of protocols already in the Wayland core.",
     "groups": ["wayland"],
