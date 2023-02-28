@@ -3,7 +3,7 @@
     "version": "6.0.3",
     "epoch": 0,
     "description": "The Linux kernel",
-    "groups": ["base"],
+    "groups": [],
     "url": "https://www.kernel.org/",
     "license": ["GPL-2.0"],
     "depends": ["bison", "elfutils", "findutils", "flex", "gcc", "make", "pahole", "bc"],
