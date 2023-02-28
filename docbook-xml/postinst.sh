@@ -177,6 +177,8 @@ xmlcatalog --noout --add "uri" \
   "file:///usr/share/xml/docbook/schema/sch/5.0/docbook.sch" \
   /etc/xml/docbook-5.0
 
+  if [ ! -d /usr/share/xml/docbook/schema/dtd/5.0/ ]; then install -v -m755 -d /usr/share/xml/docbook/schema/dtd/5.0/; fi &&
+
 xmlcatalog --noout --create /usr/share/xml/docbook/schema/dtd/5.0/catalog.xml &&
 
 xmlcatalog --noout --add "public" \
@@ -276,7 +278,9 @@ xmlcatalog --noout --add "delegateURI" \
 
 if [ ! -e /etc/xml/docbook-5.1 ]; then
   xmlcatalog --noout --create /etc/xml/docbook-5.1
-fi &&
+fi
+
+  if [ ! -d /usr/share/xml/docbook/schema/rng/5.1/ ]; then install -v -m755 -d /usr/share/xml/docbook/schema/rng/5.1/; fi
 
 xmlcatalog --noout --add "uri" \
   "http://www.oasis-open.org/docbook/xml/5.1/rng/docbook.rng" \
@@ -310,6 +314,8 @@ xmlcatalog --noout --add "uri" \
   "http://docbook.org/xml/5.1/rng/docbookxi.rnc" \
   "file:///usr/share/xml/docbook/schema/rng/5.1/docbookxi.rnc" \
   /etc/xml/docbook-5.1 &&
+
+  if [ ! -d /usr/share/xml/docbook/schema/sch/5.1/ ]; then install -v -m755 -d /usr/share/xml/docbook/schema/sch/5.1/; fi &&
 
 xmlcatalog --noout --add "uri" \
   "http://www.oasis-open.org/docbook/xml/5.1/sch/docbook.sch" \
