@@ -3,17 +3,17 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="evolution-data-server"
-VERSION="3.44.3"
-_MAJOR_VERSION="3.44"
+VERSION="3.46.0"
+_MAJOR_VERSION="3.46"
 EPOCH=0
 DESC="Unified backend for programs that work with contacts, tasks, and calendar information."
 GRPS=()
 URL="https://wiki.gnome.org/Apps/Evolution"
 LICENSES=("LGPL-2.1")
-DEPENDS=("glibc" "glib2" "libgcc" "cairo" "gcr" "gnome-online-accounts" "gtk3" "json-glib" "krb5" "libcanberra" "libgdata" 
-"libgweather" "libical" "icu" "libsecret" "libsoup" "libxml2" "nspr" "nss" "openldap" "pango" "sqlite" "webkitgtk" "zlib")
+DEPENDS=("glibc" "glib2" "libgcc" "cairo" "gcr" "gnome-online-accounts" "gtk3" "gtk4" "json-glib" "krb5" "libcanberra" "libgdata" 
+"libgweather" "libical" "icu" "libsecret" "libsoup3" "libxml2" "nspr" "nss" "openldap" "pango" "sqlite" "webkitgtk" "zlib" "libtool")
 OPT_DEPENDS=()
-MK_DEPENDS=("cmake" "gobject-introspection" "vala")
+MK_DEPENDS=("cmake" "gobject-introspection" "vala" "gperf")
 PROVIDES=("evolution-data-server")
 CONFLICTS=()
 REPLACES=()
@@ -22,7 +22,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/evolution-data-server/${_MAJOR_VERSION}/evolution-data-server-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("b03b1c52a93a3f4fa5eece998eea075086e232953e8485f0b551bd7bfebbbf935288052d55cfaf3ff57b121b14f64db2ac8ce41d54d27aab39e683c4d3b54cac")
+SUM=("3aef4ef51e5be2c5e392a2b2781283bb75d8e7d08a3a0daae6be488d14e998779b992095d12889d2d6afe5c732394090f99fa9a866e8825eecdcde2bf6b24ec1")
 
 # Prepare script
 function prepare() {
@@ -31,17 +31,16 @@ function prepare() {
     mkdir build
     cd    build
 
-    cmake -DCMAKE_INSTALL_PREFIX=/usr   \
-          -DSYSCONF_INSTALL_DIR=/etc    \
-          -DENABLE_VALA_BINDINGS=ON     \
-          -DENABLE_INSTALLED_TESTS=ON   \
-          -DENABLE_GOOGLE=ON            \
-          -DWITH_OPENLDAP=ON            \
-          -DWITH_KRB5=ON                \
-          -DENABLE_INTROSPECTION=ON     \
-          -DENABLE_GTK_DOC=OFF          \
-          -DWITH_LIBDB=OFF              \
-          -DWITH_GWEATHER4=ON           \
+    cmake -DCMAKE_INSTALL_PREFIX=/usr    \
+          -DSYSCONF_INSTALL_DIR=/etc     \
+          -DENABLE_VALA_BINDINGS=ON      \
+          -DENABLE_INSTALLED_TESTS=ON    \
+          -DWITH_OPENLDAP=ON             \
+          -DWITH_KRB5=ON                 \
+          -DENABLE_INTROSPECTION=ON      \
+          -DENABLE_GTK_DOC=OFF           \
+          -DWITH_LIBDB=OFF               \
+          -DENABLE_OAUTH2_WEBKITGTK4=OFF \
           ..
 
     return 0
@@ -53,6 +52,7 @@ function build() {
 
     make
 
+    # todo: meta-related tests seem to fail, someone should look into this
     make test
 
     return 0
