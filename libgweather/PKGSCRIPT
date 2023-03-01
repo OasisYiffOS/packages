@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libgweather"
-VERSION="4.0.0"
-_MAJOR_VERSION="4.0"
+VERSION="4.2.0"
+_MAJOR_VERSION="4.2"
 EPOCH=0
 DESC="Library used to access weather information from online services for numerous locations."
 GRPS=()
 URL="https://wiki.gnome.org/Projects/LibGWeather"
 LICENSES=("GPL-2.0")
-DEPENDS=("glibc" "libgcc" "glib2" "geocode-glib" "libsoup" "libxml2")
+DEPENDS=("glibc" "libgcc" "glib2" "geocode-glib2" "libsoup3" "libxml2" "python-pygobject")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "gobject-introspection" "vala")
 PROVIDES=("libgweather")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/libgweather/${_MAJOR_VERSION}/libgweather-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("1441b8996a53b277e9453d3fcf32448800c963f40c32542f9055362bc3188dcf2e706466133d53b3f1b6343dc97b15cf5eabe16b950e7c9451cb79eeef87a9c3")
+SUM=("cd95c6714575c0afc52455bb99c9116af27716868648debe0e5309904cfaf7516cf2379e415b3d9dd57b5dd223bae8e8acbaf705a3867dad8f75aec22eea908e")
 
 # Prepare script
 function prepare() {
@@ -41,6 +41,7 @@ function build() {
 
     ninja
 
+    # tests 1 and 5 may fail due to schemas not being installed
     LANG=C ninja test
 
     return 0
