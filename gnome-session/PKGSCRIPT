@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-session"
-VERSION="42.0"
-_MAJOR_VERSION="42"
+VERSION="43.0"
+_MAJOR_VERSION="43"
 EPOCH=0
 DESC="The GNOME session manager."
 GRPS=()
 URL="https://gitlab.gnome.org/GNOME/gnome-session"
 LICENSES=("GPL-2.0")
-DEPENDS=("glibc" "libgcc" "glib2" "dbus" "dconf" "gnome-control-center" "gnome-desktop" "gsettings-desktop-schemas" "gtk3" "json-glib" "libice" "libsm" "libx11" "libxcomposite" "libepoxy" "mesa" "systemd" "upower")
+DEPENDS=("glibc" "libgcc" "glib2" "dbus" "dconf" "gnome-control-center" "gnome-desktop" "gsettings-desktop-schemas" "gtk3" "json-glib" "libice" "libsm" "libx11" "libxcomposite" "libepoxy" "mesa" "systemd" "upower" "libsm")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "xmlto" "libxslt" "docbook-xml" "docbook-xsl")
 PROVIDES=("gnome-session")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-session/${_MAJOR_VERSION}/gnome-session-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("3d340700958b5800039e3009618709add2cdbaecb58344d9d2f93e4e761a737ef003091c380c68f95386dbb078b3d12f70732f0022611ab4a10e1c1eb988b4fa")
+SUM=("9948dff9a342589b91d18e5f39f9857276e9dbfa36da452bd818d44b31e73cc4fe0e18353b537963b78ea63b39aa644d4d0864dd2f6a19f62409a644e5626aec")
 
 # Prepare script
 function prepare() {
