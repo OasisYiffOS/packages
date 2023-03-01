@@ -3,15 +3,15 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="webkitgtk"
-VERSION="2.36.1"
+VERSION="2.38.5"
 EPOCH=0
 DESC="A port of the portable web rendering engine WebKit to the GTK platform."
 GRPS=()
 URL="https://www.webkitgtk.org"
 LICENSES=("LGPL-2.1")
-DEPENDS=("glibc" "libgcc" "atk" "bubblewrap" "cairo" "enchant" "fontconfig" "freetype2" "glib2" "gdk-pixbuf2" "gstreamer" "gst-plugins-base" "gst-plugins-bad" "gtk3" "gtk4" "harfbuzz" "little-cms2" "libx11" "libxcomposite" "libxdamage" "libxt" "libgcrypt" "icu" "libgudev" "libjpeg-turbo" "libsecret" "libsoup" "libtasn1" "libwebp" "mesa" "sqlite" "wpebackend-fdo" "wayland" "wayland-protocols" "pango" "woff2" "zlib" "libnotify" "hicolor-icon-theme" "xdg-dbus-proxy" "openjpeg")
+DEPENDS=("glibc" "libgcc" "atk" "bubblewrap" "cairo" "enchant" "fontconfig" "freetype2" "glib2" "gdk-pixbuf2" "gstreamer" "gst-plugins-base" "gst-plugins-bad" "gtk3" "harfbuzz" "little-cms2" "libx11" "libxcomposite" "libxdamage" "libxt" "libgcrypt" "icu" "libgudev" "libjpeg-turbo" "libsecret" "libsoup3" "libtasn1" "libwebp" "mesa" "sqlite" "wpebackend-fdo" "wayland" "wayland-protocols" "pango" "woff2" "zlib" "libnotify" "hicolor-icon-theme" "xdg-dbus-proxy" "openjpeg" "vulkan-loader")
 OPT_DEPENDS=()
-MK_DEPENDS=("cmake" "ninja" "gobject-introspection" "ruby" "which" "gperf")
+MK_DEPENDS=("cmake" "ninja" "gobject-introspection" "ruby" "which" "gperf" "vulkan-headers")
 PROVIDES=("webkitgtk")
 CONFLICTS=()
 REPLACES=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://webkitgtk.org/releases/webkitgtk-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("c0574bd8924df89c1a82905a8c0c09b4be49f75639db659b38fc3123922128a22fa6f4cf099f08ef7742ecefbbde765177a77e00fd641db3a5eb509586e96ae4")
+SUM=("9038892910e95d3b7819396c9071b59ee51eadd6cad62130fdd4e02d3f5187b7a2986c5939a378190e14059149f2db0a0b57feb23ac44f5ea764c160e6181eef")
 
 # Prepare script
 function prepare() {
@@ -29,6 +29,7 @@ function prepare() {
     mkdir build
     cd    build
 
+    # todo: once we have libjxl and libavif, enable USE_JPEGXL and USE_AVIF
     cmake -DCMAKE_BUILD_TYPE=Release     \
           -DCMAKE_INSTALL_PREFIX=/usr    \
           -DCMAKE_SKIP_RPATH=ON          \
@@ -38,9 +39,11 @@ function prepare() {
           -DENABLE_GAMEPAD=OFF           \
           -DENABLE_MINIBROWSER=ON        \
           -DUSE_WOFF2=ON                 \
-          -DUSE_SOUP2=ON                 \
+          -DUSE_SOUP2=OFF                \
           -DUSE_WPE_RENDERER=ON          \
           -DENABLE_BUBBLEWRAP_SANDBOX=ON \
+          -DENABLE_DOCUMENTATION=OFF     \
+          -DUSE_GTK4=OFF                 \
           -Wno-dev -G Ninja ..
 
     return 0
@@ -61,11 +64,7 @@ function postbuild() {
 
     DESTDIR="${BUILD_DATA_ROOT}" ninja install
 
-    install -vdm755 ${BUILD_DATA_ROOT}/usr/share/gtk-doc/html/webkit{2,dom}gtk-4.0 &&
-    install -vm644  ../Documentation/webkit2gtk-4.0/html/*   \
-                    ${BUILD_DATA_ROOT}/usr/share/gtk-doc/html/webkit2gtk-4.0       &&
-    install -vm644  ../Documentation/webkitdomgtk-4.0/html/* \
-                    ${BUILD_DATA_ROOT}/usr/share/gtk-doc/html/webkitdomgtk-4.0
+    install -vdm755 ${BUILD_DATA_ROOT}/usr/share/gtk-doc/html/webkit{2,dom}gtk-4.1
 
     return 0
 }
