@@ -3,16 +3,16 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gtk3"
-VERSION="3.24.34"
+VERSION="3.24.36"
 _MAJOR_VERSION="3.24"
 EPOCH=0
 DESC="Libraries used for creating graphical user interfaces for applications."
 GRPS=()
 URL="https://gtk.org"
 LICENSES=("LGPL-2.0")
-DEPENDS=("at-spi2-atk" "gdk-pixbuf2" "libepoxy" "pango" "adwaita-icon-theme" "hicolor-icon-theme" "iso-codes" "libxkbcommon" "wayland" "wayland-protocols" "cairo" "fontconfig" "fribidi" "glib2" "glibc" "harfbuzz" "libx11" "libxcomposite" "libxcursor" "libxdamage" "libxext" "libxfixes" "libxi" "libxrandr")
+DEPENDS=("at-spi2-atk" "gdk-pixbuf2" "libepoxy" "pango" "adwaita-icon-theme" "hicolor-icon-theme" "iso-codes" "libxkbcommon" "wayland" "wayland-protocols" "cairo" "fontconfig" "fribidi" "glib2" "glibc" "harfbuzz" "libx11" "libxcomposite" "libxcursor" "libxdamage" "libxext" "libxfixes" "libxi" "libxrandr" "libxinerama")
 OPT_DEPENDS=()
-MK_DEPENDS=("sassc" "gobject-introspection")
+MK_DEPENDS=("sassc" "gobject-introspection" "meson" "ninja")
 PROVIDES=("gtk3")
 CONFLICTS=()
 REPLACES=()
@@ -21,35 +21,40 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gtk+/${_MAJOR_VERSION}/gtk+-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("95af4441b53be175acf16121a90b1db7a152cbfb3e5ed2dffc59f622b2eb5a4d74720ae8e05dc1421b6b23588f28e09e0f153f0b92777c836f522881720fb0a2")
+SUM=("76280e847653576e6fd0586d6044ab315f04c3548c211b37612c4ac77f7bbccfcff17459b9d1d3cbddeb74a62a0bcac05f850b89a20d4abc3893c6c387ecb03a")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/gtk+-${VERSION}"
 
-    ./configure --prefix=/usr              \
-                --sysconfdir=/etc          \
-                --enable-broadway-backend  \
-                --enable-x11-backend       \
-                --enable-wayland-backend
+    update-mime-database /usr/share/mime/
+
+    mkdir build
+    cd build
+    
+    meson --prefix=/usr       \
+          --libdir=lib        \
+          --buildtype=release \
+          -Dman=false         \
+          ..
 
     return 0
 }
 
 # Build script
 function build() {
-    cd "${WORKDIR}/gtk+-${VERSION}"
+    cd "${WORKDIR}/gtk+-${VERSION}/build"
 
-    make
+    ninja
 
     return 0
 }
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/gtk+-${VERSION}"
+    cd "${WORKDIR}/gtk+-${VERSION}/build"
 
-    DESTDIR="${BUILD_DATA_ROOT}" make install
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
 
     return 0
 }
