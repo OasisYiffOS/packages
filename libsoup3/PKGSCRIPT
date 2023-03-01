@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libsoup3"
-VERSION="3.0.6"
-_MAJOR_VERSION="3.0"
+VERSION="3.2.0"
+_MAJOR_VERSION="3.2"
 EPOCH=1
 DESC="An HTTP client/server library for GNOME."
 GRPS=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/libsoup/${_MAJOR_VERSION}/libsoup-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("4de84b3c251b6fe75903b1cd2647ac22055f799382a186efe6f45d3f75bf6c82040f0aaceb40d0019769cf1c0295511eb0afbbc7236e93b168ed70c2ae975a89")
+SUM=("e4dc4cda297ec2c2e8ced82d141e00c186b552c9308eb0d05d55a1397de1b037d8fe053ea0ada12691ce7c0ff42c03f5f8177049005a1455cc3b0e1df77c99ea")
 
 # Prepare script
 function prepare() {
