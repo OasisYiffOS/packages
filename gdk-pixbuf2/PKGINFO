@@ -1,6 +1,6 @@
 {
     "name": "gdk-pixbuf2",
-    "version": "2.42.8",
+    "version": "2.42.10",
     "epoch": 0,
     "description": "A toolkit for image loading and pixel buffer manipulation.",
     "groups": [],

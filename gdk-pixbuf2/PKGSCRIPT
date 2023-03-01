@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gdk-pixbuf2"
-VERSION="2.42.8"
+VERSION="2.42.10"
 _MAJOR_VERSION="2.42"
 EPOCH=0
 DESC="A toolkit for image loading and pixel buffer manipulation."
@@ -21,16 +21,23 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gdk-pixbuf/${_MAJOR_VERSION}/gdk-pixbuf-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("994a1374becec6235d347f4980afcc8b85f43ac373e4d7e00b7445880d0a51932e63b54429b28ab5af09e7c4437f9d6008e1c25b2d44a2c9ef7cc9821b478387")
+SUM=("ad64963b61ef8cc84ae450328ec8c90a852f974e29ffdd42263ed32de47af93c058f3ffdf91c5d6e9bba815f4e8e8fe5a19422ac1bfb079666339814ac059b3a")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/gdk-pixbuf-${VERSION}"
 
+    update-mime-database /usr/share/mime
+
     mkdir build
     cd    build
 
-    meson --prefix=/usr --buildtype=release -Dbuiltin_loaders=all -Dman=false -Dinstalled_tests=false ..
+    meson --prefix=/usr           \
+          --buildtype=release     \
+          -Dbuiltin_loaders=all   \
+          -Dman=false             \
+          -Dinstalled_tests=false \
+          ..
 
     return 0
 }
