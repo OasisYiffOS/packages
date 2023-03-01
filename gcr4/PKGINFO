@@ -1,0 +1,16 @@
+{
+    "name": "gcr4",
+    "version": "4.0.0",
+    "epoch": 1,
+    "description": "Libraries used for displaying certificates and accessing key stores. (GTK4 Version)",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/gcr",
+    "license": ["LGPL-2.0"],
+    "depends": ["glibc", "glib2", "libgcrypt", "p11-kit", "gnupg", "libsecret", "libxslt"],
+    "optional_depends": ["gtk4"],
+    "make_depends": ["gobject-introspection", "vala", "libxslt", "meson", "ninja", "gtk4"],
+    "provides": ["gcr4"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

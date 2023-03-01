@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="gcr4"
+_REAL_NAME="gcr"
+VERSION="4.0.0"
+_MAJOR_VERSION="4.0"
+EPOCH=1
+DESC="Libraries used for displaying certificates and accessing key stores. (GTK4 Version)"
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gcr"
+LICENSES=("LGPL-2.0")
+DEPENDS=("glibc" "glib2" "libgcrypt" "p11-kit" "gnupg" "libsecret" "libxslt")
+OPT_DEPENDS=("gtk4")
+MK_DEPENDS=("gobject-introspection" "vala" "libxslt" "meson" "ninja" "gtk4")
+PROVIDES=("gcr4")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gcr/${_MAJOR_VERSION}/gcr-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("5d036710c9ae58016467e63b60ab18e461ec1db1740880dccf555dd8c555b382b1ceac3e3ee6fda22dce395e93ba8ecf0578d6c815d08c2790e618f7ca5bfd50")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=release -Dgtk_doc=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
