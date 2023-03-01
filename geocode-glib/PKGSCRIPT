@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="geocode-glib"
-VERSION="3.26.2"
+VERSION="3.26.4"
 _MAJOR_VERSION="3.26"
 EPOCH=0
 DESC="Convenience library for the Yahoo! Place Finder APIs."
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/geocode-glib/${_MAJOR_VERSION}/geocode-glib-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("b3ef81fac6959f6c4725ca721125cdafbbec69233f321872e17f9035266ed7616018ef54a9082fbd0a83395d18c664144cfe3b431d63744be433f058071cd435")
+SUM=("998c2f02a8d3d34a8b6a4b031da2e7c28df27014bcf58f3374fbc0c829fff6257c2622fd9bf331e05b85fbc761c64554fb77ce2d986e0f8b59b17aa486f9f609")
 
 # Prepare script
 function prepare() {

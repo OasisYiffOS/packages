@@ -1,6 +1,6 @@
 {
     "name": "geocode-glib",
-    "version": "3.26.2",
+    "version": "3.26.4",
     "epoch": 0,
     "description": "Convenience library for the Yahoo! Place Finder APIs.",
     "groups": [],
