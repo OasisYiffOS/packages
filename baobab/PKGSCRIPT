@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="baobab"
+VERSION="43.0"
+_MAJOR_VERSION="43"
+EPOCH=0
+DESC="Disk usage analyzer for GNOME."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/DiskUsageAnalyzer"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glib2" "gtk4" "libadwaita")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vala" "itstool")
+PROVIDES=("baobab")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/baobab/${_MAJOR_VERSION}/baobab-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("d368bde1ba1fafbe908c5e8e0e5cd9d593d3f3cc551a7b1f3be68624bd7ee8b1dac6374fc9031c7d4c53240dda739974b5c71653227251bb5b8fbcd332900b91")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr       \
+          --libdir=lib        \
+          --buildtype=release \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

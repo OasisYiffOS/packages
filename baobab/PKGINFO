@@ -1,0 +1,16 @@
+{
+    "name": "baobab",
+    "version": "43.0",
+    "epoch": 0,
+    "description": "Disk usage analyzer for GNOME.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/DiskUsageAnalyzer",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glib2", "gtk4", "libadwaita"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "vala", "itstool"],
+    "provides": ["baobab"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
