@@ -3,16 +3,16 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-bluetooth"
-VERSION="42.0"
+VERSION="42.5"
 _MAJOR_VERSION="42"
 EPOCH=0
 DESC="Tools for managing and manipulating Bluetooth devices using the GNOME Desktop."
 GRPS=()
 URL="https://wiki.gnome.org/Projects/GnomeBluetooth"
 LICENSES=("GPL-2.0")
-DEPENDS=("glibc" "libgcc" "glib2" "gtk4" "libadwaita" "bluez" "pipewire" "pulseaudio" "systemd" "gsound" "libnotify")
+DEPENDS=("glibc" "libgcc" "glib2" "gtk4" "libadwaita" "bluez" "pipewire" "pulseaudio" "systemd" "gsound" "libnotify" "upower" "libcanberra")
 OPT_DEPENDS=()
-MK_DEPENDS=("meson" "ninja" "istool" "gobject-introspection")
+MK_DEPENDS=("meson" "ninja" "itstool" "gobject-introspection")
 PROVIDES=("gnome-bluetooth")
 CONFLICTS=()
 REPLACES=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-bluetooth/${_MAJOR_VERSION}/gnome-bluetooth-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("769bd9300fa1d830240e84257230425fe7f2e871cbd6c8fa6416514487a26326601a21c16075a66cf886850bab17f5c8e2235463f3695ea194c9230d6e50337c")
+SUM=("0606b1a6053bc03568a492b4f000154e9a12ef9e9f7222837ae26635c446a0dc14f92ed2ca7bb2a262c4d87f369c05f6e0e75593abc45f513785197319848967")
 
 # Prepare script
 function prepare() {
