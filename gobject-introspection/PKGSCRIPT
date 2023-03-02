@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gobject-introspection"
-VERSION="1.72.0"
-_MAJOR_VERSION="1.72"
+VERSION="1.74.0"
+_MAJOR_VERSION="1.74"
 EPOCH=0
 DESC="A middleware layer between C libraries (using GObject) and language bindings. "
 GRPS=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gobject-introspection/${_MAJOR_VERSION}/gobject-introspection-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("b8fba2bd12e93776c55228acf3487bef36ee40b1abdc7f681b827780ac94a8bfa1f59b0c30d60fa5a1fea2f610de78b9e52029f411128067808f17eb6374cdc5")
+SUM=("decff5dda0ec5ec0afda4d6bcd3bdadcbf34289002c0d9c0c77ecf8c5d3f15d196b24d8035041545031006acbdfe76af47c42da061c40e200c87f2c74cd301f0")
 
 # Prepare script
 function prepare() {
