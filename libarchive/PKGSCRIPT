@@ -3,13 +3,13 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libarchive"
-VERSION="3.6.0"
+VERSION="3.6.2"
 EPOCH=0
 DESC="A multi-format archive and compression library"
 GRPS=()
-URL="http://www.libarchive.org/"
-LICENSES=("BSD")
-DEPENDS=()
+URL="https://libarchive.org/"
+LICENSES=("BSD-2-Clause" "BSD-3-Clause" "Apache-2.0")
+DEPENDS=("glibc" "acl" "bzip2" "libxml2" "openssl" "xz" "zstd")
 OPT_DEPENDS=()
 PROVIDES=("libarchive")
 CONFLICTS=("")
@@ -19,18 +19,20 @@ REPLACES=("")
 SRC=("https://github.com/libarchive/libarchive/releases/download/v${VERSION}/libarchive-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("eeffec08a632cdf55d46b0f4b8261de20128163c39f63422aa5af081c9c5159a9445bca5f89ebaff984d9d5387b5c6901166949df09a2e46fe5adec31bfad0e5")
+SUM=("a12bb6839e13a0be1099f42c650fc90fbfe62d32ce38bcbb4794206d29b2c782ae1115124d0e5f6b9716514213af32b05e4a42eb196447674a5f9a2a32bee043")
 
 # Prepare script
 function prepare() {
+    cd "${WORKDIR}/libarchive-${VERSION}"
+
+    ./configure --prefix=/usr --disable-static
+
     return 0
 }
 
 # Build script
 function build() {
     cd "${WORKDIR}/libarchive-${VERSION}"
-
-    ./configure --prefix=/usr --disable-static
 
     make
 
