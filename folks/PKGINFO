@@ -1,7 +1,7 @@
 {
     "name": "folks",
     "version": "0.15.5",
-    "epoch": 0,
+    "epoch": 1,
     "description": "Library that aggregates people from multiple sources (e.g. Telepathy connection managers and eventually evolution data server, Facebook, etc.) to create meta-contacts.",
     "groups": [],
     "url": "https://wiki.gnome.org/Apps/Folks",

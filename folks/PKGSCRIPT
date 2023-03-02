@@ -5,7 +5,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 NAME="folks"
 VERSION="0.15.5"
 _MAJOR_VERSION="0.15"
-EPOCH=0
+EPOCH=1
 DESC="Library that aggregates people from multiple sources (e.g. Telepathy connection managers and eventually evolution data server, Facebook, etc.) to create meta-contacts."
 GRPS=()
 URL="https://wiki.gnome.org/Apps/Folks"
@@ -41,7 +41,9 @@ function build() {
 
     ninja
 
-    ninja test
+    if [ ! -z "$DISPLAY" ] && [ ! -z "$WAYLAND_DISPLAY" ]; then
+        ninja test
+    fi
 
     return 0
 }
