@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gtksourceview5"
-VERSION="5.5.0"
-_MAJOR_VERSION="5.5"
+VERSION="5.6.0"
+_MAJOR_VERSION="5.6"
 EPOCH=1
 DESC="A library used for extending the GTK text functions to include syntax highlighting."
 GRPS=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gtksourceview/${_MAJOR_VERSION}/gtksourceview-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("dcc1e02452417ec8e8d3794489e5029645676b7c0b17a4118eedc7ada068d43c91ff739774c9aa6eb7eef3d568004fecc58465452075207aeac67e04bb621eeb")
+SUM=("f1dd7dc236b30ca540f033dd7ffdb2715375854d22ae69d7229dc525ea54f5319408624497d7c0c4b7b8e14a2c8a6b992721fe397171b62efab48b5a38509df9")
 
 # Prepare script
 function prepare() {
@@ -41,7 +41,9 @@ function build() {
 
     ninja
 
-    ninja test
+    if [ ! -z "$DISPLAY" ] && [ ! -z "$WAYLAND_DISPLAY" ]; then
+        ninja test
+    fi
 
     return 0
 }
