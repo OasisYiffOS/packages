@@ -3,16 +3,16 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="appstream-glib"
-VERSION="0.8.0"
-_TAG_VERSION="0_8_0"
+VERSION="0.8.2"
+_TAG_VERSION="0_8_2"
 EPOCH=0
 DESC="GObjects and helper methods to make it easy to read and write AppStream metadata."
 GRPS=()
 URL="https://people.freedesktop.org/~hughsient/appstream-glib/"
 LICENSES=("LGPL-2.1")
-DEPENDS=("gdk-pixbuf2" "glib2" "glibc" "json-glib" "libarchive" "curl" "libgcc" "libsoup" "util-linux" "libyaml" "gperf")
+DEPENDS=("gdk-pixbuf2" "glib2" "glibc" "json-glib" "libarchive" "curl" "libgcc" "libsoup3" "util-linux" "libyaml" "gperf" "gtk3")
 OPT_DEPENDS=()
-MK_DEPENDS=("meson" "ninja")
+MK_DEPENDS=("meson" "ninja" "gobject-introspection" "docbook-xsl" "docbook-xml")
 PROVIDES=("appstream-glib")
 CONFLICTS=()
 REPLACES=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://github.com/hughsie/appstream-glib/archive/refs/tags/appstream_glib_${_TAG_VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("80ebe3ea4c27c91135d9cba64249407a92fe51ec3150505e9285c5c9217beab32232e263c953696b33e0f92220f1bda4e6737f1dbc73dfa4e81f55e2da03429b")
+SUM=("f5c301d9183ccd4773979fd99de694e4b8a6e5d27b5192399e540ee37e9a1f34496055965df09f5445630622a7fc3f23a61f6ab91f8467c73164ba9eb65ef959")
 
 # Prepare script
 function prepare() {
