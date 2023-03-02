@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="pangomm"
-VERSION="2.46.2"
+VERSION="2.46.3"
 _MAJOR_VERSION="2.46"
 EPOCH=0
 DESC="A C++ interface to Pango."
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/pangomm/${_MAJOR_VERSION}/pangomm-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("79cad137ec9f22e57a177332df6c6e735aa3baf81df36fc706e81e7a89f23ce3179337507388f65a0d0a74733990dc3547c50243a4559dfd0bb065b1828c0474")
+SUM=("c0925f295b372bca7b5ede28476ed00e691911e041632969e5e4c30fcf338bac069ba031d4f48601877524b90af47f5238e444e2de7501f1ff25dcda9dd9a9c8")
 
 # Prepare script
 function prepare() {
