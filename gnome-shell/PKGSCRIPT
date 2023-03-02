@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-shell"
-VERSION="42.3"
-_MAJOR_VERSION="42"
+VERSION="43.0"
+_MAJOR_VERSION="43"
 EPOCH=0
 DESC="The core user interface of the GNOME Desktop environment."
 GRPS=()
@@ -14,8 +14,7 @@ DEPENDS=("glibc" "libgcc" "glib2" "networkmanager" "accountsservice" "at-spi2-at
 "gcr" "gdk-pixbuf2" "geoclue" "gjs" "gnome-autoar" "gnome-bluetooth" "gnome-control-center" "gnome-desktop" "gnome-settings-daemon"
 "gobject-introspection" "graphene" "gsettings-desktop-schemas" "gstreamer" "gst-plugins-good" "gtk3" "gtk4" "hicolor-icon-theme"
 "ibus" "json-glib" "libx11" "libxfixes" "libadwaita" "libgweather" "libical" "libnma" "librsvg2" "libsecret" "wayland" "wayland-protocols"
-"mutter" "pango" "pipewire" "polkit" "pulseaudio" "python" "systemd" "upower" "adwaita-icon-theme" "dconf" "gnome-menus" "telepathy-mission-control"
-"cantarell-fonts" "libtool")
+"mutter" "pango" "pipewire" "polkit" "pulseaudio" "python" "systemd" "upower" "adwaita-icon-theme" "dconf" "gnome-menus" "telepathy-mission-control" "cantarell-fonts" "libtool")
 OPT_DEPENDS=("gnome-backgrounds")
 MK_DEPENDS=("meson" "ninja")
 PROVIDES=("gnome-shell")
@@ -26,7 +25,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-shell/${_MAJOR_VERSION}/gnome-shell-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("9c8d967f7a46a3a93f9f07b2e8cdeae698fd0de9fdd61ce5fff10b89e44a68eb7ae3a4ef72d5605bf5fc78d4fbd24ccad220306749c1886919ee4668feada729")
+SUM=("6f3609c8bac923f052d51fce44a448dba997cac543331b56229f46b56e8770de9370deb7759d4bf0e7385794232715b9b34e41f90dd1da30e88d5cfbf3f095eb")
 
 # Prepare script
 function prepare() {
