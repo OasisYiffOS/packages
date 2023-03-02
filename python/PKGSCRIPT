@@ -3,14 +3,15 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="python"
-VERSION="3.10.2"
+VERSION="3.10.10"
 EPOCH=0
 DESC="High-level object-oriented programming language"
 GRPS=()
 URL="https://www.python.org/"
 LICENSES=("PSF-2.0")
-DEPENDS=("libffi" "expat")
-OPT_DEPENDS=("sqlite")
+DEPENDS=("libffi" "expat" "gdbm" "libnsl")
+OPT_DEPENDS=("sqlite" "bluez" "tk")
+MK_DEPENDS=("valgrind")
 PROVIDES=("python")
 CONFLICTS=()
 REPLACES=()
@@ -20,8 +21,8 @@ SRC=("https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tar.xz"
 "https://www.python.org/ftp/python/doc/${VERSION}/python-${VERSION}-docs-html.tar.bz2")
 
 SUM_TYPE="sha512"
-SUM=("215a7159face84788fe547c1e2689b8d0ae510275157cf01636bef2902d0ff465f844eb0328c9f39fd1cd03a1d1736d4cf258992f2788e492a801a372032c08b"
-"0b9aac91a7b5bfd98954bae88d248f9bd3c3de5465661b116758a41c274751fa2209596694c8db05ea87c055870a92c4e310ff8466f13e012f8c295c93446522")
+SUM=("f0aee65970a68287b34c4eafcf35c6fa09c81ba234ac356db16fbbc6c36417e4ac67071e616d118f5e192d541d7f177dcab5585b9780e842f656c09e01c37ced"
+"4678fc3a33e0bd53419894e98a3132f18635693dcf91846c6911a163ebd693b9af42d78ffc27fd5e522eca7376097555271b6bd85a21d1231d6b7523f4620534")
 
 # Prepare script
 function prepare() {
@@ -45,8 +46,7 @@ function build() {
 
     make
 
-    # socket testing causes a hang
-    #make test
+    make test
 
     return 0
 }
