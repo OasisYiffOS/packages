@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gjs"
-VERSION="1.72.0"
-_MAJOR_VERSION="1.72"
+VERSION="1.74.0"
+_MAJOR_VERSION="1.74"
 EPOCH=0
 DESC="A set of Javascript bindings for GNOME."
 GRPS=()
 URL="https://gitlab.gnome.org/GNOME/gjs"
 LICENSES=("MIT" "MPL-1.1" "GPL-2.0" "LGPL-2.1")
-DEPENDS=("glibc" "libgcc" "glib2" "cairo" "gobject-introspection" "libx11" "libffi" "js91" "readline" "gtk3" "gtk4")
+DEPENDS=("glibc" "libgcc" "glib2" "cairo" "gobject-introspection" "libx11" "libffi" "js102" "readline" "gtk3" "gtk4")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja")
 PROVIDES=("gjs")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gjs/${_MAJOR_VERSION}/gjs-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("224934eed511052d013cc7c2a29ccf79b14e5ed8c01db8071f07858387d7794b9156abd43ac494a13294248d9b6f2956d21c4e9581a41f5161043dff374f72f9")
+SUM=("a17947664a2bb83363ec564dcb5e619f241d0b547512042f2c0e49fbbc8ca4217b90e6b22bc2e4004e8f27e013f8520674a493f7cf3b808437b855eee3eb0408")
 
 # Prepare script
 function prepare() {
