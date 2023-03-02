@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="nautilus"
-VERSION="42.2"
-_MAJOR_VERSION="42"
+VERSION="43.0"
+_MAJOR_VERSION="43"
 EPOCH=0
 DESC="The GNOME file manager."
 GRPS=()
 URL="https://wiki.gnome.org/action/show/Apps/Files"
 LICENSES=("GPL-3.0")
-DEPENDS=("atk" "cairo" "glibc" "libgcc" "gdk-pixbuf2" "glib2" "gnome-autoar" "gnome-desktop" "gsettings-desktop-schemas" "gstreamer" "gst-plugins-base" "gtk3" "gvfs" "libhandy" "pango" "tracker-miners" "desktop-file-utils" "exempi" "libexif" "libportal" "adwaita-icon-theme" "libseccomp")
+DEPENDS=("atk" "cairo" "glibc" "libgcc" "gdk-pixbuf2" "glib2" "gnome-autoar" "gnome-desktop" "gsettings-desktop-schemas" "gstreamer" "gst-plugins-base" "gtk3" "gvfs" "libhandy" "pango" "tracker-miners" "desktop-file-utils" "exempi" "libexif" "libportal" "adwaita-icon-theme" "libseccomp" "libadwaita" "libcloudproviders")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "gobject-introspection")
 PROVIDES=("nautilus")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/nautilus/${_MAJOR_VERSION}/nautilus-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("2b3ba2990b00bbc3abf771b83b9b0a7c1a8b107b1b4955a45879f7d28add713d326bbe84d70056058073edfc3c7b7891547af77b8a34f94fe1b9ca047c76e9c9")
+SUM=("c880125c2339be02852470e45cd4d589470e0df7723acc44b80df35c18cb1375c5f85cb46c7e53efbab1b51eedb4fd51ffa455773d4913d44c59070dafa22b49")
 
 # Prepare script
 function prepare() {
