@@ -3,14 +3,15 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="openssh"
-VERSION="8.9p1"
+VERSION="9.2p1"
 EPOCH=0
 DESC="Utilities and servers for secure shell connections"
 GRPS=()
 URL="https://www.openssh.com/"
 LICENSES=("BSD")
-DEPENDS=("glibc" "pam" "openssl" "zlib")
-OPT_DEPENDS=()
+DEPENDS=("glibc" "pam" "openssl" "zlib" "libedit" "krb5" "libxcrypt")
+OPT_DEPENDS=("x11-xauth")
+MK_DEPENDS=("which")
 PROVIDES=("openssh")
 CONFLICTS=()
 REPLACES=()
@@ -19,7 +20,7 @@ REPLACES=()
 SRC=("https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("04bd38ea6fe4be31acc8c4e83de7d3dda66fb7207be2e4ba25d3b8118d13d098a283769da9e8ce1fc4fba7edf739c14efcc6c9137132919261a7f882314b0f6b")
+SUM=("c4b79ef3a05b96bfc477ffb31f734635bffd5be213ab58e043111c3232dbe999ff24665fa1069518237cffa5126ded0dda8984e1b8f098f4f09b8c1dae20e604")
 
 # Prepare script
 function prepare() {
@@ -27,15 +28,14 @@ function prepare() {
 
     ./configure --prefix=/usr                            \
                 --sysconfdir=/etc/ssh                    \
-                --with-md5-passwords                     \
                 --with-privsep-path=/var/lib/sshd        \
                 --with-default-path=/usr/bin             \
                 --with-superuser-path=/usr/sbin:/usr/bin \
                 --with-pam                               \
-                --with-pid-dir=/run
-
-    # Remove empty DESTDIR declare
-    sed -i '0,/DESTDIR=/s///' Makefile
+                --with-pid-dir=/run			 \
+                --with-libedit				 \
+                --with-xauth=/usr/bin/xauth		 \
+                --with-kerberos5=/usr
 
     return 0
 }
@@ -59,7 +59,7 @@ function postbuild() {
     install  -v -m700 -d ${BUILD_DATA_ROOT}/var/lib/sshd
     chown    -v root:sys ${BUILD_DATA_ROOT}/var/lib/sshd
 
-    DESTDIR="${BUILD_DATA_ROOT}" make install
+    make DESTDIR="${BUILD_DATA_ROOT}" install
 
     install -v -m755    contrib/ssh-copy-id ${BUILD_DATA_ROOT}/usr/bin
 
