@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gvfs"
-VERSION="1.50.2"
+VERSION="1.50.3"
 _MAJOR_VERSION="1.50"
 EPOCH=1
 DESC="A userspace virtual filesystem designed to work with the I/O abstractions of GLib's GIO library."
 GRPS=()
 URL="https://wiki.gnome.org/Projects/gvfs"
 LICENSES=("GPL-3.0" "LGPL-2.1")
-DEPENDS=("glibc" "libgcc" "dbus" "libusb" "libsecret" "gcr" "gtk3" "libcdio" "libcdio-paranoia" "libgdata" "libgudev" "systemd" "udisks" "avahi" "bluez" "dbus-glib" "fuse" "gnome-online-accounts" "libarchive" "libgcrypt" "libxml2" "libxslt" "openssh" "libsoup3" "samba" "libgphoto2" "libmtp")
+DEPENDS=("glibc" "libgcc" "dbus" "libusb" "libsecret" "gcr" "gtk3" "libcdio" "libcdio-paranoia" "libgdata" "libgudev" "systemd" "udisks" "avahi" "bluez" "dbus-glib" "fuse" "gnome-online-accounts" "libarchive" "libgcrypt" "libxml2" "libxslt" "openssh" "libsoup3" "samba" "libgphoto2" "libmtp" "gsettings-desktop-schemas")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja")
 PROVIDES=("gvfs")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gvfs/${_MAJOR_VERSION}/gvfs-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("980ff8a857ad4dc820685a9331d875274f893aebf8aca406c8ee06e2a25026fc51572515f3ccaa06062314f7f5f8d1982c5813d235bd7d81b975874e1796ca04")
+SUM=("5ef5f22d3074b088cc0662ca2639667ffc9dc645677e7ba9014edb9d0631d04c113edada162cda272b72844be24ee947edd587b685cc5c31d24527e9061f14f6")
 
 # Prepare script
 function prepare() {
