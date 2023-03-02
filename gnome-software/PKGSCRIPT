@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-software"
-VERSION="42.3"
-_MAJOR_VERSION="42"
+VERSION="43.0"
+_MAJOR_VERSION="43"
 EPOCH=0
 DESC="A software center for GNOME."
 GRPS=()
 URL="https://wiki.gnome.org/Apps/Software"
 LICENSES=("GPL-2.0")
-DEPENDS=("appstream" "appstream-glib" "cairo" "flatpak" "gdk-pixbuf2" "glib2" "glibc" "gnome-menus" "gsettings-desktop-schemas" "gtk4" "iso-codes" "json-glib" "libadwaita" "libgcc" "libgudev" "librsvg2" "libsoup" "libostree" "pango" "polkit")
+DEPENDS=("appstream" "appstream-glib" "cairo" "flatpak" "gdk-pixbuf2" "glib2" "glibc" "gnome-menus" "gsettings-desktop-schemas" "gtk4" "iso-codes" "json-glib" "libadwaita" "libgcc" "libgudev" "librsvg2" "libsoup3" "libostree" "pango" "polkit")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "valgrind")
 PROVIDES=("gnome-software")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-software/${_MAJOR_VERSION}/gnome-software-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("8adae64b3149145548fc80ba3491e92d47a711341020b8edb53333f07367b0e2d37864940af71a35d980f634e7a1df68e9fde3c56d17c8e482699358c8eba8b7")
+SUM=("bcf64e4d3d847c660fd1c1a2356235569560bc315fb6b0d2e459dfb1bbee7bf97d9a14f7c8ef1129e01241385cd1540d1499f9cc9ad99a996965feb48e698d6a")
 
 # Prepare script
 function prepare() {
@@ -30,7 +30,15 @@ function prepare() {
     mkdir build
     cd    build
 
-    meson --prefix=/usr --buildtype=release -Dman=false -Dpackagekit=false -Dfwupd=false -Dmalcontent=false -Dgtk_doc=false -Dsoup2=true..
+    meson --prefix=/usr       \
+          --buildtype=release \
+          -Dman=false         \
+          -Dpackagekit=false  \
+          -Dfwupd=false       \
+          -Dmalcontent=false  \
+          -Dgtk_doc=false     \
+          -Dtests=false       \
+          ..
 
     return 0
 }
