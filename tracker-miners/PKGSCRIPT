@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="tracker-miners"
-VERSION="3.3.1"
-_MAJOR_VERSION="3.3"
+VERSION="3.4.2"
+_MAJOR_VERSION="3.4"
 EPOCH=0
 DESC="Set of data extractors for Tracker."
 GRPS=()
 URL="https://gnome.pages.gitlab.gnome.org/tracker/"
 LICENSES=("LGPL-2.1" "GPL-2.0")
-DEPENDS=("glibc" "libgcc" "glib2" "exempi" "gstreamer" "gst-plugins-base" "libexif" "gexiv2" "libgrss" "libgsf" "libgxps" "icu" "taglib" "libjpeg-turbo" "libpng" "libseccomp" "libtiff" "libxml2" "totem-pl-parser" "upower" "gdk-pixbuf2")
+DEPENDS=("glibc" "libgcc" "glib2" "exempi" "gstreamer" "gst-plugins-base" "libexif" "gexiv2" "libgrss" "libgsf" "libgxps" "icu" "taglib" "libjpeg-turbo" "libpng" "libseccomp" "libtiff" "libxml2" "totem-pl-parser" "upower" "gdk-pixbuf2" "tracker")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" )
 PROVIDES=("tracker-miners")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/tracker-miners/${_MAJOR_VERSION}/tracker-miners-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("bc0cb53a7296a2836f05d5d5413418af936ef7f0a4794705e5970699d69c27f513812d0daa182f5359d665a3b6111de06cd9fc671ad769472e0cde2550f66dcb")
+SUM=("a63ebd12af1febe371f1e10e001f378ba57ccc7babe2b504157771ced6464d0c33e386512faa47383d89aa597fb5748dad82d17e9cb68def957b57ed29c47817")
 
 # Prepare script
 function prepare() {
@@ -44,7 +44,8 @@ function build() {
 
     ninja
 
-    dbus-run-session env TRACKER_TESTS_AWAIT_TIMEOUT=20 ninja test
+    # this won't run in hole, uncomment if building locally
+    # dbus-run-session env TRACKER_TESTS_AWAIT_TIMEOUT=20 ninja test
 
     echo "remember to run rm -rf ~/tracker-tests as files were created in the user directory"
 
