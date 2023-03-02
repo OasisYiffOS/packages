@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="editorconfig"
+_REAL_NAME="editorconfig-core-c"
+VERSION="0.12.6"
+EPOCH=0
+DESC="Plugin and file format to help maintain consistent coding styles across multiple developers working on a single project."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/DiskUsageAnalyzer"
+LICENSES=("BSD-2-Clause")
+DEPENDS=("pcre2")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake")
+PROVIDES=("editorconfig")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/editorconfig/editorconfig-core-c/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("7cf69ed48c0d28694fc1f54cd8ae89202a3f0a13b5302fd316f50d0f99a606f54af9709874f0da75ad11ab6f4cc36edacb4cd8639717d44842a309140be3a968")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}"
+
+    cmake -B build                    \
+          -DBUILD_DOCUMENTATION=OFF   \
+          -DCMAKE_INSTALL_PREFIX=/usr \
+          -DCMAKE_BUILD_TYPE=Release
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}"
+
+    cmake --build build
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" cmake --install build
+
+    return 0
+}

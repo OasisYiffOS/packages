@@ -1,0 +1,16 @@
+{
+    "name": "editorconfig",
+    "version": "0.12.6",
+    "epoch": 0,
+    "description": "Plugin and file format to help maintain consistent coding styles across multiple developers working on a single project.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/DiskUsageAnalyzer",
+    "license": ["BSD-2-Clause"],
+    "depends": ["pcre2"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["editorconfig"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
