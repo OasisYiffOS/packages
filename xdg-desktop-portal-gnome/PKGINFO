@@ -1,6 +1,6 @@
 {
     "name": "xdg-desktop-portal-gnome",
-    "version": "42.3",
+    "version": "43.0",
     "epoch": 0,
     "description": "A backend implementation for xdg-desktop-portal for the GNOME desktop environment.",
     "groups": [],
