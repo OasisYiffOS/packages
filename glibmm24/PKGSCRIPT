@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="glibmm24"
-VERSION="2.72.1"
-_MAJOR_VERSION="2.72"
-EPOCH=0
+VERSION="2.66.5"
+_MAJOR_VERSION="2.66"
+EPOCH=1
 DESC="A set of C++ bindings for GLib."
 GRPS=()
 URL="http://www.gtkmm.org/en/index.html"
 LICENSES=("LGPL-2.1")
-DEPENDS=("glibc" "libgcc" "glib2" "libsigc++3")
+DEPENDS=("glibc" "libgcc" "glib2" "libsigc++")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "glib-networking" "gnutls" "libxslt")
 PROVIDES=("glibmm24")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/glibmm/${_MAJOR_VERSION}/glibmm-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("aa52c7b73e8f3437c2da9e8da74f84b9f07c7aa40a5fa232a7418b4af19575cbde01f6cbe9fb3fc3227bd9281a9439156a51d10a0c2c1a1beca226c7c93fe660")
+SUM=("3c1f91a1d91c23c5975254f5bf499f6752b6e3f1b056511133722cdfc853ffd2a94c375c0441dbb3f0933e7a257449ca4e365355ed580bd72d88c08d99a76684")
 
 # Prepare script
 function prepare() {
