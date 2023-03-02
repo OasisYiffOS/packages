@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-settings-daemon"
-VERSION="42.2"
-_MAJOR_VERSION="42"
+VERSION="43.0"
+_MAJOR_VERSION="43"
 EPOCH=0
 DESC="The daemon responsible for setting various parameters of a GNOME Session and the applications that run under it."
 GRPS=()
 URL="https://gitlab.gnome.org/GNOME/gnome-settings-daemon"
 LICENSES=("GPL-2.0")
-DEPENDS=("glibc" "libgcc" "alsa-lib" "cairo" "colord" "gcr" "geoclue" "geocode-glib" 
+DEPENDS=("glibc" "libgcc" "alsa-lib" "cairo" "colord" "gcr4" "geoclue" "geocode-glib" 
 "gnome-desktop" "gsettings-desktop-schemas" "gtk3" "little-cms2" "nss" "pango" "polkit" 
 "pulseaudio" "upower" "networkmanager" "modemmanager" "wayland" "libwacom" "libnotify"
 "libgweather" "libgudev" "libcanberra" "libxi" "libxfixes" "libxext" "libx11" "fontconfig"
@@ -24,7 +24,7 @@ REPLACES=()
 # Source information
 SRC=("https://download.gnome.org/sources/gnome-settings-daemon/${_MAJOR_VERSION}/gnome-settings-daemon-${VERSION}.tar.xz")
 SUM_TYPE="sha512"
-SUM=("66f1e766a7d1c36d4609c9505ba5d99516505ecfc5123483a3cbc6189d21cce23abf26da067bf9c05c3c25bc96d4568a8b07477f0722b0cb9442085f6d886e5c")
+SUM=("8cc3ed73fa66d2cf72621db78be68e4fe01f292ab3987aff8cc67a1c67d910622e306c2d3e69a8dca5ac6517c8e57883faf02aec871c7aa1f1348d13ff1900a3")
 
 # Prepare script
 function prepare() {
