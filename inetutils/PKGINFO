@@ -1,6 +1,6 @@
 {
     "name": "inetutils",
-    "version": "2.2",
+    "version": "2.4",
     "epoch": 0,
     "description": "A collection of common network utilities",
     "groups": ["base"],
