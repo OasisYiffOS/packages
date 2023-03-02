@@ -3,16 +3,16 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-calculator"
-VERSION="42.2"
-_MAJOR_VERSION="42"
+VERSION="43.0.1"
+_MAJOR_VERSION="43"
 EPOCH=0
 DESC="Powerful graphical calculator with financial, logical and scientific modes."
 GRPS=()
 URL="https://wiki.gnome.org/Apps/Calculator"
 LICENSES=("GPL-3.0")
-DEPENDS=("glibc" "libgcc" "glib2" "gtk4" "gtksourceview5" "libadwaita" "libgee" "libsoup" "libxml2" "mpfr")
+DEPENDS=("glibc" "libgcc" "glib2" "gtk4" "gtksourceview5" "libadwaita" "libgee" "libsoup3" "libxml2" "mpfr")
 OPT_DEPENDS=()
-MK_DEPENDS=("meson" "ninja" "vala")
+MK_DEPENDS=("meson" "ninja" "vala" "itstool")
 PROVIDES=("gnome-calculator")
 CONFLICTS=()
 REPLACES=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-calculator/${_MAJOR_VERSION}/gnome-calculator-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("81f644a6be66a6ca051c0adbca06eab61bd09f219385631ca2d66fff1c250c01080b3f401ff20b4ee296c0999481c8f1dc1d105521d7995ff682b8e1158ada5a")
+SUM=("94ec47a03dac017801e9c499aceb2f5f6fd1c79966657c79b123476dc7f3a4a2c3e179c80763e965207b58427157cd6e072260bd79ab98a39eb011cfe3ef7c72")
 
 # Prepare script
 function prepare() {
