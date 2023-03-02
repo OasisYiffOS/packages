@@ -3,24 +3,25 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="vte"
-VERSION="0.69.90"
+VERSION="0.70.0"
+_MAJOR_VERSION="0.70"
 EPOCH=0
 DESC="A library implementing a terminal emulator widget for GTK."
 GRPS=()
 URL="https://gitlab.gnome.org/GNOME/vte"
 LICENSES=("LGPL-3.0" "MIT")
-DEPENDS=("atk" "cairo" "fribidi" "glib2" "glibc" "gnutls" "gtk3" "libgcc" "icu" "pango" "pcre2" "systemd" "zlib")
-OPT_DEPENDS=()
+DEPENDS=("atk" "cairo" "fribidi" "glib2" "glibc" "gnutls" "libgcc" "icu" "pango" "pcre2" "systemd" "zlib")
+OPT_DEPENDS=("gtk3" "gtk4")
 MK_DEPENDS=("gobject-introspection" "vala" "meson" "ninja")
 PROVIDES=("vte")
 CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://gitlab.gnome.org/GNOME/vte/-/archive/${VERSION}/vte-${VERSION}.tar.gz")
+SRC=("https://download.gnome.org/sources/vte/${_MAJOR_VERSION}/vte-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("3374686b3737aedfe752a1c312a069c04c4793c0a82b94433e5c8c13bf6eda000c1d7bdbc2cf2e981a454c36e09a1f909b47bfa02c888e000b193cba180d60f3")
+SUM=("9058a844b68a16e9b3f7a5808e46b7adea0743063bee33a4d6239d42d2e6b2c26820254e3ac1615d00865e5a6dd71737fa6bd4ce604977a18fdafa7178303e99")
 
 # Prepare script
 function prepare() {
@@ -29,7 +30,11 @@ function prepare() {
     mkdir build
     cd    build
     
-    meson --prefix=/usr --buildtype=release ..
+    meson --prefix=/usr       \
+          --buildtype=release \
+          -Dgtk3=true         \
+          -Dgtk4=true         \
+          ..
 
     return 0
 }
