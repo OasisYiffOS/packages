@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gtk4"
-VERSION="4.6.6"
-_MAJOR_VERSION="4.6"
+VERSION="4.8.1"
+_MAJOR_VERSION="4.8"
 EPOCH=1
 DESC="Libraries used for creating graphical user interfaces for applications."
 GRPS=()
 URL="https://gtk.org"
 LICENSES=("LGPL-2.0")
-DEPENDS=("at-spi2-atk" "gdk-pixbuf2" "graphene" "colord" "libepoxy" "pango" "adwaita-icon-theme" "hicolor-icon-theme" "iso-codes" "libxkbcommon" "wayland" "wayland-protocols" "cairo" "fontconfig" "fribidi" "glib2" "glibc" "harfbuzz" "libx11" "libxcomposite" "libxcursor" "libxdamage" "libxext" "libxfixes" "libxi" "libxrandr" "tracker" "gstreamer" "gst-plugins-bad" "gst-plugins-good" "libpng" "libjpeg-turbo" "libtiff" "wayland" "vulkan-loader" "json-glib" "libxinerama" "vulkan-headers")
+DEPENDS=("at-spi2-atk" "gdk-pixbuf2" "graphene" "colord" "libepoxy" "pango" "adwaita-icon-theme" "hicolor-icon-theme" "iso-codes" "libxkbcommon" "wayland" "wayland-protocols" "cairo" "fontconfig" "fribidi" "glib2" "glibc" "harfbuzz" "libx11" "libxcomposite" "libxcursor" "libxdamage" "libxext" "libxfixes" "libxi" "libxrandr" "tracker" "gstreamer" "gst-plugins-bad" "gst-plugins-good" "libpng" "libjpeg-turbo" "libtiff" "wayland" "vulkan-loader" "json-glib" "libxinerama" "vulkan-headers" "cups")
 OPT_DEPENDS=("highlight")
 MK_DEPENDS=("sassc" "gobject-introspection" "meson" "ninja" "python-pygobject" "librsvg")
 PROVIDES=("gtk4")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gtk/${_MAJOR_VERSION}/gtk-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("b743d99029d7d51db19396641023eefd5d25bbacbd89ad6660d43e382b26fe6cc5e9ce8f0dbb3f4ac7d2143db617ea0c2e2d3cc8926fc93d735eb76ffb2f8309")
+SUM=("26201c2ef0de24e0a530b0cb03af5c131a85d068ecb4dcbe22c1faaedf1d5c1555ebe2bf2da794ccfa24bea7de810179957d48474fa951ae691ac957bbdfd61e")
 
 # Prepare script
 function prepare() {
@@ -36,6 +36,7 @@ function prepare() {
           -Dtracker=enabled         \
           -Dcolord=enabled          \
           -Dvulkan=enabled          \
+          -Dgtk_doc=false           \
           ..
 
     return 0
