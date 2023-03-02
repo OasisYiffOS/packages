@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="libcloudproviders"
+VERSION="0.3.1"
+_MAJOR_VERSION="0.3"
+EPOCH=0
+DESC="DBus API that allows cloud storage sync clients to expose their services."
+GRPS=()
+URL="https://wiki.gnome.org/Apps/DiskUsageAnalyzer"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("gobject-introspection")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "vala")
+PROVIDES=("libcloudproviders")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/libcloudproviders/${_MAJOR_VERSION}/libcloudproviders-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("66e951380da8447529d04cc9cbaa0587f40152ab0b66787ce3939104a49eeb16808499a5dcdcd38b7ae9c8cca8bec66ae0bbf04524e7ff8fdf6d420e8a71d609")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr       \
+          --libdir=lib        \
+          --buildtype=release \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

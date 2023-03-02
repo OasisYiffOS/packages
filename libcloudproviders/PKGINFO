@@ -1,0 +1,16 @@
+{
+    "name": "libcloudproviders",
+    "version": "0.3.1",
+    "epoch": 0,
+    "description": "DBus API that allows cloud storage sync clients to expose their services.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Apps/DiskUsageAnalyzer",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["gobject-introspection"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "vala"],
+    "provides": ["libcloudproviders"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
