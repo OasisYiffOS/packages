@@ -1,6 +1,6 @@
 {
     "name": "gsettings-desktop-schemas",
-    "version": "42.0",
+    "version": "43.0",
     "epoch": 0,
     "description": "A collection of GSettings schemas for settings shared by various components of a GNOME Desktop.",
     "groups": [],
