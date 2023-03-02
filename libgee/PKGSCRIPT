@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libgee"
-VERSION="0.20.5"
+VERSION="0.20.6"
 _MAJOR_VERSION="0.20"
 EPOCH=0
 DESC="Collection library providing GObject based interfaces and classes for commonly used data structures."
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/libgee/${_MAJOR_VERSION}/libgee-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("64d498c5323c4c0978391a01fb3a36e9a00ef9d5dc8e95e3b2dc9cc33f6ad55ec1096e18629c5cad9539b083c42917d91d068824dac4d06f53ef9a682cccc8a9")
+SUM=("05176b221274b2a0512b018b93ae730ca750482bbc7a4951376eb868c0a388950371e80a438b5af792ebe4a64b6a38e0c94ca52ebd0fc4539f0fe233e0be5903")
 
 # Prepare script
 function prepare() {
