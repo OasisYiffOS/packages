@@ -5,7 +5,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 NAME="mutter"
 VERSION="43.3"
 _MAJOR_VERSION="43"
-EPOCH=0
+EPOCH=1
 DESC="The window manager for GNOME. It is not invoked directly, but from GNOME Session (on a machine with a hardware accelerated video driver)."
 GRPS=()
 URL="https://www.gnome.org"
@@ -30,7 +30,7 @@ function prepare() {
     mkdir build
     cd    build
 
-    meson --prefix=/usr --buildtype=release -Dtests=false ..
+    meson --prefix=/usr --buildtype=debugoptimized -Dtests=false ..
 
     return 0
 }
