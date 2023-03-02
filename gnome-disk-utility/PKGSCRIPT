@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-disk-utility"
-VERSION="42.0"
-_MAJOR_VERSION="42"
+VERSION="43.0"
+_MAJOR_VERSION="43"
 EPOCH=0
 DESC="GNOME libraries and applications for dealing with storage devices."
 GRPS=()
 URL="https://wiki.gnome.org/Apps/Disks"
 LICENSES=("GPL-2.0" "LGPL-2.1" "MIT")
-DEPENDS=("glibc" "glib2" "atk" "cairo" "gdk-pixbuf2" "gtk3" "libcanberra" "libdvdread" "libhandy" "libnotify" "libpwquality" "libsecret" "pango" "systemd" "udisks" "xz")
+DEPENDS=("glibc" "glib2" "atk" "cairo" "gdk-pixbuf2" "gtk3" "libcanberra" "libdvdread" "libhandy" "libnotify" "libpwquality" "libsecret" "pango" "systemd" "udisks" "xz" "desktop-file-utils")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja")
 PROVIDES=("gnome-disk-utility")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-disk-utility/${_MAJOR_VERSION}/gnome-disk-utility-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("c47c37262295ba455b483a7ebe7799e92f94b97d177327817bb088cddcc3ff1f5840c3e270651287ff6a88257ec7cfcd1abe4167bf7454bbf55e145c8f1dc7c9")
+SUM=("8cb1b10fba21c90bceec9521103defe092dea9a4c89a39ae44e4d5981dd0d1958649e7a2743535f0135a3c9179cad0e0aced98dfc805e19bdec81651abcecf48")
 
 # Prepare script
 function prepare() {
@@ -30,7 +30,7 @@ function prepare() {
     mkdir build
     cd    build
 
-    meson --prefix=/usr --buildtype=release ..
+    meson --prefix=/usr --buildtype=release -Dman=false ..
 
     return 0
 }
