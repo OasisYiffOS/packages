@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libnma"
-VERSION="1.8.38"
-_MAJOR_VERSION="1.8"
+VERSION="1.10.2"
+_MAJOR_VERSION="1.10"
 EPOCH=0
 DESC="An implementation of the NetworkManager GUI functions."
 GRPS=()
 URL="https://gitlab.gnome.org/GNOME/libnma/"
 LICENSES=("GPL-2.0" "LGPL-2.1")
-DEPENDS=("glibc" "libgcc" "glib2" "networkmanager" "gcr" "gtk3" "gtk4" "mobile-broadband-provider-info" "iso-codes")
+DEPENDS=("glibc" "libgcc" "glib2" "networkmanager" "gcr" "gcr4" "gtk3" "gtk4" "mobile-broadband-provider-info" "iso-codes")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "vala")
 PROVIDES=("libnma")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/libnma/${_MAJOR_VERSION}/libnma-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("0421c598ccb6e3659f182b596eec76ffd695e51c11fd11b8325c2d08cb259536d7e74c11bbaac3ccb841016a0bc69a87f1c682b934a9eb569a74116e677eba63")
+SUM=("f8ac5f73ee8bc918325d2beec3e1eea61fed18110103ba9c3eb21da02fbd054895aa5ce332942a9113bb4860d59958dbf9c3b91885663b6225daec25cadf7458")
 
 # Prepare script
 function prepare() {
