@@ -1,0 +1,16 @@
+{
+    "name": "tk",
+    "version": "8.6.13",
+    "epoch": 0,
+    "description": "The graphical toolkit for the Tcl scripting language.",
+    "groups": [],
+    "url": "https://tcl.tk/",
+    "license": ["TCL"],
+    "depends": ["glibc", "tcl", "fontconfig", "libx11", "libxft"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["tk"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

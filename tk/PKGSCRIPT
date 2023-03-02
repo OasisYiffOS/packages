@@ -1,0 +1,62 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="tk"
+VERSION="8.6.13"
+_MAJOR_VERSION="8.6"
+EPOCH=0
+DESC="The graphical toolkit for the Tcl scripting language."
+GRPS=()
+URL="https://tcl.tk/"
+LICENSES=("TCL")
+DEPENDS=("glibc" "tcl" "fontconfig" "libx11" "libxft")
+OPT_DEPENDS=()
+PROVIDES=("tk")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://downloads.sourceforge.net/tcl/tk${VERSION}-src.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("719aa6776bfdc814f817919a265d3f9d847782c9f0a5fc5c2ab139beeba921e6fde8c66e7e836d78f86f53c98a7df0e587f0b2f4b08cc5ce12eecbb7f1ab71a5")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}${VERSION}/unix"
+
+	./configure --prefix=/usr \
+		    --mandir=/usr/share/man \
+		    --enable-64bit
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}${VERSION}/unix"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}${VERSION}/unix"
+
+    # Remove build directory references
+    sed -e "s@^\(TK_SRC_DIR='\).*@\1/usr/include'@" \
+	-e "/TK_B/s@='\(-L\)\?.*unix@='\1/usr/lib@" \
+	-i tkConfig.sh
+
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+    make DESTDIR="${BUILD_DATA_ROOT}" install-private-headers
+
+    ln -v -sf wish${_MAJOR_VERSION} ${BUILD_DATA_ROOT}/usr/bin/wish
+
+    chmod -v 755 ${BUILD_DATA_ROOT}/usr/lib/libtk${_MAJOR_VERSION}.so
+
+    return 0
+}
