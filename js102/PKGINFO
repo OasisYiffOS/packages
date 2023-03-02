@@ -1,0 +1,16 @@
+{
+    "name": "js102",
+    "version": "102.8.0",
+    "epoch": 0,
+    "description": "JS (also referred as SpiderMonkey) is Mozilla's JavaScript and WebAssembly Engine, written in C++ and Rust.",
+    "groups": [],
+    "url": "https://spidermonkey.dev",
+    "license": ["MPL-2.0"],
+    "depends": ["glibc", "libgcc", "icu", "zlib"],
+    "optional_depends": [],
+    "make_depends": ["rust"],
+    "provides": ["js102"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

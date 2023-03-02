@@ -1,0 +1,78 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="js102"
+VERSION="102.8.0"
+EPOCH=0
+DESC="JS (also referred as SpiderMonkey) is Mozilla's JavaScript and WebAssembly Engine, written in C++ and Rust."
+GRPS=()
+URL="https://spidermonkey.dev"
+LICENSES=("MPL-2.0")
+DEPENDS=("glibc" "libgcc" "icu" "zlib")
+OPT_DEPENDS=()
+MK_DEPENDS=("rust")
+PROVIDES=("js102")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://archive.mozilla.org/pub/firefox/releases/${VERSION}esr/source/firefox-${VERSION}esr.source.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("93ea87997b66088b94c6e943b6e99e9a71d1908444d096c0f65b6876d2c584e55ff6120266f3851f986b664bd1f12fa31206b03479c2b751e7c3ca097ac14275")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/firefox-${VERSION}"
+
+    # from blfs, remove obsolete python flag
+    grep -rl \"rU\" | xargs sed -i 's/"rU"/"r"/'
+
+    mkdir obj
+    cd    obj
+
+    CC=gcc CXX=g++ \
+    sh ${WORKDIR}/firefox-${VERSION}/js/src/configure.in    \
+                              --prefix=/usr                 \
+                              --with-intl-api               \
+                              --with-system-zlib            \
+                              --with-system-icu             \
+                              --disable-jemalloc            \
+                              --disable-debug-symbols       \
+                              --enable-readline             \
+                              --enable-application=js       \
+                              --enable-shared-js            \
+                              --disable-bootstrap           \
+                              --enable-release              \
+                              --enable-hardening            \
+                              --enable-optimize
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/firefox-${VERSION}/obj"
+
+
+    export MACH_USE_SYSTEM_PYTHON=1
+
+    make
+
+    unset MMACH_USE_SYSTEM_PYTHON
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/firefox-${VERSION}/obj"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    rm -v ${BUILD_DATA_ROOT}/usr/lib/libjs_static.ajs
+    sed -i '/@NSPR_CFLAGS@/d' ${BUILD_DATA_ROOT}/usr/bin/${NAME}-config
+
+    return 0
+}
