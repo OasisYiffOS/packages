@@ -3,16 +3,16 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="tracker"
-VERSION="3.3.2"
-_MAJOR_VERSION="3.3"
+VERSION="3.4.2"
+_MAJOR_VERSION="3.4"
 EPOCH=0
 DESC="The file indexing and search provider used in the GNOME desktop environment."
 GRPS=()
 URL="https://gnome.pages.gitlab.gnome.org/tracker/"
 LICENSES=("GPL-2.0")
-DEPENDS=("glib2" "glibc" "libgcc" "icu" "sqlite")
+DEPENDS=("glib2" "glibc" "libgcc" "icu" "sqlite" "json-glib" "libsoup" "libsoup3" "gobject-introspection")
 OPT_DEPENDS=()
-MK_DEPENDS=("vala" "meson" "ninja" "libsecconp" "libsoup" "gobject-introspection")
+MK_DEPENDS=("vala" "meson" "ninja" "python-pygobject")
 PROVIDES=("tracker")
 CONFLICTS=()
 REPLACES=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/tracker/${_MAJOR_VERSION}/tracker-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("2009c7a9b82fd278e38bc71cb41ef1fccb23493bd84a71456c7568ed7a025ce68bab689b8f14b8008479a203a5fdc02acea1862f4f482467ed5c295bde3d4ad8")
+SUM=("2214bce7cdbaf1039b11986cf101f615337bbc450331ee703edcfd7ad62dee6e1db831c2c89bf341663cadcdaae6ee9e5a15f49a8087acaafd58b389292ef480")
 
 # Prepare script
 function prepare() {
