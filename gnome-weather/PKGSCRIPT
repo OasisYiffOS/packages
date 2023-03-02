@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-weather"
-VERSION="42.0"
-_MAJOR_VERSION="42"
+VERSION="43.0"
+_MAJOR_VERSION="43"
 EPOCH=0
 DESC="A small application that allows you to monitor the current weather conditions for your city, or anywhere in the world, and to access updated forecasts provided by various internet services."
 GRPS=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-weather/${_MAJOR_VERSION}/gnome-weather-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("10471a32adc148fad393e03098396a3cfccc75d1cd18985cdd2c287927213aeb493f2878ea986e1d3a3af4b1d3f439afcdb96833d849bbd5fbe7aebb1d1992e6")
+SUM=("392f9c3f41583767d3dc8f3411b36c7eacc6191648879948f87c92d0891cf7ee34090e7093a91a5d7e07b4b795235a3ff675c1f34854b61e5faa6fe7dba17b9b")
 
 # Prepare script
 function prepare() {
