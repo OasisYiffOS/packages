@@ -3,16 +3,16 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-logs"
-VERSION="42.0"
-_MAJOR_VERSION="42"
+VERSION="43.0"
+_MAJOR_VERSION="43"
 EPOCH=0
 DESC="A GNOME log viewer for the systemd journal."
 GRPS=()
 URL="https://wiki.gnome.org/Apps/Logs"
 LICENSES=("GPL-3.0")
-DEPENDS=("glibc" "libgcc" "glib2" "gsettings-desktop-schemas" "gtk3" "libhandy" "pango" "systemd")
+DEPENDS=("glibc" "libgcc" "glib2" "gsettings-desktop-schemas" "gtk4" "libhandy" "pango" "systemd" "libadwaita")
 OPT_DEPENDS=()
-MK_DEPENDS=("meson" "ninja" "istool" "desktop-file-utils" "docbook-xml" "docbook-xsl" "libxslt")
+MK_DEPENDS=("meson" "ninja" "itstool" "desktop-file-utils" "docbook-xml" "docbook-xsl" "libxslt")
 PROVIDES=("gnome-logs")
 CONFLICTS=()
 REPLACES=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-logs/${_MAJOR_VERSION}/gnome-logs-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("94634006148391bf158878e845bf04f1139f90b78bc3d63bb687bb683bb07c8b5fbec9d7c1e9f7454bf5345862578d83226207d3f78611dbf96566994190766f")
+SUM=("21f7453072a95e223e21ab0f577aac9f552c0afc780366b18b6cd2b8e319a85a1a8439d53dfd9ded3a7c6676e51178d4906ee61178bb571633e935fbfc9990aa")
 
 # Prepare script
 function prepare() {
