@@ -3,24 +3,25 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-text-editor"
-VERSION="42.1"
+VERSION="43.0"
+_MAJOR_VERSION="43"
 EPOCH=0
 DESC="A simple text editor that focuses on session management."
 GRPS=()
 URL="https://gitlab.gnome.org/GNOME/gnome-text-editor"
 LICENSES=("BSD-2-Clause")
-DEPENDS=("glibc" "libgcc" "gtk4" "libadwaita" "pcre" "icu" "enchant" "gtksourceview5")
+DEPENDS=("glibc" "libgcc" "gtk4" "libadwaita" "pcre" "icu" "enchant" "gtksourceview5" "editorconfig" "desktop-file-utils")
 OPT_DEPENDS=()
-MK_DEPENDS=("meson" "ninja")
+MK_DEPENDS=("meson" "ninja" "itstool")
 PROVIDES=("gnome-text-editor")
 CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://gitlab.gnome.org/GNOME/gnome-text-editor/-/archive/${VERSION}/gnome-text-editor-${VERSION}.tar.gz")
+SRC=("https://download.gnome.org/sources/gnome-text-editor/${_MAJOR_VERSION}/gnome-text-editor-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("465ebb2fbfab15832e0ff52e915dc0869a17e0fd8e7b4a2c2e50c3c46e5ec305a2b329e5b3b01251334102fb8ee3f7c1bcc575e9b0dc99299daa72af20fe8462")
+SUM=("359287e3338531285110628df934ff9c81c236aec692c088084fd3c3944703ec9737f2f12554be477becf0d9a12706b621bd4558a54ebaf70f713c75a750b181")
 
 # Prepare script
 function prepare() {
