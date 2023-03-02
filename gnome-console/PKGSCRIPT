@@ -3,13 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-console"
-VERSION="42.2"
+VERSION="43.0"
+_MAJOR_VERSION="43"
 EPOCH=0
 DESC="Simple user-friendly terminal emulator for the GNOME desktop."
 GRPS=()
 URL="https://gitlab.gnome.org/GNOME/console"
 LICENSES=("GPL-3.0")
-DEPENDS=("glib2" "glibc" "gtk3" "libgtop2" "libhandy" "pango" "vte")
+DEPENDS=("glib2" "glibc" "gtk4" "libgtop2" "libhandy" "pango" "vte" "libadwaita" "gsettings-desktop-schemas" "vte" "desktop-file-utils")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja")
 PROVIDES=("gnome-console")
@@ -17,26 +18,26 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://gitlab.gnome.org/GNOME/console/-/archive/${VERSION}/console-${VERSION}.tar.gz")
+SRC=("https://download.gnome.org/sources/gnome-console/${_MAJOR_VERSION}/gnome-console-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("7986f9e805442c174dc666b97aac8b029492cb3995e48ac6c5ec2b9f52f07ef10ceeb471d1b8aedc8a74ea51575864b2f6cec5cc26ab54f1937424c315c5bbe7")
+SUM=("b4da0f0c1e35bb468f5db8080b762c652358bd96d95dfbbc0d9b5c02d47c513c8adc23b1b38653873ab3a817e82bad5776ceeb6568d2041ab026ca460a7c3808")
 
 # Prepare script
 function prepare() {
-    cd "${WORKDIR}/console-${VERSION}"
+    cd "${WORKDIR}/${NAME}-${VERSION}"
 
     mkdir build
     cd    build
 
-    meson --prefix=/usr --buildtype=release -Dnautilus=enabled ..
+    meson --prefix=/usr --buildtype=release ..
 
     return 0
 }
 
 # Build script
 function build() {
-    cd "${WORKDIR}/console-${VERSION}/build"
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
 
     ninja
 
@@ -45,7 +46,7 @@ function build() {
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/console-${VERSION}/build"
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
 
     DESTDIR="${BUILD_DATA_ROOT}" ninja install
 
