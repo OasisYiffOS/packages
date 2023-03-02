@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gtkmm3"
-VERSION="3.24.6"
+VERSION="3.24.7"
 _MAJOR_VERSION="3.24"
 EPOCH=0
 DESC="The official C++ interface for the popular GUI library GTK+. (GTK 3)"
 GRPS=()
 URL="http://www.gtkmm.org/en/index.html"
 LICENSES=("LGPL-2.1")
-DEPENDS=("glibc" "libgcc" "glib2" "libsigc++" "atkmm" "pangomm" "cairomm" "gdk-pixbuf2" "glibmm2" "gtk3")
+DEPENDS=("glibc" "libgcc" "glib2" "libsigc++" "atkmm" "pangomm" "cairomm" "gdk-pixbuf2" "glibmm24" "gtk3")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja")
 PROVIDES=("gtkmm3")
@@ -21,14 +21,16 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gtkmm/${_MAJOR_VERSION}/gtkmm-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("d6fc2d0689baca2b968820d1af86cc0b175b6f38f720d315bc50663d30bd0a841da57ac4336abec236542fb2893b28b2de84087419b73aba58b41f07568d4d93")
+SUM=("2ede6d77df5cbaa6ea3ee347d8b949e38512db7f5e9b36cb6f531eb259d5986f84ebfc6bb0cdaac1be4dc97e9d611515995184d245e2c0fab2cd8ebcae933a98")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/gtkmm-${VERSION}"
 
-    mkdir bld
-    cd    bld
+    update-mime-database /usr/share/mime/
+
+    mkdir build
+    cd    build
 
     meson --prefix=/usr --buildtype=release ..
 
@@ -37,7 +39,7 @@ function prepare() {
 
 # Build script
 function build() {
-    cd "${WORKDIR}/gtkmm-${VERSION}/bld"
+    cd "${WORKDIR}/gtkmm-${VERSION}/build"
 
     ninja
 
@@ -50,7 +52,7 @@ function build() {
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/gtkmm-${VERSION}/bld"
+    cd "${WORKDIR}/gtkmm-${VERSION}/build"
 
     DESTDIR="${BUILD_DATA_ROOT}" ninja install
 
