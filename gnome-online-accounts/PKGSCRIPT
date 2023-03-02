@@ -3,16 +3,16 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-online-accounts"
-VERSION="3.44.0"
-_MAJOR_VERSION="3.44"
+VERSION="3.46.0"
+_MAJOR_VERSION="3.46"
 EPOCH=0
 DESC="A framework used to access the user's online accounts."
 GRPS=()
 URL="https://wiki.gnome.org/Projects/GnomeOnlineAccounts"
 LICENSES=("LGPL-2.1")
-DEPENDS=("glibc" "glib2" "gcr" "json-glib" "rest" "webkitgtk" "krb5" "libsecret" "libsoup" "libxml2" "p11-kit" "zlib")
+DEPENDS=("glibc" "glib2" "gcr" "json-glib" "rest" "webkitgtk" "krb5" "libsecret" "libsoup" "libxml2" "p11-kit" "zlib" "rest")
 OPT_DEPENDS=()
-MK_DEPENDS=("vala" "gobject-introspection")
+MK_DEPENDS=("vala" "gobject-introspection" "meson" "ninja")
 PROVIDES=("gnome-online-accounts")
 CONFLICTS=()
 REPLACES=()
@@ -21,15 +21,9 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-online-accounts/${_MAJOR_VERSION}/gnome-online-accounts-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("e70a83b557b816dc7eb22bcd1e4a263044a16c981dfa945a529250ea76e743c9cc73f2ecd4f3006d28a4f3161c7a15dba8bd1416b413c28f4d86d0192755e809")
+SUM=("727eaf248d70ba8b3874ca500d40e6fead3f76f72aee1b1f383aac57ee71bdb77dab7da3487b3f0fee665130cc61ac8b53f3a1bf1754e5df919fc5c48486c201")
 
 # Some of these are from GOA and some are our own
-FACEBOOK_CLIENT_ID="297654143624603" # GOA
-
-FLICKR_CONSUMER_KEY="ed00ad7e0869897506e23c0d18e34d01" # GOA
-FLICKR_CONSUMER_SECRET="ebd556dd187188b1" # GOA
-
-FORSQUARE_CLIENT_ID="D5AADZGMZSUB20RPYKEF4VBVNBUMPQ2LM5CFP3XFBXGL0RNY" # Ours
 
 GOOGLE_CLIENT_ID="44438659992-7kgjeitenc16ssihbtdjbgguch7ju55s.apps.googleusercontent.com" # GOA
 GOOGLE_SECRET="-gMLuQyDiI0XrQS_vx_mhuYF" # GOA
@@ -43,47 +37,43 @@ WINDOWS_LIVE_CLIENT_ID="0000000044067703" # GOA
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    ./configure --prefix=/usr                                               \
-                --disable-static                                            \
-                --enable-exchange                                           \
-                --enable-imap-smtp                                          \
-                --enable-kerberos                                           \
-                --enable-media-server                                       \
-                --enable-owncloud                                           \
-                --enable-facebook                                           \
-                --with-facebook-client-id="${FACEBOOK_CLIENT_ID}"           \
-                --disable-fedora                                            \
-                --enable-flickr                                             \
-                --with-flickr-consumer-key="${FLICKR_CONSUMER_KEY}"         \
-                --with-flickr-consumer-secret="${FLICKR_CONSUMER_SECRET}"   \
-                --enable-foursquare                                         \
-                --with-foursquare-client-id="${FORSQUARE_CLIENT_ID}"        \
-                --enable-google                                             \
-                --with-google-client-id="${GOOGLE_CLIENT_ID}"               \
-                --with-google-client-secret="${GOOGLE_SECRET}"              \
-                --enable-lastfm                                             \
-                --with-lastfm-client-id="${LASTFM_CLIENT_ID}"               \
-                --with-lastfm-client-secret="${LASTFM_CLIENT_SECRET}"       \
-                --enable-windows-live                                       \
-                --with-windows-live-client-id="${WINDOWS_LIVE_CLIENT_ID}"
+    mkdir build
+    cd build
+
+    meson --prefix=/usr                                       \
+          --buildtype=release                                 \
+          -Dexchange=true                                     \
+          -Dimap_smtp=true                                    \
+          -Dkerberos=true                                     \
+          -Dmedia_server=true                                 \
+          -Downcloud=true                                     \
+          -Dgoogle=true                                       \
+          -Dgoogle_client_id="${GOOGLE_CLIENT_ID}"            \
+          -Dgoogle_client_secret="${GOOGLE_SECRET}"           \
+          -Dlastfm=true                                       \
+          -Dlastfm_client_id="${LASTFM_CLIENT_ID}"            \
+          -Dlastfm_client_secret="${LASTFM_CLIENT_SECRET}"    \
+          -Dwindows_live=true                                 \
+          -Dwindows_live_client_id="${WINDOWS_LIVE_CLIENT_ID}" \
+          ..
 
     return 0
 }
 
 # Build script
 function build() {
-    cd "${WORKDIR}/${NAME}-${VERSION}"
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
 
-    make
+    ninja
 
     return 0
 }
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/${NAME}-${VERSION}"
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
 
-    DESTDIR="${BUILD_DATA_ROOT}" make install
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
 
     return 0
 }
