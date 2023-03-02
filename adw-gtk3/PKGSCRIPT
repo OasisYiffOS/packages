@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="adw-gtk3"
-VERSION="1.7"
-_DOWNLOAD_VERSION="1-7"
+VERSION="4.3"
+_DOWNLOAD_VERSION="4-3"
 EPOCH=0
 DESC="The default theme from libadwaita ported to GTK-3."
 GRPS=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://github.com/lassekongo83/adw-gtk3/releases/download/v${VERSION}/adw-gtk3v${_DOWNLOAD_VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("d70008abc819fcf1932d1942e23149cb321ba081095ec3861ca441b361f81ca97c39ed6bf12c9d756599dde746de44b5f84d34e4089bec3115ad1389fa410d76")
+SUM=("d21b79b0db6a72178ced59d56df23f6c3196c60936c0e10f4de828cc2393f70daf317935b24e5dfe6345716cf55fc32c450476ba223f44c7d316634a8853bc68")
 
 # Prepare script
 function prepare() {

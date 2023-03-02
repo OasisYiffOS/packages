@@ -1,6 +1,6 @@
 {
     "name": "adw-gtk3",
-    "version": "1.7",
+    "version": "4.3",
     "epoch": 0,
     "description": "The default theme from libadwaita ported to GTK-3.",
     "groups": [],
