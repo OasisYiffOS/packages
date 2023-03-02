@@ -3,14 +3,15 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="xdg-desktop-portal"
-VERSION="1.14.4"
+VERSION="1.16.0"
 EPOCH=0
 DESC="APIs for file access, opening URIs, printing and others for Flatpak."
 GRPS=()
 URL="https://github.com/flatpak/xdg-desktop-portal/"
 LICENSES=("LGPL-2.1")
-DEPENDS=("dbus" "fuse" "gdk-pixbuf2" "geoclue" "glib2" "glibc" "json-glib" "libgcc" "pipewire" "systemd")
+DEPENDS=("dbus" "fuse" "gdk-pixbuf2" "geoclue" "glib2" "glibc" "json-glib" "libgcc" "pipewire" "systemd" "flatpak")
 OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
 PROVIDES=("xdg-desktop-portal")
 CONFLICTS=()
 REPLACES=()
@@ -19,31 +20,37 @@ REPLACES=()
 SRC=("https://github.com/flatpak/xdg-desktop-portal/releases/download/${VERSION}/xdg-desktop-portal-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("23fa4f9fdf39f22d6eaa4f6020db5f81d272b85fe6051467c5e28a752c65b18a9b540fafe5b27725fafa29dffefcd113d873928cd78e3658895cd24d96b82f73")
+SUM=("f7e7e96d3a6757901fbc4c0310aac0afbf37882c279a2859e06f63528049cd9b50dd2d55445d1386f03f62557c1a2ec81d4ee081200367d6269d2dffc75f0912")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    ./configure --prefix=/usr
+    mkdir build
+    cd build
+
+    meson --prefix=/usr       \
+          --libdir=lib        \
+          --buildtype=release \
+          ..
 
     return 0
 }
 
 # Build script
 function build() {
-    cd "${WORKDIR}/${NAME}-${VERSION}"
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
 
-    make
+    ninja
 
     return 0
 }
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/${NAME}-${VERSION}"
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
 
-    DESTDIR="${BUILD_DATA_ROOT}" make install
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
 
     return 0
 }
