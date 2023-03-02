@@ -6,7 +6,7 @@
     "groups": [],
     "url": "hhttp://git.0pointer.net/libcanberra.git/",
     "license": ["LGPL-2.1"],
-    "depends": ["glibc", "glib2", "alsa-lib", "gstreamer", "libvorbis", "pulseaudio", "sound-theme-freedesktop"],
+    "depends": ["glibc", "glib2", "alsa-lib", "gstreamer", "libvorbis", "pulseaudio", "sound-theme-freedesktop", "libtool"],
     "optional_depends": [],
     "make_depends": ["gtk3", "gtk2"],
     "provides": ["libcanberra"],
