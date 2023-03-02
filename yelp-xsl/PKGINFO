@@ -1,6 +1,6 @@
 {
     "name": "yelp-xsl",
-    "version": "42.0",
+    "version": "42.1",
     "epoch": 0,
     "description": "XSL stylesheets that are used by the Yelp help browser to format Docbook and Mallard documents.",
     "groups": [],
@@ -8,7 +8,7 @@
     "license": ["GPL-2.0", "LGPL-2.1"],
     "depends": [],
     "optional_depends": [],
-    "make_depends": [],
+    "make_depends": ["libxslt", "itstool"],
     "provides": ["yelp-xsl"],
     "conflicts": [],
     "replaces": [],

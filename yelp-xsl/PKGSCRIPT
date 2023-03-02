@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="yelp-xsl"
-VERSION="42.0"
+VERSION="42.1"
 _MAJOR_VERSION="42"
 EPOCH=0
 DESC="XSL stylesheets that are used by the Yelp help browser to format Docbook and Mallard documents."
@@ -12,7 +12,7 @@ URL="https://download.gnome.org/sources/yelp-xsl/"
 LICENSES=("GPL-2.0" "LGPL-2.1")
 DEPENDS=()
 OPT_DEPENDS=()
-MK_DEPEENDS=("libxslt" "istool")
+MK_DEPENDS=("libxslt" "itstool")
 PROVIDES=("yelp-xsl")
 CONFLICTS=()
 REPLACES=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/yelp-xsl/${_MAJOR_VERSION}/yelp-xsl-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("70d86bedd00fd38ffefb82962b591b710aa6ba59f9a12c968d5c47afeed9f4afecfb5e1228fbaba3acab5d5673cb6511d3d51674f7602f5001835d9c134fedda")
+SUM=("90c7cc244dba038d6fcc1344adf950640a0affb8e5a1a6945a776d3308bf9b5071320856968f7a31688855a18a872f63553bd643b7776801cc68b182b455fc10")
 
 # Prepare script
 function prepare() {
