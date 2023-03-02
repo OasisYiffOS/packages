@@ -1,6 +1,6 @@
 {
     "name": "yelp",
-    "version": "42.1",
+    "version": "42.2",
     "epoch": 0,
     "description": "GNOME help browser used for viewing help files.",
     "groups": [],
@@ -8,7 +8,7 @@
     "license": ["LGPL-2.1", "ASL-2.0", "GPL-2.0"],
     "depends": ["glibc", "glib2", "gtk3", "libhandy", "libunwind", "webkitgtk", "yelp-xsl", "gsettings-desktop-schemas"],
     "optional_depends": [],
-    "make_depends": [],
+    "make_depends": ["itstool"],
     "provides": ["yelp"],
     "conflicts": [],
     "replaces": [],
