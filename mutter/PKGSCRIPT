@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="mutter"
-VERSION="43.0"
+VERSION="43.3"
 _MAJOR_VERSION="43"
 EPOCH=0
 DESC="The window manager for GNOME. It is not invoked directly, but from GNOME Session (on a machine with a hardware accelerated video driver)."
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/mutter/${_MAJOR_VERSION}/mutter-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("e7169dcefbc5f1d47581981ceec4d6ac47d75ed9d4ef0b18adfe1dc632645217c4546fdf004544902642b3e0dbb48f6025ab9a5ad9670765ccd972c6409e8611")
+SUM=("5e9d4b213ac674889af9c15dd52f79a28a1c38af57f08a19bd6b2bf78a799aaa2f6dcb76adb9fa8d6a94e21d988befc37a696bc06801c96e1f692c80a5aff2ae")
 
 # Prepare script
 function prepare() {
