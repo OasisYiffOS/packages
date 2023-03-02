@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="glib-networking"
-VERSION="2.72.1"
-_MAJOR_VERSION="2.72"
+VERSION="2.74.0"
+_MAJOR_VERSION="2.74"
 EPOCH=1
 DESC="Network related gio modules for GLib."
 GRPS=()
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/glib-networking/${_MAJOR_VERSION}/glib-networking-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("243f54f4fbce40211f276c4f56e4e40507ecb0b23527a04b2d5bd67185c017f736f088c71ebf225e69e1ae8efa5b835edd68ea5c96df3ff69a25fd391e5c52d0")
+SUM=("f266c106f2c9379b95773a852c1b5c62ae1d6a758d25c436c3558f620d8e0a211201b3c4dfd89cdbe28b88430bba0cca621e62c01ea23d473983e203919bb1e6")
 
 # Prepare script
 function prepare() {

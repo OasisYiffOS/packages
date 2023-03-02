@@ -1,6 +1,6 @@
 {
     "name": "glib-networking",
-    "version": "2.72.1",
+    "version": "2.74.0",
     "epoch": 1,
     "description": "Network related gio modules for GLib.",
     "groups": [],
