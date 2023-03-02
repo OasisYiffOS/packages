@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="pango"
-VERSION="1.50.8"
+VERSION="1.50.10"
 _MAJOR_VERSION="1.50"
 EPOCH=0
 DESC="A library for laying out and rendering text, with an emphasis on internationalization."
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/pango/${_MAJOR_VERSION}/pango-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("81821e5837d5fb78a07ac8f8e360de9a9bf9b2418a3e0654f80ee3dce7f98325ea2483cc7c1d1db4a662886a1244530515d83480f4c3bc0510788a9bbbae2f91")
+SUM=("38e5c96ef89681ca72367a96bc2d2083df2cbe861b8725fb02d0f6383300e6cda4133d58e39cdc505c712c008ae708d272e3e75380f14e9850b45f56d5d89338")
 
 # Prepare script
 function prepare() {

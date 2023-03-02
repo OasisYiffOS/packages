@@ -1,6 +1,6 @@
 {
     "name": "pango",
-    "version": "1.50.8",
+    "version": "1.50.10",
     "epoch": 0,
     "description": "A library for laying out and rendering text, with an emphasis on internationalization.",
     "groups": [],
