@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libhandy"
-VERSION="1.7.0"
-_MAJOR_VERSION="1.7"
+VERSION="1.8.0"
+_MAJOR_VERSION="1.8"
 EPOCH=0
 DESC="Additional GTK UI widgets for use in developing user interfaces."
 GRPS=()
 URL="https://gitlab.gnome.org/GNOME/libhandy"
 LICENSES=("LGPL-2.1")
-DEPENDS=("atk" "cairo" "fribidi" "gdk-pixbuf2" "glib2" "glibc" "gtk3" "libgcc" "pango")
+DEPENDS=("atk" "cairo" "fribidi" "gdk-pixbuf2" "glib2" "glibc" "gtk3" "libgcc" "pango" "libglade2")
 OPT_DEPENDS=()
 MK_DEPENDS=("vala" "meson" "ninja")
 PROVIDES=("libhandy")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/libhandy/${_MAJOR_VERSION}/libhandy-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("a6fdde1c1c7fa717f82d05cd6e110de72ee21d00dfd84140bb590d68cb2cc6f0e59259258087e487006a98daae96ac575846d644f77cc0c92416ce9dfd4fc1f1")
+SUM=("88f37d310ddc26a26612648d9f7beff6e77347a2cf59f682690dc838c3ec1bad9408ed39571c6cd779bea3d334a9c275ba3789d45c11c0a3e454617d41cc0035")
 
 # Prepare script
 function prepare() {
