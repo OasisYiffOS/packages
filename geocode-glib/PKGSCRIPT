@@ -5,12 +5,12 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 NAME="geocode-glib"
 VERSION="3.26.4"
 _MAJOR_VERSION="3.26"
-EPOCH=0
+EPOCH=1
 DESC="Convenience library for the Yahoo! Place Finder APIs."
 GRPS=()
 URL="https://gitlab.gnome.org/GNOME/geocode-glib"
 LICENSES=("LGPL-2.1")
-DEPENDS=("glibc" "libgcc" "glib2" "json-glib" "libsoup")
+DEPENDS=("glibc" "libgcc" "glib2" "json-glib" "libsoup3")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "gobject-introspection")
 PROVIDES=("geocode-glib")
@@ -30,7 +30,7 @@ function prepare() {
     mkdir build
     cd    build
 
-    meson --prefix=/usr --buildtype=release -Denable-gtk-doc=false ..
+    meson --prefix=/usr --buildtype=release -Denable-gtk-doc=false -Dsoup2=false ..
 
     return 0
 }
