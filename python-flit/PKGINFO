@@ -1,0 +1,16 @@
+{
+    "name": "python-flit",
+    "version": "3.8.0",
+    "epoch": 0,
+    "description": "Simple tool to assist in the creation of Python packages and modules.",
+    "groups": [],
+    "url": "https://flit.pypa.io/en/stable/",
+    "license": ["BSD-3-Clause"],
+    "depends": ["python"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-flit"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

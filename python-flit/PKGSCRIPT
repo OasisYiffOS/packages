@@ -1,0 +1,48 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="python-flit"
+_REAL_NAME="flit"
+VERSION="3.8.0"
+EPOCH=0
+DESC="Simple tool to assist in the creation of Python packages and modules."
+GRPS=()
+URL="https://flit.pypa.io/en/stable/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=("python")
+OPT_DEPENDS=()
+PROVIDES=("python-flit")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/pypa/flit/archive/refs/tags/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("c4af79e1511e647303dc6b0913d8526586580db8d916aa7c4a52a9ebb281b375b6082e961ac8be05c0fc8ffdd8c3ec858fcba4e7faea25f465895288fa09c355")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}/flit_core"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}/flit_core"
+
+    python3 build_dists.py
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}/flit_core"
+
+    python3 bootstrap_install.py --install-root="${BUILD_DATA_ROOT}" dist/*.whl
+
+    return 0
+}
