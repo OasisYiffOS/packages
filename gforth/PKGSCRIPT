@@ -4,11 +4,11 @@ MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
 # Package information
 NAME="gforth"
 VERSION="0.7.3"
-EPOCH=1
+EPOCH=2
 DESC="The GNU Forth implementation."
 GRPS=()
 URL="https://www.gnu.org/software/gforth/"
-LICENSES=("ISC")
+LICENSES=("GPL-3.0-or-later")
 DEPENDS=("libtool" "libffi")
 OPT_DEPENDS=()
 PROVIDES=("gforth")

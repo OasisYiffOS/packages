@@ -1,11 +1,11 @@
 {
     "name": "gforth",
     "version": "0.7.3",
-    "epoch": 1,
+    "epoch": 2,
     "description": "The GNU Forth implementation.",
     "groups": [],
     "url": "https://www.gnu.org/software/gforth/",
-    "license": ["ISC"],
+    "license": ["GPL-3.0-or-later"],
     "depends": ["libtool", "libffi"],
     "optional_depends": [],
     "make_depends": [],
