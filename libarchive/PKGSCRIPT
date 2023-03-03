@@ -4,7 +4,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 # Package information
 NAME="libarchive"
 VERSION="3.6.2"
-EPOCH=0
+EPOCH=1
 DESC="A multi-format archive and compression library"
 GRPS=()
 URL="https://libarchive.org/"
@@ -43,7 +43,10 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/libarchive-${VERSION}"
 
-    DESTDIR="${BUILD_DATA_ROOT}" make install
+    make DESTDIR="${BUILD_DATA_ROOT}" install
+
+    # Entry not required for libarchive
+    sed -i "s/iconv //" ${BUILD_DATA_ROOT}/usr/lib/pkgconfig/libarchive.pc
 
     return 0
 }

@@ -1,7 +1,7 @@
 {
     "name": "libarchive",
     "version": "3.6.2",
-    "epoch": 0,
+    "epoch": 1,
     "description": "A multi-format archive and compression library",
     "groups": [],
     "url": "https://libarchive.org/",
