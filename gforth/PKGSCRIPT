@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="gforth"
+VERSION="0.7.3"
+EPOCH=0
+DESC="The GNU Forth implementation."
+GRPS=()
+URL="https://www.gnu.org/software/gforth/"
+LICENSES=("ISC")
+DEPENDS=("libtool" "libffi")
+OPT_DEPENDS=()
+PROVIDES=("gforth")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/gforth/gforth-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("f034234acfb0fc727f28b564432219a100b916c6df4b847794a55b2fc3b8ed8714eca6de0df67c7c427b7c2bb4dd00f65cfd34e6eb60181e41ab84fea30304e4")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
