@@ -3,13 +3,13 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="geoclue"
-VERSION="2.6.0"
+VERSION="2.7.0"
 EPOCH=0
 DESC="A modular geoinformation service built on top of the D-Bus messaging system."
 GRPS=()
 URL="https://gitlab.freedesktop.org/geoclue/geoclue"
 LICENSES=("GPL-2.0" "LGPL-2.1")
-DEPENDS=("glibc" "libgcc" "modemmanager" "dbus" "json-glib" "libnotify" "libsoup" "avahi")
+DEPENDS=("glibc" "libgcc" "modemmanager" "dbus" "json-glib" "libnotify" "libsoup3" "avahi")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "vala")
 PROVIDES=("geoclue")
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://gitlab.freedesktop.org/geoclue/geoclue/-/archive/${VERSION}/geoclue-${VERSION}.tar.bz2")
 
 SUM_TYPE="sha512"
-SUM=("13205ab88cbd9748c155081318ae1909fddedce4250e3ece39a9f379b8cfea91dfe571961e278406ba54f8efd3a1070967479feb8256f50170112b28246b3103")
+SUM=("2314242f529b9011ee5da6e8cfc657568853769e4d38b8e7c604097a747dd5705d9f84dcd2763cdacb9f014e15b63fbb8356d6cb488ba91334cda87c11e4ee7d")
 
 # Prepare script
 function prepare() {
