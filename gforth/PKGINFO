@@ -1,7 +1,7 @@
 {
     "name": "gforth",
     "version": "0.7.3",
-    "epoch": 0,
+    "epoch": 1,
     "description": "The GNU Forth implementation.",
     "groups": [],
     "url": "https://www.gnu.org/software/gforth/",

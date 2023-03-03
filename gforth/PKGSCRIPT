@@ -4,7 +4,7 @@ MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
 # Package information
 NAME="gforth"
 VERSION="0.7.3"
-EPOCH=0
+EPOCH=1
 DESC="The GNU Forth implementation."
 GRPS=()
 URL="https://www.gnu.org/software/gforth/"
@@ -34,7 +34,8 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    make
+    # parallel builds will break the build process
+    make -j1
 
     return 0
 }
