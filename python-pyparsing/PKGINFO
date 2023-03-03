@@ -1,0 +1,16 @@
+{
+    "name": "python-pyparsing",
+    "version": "3.0.9",
+    "epoch": 0,
+    "description": "Classes and methods to define and execute parsing grammars",
+    "groups": [],
+    "url": "https://github.com/pyparsing/pyparsing/",
+    "license": ["MIT"],
+    "depends": ["python"],
+    "optional_depends": [],
+    "make_depends": ["python-flit"],
+    "provides": ["python-pyparsing"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

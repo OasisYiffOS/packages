@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="python-pyparsing"
+_REAL_NAME="pyparsing-pyparsing"
+VERSION="3.0.9"
+EPOCH=0
+DESC="Classes and methods to define and execute parsing grammars"
+GRPS=()
+URL="https://github.com/pyparsing/pyparsing/"
+LICENSES=("MIT")
+DEPENDS=("python")
+OPT_DEPENDS=()
+MK_DEPENDS=("python-flit")
+PROVIDES=("python-pyparsing")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/pyparsing/pyparsing/archive/refs/tags/pyparsing_${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("1158f27e31f8eced540217b7234b09005eac416fad74faf59678fdae93fe2f76e0e3b5f4adfd3ceb42c8aef19150950293e989c9a5189741175073eb7a03cd6d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${_REAL_NAME}_${VERSION}"
+
+    # fixme: this is a bit of a hack as we don't have packages for these
+    python3 -m pip install installer build
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_REAL_NAME}_${VERSION}"
+
+    # fixme: there might be a way to do this without build
+    python3 -m build --wheel --no-isolation
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_REAL_NAME}_${VERSION}"
+
+    # fixme: same as above
+    python3 -m installer --destdir="${BUILD_DATA_ROOT}" dist/*.whl
+
+    return 0
+}
