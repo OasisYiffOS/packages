@@ -3,14 +3,15 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libostree"
-VERSION="2022.4"
-EPOCH=0
+VERSION="2023.1"
+EPOCH=1
 DESC="A shared library and suite of command line tools that combines a git-like model for committing and downloading bootable filesystem trees."
 GRPS=()
 URL="https://ostreedev.github.io/ostree/"
 LICENSES=("GPL-2.0")
 DEPENDS=("dracut" "fuse" "glib2" "glibc" "libarchive" "libgcc" "systemd" "curl" "libgpg-error" "xz" "zlib" "gpgme")
 OPT_DEPENDS=()
+MK_DEPENDS=("docbook-xsl" "docbook-xml")
 PROVIDES=("libostree")
 CONFLICTS=()
 REPLACES=()
@@ -19,13 +20,13 @@ REPLACES=()
 SRC=("https://github.com/ostreedev/ostree/releases/download/v${VERSION}/libostree-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("a7745b951b1f36f483c215b311f86d860b988ebb06612e7eef2797fc34322c256ae83177337d918f3e8e3833fe9802f7d53131db59df73d29fb6c305b78879e5")
+SUM=("a6a6e47d6cb9ec6826d48a50a2abac69e4a040f2b5830d39e8a006c738a163fb15fde8630bf271d92cec9470601281669cd4bf942e4b7c4d42441bd5d1730572")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    ./configure --prefix=/usr
+    ./configure --prefix=/usr --with-curl=yes --with-soup=no
 
     return 0
 }
