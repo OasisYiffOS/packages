@@ -1,0 +1,52 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="gtk-doc"
+VERSION="1.33.2"
+_MAJOR_VERSION="1.33"
+EPOCH=0
+DESC="Tool used to automate the documentation of C code."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gtk-doc"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("docbook-xml" "docbook-xsl" "itstool" "libxslt")
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf" "automake" "libtool")
+PROVIDES=("gtk-doc")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gtk-doc/${_MAJOR_VERSION}/gtk-doc-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("f50f68ab6b4bc59f55e84b49c1481f05700171cbf79eca9ba8f3a142a30a4ba88fe096983ebb8d117a9ef8bcea40934674096683d956f5c54cae457d31f651ab")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    autoreconf -fiv
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

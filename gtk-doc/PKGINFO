@@ -1,0 +1,16 @@
+{
+    "name": "gtk-doc",
+    "version": "1.33.2",
+    "epoch": 0,
+    "description": "Tool used to automate the documentation of C code.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/gtk-doc",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["docbook-xml", "docbook-xsl", "itstool", "libxslt"],
+    "optional_depends": [],
+    "make_depends": ["autoconf", "automake", "libtool"],
+    "provides": ["gtk-doc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
