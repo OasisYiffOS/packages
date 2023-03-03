@@ -3,15 +3,15 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="appstream"
-VERSION="0.15.4"
+VERSION="0.16.1"
 EPOCH=0
 DESC="Cross-distro effort for enhancing the way we interact with the software repositories provided by the distribution by standardizing sets of additional metadata."
 GRPS=()
 URL="https://www.freedesktop.org/wiki/Distributions/AppStream/"
 LICENSES=("LGPL-2.1")
-DEPENDS=("glib2" "glibc" "curl" "libgcc" "libxml2" "libyaml")
-OPT_DEPENDS=()
-MK_DEPENDS=("meson" "ninja")
+DEPENDS=("glib2" "glibc" "curl" "libgcc" "libxml2" "libyaml" "zstd" "systemd" "libxmlb" "xz" "cairo")
+OPT_DEPENDS=("qt5")
+MK_DEPENDS=("meson" "ninja" "vala" "gobject-introspection" "gperf" "python" "itstool" "docbook-xsl" "docbook-xml" "gtk-doc")
 PROVIDES=("appstream")
 CONFLICTS=()
 REPLACES=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://github.com/ximion/appstream/archive/refs/tags/v${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("8ce0d5cbbd50ba08769298c2677d5b5707c316799b146b6de649b712bd6c05b7dd88f39a3825e6c1a1fe2cdb4d8256938bde183668bfec09a8e0452cb5b45a37")
+SUM=("9e12228eb288c710767aa6311e1f37733e5de451eb48f28c80dbf790ee603f2cc345f11f19af8c1d37e66ab249e6fded05fa123bfce5d8dbae913a2dd4249539")
 
 # Prepare script
 function prepare() {
@@ -29,7 +29,12 @@ function prepare() {
     mkdir build
     cd    build
 
-    meson --prefix=/usr -Dstemming=false -Ddocs=false -Dapidocs=false ..
+    meson --prefix=/usr    	\
+    	  -Dstemming=false 	\
+    	  -Dvapi=true      	\
+    	  -Dqt=true        	\
+    	  -Dcompose=true 	\
+    	  ..
 
     return 0
 }
