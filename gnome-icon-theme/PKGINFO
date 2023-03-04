@@ -3,7 +3,7 @@
     "version": "3.12.0",
     "epoch": 0,
     "description": "An assortment of non-scalable icons of different sizes and themes.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://www.gnome.org",
     "license": ["LGPL-3.0"],
     "depends": ["hicolor-icon-theme"],
