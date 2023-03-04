@@ -3,7 +3,7 @@
     "version": "1.50.3",
     "epoch": 1,
     "description": "A userspace virtual filesystem designed to work with the I/O abstractions of GLib's GIO library.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Projects/gvfs",
     "license": ["GPL-3.0", "LGPL-2.1"],
     "depends": ["glibc", "libgcc", "dbus", "libusb", "libsecret", "gcr", "gtk3", "libcdio", "libcdio-paranoia", "libgdata", "libgudev", "systemd", "udisks", "avahi", "bluez", "dbus-glib", "fuse", "gnome-online-accounts", "libarchive", "libgcrypt", "libxml2", "libxslt", "openssh", "libsoup3", "samba", "libgphoto2", "libmtp", "gsettings-desktop-schemas"],
