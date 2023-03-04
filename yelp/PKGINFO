@@ -3,7 +3,7 @@
     "version": "42.2",
     "epoch": 0,
     "description": "GNOME help browser used for viewing help files.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Apps/Yelp",
     "license": ["LGPL-2.1", "ASL-2.0", "GPL-2.0"],
     "depends": ["glibc", "glib2", "gtk3", "libhandy", "libunwind", "webkitgtk", "yelp-xsl", "gsettings-desktop-schemas"],
