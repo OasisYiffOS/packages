@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="dhclient"
-VERSION="4.4.3"
+VERSION="4.4.3-P1"
 EPOCH=0
 DESC="A DHCP client from the ISC DHCP project."
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://ftp.isc.org/isc/dhcp/${VERSION}/dhcp-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("4472d6794af80b482560956cee6895889cc1aca39980f851faf56824627e95731f2983cf7c7454bc3decb0a12c874fcbd29bd6c5a9695412def6bc14c6df17e0")
+SUM=("d14dc44d1c015780ae19769816cb01015959927a1ad7a3e84b89e0463253aaf46451af88e3260347196373906d5b438c7c616fee45ec3f128aa82af6702b7154")
 
 # Prepare script
 function prepare() {
@@ -55,7 +55,7 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/dhcp-${VERSION}"
 
-    # Only install the sclient
+    # Only install the client
     DESTDIR="${BUILD_DATA_ROOT}" make -C client install
     install -v -m755 client/scripts/linux ${BUILD_DATA_ROOT}/usr/sbin/dhclient-script
 
