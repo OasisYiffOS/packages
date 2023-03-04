@@ -3,7 +3,7 @@
     "version": "43.0",
     "epoch": 0,
     "description": "GNOME libraries and applications for dealing with storage devices.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Apps/Disks",
     "license": ["GPL-2.0", "LGPL-2.1", "MIT"],
     "depends": ["glibc", "glib2", "atk", "cairo", "gdk-pixbuf2", "gtk3", "libcanberra", "libdvdread", "libhandy", "libnotify", "libpwquality", "libsecret", "pango", "systemd", "udisks", "xz", "desktop-file-utils"],
