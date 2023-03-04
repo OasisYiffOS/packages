@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="python-yaml"
+_REAL_NAME="PyYAML"
+VERSION="6.0"
+EPOCH=0
+DESC="Python module that implements the next generation YAML parser and emitter."
+GRPS=()
+URL="https://pyyaml.org"
+LICENSES=("MIT")
+DEPENDS=("python" "libyaml")
+OPT_DEPENDS=()
+MK_DEPENDS=("python-cython")
+PROVIDES=("python-yaml")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://files.pythonhosted.org/packages/source/P/PyYAML/PyYAML-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("b402993073282e7f4202823b051d364b91929362edd5b3aebe93b56833956ec9279c1ba82b97f8bc8a2b82d20e1060e4ec9fc90400a6ed902adce3e4f83a6e0e")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}"
+
+    python3 setup.py --with-libyaml build
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}"
+
+    python3 setup.py install --root="${BUILD_DATA_ROOT}" --skip-build
+
+    return 0
+}

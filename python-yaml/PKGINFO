@@ -1,0 +1,16 @@
+{
+    "name": "python-yaml",
+    "version": "6.0",
+    "epoch": 0,
+    "description": "Python module that implements the next generation YAML parser and emitter.",
+    "groups": [],
+    "url": "https://pyyaml.org",
+    "license": ["MIT"],
+    "depends": ["python", "libyaml"],
+    "optional_depends": [],
+    "make_depends": ["python-cython"],
+    "provides": ["python-yaml"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
