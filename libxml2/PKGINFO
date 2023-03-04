@@ -3,7 +3,7 @@
     "version": "2.9.12",
     "epoch": 0,
     "description": "XML C parser and toolkit",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "http://xmlsoft.org/",
     "license": ["MIT"],
     "depends": ["icu", "readline", "ncurses", "readline", "xz", "zlib"],
