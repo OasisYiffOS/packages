@@ -3,7 +3,7 @@
     "version": "1.26.2",
     "epoch": 0,
     "description": "A GLib-based library for talking to WWAN modems and devices which speak the Mobile Interface Broadband Model (MBIM) protocol.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://freedesktop.org/software/libmbim/",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "glib2", "libgcc"],
