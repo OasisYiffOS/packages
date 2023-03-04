@@ -3,7 +3,7 @@
     "version": "43.0",
     "epoch": 0,
     "description": "A GNOME log viewer for the systemd journal.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Apps/Logs",
     "license": ["GPL-3.0"],
     "depends": ["glibc", "libgcc", "glib2", "gsettings-desktop-schemas", "gtk4", "libhandy", "pango", "systemd", "libadwaita"],
