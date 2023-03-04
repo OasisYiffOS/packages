@@ -3,7 +3,7 @@
     "version": "2.46.3",
     "epoch": 0,
     "description": "A C++ interface to Pango.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "http://www.gtkmm.org/en/index.html",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "libgcc", "glib2", "libsigc++", "cairomm", "glibmm24", "pango"],
