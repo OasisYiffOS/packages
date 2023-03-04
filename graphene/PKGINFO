@@ -3,7 +3,7 @@
     "version": "1.10.8",
     "epoch": 0,
     "description": "A thin layer of types for graphics libraries.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://github.com/ebassi/graphene",
     "license": ["MIT"],
     "depends": ["glibc", "glib2"],
