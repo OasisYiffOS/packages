@@ -3,7 +3,7 @@
     "version": "0.17",
     "epoch": 0,
     "description": "Utility that handles user special directories.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://freedesktop.org/wiki/Software/xdg-user-dirs/",
     "license": ["GPL-2.0-and-later", "MIT"],
     "depends": ["glibc"],
