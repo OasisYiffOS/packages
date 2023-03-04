@@ -3,7 +3,7 @@
     "version": "2.40.0",
     "epoch": 0,
     "description": "A library for collecting system monitoring data.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/libgtop",
     "license": ["GPL-2.0"],
     "depends": ["glibc", "glib2"],
