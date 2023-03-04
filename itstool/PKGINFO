@@ -3,7 +3,7 @@
     "version": "2.0.7",
     "epoch": 0,
     "description": "Translate XML with PO files using W3C Internationalization Tag Set rules.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://itstool.org",
     "license": ["GPL-3.0"],
     "depends": ["docbook-xml"],
