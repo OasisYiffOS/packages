@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="python-cython"
+_REAL_NAME="Cython"
+VERSION="0.29.33"
+EPOCH=0
+DESC="Compiler for writing C extensions for the Python language."
+GRPS=()
+URL="https://cython.org"
+LICENSES=("Apache-2.0")
+DEPENDS=("python")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("python-cython")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/cython/cython/releases/download/${VERSION}/Cython-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("09be78a5d85756045b1216f8113c66935e203a0000bba3e3167aebf341e11b5644232891bd7f66c907f5e97286d319cf60fff413213dcf4c3ea96bf3acf0a121")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}"
+
+    python3 setup.py build
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}"
+
+    python3 setup.py install --root="${BUILD_DATA_ROOT}" --skip-build
+
+    return 0
+}

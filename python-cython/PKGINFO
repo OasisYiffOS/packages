@@ -1,0 +1,16 @@
+{
+    "name": "python-cython",
+    "version": "0.29.33",
+    "epoch": 0,
+    "description": "Compiler for writing C extensions for the Python language.",
+    "groups": [],
+    "url": "https://cython.org",
+    "license": ["Apache-2.0"],
+    "depends": ["python"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-cython"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
