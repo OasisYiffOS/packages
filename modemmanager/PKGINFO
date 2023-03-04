@@ -3,7 +3,7 @@
     "version": "1.18.6",
     "epoch": 0,
     "description": "A unified high level API for communicating with mobile broadband modems, regardless of the protocol used to communicate with the actual device.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://www.freedesktop.org/wiki/Software/ModemManager/",
     "license": ["GPL-2.0"],
     "depends": ["glibc", "glib2", "libgcc", "libgudev", "libmbim", "libqmi", "polkit", "systemd"],
