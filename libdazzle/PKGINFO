@@ -3,7 +3,7 @@
     "version": "3.44.0",
     "epoch": 0,
     "description": "A companion library to GObject and GTK+.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/libdazzle",
     "license": ["GPL-3.0"],
     "depends": ["glibc", "glib2", "libgcc", "cairo", "gdk-pixbuf2", "gtk3", "pango"],
