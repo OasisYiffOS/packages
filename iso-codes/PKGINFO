@@ -3,7 +3,7 @@
     "version": "4.9.0",
     "epoch": 0,
     "description": "A lists of various ISO standards (countries, languages, language scripts, and currency names) in one place.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://salsa.debian.org/iso-codes-team/iso-codes",
     "license": ["LGPL-2.1"],
     "depends": [],
