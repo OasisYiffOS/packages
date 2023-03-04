@@ -3,7 +3,7 @@
     "version": "43.0",
     "epoch": 0,
     "description": "A collection of GSettings schemas for settings shared by various components of a GNOME Desktop.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas",
     "license": ["LGPL-2.1"],
     "depends": ["glib2"],
