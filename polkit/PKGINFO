@@ -3,7 +3,7 @@
     "version": "0.120",
     "epoch": 0,
     "description": "A toolkit for defining and handling authorizations. It is used for allowing unprivileged processes to communicate with privileged processes.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "http://www.freedesktop.org/wiki/Software/polkit",
     "license": ["LGPL-2.0"],
     "depends": ["dbus", "expat", "glibc", "glib2", "libgcc", "js91", "pam", "systemd"],
