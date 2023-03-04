@@ -3,7 +3,7 @@
     "version": "42.beta",
     "epoch": 0,
     "description": "An application that allows adjusting advanced configuration settings in GNOME 3.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Apps/Tweaks",
     "license": ["GPL-3.0"],
     "depends": ["glibc", "libgcc", "gtk3", "libhandy", "python", "python-pygobject", "sound-theme-freedesktop", "gsettings-desktop-schemas", "gnome-desktop", "libsoup", "libnotify", "pango"],
