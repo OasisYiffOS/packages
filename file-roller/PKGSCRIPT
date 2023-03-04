@@ -7,7 +7,7 @@ VERSION="3.42.0"
 _MAJOR_VERSION="3.42"
 EPOCH=0
 DESC="GNOME archive manager with support for tar, bzip2, gzip, zip, jar, compress, lzop, zstd, and many other archive formats."
-GRPS=()
+GRPS=("gnome")
 URL="https://wiki.gnome.org/Apps/FileRoller"
 LICENSES=("GPL-2.0")
 DEPENDS=("glibc" "libgcc" "glib2" "gtk3" "json-glib" "libarchive" "libhandy" "libnotify" "pango" "cairo" "gdk-pixbuf2")
@@ -53,4 +53,5 @@ function postbuild() {
     chmod -v 0755 ${BUILD_DATA_ROOT}/usr/libexec/file-roller/isoinfo.sh
 
     return 0
+
 }
