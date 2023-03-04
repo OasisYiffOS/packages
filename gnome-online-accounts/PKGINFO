@@ -3,7 +3,7 @@
     "version": "3.46.0",
     "epoch": 0,
     "description": "A framework used to access the user's online accounts.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Projects/GnomeOnlineAccounts",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "glib2", "gcr", "json-glib", "rest", "webkitgtk", "krb5", "libsecret", "libsoup", "libxml2", "p11-kit", "zlib", "rest"],
