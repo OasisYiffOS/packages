@@ -3,7 +3,7 @@
     "version": "1.4.4",
     "epoch": 0,
     "description": "Common functions for password quality checking and also scoring them based on their apparent randomness.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": " https://github.com/libpwquality/libpwquality/",
     "license": ["GPL-2.0", "LGPL-2.1"],
     "depends": ["glibc", "cracklib", "pam"],
