@@ -3,7 +3,7 @@
     "version": "1.33.2",
     "epoch": 1,
     "description": "Tool used to automate the documentation of C code.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/gtk-doc",
     "license": ["GPL-2.0-or-later"],
     "depends": ["docbook-xml", "docbook-xsl", "itstool", "libxslt", "python-pygments"],
