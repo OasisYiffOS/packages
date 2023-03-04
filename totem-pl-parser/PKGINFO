@@ -3,7 +3,7 @@
     "version": "3.26.6",
     "epoch": 0,
     "description": "Simple GObject-based library used to parse multiple playlist formats.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Apps/Videos",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "libgcc", "glib2", "libarchive", "libgcrypt", "libxml2", "libsoup"],
