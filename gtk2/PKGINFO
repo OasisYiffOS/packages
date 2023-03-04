@@ -3,7 +3,7 @@
     "version": "2.24.33",
     "epoch": 0,
     "description": "Libraries used for creating graphical user interfaces for applications.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://www.gtk.org",
     "license": ["LGPL-2.0"],
     "depends": ["atk", "cairo", "fontconfig", "gdk-pixbuf2", "glib2", "glibc", "hicolor-icon-theme", "libx11", "libxcomposite", "libxcursor", "libxdamage", "libxext", "libxfixes", "libxi", "libxinerama", "libxrandr", "libxrender", "libtiff", "pango"],
