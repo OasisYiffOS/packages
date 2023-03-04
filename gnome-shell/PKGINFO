@@ -3,7 +3,7 @@
     "version": "43.0",
     "epoch": 0,
     "description": "The core user interface of the GNOME Desktop environment.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Projects/GnomeShell",
     "license": ["GPL-2.0"],
     "depends": ["glibc", "libgcc", "glib2", "networkmanager", "accountsservice", "at-spi2-atk", "atk", "cairo", "evolution-data-server", "gcr", "gdk-pixbuf2", "geoclue", "gjs", "gnome-autoar", "gnome-bluetooth", "gnome-control-center", "gnome-desktop", "gnome-settings-daemon", "gobject-introspection", "graphene", "gsettings-desktop-schemas", "gstreamer", "gst-plugins-good", "gtk3", "gtk4", "hicolor-icon-theme", "ibus", "json-glib", "libx11", "libxfixes", "libadwaita", "libgweather", "libical", "libnma", "librsvg2", "libsecret", "wayland", "wayland-protocols", "mutter", "pango", "pipewire", "polkit", "pulseaudio", "python", "systemd", "upower", "adwaita-icon-theme", "dconf", "gnome-menus", "telepathy-mission-control", "cantarell-fonts", "libtool"],
