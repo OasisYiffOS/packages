@@ -3,7 +3,7 @@
     "version": "42.5",
     "epoch": 0,
     "description": "Tools for managing and manipulating Bluetooth devices using the GNOME Desktop.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Projects/GnomeBluetooth",
     "license": ["GPL-2.0"],
     "depends": ["glibc", "libgcc", "glib2", "gtk4", "libadwaita", "bluez", "pipewire", "pulseaudio", "systemd", "gsound", "libnotify", "upower", "libcanberra"],
