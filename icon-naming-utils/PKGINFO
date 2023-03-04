@@ -3,7 +3,7 @@
     "version": "0.8.90",
     "epoch": 0,
     "description": "A Perl script used for maintaining backwards compatibility with current desktop icon themes, while migrating to the names specified in the Icon Naming Specification.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "http://tango.freedesktop.org/Standard_Icon_Naming_Specification",
     "license": ["GPL-2.0"],
     "depends": ["perl", "perl-xml-simple"],
