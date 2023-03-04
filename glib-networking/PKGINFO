@@ -3,7 +3,7 @@
     "version": "2.74.0",
     "epoch": 1,
     "description": "Network related gio modules for GLib.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/glib-networking",
     "license": ["LGPL-2.1"],
     "depends": ["glib2", "gnutls"],
