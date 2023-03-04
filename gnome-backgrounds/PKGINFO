@@ -3,7 +3,7 @@
     "version": "42.0",
     "epoch": 0,
     "description": "Collection of graphics files which can be used as backgrounds in the GNOME Desktop environment.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/gnome-backgrounds",
     "license": ["CC-BY-SA"],
     "depends": [],
