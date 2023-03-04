@@ -3,7 +3,7 @@
     "version": "1.8.4",
     "epoch": 0,
     "description": "Library providing facilities to integrate Clutter into GTK+ applications.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://www.clutter-project.org",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "libgcc", "glib2", "clutter", "gtk3"],
