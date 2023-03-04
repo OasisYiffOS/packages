@@ -3,7 +3,7 @@
     "version": "43.0",
     "epoch": 0,
     "description": "Simple user-friendly terminal emulator for the GNOME desktop.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/console",
     "license": ["GPL-3.0"],
     "depends": ["glib2", "glibc", "gtk4", "libgtop2", "libhandy", "pango", "vte", "libadwaita", "gsettings-desktop-schemas", "vte", "desktop-file-utils"],
