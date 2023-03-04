@@ -3,7 +3,7 @@
     "version": "0.20.5",
     "epoch": 0,
     "description": "A GObject based library for accessing the Secret Service API.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Projects/Libsecret",
     "license": ["LGPL-2.0"],
     "depends": ["glibc", "glib2", "libgcc", "libgcrypt", "pam", "gnome-keyring"],
