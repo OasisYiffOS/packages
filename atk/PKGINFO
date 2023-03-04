@@ -3,7 +3,7 @@
     "version": "2.38.0",
     "epoch": 0,
     "description": "Set of accessibility interfaces that are implemented by other toolkits and applications.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/atk",
     "license": ["LGPL-2.0"],
     "depends": ["glibc", "glib2"],
