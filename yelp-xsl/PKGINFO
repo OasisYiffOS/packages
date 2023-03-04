@@ -3,7 +3,7 @@
     "version": "42.1",
     "epoch": 0,
     "description": "XSL stylesheets that are used by the Yelp help browser to format Docbook and Mallard documents.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://download.gnome.org/sources/yelp-xsl/",
     "license": ["GPL-2.0", "LGPL-2.1"],
     "depends": [],
