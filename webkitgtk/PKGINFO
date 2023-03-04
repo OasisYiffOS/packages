@@ -3,7 +3,7 @@
     "version": "2.38.5",
     "epoch": 0,
     "description": "A port of the portable web rendering engine WebKit to the GTK platform.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://www.webkitgtk.org",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "libgcc", "atk", "bubblewrap", "cairo", "enchant", "fontconfig", "freetype2", "glib2", "gdk-pixbuf2", "gstreamer", "gst-plugins-base", "gst-plugins-bad", "gtk3", "harfbuzz", "little-cms2", "libx11", "libxcomposite", "libxdamage", "libxt", "libgcrypt", "icu", "libgudev", "libjpeg-turbo", "libsecret", "libsoup3", "libtasn1", "libwebp", "mesa", "sqlite", "wpebackend-fdo", "wayland", "wayland-protocols", "pango", "woff2", "zlib", "libnotify", "hicolor-icon-theme", "xdg-dbus-proxy", "openjpeg", "vulkan-loader"],
