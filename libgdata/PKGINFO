@@ -3,7 +3,7 @@
     "version": "0.18.1",
     "epoch": 0,
     "description": "GLib-based library for accessing online service APIs using the GData protocol, most notably, Google's services.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Projects/libgdata",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "libgcc", "glib2", "gcr", "gnome-online-accounts", "json-glib", "libsoup", "libxml2"],
