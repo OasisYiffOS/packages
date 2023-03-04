@@ -3,7 +3,7 @@
     "version": "3.46.0",
     "epoch": 0,
     "description": "A statistical and system-wide profiler for Linux.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "http://www.sysprof.com",
     "license": ["GPL-3.0"],
     "depends": ["glibc", "libgcc", "json-glib", "libunwind", "libdazzle", "polkit", "gtk4", "libadwaita", "desktop-file-utils"],
