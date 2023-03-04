@@ -3,7 +3,7 @@
     "version": "0.3.0",
     "epoch": 0,
     "description": "GTK+ bindings for Colord.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://www.freedesktop.org/software/colord/",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "libgcc", "colord", "gtk3", "gtk4", "gtk2"],
