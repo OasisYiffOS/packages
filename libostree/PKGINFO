@@ -3,7 +3,7 @@
     "version": "2023.1",
     "epoch": 1,
     "description": "A shared library and suite of command line tools that combines a git-like model for committing and downloading bootable filesystem trees.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://ostreedev.github.io/ostree/",
     "license": ["GPL-2.0"],
     "depends": ["dracut", "fuse", "glib2", "glibc", "libarchive", "libgcc", "systemd", "curl", "libgpg-error", "xz", "zlib", "gpgme"],
