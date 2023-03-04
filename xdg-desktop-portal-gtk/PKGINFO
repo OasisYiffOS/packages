@@ -3,7 +3,7 @@
     "version": "1.14.0",
     "epoch": 0,
     "description": "A backend implementation for xdg-desktop-portal that is using GTK and various pieces of GNOME infrastructure.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://github.com/flatpak/xdg-desktop-portal-gtk",
     "license": ["LGPL-2.1"],
     "depends": ["dbus", "fontconfig", "gdk-pixbuf2", "glib2", "glibc", "gsettings-desktop-schemas", "gtk3", "libgcc", "xdg-desktop-portal"],
