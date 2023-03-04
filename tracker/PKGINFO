@@ -3,7 +3,7 @@
     "version": "3.4.2",
     "epoch": 1,
     "description": "The file indexing and search provider used in the GNOME desktop environment.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gnome.pages.gitlab.gnome.org/tracker/",
     "license": ["GPL-2.0"],
     "depends": ["glib2", "glibc", "libgcc", "icu", "sqlite", "json-glib", "libsoup3", "gobject-introspection"],
