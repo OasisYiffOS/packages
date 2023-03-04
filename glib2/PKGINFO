@@ -3,7 +3,7 @@
     "version": "2.74.5",
     "epoch": 0,
     "description": "Low-level core library that forms the basis for projects such as GTK+ and GNOME.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/glib",
     "license": ["LGPL-2.1"],
     "depends": ["libffi", "util-linux", "libxslt", "pcre", "dbus", "zlib"],
