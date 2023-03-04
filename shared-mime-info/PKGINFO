@@ -3,7 +3,7 @@
     "version": "2.2",
     "epoch": 0,
     "description": "The freedesktop.org shared MIME info database.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://freedesktop.org/wiki/Software/shared-mime-info/",
     "license": ["GPL-2.0"],
     "depends": ["glibc", "glib2", "libxml2"],
