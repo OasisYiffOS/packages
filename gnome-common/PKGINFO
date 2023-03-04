@@ -3,7 +3,7 @@
     "version": "3.18.0",
     "epoch": 0,
     "description": "Common development macros for older GNOME packages.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Projects/GnomeCommon",
     "license": ["GPL-2.0"],
     "depends": ["autoconf", "automake", "gettext", "libtool"],
