@@ -3,7 +3,7 @@
     "version": "43.0",
     "epoch": 0,
     "description": "The GNOME file manager.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/action/show/Apps/Files",
     "license": ["GPL-3.0"],
     "depends": ["atk", "cairo", "glibc", "libgcc", "gdk-pixbuf2", "glib2", "gnome-autoar", "gnome-desktop", "gsettings-desktop-schemas", "gstreamer", "gst-plugins-base", "gtk3", "gvfs", "libhandy", "pango", "tracker-miners", "desktop-file-utils", "exempi", "libexif", "libportal", "adwaita-icon-theme", "libseccomp", "libadwaita", "libcloudproviders"],
