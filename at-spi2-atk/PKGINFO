@@ -3,7 +3,7 @@
     "version": "2.38.0",
     "epoch": 0,
     "description": "A library that bridges ATK to At-Spi2 D-Bus service.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/at-spi2-core",
     "license": ["LGPL-2.0"],
     "depends": ["glibc", "glib2", "dbus", "atk", "at-spi2-core"],
