@@ -3,7 +3,7 @@
     "version": "43.0",
     "epoch": 0,
     "description": "The GNOME session manager.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/gnome-session",
     "license": ["GPL-2.0"],
     "depends": ["glibc", "libgcc", "glib2", "dbus", "dconf", "gnome-control-center", "gnome-desktop", "gsettings-desktop-schemas", "gtk3", "json-glib", "libice", "libsm", "libx11", "libxcomposite", "libepoxy", "mesa", "systemd", "upower", "libsm"],
