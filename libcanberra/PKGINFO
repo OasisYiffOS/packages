@@ -3,7 +3,7 @@
     "version": "0.30",
     "epoch": 0,
     "description": "Implementation of the XDG Sound Theme and Name Specifications, for generating event sounds on free desktops, such as GNOME.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "hhttp://git.0pointer.net/libcanberra.git/",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "glib2", "alsa-lib", "gstreamer", "libvorbis", "pulseaudio", "sound-theme-freedesktop", "libtool"],
