@@ -3,7 +3,7 @@
     "version": "2.54.4",
     "epoch": 0,
     "description": "A library to render SVG images to Cairo surfaces.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Projects/LibRsvg",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "cairo", "gdk-pixbuf2", "pango", "fontconfig", "freetype2", "glib2", "harfbuzz", "libgcc", "libpng", "libxml2", "zlib"],
