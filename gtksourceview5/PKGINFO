@@ -3,7 +3,7 @@
     "version": "5.6.0",
     "epoch": 1,
     "description": "A library used for extending the GTK text functions to include syntax highlighting.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Projects/GtkSourceView",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "gtk4", "libxml2", "fribidi", "pcre2"],
