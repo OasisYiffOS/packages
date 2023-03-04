@@ -3,7 +3,7 @@
     "version": "0.10",
     "epoch": 0,
     "description": "GNOME intergration for special directories.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://freedesktop.org/wiki/Software/xdg-user-dirs/",
     "license": ["GPL-2.0"],
     "depends": ["xdg-user-dirs", "glibc", "gtk3", "glib2"],
