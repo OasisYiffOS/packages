@@ -3,7 +3,7 @@
     "version": "0.12",
     "epoch": 0,
     "description": "Libraries for building a consistent manner to notify the user through the cursor that the application is loading.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "http://www.freedesktop.org/software/startup-notification/",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "libx11", "libxcb", "xcb-util"],
