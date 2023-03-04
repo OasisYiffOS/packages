@@ -3,7 +3,7 @@
     "version": "43.0.1",
     "epoch": 0,
     "description": "Powerful graphical calculator with financial, logical and scientific modes.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Apps/Calculator",
     "license": ["GPL-3.0"],
     "depends": ["glibc", "libgcc", "glib2", "gtk4", "gtksourceview5", "libadwaita", "libgee", "libsoup3", "libxml2", "mpfr"],
