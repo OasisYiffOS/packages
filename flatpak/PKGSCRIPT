@@ -6,7 +6,7 @@ NAME="flatpak"
 VERSION="1.15.3"
 EPOCH=1
 DESC="Linux application sandboxing and distribution framework."
-GRPS=("gnome")
+GRPS=()
 URL="https://flatpak.org/"
 LICENSES=("LGPL-2.1")
 DEPENDS=("appstream" "appstream-glib" "bubblewrap" "dconf" "fuse" "gdk-pixbuf2" "glib2" "glibc" "json-glib" "libxau" "libarchive" "curl" "libgcc" "librsvg2" "libseccomp" "libxml2" "zstd" "libostree" "polkit" "systemd" "python-pyparsing" "xdg-dbus-proxy")
@@ -18,11 +18,13 @@ REPLACES=()
 
 # Source information
 SRC=("https://github.com/flatpak/flatpak/releases/download/${VERSION}/flatpak-${VERSION}.tar.xz"
-    "flathub.flatpakrepo")
+    "flathub.flatpakrepo"
+    "sysuser")
 
 SUM_TYPE="sha512"
 SUM=("7d9d62852ac61ab417e25e9e75dcf17186762e4537659c095f498089f5f2ccb2aff95d37c69fc754c477c5c162c344f9d5eaaddd6d66dce373538091002f6119"
-    "752cdb2f0f4774ac6966033edc989456764cf8fe9a2a97918c75ecfd47b2dacb567e98ede00168f780a8fc97ae6e413bb550ebd2323cb4aefb578469d9338a4d")
+    "752cdb2f0f4774ac6966033edc989456764cf8fe9a2a97918c75ecfd47b2dacb567e98ede00168f780a8fc97ae6e413bb550ebd2323cb4aefb578469d9338a4d"
+    "2d7713d1a3e62aa3d40b141f3b80c6551bfeb3a8b3987af0c0093a81719f66f45c101be8ae8ca030b5ae5613d8992de7a797301300537aeda34aa0498f74870d")
 
 # Prepare script
 function prepare() {
@@ -66,6 +68,8 @@ function postbuild() {
     install -Dt "${BUILD_DATA_ROOT}/etc/flatpak/remotes.d/" ${WORKDIR}/flathub.flatpakrepo
 
     install -d -o root -g 102 -m 750 "${BUILD_DATA_ROOT}/usr/share/polkit-1/rules.d"
+
+    install "${BUILD_DATA_ROOT}/usr/lib/sysusers.d/flatpak.conf" -m644 ${WORKDIR}/sysuser
 
     return 0
 }
