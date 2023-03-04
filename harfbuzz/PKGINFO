@@ -3,7 +3,7 @@
     "version": "4.3.0",
     "epoch": 1,
     "description": "The HarfBuzz text shaping engine.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://harfbuzz.github.io/",
     "license": ["MIT"],
     "depends": ["graphite2", "icu", "freetype2", "glib2", "cairo"],
