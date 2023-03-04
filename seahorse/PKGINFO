@@ -3,7 +3,7 @@
     "version": "41.0",
     "epoch": 0,
     "description": "A graphical interface for managing and using encryption keys. Currently it supports PGP keys (using GPG/GPGME) and SSH keys.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Apps/Seahorse",
     "license": ["GPL-2.0"],
     "depends": ["glibc", "libgcc", "gcr", "gpgme", "gnupg", "libhandy", "libpwquality", "libsecret", "libsoup", "p11-kit", "avahi", "gnome-keyring"],
