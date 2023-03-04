@@ -3,7 +3,7 @@
     "version": "3.42.1",
     "epoch": 0,
     "description": "A rewrite of gdialog, the GNOME port of dialog which allows you to display GTK+ dialog boxes from the command line and shell scripts.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Projects/Zenity",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "libgcc", "glib2", "gdk-pixbuf2", "gtk3", "libnotify", "libxslt", "webkitgtk", "libx11", "pango"],
