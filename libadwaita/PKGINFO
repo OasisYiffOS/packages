@@ -3,7 +3,7 @@
     "version": "1.2.0",
     "epoch": 0,
     "description": "Additional GTK4 UI widgets for use in developing user interfaces.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/libadwaita",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "gtk4"],
