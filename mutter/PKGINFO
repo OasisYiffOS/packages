@@ -3,7 +3,7 @@
     "version": "43.3",
     "epoch": 1,
     "description": "The window manager for GNOME. It is not invoked directly, but from GNOME Session (on a machine with a hardware accelerated video driver).",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://www.gnome.org",
     "license": ["GPL-2.0"],
     "depends": ["glibc", "libgcc", "glib2", "gnome-settings-daemon", "graphene", "libxcvt", "libxkbcommon", "pipewire", "zenity", "desktop-file-utils", "startup-notification", "libx11", "pango", "libinput", "wayland", "wayland-protocols", "xwayland", "gtk3", "xorg-server"],
