@@ -3,7 +3,7 @@
     "version": "43.0",
     "epoch": 0,
     "description": "Disk usage analyzer for GNOME.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Apps/DiskUsageAnalyzer",
     "license": ["GPL-2.0-or-later"],
     "depends": ["glib2", "gtk4", "libadwaita"],
