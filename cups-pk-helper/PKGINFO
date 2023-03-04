@@ -3,7 +3,7 @@
     "version": "0.2.6",
     "epoch": 0,
     "description": "PolicyKit helper used to configure Cups with fine-grained privileges.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://www.freedesktop.org/wiki/Software/cups-pk-helper/",
     "license": ["GPL-2.0"],
     "depends": ["glibc", "glib2", "dbus", "polkit", "cups"],
