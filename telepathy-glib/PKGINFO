@@ -3,7 +3,7 @@
     "version": "0.24.2",
     "epoch": 0,
     "description": "Library used by GLib based Telepathy components.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://telepathy.freedesktop.org",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "glib2", "dbus", "dbus-glib"],
