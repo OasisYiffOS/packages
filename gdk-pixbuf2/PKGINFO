@@ -3,7 +3,7 @@
     "version": "2.42.10",
     "epoch": 0,
     "description": "A toolkit for image loading and pixel buffer manipulation.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/gdk-pixbuf",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "libjpeg-turbo", "libpng", "shared-mime-info", "librsvg2", "libtiff"],
