@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="coreutils"
-VERSION="9.0"
+VERSION="9.1"
 EPOCH=0
 DESC="Basic Unix utilities"
 GRPS=("base")
@@ -19,14 +19,15 @@ REPLACES=()
 SRC=("https://ftp.gnu.org/gnu/coreutils/coreutils-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("9be08212891dbf48e5b22e7689dc27dac50df4631ebf29313470b72b7921f0b2aa5242917d05587785358495ca56e3b21f5b3ca81043d53cab92354da6c53a03")
+SUM=("a6ee2c549140b189e8c1b35e119d4289ec27244ec0ed9da0ac55202f365a7e33778b1dc7c4e64d1669599ff81a8297fe4f5adbcc8a3a2f75c919a43cd4b9bdfa")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    ./configure --prefix=/usr                           \
-                --enable-no-install-program=kill,uptime
+    # Our build environment *technically* runs as root
+    FORCE_UNSAFE_CONFIGURE=1 ./configure --prefix=/usr                           \
+                			 --enable-no-install-program=kill,uptime
 
     return 0
 }
@@ -48,14 +49,9 @@ function postbuild() {
 
     DESTDIR="${BUILD_DATA_ROOT}" make install
 
-    mv -v ${BUILD_DATA_ROOT}/usr/bin/chroot ${BUILD_DATA_ROOT}/usr/sbin
-
     mkdir -pv ${BUILD_DATA_ROOT}/usr/share/man/man8
     mv -v ${BUILD_DATA_ROOT}/usr/share/man/man1/chroot.1 ${BUILD_DATA_ROOT}/usr/share/man/man8/chroot.8
     sed -i 's/"1"/"8"/' ${BUILD_DATA_ROOT}/usr/share/man/man8/chroot.8
-
-    # Get around dangerous sbin link
-    unlink ${BUILD_DATA_ROOT}/usr/sbin
 
     return 0
 }
