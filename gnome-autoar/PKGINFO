@@ -3,7 +3,7 @@
     "version": "0.4.3",
     "epoch": 0,
     "description": "Framework for automatic archive extraction, compression, and management.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/gnome-autoar",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "libgcc", "glib2", "gtk3", "libarchive"],
