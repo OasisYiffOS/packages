@@ -3,7 +3,7 @@
     "version": "43.0",
     "epoch": 0,
     "description": "A simple clock application for GNOME. It includes world clocks, alarms, a stopwatch and a timer.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Apps/Clocks",
     "license": ["GPL-2.0"],
     "depends": ["glib2", "glibc", "geoclue", "geocode-glib", "gsound", "gtk4", "libadwaita", "libgweather", "gnome-desktop", "desktop-file-utils", "libcanberra"],
