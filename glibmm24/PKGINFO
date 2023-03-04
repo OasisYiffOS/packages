@@ -3,7 +3,7 @@
     "version": "2.66.5",
     "epoch": 1,
     "description": "A set of C++ bindings for GLib.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "http://www.gtkmm.org/en/index.html",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "libgcc", "glib2", "libsigc++"],
