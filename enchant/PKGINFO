@@ -3,7 +3,7 @@
     "version": "2.3.3",
     "epoch": 0,
     "description": "A generic interface into various existing spell checking libraries.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://github.com/AbiWord/enchant",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "glib2", "libgcc"],
