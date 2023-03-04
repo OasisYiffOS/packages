@@ -3,7 +3,7 @@
     "version": "0.8",
     "epoch": 2,
     "description": "A system which facilitates service discovery on a local network via the mDNS/DNS-SD protocol suite.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "http://avahi.org",
     "license": ["LGPL-2.1"],
     "depends": ["coreutils", "dbus", "expat", "glibc", "libcap", "libdaemon", "shadow", "libevent"],
