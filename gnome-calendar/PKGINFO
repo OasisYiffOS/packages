@@ -3,7 +3,7 @@
     "version": "43.0",
     "epoch": 0,
     "description": "Simple and beautiful calendar application designed to perfectly fit the GNOME desktop.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Apps/Calendar",
     "license": ["GPL-3.0"],
     "depends": ["evolution-data-server", "glibc", "libgcc", "glib2", "gtk4", "graphene", "gsettings-desktop-schemas", "geoclue", "libadwaita", "libgweather", "libical", "libsoup", "pango"],
