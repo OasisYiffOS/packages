@@ -3,7 +3,7 @@
     "version": "0.40.0",
     "epoch": 0,
     "description": "A library that provides low-level pixel manipulation features such as image compositing and trapezoid rasterization.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://www.cairographics.org/",
     "license": ["MIT"],
     "depends": ["glibc"],
