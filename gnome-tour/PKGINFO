@@ -3,7 +3,7 @@
     "version": "43.0",
     "epoch": 0,
     "description": "A guided tour and greeter for GNOME.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/gnome-tour",
     "license": ["GPL-2.0", "LGPL-2.1", "MIT"],
     "depends": ["glibc", "libgcc", "glib2", "gtk4", "libadwaita", "graphene", "pango", "cairo", "gdk-pixbuf2", "desktop-file-utils"],
