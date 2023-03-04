@@ -3,7 +3,7 @@
     "version": "3.42.2",
     "epoch": 0,
     "description": "A Python 3 module providing Python bindings to the GObject class from GLib.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://pygobject.readthedocs.io/en/latest/",
     "license": ["LGPL-2.1"],
     "depends": ["python-pycairo", "python", "gobject-introspection"],
