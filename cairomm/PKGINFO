@@ -3,7 +3,7 @@
     "version": "1.14.3",
     "epoch": 0,
     "description": "A C++ interface to Cairo.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://www.cairographics.org",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "libgcc", "cairo", "libsigc++"],
