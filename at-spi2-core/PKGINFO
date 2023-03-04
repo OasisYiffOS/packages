@@ -3,7 +3,7 @@
     "version": "2.46.0",
     "epoch": 0,
     "description": "Provides a Service Provider Interface for the Assistive Technologies available on the GNOME platform and a library against which applications can be linked.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/at-spi2-core",
     "license": ["LGPL-2.0"],
     "depends": ["glibc", "glib2", "dbus", "libx11", "libxi", "libxtst"],
