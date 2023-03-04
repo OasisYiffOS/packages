@@ -3,7 +3,7 @@
     "version": "1.0.3",
     "epoch": 0,
     "description": "Small library for playing system sounds.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Projects/GSound",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "glib2", "libcanberra"],
