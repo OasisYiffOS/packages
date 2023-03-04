@@ -3,7 +3,7 @@
     "version": "43.1",
     "epoch": 0,
     "description": "A library that provides an API shared by several applications on the GNOME Desktop.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/gnome-desktop",
     "license": ["GPL-2.0", "LGPL-2.1"],
     "depends": ["glibc", "libgcc", "bubblewrap", "cairo", "gdk-pixbuf2", "gsettings-desktop-schemas", "gtk3", "gtk4", "libseccomp", "xkeyboard-config", "shared-mime-info", "systemd", "libxinerama"],
