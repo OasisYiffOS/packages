@@ -3,7 +3,7 @@
     "version": "3.36.0",
     "epoch": 0,
     "description": "Session framework for the GNOME desktop environment that makes it easy to manage, install and generate color profiles.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/gnome-color-manager",
     "license": ["GPL-2.0"],
     "depends": ["glibc", "libgcc", "glib2", "gtk3", "gdk-pixbuf2", "cairo", "colord", "little-cms2", "pango", "shared-mime-info", "libcanberra", "libexif"],
