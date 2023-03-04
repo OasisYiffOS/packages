@@ -3,7 +3,7 @@
     "version": "3.36.0",
     "epoch": 0,
     "description": "An implementation of the draft Desktop Menu Specification from freedesktop.org. It also contains the GNOME menu layout configuration files and .directory files.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/gnome-menus",
     "license": ["LGPL-2.1"],
     "depends": ["glibc", "glib2"],
