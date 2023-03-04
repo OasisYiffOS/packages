@@ -3,7 +3,7 @@
     "version": "2.6.4",
     "epoch": 0,
     "description": "Library for loading user interfaces from XML at runtime.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://www.gnome.org",
     "license": ["LGPL-2.0"],
     "depends": ["atk", "cairo", "fontconfig", "freetype2", "gdk-pixbuf2", "glib2", "glibc", "gtk2", "harfbuzz", "libxml2", "pango"],
