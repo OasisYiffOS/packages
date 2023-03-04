@@ -3,7 +3,7 @@
     "version": "0.15.5",
     "epoch": 1,
     "description": "Library that aggregates people from multiple sources (e.g. Telepathy connection managers and eventually evolution data server, Facebook, etc.) to create meta-contacts.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Apps/Folks",
     "license": ["LGPL-2.1"],
     "depends": ["evolution-data-server", "glibc", "glib2", "libgee", "telepathy-glib"],
