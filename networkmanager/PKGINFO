@@ -3,7 +3,7 @@
     "version": "1.39.2",
     "epoch": 0,
     "description": "Networking that Just Works — A network management daemon.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.freedesktop.org/NetworkManager/NetworkManager",
     "license": ["LGPL-2.1"],
     "depends": ["jansson", "libndp", "curl", "dhclient", "iptables", "newt", "wpa_supplicant", "gnutls", "systemd", "nss", "gobject-introspection", "python-pycairo", "python-pygobject", "polkit", "modemmanager", "libpsl"],
