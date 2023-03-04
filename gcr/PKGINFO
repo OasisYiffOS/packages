@@ -3,7 +3,7 @@
     "version": "3.41.1",
     "epoch": 1,
     "description": "Libraries used for displaying certificates and accessing key stores.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/gcr",
     "license": ["LGPL-2.0"],
     "depends": ["glibc", "glib2", "libgcrypt", "p11-kit", "libxinerama", "gnupg", "libsecret", "libxi"],
