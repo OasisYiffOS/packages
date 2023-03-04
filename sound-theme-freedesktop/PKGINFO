@@ -3,7 +3,7 @@
     "version": "0.8",
     "epoch": 0,
     "description": "Sound themes for the desktop.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "http://www.freedesktop.org/wiki/Specifications/sound-theme-spec",
     "license": ["GPL-2.0", "LGPL-2.0"],
     "depends": ["coreutils"],
