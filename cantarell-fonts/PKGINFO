@@ -3,7 +3,7 @@
     "version": "0.303.1",
     "epoch": 0,
     "description": "A contemporary Humanist sans serif. Optimised for legibility at small sizes and the preferred font family for GNOME.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://gitlab.gnome.org/GNOME/cantarell-fonts",
     "license": ["OFL-1.1"],
     "depends": [],
