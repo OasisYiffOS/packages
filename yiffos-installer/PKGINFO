@@ -1,0 +1,16 @@
+{
+    "name": "yiffos-installer-gtk",
+    "version": "2023.03.03",
+    "epoch": 0,
+    "description": "The gtk4/libadwaita yiffOS installer.",
+    "groups": [],
+    "url": "https://git.yiffos.gay/Circle/os-installer",
+    "license": ["GPL-3.0-or-later"],
+    "depends": ["gnome-desktop", "gtk4", "libadwaita", "libgweather", "python-yaml", "udisks", "vte", "systemd", "epiphany", "gnome-disk-utility", "gnome-control-center"],
+    "optional_depends": [],
+    "make_depends": ["meson"],
+    "provides": ["yiffos-installer-gtk"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
