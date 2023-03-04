@@ -3,7 +3,7 @@
     "version": "0.40.0",
     "epoch": 0,
     "description": "A low-level configuration system.",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://wiki.gnome.org/Projects/dconf",
     "license": ["LGPL-2.1", "GPL-2.0", "GPL-3.0"],
     "depends": ["glibc", "libgcc", "glib2", "dbus"],
