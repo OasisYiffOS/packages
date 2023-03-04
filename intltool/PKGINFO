@@ -3,7 +3,7 @@
     "version": "0.51.0",
     "epoch": 1,
     "description": "Internationalization tool used for extracting translatable strings from source code",
-    "groups": [],
+    "groups": ["gnome"],
     "url": "https://freedesktop.org/wiki/Software/intltool/",
     "license": ["GPL-2.0"],
     "depends": ["perl-xml-parser"],
