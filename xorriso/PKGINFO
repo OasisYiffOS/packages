@@ -1,0 +1,16 @@
+{
+    "name": "xorriso",
+    "version": "1.5.4",
+    "epoch": 0,
+    "description": "Multitool for Rock Ridge enhanced ISO 9660 filesystems.",
+    "groups": [],
+    "url": "https://www.gnu.org/software/xorriso/",
+    "license": ["GPL-3-or-later"],
+    "depends": ["glibc", "readline", "zlib"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["xorriso", "mkisofs", "cdrecord"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

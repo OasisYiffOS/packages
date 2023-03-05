@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="xorriso"
+VERSION="1.5.4"
+_PL=".pl02"
+EPOCH=0
+DESC="Multitool for Rock Ridge enhanced ISO 9660 filesystems."
+GRPS=()
+URL="https://www.gnu.org/software/xorriso/"
+LICENSES=("GPL-3-or-later")
+DEPENDS=("glibc" "readline" "zlib")
+OPT_DEPENDS=()
+PROVIDES=("xorriso" "mkisofs" "cdrecord")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.gnu.org/software/xorriso/xorriso-${VERSION}${_PL}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ccb1acd558f559834864d3cf0564e50a8409e25fa1e199332cfc000d4d4f837533c8014b98134b5a50f14a52c80572c96570627e7aba8c5b1704e2432007061a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make clean
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
