@@ -1,0 +1,16 @@
+{
+    "name": "gnome-kiosk",
+    "version": "43.0",
+    "epoch": 0,
+    "description": "Mutter based compositor for kiosks.",
+    "groups": [],
+    "url": "https://gitlab.gnome.org/GNOME/gnome-kiosk",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glibc", "glib2", "gnome-desktop", "gnome-settings-daemon", "gsettings-desktop-schemas", "ibus", "libx11", "libgcc", "libglvnd", "mutter", "systemd"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["gnome-kiosk"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

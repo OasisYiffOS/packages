@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="gnome-kiosk"
+VERSION="43.0"
+_MAJOR_VERSION="43"
+EPOCH=0
+DESC="Mutter based compositor for kiosks."
+GRPS=()
+URL="https://gitlab.gnome.org/GNOME/gnome-kiosk"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glibc" "glib2" "gnome-desktop" "gnome-settings-daemon" "gsettings-desktop-schemas" "ibus" "libx11" "libgcc" "libglvnd" "mutter" "systemd")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("gnome-kiosk")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gnome-kiosk/${_MAJOR_VERSION}/gnome-kiosk-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("95a4bcf8ec1fb07b2a6f1c4a24bc73083d785edca58f99d14d4b92369228c3c91943df8fcaa411c9e7b3f757f9944ecfd781076e07c6f697d0b30895669993e3")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd	  build
+
+    meson setup --prefix=/usr ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
