@@ -20,10 +20,12 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://download.gnome.org/sources/gdm/${_MAJOR_VERSION}/gdm-${VERSION}.tar.xz")
+SRC=("https://download.gnome.org/sources/gdm/${_MAJOR_VERSION}/gdm-${VERSION}.tar.xz"
+"sysusers")
 
 SUM_TYPE="sha512"
-SUM=("e3eaa7a50e224939b6e535963171a800bb175ed9480a88ce14034929760dd579b91c4f3117be6a4404b2de13afdee881dafe09695eebf42872d4a13fbc5fb8ba")
+SUM=("e3eaa7a50e224939b6e535963171a800bb175ed9480a88ce14034929760dd579b91c4f3117be6a4404b2de13afdee881dafe09695eebf42872d4a13fbc5fb8ba"
+"06f736d1c7895da36ad1d922c096260b461339eb3126072d0df29d21b574c9ee49b3453988af931273f9980ae6ae3205632b1ae8a22fc7e6e2d6b26e34116ac8")
 
 # Prepare script
 function prepare() {
@@ -56,6 +58,8 @@ function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}/build"
 
     DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    install -m644 -D ${WORKDIR}/sysusers "${BUILD_DATA_ROOT}/usr/lib/sysusers.d/gdm.conf"
 
     return 0
 }
