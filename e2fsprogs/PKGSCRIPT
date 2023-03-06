@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="e2fsprogs"
-VERSION="1.46.5"
+VERSION="1.47.0"
 EPOCH=0
 DESC="Utilities for the ext2, ext3, and ext4 filesystems"
 GRPS=()
@@ -11,6 +11,7 @@ URL="http://e2fsprogs.sourceforge.net/"
 LICENSES=("LGPL-2.0" "GPL-2.0")
 DEPENDS=()
 OPT_DEPENDS=()
+MK_DEPENDS=("texinfo")
 PROVIDES=("e2fsprogs")
 CONFLICTS=()
 REPLACES=()
@@ -19,7 +20,7 @@ REPLACES=()
 SRC=("https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v${VERSION}/e2fsprogs-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("1a3496cb6ac575c7a5c523cc4eede39bc77c313a6d1fea2d303fc967792d75d94e42d7821e1a61b7513509320aae4a7170506decf5753ddbd1dda9d304cc392e")
+SUM=("4f03a469d03cb0f0656bd17c64d944606fb25e68002e3e42c278f3775fee6bf776cc2061ae378b5df4f167a5c33444490111fdcbb140e0320445706f9d048dd0")
 
 # Prepare script
 function prepare() {

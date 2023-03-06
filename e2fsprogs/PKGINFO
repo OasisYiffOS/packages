@@ -1,6 +1,6 @@
 {
     "name": "e2fsprogs",
-    "version": "1.46.5",
+    "version": "1.47.0",
     "epoch": 0,
     "description": "Utilities for the ext2, ext3, and ext4 filesystems",
     "groups": [],
@@ -8,7 +8,7 @@
     "license": ["LGPL-2.0", "GPL-2.0"],
     "depends": [],
     "optional_depends": [],
-    "make_depends": [],
+    "make_depends": ["texinfo"],
     "provides": ["e2fsprogs"],
     "conflicts": [],
     "replaces": [],
