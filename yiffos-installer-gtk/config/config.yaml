@@ -21,7 +21,8 @@ suggested_languages:
     - 'zh'
 
 welcome_page:
-    text    : 'Welcome to yiffOS!'
+    logo    : '/etc/os-installer/bits/logo.png'
+    text    : 'Welcome to the yiffOS installer! This is an early W.I.P preview of yiffOS 0.2.0, expect bugs and breakages.'
     usage   : yes
 
 minimum_disk_size: 10

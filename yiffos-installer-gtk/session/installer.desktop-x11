@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Installer Session
+Comment=yiffOS GTK Installer
+Exec=/usr/bin/dbus-run-session -- mutter --x11 -- os-installer
+Type=Application
+DesktopNames=GNOME;
+X-GDM-SessionRegisters=true
