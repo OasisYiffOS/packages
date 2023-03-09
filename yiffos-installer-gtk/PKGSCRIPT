@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="yiffos-installer-gtk"
-VERSION="2023.03.05"
+VERSION="2023.03.08"
 _COMMIT_HASH="768f6f0c1651d12e52ba0e2f764160ce0473d79c"
 EPOCH=0
 DESC="The gtk4/libadwaita yiffOS installer."
 GRPS=()
 URL="https://git.yiffos.gay/Circle/os-installer"
 LICENSES=("GPL-3.0-or-later")
-DEPENDS=("gnome-desktop" "gtk4" "libadwaita" "libgweather" "python-yaml" "udisks" "vte" "systemd" "epiphany" "gnome-disk-utility" "gnome-control-center")
+DEPENDS=("gnome-desktop" "gtk4" "libadwaita" "libgweather" "python-yaml" "udisks" "vte" "systemd" "epiphany" "gnome-disk-utility" "gnome-control-center" "gdm")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson")
 PROVIDES=("yiffos-installer-gtk")
@@ -31,23 +31,25 @@ SRC=("https://git.yiffos.gay/Circle/os-installer/archive/${_COMMIT_HASH}.tar.gz"
 "session/installer.desktop-x11"
 "session/installer"
 "session/custom.conf"
-"session/sysuser")
+"session/sysusers"
+"session/tmpfiles")
 
 SUM_TYPE="sha512"
 SUM=("e3e7eb6b9dab538df65fb4aa4027092e6e28bc41877192e2a10d9fe0a65a4e0e806ef1c31b76befcc47c5f944d33d43452eb348fb8660b874bf6ffe7aeee0557"
-"d31e41b41225ad75d8c660d510f15e693495b581fa4c48936240c0e68fdc8384f347a264430560d58654ddd56273d9a7632f2456535116880e9e3c718761be82"
-"b79c5bac05084e61e6a22f486ba14f52b43bbba581568295e81a890bd539b2b755a4ba2907b3163968c54f2bc6dfb8c5c6fa281b445ca14d1f26c1487cf17d25"
+"101bb9282aa55409da642aac7871aabe0530f4bac884cbcd752224367e70eb2a5b7a75a4c65c1948028e4cb34f8c672c29b5bee2732efcc6d28067c3ec3c6a21"
+"24eada4f2e5ae14dc2b0efbc8a0355c76d3167435f59388f4b374b4380e9111ddc9ab5687a8664147de363f65e60cdbd2da0aec1ab899f538382ba3c9643c8bd"
 "c11cc6dc46586e0161abc9ef900288d74d7e143906ca6b06a282b45aaf2309f327036c278df80508dec8f170877734da912bf01b09f3232c7186a94048554084"
-"e8279d4da7cb5f7ca7dc2398bc56ab37431442e1d6611885fd6d7904b826140eef094627d56b3b869be60eef6055af6564dc0d27f0cafb990bb7b786bf0ca6c8"
+"8e80ec17de4e77cf026f62a370a2d1173ddda82cb0c134773a33ba122d166ceaacdef5a345706b006d977c77d4acf109e8a3f5f8d8c575f330ce29d8d0738df2"
 "2abe65446e56908733e2be8ce8aed4788e55591b5fc5323c2ead8d91dc973e61a4a2ab2ff1284a80f0c16280b4965d37fd45104aeabdf75510a95239b8ef0066"
-"327a00781cee65feeb967199566d4224c165e201ced094f63a1570dfcbb255bde5cbb6d943eb6ea06dce10017b11eb0101afa420c0d7a7d605f52904e12c5149"
+"861e060f23b0cbadfdbaf68c9ecdf7fe705641ce9886076200a5612005803b2888cc08e92dd325c43d80527ba936bece926d1069e0edde397898164ad5897f07"
 "9f8cdf7736c7f0167f0f93637d6fdec13120b294cc9ea8f5712a7b69a30d9139027c3a73d4d51a23cf65770137549ebf3cefb8f3ae0108ff685374627ad4a94b"
 "2f687623ae89d7f97a0145ee6f79e9dac3e112d73bc1c5a67a47b148939b7423f894a8b24d74e001969be49a48d39a2061906e663d695c96bdb4fbc049692d1f"
 "7d59f5695d26f31cb7f98fff149cc2a3db4f347a0e62dbb3625c03e490784775cb3f0a08a9dd39f309213ceeabb0d17d76fea51e47f80bf4f7d7c7e61268371a"
 "95cd438264f8bd7585ccbed95fc315bd7586b70e3d0c9bcda52536503d28d955a532535178094d1374c939d35a46f97f8da70f633a1a0c5184935fbe31eea782"
 "3495ff68876dafdec2d4c46915f8b0ec918df4095b28868c4c856b99b3c8f48af4810f0bc7d273aa435bf6ae49fc6b77b98c2b2b5ea7cc9217ee1f663602faa3"
 "be6f7a2900f3935afcee0adda9849ae2cfed1e0c1c6c9d7a887cd2bfb9ae59a0dac8a17066da67c4243c9954259217cfc91bec238113e4c58becb0df6fa9eead"
-"a755401f0234b7a7fae8cd92f435b50de176eb125d18eb22697a0082a904add20ff887af50699b77a469a2f4e684bc9def679be011e9ee628dc83fe7bf53ddf3")
+"fd92ef4adcb1c6c0ac975005e89c17939caf5dc5259e083ee4c1afd1e058cb811542f22877c7a830a8b1614364f5a8c430216b779ebd4ca3499a6073db6a7253"
+"0e34371d9b4a56c280e192a8bb732643c06e0fd8c911159b4e94ad8ec77cc0a3a0ec34cbfaa1406ea0f82215a543e7be03a30d2ee8aeb44d2430f260193bd15d")
 
 # Prepare script
 function prepare() {
@@ -93,7 +95,8 @@ function postbuild() {
     install -m644 -D "${WORKDIR}"/installer ${BUILD_DATA_ROOT}/var/lib/AccountsService/users/installer
     install -m644 -D "${WORKDIR}"/custom.conf ${BUILD_DATA_ROOT}/etc/gdm/custom.conf
 
-    install -m644 -D ${WORKDIR}/sysuser "${BUILD_DATA_ROOT}/usr/lib/sysusers.d/installer.conf"
+    install -m644 -D ${WORKDIR}/sysusers "${BUILD_DATA_ROOT}/usr/lib/sysusers.d/installer.conf"
+    install -m644 -D ${WORKDIR}/tmpfiles "${BUILD_DATA_ROOT}/usr/lib/tmpfiles.d/installer.conf"
 
     return 0
 }

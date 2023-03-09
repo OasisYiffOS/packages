@@ -1,6 +1,9 @@
 #!/usr/bin/bash
 
+# Ensure CA certs exists
+sudo /usr/sbin/make-ca -gfx
+
 # Sync repos before starting install
-bulge s
+sudo bulge s
 
 exit 0
