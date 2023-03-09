@@ -12,7 +12,7 @@ URL="https://wiki.gnome.org/Projects/GDM"
 LICENSES=("GPL-2.0") 
 DEPENDS=("glibc" "libgcc" "glib2" "accountsservice" "dconf" "gdk-pixbuf2" "gnome-keyring" "gnome-session" "gnome-settings-daemon"
 "gtk3" "iso-codes" "keyutils" "libx11" "libxau" "libxdmcp" "libcanberra" "libgudev" "libxcb" "pam" "systemd" "util-linux" "libdaemon"
-"cantarell-fonts" "gcr" "libtool")
+"cantarell-fonts" "gcr" "libtool" "gnome-shell" "libxi")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "itstool")
 PROVIDES=("gdm")
