@@ -14,7 +14,7 @@ DEPENDS=("glibc" "libgcc" "glib2" "accountsservice" "colord-gtk" "gnome-online-a
 "gsound" "libgtop2" "libpwquality" "krb5" "shared-mime-info" "udisks" "cups" "gnome-bluetooth" "ibus" "libhandy"
 "modemmanager" "libnma" "cups-pk-helper" "gnome-color-manager" "sound-theme-freedesktop" "gcr" "gdk-pixbuf2"
 "cairo" "alsa-lib" "gnome-desktop" "gsettings-desktop-schemas" "gnutls" "gtk3" "gtk4" "iso-codes" "libx11" "libxi"
-"libadwaita" "libepoxy" "libsecret" "libwacom" "libxml2" "pango" "polkit" "pulseaudio" "samba")
+"libadwaita" "libepoxy" "libsecret" "libwacom" "libxml2" "pango" "polkit" "pulseaudio" "samba" "gcr")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja")
 PROVIDES=("gnome-control-center")
