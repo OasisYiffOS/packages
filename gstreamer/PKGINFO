@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://gstreamer.freedesktop.org",
     "license": ["LGPL-2.0"],
-    "depends": ["glibc", "libelf", "glib2", "libcap", "libunwind"],
+    "depends": ["glibc", "elfutils", "glib2", "libcap", "libunwind"],
     "optional_depends": ["gtk3"],
     "make_depends": ["gobject-introspection", "meson", "ninja"],
     "provides": ["gstreamer"],
