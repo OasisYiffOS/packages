@@ -10,8 +10,8 @@ GRPS=()
 URL="https://flatpak.org/"
 LICENSES=("LGPL-2.1")
 DEPENDS=("appstream" "appstream-glib" "bubblewrap" "dconf" "fuse" "gdk-pixbuf2" "glib2" "glibc" "json-glib" "libxau" "libarchive" "curl" "libgcc" "librsvg2" "libseccomp" "libxml2" "zstd" "libostree" "polkit" "systemd" "python-pyparsing" "xdg-dbus-proxy")
-OPT_DEPENDS=()
-MK_DEPENDS=("meson" "ninja" "gobject-introspection" "xmlto" "docbook-xsl" "docbook-xml")
+OPT_DEPENDS=("gdm")
+MK_DEPENDS=("meson" "ninja" "gobject-introspection" "xmlto" "docbook-xsl" "docbook-xml" "gtk-doc")
 PROVIDES=("flatpak")
 CONFLICTS=()
 REPLACES=()
@@ -39,6 +39,7 @@ function prepare() {
           -Dselinux_module=disabled		\
           -Dsystem_bubblewrap=bwrap		\
           -Dsystem_dbus_proxy=xdg-dbus-proxy	\
+          -Dgdm_env_file=true                   \
           -Dtests=false				\
           ..
 
