@@ -1,6 +1,6 @@
 {
     "name": "bluez",
-    "version": "5.64",
+    "version": "5.66",
     "epoch": 0,
     "description": "The Bluetooth protocol stack for Linux.",
     "groups": [],

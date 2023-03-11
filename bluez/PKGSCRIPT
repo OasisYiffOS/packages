@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="bluez"
-VERSION="5.64"
+VERSION="5.66"
 EPOCH=0
 DESC="The Bluetooth protocol stack for Linux."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://www.kernel.org/pub/linux/bluetooth/bluez-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("f11f9974b29c5c6fce3890d7e42425c1cb02e42c1b8f49c5cc4b249234e67b64317d0e5e82721e2fbf1b53269c8569a9c869d59ce42b5e927f6622f0753e53cd")
+SUM=("ed0994932687eacf27207867366671b323671f5d5199daf36ea5eff8f254f2bc99ef989ef7df9883b35c06f2af60452be8bad0a06109428a4717cf2b247b4865")
 
 # Prepare script
 function prepare() {
