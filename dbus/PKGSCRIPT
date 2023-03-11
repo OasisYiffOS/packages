@@ -3,23 +3,24 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="dbus"
-VERSION="1.12.20"
+VERSION="1.14.6"
 EPOCH=0
 DESC="A message bus system"
 GRPS=()
 URL="https://www.freedesktop.org/wiki/Software/dbus"
 LICENSES=("GPL-2.0-or-later")
-DEPENDS=("expat" "systemd")
+DEPENDS=("glibc" "expat" "systemd")
 OPT_DEPENDS=()
+MK_DEPENDS=("xmlto" "docbook-xml" "docbook-xsl")
 PROVIDES=("dbus")
 CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://dbus.freedesktop.org/releases/dbus/dbus-${VERSION}.tar.gz")
+SRC=("https://dbus.freedesktop.org/releases/dbus/dbus-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("0964683bc6859374cc94e42e1ec0cdb542cca67971c205fcba4352500b6c0891665b0718e7d85eb060c81cb82e3346c313892bc02384da300ddd306c7eef0056")
+SUM=("eadf5dabc95f242a26350708e4d7b78e4bef68b056189741f1a330c5976e0ce08e8520a57518d60dea0576b76eb5955dd9d8ddaa01e4a305078641e47c8e600a")
 
 # Prepare script
 function prepare() {
@@ -30,7 +31,7 @@ function prepare() {
                 --localstatedir=/var                            \
                 --disable-static                                \
                 --disable-doxygen-docs                          \
-                --disable-xml-docs                              \
+                --enable-user-session                           \
                 --docdir=/usr/share/doc/dbus-${VERSION}         \
                 --with-console-auth-dir=/run/console            \
                 --with-system-pid-file=/run/dbus/pid            \
