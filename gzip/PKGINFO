@@ -1,6 +1,6 @@
 {
     "name": "gzip",
-    "version": "1.11",
+    "version": "1.12",
     "epoch": 0,
     "description": "Data compression utility originally made as a replacement for compress",
     "groups": ["base"],

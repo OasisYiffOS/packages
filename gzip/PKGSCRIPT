@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gzip"
-VERSION="1.11"
+VERSION="1.12"
 EPOCH=0
 DESC="Data compression utility originally made as a replacement for compress"
 GRPS=("base")
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://ftp.gnu.org/gnu/gzip/gzip-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("af297c173297d588722f4d0f140a2ae4d3ea3861464191772fb2e11e47be43644b5ae01ed63f0051d6eb4751666284de53e14c4dd9f0c1d25f61cf676fbf11f3")
+SUM=("116326fe991828227de150336a0c016f4fe932dfbb728a16b4a84965256d9929574a4f5cfaf3cf6bb4154972ef0d110f26ab472c93e62ec9a5fd7a5d65abea24")
 
 # Prepare script
 function prepare() {
