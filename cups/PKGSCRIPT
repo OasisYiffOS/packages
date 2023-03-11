@@ -17,10 +17,12 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://github.com/OpenPrinting/cups/releases/download/v${VERSION}/cups-${VERSION}-source.tar.gz")
+SRC=("https://github.com/OpenPrinting/cups/releases/download/v${VERSION}/cups-${VERSION}-source.tar.gz"
+"sysusers")
 
 SUM_TYPE="sha512"
-SUM=("07474643bffe11c79b3226b70d28f1bb803dc19daa10711938cea303feacdcce3945ba8ff0334d94fdd5922ea7d6bf37a28c1ea62cce8ce946c2f90a0faf002f")
+SUM=("07474643bffe11c79b3226b70d28f1bb803dc19daa10711938cea303feacdcce3945ba8ff0334d94fdd5922ea7d6bf37a28c1ea62cce8ce946c2f90a0faf002f"
+"b9c94a8c8c8c71af295d673821956d00f45889ee66f1007eaba1a6a5169c452f046ad6d2c433b34d1813a9cac671f2f0601c2331e79f2501514759e656bae01d")
 
 # Prepare script
 function prepare() {
@@ -68,6 +70,8 @@ session include system-session
 
 # End /etc/pam.d/cups
 EOF
+
+    install -m644 -D ${WORKDIR}/sysusers "${BUILD_DATA_ROOT}/usr/lib/sysusers.d/cups.conf"
 
     return 0
 }

@@ -17,10 +17,12 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-${VERSION}.tar.gz")
+SRC=("https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-${VERSION}.tar.gz"
+"sysusers")
 
 SUM_TYPE="sha512"
-SUM=("c4b79ef3a05b96bfc477ffb31f734635bffd5be213ab58e043111c3232dbe999ff24665fa1069518237cffa5126ded0dda8984e1b8f098f4f09b8c1dae20e604")
+SUM=("c4b79ef3a05b96bfc477ffb31f734635bffd5be213ab58e043111c3232dbe999ff24665fa1069518237cffa5126ded0dda8984e1b8f098f4f09b8c1dae20e604"
+"f2720d7dc98586c2768e656e54e80e98d8a0bf1d0dd6e653e6576c6f5550f155f180ab7d0099fb50d35e98eabb6b95da8769f49bf5c1897dc62605fc2842fd30")
 
 # Prepare script
 function prepare() {
@@ -142,6 +144,8 @@ Restart=always
 WantedBy=multi-user.target
 
 EOF
+
+    install -m644 -D ${WORKDIR}/sysusers "${BUILD_DATA_ROOT}/usr/lib/sysusers.d/openssh.conf"
 
     return 0
 }

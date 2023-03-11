@@ -17,10 +17,12 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://www.freedesktop.org/software/colord/releases/colord-${VERSION}.tar.xz")
+SRC=("https://www.freedesktop.org/software/colord/releases/colord-${VERSION}.tar.xz"
+"sysusers")
 
 SUM_TYPE="sha512"
-SUM=("d55d3322199d0bfee74eee9e183c9246ec33e755f0144d96087acb3c43ab5a3d872086fcef9f29cdd2295be71daac703cdf90ad10bf183622fdd84347e7af123")
+SUM=("d55d3322199d0bfee74eee9e183c9246ec33e755f0144d96087acb3c43ab5a3d872086fcef9f29cdd2295be71daac703cdf90ad10bf183622fdd84347e7af123"
+"4852ffdbf8f882b86782043b025cae394f695d9b16b05c6e8ebdfa7b7365654ce3a3d1fa1147b00d4502863adfc1ed0d83b3184d9e9a0d4c74d3e6569dc69ccc")
 
 # Prepare script
 function prepare() {
@@ -61,6 +63,8 @@ function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}/build"
 
     DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    install -m644 -D ${WORKDIR}/sysusers "${BUILD_DATA_ROOT}/usr/lib/sysusers.d/colord.conf"
 
     return 0
 }

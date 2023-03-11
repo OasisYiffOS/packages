@@ -18,11 +18,13 @@ REPLACES=()
 
 # Source information
 SRC=("https://github.com/lathiat/avahi/releases/download/v${VERSION}/avahi-${VERSION}.tar.gz"
-"avahi-0.8-ipv6_race_condition_fix-1.patch")
+"avahi-0.8-ipv6_race_condition_fix-1.patch"
+"sysusers")
 
 SUM_TYPE="sha512"
 SUM=("c6ba76feb6e92f70289f94b3bf12e5f5c66c11628ce0aeb3cadfb72c13a5d1a9bd56d71bdf3072627a76cd103b9b056d9131aa49ffe11fa334c24ab3b596c7de"
-"e4ed3494d3bbcf5f1956e5d43988ad5d726a32ea298e28f5ac15d2ff4a64e099b3cf2336db35569173a5b7020315c552d3b8f4aded92d7fe5781c41d8a1e06ce")
+"e4ed3494d3bbcf5f1956e5d43988ad5d726a32ea298e28f5ac15d2ff4a64e099b3cf2336db35569173a5b7020315c552d3b8f4aded92d7fe5781c41d8a1e06ce"
+"d479078537d3702036522bcd4b4e5fcc7e80d1c312285550d10a24c11e068198d490e6ab69b6cc564b2fbec227043cac63f1e36de822d00ec5123aad70864896")
 
 # Prepare script
 function prepare() {
@@ -68,6 +70,8 @@ function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
     DESTDIR="${BUILD_DATA_ROOT}" make install
+
+        install -m644 -D ${WORKDIR}/sysusers "${BUILD_DATA_ROOT}/usr/lib/sysusers.d/avahi.conf"
 
     return 0
 }
