@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="rust-bindgen"
+VERSION="0.64.0"
+EPOCH=0
+DESC="Utilities used to generate C bindings for Rust code."
+GRPS=()
+URL="https://rust-lang.github.io/rust-bindgen/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=("rust" "llvm")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("rust-bindgen")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/rust-lang/rust-bindgen/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("4f7bdec4539fbb3e15590b42e14a5e75b2cd3313ab70b0574c1b079f9ace404ab20848aa152d7c83444d96279163e788b5172595528e7d89ba4b3556ddc5296a")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cargo build --release
+
+    cargo test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir -p ${BUILD_DATA_ROOT}/usr/bin/
+    install -Dm755 target/release/bindgen ${BUILD_DATA_ROOT}/usr/bin/
+
+    return 0
+}

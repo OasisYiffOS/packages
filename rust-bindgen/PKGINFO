@@ -1,0 +1,16 @@
+{
+    "name": "rust-bindgen",
+    "version": "0.64.0",
+    "epoch": 0,
+    "description": "Utilities used to generate C bindings for Rust code.",
+    "groups": [],
+    "url": "https://rust-lang.github.io/rust-bindgen/",
+    "license": ["BSD-3-Clause"],
+    "depends": ["rust", "llvm"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["rust-bindgen"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
