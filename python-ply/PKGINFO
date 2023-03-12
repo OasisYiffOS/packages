@@ -1,0 +1,16 @@
+{
+    "name": "python-ply",
+    "version": "3.11",
+    "epoch": 0,
+    "description": "An implementation of lex and yacc parsing tools for Python.",
+    "groups": [],
+    "url": "https://www.dabeaz.com/ply/",
+    "license": ["BSD-3-Clause"],
+    "depends": ["python"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-ply"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

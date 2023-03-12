@@ -1,0 +1,41 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="python-ply"
+VERSION="3.11"
+EPOCH=0
+DESC="An implementation of lex and yacc parsing tools for Python."
+GRPS=()
+URL="https://www.dabeaz.com/ply/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=("python")
+OPT_DEPENDS=()
+PROVIDES=("python-ply")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/dabeaz/ply/archive/refs/tags/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("c36e4ea0eb5bb7cca8cc34aa62dd711be755e44f1336a0093d7c9c1ea4d5d8cae8316416a2109ba24bb2b71f7a971b0b34a7ea45c43d4c7c63c513156945fc17")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/ply-${VERSION}"
+
+    python3 setup.py install --root="${BUILD_DATA_ROOT}" --optimize=1
+
+    return 0
+}
