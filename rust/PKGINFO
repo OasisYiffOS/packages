@@ -1,6 +1,6 @@
 {
     "name": "rust",
-    "version": "1.63.0",
+    "version": "1.68.0",
     "epoch": 0,
     "description": "Memory-safe programming language without garbage collection.",
     "groups": [],

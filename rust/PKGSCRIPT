@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="rust"
-VERSION="1.63.0"
+VERSION="1.68.0"
 EPOCH=0
 DESC="Memory-safe programming language without garbage collection."
 GRPS=()
@@ -17,16 +17,23 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://static.rust-lang.org/dist/rustc-${VERSION}-src.tar.gz")
+SRC=("https://static.rust-lang.org/dist/rustc-${VERSION}-src.tar.gz"
+"llvm-tools-install.patch")z
 
 SUM_TYPE="sha512"
-SUM=("8c4ce20f0e6ddf86c13e24f222846dbcddc6b8fccc5490b1c41877df3ecf2543bf5fd88431d2e6d23280f90c0395f0d812b4ad7c13098128b043669660911299")
+SUM=("d3f28a06a7fdd1f997252fa66e5aaeda99686ca03416fc207d3a00599f7412b96b06b65c81f3269996e2ebdfd9ab49a434c0bf434fba3a19eb12f49de046ff0f"
+"9ef4b57a75859e18d3b25f5d5ad0f7445551ecc3847a5087d70433c6d31c10d010117e5530adc5905365d1b1dcef3b3ad24eeeb2bf8b5cd77277c1b18c291d79")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}c-${VERSION}-src"
 
+    patch -Np1 -R -i ${WORKDIR}/llvm-tools-install.patch
+
 cat << EOF > config.toml
+profile = "user"
+changelog-seen = 2
+
 [llvm]
 link-shared = true
 
@@ -49,9 +56,6 @@ description = "Rust v${VERSION}-${EPOCH} - Packaged for yiffOS on $(date)"
 codegen-tests = false
 
 [target.x86_64-unknown-linux-gnu]
-llvm-config = "/usr/bin/llvm-config"
-
-[target.i686-unknown-linux-gnu]
 llvm-config = "/usr/bin/llvm-config"
 EOF
 
@@ -79,7 +83,6 @@ function postbuild() {
 
     # Install stdlib
     DESTDIR="${BUILD_DATA_ROOT}" python3 ./x.py install --target=x86_64-unknown-linux-gnu std
-    DESTDIR="${BUILD_DATA_ROOT}" python3 ./x.py install --target=i686-unknown-linux-gnu std
 
     return 0
 }
