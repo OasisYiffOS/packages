@@ -3,24 +3,24 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="mesa"
-VERSION="22.2.2"
+VERSION="22.3.7"
 EPOCH=1
 DESC="An open-source implementation of the OpenGL/CL/MAX and Vulkan specifications."
 GRPS=()
 URL="https://www.mesa3d.org"
 LICENSES=("MIT")
-DEPENDS=("glibc" "libgcc" "libdrm" "libelf" "expat" "libxshmfence" "libxxf86vm" "libgcrypt" "nettle" "llvm" "libunwind" "vulkan-loader" "lm-sensors" "libvdpau" "libva" "libglvnd" "libclc" "libxv" "libxvmc")
+DEPENDS=("glibc" "libgcc" "libdrm" "libelf" "expat" "libxshmfence" "libxxf86vm" "xrandr" "libgcrypt" "nettle" "llvm" "libunwind" "vulkan-loader" "lm-sensors" "libvdpau" "libva" "libglvnd" "libclc" "libxv" "libxvmc" "spirv-tools" "spirv-llvm-translator")
 OPT_DEPENDS=()
-MK_DEPENDS=("python-mako" "libxml2" "zstd" "meson" "ninja" "glslang")
+MK_DEPENDS=("python-mako" "libxml2" "zstd" "meson" "ninja" "glslang" "bison" "valgrind" "rust" "python-ply" "rust-bindgen")
 PROVIDES=("mesa")
 CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("ftp://ftp.freedesktop.org/pub/mesa/mesa-${VERSION}.tar.xz")
+SRC=("https://archive.mesa3d.org/mesa-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("a1eb67e1ae4880c79b1fdc570f4389baba0b8ba796da7e695c9af19a7d92b6c06b95570e6c796548b61355989025fb7efbf9acac74cbd695f7e297dc913b933c")
+SUM=("c37bbcb3c0be1908726d6f83bfe98126d681935e401e03946e8b540611f832d2f272a2ac470600c2b77caa5b9a3a9059eb34bd9a93fcf88df114bedf8c39bf5a")
 
 # Prepare script
 function prepare() {
@@ -29,42 +29,46 @@ function prepare() {
     mkdir build
     cd    build 
 
-    GALLIUM_DRV="r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,i915,zink"
-    VULKAN_DRV="amd,intel,swrast"
-    VULKAN_LAYERS="device-select,intel-nullhw,overlay"
+    _GALLIUM_DRV="r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,i915,zink"
+    _VULKAN_DRV="amd,intel,intel_hasvk,swrast,virtio-experimental"
+    _VULKAN_LAYERS="device-select,intel-nullhw,overlay"
+    _VIDEO_CODECS="vc1dec,h264dec,h264enc,h265dec,h265enc"
 
     CFLAGS+=' -mtls-dialect=gnu -g1'
     CXXFLAGS+=' -mtls-dialect=gnu -g1'
 
     meson --prefix=/usr                                         \
           --buildtype=release                                   \
-          -Dgallium-drivers=$GALLIUM_DRV                        \
-          -Dvulkan-drivers=$VULKAN_DRV                          \
-          -Dvulkan-layers=${VULKAN_LAYERS}                      \
-          -Dgallium-nine=true                                   \
+          -Dgallium-drivers=${_GALLIUM_DRV}                     \
+          -Dvulkan-drivers=${_VULKAN_DRV}                       \
+          -Dvulkan-layers=${_VULKAN_LAYERS}                     \
+          -Dvideo-codecs=${_VIDEO_CODECS}			\
           -Dglx=dri                                             \
-          -Dvalgrind=disabled                                   \
+          -Dvalgrind=enabled                                    \
           -Dlibunwind=enabled                                   \
           -Ddri3=enabled                                        \
           -Degl=enabled                                         \
           -Dgbm=enabled                                         \
-          -Dgallium-nine=true                                   \
           -Dgles1=disabled                                      \
           -Dgles2=enabled                                       \
           -Dshared-glapi=enabled                                \
           -Dllvm=enabled                                        \
           -Dglvnd=true                                          \
           -Dplatforms=x11,wayland                               \
+          -Dgallium-nine=true                                   \
           -Dgallium-extra-hud=true                              \
           -Dgallium-opencl=icd                                  \
           -Dgallium-va=enabled                                  \
           -Dgallium-vdpau=enabled                               \
           -Dgallium-xa=enabled                                  \
+          -Dgallium-rusticl=true				\
+          -Drust_std=2021					\
           -Dosmesa=true                                         \
           -Dlmsensors=enabled                                   \
+          -Dintel-clc=enabled					\
           ..
 
-    unset GALLIUM_DRV VULKAN_DRV
+    unset _GALLIUM_DRV _VULKAN_DRV _VULKAN_LAYERS _VIDEO_CODECS
 
     return 0
 }
