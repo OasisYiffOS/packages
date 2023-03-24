@@ -1,6 +1,6 @@
 {
     "name": "gtk4",
-    "version": "4.8.1",
+    "version": "4.10.1",
     "epoch": 1,
     "description": "Libraries used for creating graphical user interfaces for applications.",
     "groups": ["gnome"],
