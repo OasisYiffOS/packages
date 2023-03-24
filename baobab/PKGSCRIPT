@@ -3,14 +3,14 @@ MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
 
 # Package information
 NAME="baobab"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="Disk usage analyzer for GNOME."
 GRPS=("gnome")
 URL="https://wiki.gnome.org/Apps/DiskUsageAnalyzer"
 LICENSES=("GPL-2.0-or-later")
-DEPENDS=("glib2" "gtk4" "libadwaita")
+DEPENDS=("glibc" "glib2" "gtk4" "libadwaita" "desktop-file-utils")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "vala" "itstool")
 PROVIDES=("baobab")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/baobab/${_MAJOR_VERSION}/baobab-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("d368bde1ba1fafbe908c5e8e0e5cd9d593d3f3cc551a7b1f3be68624bd7ee8b1dac6374fc9031c7d4c53240dda739974b5c71653227251bb5b8fbcd332900b91")
+SUM=("a9b8ca9226b9464f33a06810ce5c889dcc50fa2b0c05343fcb88b0d453528fbf7de256b75f55e99a24f33b91bdd69a03f6ea3ea3e5d793033a8cce6345b3cac3")
 
 # Prepare script
 function prepare() {
