@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="adwaita-icon-theme"
-VERSION="43"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="The Adwaita icon theme used by the GNOME desktop."
 GRPS=("gnome")
@@ -21,13 +21,14 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/adwaita-icon-theme/${_MAJOR_VERSION}/adwaita-icon-theme-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("fe0c186c2dbe87ccf2373bde1bc5ab658e8cd64bf0e5a3b9cd1117d5c1bf2ef5cc83b76b7fae54fde1566a07b572d8bb9441f437e44813338195e191dbb2a021")
+SUM=("987245be4e9118ea1d3d56f2829b03a311a29e58e99a51949f3592f0c57f0ce9fe8636215efcd7de2e25a3a005c6df91d780d69ddae1e59f3a5f2edcd0a502be")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
     # Ensure mime types exist for the build
+    # FIXME: remove hack
     update-mime-database /usr/share/mime/
     gdk-pixbuf-query-loaders --update-cache
 

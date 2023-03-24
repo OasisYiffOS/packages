@@ -1,6 +1,6 @@
 {
     "name": "adwaita-icon-theme",
-    "version": "43",
+    "version": "44.0",
     "epoch": 0,
     "description": "The Adwaita icon theme used by the GNOME desktop.",
     "groups": ["gnome"],
