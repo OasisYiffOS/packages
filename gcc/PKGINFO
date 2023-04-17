@@ -6,7 +6,7 @@
     "groups": ["devel"],
     "url": "https://gcc.gnu.org/",
     "license": ["GPL", "LGPL"],
-    "depends": ["mpc", "flex", "isl", "libgcc"],
+    "depends": ["mpc", "flex", "isl", "libgcc", "lib32-libgcc"],
     "optional_depends": [],
     "make_depends": ["dejagnu", "lib32-glibc"],
     "provides": ["gcc", "gcc-go"],

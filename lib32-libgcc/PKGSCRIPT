@@ -1,0 +1,105 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="lib32-libgcc"
+VERSION="12.2.0"
+EPOCH=0
+DESC="Libraries from the GNU Compiler Collection (32 bit)"
+GRPS=()
+URL="https://gcc.gnu.org/"
+LICENSES=("GPL" "LGPL")
+DEPENDS=("lib32-glibc")
+OPT_DEPENDS=()
+PROVIDES=("lib32-libgcc")
+CONFLICTS=()
+REPLACES=("lib32-gcc-libs")
+
+# Source information
+SRC=("https://ftp.gnu.org/gnu/gcc/gcc-${VERSION}/gcc-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("e9e857bd81bf7a370307d6848c81b2f5403db8c7b5207f54bce3f3faac3bde63445684092c2bc1a2427cddb6f7746496d9fbbef05fbbd77f2810b2998f1f9173")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/gcc-${VERSION}"
+
+    # Ensure 64-bit libraries are installed into lib
+    sed -e '/m64=/s/lib64/lib/'             \
+        -i.orig gcc/config/i386/t-linux64
+
+    mkdir -v build
+    cd       build
+
+    ../configure                                            \
+        --prefix=/usr                                       \
+        --enable-multilib                                   \
+        --with-multilib-list=m64,m32			    \
+        --with-system-zlib                                  \
+        --enable-cet=auto                                   \
+        --enable-lto                                        \
+        --enable-plugin                                     \
+        --enable-shared                                     \
+        --enable-threads=posix                              \
+        --enable-languages=c,c++,d,fortran,go,objc,obj-c++
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/gcc-${VERSION}/build"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/gcc-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install-shared
+
+    rm -f "${BUILD_DATA_ROOT}/usr/lib/gcc/x86_64-pc-linux-gnu/${VERSION}/libgcc_eh.a"
+
+    for lib in libatomic \
+               libgfortran \
+               libgo \
+               libgomp \
+               libitm \
+               libquadmath \
+               libsanitizer/{a,l,ub,t}san \
+               libstdc++-v3/src \
+               libvtv; do
+      make -C x86_64-pc-linux-gnu/32/$lib DESTDIR="${BUILD_DATA_ROOT}" install-toolexeclibLTLIBRARIES
+    done
+
+    make -C x86_64-pc-linux-gnu/32/libobjc DESTDIR="${BUILD_DATA_ROOT}" install-libs
+    make -C x86_64-pc-linux-gnu/32/libstdc++-v3/po DESTDIR="${BUILD_DATA_ROOT}" install
+    make -C x86_64-pc-linux-gnu/32/libphobos DESTDIR="${BUILD_DATA_ROOT}" install
+
+    rm -rf "${BUILD_DATA_ROOT}"/usr/lib32/gcc/x86_64-pc-linux-gnu/${VERSION}/include/d/
+    rm -f "${BUILD_DATA_ROOT}"/usr/lib32/libgphobos.spec
+
+    for lib in libgomp \
+               libitm \
+               libquadmath; do
+        make -C x86_64-pc-linux-gnu/32/$lib DESTDIR="${BUILD_DATA_ROOT}" install-info
+    done
+
+    # Manually copy libgcc
+    cp -v gcc/32/libgcc_s{.so,.so.1} "${BUILD_DATA_ROOT}/usr/lib32/"
+
+    # Remove 64bit libraries
+    rm -rv "${BUILD_DATA_ROOT}"/usr/lib/
+
+    # Remove empty gcc folder
+    rm -rv "${BUILD_DATA_ROOT}"/usr/lib32/gcc
+
+    # Remove /usr/share
+    rm -rv "${BUILD_DATA_ROOT}"/usr/share
+
+    return 0
+}

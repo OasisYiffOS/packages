@@ -1,0 +1,16 @@
+{
+    "name": "lib32-libgcc",
+    "version": "12.2.0",
+    "epoch": 0,
+    "description": "Libraries from the GNU Compiler Collection (32 bit)",
+    "groups": [],
+    "url": "https://gcc.gnu.org/",
+    "license": ["GPL", "LGPL"],
+    "depends": ["lib32-glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["lib32-libgcc"],
+    "conflicts": [],
+    "replaces": ["lib32-gcc-libs"],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
