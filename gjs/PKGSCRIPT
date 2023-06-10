@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gjs"
-VERSION="1.74.0"
-_MAJOR_VERSION="1.74"
+VERSION="1.76.0"
+_MAJOR_VERSION="1.76"
 EPOCH=0
 DESC="A set of Javascript bindings for GNOME."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gjs/${_MAJOR_VERSION}/gjs-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("a17947664a2bb83363ec564dcb5e619f241d0b547512042f2c0e49fbbc8ca4217b90e6b22bc2e4004e8f27e013f8520674a493f7cf3b808437b855eee3eb0408")
+SUM=("fa44431f431f14b82c648c388046b83722808db52d2bbe2deeb8d270d6fbeee9c4ee27feaa4fef425e1ab5ac65a1e68d7aa9457d543044362752810128064ea6")
 
 # Prepare script
 function prepare() {

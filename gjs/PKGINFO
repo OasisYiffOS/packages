@@ -1,6 +1,6 @@
 {
     "name": "gjs",
-    "version": "1.74.0",
+    "version": "1.76.0",
     "epoch": 0,
     "description": "A set of Javascript bindings for GNOME.",
     "groups": ["gnome"],
