@@ -1,0 +1,16 @@
+{
+    "name": "unifdef",
+    "version": "2.12",
+    "epoch": 0,
+    "description": "Utility for selectively removing C preprocessor conditionals.",
+    "groups": [],
+    "url": "https://dotat.at/prog/unifdef/",
+    "license": ["BSD-2-Clause"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["unifdef"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
