@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="linux-headers"
-VERSION="6.0.3"
+VERSION="6.3.7"
 _MAJOR_VERSION="6"
 EPOCH=0
 DESC="The Linux kernel headers"
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://cdn.kernel.org/pub/linux/kernel/v${_MAJOR_VERSION}.x/linux-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("953a4dfe46eeb5f4b7927c3e2af8e053b3a1a50a255f90bc33a7883fbcaa3a349044a2df1560ea2f84dab2668734ccf2cf4597b053950fd28bf07509e12f002d")
+SUM=("1e71941f44b47d9cb8bbae144b6dd352422ae185f34da3f85c3054dcd7eb2699e0a1c35f572f0f3fe67f1fdd0312a172ed54887ce35eadf12477d55ea64de27a")
 
 # Prepare script
 function prepare() {
