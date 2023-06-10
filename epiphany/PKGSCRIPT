@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="epiphany"
-VERSION="43.1"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="Simple yet powerful GNOME web browser targeted at non-technical users. Its principles are simplicity and standards compliance."
 GRPS=()
 URL="https://wiki.gnome.org/Apps/Web"
 LICENSES=("GPL-3.0")
-DEPENDS=("glibc" "libgcc" "atk" "cairo" "gcr" "gdk-pixbuf2" "gmp" "gsettings-desktop-schemas" "gtk3" "iso-codes" "json-glib" "libarchive" "libdazzle" "libhandy" "libportal" "libsecret" "libsoup3" "libxml2" "nettle" "pango" "sqlite" "webkitgtk" "gnome-keyring")
+DEPENDS=("glibc" "libgcc" "atk" "cairo" "gcr4" "gdk-pixbuf2" "gmp" "gsettings-desktop-schemas" "gtk4" "iso-codes" "json-glib" "libarchive" "libdazzle" "libhandy" "libportal" "libsecret" "libsoup3" "libxml2" "nettle" "pango" "sqlite" "webkitgtk" "gnome-keyring" "libadwaita")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "itstool" "desktop-file-utils" "appstream-glib")
 PROVIDES=("epiphany")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/epiphany/${_MAJOR_VERSION}/epiphany-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("1f54864c35f988b009b739e996dca1735f5222bf9fc5594eed3aa07d673db6f8f8870536b17985c318f39dfac79bce236118d863f9963944bc16cdaec469ca7a")
+SUM=("a023429ea3e9e7db01bb5e93c33489891058cc49438ff4f365b0321175b1c484c3d20dcb96bde026f416dfdfeab6bfc3719908f1ac69eb9a162c88b3afaf01e6")
 
 # Prepare script
 function prepare() {
