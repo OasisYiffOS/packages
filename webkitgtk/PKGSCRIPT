@@ -3,15 +3,15 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="webkitgtk"
-VERSION="2.38.5"
+VERSION="2.40.2"
 EPOCH=0
 DESC="A port of the portable web rendering engine WebKit to the GTK platform."
 GRPS=("gnome")
 URL="https://www.webkitgtk.org"
 LICENSES=("LGPL-2.1")
-DEPENDS=("glibc" "libgcc" "atk" "bubblewrap" "cairo" "enchant" "fontconfig" "freetype2" "glib2" "gdk-pixbuf2" "gstreamer" "gst-plugins-base" "gst-plugins-bad" "gtk3" "gtk4" "harfbuzz" "little-cms2" "libx11" "libxcomposite" "libxdamage" "libxt" "libgcrypt" "icu" "libgudev" "libjpeg-turbo" "libsecret" "libsoup3" "libtasn1" "libwebp" "mesa" "sqlite" "wpebackend-fdo" "wayland" "wayland-protocols" "pango" "woff2" "zlib" "libnotify" "hicolor-icon-theme" "xdg-dbus-proxy" "openjpeg" "vulkan-loader")
+DEPENDS=("glibc" "libgcc" "atk" "bubblewrap" "cairo" "enchant" "fontconfig" "freetype2" "glib2" "gdk-pixbuf2" "gstreamer" "gst-plugins-base" "gst-plugins-bad" "gtk3" "gtk4" "harfbuzz" "little-cms2" "libx11" "libxcomposite" "libxdamage" "libxt" "libgcrypt" "icu" "libgudev" "libjpeg-turbo" "libsecret" "libsoup3" "libtasn1" "libwebp" "mesa" "sqlite" "wpebackend-fdo" "wayland" "wayland-protocols" "pango" "woff2" "zlib" "libnotify" "hicolor-icon-theme" "xdg-dbus-proxy" "openjpeg" "vulkan-loader" "libavif")
 OPT_DEPENDS=()
-MK_DEPENDS=("cmake" "ninja" "gobject-introspection" "ruby" "which" "gperf" "vulkan-headers")
+MK_DEPENDS=("cmake" "ninja" "gobject-introspection" "ruby" "which" "gperf" "vulkan-headers" "unifdef")
 PROVIDES=("webkitgtk")
 CONFLICTS=()
 REPLACES=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://webkitgtk.org/releases/webkitgtk-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("9038892910e95d3b7819396c9071b59ee51eadd6cad62130fdd4e02d3f5187b7a2986c5939a378190e14059149f2db0a0b57feb23ac44f5ea764c160e6181eef")
+SUM=("2fea73faffe171845f3710995bb27eb7350aa9ba7b513e7f0fc163c09fc63d73112a55dbc010af67e422c59baa9bfc85018f470a0255e43eb17aae465946eef7")
 
 # Prepare script
 function prepare() {
@@ -43,7 +43,7 @@ function prepare() {
           -DUSE_WPE_RENDERER=ON          \
           -DENABLE_BUBBLEWRAP_SANDBOX=ON \
           -DENABLE_DOCUMENTATION=OFF     \
-          -DUSE_GTK4=OFF	         \
+          -DUSE_GTK4=ON  	         \
           -Wno-dev -G Ninja ..
 
     return 0
