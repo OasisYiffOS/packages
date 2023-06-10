@@ -1,0 +1,16 @@
+{
+    "name": "libaom",
+    "version": "3.6.1",
+    "epoch": 0,
+    "description": "Reference codec for the AOMedia Video 1 format.",
+    "groups": [],
+    "url": "https://aomedia.googlesource.com/aom",
+    "license": ["BSD-2-Clause"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["nasm", "ninja", "cmake"],
+    "provides": ["libaom"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
