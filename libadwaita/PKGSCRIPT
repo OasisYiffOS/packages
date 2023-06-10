@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libadwaita"
-VERSION="1.2.0"
-_MAJOR_VERSION="1.2"
+VERSION="1.3.1"
+_MAJOR_VERSION="1.3"
 EPOCH=0
 DESC="Additional GTK4 UI widgets for use in developing user interfaces."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/libadwaita/${_MAJOR_VERSION}/libadwaita-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("e043c3d43bb8f842e0b78d02d7ccaccce6c00a9c8abd7b63b21c4bab1000e5269708ca83677fe235260b12b1824ba5b06cb2c9460ddfc47fce10232d1901e4c8")
+SUM=("9bb5203e61baa671a30aabd7f56f9a160af8b4a01974f4964f7e975cb49669e30d394dcd5e4f4a64d9e2e9cd3e17b82d938a57456e3e166444cbe1ce15fb2b09")
 
 # Prepare script
 function prepare() {
@@ -30,7 +30,10 @@ function prepare() {
     mkdir build
     cd    build
 
-    meson --prefix=/usr --buildtype=release ..
+    meson --prefix=/usr           \
+	  --buildtype=release     \
+	  -Dintrospection=enabled \
+	  ..
 
     return 0
 }
