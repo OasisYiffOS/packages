@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="evolution-data-server"
-VERSION="3.46.0"
-_MAJOR_VERSION="3.46"
+VERSION="3.48.0"
+_MAJOR_VERSION="3.48"
 EPOCH=0
 DESC="Unified backend for programs that work with contacts, tasks, and calendar information."
 GRPS=("gnome")
@@ -22,7 +22,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/evolution-data-server/${_MAJOR_VERSION}/evolution-data-server-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("3aef4ef51e5be2c5e392a2b2781283bb75d8e7d08a3a0daae6be488d14e998779b992095d12889d2d6afe5c732394090f99fa9a866e8825eecdcde2bf6b24ec1")
+SUM=("15613fab61d2c6537906657f51803df92135e723edf94a03519b812326072e0fb168d3dbd791b9669ada3a8ba5dc05ee254f70233b015d7a6ee38fdc9beec324")
 
 # Prepare script
 function prepare() {
