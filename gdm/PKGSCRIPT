@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gdm"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="A system service that is responsible for providing graphical logins and managing local and remote displays."
 GRPS=("gnome")
@@ -24,7 +24,7 @@ SRC=("https://download.gnome.org/sources/gdm/${_MAJOR_VERSION}/gdm-${VERSION}.ta
 "sysusers")
 
 SUM_TYPE="sha512"
-SUM=("e3eaa7a50e224939b6e535963171a800bb175ed9480a88ce14034929760dd579b91c4f3117be6a4404b2de13afdee881dafe09695eebf42872d4a13fbc5fb8ba"
+SUM=("eab556d0cab43ce4fe04b918f22281831f1dd8de836866de009884a637f11c83a626cdedb46cee5efb53cf1ad8139aa6e9568fd90a4d01704605347deca7bc2c"
 "06f736d1c7895da36ad1d922c096260b461339eb3126072d0df29d21b574c9ee49b3453988af931273f9980ae6ae3205632b1ae8a22fc7e6e2d6b26e34116ac8")
 
 # Prepare script
