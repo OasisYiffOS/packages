@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="linux-firmware"
-VERSION="20221012"
+VERSION="20230515"
 EPOCH=0
 DESC="Linux firmware images not allowed in the kernel."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("b13810115bfcd28ecbebb0356d448eba0cbc0d5056554987fc3ba47608afdb5a7732dd5c1b83c48df25fb0353e828a52468ed043e87e8a74fe06c6e9c3307bd7")
+SUM=("71994560e1c0c526d42c629d8640debc4ce6454a8d954a3fe21749911e1c0fd55d86a31e4bfc19db4aa53d6330a4298d94b2eaefb0600644572e665d14762eb7")
 
 # Prepare script
 function prepare() {
