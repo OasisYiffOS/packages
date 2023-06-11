@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="glib-networking"
-VERSION="2.74.0"
-_MAJOR_VERSION="2.74"
+VERSION="2.76.0"
+_MAJOR_VERSION="2.76"
 EPOCH=1
 DESC="Network related gio modules for GLib."
 GRPS=("gnome")
 URL="https://gitlab.gnome.org/GNOME/glib-networking"
 LICENSES=("LGPL-2.1")
-DEPENDS=("glib2" "gnutls")
+DEPENDS=("glib2" "gnutls" "gsettings-desktop-schemas")
 OPT_DEPENDS=()
 MK_DEPENDS=("ninja" "meson")
 PROVIDES=("glib-networking")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/glib-networking/${_MAJOR_VERSION}/glib-networking-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("f266c106f2c9379b95773a852c1b5c62ae1d6a758d25c436c3558f620d8e0a211201b3c4dfd89cdbe28b88430bba0cca621e62c01ea23d473983e203919bb1e6")
+SUM=("dae704ad70312239379e1e66a4171e9315ee44e1785c9cb2563adc3f0bbab43d08a75873bfd2be12e3ed4210d4a7e177c9540815c8eb4bda89032c5354c4be30")
 
 # Prepare script
 function prepare() {
@@ -30,7 +30,10 @@ function prepare() {
     mkdir build
     cd    build
 
-    meson --prefix=/usr --buildtype=release ..
+    meson --prefix=/usr       \
+          --buildtype=release \
+          -Dlibproxy=disabled \
+          ..
 
     return 0
 }
