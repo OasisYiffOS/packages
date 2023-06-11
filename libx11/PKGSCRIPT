@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libx11"
-VERSION="1.7.3.1"
+VERSION="1.8.5"
 EPOCH=0
 DESC="Core X11 protocol client library (aka "Xlib")."
 GRPS=("x11")
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://www.x.org/pub/individual/lib/libX11-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("a2620076db4bf35ab94706c8ab714e9c3fecbdd533cf99cdffeabaf49a1a1d30a233eb2dc76da51b01d50c43f11780aa3b2936668d982a33fa7d5008be44e25b")
+SUM=("5274f6073ead119c8f915d302f1e2bf9579f88d28a2a2d084a4be2050b14fb605efe91099c89ba55aeb7ad36ae0ecbd519b0808be0e29f56367d5dd8faa063d3")
 
 # Prepare script
 function prepare() {
