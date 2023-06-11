@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-online-accounts"
-VERSION="3.46.0"
-_MAJOR_VERSION="3.46"
+VERSION="3.48.0"
+_MAJOR_VERSION="3.48"
 EPOCH=0
 DESC="A framework used to access the user's online accounts."
 GRPS=("gnome")
 URL="https://wiki.gnome.org/Projects/GnomeOnlineAccounts"
 LICENSES=("LGPL-2.1")
-DEPENDS=("glibc" "glib2" "gcr" "json-glib" "rest" "webkitgtk" "krb5" "libsecret" "libsoup" "libxml2" "p11-kit" "zlib" "rest")
+DEPENDS=("glibc" "glib2" "gcr" "json-glib" "rest" "webkitgtk3" "krb5" "libsecret" "libsoup" "libxml2" "p11-kit" "zlib" "rest")
 OPT_DEPENDS=()
 MK_DEPENDS=("vala" "gobject-introspection" "meson" "ninja")
 PROVIDES=("gnome-online-accounts")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-online-accounts/${_MAJOR_VERSION}/gnome-online-accounts-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("727eaf248d70ba8b3874ca500d40e6fead3f76f72aee1b1f383aac57ee71bdb77dab7da3487b3f0fee665130cc61ac8b53f3a1bf1754e5df919fc5c48486c201")
+SUM=("67e6c39d38187dc58175f6b694c66a92d9b9152b179db41ee05a8c512db5b16f1dd1eb1503c7d732b09126942abc00206ba956f7a54c6ae7a285a9e3101be7a5")
 
 # Some of these are from GOA and some are our own
 
