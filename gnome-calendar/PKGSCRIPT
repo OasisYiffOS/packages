@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-calendar"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="Simple and beautiful calendar application designed to perfectly fit the GNOME desktop."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-calendar/${_MAJOR_VERSION}/gnome-calendar-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("33c77b37e53132892665a44547974c44b7155e673bff27f438fcd30ee68b16b4bbabd9e6a287f3680b39e5032b19409278bc1c63ae46b1ea1191e32f81a55e32")
+SUM=("38fd14f3361e8528b5671ed2019a13176e43aca10d47fcfdc9dff5ce8dc7e697245ad29f9d3572bc34fcebd0f3e351f15cd04f334e17c1d7450a4d128eda6355")
 
 # Prepare script
 function prepare() {

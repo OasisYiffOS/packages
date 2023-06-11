@@ -1,6 +1,6 @@
 {
     "name": "gnome-calendar",
-    "version": "43.0",
+    "version": "44.0",
     "epoch": 0,
     "description": "Simple and beautiful calendar application designed to perfectly fit the GNOME desktop.",
     "groups": ["gnome"],
