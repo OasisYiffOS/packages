@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-desktop"
-VERSION="43.1"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="A library that provides an API shared by several applications on the GNOME Desktop."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-desktop/${_MAJOR_VERSION}/gnome-desktop-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("6b6c9597629ec32453ba1823a3508616a951c0274400e4814cd5b39438ee2c752842cbd37a8dc4f19e9a667a7f171546895ebb15a2a79802171466e395e9b3a4")
+SUM=("707e96ffe1bbe27c448dd007b5a005e06ea3bba945c1c6708c61b8cec204cef6f5ed540f8ba0f5e566c2fdbc825fc6f9f0440706e0aea132490ca6d48823e180")
 
 # Prepare script
 function prepare() {

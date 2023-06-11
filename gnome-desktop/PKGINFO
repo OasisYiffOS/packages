@@ -1,6 +1,6 @@
 {
     "name": "gnome-desktop",
-    "version": "43.1",
+    "version": "44.0",
     "epoch": 0,
     "description": "A library that provides an API shared by several applications on the GNOME Desktop.",
     "groups": ["gnome"],
