@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-console"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="Simple user-friendly terminal emulator for the GNOME desktop."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-console/${_MAJOR_VERSION}/gnome-console-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("b4da0f0c1e35bb468f5db8080b762c652358bd96d95dfbbc0d9b5c02d47c513c8adc23b1b38653873ab3a817e82bad5776ceeb6568d2041ab026ca460a7c3808")
+SUM=("c53435f303d1625730174f3ec36c554c2090a5e64796b03642bb2ccc7edc301219f324d929b77dd8b4bfe12553c089103b2b57b6e1062b504b0d0007c2079f28")
 
 # Prepare script
 function prepare() {
