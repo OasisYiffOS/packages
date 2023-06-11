@@ -1,0 +1,16 @@
+{
+    "name": "qrencode",
+    "version": "4.1.1",
+    "epoch": 0,
+    "description": "Library for encoding data in a QR Code.",
+    "groups": [],
+    "url": "https://fukuchi.org/works/qrencode/",
+    "license": [""],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["qrencode"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

@@ -1,0 +1,50 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="qrencode"
+VERSION="4.1.1"
+EPOCH=0
+DESC="Library for encoding data in a QR Code."
+GRPS=()
+URL="https://fukuchi.org/works/qrencode/"
+LICENSES=("")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("qrencode")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://fukuchi.org/works/qrencode/qrencode-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("209bb656ae3f391b03c7b3ceb03e34f7320b0105babf48b619e7a299528b8828449e0e7696f0b5db0d99170a81709d0518e34835229a748701e7df784e58a9ce")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
