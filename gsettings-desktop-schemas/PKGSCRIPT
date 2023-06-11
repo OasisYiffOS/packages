@@ -1,18 +1,18 @@
 # Package Maintainers
-MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
 
 # Package information
 NAME="gsettings-desktop-schemas"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
-DESC="A collection of GSettings schemas for settings shared by various components of a GNOME Desktop."
-GRPS=("gnome")
+DESC="Collection of GSettings schemas shared by various components of a GNOME desktop."
+GRPS=()
 URL="https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas"
-LICENSES=("LGPL-2.1")
-DEPENDS=("glib2")
+LICENSES=("LGPL-2.1-or-later")
+DEPENDS=("gobject-introspection" "glibc")
 OPT_DEPENDS=()
-MK_DEPENDS=("gobject-introspection" "meson" "ninja")
+MK_DEPENDS=("meson" "ninja")
 PROVIDES=("gsettings-desktop-schemas")
 CONFLICTS=()
 REPLACES=()
@@ -21,27 +21,27 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gsettings-desktop-schemas/${_MAJOR_VERSION}/gsettings-desktop-schemas-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("a3acd953ec206375e99e0988438e46b42668094d1b5425ccf21a7fe451887b705e2a5efe6870ee6bfc6722f54e5aa6a422de2af2099f29a5230f415744df2cf8")
+SUM=("3995fb7a87c4a922d71ec599dffed4edf145992e08eb09cd8aae1912533ea5a7354bc8e92946246e3d6d3fa9bdaaa0d5247a5d8edaa4eef0a7a522a03ee087d7")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    # Fix deprecated entries
     sed -i -r 's:"(/system):"/org/gnome\1:g' schemas/*.in
 
     mkdir build
-    cd    build
+    cd build
 
-    meson --prefix=/usr --buildtype=release ..
+    meson setup --prefix=/usr --buildtype=release ..
 
     return 0
 }
 
 # Build script
 function build() {
-    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+    cd "${WORKDIR}/${NAME}-${VERSION}"
 
+    cd build
     ninja
 
     return 0
@@ -49,8 +49,9 @@ function build() {
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+    cd "${WORKDIR}/${NAME}-${VERSION}"
 
+    cd build
     DESTDIR="${BUILD_DATA_ROOT}" ninja install
 
     return 0

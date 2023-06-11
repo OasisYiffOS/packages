@@ -1,16 +1,16 @@
 {
     "name": "gsettings-desktop-schemas",
-    "version": "43.0",
+    "version": "44.0",
     "epoch": 0,
-    "description": "A collection of GSettings schemas for settings shared by various components of a GNOME Desktop.",
-    "groups": ["gnome"],
+    "description": "Collection of GSettings schemas shared by various components of a GNOME desktop.",
+    "groups": [],
     "url": "https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas",
-    "license": ["LGPL-2.1"],
-    "depends": ["glib2"],
+    "license": ["LGPL-2.1-or-later"],
+    "depends": ["gobject-introspection", "glibc"],
     "optional_depends": [],
-    "make_depends": ["gobject-introspection", "meson", "ninja"],
+    "make_depends": ["meson", "ninja"],
     "provides": ["gsettings-desktop-schemas"],
     "conflicts": [],
     "replaces": [],
-    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
 }
