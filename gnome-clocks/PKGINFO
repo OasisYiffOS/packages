@@ -1,6 +1,6 @@
 {
     "name": "gnome-clocks",
-    "version": "43.0",
+    "version": "44.0",
     "epoch": 0,
     "description": "A simple clock application for GNOME. It includes world clocks, alarms, a stopwatch and a timer.",
     "groups": ["gnome"],

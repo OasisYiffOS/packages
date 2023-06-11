@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-clocks"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="A simple clock application for GNOME. It includes world clocks, alarms, a stopwatch and a timer."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-clocks/${_MAJOR_VERSION}/gnome-clocks-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("703876a67000fa3a2b5e7bec70451a725aa4ed33aa2392a4c7fafc6ad287dd5591ee24c9aed20961739e9caa1f15ec404da9a2fa42e524dedaf75210d00b4fcf")
+SUM=("f262a18d13e5cb373760b02aa4dd79d7e6843aa400813d0c108bee0dfc084fb3d734e01cf1ffeadb34eb0f3e4db29d85d6817a98afa7864e997d7e2c5425d1bd")
 
 # Prepare script
 function prepare() {
