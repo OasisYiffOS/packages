@@ -3,14 +3,14 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-contacts"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="GNOME's integrated address book."
 GRPS=("gnome")
 URL="https://wiki.gnome.org/Apps/Contacts"
 LICENSES=("GPL-2.0")
-DEPENDS=("cairo" "evolution-data-server" "folks" "glibc" "libgcc" "glib2" "gtk4" "gsettings-desktop-schemas" "libgee" "libportal" "libadwaita" "pango" "desktop-file-utils")
+DEPENDS=("cairo" "evolution-data-server" "folks" "glibc" "libgcc" "glib2" "gtk4" "gsettings-desktop-schemas" "libgee" "libportal" "libadwaita" "pango" "desktop-file-utils" "qrencode")
 OPT_DEPENDS=()
 MK_DEPENDS=("meson" "ninja" "vala" "libxslt")
 PROVIDES=("gnome-contacts")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-contacts/${_MAJOR_VERSION}/gnome-contacts-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("ee2cfc4ad2318f27b0e6597eae501a6e2240b4de8ceb7982c4942a6ff50ce6cd56d06f5d324ac04f82dd8e7086dc82426fb3aab9c194cbfa490b5bab98ba0469")
+SUM=("f25a368317923c46f5700359e3fed86f85a155c58adb275ba7d884975debe78594e1da58a95633a33a281cbc78f41824f4ab38b50ae01f4f9f8e38f3f1906849")
 
 # Prepare script
 function prepare() {
