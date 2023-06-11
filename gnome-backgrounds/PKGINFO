@@ -1,6 +1,6 @@
 {
     "name": "gnome-backgrounds",
-    "version": "42.0",
+    "version": "44.0",
     "epoch": 0,
     "description": "Collection of graphics files which can be used as backgrounds in the GNOME Desktop environment.",
     "groups": ["gnome"],

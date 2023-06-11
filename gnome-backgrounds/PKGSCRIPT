@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-backgrounds"
-VERSION="42.0"
-_MAJOR_VERSION="42"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="Collection of graphics files which can be used as backgrounds in the GNOME Desktop environment."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-backgrounds/${_MAJOR_VERSION}/gnome-backgrounds-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("31cfbc52ec96bc4ce77960620a895af7f10c1fc4d474b589d49f3d1198b41792ab443bf8d7a661e71778455ab066f034c7fb6655e96db028990de0788e464e1d")
+SUM=("d3550d2ec04894601594523f20b6da295f61952b69d894ed533017297158a342d21bf83532591775029aab0acdd9fd1127d570960e94f3668e2c3231486bbebc")
 
 # Prepare script
 function prepare() {
