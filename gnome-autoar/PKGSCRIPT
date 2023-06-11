@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-autoar"
-VERSION="0.4.3"
+VERSION="0.4.4"
 _MAJOR_VERSION="0.4"
 EPOCH=0
 DESC="Framework for automatic archive extraction, compression, and management."
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-autoar/${_MAJOR_VERSION}/gnome-autoar-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("9f1ba584c4fc8e82d842fb21d3a113d64faa85f8f27cb7afb5d09919f510e350608b6a4e2f3ac527162ab338d008271bd430fb5b8ead265098c1810ffcbcef30")
+SUM=("c38d3703e61d7338b97c362127bdc61f77d259eecd662f3963f28bfcb1ce7be8a948e9a57e79a8181a55dfc3635f671f2160ade947a1b5122204a2dc0025682d")
 
 # Prepare script
 function prepare() {

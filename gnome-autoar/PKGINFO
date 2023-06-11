@@ -1,6 +1,6 @@
 {
     "name": "gnome-autoar",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "epoch": 0,
     "description": "Framework for automatic archive extraction, compression, and management.",
     "groups": ["gnome"],
