@@ -1,6 +1,6 @@
 {
     "name": "gnome-calculator",
-    "version": "43.0.1",
+    "version": "44.0",
     "epoch": 0,
     "description": "Powerful graphical calculator with financial, logical and scientific modes.",
     "groups": ["gnome"],

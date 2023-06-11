@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-calculator"
-VERSION="43.0.1"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="Powerful graphical calculator with financial, logical and scientific modes."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-calculator/${_MAJOR_VERSION}/gnome-calculator-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("94ec47a03dac017801e9c499aceb2f5f6fd1c79966657c79b123476dc7f3a4a2c3e179c80763e965207b58427157cd6e072260bd79ab98a39eb011cfe3ef7c72")
+SUM=("7c1428873c00a2052b966a0687f2a944dce67e889c8e113a794a7d5f0bafe9ff52562e2b1985bcf48d05a5a0a2f4ff97e490a43810b5243367fce9c6ada79fa6")
 
 # Prepare script
 function prepare() {
