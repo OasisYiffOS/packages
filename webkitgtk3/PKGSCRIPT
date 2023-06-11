@@ -1,0 +1,71 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="webkitgtk3"
+_REAL_NAME="webkitgtk"
+VERSION="2.40.2"
+EPOCH=0
+DESC="A port of the portable web rendering engine WebKit to the GTK platform (GTK3 Version)."
+GRPS=("gnome")
+URL="https://www.webkitgtk.org"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "libgcc" "atk" "bubblewrap" "cairo" "enchant" "fontconfig" "freetype2" "glib2" "gdk-pixbuf2" "gstreamer" "gst-plugins-base" "gst-plugins-bad" "gtk3" "gtk4" "harfbuzz" "little-cms2" "libx11" "libxcomposite" "libxdamage" "libxt" "libgcrypt" "icu" "libgudev" "libjpeg-turbo" "libsecret" "libsoup3" "libtasn1" "libwebp" "mesa" "sqlite" "wpebackend-fdo" "wayland" "wayland-protocols" "pango" "woff2" "zlib" "libnotify" "hicolor-icon-theme" "xdg-dbus-proxy" "openjpeg" "vulkan-loader" "libavif")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake" "ninja" "gobject-introspection" "ruby" "which" "gperf" "vulkan-headers" "unifdef")
+PROVIDES=("webkitgtk3")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://webkitgtk.org/releases/webkitgtk-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("2fea73faffe171845f3710995bb27eb7350aa9ba7b513e7f0fc163c09fc63d73112a55dbc010af67e422c59baa9bfc85018f470a0255e43eb17aae465946eef7")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    # todo: once we have libjxl and libavif, enable USE_JPEGXL and USE_AVIF
+    cmake -DCMAKE_BUILD_TYPE=Release     \
+          -DCMAKE_INSTALL_PREFIX=/usr    \
+          -DCMAKE_SKIP_RPATH=ON          \
+          -DPORT=GTK                     \
+          -DLIB_INSTALL_DIR=/usr/lib     \
+          -DUSE_LIBHYPHEN=OFF            \
+          -DENABLE_GAMEPAD=OFF           \
+          -DENABLE_MINIBROWSER=ON        \
+          -DUSE_WOFF2=ON                 \
+          -DUSE_SOUP2=OFF                \
+          -DUSE_WPE_RENDERER=ON          \
+          -DENABLE_BUBBLEWRAP_SANDBOX=ON \
+          -DENABLE_DOCUMENTATION=OFF     \
+          -DUSE_GTK4=OFF  	         \
+          -Wno-dev -G Ninja ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_REAL_NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    install -vdm755 ${BUILD_DATA_ROOT}/usr/share/gtk-doc/html/webkit{2,dom}gtk-4.1
+
+    return 0
+}
