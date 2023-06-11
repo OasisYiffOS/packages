@@ -3,9 +3,9 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-control-center"
-VERSION="43.0"
-_MAJOR_VERSION="43"
-EPOCH=1
+VERSION="44.0"
+_MAJOR_VERSION="44"
+EPOCH=0
 DESC="The GNOME settings manager."
 GRPS=("gnome")
 URL="https://gitlab.gnome.org/GNOME/gnome-control-center/"
@@ -26,7 +26,7 @@ SRC=("https://download.gnome.org/sources/gnome-control-center/${_MAJOR_VERSION}/
 "yiffOSLogo.svg")
 
 SUM_TYPE="sha512"
-SUM=("3fbb9252fedf44ceed6b7d6f1fed5263a110adce432effe4966f793a1f1443e92e39ff11595a6a2b3179297cc17979c310a33e3e2ac9d23dae0087ee227375a7"
+SUM=("c24a5ee6ea48a50d286799ddd520626d117e5708746e56698ba45d167db5bd555baef02609dc8a20f5d3b1c49322b9774db383e448ca7a09e5b9d1cd53176d01"
 "19a715a38eba58780f8ea55a2ee3c4dd0687062799f6e64e7ac6e311e128aa26427c523aae7afab861d9b78118b97aae294c0936464882172031c689d1d2e27e")
 
 # Prepare script
