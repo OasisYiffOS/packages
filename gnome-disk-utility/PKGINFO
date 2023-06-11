@@ -1,6 +1,6 @@
 {
     "name": "gnome-disk-utility",
-    "version": "43.0",
+    "version": "44.0",
     "epoch": 0,
     "description": "GNOME libraries and applications for dealing with storage devices.",
     "groups": ["gnome"],
