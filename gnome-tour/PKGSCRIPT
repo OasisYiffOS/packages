@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-tour"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="A guided tour and greeter for GNOME."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-tour/${_MAJOR_VERSION}/gnome-tour-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("48ddfbfbf7c03602c33f4f01e30953fe123a8682df52df99de1b0ad4c3b9401f571557bb536807ddd9669f579d0ab3dcadd39b8bc25683957b442167793e2c16")
+SUM=("27937b3dbe9f227229b4feaf78f61cb6492c79635b34890ebb2384cbe999901c5b126162beb15d7d920b2619b7c1cef4a1c1430091aaa602d7ed4875608364c2")
 
 # Prepare script
 function prepare() {
