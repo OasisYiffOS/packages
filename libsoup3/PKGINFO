@@ -1,6 +1,6 @@
 {
     "name": "libsoup3",
-    "version": "3.2.0",
+    "version": "3.4.0",
     "epoch": 1,
     "description": "An HTTP client/server library for GNOME.",
     "groups": ["gnome"],
