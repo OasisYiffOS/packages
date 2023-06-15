@@ -1,6 +1,6 @@
 {
     "name": "vte",
-    "version": "0.70.0",
+    "version": "0.72.0",
     "epoch": 0,
     "description": "A library implementing a terminal emulator widget for GTK.",
     "groups": [],
