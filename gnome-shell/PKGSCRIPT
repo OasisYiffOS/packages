@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-shell"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=1
 DESC="The core user interface of the GNOME Desktop environment."
 GRPS=("gnome")
@@ -25,7 +25,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-shell/${_MAJOR_VERSION}/gnome-shell-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("6f3609c8bac923f052d51fce44a448dba997cac543331b56229f46b56e8770de9370deb7759d4bf0e7385794232715b9b34e41f90dd1da30e88d5cfbf3f095eb")
+SUM=("5e19e3e3b06be6b06699f49501dee85fd21e5f4f394902732c505c24baa16a719848e31034d98718deb06cb004d3e8daf886a086412c2b67614eafecd1676bde")
 
 # Prepare script
 function prepare() {
