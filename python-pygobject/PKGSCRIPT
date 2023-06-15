@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="python-pygobject"
-VERSION="3.42.2"
-_MAJOR_VERSION="3.42"
+VERSION="3.44.0"
+_MAJOR_VERSION="3.44"
 EPOCH=0
 DESC="A Python 3 module providing Python bindings to the GObject class from GLib."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/pygobject/${_MAJOR_VERSION}/pygobject-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("eb604f839e0702e8aeff0f19665e44c05c56cae02ce892e9ab8a95ddb0d5d0216182d0c9a0059fc8e05990c0d5707f2f7456d8924bbfb95ce1d9a42908ac0119")
+SUM=("d6b54b85a130e0d23ec41d6e3c2d5ef7a141193f5ae8cadcea939ad37389109f43900debd51d66611699b653e5af5ee8e4c500e08cf3ea16dcdac109e819cd2a")
 
 # Prepare script
 function prepare() {
