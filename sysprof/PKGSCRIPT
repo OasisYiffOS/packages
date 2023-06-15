@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="sysprof"
-VERSION="3.46.0"
-_MAJOR_VERSION="3.46"
+VERSION="3.48.0"
+_MAJOR_VERSION="3.48"
 EPOCH=0
 DESC="A statistical and system-wide profiler for Linux."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/sysprof/${_MAJOR_VERSION}/sysprof-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("ac248e2a06d2f7905bebae4e685dd320e3ac85097e33b9c6b8482a4647a5bfcaadc4d9a1fe117b3a74cb855d6c72d9a1453a37d7b64762a223c0fe5da2653a87")
+SUM=("100b79fabee005b5445dab3ad78d43facf375a488aa6513e987deecd6a3036cc43bfd78db106a4b8a15b4280dcd975872784c839f560779183adb5a339b0648c")
 
 # Prepare script
 function prepare() {

@@ -1,6 +1,6 @@
 {
     "name": "sysprof",
-    "version": "3.46.0",
+    "version": "3.48.0",
     "epoch": 0,
     "description": "A statistical and system-wide profiler for Linux.",
     "groups": ["gnome"],
