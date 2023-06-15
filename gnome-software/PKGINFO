@@ -1,6 +1,6 @@
 {
     "name": "gnome-software",
-    "version": "43.4",
+    "version": "44.0",
     "epoch": 0,
     "description": "A software center for GNOME.",
     "groups": ["gnome"],
