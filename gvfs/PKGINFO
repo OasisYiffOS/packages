@@ -1,6 +1,6 @@
 {
     "name": "gvfs",
-    "version": "1.50.3",
+    "version": "1.50.4",
     "epoch": 1,
     "description": "A userspace virtual filesystem designed to work with the I/O abstractions of GLib's GIO library.",
     "groups": ["gnome"],

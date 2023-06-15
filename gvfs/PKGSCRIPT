@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gvfs"
-VERSION="1.50.3"
+VERSION="1.50.4"
 _MAJOR_VERSION="1.50"
 EPOCH=1
 DESC="A userspace virtual filesystem designed to work with the I/O abstractions of GLib's GIO library."
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gvfs/${_MAJOR_VERSION}/gvfs-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("5ef5f22d3074b088cc0662ca2639667ffc9dc645677e7ba9014edb9d0631d04c113edada162cda272b72844be24ee947edd587b685cc5c31d24527e9061f14f6")
+SUM=("407f1d59f182ad4368aa35edeeb8815d3d67d50bb2050ff9237703e824dd049040e7ab296f01ed2966a73ef3192f026a8ee3918c3d94d82e1ce55337fe16251f")
 
 # Prepare script
 function prepare() {
