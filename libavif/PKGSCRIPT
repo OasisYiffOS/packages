@@ -1,0 +1,61 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="libavif"
+VERSION="0.11.1"
+EPOCH=0
+DESC="Library for encoding and decoding AVIF files."
+GRPS=()
+URL="https://github.com/AOMediaCodec/libavif"
+LICENSES=("BSD-2-Clause", "Apache-2.0", "Custom")
+DEPENDS=("libaom" "gdk-pixbuf2")
+OPT_DEPENDS=()
+MK_DEPENDS=("cmake" "ninja")
+PROVIDES=("libavif")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/AOMediaCodec/libavif/archive/v${VERSION}/libavif-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("4a9e2711fccddf35c477db6e2fa2f76c0648aafaa98b4e3f34df62c0fbd02ddcd57762f1f8149822da4f1bc3757ee75ec1d9ced5e56a54dbe9d0b43265aacd4c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr \
+      -DCMAKE_BUILD_TYPE=Release      \
+      -DAVIF_CODEC_AOM=ON             \
+      -DAVIF_BUILD_GDK_PIXBUF=ON      \
+      -G Ninja ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cd build
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    cd build
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
