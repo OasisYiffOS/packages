@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-session"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="The GNOME session manager."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-session/${_MAJOR_VERSION}/gnome-session-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("9948dff9a342589b91d18e5f39f9857276e9dbfa36da452bd818d44b31e73cc4fe0e18353b537963b78ea63b39aa644d4d0864dd2f6a19f62409a644e5626aec")
+SUM=("0e8672531bc1818cfb6dbb5b133374e4041ec471e04968a587a93d0ee9697393ee976e1aa5dfacf707a46d816da6be6b1ef52e89f47d9d206a319eb79aae1078")
 
 # Prepare script
 function prepare() {
