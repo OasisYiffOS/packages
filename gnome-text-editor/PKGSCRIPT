@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-text-editor"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="A simple text editor that focuses on session management."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gnome-text-editor/${_MAJOR_VERSION}/gnome-text-editor-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("359287e3338531285110628df934ff9c81c236aec692c088084fd3c3944703ec9737f2f12554be477becf0d9a12706b621bd4558a54ebaf70f713c75a750b181")
+SUM=("bca373a124c3e648fa28da1a493163d768488fa3645fcfbfa7a115e195c0c971dc98e007c9c0fdf7fe415df64e76071fc83e33831707bb31154e66355948bbb3")
 
 # Prepare script
 function prepare() {
