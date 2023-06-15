@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gtksourceview5"
-VERSION="5.6.0"
-_MAJOR_VERSION="5.6"
+VERSION="5.8.0"
+_MAJOR_VERSION="5.8"
 EPOCH=1
 DESC="A library used for extending the GTK text functions to include syntax highlighting."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/gtksourceview/${_MAJOR_VERSION}/gtksourceview-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("f1dd7dc236b30ca540f033dd7ffdb2715375854d22ae69d7229dc525ea54f5319408624497d7c0c4b7b8e14a2c8a6b992721fe397171b62efab48b5a38509df9")
+SUM=("370be5e8040f68eeef5fc6dec3e0ff9cbcf64a6ad162e228cddf07f6d493c762f37c89010073d4d850ec8c6ffa45c4697f5d9eb8c32de5fffc7ec97f44911d3b")
 
 # Prepare script
 function prepare() {
