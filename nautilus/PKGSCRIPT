@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="nautilus"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="The GNOME file manager."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/nautilus/${_MAJOR_VERSION}/nautilus-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("c880125c2339be02852470e45cd4d589470e0df7723acc44b80df35c18cb1375c5f85cb46c7e53efbab1b51eedb4fd51ffa455773d4913d44c59070dafa22b49")
+SUM=("fa06fe12d7e5de76bac532732c26a242056056b6d4fbbc0a582e288baccdc8c35aaa370789f2656b0d5e38bba5826d0fbc5710612640197337cfb756fa74dd9f")
 
 # Prepare script
 function prepare() {

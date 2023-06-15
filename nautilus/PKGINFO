@@ -1,6 +1,6 @@
 {
     "name": "nautilus",
-    "version": "43.0",
+    "version": "44.0",
     "epoch": 0,
     "description": "The GNOME file manager.",
     "groups": ["gnome"],
