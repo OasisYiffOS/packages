@@ -5,7 +5,7 @@
     "description": "Library for encoding and decoding AVIF files.",
     "groups": [],
     "url": "https://github.com/AOMediaCodec/libavif",
-    "license": ["BSD-2-Clause,", "Apache-2.0,", "Custom"],
+    "license": ["BSD-2-Clause", "Apache-2.0", "Custom"],
     "depends": ["libaom", "gdk-pixbuf2"],
     "optional_depends": [],
     "make_depends": ["cmake", "ninja"],
