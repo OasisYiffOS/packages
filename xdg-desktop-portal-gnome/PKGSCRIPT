@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="xdg-desktop-portal-gnome"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="A backend implementation for xdg-desktop-portal for the GNOME desktop environment."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/xdg-desktop-portal-gnome/${_MAJOR_VERSION}/xdg-desktop-portal-gnome-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("57dc455b19fc0c22aac9fb9fab375964999e99d96d2c6452ffecde3081e3a5a860eaf04dbada5ed87d43ae35119d1ab4d4fdfce3d1a9dc54b20862166984c2b3")
+SUM=("1aa8eae420f4bf00ea34b3ad665edad89f9444bd2d5baa84d1f96b303ab072c66c139eb760cfbfd796691bda745f3eb5455f8d805fb042c8037eb786a730eb95")
 
 # Prepare script
 function prepare() {
