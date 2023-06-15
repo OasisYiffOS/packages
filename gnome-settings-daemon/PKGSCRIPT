@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnome-settings-daemon"
-VERSION="43.0"
-_MAJOR_VERSION="43"
+VERSION="44.0"
+_MAJOR_VERSION="44"
 EPOCH=0
 DESC="The daemon responsible for setting various parameters of a GNOME Session and the applications that run under it."
 GRPS=("gnome")
@@ -24,7 +24,7 @@ REPLACES=()
 # Source information
 SRC=("https://download.gnome.org/sources/gnome-settings-daemon/${_MAJOR_VERSION}/gnome-settings-daemon-${VERSION}.tar.xz")
 SUM_TYPE="sha512"
-SUM=("8cc3ed73fa66d2cf72621db78be68e4fe01f292ab3987aff8cc67a1c67d910622e306c2d3e69a8dca5ac6517c8e57883faf02aec871c7aa1f1348d13ff1900a3")
+SUM=("276d1c2e559e0297855cfc9fc7bd2ce4ae55e2b711222f1f1aae4802dc6499f51ea09bff8f44c5d7b9f0f5a32ab187c2ac4d8ee8e5f1754a186ac189b4e885da")
 
 # Prepare script
 function prepare() {

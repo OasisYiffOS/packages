@@ -1,6 +1,6 @@
 {
     "name": "gnome-settings-daemon",
-    "version": "43.0",
+    "version": "44.0",
     "epoch": 0,
     "description": "The daemon responsible for setting various parameters of a GNOME Session and the applications that run under it.",
     "groups": ["gnome"],
