@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="rust"
-VERSION="1.68.0"
+VERSION="1.70.0"
 EPOCH=0
 DESC="Memory-safe programming language without garbage collection."
 GRPS=()
@@ -18,10 +18,10 @@ REPLACES=()
 
 # Source information
 SRC=("https://static.rust-lang.org/dist/rustc-${VERSION}-src.tar.gz"
-"llvm-tools-install.patch")z
+"llvm-tools-install.patch")
 
 SUM_TYPE="sha512"
-SUM=("d3f28a06a7fdd1f997252fa66e5aaeda99686ca03416fc207d3a00599f7412b96b06b65c81f3269996e2ebdfd9ab49a434c0bf434fba3a19eb12f49de046ff0f"
+SUM=("4c88bccdd09583f3e347770d846260a054fdbfe10b4ea9b68576794ffe104ab73a054b514262010269d7ed82b088131621461559b24a079fd35243a80d219395"
 "9ef4b57a75859e18d3b25f5d5ad0f7445551ecc3847a5087d70433c6d31c10d010117e5530adc5905365d1b1dcef3b3ad24eeeb2bf8b5cd77277c1b18c291d79")
 
 # Prepare script
