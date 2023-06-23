@@ -1,0 +1,59 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="syncthing"
+VERSION="1.23.5"
+EPOCH=0
+DESC="A continuous file synchronization program."
+GRPS=()
+URL="https://syncthing.net/"
+LICENSES=("MPL-2.0")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=("go")
+PROVIDES=("syncthing")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/syncthing/syncthing/releases/download/v${VERSION}/syncthing-source-v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ef41c7bf8e693e3db5ea7c3cd645580a89131cc0fb48e12a50a24af28c86533bf973c58daea7cda5822544602c366a21f299c88dcd601e3913b6a08d5f4564dc")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}"
+
+    go run build.go
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}"
+
+    # Binary
+    install -Dm755 bin/syncthing "${BUILD_DATA_ROOT}/usr/bin/syncthing"
+
+    # Services
+    install -Dm644 "etc/linux-systemd/system/syncthing-resume.service" \
+    		   "${BUILD_DATA_ROOT}/usr/lib/systemd/system/syncthing-resume.service"
+    install -Dm644 "etc/linux-systemd/system/syncthing@.service" \
+     		   "${BUILD_DATA_ROOT}/usr/lib/systemd/system/syncthing@.service"
+    install -Dm644 "etc/linux-systemd/user/syncthing.service" \
+     	   	   "${BUILD_DATA_ROOT}/usr/lib/systemd/user/syncthing.service"
+
+    # Misc
+    install -Dm644 etc/linux-sysctl/30-syncthing.conf \
+    		   "${BUILD_DATA_ROOT}/usr/lib/sysctl.d/30-syncthing.conf"
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "syncthing",
+    "version": "1.23.5",
+    "epoch": 0,
+    "description": "A continuous file synchronization program.",
+    "groups": [],
+    "url": "https://syncthing.net/",
+    "license": ["MPL-2.0"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["go"],
+    "provides": ["syncthing"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
