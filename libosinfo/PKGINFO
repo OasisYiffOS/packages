@@ -1,0 +1,16 @@
+{
+    "name": "libosinfo",
+    "version": "1.10.0",
+    "epoch": 0,
+    "description": "Library for managing information about operating systems and hypervisors.",
+    "groups": [],
+    "url": "https://libosinfo.org/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glib2", "libxml2", "libxslt", "glibc", "libsoup3"],
+    "optional_depends": ["gobject-introspection"],
+    "make_depends": ["ninja", "meson", "vala", "gcc"],
+    "provides": ["libosinfo"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

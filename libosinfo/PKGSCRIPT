@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="libosinfo"
+VERSION="1.10.0"
+EPOCH=0
+DESC="Library for managing information about operating systems and hypervisors."
+GRPS=()
+URL="https://libosinfo.org/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glib2" "libxml2" "libxslt" "glibc" "libsoup3")
+OPT_DEPENDS=("gobject-introspection")
+MK_DEPENDS=("ninja" "meson" "vala" "gcc")
+PROVIDES=("libosinfo")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://releases.pagure.org/libosinfo/libosinfo-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("58a30d62d5a4862150826fd9fda3d5189df3693efca3a8732efaa470fa65dbb64181987534ccc13c0bf2fd4efda229217a169590405f0601927472f6ca08e4e7")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # TODO: enable doc gen once we get that stuff done
+    meson setup build -Dprefix=/usr -Dsysconfdir=/etc -Dlocalstatedir=/var -Denable-gtk-doc=false
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ninja -C build
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja -C build install
+
+    return 0
+}
