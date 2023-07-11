@@ -1,0 +1,10 @@
+# Begin /etc/pam.d/cockpit
+
+auth       include      system-auth
+auth       optional     pam_ssh_add.so
+account    include      system-account
+password   include      system-password
+session    optional     pam_ssh_add.so
+session    include      system-session
+
+# End /etc/pam.d/cockpit

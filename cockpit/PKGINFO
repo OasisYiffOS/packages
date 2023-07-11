@@ -1,6 +1,6 @@
 {
     "name": "cockpit",
-    "version": "267",
+    "version": "295",
     "epoch": 0,
     "description": "The easy-to-use, integrated, glanceable, and open web-based interface for your servers.",
     "groups": [],
@@ -8,7 +8,7 @@
     "license": ["LGPL-2.1"],
     "depends": ["krb5", "libssh", "json-glib", "glib-networking", "openssl", "polkit"],
     "optional_depends": ["polkit", "sudo", "networkmanager"],
-    "make_depends": [],
+    "make_depends": ["xmlto", "docbook-xsl", "docbook-xml"],
     "provides": ["cockpit"],
     "conflicts": [],
     "replaces": [],

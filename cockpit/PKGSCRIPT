@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="cockpit"
-VERSION="267"
+VERSION="295"
 EPOCH=0
 DESC="The easy-to-use, integrated, glanceable, and open web-based interface for your servers."
 GRPS=()
@@ -11,6 +11,7 @@ URL="https://cockpit-project.org"
 LICENSES=("LGPL-2.1")
 DEPENDS=("krb5" "libssh" "json-glib" "glib-networking" "openssl" "polkit")
 OPT_DEPENDS=("polkit" "sudo" "networkmanager")
+MK_DEPENDS=("xmlto" "docbook-xsl" "docbook-xml")
 PROVIDES=("cockpit")
 CONFLICTS=()
 REPLACES=()
@@ -18,10 +19,20 @@ REPLACES=()
 # Source information
 SRC=("https://github.com/cockpit-project/cockpit/releases/download/${VERSION}/cockpit-${VERSION}.tar.xz"
 "branding/branding.css"
-"branding/logo.png")
+"branding/logo.png"
+"pam"
+"cockpit-ws.sysusers"
+"cockpit-wsinstance.sysusers"
+"tmpfiles")
 
 SUM_TYPE="sha512"
-SUM=("23aba77cbb902ed693dc148e2c2f164eb20bffb85907879fe6764e6cc69a2802252edd8527d63df1317b143901ba869b6ad3a135b65e7262f7068fa2e8d0ef28")
+SUM=("02928de8270c43ece910700e5bf419b06fb1f7f975ad8e7e36054e0b9dacfb6d608f466f7cda151b9fb265d671ff1459dbd4bf6302a1ea2edb6195b200079565"
+"030a76892515fd7c9c2755d99ec9f04be56e9f7484ce56c43a810a2e53684f9e5300a52758e5c7224eceb43d2d0792b10d1d59dfec3bc52cf8c3a432738c5b2c"
+"34aa904e612f010e6cb7e42b878b8a4b8efaf0704df2bb21b8bfabfccd70fdeaaf34a3e9abec4818ea9d05425343d9667fdcffac3f4227d104dddd31804db07a"
+"b39922e63c3be0c06bf4e3b8d506861b46dcbf6f541bb0f363f06f418a7429f7383345e2fca27660f77e49b9bbeff75be60f09c797f4a4f38f9fcb75abb08b86"
+"492c4221d9785724f32d5a6bc89238c197537dbb06c26b41681c892e25c15a9098a07c8bff73bb8e7d9a9c0130d8e97c44db85fcb5aa37e32baddfa8d7072adc"
+"412e8cc5b4cb7ebf4d9525da83f23953c70c90c33781ac619126e01c00d731ff6ac2fa9b02c0c59384d479fe520d26cf819521e977f0753a545dc22e0434514c"
+"d60d8461be2c4ca7b3200d75e85c6856e94fc55fe80ce183885582df7e6c6fc69a0063854e190df72d6a27e7dd0dbdb3a862b2ee30a138c8dc26bb198cfb0e72")
 
 # Prepare script
 function prepare() {
@@ -57,37 +68,15 @@ function postbuild() {
 
     DESTDIR="${BUILD_DATA_ROOT}" make install
 
-    mkdir -p ${BUILD_DATA_ROOT}/etc/pam.d/
-cat > ${BUILD_DATA_ROOT}/etc/pam.d/cockpit << "EOF"
-# Begin /etc/pam.d/cockpit
+    install -m644 -D ${WORKDIR}/pam "${BUILD_DATA_ROOT}/etc/pam.d/cockpit"
 
-auth       include      system-auth
-auth       optional     pam_ssh_add.so
-account    include      system-account
-password   include      system-password
-session    optional     pam_ssh_add.so
-session    include      system-session
+    install -m644 -D ${WORKDIR}/cockpit-ws.sysusers "${BUILD_DATA_ROOT}/usr/lib/sysusers.d/cockpit-ws.conf"
+    install -m644 -D ${WORKDIR}/cockpit-wsinstance.sysusers "${BUILD_DATA_ROOT}/usr/lib/sysusers.d/cockpit-wsinstance.conf"
 
-# End /etc/pam.d/cockpit
-EOF
+    install -m644 -D ${WORKDIR}/tmpfiles "${BUILD_DATA_ROOT}/usr/lib/tmpfiles.d/cockpit-tempfiles.conf"
 
-    mkdir -p ${BUILD_DATA_ROOT}/usr/lib/sysusers.d/
-cat > ${BUILD_DATA_ROOT}/usr/lib/sysusers.d/cockpit-ws.conf << "EOF"
-u cockpit-ws - "User for Cockpit web service"
-EOF
-
-cat > ${BUILD_DATA_ROOT}/usr/lib/sysusers.d/cockpit-wsinstance.conf << "EOF"
-u cockpit-wsinstance - "User for cockpit-ws instances"
-EOF
-
-    mkdir -p ${BUILD_DATA_ROOT}/usr/lib/tmpfiles.d/
-cat > ${BUILD_DATA_ROOT}/usr/lib/tmpfiles.d/cockpit-tempfiles.conf << "EOF"
-z /usr/lib/cockpit/cockpit-session - - cockpit-wsinstance -
-EOF
-
-    mkdir -p ${BUILD_DATA_ROOT}/usr/share/cockpit/branding/yiffOS
-    cp -r ${WORKDIR}/branding.css ${BUILD_DATA_ROOT}/usr/share/cockpit/branding/yiffOS/branding.css
-    cp -r ${WORKDIR}/logo.png ${BUILD_DATA_ROOT}/usr/share/cockpit/branding/yiffOS/logo.png
+    install -m644 -D ${WORKDIR}/branding.css "${BUILD_DATA_ROOT}/usr/share/cockpit/branding/yiffOS/branding.css"
+    install -m644 -D ${WORKDIR}/logo.png "${BUILD_DATA_ROOT}/usr/share/cockpit/branding/yiffOS/logo.png"
 
     rm -r ${BUILD_DATA_ROOT}/usr/share/cockpit/{playground,packagekit,selinux}
     rm -r ${BUILD_DATA_ROOT}/usr/share/metainfo/org.cockpit-project.cockpit-selinux.metainfo.xml
