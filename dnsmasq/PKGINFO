@@ -1,0 +1,16 @@
+{
+    "name": "dnsmasq",
+    "version": "2.89",
+    "epoch": 0,
+    "description": "DNS, DHCP, router advertisement and network boot for small networks.",
+    "groups": [],
+    "url": "https://thekelleys.org.uk/dnsmasq/doc.html",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glibc", "gmp", "libidn2", "dbus", "nettle"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["dnsmasq"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

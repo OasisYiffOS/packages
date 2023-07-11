@@ -1,0 +1,46 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="dnsmasq"
+VERSION="2.89"
+EPOCH=0
+DESC="DNS, DHCP, router advertisement and network boot for small networks."
+GRPS=()
+URL="https://thekelleys.org.uk/dnsmasq/doc.html"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glibc" "gmp" "libidn2" "dbus" "nettle")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("dnsmasq")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://thekelleys.org.uk/dnsmasq/dnsmasq-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("4384ed5b673e10eaf6532e6eaeb5c0a6b817581433cc28c632bdcbadbfc050a0ab73bc5b73c98d708cd39515bb3f72168714b0aa5f16436cebdd18020648d428")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make PREFIX=/usr all
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make PREFIX=/usr DESTDIR="${BUILD_DATA_ROOT}" install
+
+    return 0
+}
