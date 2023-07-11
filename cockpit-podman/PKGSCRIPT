@@ -1,0 +1,40 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="cockpit-podman"
+VERSION="71"
+EPOCH=0
+DESC="Cockpit UI for Podman containers."
+GRPS=()
+URL="https://github.com/cockpit-project/cockpit-podman"
+LICENSES=("LGPL-2.1")
+DEPENDS=("cockpit")
+PROVIDES=("cockpit-podman")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/cockpit-project/cockpit-podman/releases/download/${VERSION}/cockpit-podman-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("d29c375287563309d83b1d785418df9228fc580445f92f5a1430cd31605c4ff5880575072e882d1f4b50ab57ce8a9f8d5ff6283b48e4d0beddfd1e20d8eeeafe")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make PREFIX=/usr install
+
+    return 0
+}

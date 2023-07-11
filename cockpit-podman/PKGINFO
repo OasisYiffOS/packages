@@ -1,0 +1,16 @@
+{
+    "name": "cockpit-podman",
+    "version": "71",
+    "epoch": 0,
+    "description": "Cockpit UI for Podman containers.",
+    "groups": [],
+    "url": "https://github.com/cockpit-project/cockpit-podman",
+    "license": ["LGPL-2.1"],
+    "depends": ["cockpit"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["cockpit-podman"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
