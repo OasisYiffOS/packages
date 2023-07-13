@@ -1,0 +1,46 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="docutils"
+VERSION="0.20.1"
+EPOCH=0
+DESC="Tool for processing plaintext documentation into formats such as HTML, LaTeX, man-pages, and XML."
+GRPS=()
+URL="https://docutils.sourceforge.io/"
+LICENSES=("Python-2.0" "BSD-2-Clause" "GPL-3.0-or-later")
+DEPENDS=("python")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("docutils")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://files.pythonhosted.org/packages/1f/53/a5da4f2c5739cf66290fac1431ee52aff6851c7c8ffd8264f13affd7bcdd/docutils-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("a0ddca315d03677003036d6a8052ac96fbd3fcc4508564938ea684d79bedb4d322d83449c7b26e55b19b0aadd6e46ca9ac409bb16279a20f06c70e9c15ef5eb0")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    python3 setup.py build
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    python3 setup.py install --root="${BUILD_DATA_ROOT}" --optimize=1 --skip-build
+
+    return 0
+}

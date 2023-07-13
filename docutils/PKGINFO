@@ -1,0 +1,16 @@
+{
+    "name": "docutils",
+    "version": "0.20.1",
+    "epoch": 0,
+    "description": "Tool for processing plaintext documentation into formats such as HTML, LaTeX, man-pages, and XML.",
+    "groups": [],
+    "url": "https://docutils.sourceforge.io/",
+    "license": ["Python-2.0", "BSD-2-Clause", "GPL-3.0-or-later"],
+    "depends": ["python"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["docutils"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
