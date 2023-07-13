@@ -1,0 +1,46 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="libvirt-python"
+VERSION="9.5.0"
+EPOCH=0
+DESC="Python bindings to Libvirt"
+GRPS=()
+URL="https://libvirt.org/"
+LICENSES=("LGPL-2.1-or-later")
+DEPENDS=("libvirt" "python" "glibc")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("libvirt-python")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.libvirt.org/python/libvirt-python-9.5.0.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("cf00a7deb6193df86472d509075dcddc1020b7d83f7cc1cd5347a48905647ced82222ec810e9640ae85585d58d66616ecef3d2289bc354e719d4de377abe330f")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    python3 setup.py build
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    python3 setup.py install --root="${BUILD_DATA_ROOT}" --optimize=1 --skip-build
+
+    return 0
+}

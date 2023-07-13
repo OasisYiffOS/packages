@@ -1,0 +1,16 @@
+{
+    "name": "libvirt-python",
+    "version": "9.5.0",
+    "epoch": 0,
+    "description": "Python bindings to Libvirt",
+    "groups": [],
+    "url": "https://libvirt.org/",
+    "license": ["LGPL-2.1-or-later"],
+    "depends": ["libvirt", "python", "glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libvirt-python"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
