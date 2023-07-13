@@ -1,0 +1,76 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="libvirt"
+VERSION="9.5.0"
+EPOCH=0
+DESC="Portable, long term stable C API for managing the virtualization technologies provided by many operating systems."
+GRPS=("kvm")
+URL="https://libvirt.org"
+# libvirt licensing is complicated by libparted
+# as such, they have a "helper" that is licensed under GPLv3+ like libparted
+# the rest of the C api is LGPL-2.1 and other binaries are GPLv2+ however
+# we currently dont build the libparted helper so we don't need add it to the array 
+# but this message is there if we want to in the future
+LICENSES=("GPL-2.0-or-later" "LGPL-2.1-or-later")
+DEPENDS=("dnsmasq" "docutils" "libpciaccess" "fuse" "gnutls" "libssh2" "libxml2" "polkit" "gettext" "lvm2" "qemu" "yajl")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "libxslt" "rpcsvc-proto")
+PROVIDES=("libvirt")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.libvirt.org/libvirt-${VERSION}.tar.xz"
+"sysusers"
+"tmpfiles")
+
+SUM_TYPE="sha512"
+SUM=("d8c40281856a60ba2a22a7a64721c4baee1803235227a973a22465aacfb26f674dc65045b87d0dcd183be324cb65408f253b4d72c2ed494fb809e98772eea2e3"
+"44f847bdb828cbea7ae28889df170c4a41b540def754e799ca1443ebbfb6ae6beb65e7617fb36fae6bc2ee8944c2a8662373e1008bc7c6917cceda7cd236b15f"
+"9497b1ea3c5428ca219d7619e62a3303283b78c9e3972f4bcf8e5f12f4a3662ca5f61a7e17baddf8209f1fc3ba5c679b257a2909252b377e74ce253500e218f2")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr             \
+          -Dpackager=yiffOS         \
+                                    \
+          -Dsystem=true             \
+                                    \
+          -Ddriver_qemu=enabled     \
+          -Dqemu_user=libvirt-qemu  \
+          -Dqemu_group=libvirt-qemu \
+          ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    install -m644 -D ${WORKDIR}/sysusers "${BUILD_DATA_ROOT}/usr/lib/sysusers.d/libvirt.conf"
+    install -m644 -D ${WORKDIR}/tmpfiles "${BUILD_DATA_ROOT}/usr/lib/tmpfiles.d/libvirt.conf"
+
+    # Secrets should be kept secret
+    chmod 700 "${BUILD_DATA_ROOT}"/etc/libvirt/secrets
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "libvirt",
+    "version": "9.5.0",
+    "epoch": 0,
+    "description": "Portable, long term stable C API for managing the virtualization technologies provided by many operating systems.",
+    "groups": ["kvm"],
+    "url": "https://libvirt.org",
+    "license": ["GPL-2.0-or-later", "LGPL-2.1-or-later"],
+    "depends": ["dnsmasq", "docutils", "libpciaccess", "fuse", "gnutls", "libssh2", "libxml2", "polkit", "gettext", "lvm2", "qemu", "yajl"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "libxslt", "rpcsvc-proto"],
+    "provides": ["libvirt"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
