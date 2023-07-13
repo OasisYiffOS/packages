@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="python-idna"
+_REALNAME="idna"
+VERSION="3.4"
+EPOCH=0
+DESC="Python package for Internationalized Domain Names in Applications."
+GRPS=()
+URL="https://github.com/kjd/idna"
+LICENSES=("BSE-3-Clause")
+DEPENDS=("python")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("python-idna")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/kjd/idna/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("0fc174ef91061e87cf31b7bc2ff7d1cb12167ece10f030fc3820bf27555e9fa498221161e3a0c272635013f4c771fc0e3855f8d968e0146fb5d93f81699f6bce")
+
+# Prepare script
+function prepare() {
+
+    # fixme: this is a bit of a hack as we don't have packages for these
+    python3 -m pip install installer build flit_core
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_REALNAME}-${VERSION}"
+
+    # fixme: there might be a way to do this without build
+    python3 -m build --wheel --no-isolation
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_REALNAME}-${VERSION}"
+
+    # fixme: same as above
+    python3 -m installer --destdir="${BUILD_DATA_ROOT}" dist/*.whl
+
+    return 0
+}

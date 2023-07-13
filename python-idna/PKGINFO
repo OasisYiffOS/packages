@@ -1,0 +1,16 @@
+{
+    "name": "python-idna",
+    "version": "3.4",
+    "epoch": 0,
+    "description": "Python package for Internationalized Domain Names in Applications.",
+    "groups": [],
+    "url": "https://github.com/kjd/idna",
+    "license": ["BSE-3-Clause"],
+    "depends": ["python"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-idna"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
