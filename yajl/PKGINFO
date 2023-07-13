@@ -1,0 +1,16 @@
+{
+    "name": "yajl",
+    "version": "2.1.0",
+    "epoch": 0,
+    "description": "Yet Another JSON Library, a small event-driven (SAX-style) JSON parser written in ANSI C.",
+    "groups": [],
+    "url": "https://lloyd.github.io/yajl/",
+    "license": ["ISC"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["cmake"],
+    "provides": ["yajl"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
