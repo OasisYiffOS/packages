@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="libvirt-glib"
+VERSION="4.0.0"
+EPOCH=0
+DESC="GObject binding for libvirt native C API and XML schemas."
+GRPS=()
+URL="https://gitlab.com/libvirt/libvirt-glib"
+LICENSES=("LGPL-2.1-or-later")
+DEPENDS=("libvirt" "libxml2" "glib2")
+OPT_DEPENDS=()
+MK_DEPENDS=("vala" "gobject-introspection" "meson" "ninja")
+PROVIDES=("libvirt-glib")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.libvirt.org/glib/libvirt-glib-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("e1b99e80aa671fa5a4d7f7f7a4ea70ce7c5fdaf97574407f79aa11a75dd177e1e3f92027728a83ded62e305852bbda76eb90326aaa1f5f19b77272b008351810")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --buildtype=plain ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

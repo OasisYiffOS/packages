@@ -1,0 +1,16 @@
+{
+    "name": "libvirt-glib",
+    "version": "4.0.0",
+    "epoch": 0,
+    "description": "GObject binding for libvirt native C API and XML schemas.",
+    "groups": [],
+    "url": "https://gitlab.com/libvirt/libvirt-glib",
+    "license": ["LGPL-2.1-or-later"],
+    "depends": ["libvirt", "libxml2", "glib2"],
+    "optional_depends": [],
+    "make_depends": ["vala", "gobject-introspection", "meson", "ninja"],
+    "provides": ["libvirt-glib"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
