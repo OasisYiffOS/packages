@@ -1,0 +1,57 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="libvirt-dbus"
+VERSION="1.4.1"
+EPOCH=0
+DESC="DBus protocol binding for libvirt native C API."
+GRPS=()
+URL="https://gitlab.com/libvirt/libvirt-dbus"
+LICENSES=("LGPL-2.1-or-later")
+DEPENDS=("libvirt" "libvirt-glib" "glib2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("libvirt-dbus")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.libvirt.org/dbus/libvirt-dbus-${VERSION}.tar.xz"
+"sysusers")
+
+SUM_TYPE="sha512"
+SUM=("8215df988ae5c60a179c8be2f181f2c0c64b23e20e0575110ee64a0e60fd03e1523ac27a854192990cd94c76b3b771358e350d7c1bceccb9c05e9e0bf9143563"
+"e040570c03662c9520c89f5193619117e009610f4f9e0c09f1d32fe1d07fc645a513f0c9921f05e774b4de16a086bbc9367e8661a5d2fe16217bb99ffb5f76ff")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson --prefix=/usr --sysconfdir=/etc --localstatedir=/var ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    install -m644 -D ${WORKDIR}/sysusers "${BUILD_DATA_ROOT}/usr/lib/sysusers.d/libvirtdbus.conf"
+
+    return 0
+}

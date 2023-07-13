@@ -1,0 +1,16 @@
+{
+    "name": "libvirt-dbus",
+    "version": "1.4.1",
+    "epoch": 0,
+    "description": "DBus protocol binding for libvirt native C API.",
+    "groups": [],
+    "url": "https://gitlab.com/libvirt/libvirt-dbus",
+    "license": ["LGPL-2.1-or-later"],
+    "depends": ["libvirt", "libvirt-glib", "glib2"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["libvirt-dbus"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
