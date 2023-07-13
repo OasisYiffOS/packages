@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="python-requests"
+_REALNAME="requests"
+VERSION="2.31.0"
+EPOCH=0
+DESC="A simple HTTP library for Python, built for human beings."
+GRPS=()
+URL="https://requests.readthedocs.io/"
+LICENSES=("Apache-2.0")
+DEPENDS=("python" "python-urllib3" "python-idna" "python-chardet")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("python-requests")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/psf/requests/archive/v${VERSION}/python-requests-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("43f536bdb2360fcceb24ef98e995ffa66cdefc2c502629f17a5722445bfa9ad8489201958c846c2aaef37e427f95a4d56e321a91095c69754680abfd83b39150")
+
+# Prepare script
+function prepare() {
+
+    # fixme: this is a bit of a hack as we don't have packages for these
+    python3 -m pip install installer build wheel
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_REALNAME}-${VERSION}"
+
+    # fixme: there might be a way to do this without build
+    python3 -m build --wheel --no-isolation
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_REALNAME}-${VERSION}"
+
+    # fixme: same as above
+    python3 -m installer --destdir="${BUILD_DATA_ROOT}" dist/*.whl
+
+    return 0
+}
