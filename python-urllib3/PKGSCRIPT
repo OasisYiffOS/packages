@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="python-urllib3"
+_REALNAME="urllib3"
+VERSION="2.0.3"
+EPOCH=0
+DESC="A powerful, user-friendly HTTP client for Python."
+GRPS=()
+URL="https://urllib3.readthedocs.io/"
+LICENSES=("MIT")
+DEPENDS=("python")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("python-urllib3")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/urllib3/urllib3/releases/download/${VERSION}/urllib3-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("fd586a12b25a30ea801cfd6e207854a0f762cefee54512d742b3fffcc772db9dd75f436f0b998edd32a60857a7bd818bd10f6984e26f2ea47f56b5c545ead45b")
+
+# Prepare script
+function prepare() {
+
+    # fixme: this is a bit of a hack as we don't have packages for these
+    python3 -m pip install installer build hatchling
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_REALNAME}-${VERSION}"
+
+    # fixme: there might be a way to do this without build
+    python3 -m build --wheel --no-isolation
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_REALNAME}-${VERSION}"
+
+    # fixme: same as above
+    python3 -m installer --destdir="${BUILD_DATA_ROOT}" dist/*.whl
+
+    return 0
+}

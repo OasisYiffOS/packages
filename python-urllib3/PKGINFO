@@ -1,0 +1,16 @@
+{
+    "name": "python-urllib3",
+    "version": "2.0.3",
+    "epoch": 0,
+    "description": "A powerful, user-friendly HTTP client for Python.",
+    "groups": [],
+    "url": "https://urllib3.readthedocs.io/",
+    "license": ["MIT"],
+    "depends": ["python"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-urllib3"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
