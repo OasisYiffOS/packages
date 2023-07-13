@@ -1,0 +1,16 @@
+{
+    "name": "python-chardet",
+    "version": "5.1.0",
+    "epoch": 0,
+    "description": "Python module for character encoding auto-detection.",
+    "groups": [],
+    "url": "https://github.com/chardet/chardet",
+    "license": ["LGPL-2.1-or-later"],
+    "depends": ["python"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-chardet"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

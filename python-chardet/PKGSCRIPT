@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="python-chardet"
+_REALNAME="chardet"
+VERSION="5.1.0"
+EPOCH=0
+DESC="Python module for character encoding auto-detection."
+GRPS=()
+URL="https://github.com/chardet/chardet"
+LICENSES=("LGPL-2.1-or-later")
+DEPENDS=("python")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("python-chardet")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/chardet/chardet/archive/refs/tags/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("531888329979d229f3e966a428d14feb4612df5b71e3dff3ee3358ecbc964af95370e4c03aacecea0941d11840a16b2b12814ea8af977ff81a5abbec41d983cd")
+
+# Prepare script
+function prepare() {
+
+    # fixme: this is a bit of a hack as we don't have packages for these
+    python3 -m pip install installer build wheel
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_REALNAME}-${VERSION}"
+
+    # fixme: there might be a way to do this without build
+    python3 -m build --wheel --no-isolation
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_REALNAME}-${VERSION}"
+
+    # fixme: same as above
+    python3 -m installer --destdir="${BUILD_DATA_ROOT}" dist/*.whl
+
+    return 0
+}
