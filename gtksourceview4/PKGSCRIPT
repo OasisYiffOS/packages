@@ -1,0 +1,58 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="gtksourceview4"
+VERSION="4.8.4"
+_MAJOR_VERSION="4.8"
+EPOCH=0
+DESC="A library used for extending the GTK text functions to include syntax highlighting."
+GRPS=()
+URL="https://wiki.gnome.org/Projects/GtkSourceView"
+LICENSES=("LGPL-2.1")
+DEPENDS=("glibc" "gtk3" "libxml2")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection" "vala")
+PROVIDES=("gtksourceview4")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://download.gnome.org/sources/gtksourceview/${_MAJOR_VERSION}/gtksourceview-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("9e4262e52a92b3a052f33b799622d4fd4dcc7cc5355df12f160d0e60a6d6c135bc52f07eb40c06b357d5d74bec7228d4ec545a69ee5af69429d4170cc1e2243d")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/gtksourceview-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson setup --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/gtksourceview-${VERSION}/build"
+
+    ninja
+
+    if [ ! -z "$DISPLAY" ] && [ ! -z "$WAYLAND_DISPLAY" ]; then
+        ninja test
+    fi
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/gtksourceview-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

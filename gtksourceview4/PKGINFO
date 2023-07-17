@@ -1,0 +1,16 @@
+{
+    "name": "gtksourceview4",
+    "version": "4.8.4",
+    "epoch": 0,
+    "description": "A library used for extending the GTK text functions to include syntax highlighting.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/GtkSourceView",
+    "license": ["LGPL-2.1"],
+    "depends": ["glibc", "gtk3", "libxml2"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection", "vala"],
+    "provides": ["gtksourceview4"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
