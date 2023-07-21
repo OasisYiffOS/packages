@@ -1,0 +1,16 @@
+{
+    "name": "virglrenderer",
+    "version": "0.10.4",
+    "epoch": 0,
+    "description": "A virtual 3D GPU for use inside QEMU virtual machines.",
+    "groups": [],
+    "url": "https://docs.mesa3d.org/drivers/virgl/",
+    "license": ["MIT"],
+    "depends": ["libepoxy", "libva", "mesa"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["virglrenderer"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

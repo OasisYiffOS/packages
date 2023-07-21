@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="virglrenderer"
+VERSION="0.10.4"
+EPOCH=0
+DESC="A virtual 3D GPU for use inside QEMU virtual machines."
+GRPS=()
+URL="https://docs.mesa3d.org/drivers/virgl/"
+LICENSES=("MIT")
+DEPENDS=("libepoxy" "libva" "mesa")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("virglrenderer")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/virgl/virglrenderer/-/archive/${VERSION}/virglrenderer-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("7038d79ca54951552bc15ce005a84ee06ed09da9977c7e26d7895fc59db85e1bbf6bcf15faf569a74c218e8a121efe7575bf0b6bd179578ddf9ee1324623aa19")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson setup --prefix=/usr --buildtype=release -Dvideo=true ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
