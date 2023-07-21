@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="spice-gtk"
+VERSION="0.42"
+EPOCH=0
+DESC="GTK client and libraries for SPICE remote desktop servers."
+GRPS=()
+URL="https://www.spice-space.org/"
+LICENSES=("GPL-2.0-only" "LGPL-2.1-or-later")
+DEPENDS=("gtk3" "spice-protocol" "openssl" "pulseaudio" "pixman" "libjpeg-turbo" "zlib" "cyrus-sasl" "gettext" "gstreamer" "gst-plugins-base" "gst-plugins-good" "gst-plugins-bad" "json-glib" "polkit" "usbutils" "libusb")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja" "gobject-introspection" "vala" "python" "python-pyparsing" "python-six" "valgrind")
+PROVIDES=("spice-gtk")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.spice-space.org/download/gtk/spice-gtk-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("fd567e35f6d4ebfe6ef004f358dca4c41254336f55f7dd26cf67b62b2acb4866907186bd0526b7cb52b0c24020cdc8809251127498a8d357555bb0c5d3b8f137")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson setup --prefix=/usr --buildtype=release -Dgtk_doc=disabled ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}

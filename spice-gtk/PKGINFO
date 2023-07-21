@@ -1,0 +1,16 @@
+{
+    "name": "spice-gtk",
+    "version": "0.42",
+    "epoch": 0,
+    "description": "GTK client and libraries for SPICE remote desktop servers.",
+    "groups": [],
+    "url": "https://www.spice-space.org/",
+    "license": ["GPL-2.0-only", "LGPL-2.1-or-later"],
+    "depends": ["gtk3", "spice-protocol", "openssl", "pulseaudio", "pixman", "libjpeg-turbo", "zlib", "cyrus-sasl", "gettext", "gstreamer", "gst-plugins-base", "gst-plugins-good", "gst-plugins-bad", "json-glib", "polkit", "usbutils", "libusb"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "gobject-introspection", "vala", "python", "python-pyparsing", "python-six", "valgrind"],
+    "provides": ["spice-gtk"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
