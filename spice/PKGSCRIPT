@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="spice"
+VERSION="0.15.2"
+EPOCH=0
+DESC="SPICE: Simple Protocol for Independent Computing Environments. (Server)"
+GRPS=()
+URL="https://www.spice-space.org/"
+LICENSES=("LGPL-2.1-or-later")
+DEPENDS=("spice-protocol" "pixman" "openssl" "libjpeg-turbo" "zlib" "cyrus-sasl" "opus")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("spice")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://www.spice-space.org/download/releases/spice-${VERSION}.tar.bz2")
+
+SUM_TYPE="sha512"
+SUM=("c8f273b9e97ef38a03b331f7d32c5f0a09d540523fe626568c845152cbd22273a92b3a08bc13fa2e061b913ad16ceb7cbddf142655cd9cdcd8eb5f646fa6aa26")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr           \
+                --sysconfdir=/etc       \
+                --localstatedir=/var    \
+                --libdir=/usr/lib       \
+                --enable-opus=yes
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

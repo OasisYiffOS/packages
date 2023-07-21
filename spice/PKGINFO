@@ -1,0 +1,16 @@
+{
+    "name": "spice",
+    "version": "0.15.2",
+    "epoch": 0,
+    "description": "SPICE: Simple Protocol for Independent Computing Environments. (Server)",
+    "groups": [],
+    "url": "https://www.spice-space.org/",
+    "license": ["LGPL-2.1-or-later"],
+    "depends": ["spice-protocol", "pixman", "openssl", "libjpeg-turbo", "zlib", "cyrus-sasl", "opus"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["spice"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
