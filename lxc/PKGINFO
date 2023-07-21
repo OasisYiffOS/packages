@@ -1,0 +1,16 @@
+{
+    "name": "lxc",
+    "version": "5.0.2",
+    "epoch": 0,
+    "description": "Low-level Linux container runtime.",
+    "groups": [],
+    "url": "https://linuxcontainers.org/lxc/",
+    "license": ["GPL-2.0-only", "LGPL-2.1-or-later"],
+    "depends": ["openssl", "rsync", "dnsmasq", "libseccomp", "dbus", "systemd"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["lxc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

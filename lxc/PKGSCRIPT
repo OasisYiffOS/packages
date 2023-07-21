@@ -1,0 +1,55 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="lxc"
+VERSION="5.0.2"
+EPOCH=0
+DESC="Low-level Linux container runtime."
+GRPS=()
+URL="https://linuxcontainers.org/lxc/"
+LICENSES=("GPL-2.0-only" "LGPL-2.1-or-later")
+DEPENDS=("openssl" "rsync" "dnsmasq" "libseccomp" "dbus" "systemd")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("lxc")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://linuxcontainers.org/downloads/lxc/lxc-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("2e8800875e9c91cc0cbfdfc33c43d84bad9471d8a1b8ccd52d7d9c6fe44f280f9f701b8ccc2e0f5319a3e4c50d8c4331722f0dd9c0347575eb4f7b4ed110bef3")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson setup --prefix=/usr --buildtype=release -Dapparmor=false -Dman=false ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
