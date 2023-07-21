@@ -1,0 +1,16 @@
+{
+    "name": "gtk-vnc",
+    "version": "1.3.1",
+    "epoch": 0,
+    "description": "A VNC viewer widget for GTK.",
+    "groups": [],
+    "url": "https://wiki.gnome.org/Projects/gtk-vnc",
+    "license": ["LGPL-2.1-only"],
+    "depends": ["libgcrypt", "gtk3", "gnutls", "pulseaudio"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja", "vala", "gobject-introspection"],
+    "provides": ["gtk-vnc"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
