@@ -1,16 +1,16 @@
 {
     "name": "qemu",
-    "version": "7.1.0",
+    "version": "8.0.3",
     "epoch": 0,
     "description": "Virtualization solution for x86 Linux.",
-    "groups": [],
+    "groups": ["kvm"],
     "url": "https://qemu-project.org/",
     "license": ["GPL-2.0"],
-    "depends": ["glib2"],
+    "depends": ["glibc", "glib2", "libgcc", "fuse", "gnutls", "keyutils", "libaio", "libelf", "libjpeg-turbo", "libpng", "libseccomp", "lzo", "pam", "zlib", "zstd", "pulseaudio", "libssh", "libxml2", "cyrus-sasl", "libusb", "vte", "systemd", "spice-protocol", "spice", "usbredir", "libslirp", "jack2", "libepoxy", "virglrenderer"],
     "optional_depends": ["alsa-lib", "sdl2"],
-    "make_depends": ["ninja", "diffutils"],
+    "make_depends": ["ninja", "diffutils", "bison"],
     "provides": ["qemu"],
     "conflicts": [],
     "replaces": [],
-    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>", "Evie Viau <evie@eviee.gay>"]
 }

@@ -1,26 +1,26 @@
 # Package Maintainers
-MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>" "Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="qemu"
-VERSION="7.1.0"
+VERSION="8.0.3"
 EPOCH=0
 DESC="Virtualization solution for x86 Linux."
-GRPS=()
+GRPS=("kvm")
 URL="https://qemu-project.org/"
 LICENSES=("GPL-2.0")
-DEPENDS=("glib2")
+DEPENDS=("glibc" "glib2" "libgcc" "fuse" "gnutls" "keyutils" "libaio" "libelf" "libjpeg-turbo" "libpng" "libseccomp" "lzo" "pam" "zlib" "zstd" "pulseaudio" "libssh" "libxml2" "cyrus-sasl" "libusb" "vte" "systemd" "spice-protocol" "spice" "usbredir" "libslirp" "jack2" "libepoxy" "virglrenderer")
 OPT_DEPENDS=("alsa-lib" "sdl2")
-MK_DEPENDS=("ninja" "diffutils")
+MK_DEPENDS=("ninja" "diffutils" "bison")
 PROVIDES=("qemu")
 CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://download.qemu-project.org/qemu-${VERSION}.tar.xz")
+SRC=("https://download.qemu.org/qemu-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("c60c5ff8ec99b7552e485768908920658fdd8035ff7a6fa370fb6881957dc8b7e5f18ff1a8f49bd6aa22909ede2a7c084986d8244f12074ccd33ebe40a0c411f")
+SUM=("18b2ccb65f7ec2ae92f0e04406539620c881e2b75f63816588c86043a07464bb99d16a83e792ed9508de393f4b694c46d52f4d07edf52741e85224c8b8d5d5c3")
 
 # Prepare script
 function prepare() {
@@ -33,11 +33,16 @@ function prepare() {
         QEMU_ARCH=x86_64-softmmu
     fi
 
-    ./configure --prefix=/usr               \
-                 --sysconfdir=/etc           \
-                 --localstatedir=/var        \
-                 --audio-drv-list=alsa,pa    \
-                 --docdir=/usr/share/doc/qemu-7.1.0
+    ./configure --prefix=/usr                           \
+                --sysconfdir=/etc                       \
+                --localstatedir=/var                    \
+                --audio-drv-list=alsa,pa,jack           \
+                --enable-spice                          \
+                --enable-slirp                          \
+                --enable-usb-redir                      \
+                --enable-opengl                         \
+                --enable-virglrenderer                  \
+                --docdir=/usr/share/doc/qemu-${VERSION}
     unset QEMU_ARCH
 
     return 0
