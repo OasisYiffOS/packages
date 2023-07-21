@@ -4,12 +4,12 @@ MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
 # Package information
 NAME="libosinfo"
 VERSION="1.10.0"
-EPOCH=0
+EPOCH=1
 DESC="Library for managing information about operating systems and hypervisors."
 GRPS=()
 URL="https://libosinfo.org/"
 LICENSES=("GPL-2.0-or-later")
-DEPENDS=("glib2" "libxml2" "libxslt" "glibc" "libsoup3")
+DEPENDS=("glib2" "libxml2" "libxslt" "glibc" "libsoup3" "hwdata")
 OPT_DEPENDS=("gobject-introspection")
 MK_DEPENDS=("ninja" "meson" "vala" "gcc")
 PROVIDES=("libosinfo")
@@ -27,7 +27,13 @@ function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
     # TODO: enable doc gen once we get that stuff done
-    meson setup build -Dprefix=/usr -Dsysconfdir=/etc -Dlocalstatedir=/var -Denable-gtk-doc=false
+    meson setup build                                           \
+                -Dprefix=/usr                                   \
+                -Dsysconfdir=/etc                               \
+                -Dlocalstatedir=/var                            \
+                -Denable-gtk-doc=false                          \
+                -Dwith-usb-ids-path=/usr/share/hwdata/usb.ids   \
+                -Dwith-pci-ids-path=/usr/share/hwdata/pci.ids
 
     return 0
 }
