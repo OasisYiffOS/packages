@@ -1,0 +1,16 @@
+{
+    "name": "python-certifi",
+    "version": "2023.05.07",
+    "epoch": 0,
+    "description": "Mozilla's carefully curated collection of Root Certificates for Python.",
+    "groups": [],
+    "url": "https://github.com/certifi/python-certifi",
+    "license": ["MPL-2.0"],
+    "depends": ["python"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-certifi"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

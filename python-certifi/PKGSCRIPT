@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="python-certifi"
+VERSION="2023.05.07"
+EPOCH=0
+DESC="Mozilla's carefully curated collection of Root Certificates for Python."
+GRPS=()
+URL="https://github.com/certifi/python-certifi"
+LICENSES=("MPL-2.0")
+DEPENDS=("python")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("python-certifi")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/certifi/python-certifi/archive/refs/tags/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("ad6cb9ecd54e9d54c93e01bf3bf080f8c9c72878f254b8a590184929664a4194c03be1b6579f7c00eb1117206c769fad70543a2f277b39549fed2e9ed235ec52")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # fixme: this is a bit of a hack as we don't have packages for these
+    python3 -m pip install installer build wheel
+
+    # Allow non ASCII comments
+    sed -i 's/encoding="ascii"/encoding="utf-8"/' certifi/core.py
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # fixme: there might be a way to do this without build
+    python3 -m build --wheel --no-isolation
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # fixme: same as above
+    python3 -m installer --destdir="${BUILD_DATA_ROOT}" dist/*.whl
+
+    return 0
+}
