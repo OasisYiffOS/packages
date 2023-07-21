@@ -1,0 +1,16 @@
+{
+    "name": "libslirp",
+    "version": "4.7.0",
+    "epoch": 0,
+    "description": "A general purpose TCP-IP emulator used by virtual machine hypervisors to provide virtual networking services.",
+    "groups": [],
+    "url": "https://gitlab.freedesktop.org/slirp/libslirp",
+    "license": ["BSD-3-Clause"],
+    "depends": ["glib2"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["libslirp"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
