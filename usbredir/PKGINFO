@@ -1,0 +1,16 @@
+{
+    "name": "usbredir",
+    "version": "0.13.0",
+    "epoch": 0,
+    "description": "Protocol for redirection USB traffic from a single USB device, to a different (virtual) machine then the one to which the USB device is attached.",
+    "groups": [],
+    "url": "https://gitlab.freedesktop.org/spice/usbredir",
+    "license": ["GPL-2.0-or-later", "LGPL-2.1-or-later"],
+    "depends": ["glib2", "libusb"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["usbredir"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

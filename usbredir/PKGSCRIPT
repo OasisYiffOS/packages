@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="usbredir"
+VERSION="0.13.0"
+_UPLOAD_HASH="211844dd64853ca4378ad7e74faf3e00"
+EPOCH=0
+DESC="Protocol for redirection USB traffic from a single USB device, to a different (virtual) machine then the one to which the USB device is attached."
+GRPS=()
+URL="https://gitlab.freedesktop.org/spice/usbredir"
+LICENSES=("GPL-2.0-or-later" "LGPL-2.1-or-later")
+DEPENDS=("glib2" "libusb")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("usbredir")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://gitlab.freedesktop.org/spice/usbredir/uploads/${_UPLOAD_HASH}/usbredir-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("dd27b1794233d4a278c3ca0e2a1ef9518946d8c7422cf58bb83d8ed5b4358133da27bdb0f44ad7b679a9983b3c419c3ab014486735614f7ceea85bfa62904273")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson setup --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    ninja test
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
