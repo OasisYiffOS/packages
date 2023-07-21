@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="python-six"
+_REALNAME="six"
+VERSION="1.16.0"
+EPOCH=0
+DESC="Python 2 and 3 compatibility library."
+GRPS=()
+URL="https://github.com/benjaminp/six"
+LICENSES=("MIT")
+DEPENDS=("python")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("python-six")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/benjaminp/six/archive/refs/tags/${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("630179b9994e10573225dcfa4ff7a40449a58bbe57ccff06434fa40ded10c6e3e1d72a230860a8e6c839c7c17357aca9e1f38aede9566782339331eef65fed3a")
+
+# Prepare script
+function prepare() {
+
+    # fixme: this is a bit of a hack as we don't have packages for these
+    python3 -m pip install installer build wheel
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_REALNAME}-${VERSION}"
+
+    # fixme: there might be a way to do this without build
+    python3 -m build --wheel --no-isolation
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_REALNAME}-${VERSION}"
+
+    # fixme: same as above
+    python3 -m installer --destdir="${BUILD_DATA_ROOT}" dist/*.whl
+
+    return 0
+}

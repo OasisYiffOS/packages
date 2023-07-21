@@ -1,0 +1,16 @@
+{
+    "name": "python-six",
+    "version": "1.16.0",
+    "epoch": 0,
+    "description": "Python 2 and 3 compatibility library.",
+    "groups": [],
+    "url": "https://github.com/benjaminp/six",
+    "license": ["MIT"],
+    "depends": ["python"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-six"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
