@@ -1,0 +1,42 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="osinfo-db"
+VERSION="20230719"
+EPOCH=0
+DESC="Osinfo database of information about operating systems for virtualization provisioning tools."
+GRPS=()
+URL="https://libosinfo.org/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("osinfo-db-tools")
+PROVIDES=("osinfo-db")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://releases.pagure.org/libosinfo/osinfo-db-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("42751d3c8defea0aec49389354a4b682e1881f6387296e7d1b8d32afe3a1d8b9d7a3093bac33d0dbba359d28f1375f35dee7b0ca89fc7f1ce39276c231deda7b")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}"
+
+    osinfo-db-import --root "${BUILD_DATA_ROOT}" --system ./osinfo-db-${VERSION}.tar.xz
+
+    return 0
+}

@@ -1,0 +1,16 @@
+{
+    "name": "osinfo-db",
+    "version": "20230719",
+    "epoch": 0,
+    "description": "Osinfo database of information about operating systems for virtualization provisioning tools.",
+    "groups": [],
+    "url": "https://libosinfo.org/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": ["osinfo-db-tools"],
+    "provides": ["osinfo-db"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
