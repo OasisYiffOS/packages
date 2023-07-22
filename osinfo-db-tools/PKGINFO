@@ -1,0 +1,16 @@
+{
+    "name": "osinfo-db-tools",
+    "version": "1.10.0",
+    "epoch": 0,
+    "description": "Tools for managing the libosinfo database files.",
+    "groups": [],
+    "url": "https://libosinfo.org/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glib2", "json-glib", "libarchive", "libxml2", "libxslt", "libsoup3"],
+    "optional_depends": [],
+    "make_depends": ["meson", "ninja"],
+    "provides": ["osinfo-db-tools"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="osinfo-db-tools"
+VERSION="1.10.0"
+EPOCH=0
+DESC="Tools for managing the libosinfo database files."
+GRPS=()
+URL="https://libosinfo.org/"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glib2" "json-glib" "libarchive" "libxml2" "libxslt" "libsoup3")
+OPT_DEPENDS=()
+MK_DEPENDS=("meson" "ninja")
+PROVIDES=("osinfo-db-tools")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://releases.pagure.org/libosinfo/osinfo-db-tools-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("27271b15404a6cb0065854ba8556c272cf3427ff4fd18fc9a22dbca2b01686c32661b24e18f5eff9a1b240a3a459d8fe66cbde530873d60b8c850bdd0b42c475")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    mkdir build
+    cd    build
+
+    meson setup --prefix=/usr --buildtype=release ..
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    ninja
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
+
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
+
+    return 0
+}
