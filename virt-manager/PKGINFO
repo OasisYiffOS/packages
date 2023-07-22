@@ -1,0 +1,16 @@
+{
+    "name": "virt-manager",
+    "version": "4.1.0",
+    "epoch": 0,
+    "description": "Desktop tool for managing virtual machines via libvirt.",
+    "groups": ["kvm"],
+    "url": "https://virt-manager.org/",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["libvirt-python", "libvirt-glib", "python", "python-pygobject", "libosinfo", "gettext", "gtk3", "gtksourceview4", "python-requests", "gtk-vnc", "spice-gtk", "osinfo-db"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["virt-manager"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
