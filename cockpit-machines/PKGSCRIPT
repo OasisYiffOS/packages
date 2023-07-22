@@ -1,0 +1,40 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="cockpit-machines"
+VERSION="294"
+EPOCH=0
+DESC="Cockpit UI for virtual machines."
+GRPS=()
+URL="https://github.com/cockpit-project/cockpit-machines"
+LICENSES=("LGPL-2.1-or-later")
+DEPENDS=("cockpit" "libvirt-dbus" "virt-manager")
+PROVIDES=("cockpit-machines")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/cockpit-project/cockpit-machines/releases/download/${VERSION}/cockpit-machines-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("3536dab89560eecf29e22ba7cb754a8b8ea1ded5a4af6e3fdf2394c460f4799e5cb213322b401d07248fa84f489d14658ff1b9449f6e7ee1b63a11be2b2e8294")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make PREFIX=/usr install
+
+    return 0
+}
