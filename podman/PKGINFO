@@ -1,0 +1,16 @@
+{
+    "name": "podman",
+    "version": "4.6.0",
+    "epoch": 0,
+    "description": "A tool for managing OCI containers and pods.",
+    "groups": [],
+    "url": "https://podman.io/",
+    "license": ["Apache-2.0"],
+    "depends": ["catatonit", "conmon", "containers-common", "crun", "lvm2", "libgcc", "glibc", "gpgme", "iptables", "libseccomp", "slirp4netns", "fuse-overlayfs"],
+    "optional_depends": ["btrfs-progs"],
+    "make_depends": ["go"],
+    "provides": ["podman"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

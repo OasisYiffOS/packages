@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="podman"
+VERSION="4.6.0"
+EPOCH=0
+DESC="A tool for managing OCI containers and pods."
+GRPS=()
+URL="https://podman.io/"
+LICENSES=("Apache-2.0")
+DEPENDS=("catatonit" "conmon" "containers-common" "crun" "lvm2" "libgcc" "glibc" "gpgme" "iptables" "libseccomp" "slirp4netns" "fuse-overlayfs")
+OPT_DEPENDS=("btrfs-progs")
+MK_DEPENDS=("go")
+PROVIDES=("podman")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/containers/podman/archive/v${VERSION}/podman-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("a0f045e3275f072abcf2e59636527f1b98b7579d7b64df37cbabbf1f9d2cb3852a95240f6145ccd81d4b31da0175003ab0043d269c75f9dfb31586065554c986")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    export BUILDTAGS='seccomp systemd'
+    export CGO_CPPFLAGS="${CPPFLAGS}"
+    export CGO_CFLAGS="${CFLAGS}"
+    export CGO_CXXFLAGS="${CXXFLAGS}"
+    export CGO_LDFLAGS="${LDFLAGS}"
+    export GOFLAGS="-buildmode=pie"
+    export GOPATH="${srcdir}"
+
+    make EXTRA_LDFLAGS='-compressdwarf=false -linkmode=external' PREFIX=/usr
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install PREFIX=/usr
+
+    return 0
+}
