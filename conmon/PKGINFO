@@ -1,0 +1,16 @@
+{
+    "name": "conmon",
+    "version": "2.1.7",
+    "epoch": 0,
+    "description": "OCI container runtime monitor.",
+    "groups": [],
+    "url": "https://github.com/containers/conmon",
+    "license": ["Apache-2.0"],
+    "depends": ["glibc", "glib2", "systemd"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["conmon"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

@@ -1,0 +1,47 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="conmon"
+VERSION="2.1.7"
+EPOCH=0
+DESC="OCI container runtime monitor."
+GRPS=()
+URL="https://github.com/containers/conmon"
+LICENSES=("Apache-2.0")
+DEPENDS=("glibc" "glib2" "systemd")
+OPT_DEPENDS=()
+PROVIDES=("conmon")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/containers/conmon/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("95d394b399a19a62b894cdd03937ab79b81051eea1db461b1bf957ddd7626d6ca4aa108b8319ed8c08adbdf99fd960c5ba29146e8b0673b5c920708912a72973")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make PREFIX=/usr LIBEXECDIR=/usr/lib DESTDIR="${BUILD_DATA_ROOT}"
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    install -Dm755 bin/conmon "${BUILD_DATA_ROOT}/usr/bin/conmon"
+
+    return 0
+}
