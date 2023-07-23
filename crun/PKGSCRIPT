@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="crun"
+VERSION="1.8.5"
+EPOCH=0
+DESC="A fast and low-memory footprint OCI Container Runtime fully written in C."
+GRPS=()
+URL="https://github.com/containers/crun"
+LICENSES=("GPL-2.0-or-later" "LGPL-2.1-or-later")
+DEPENDS=("systemd" "protobuf-c" "libcap" "libseccomp" "yajl" "libgcrypt" "python" "criu")
+OPT_DEPENDS=()
+PROVIDES=("crun")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/containers/crun/releases/download/${VERSION}/crun-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("50b31435ee2cae9703d12f74e4d9083a2b0a3a7ce63f34ecbdc6b9c0f01f5948f22330b614d40933a9851289d9ed2f457c4599821f743c3569c329dad43678f7")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./configure --prefix=/usr --enable-shared --enable-dynamic --with-python-bindings
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
