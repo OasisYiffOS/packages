@@ -1,0 +1,16 @@
+{
+    "name": "netavark",
+    "version": "1.7.0",
+    "epoch": 0,
+    "description": "Rust-based network stack for containers.",
+    "groups": [],
+    "url": "https://github.com/containers/netavark",
+    "license": ["Apache-2.0"],
+    "depends": ["glibc", "protobuf-c"],
+    "optional_depends": [],
+    "make_depends": ["rust"],
+    "provides": ["netavark"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}

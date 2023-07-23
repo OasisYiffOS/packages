@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="netavark"
+VERSION="1.7.0"
+EPOCH=0
+DESC="Rust-based network stack for containers."
+GRPS=()
+URL="https://github.com/containers/netavark"
+LICENSES=("Apache-2.0")
+DEPENDS=("glibc" "protobuf-c")
+OPT_DEPENDS=()
+MK_DEPENDS=("rust")
+PROVIDES=("netavark")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/containers/netavark/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("52658b32cc03f157b4292e40918559700fcdd1cba633e34b396aeb0ed701ed308d1de45eba7f04865e89145367df772fdde91208f2475553e8db209426291844")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+    make docs
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
