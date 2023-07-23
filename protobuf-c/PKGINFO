@@ -1,0 +1,16 @@
+{
+    "name": "protobuf-c",
+    "version": "1.4.1",
+    "epoch": 0,
+    "description": "Protocol Buffers implementation in C.",
+    "groups": [],
+    "url": "https://github.com/protobuf-c/protobuf-c",
+    "license": ["BSD-2-Clause"],
+    "depends": ["protobuf"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["protobuf-c"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
