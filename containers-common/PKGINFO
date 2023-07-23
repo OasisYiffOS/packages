@@ -1,0 +1,16 @@
+{
+    "name": "containers-common",
+    "version": "0.55.1",
+    "epoch": 0,
+    "description": "Common configuration files and documentation for the container tools ecosystem.",
+    "groups": [],
+    "url": "https://github.com/containers/common",
+    "license": ["Apache-2.0"],
+    "depends": ["netavark"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["containers-common"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

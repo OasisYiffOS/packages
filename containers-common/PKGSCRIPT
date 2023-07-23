@@ -1,0 +1,90 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="containers-common"
+# Check podman, buildah, and skopeo to see the lowest version
+VERSION="0.55.1"
+_PODMAN_VERSION="4.6.0"
+_BUILDAH_VERSION="1.31.0"
+_SKOPEO_VERSION="1.13.0"
+_SHORTNAMES_VERSION="2023.02.20"
+_IMAGE_VERSION="5.26.1"
+_STORAGE_VERSION="1.48.0"
+EPOCH=0
+DESC="Common configuration files and documentation for the container tools ecosystem."
+GRPS=()
+URL="https://github.com/containers/common"
+LICENSES=("Apache-2.0")
+DEPENDS=("netavark")
+OPT_DEPENDS=()
+PROVIDES=("containers-common")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/containers/common/archive/v${VERSION}/common-${VERSION}.tar.gz"
+"https://github.com/containers/podman/archive/v${_PODMAN_VERSION}/podman-${_PODMAN_VERSION}.tar.gz"
+"https://github.com/containers/buildah/archive/v${_BUILDAH_VERSION}/buildah-${_BUILDAH_VERSION}.tar.gz"
+"https://github.com/containers/skopeo/archive/v${_SKOPEO_VERSION}/skopeo-${_SKOPEO_VERSION}.tar.gz"
+"https://github.com/containers/shortnames/archive/v${_SHORTNAMES_VERSION}/shortnames-${_SHORTNAMES_VERSION}.tar.gz"
+"https://github.com/containers/image/archive/v${_IMAGE_VERSION}/image-${_IMAGE_VERSION}.tar.gz"
+"https://github.com/containers/storage/archive/v${_STORAGE_VERSION}/storage-${_STORAGE_VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("463f81789af7f090b4ffbbf4bcc20f24f2c0257247b63331bafcbbb44f9b990034d90d90474e0e6e3b417f9b14bed9c7b601a6c80c52bb88d8ff3990fb28cd96"
+"a0f045e3275f072abcf2e59636527f1b98b7579d7b64df37cbabbf1f9d2cb3852a95240f6145ccd81d4b31da0175003ab0043d269c75f9dfb31586065554c986"
+"613c8e76f134ce46e9d9c21a747914993214f0cc875a193e972f77784ca8d2f683c08557c7b764e3c48c854ca4104e04d3d6529e28397ec76311cc937168a696"
+"b5f6501f6b265b9034768a35d36ae726127099ec20d55b724f44d2506c481f2affe0527bf7e373ace36ad903a2e8246d81b8a3cae7e209a15224cda2dd215cfd"
+"856dbbeb2acda276e9605bd1ecec0f8d65952c597ee2af61dd8909d7d3c04e5ef06c40b69ec4a98f79e623c536850f614c1b0af3a19637e300e7d3a285933193"
+"fa10e98acca566586add698ab9f269da0d2eff72480dd9dc027b0b39b66df7b7e0799ab76ce17e9a93f2117ef124226d48fd56cffb124d8a5f89b883f61b60cb"
+"30c26b40f2858622ce4f63d21cee3ff626ac17f57ddcaf23a2d2d16b785259587cb7eda13309dc145860c3dd847b8546863eb0a32e63609586857c63e44b638a")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/common-${VERSION}"
+
+    # We should eventually build docs here
+    # Look into packaging go-md2man at some point
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+	install -d "${BUILD_DATA_ROOT}"/etc/containers/certs.d
+	install -d "${BUILD_DATA_ROOT}"/etc/containers/oci/hooks.d
+	install -d "${BUILD_DATA_ROOT}"/var/lib/containers/sigstore
+
+    # Common
+    cd "${WORKDIR}/common-${VERSION}"
+	install -Dm644 pkg/config/containers.conf "${BUILD_DATA_ROOT}"/etc/containers/containers.conf
+	install -Dm644 pkg/config/containers.conf "${BUILD_DATA_ROOT}"/usr/share/containers/containers.conf
+	install -Dm644 pkg/seccomp/seccomp.json "${BUILD_DATA_ROOT}"/etc/containers/seccomp.json
+	install -Dm644 pkg/seccomp/seccomp.json "${BUILD_DATA_ROOT}"/usr/share/containers/seccomp.json
+
+    # Skopeo
+    cd "${WORKDIR}/skopeo-${_SKOPEO_VERSION}"
+    install -Dm644 default-policy.json "${BUILD_DATA_ROOT}"/etc/containers/policy.json
+	install -Dm644 default.yaml "${BUILD_DATA_ROOT}"/etc/containers/registries.d/default.yaml
+
+    # Shortnames
+    cd "${WORKDIR}/shortnames-${_SHORTNAMES_VERSION}"
+    install -Dm644 shortnames.conf "${BUILD_DATA_ROOT}"/etc/containers/registries.conf.d/00-shortnames.conf
+
+    # Image
+    cd "${WORKDIR}/image-${_IMAGE_VERSION}"
+	install -Dm644 registries.conf "${BUILD_DATA_ROOT}"/etc/containers/registries.conf
+
+    # Storage
+    cd "${WORKDIR}/storage-${_STORAGE_VERSION}"
+    install -Dm644 storage.conf "${BUILD_DATA_ROOT}"/etc/containers/storage.conf
+	install -Dm644 storage.conf "${BUILD_DATA_ROOT}"/usr/share/containers/storage.conf
+
+    return 0
+}
