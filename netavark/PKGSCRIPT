@@ -4,12 +4,12 @@ MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
 # Package information
 NAME="netavark"
 VERSION="1.7.0"
-EPOCH=0
+EPOCH=1
 DESC="Rust-based network stack for containers."
 GRPS=()
 URL="https://github.com/containers/netavark"
 LICENSES=("Apache-2.0")
-DEPENDS=("glibc" "protobuf-c")
+DEPENDS=("glibc" "protobuf-c" "aardvark-dns")
 OPT_DEPENDS=()
 MK_DEPENDS=("rust")
 PROVIDES=("netavark")
@@ -33,7 +33,7 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    make
+    make PREFIX=/usr
     make docs
 
     return 0
@@ -43,7 +43,7 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    DESTDIR="${BUILD_DATA_ROOT}" make install
+    DESTDIR="${BUILD_DATA_ROOT}" make PREFIX=/usr install
 
     return 0
 }
