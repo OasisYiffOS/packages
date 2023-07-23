@@ -1,0 +1,72 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="criu"
+VERSION="3.18"
+EPOCH=0
+DESC="A project to implement checkpoint/restore functionality for Linux."
+GRPS=()
+URL="https://criu.org/"
+LICENSES=("GPL-2.0-only" "LGPL-2.1-only")
+DEPENDS=("libbsd" "libnet" "libnl" "libcap" "iproute2" "protobuf-c" "python-protobuf" "gnutls")
+OPT_DEPENDS=()
+MK_DEPENDS=("xmlto")
+PROVIDES=("criu")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/checkpoint-restore/criu/archive/v${VERSION}/criu-${VERSION}.tar.gz"
+"no-recompile-on-install.patch")
+
+SUM_TYPE="sha512"
+SUM=("3d15554ebd2d08c8904c23b0aba00d505891c14caa4790c2fd12ad6b20bf4058fd210f1d03fd63aacc5ad8bc47e341396b48abbeb474f1fd43c3023fd1ff9171"
+"126867c96271ca8183e27d5c6ad3628830f5a2daf6b04391dddea1d7b3bb973879410b42d53b10a32fd1418a002f8e50ded575cc1f8bb1731f011f879b82d31c")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Don't recompile when installing
+    patch -p1 -i "${WORKDIR}/no-recompile-on-install.patch"
+
+    # Don't install docs
+    sed -i 's/install: install-man install-lib install-criu install-compel install-amdgpu_plugin ;/install: install-lib install-criu install-compel install-amdgpu_plugin ;/g' Makefile.install
+
+    # fixme: this is a bit of a hack as we don't have packages for these
+    python3 -m pip install installer build wheel
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make PYTHON=python3
+
+    cd crit
+    
+    export CRIU_VERSION_MAJOR="${VERSION%%.*}"
+    export CRIU_VERSION_MINOR="${VERSION##*.}"
+    
+    python3 -m build --wheel --no-isolation
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    python3 -m installer --destdir="${BUILD_DATA_ROOT}" crit/dist/*.whl
+
+    make DESTDIR="${BUILD_DATA_ROOT}" PREFIX=/usr install
+
+    # Empty directories
+    rm -rf "$pkgdir/usr/include/compel/common/asm" \
+           "$pkgdir/var"
+
+    return 0
+}

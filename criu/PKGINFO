@@ -1,0 +1,16 @@
+{
+    "name": "criu",
+    "version": "3.18",
+    "epoch": 0,
+    "description": "A project to implement checkpoint/restore functionality for Linux.",
+    "groups": [],
+    "url": "https://criu.org/",
+    "license": ["GPL-2.0-only", "LGPL-2.1-only"],
+    "depends": ["libbsd", "libnet", "libnl", "libcap", "iproute2", "protobuf-c", "python-protobuf", "gnutls"],
+    "optional_depends": [],
+    "make_depends": ["xmlto"],
+    "provides": ["criu"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
