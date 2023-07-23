@@ -1,0 +1,16 @@
+{
+    "name": "libnet",
+    "version": "1.2",
+    "epoch": 0,
+    "description": "A library which provides an API for commonly used low-level network functions.",
+    "groups": [],
+    "url": "https://github.com/libnet/libnet",
+    "license": ["BSD-2-Clause"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["libnet"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
