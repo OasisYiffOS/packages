@@ -1,0 +1,53 @@
+# Package Maintainers
+MAINTAINERS=("Niko Chow-Stuart <fekhesk@pm.me>")
+
+# Package information
+NAME="python-protobuf"
+_REALNAME="protobuf"
+VERSION="21.4"
+EPOCH=0
+DESC="Python bindings for Google Protocol Buffers."
+GRPS=()
+URL="https://developers.google.com/protocol-buffers/"
+LICENSES=("BSD-3-Clause")
+DEPENDS=("python" "protobuf")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("python-protobuf")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/protocolbuffers/protobuf/archive/v${VERSION}/protobuf-${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("1259f06f3f941aec5af275e6cc061f7c1e8095eb3c35a431cb9f39f044728f5d6834399d2bc417de04facccbc1ef1285bd876b9d06ef1261e2ae0854bc7415f4")
+
+# Prepare script
+function prepare() {
+
+    # fixme: this is a bit of a hack as we don't have packages for these
+    python3 -m pip install installer build wheel
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${_REALNAME}-${VERSION}/python"
+
+    # fixme: there might be a way to do this without build
+    python3 -m build --wheel --no-isolation
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${_REALNAME}-${VERSION}/python"
+
+    # fixme: same as above
+    python3 -m installer --destdir="${BUILD_DATA_ROOT}" dist/*.whl
+
+    return 0
+}

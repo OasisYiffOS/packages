@@ -1,0 +1,16 @@
+{
+    "name": "python-protobuf",
+    "version": "21.4",
+    "epoch": 0,
+    "description": "Python bindings for Google Protocol Buffers.",
+    "groups": [],
+    "url": "https://developers.google.com/protocol-buffers/",
+    "license": ["BSD-3-Clause"],
+    "depends": ["python", "protobuf"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["python-protobuf"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Niko Chow-Stuart <fekhesk@pm.me>"]
+}
