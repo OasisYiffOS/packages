@@ -1,0 +1,16 @@
+{
+    "name": "fuse-overlayfs",
+    "version": "1.12",
+    "epoch": 0,
+    "description": "FUSE implementation for overlayfs.",
+    "groups": [],
+    "url": "https://github.com/containers/fuse-overlayfs",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["fuse"],
+    "optional_depends": [],
+    "make_depends": ["autoconf", "automake"],
+    "provides": ["fuse-overlayfs"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

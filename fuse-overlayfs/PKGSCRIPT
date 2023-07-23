@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="fuse-overlayfs"
+VERSION="1.12"
+EPOCH=0
+DESC="FUSE implementation for overlayfs."
+GRPS=()
+URL="https://github.com/containers/fuse-overlayfs"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("fuse")
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf" "automake")
+PROVIDES=("fuse-overlayfs")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/containers/fuse-overlayfs/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("f113ac20b389d2f1c5e5ff160a60c308017e74c9c85d74a7200bab81a4cfa30335a64740c173f17c91ab4feddffb138ca4378e92894645a67eea5ac73d42890f")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./autogen.sh
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
