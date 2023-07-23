@@ -1,0 +1,56 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="catatonit"
+VERSION="0.1.7"
+EPOCH=0
+DESC="A container init that is so simple it's effectively brain-dead."
+GRPS=()
+URL="https://github.com/openSUSE/catatonit/"
+LICENSES=("GPL-3.0-or-later")
+DEPENDS=()
+OPT_DEPENDS=()
+MK_DEPENDS=("automake" "autoconf" "libtool")
+PROVIDES=("catatonit")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/openSUSE/catatonit/releases/download/v${VERSION}/catatonit.tar.xz"
+"99bb9048f532257f3a2c3856cfa19fe957ab6cec.patch")
+
+SUM_TYPE="sha512"
+SUM=("5eb554918539458630cad2229d34b66cd357fdcdfe61732792812ac6c77dd0fa73ec9927d057324d0fd038ef6416f04a1544a886d7b188adfa1712e59b454152"
+"12a3e14bd81429ba33931f02cf58b3e29d5f9a05fd42653016f430f4eac3f87ff8a268e3974b894b8bea9402220ab357652fc856044bff7e8c3b269f761a4c5b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Fix https://github.com/openSUSE/catatonit/issues/20 when building
+    patch -p1 -i "${WORKDIR}/99bb9048f532257f3a2c3856cfa19fe957ab6cec.patch"
+
+    autoreconf -fiv
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}

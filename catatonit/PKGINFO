@@ -1,0 +1,16 @@
+{
+    "name": "catatonit",
+    "version": "0.1.7",
+    "epoch": 0,
+    "description": "A container init that is so simple it's effectively brain-dead.",
+    "groups": [],
+    "url": "https://github.com/openSUSE/catatonit/",
+    "license": ["GPL-3.0-or-later"],
+    "depends": [],
+    "optional_depends": [],
+    "make_depends": ["automake", "autoconf", "libtool"],
+    "provides": ["catatonit"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
