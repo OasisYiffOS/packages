@@ -1,0 +1,16 @@
+{
+    "name": "aardvark-dns",
+    "version": "1.7.0",
+    "epoch": 0,
+    "description": "Authoritative dns server for A/AAAA container records.",
+    "groups": [],
+    "url": "https://github.com/containers/aardvark-dns",
+    "license": ["Apache-2.0"],
+    "depends": ["glibc", "libgcc"],
+    "optional_depends": [],
+    "make_depends": ["rust"],
+    "provides": ["aardvark-dns"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

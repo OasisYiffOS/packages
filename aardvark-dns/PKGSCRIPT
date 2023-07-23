@@ -1,0 +1,46 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="aardvark-dns"
+VERSION="1.7.0"
+EPOCH=0
+DESC="Authoritative dns server for A/AAAA container records."
+GRPS=()
+URL="https://github.com/containers/aardvark-dns"
+LICENSES=("Apache-2.0")
+DEPENDS=("glibc" "libgcc")
+OPT_DEPENDS=()
+MK_DEPENDS=("rust")
+PROVIDES=("aardvark-dns")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/containers/aardvark-dns/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("d829ac122f26f17ca44a41a48576ab8c4f9dd238bc52faee816833f63f9ff54e63f62610167e4619084263e61cdb1329c2e1d49f314c8b9e65e748df80fd5096")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make PREFIX=/usr
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make PREFIX=/usr install
+
+    return 0
+}
