@@ -1,0 +1,16 @@
+{
+    "name": "slirp4netns",
+    "version": "1.2.0",
+    "epoch": 0,
+    "description": "User-mode networking for unprivileged network namespaces.",
+    "groups": [],
+    "url": "https://github.com/rootless-containers/slirp4netns",
+    "license": ["GPL-2.0-or-later"],
+    "depends": ["glib2", "libslirp", "libcap", "libseccomp"],
+    "optional_depends": [],
+    "make_depends": ["autoconf", "automake"],
+    "provides": ["slirp4netns"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}

@@ -1,0 +1,51 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="slirp4netns"
+VERSION="1.2.0"
+EPOCH=0
+DESC="User-mode networking for unprivileged network namespaces."
+GRPS=()
+URL="https://github.com/rootless-containers/slirp4netns"
+LICENSES=("GPL-2.0-or-later")
+DEPENDS=("glib2" "libslirp" "libcap" "libseccomp")
+OPT_DEPENDS=()
+MK_DEPENDS=("autoconf" "automake")
+PROVIDES=("slirp4netns")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/rootless-containers/slirp4netns/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("4ede7323aab92d0ad0026bc5e1aefc07898a5b50c4ff57c13eb9d8e75d73a4bb5ac992f021404053fcba2b05c56dcafcbfefbc4bbc47f72a0797ab62bd76a60a")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    ./autogen.sh
+    ./configure --prefix=/usr
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+
+    return 0
+}
