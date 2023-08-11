@@ -1,0 +1,4 @@
+d /srv/pgsql/data 700 postgres postgres
+h /srv/pgsql/data -   -        -        - +C
+
+d /run/postgresql 755 postgres postgres
