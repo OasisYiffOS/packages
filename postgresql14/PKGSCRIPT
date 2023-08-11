@@ -1,0 +1,87 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="postgresql14"
+VERSION="14.9"
+EPOCH=0
+DESC="An advanced open source object-relational database management system, derived from the Berkeley Postgres database management system."
+GRPS=()
+URL="https://www.postgresql.org/"
+LICENSES=("PostgreSQL")
+DEPENDS=("krb5" "icu" "libxml2" "libxslt" "openssl" "pam" "readline" "systemd" "python" "tcl" "zlib" "openldap" "util-linux")
+OPT_DEPENDS=()
+MK_DEPENDS=()
+PROVIDES=("postgresql14" "postgresql")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://ftp.postgresql.org/pub/source/v${VERSION}/postgresql-${VERSION}.tar.gz"
+    "postgresql.service"
+    "sysusers"
+    "tmpfiles"
+    "pam")
+
+SUM_TYPE="sha512"
+SUM=("b2a1d2978bfc255b337508ff6f6a63eb70e1f010e2786038aac8923cdf4e2bfafcd7ba6514271cd22e5f95238433718d1d0d2e19313f0647da88f6583da6dbb5"
+    "23e5906ca2ac53ee344988966781070450138fbb10b0486abd4c1ea16be67aa23750abc7e8b2e1c8d0f9211e25645eedc8ad7d2ec6c57e5f6bccd6d3a22a2269"
+    "9852cdc0993c33fd860a6df01606370bf34d260132f7594fb3f6e1244da374d61cbc09ee76229868b5c36084fc23b197f723bed6c04db48973bf853739e740cf"
+    "c668a7bbac7f029f504885110eb34931a2e42f04820f5a73ab6799017ea71f74673202ceb8626996edbfc55f7f6afe9783465f7d06496eb52f6f4c0604103b87"
+    "3961a97f894dfd2b54fdf550434b683d43444ac28a129505b05e3e7c2482fb02cf2eed74e3c22dfd28c758218a0e1ce15e6f9729f3c3c9dd7b9fc9318dcf0d8b")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/postgresql-${VERSION}"
+
+    # Move socket from /tmp to /var/run
+    sed -i '/DEFAULT_PGSOCKET_DIR/s@/tmp@/run/postgresql@' src/include/pg_config_manual.h
+
+    ./configure --prefix=/usr                                   \
+                --enable-thread-safety                          \
+                --with-openssl                                  \
+                --with-perl                                     \
+                --with-python                                   \
+                --with-tcl                                      \
+                --with-libxml                                   \
+                --with-libxslt                                  \
+                --with-ldap                                     \
+                --with-icu                                      \
+                --with-readline                                 \
+                --with-pam                                      \
+                --with-systemd                                  \
+                --enable-nls                                    \
+                --enable-thread-safety                          \
+                --docdir=/usr/share/doc/postgresql-${VERSION}
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/postgresql-${VERSION}"
+
+    make
+
+    make check
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/postgresql-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+    DESTDIR="${BUILD_DATA_ROOT}" make -C contrib install
+    DESTDIR="${BUILD_DATA_ROOT}" make install-docs
+    
+    install -m644 -D ${WORKDIR}/postgresql.service "${BUILD_DATA_ROOT}/usr/lib/systemd/system/postgresql.service"
+    
+    install -m644 -D ${WORKDIR}/sysusers "${BUILD_DATA_ROOT}/usr/lib/sysusers.d/postgresql.conf"
+    install -m644 -D ${WORKDIR}/tmpfiles "${BUILD_DATA_ROOT}/usr/lib/tmpfiles.d/postgresql.conf"
+    
+    install -m644 -D ${WORKDIR}/pam "${BUILD_DATA_ROOT}/etc/pam.d/postgresql"
+
+    return 0
+}

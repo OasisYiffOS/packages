@@ -1,0 +1,16 @@
+{
+    "name": "postgresql14",
+    "version": "14.9",
+    "epoch": 0,
+    "description": "An advanced open source object-relational database management system, derived from the Berkeley Postgres database management system.",
+    "groups": [],
+    "url": "https://www.postgresql.org/",
+    "license": ["PostgreSQL"],
+    "depends": ["krb5", "icu", "libxml2", "libxslt", "openssl", "pam", "readline", "systemd", "python", "tcl", "zlib", "openldap", "util-linux"],
+    "optional_depends": [],
+    "make_depends": [],
+    "provides": ["postgresql14", "postgresql"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+}
