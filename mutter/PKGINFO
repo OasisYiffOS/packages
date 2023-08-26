@@ -1,6 +1,6 @@
 {
     "name": "mutter",
-    "version": "44.2",
+    "version": "44.3",
     "epoch": 1,
     "description": "The window manager for GNOME. It is not invoked directly, but from GNOME Session (on a machine with a hardware accelerated video driver).",
     "groups": ["gnome"],
