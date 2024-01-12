@@ -1,6 +1,6 @@
 {
     "name": "bash",
-    "version": "5.1.16",
+    "version": "5.2",
     "epoch": 0,
     "description": "The Bourne Again SHell",
     "groups": ["base"],
