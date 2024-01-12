@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="bash"
-VERSION="5.1.16"
+VERSION="5.2"
 EPOCH=0
 DESC="The Bourne Again SHell"
 GRPS=("base")
