@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="linux-src"
-VERSION="6.3.7"
-_FULL_VERSION="6.3.7"
+VERSION="6.9.1"
+_FULL_VERSION="6.9.1"
 _MAJOR_VERSION="6"
 EPOCH=0
 DESC="The Linux kernel"
@@ -23,9 +23,10 @@ SRC=("https://cdn.kernel.org/pub/linux/kernel/v${_MAJOR_VERSION}.x/linux-${VERSI
 "config")
 
 SUM_TYPE="sha512"
-SUM=("1e71941f44b47d9cb8bbae144b6dd352422ae185f34da3f85c3054dcd7eb2699e0a1c35f572f0f3fe67f1fdd0312a172ed54887ce35eadf12477d55ea64de27a"
+SUM=(
+"4958886d77e1f54293ec8be6cdcdf70eff29bf0a23aa8618fc88b24c2b535d0d5bd7bb3276c2749afecb7ce259372b93fa25f57939c7b150151791a514599519"
 "f05bfa9cf685d75f33e227460794817fd0a1ed3615b6dee59ec6593ea2be4017a073dc068620aa19c99e7c016bade3784a74812e54eb4c980b13daf3c3ab74d0"
-"f05bfa9cf685d75f33e227460794817fd0a1ed3615b6dee59ec6593ea2be4017a073dc068620aa19c99e7c016bade3784a74812e54eb4c980b13daf3c3ab74d0")
+"1356d8efffed065fd9bc0d3acc23b94a1b8c32015c5c6121daddbd6045d8fdc7911c2c010d0f27d315f0adb2181fe450ad566c3ed126a444c083d82ab2fe3f5e")
 
 # Prepare script
 function prepare() {
