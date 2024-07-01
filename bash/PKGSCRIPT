@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://ftp.gnu.org/gnu/bash/bash-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("a32a343b6dde9a18eb6217602655f72c4098b0d90f04cf4e686fb21b81fc4ef26ade30f7226929fbb7c207cde34617dbad2c44f6103161d1141122bb31dc6c80")
+SUM=("5647636223ba336bf33e0c65e516d8ebcf6932de8b44f37bc468eedb87579c628ad44213f78534beb10f47aebb9c6fa670cb0bed3b4e7717e5faf7e9a1ef81ae")
 
 # Prepare script
 function prepare() {
