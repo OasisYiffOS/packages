@@ -1,0 +1,49 @@
+# Package Maintainers
+MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+
+# Package information
+NAME="wireguard-tools"
+VERSION="1.0.20210914"
+EPOCH=0
+DESC="Userspace tools for configuring WireGuard."
+GRPS=()
+URL="https://www.wireguard.com/"
+LICENSES=("GPL-2.0")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+PROVIDES=("wireguard-tools")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://git.zx2c4.com/wireguard-tools/snapshot/wireguard-tools-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("6727ea65551dbb064457449b93a943bd6534ca93bc7fa5704c2f6826266c98688ee9ea28731fda57a5245d5f63c05f3899fcca54e40c0b6251b7c4796e957445")
+
+# Prepare script
+function prepare() {
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/src"
+
+    make
+
+    return 0
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}/src"
+
+    make DESTDIR="${BUILD_DATA_ROOT}" \
+	 WITH_BASHCOMPLETION=yes      \
+	 WITH_WGQUICK=yes	      \
+	 WITH_SYSTEMDUNITS=yes        \
+	 install
+
+    return 0
+}
