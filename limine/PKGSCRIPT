@@ -1,0 +1,54 @@
+# Package Maintainers
+MAINTAINERS=("Stick <notnotastick@gmail.com>")
+
+# Package information
+NAME="limine"
+VERSION="7.9.1"
+EPOCH=0
+DESC="An advanced, portable, multiprotocol bootloader (BIOS Support)"
+GRPS=("base")
+URL="https://github.com/limine-bootloader/limine"
+LICENSES=("BSD-2-Clause")
+DEPENDS=("glibc" "make" "clang" "mtools" "nasm")
+OPT_DEPENDS=()
+PROVIDES=("limine")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/limine-bootloader/limine/releases/download/v${VERSION}/limine-${VERSION}.tar.xz")
+
+SUM_TYPE="sha512"
+SUM=("43838092bfd1763a2255cdc2b9393d5cd21cc9873dcaaa7da2c6b4679a390fa2d94e4051451f25eb12e64d9caf752954734c1db508ab492f9786f238761bfea2")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # Config :3
+    ./configure --enable-bios-cd     \
+                --enable-bios-pxe    \
+                --enable-bios        \
+                --enable-uefi-ia32   \
+                --enable-uefi-x86-64 \
+                --enable-uefi-cd
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    # You'll never guess what this does...
+    make
+
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+    return 0
+}
