@@ -1,0 +1,16 @@
+{
+    "name": "neovim",
+    "version": "0.10.0",
+    "epoch": 0,
+    "description": "Fork of Vim aiming to improve user experience, plugins, and GUIs",
+    "groups": ["base"],
+    "url": "https://github.com/neovim/neovim",
+    "license": ["Apache 2.0"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["ninja cmake gcc glibc coreutils unzip curl gettext"],
+    "provides": ["neovim"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Stick <notnotastick@gmail.com>"]
+}
