@@ -53,6 +53,7 @@ function postbuild() {
 
     cd build
     DESTDIR="${BUILD_DATA_ROOT}" ninja install
+    glib-compile-schemas /usr/share/glib-2.0/schemas
 
     return 0
 }
