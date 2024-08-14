@@ -4,7 +4,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 # Package information
 NAME="lib32-llvm"
 VERSION="14.0.1"
-EPOCH=0
+EPOCH=1
 DESC="A collection of modular and reusable compiler and toolchain technologies. (32-bit)"
 GRPS=()
 URL="https://llvm.org"
@@ -17,14 +17,22 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://github.com/llvm/llvm-project/releases/download/llvmorg-${VERSION}/llvm-${VERSION}.src.tar.xz")
+SRC=("https://github.com/llvm/llvm-project/releases/download/llvmorg-${VERSION}/llvm-${VERSION}.src.tar.xz"
+     "https://github.com/llvm/llvm-project/releases/download/llvmorg-${VERSION}/clang-${VERSION}.src.tar.xz")
+#     "https://github.com/llvm/llvm-project/releases/download/llvmorg-${VERSION}/compiler-rt-${VERSION}.src.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("b9e5b2d81cde4cc09152d3efe70776a07498a1a48d70e871910c111a0b2e9ffda4a9cf1130a7dff6af14d0937e128a6695cb5897ea51a00b8dde5ca71f9463bb")
-
+SUM=("b9e5b2d81cde4cc09152d3efe70776a07498a1a48d70e871910c111a0b2e9ffda4a9cf1130a7dff6af14d0937e128a6695cb5897ea51a00b8dde5ca71f9463bb"
+     "6ca71f1f083be19b140a31b47330141fce9b3f7a0d6b030e95c496a69007f926909a56f2986f4c885450dd4cbfe81c6c7756295a32bc781485eb3285b7572406")
+#     "dd3372aaa822751fdae5007722330429d3ef321eb2201d0c81c881b0926f56b5dedbead68d69ccc59ef5fecfcd901e3edcaca72bb3997dae8ad2f619c3593732")
+ 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/llvm-${VERSION}.src"
+
+    # Move clang and the compiler runtime into the correct llvm directory
+    mv ${WORKDIR}/clang-${VERSION}.src tools/clang
+    #mv ${WORKDIR}/compiler-rt-${VERSION}.src projects/compiler-rt
 
     # Force python3 to be used
     grep -rl '#!.*python' | xargs sed -i '1s/python$/python3/'
