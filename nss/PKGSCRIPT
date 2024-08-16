@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="nss"
-VERSION="3.78"
-_DOWNLOAD_VERSION="3_78"
+VERSION="3.103"
+_DOWNLOAD_VERSION="3_103"
 EPOCH=0
 DESC="A set of libraries supporting SSL, TLS, PKCS, S/MIME, X.509, and more."
 GRPS=()
@@ -23,7 +23,7 @@ SRC=("https://archive.mozilla.org/pub/security/nss/releases/NSS_${_DOWNLOAD_VERS
 "nss-${VERSION}-standalone-1.patch")
 
 SUM_TYPE="sha512"
-SUM=("ab54d838f41f963fdd4b87477b1e769186ae1f138f7c5d764cd6873be4791146d14dcc85697a2ca92e08f3bfcbeb61d64e26e7b5398095272c18a8196d43ac6c"
+SUM=("bc7680fc34d84de7953b27f1a220681f3f5c5a501a82be210ec6134894313f6a2c9bfcc350f4802152a5e3a1fc2defc74d700445ade338d6c86a923ac8b4dc75"
 "3bf13e8c94d941f7205141100feabb3759e37901a4ccec2e1e568a94687221ebeeb81ebe657a78ec6d9d3dd3f40382bce2a02a007c7505bdc566260c9cd2e6cb")
 
 # Prepare script

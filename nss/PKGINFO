@@ -1,6 +1,6 @@
 {
     "name": "nss",
-    "version": "3.78",
+    "version": "3.103",
     "epoch": 0,
     "description": "A set of libraries supporting SSL, TLS, PKCS, S/MIME, X.509, and more.",
     "groups": [],
