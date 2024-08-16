@@ -1,6 +1,6 @@
 {
     "name": "cbindgen",
-    "version": "0.23.0",
+    "version": "0.26.0",
     "epoch": 0,
     "description": "Utilities used to generate C bindings for Rust code.",
     "groups": [],

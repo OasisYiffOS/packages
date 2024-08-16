@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="cbindgen"
-VERSION="0.23.0"
+VERSION="0.26.0"
 EPOCH=0
 DESC="Utilities used to generate C bindings for Rust code."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://github.com/eqrion/cbindgen/archive/v${VERSION}/cbindgen-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("341071b20bfcf5cca667f20473b690e9f16109edb519ce3ff263078e246db4d4d99d2ed6a51c6914755d3e554d28d523b78819c4b9eb4f5a396274a072e70da8")
+SUM=("3922c0fd27c5453bed153901f9e63232479138ec10a4e5f8c7a9137227b47383fb1a94604bfaa5cc997cbc7736c928ca6b6268279aed9aedf51261ba88551512")
 
 # Prepare script
 function prepare() {
