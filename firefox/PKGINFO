@@ -1,6 +1,6 @@
 {
     "name": "firefox",
-    "version": "100.0",
+    "version": "129.0.1",
     "epoch": 0,
     "description": "Open-source web browser, designed for standards compliance, performance and portability.",
     "groups": [],
