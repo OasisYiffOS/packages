@@ -1,6 +1,6 @@
 {
     "name": "nspr",
-    "version": "4.33",
+    "version": "4.35",
     "epoch": 0,
     "description": "The Netscape Portable Runtime by Mozilla.",
     "groups": [],

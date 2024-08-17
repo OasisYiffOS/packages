@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="nspr"
-VERSION="4.33"
+VERSION="4.35"
 EPOCH=0
 DESC="The Netscape Portable Runtime by Mozilla."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://archive.mozilla.org/pub/nspr/releases/v${VERSION}/src/nspr-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("8064f826c977f1302a341ca7a7aaf7977b5d10102062c030b1d42b856638e3408ab262447e8c7cfd5a98879b9b1043d17ceae66fbb1e5ed86d6bc3531f26667e")
+SUM=("502815833116e25f79ddf71d1526484908aa92fbc55f8a892729cb404a4daafcc0470a89854cd080d2d20299fdb7d9662507c5362c7ae661cbacf308ac56ef7f")
 
 # Prepare script
 function prepare() {
