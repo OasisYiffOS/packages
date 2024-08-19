@@ -1,6 +1,6 @@
 {
     "name": "lib32-glibc",
-    "version": "2.35",
+    "version": "2.38",
     "epoch": 0,
     "description": "GNU C Library (32 bit version)",
     "groups": [],
