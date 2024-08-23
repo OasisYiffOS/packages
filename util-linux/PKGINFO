@@ -1,6 +1,6 @@
 {
     "name": "util-linux",
-    "version": "2.37.4",
+    "version": "2.40.2",
     "epoch": 0,
     "description": "Miscellaneous utilities",
     "groups": ["base"],
