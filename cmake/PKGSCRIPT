@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="cmake"
-VERSION="3.22.2"
+VERSION="3.30.2"
 EPOCH=0
 DESC="Modern toolset for generating Makefiles."
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://github.com/Kitware/CMake/releases/download/v${VERSION}/cmake-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("86e95f9ce773bcc7513a1c3901561a1b09d06830936b8b1d44e075fe3bac55cfa636eccdedfa94a9939f5e12eb965224559fac30a17c64314ee023acb2a3e53f")
+SUM=("2b4c4ebb2213e19a08b9bf5a3cf0427dd2bfc44c7d86734abf5524c311bbce7e79f76d08e4df87a1e4508fe9fa05a28333068dc3bab308ef9724a9beeb39daab")
 
 # Prepare script
 function prepare() {
@@ -33,6 +33,7 @@ function prepare() {
                 --mandir=/share/man                 \
                 --no-system-jsoncpp                 \
                 --no-system-librhash                \
+                --no-system-cppdap                  \
                 --docdir=/share/doc/cmake-${VERSION}
 
     return 0
