@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libinput"
-VERSION="1.20.0"
+VERSION="1.26.2"
 EPOCH=0
 DESC="Input device management and event handling library."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://gitlab.freedesktop.org/libinput/libinput/-/archive/${VERSION}/libinput-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("b92345809f4e18b2335e3c377d1a8edda523462ff23fba6abcc5f8cf01b80fc4c6e4e06886088788c4b04873d37da210876f201bb81203af2f9f614bc659e6eb")
+SUM=("3ba2e21328276e2129e54423aa6f13f44926ce724026d3b24d25cda3e16c35c7d3c7806c644b289ed51764dae04547a9c4d161291d026160c8d5e80be42a1b7b")
 
 # Prepare script
 function prepare() {
@@ -35,6 +35,7 @@ function prepare() {
           -Dudev-dir=/usr/lib/udev  \
           -Ddebug-gui=false         \
           -Dtests=false             \
+          --libdir=/usr/lib         \
           ..
 
     return 0

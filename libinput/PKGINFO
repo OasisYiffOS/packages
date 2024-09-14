@@ -1,6 +1,6 @@
 {
     "name": "libinput",
-    "version": "1.20.0",
+    "version": "1.26.2",
     "epoch": 0,
     "description": "Input device management and event handling library.",
     "groups": [],
