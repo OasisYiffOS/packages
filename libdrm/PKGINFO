@@ -1,6 +1,6 @@
 {
     "name": "libdrm",
-    "version": "2.4.115",
+    "version": "2.4.123",
     "epoch": 0,
     "description": "Direct Rendering Manager library.",
     "groups": [],
