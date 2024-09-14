@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="wayland"
-VERSION="1.21.0"
+VERSION="1.23.1"
 EPOCH=0
 DESC="A protocol for a compositor to talk to its clients as well as a C library implementation of that protocol."
 GRPS=("wayland")
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://gitlab.freedesktop.org/wayland/wayland/-/releases/${VERSION}/downloads/wayland-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("5575216d30fdf5c63caa6bcad071e15f2a4f3acb12df776806073f65db37a50b5b5b3cc7957c5497636f4ac01893e2eaab26e453ded44b287acde01762f5fdc3")
+SUM=("818eda003e3f7aa15690eedb1ff227a6056b2ce54bf23d45ffe573dc40a914623c5a1358218b59444dcdc483db0503324f0d27091d0ea954412a8b290de5f50a")
 
 # Prepare script
 function prepare() {
@@ -31,7 +31,8 @@ function prepare() {
 
     meson --prefix=/usr         \
           --buildtype=release   \
-          -Ddocumentation=false
+          -Ddocumentation=false \
+          --libdir=/usr/lib
 
     return 0
 }
