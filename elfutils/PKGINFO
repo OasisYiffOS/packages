@@ -1,6 +1,6 @@
 {
     "name": "elfutils",
-    "version": "0.186",
+    "version": "0.191",
     "epoch": 0,
     "description": "Collection of ELF object file access utilities and libraries",
     "groups": [],
