@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libelf"
-VERSION="0.186"
+VERSION="0.191"
 EPOCH=0
 DESC="ELF object file access library"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://sourceware.org/ftp/elfutils/${VERSION}/elfutils-${VERSION}.tar.bz2")
 
 SUM_TYPE="sha512"
-SUM=("c9180b27ec62935f18b9431268d176f6023d1bb938731d2af6e7626ae460af6608a70ba68483aa1ec7e6cb0fa0528b661ca8b68bc4f58ea8e18af527c5950c78")
+SUM=("e22d85f25317a79b36d370347e50284c9120c86f9830f08791b7b6a7b4ad89b9bf4c7c71129133b8d193a0edffb2a2c17987b7e48428b9670aff5ce918777e04")
 
 # Prepare script
 function prepare() {

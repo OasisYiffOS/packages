@@ -1,6 +1,6 @@
 {
     "name": "libelf",
-    "version": "0.186",
+    "version": "0.191",
     "epoch": 0,
     "description": "ELF object file access library",
     "groups": [],
