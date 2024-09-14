@@ -32,6 +32,7 @@ function prepare() {
     meson --prefix=/usr                 \
           --buildtype=release           \
           -Dlibseat-logind=systemd      \
+          --libdir=/usr/lib             \
           ..
 
     return 0
