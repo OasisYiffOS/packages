@@ -1,6 +1,6 @@
 {
     "name": "seatd",
-    "version": "0.6.4",
+    "version": "0.8.0",
     "epoch": 0,
     "description": "Seat management daemon and library.",
     "groups": [],

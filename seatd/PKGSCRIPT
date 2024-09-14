@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="seatd"
-VERSION="0.6.4"
+VERSION="0.8.0"
 EPOCH=0
 DESC="Seat management daemon and library."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://git.sr.ht/~kennylevinsen/seatd/archive/${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("0e2b23eca2e7978e3f914433caa6f84243a20487c6fe9fe3e42a7bf663a4a0872482aa334a3f5dc9b6625c565b408c3c78310b5575b9fb2e2919efdb9620ec57")
+SUM=("93b1e5c170564ce9654e4df9985af95cb505274b36e950998bb1f16803d2d46712140eded2bdd8d5e85aec62070afd9c224184276d79a0ff0813408dfc472db7")
 
 # Prepare script
 function prepare() {
