@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gst-plugins-bad"
-VERSION="1.20.1"
+VERSION="1.24.7"
 EPOCH=0
 DESC="A collection of plug-ins that aren't up to par compared to the rest."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("3113fc93bba59716e7a506cf00f88cb05ccfe3406515ecf7e377dcfd3a8f4e555ff45126c048dc736ae6a28acf430c96422be4a120889fbe04ed69c5acb1cad6")
+SUM=("a92a01724e7b6b532dfad38a6bab7c107844d2cfa823f098f6167d805d67265977703dd2bdd5dfa0116494613cc77484c4f8d5f9df80cc672956345068ba09ed")
 
 # Prepare script
 function prepare() {
@@ -30,6 +30,7 @@ function prepare() {
     cd    build
 
     meson --prefix=/usr                                     \
+          --libdir=/usr/lib                                 \
           --buildtype=release                               \
           -Dgpl=enabled                                     \
           -Dpackage-origin=https://yiffos.gay/              \
