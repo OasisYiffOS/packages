@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gstreamer"
-VERSION="1.20.1"
+VERSION="1.24.7"
 EPOCH=0
 DESC="A streaming media framework that enables applications to share a common set of plugins for tasks such as video encoding and decoding."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("d6f67cce81ba15fba3fcf70850e3c84b25e8da3e53fd56e6f2c87c7ee1701071ea44deb754a0ea371b3cb17877f26aab94d9eccb6729cbb370d6d6d5c324aa1a")
+SUM=("ec14e42a184cd9e50bef19e4b3aae54eb56838153fce32fdaeab4972b8dd7a54a4506d58ca5f5741d6d68a8e711408716d1045d02c36e018d07fb76c753fc2df")
 
 # Prepare script
 function prepare() {
@@ -30,6 +30,7 @@ function prepare() {
     cd    build
 
     meson --prefix=/usr                                     \
+          --libdir=/usr/lib                                 \
           --buildtype=release                               \
           -Dgst_debug=false                                 \
           -Dpackage-origin=https://yiffos.gay/              \
