@@ -1,6 +1,6 @@
 {
     "name": "spirv-tools",
-    "version": "2022.2",
+    "version": "2024.2",
     "epoch": 0,
     "description": "API and commands for processing SPIR-V modules.",
     "groups": [],
@@ -8,7 +8,7 @@
     "license": ["ASL-2.0"],
     "depends": ["glibc", "libgcc"],
     "optional_depends": [],
-    "make_depends": ["cmake", "python"],
+    "make_depends": ["cmake", "python", "spirv-headers"],
     "provides": ["spirv-tools"],
     "conflicts": [],
     "replaces": [],
