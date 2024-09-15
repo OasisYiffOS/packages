@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="spirv-llvm-translator"
-VERSION="14.0.0"
+VERSION="16.0.4"
 EPOCH=0
 DESC="Khronos LLVM to SPIRV Translator."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://github.com/KhronosGroup/SPIRV-LLVM-Translator/archive/refs/tags/v${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("5659149a380ceef7acdcb274bcad9b23e4817bf88e795e0a8464dfe14fbd102dbf7199cbe67eb611a16d3a411c7a1b8afc6f0eef61fec5a2b8f9fba06748bcb1")
+SUM=("02c3a4f443506a6a6015a1db7a57cf08242745d94cea27693929deb43bad6de18cf7152397454d295224818506b843fa7e537649d500e8f4b04fef9ec2333a4b")
 
 # Prepare script
 function prepare() {
