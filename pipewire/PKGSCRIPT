@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="pipewire"
-VERSION="0.3.59"
+VERSION="1.2.3"
 EPOCH=0
 DESC="A server and user-space API to handle multimedia pipelines. (Includes pipewire-media-session)"
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/${VERSION}/pipewire-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("1183dc083553ece1f9157898f437996b88dc7d13ba69aa43886f5339f330130404274ceb08ac8ec05a5ccb84dfca56b524a1d4b3fb07e28a41741c5c3333eda0")
+SUM=("025dbda4bdbea7848a6b3892170bd81eb284385a2da202a9f294030cd710d460ca4e604025b8a475e54eb37839fe91b92adb550c3ad7c7ce9aa960d73d22821b")
 
 # Prepare script
 function prepare() {
@@ -29,7 +29,7 @@ function prepare() {
     mkdir build
     cd    build
 
-    meson --prefix=/usr --buildtype=release -Dsession-managers=media-session ..
+    meson --prefix=/usr --libdir=/usr/lib --buildtype=release -Dsession-managers=media-session ..
 
     return 0
 }

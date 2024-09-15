@@ -1,6 +1,6 @@
 {
     "name": "pipewire",
-    "version": "0.3.59",
+    "version": "1.2.3",
     "epoch": 0,
     "description": "A server and user-space API to handle multimedia pipelines. (Includes pipewire-media-session)",
     "groups": [],
