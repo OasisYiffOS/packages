@@ -30,6 +30,7 @@ function prepare() {
     cd    build
 
     meson --prefix=/usr                                     \
+          --libdir=/usr/lib                                 \
           --buildtype=release                               \
           -Dpackage-origin=https://yiffos.gay/              \
           -Dpackage-name="GStreamer ${VERSION} for yiffOS"  \
