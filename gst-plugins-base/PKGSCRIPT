@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gst-plugins-base"
-VERSION="1.20.1"
+VERSION="1.24.7"
 EPOCH=0
 DESC="A well-maintained collection of GStreamer plug-ins and elements."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("679a0eee1973fa9612e2e24978e2c2d9d8fdc5732e1699b4a87712881f1549d0811719a13ff4fe77b91322ca4425c39623b371703f6b3a36fb7238b977d3e541")
+SUM=("f2b364cef3f8c05e2f77d92a1f8c2cbb1eab7eb838bcc6137fec24f230126c59957221802756a740a46456c2d6220e9c7ff65b2f8dcc88e59a18858868f66dfa")
 
 # Prepare script
 function prepare() {
