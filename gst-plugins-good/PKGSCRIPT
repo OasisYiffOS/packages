@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gst-plugins-good"
-VERSION="1.20.1"
+VERSION="1.24.7"
 EPOCH=0
 DESC="A collection of GStreamer plug-ins and elements considered by the GStreamer developers to have good quality code."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("6e56f6290465da03bfe162228829e51091896b2c5fe9d1d0718f663a3ab14edf5c790b37998a783981b9c77034252e7dee9fec5136f92ced44c4898e2fbd402e")
+SUM=("f4b9441dad98cd32a857c26ab38cc723e7be101cab166fab6cc5b5f6c234e8665005ee639f61a68bf65d0b482b0a6af759c22a34461921e9085a4c048226379b")
 
 # Prepare script
 function prepare() {
@@ -30,6 +30,7 @@ function prepare() {
     cd    build
 
     meson --prefix=/usr                                     \
+          --libdir=/usr/lib                                 \
           --buildtype=release                               \
           -Dpackage-origin=https://yiffos.gay/              \
           -Dpackage-name="GStreamer ${VERSION} for yiffOS"
