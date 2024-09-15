@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="pango"
-VERSION="1.50.10"
-_MAJOR_VERSION="1.50"
+VERSION="1.54.0"
+_MAJOR_VERSION="1.54"
 EPOCH=0
 DESC="A library for laying out and rendering text, with an emphasis on internationalization."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/pango/${_MAJOR_VERSION}/pango-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("38e5c96ef89681ca72367a96bc2d2083df2cbe861b8725fb02d0f6383300e6cda4133d58e39cdc505c712c008ae708d272e3e75380f14e9850b45f56d5d89338")
+SUM=("b08792a811e033b2dc9ae78278ea522fad1064de3a4d33460271eb0502613ee21d2c82349f8e7d8f59d59e0c020b7a3a8efa194572e16e2e78db422956fd97ea")
 
 # Prepare script
 function prepare() {
@@ -30,7 +30,7 @@ function prepare() {
 	mkdir build
 	cd	  build
 
-	meson --prefix=/usr --buildtype=release --wrap-mode=nofallback ..
+	meson --prefix=/usr --libdir=/usr/lib --buildtype=release --wrap-mode=nofallback ..
 
     return 0
 }
