@@ -1,6 +1,6 @@
 {
     "name": "ninja",
-    "version": "1.10.2",
+    "version": "1.12.1",
     "epoch": 0,
     "description": "A small build system with a focus on speed",
     "groups": [],

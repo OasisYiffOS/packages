@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="ninja"
-VERSION="1.10.2"
+VERSION="1.12.1"
 EPOCH=0
 DESC="A small build system with a focus on speed"
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://github.com/ninja-build/ninja/archive/v${VERSION}/ninja-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("895412ae1cbc83c656e92f282602a29300e08274e9dea0da4464202ae556e7a1ab03bec057f23da4756bbd91bd2d744cd7a64b336740fd2782bb4db5c3b7b496")
+SUM=("d6e6f0e89a4844a69069ff0c7cefc07704a41c7b0c062a57534de87decdde63e27928147b321111b806aa7efa1061f031a1319b074391db61b0cbdccf096954c")
 
 # Prepare script
 function prepare() {
