@@ -1,6 +1,6 @@
 {
     "name": "xorgproto",
-    "version": "2021.5",
+    "version": "2024.1",
     "epoch": 0,
     "description": "Header files required to build the X Window system and related applications.",
     "groups": ["x11-devel"],
