@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="vulkan-loader"
-VERSION="1.3.211"
+VERSION="1.3.295"
 EPOCH=0
 DESC="The Khronos official Vulkan ICD desktop loader for Linux."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("b4c9716a0cb3d6748f69b91735e43a5fe51599f44c21f9c4d90e69daa05bddcfd354978e53e95d64cb6a6bcca640c48974d61893590ab443b230294d4668f245")
+SUM=("be353ad891054f6ef6dbc04e5d799b2e2b2c8cf1bb59d40938d21a7883e571ace957699e0b9c1b1a4900282286ebcd89f5ba2ce18474a3d407c71393fddc671b")
 
 # Prepare script
 function prepare() {
