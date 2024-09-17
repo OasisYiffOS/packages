@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="xwayland"
-VERSION="22.1.1"
+VERSION="24.1.2"
 EPOCH=0
 DESC="An Xorg server running on top of the Wayland server."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://www.x.org/pub/individual/xserver/xwayland-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("435cdf59f2be1ff7cb3dbb04e7a8920d9c48471fbeffca96c9dab2be400b168bfdb73b9e818829c555ab5d6fd83345eb693b3ba785d4ef701bdb27c8344077b5")
+SUM=("2788f6954c999c29be54d5b1e6e2c81327de9fbefae140f7cd322c1ff21f76fdd17cb74cf8243035ea850bfa4573d2013ab895426790b7959cceb7120ba9531c")
 
 # Prepare script
 function prepare() {
@@ -35,6 +35,7 @@ function prepare() {
     meson --prefix=/usr                 \
           -Dxvfb=false                  \
           -Dxkb_output_dir=/var/lib/xkb \
+          --libdir=/usr/lib             \
           ..
 
     return 0
