@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="rust-bindgen"
-VERSION="0.64.0"
+VERSION="0.70.1"
 EPOCH=0
 DESC="Utilities used to generate C bindings for Rust code."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://github.com/rust-lang/rust-bindgen/archive/refs/tags/v${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("4f7bdec4539fbb3e15590b42e14a5e75b2cd3313ab70b0574c1b079f9ace404ab20848aa152d7c83444d96279163e788b5172595528e7d89ba4b3556ddc5296a")
+SUM=("dc1c43a3023a29597cfe8ef5f8a18c4ad9847d644545c0498c8253cbcd6eaf3377f38d73eb7275e849967e156f932e2644f21cfde444335a45bbd1260c575d07")
 
 # Prepare script
 function prepare() {
