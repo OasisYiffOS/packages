@@ -1,6 +1,6 @@
 {
     "name": "pangomm",
-    "version": "2.46.3",
+    "version": "2.54.0",
     "epoch": 0,
     "description": "A C++ interface to Pango.",
     "groups": ["gnome"],

@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="pangomm"
-VERSION="2.46.3"
-_MAJOR_VERSION="2.46"
+VERSION="2.54.0"
+_MAJOR_VERSION="2.54"
 EPOCH=0
 DESC="A C++ interface to Pango."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/pangomm/${_MAJOR_VERSION}/pangomm-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("c0925f295b372bca7b5ede28476ed00e691911e041632969e5e4c30fcf338bac069ba031d4f48601877524b90af47f5238e444e2de7501f1ff25dcda9dd9a9c8")
+SUM=("bc74be8d1c692815fe07e41c75386a2fb8038ba2a335cad488bf996ecc18f1e1b434ef4bd6c15a9c5b5c42f4349c98403acc96a32ecc5eb4dca8cee9de44ca08")
 
 # Prepare script
 function prepare() {
@@ -30,7 +30,7 @@ function prepare() {
     mkdir build
     cd    build
 
-    meson --prefix=/usr --buildtype=release ..
+    meson --prefix=/usr --buildtype=release --libdir=/usr/lib ..
 
     return 0
 }
