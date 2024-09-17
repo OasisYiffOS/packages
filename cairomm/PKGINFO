@@ -1,6 +1,6 @@
 {
     "name": "cairomm",
-    "version": "1.14.3",
+    "version": "1.18.0",
     "epoch": 0,
     "description": "A C++ interface to Cairo.",
     "groups": ["gnome"],

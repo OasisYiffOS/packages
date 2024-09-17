@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="cairomm"
-VERSION="1.14.3"
+VERSION="1.18.0"
 EPOCH=0
 DESC="A C++ interface to Cairo."
 GRPS=("gnome")
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://www.cairographics.org/releases/cairomm-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("8dc8a0de733904742c54d4935b596d4103f2e498c6735894bc6a5a81eb4962c6ea944bad94102b18b25850f78e948d38f117c566b197bc76da23a4e88b62ee4e")
+SUM=("d358a765136e244773b4a0fdcb2d9c81dd0b76f7a27c7108f94df9765f2d790f5f50b5645c09c292efce3e012528f85114d51916450c5fe6fa87d09f5a405d4c")
 
 # Prepare script
 function prepare() {
@@ -33,6 +33,7 @@ function prepare() {
           --buildtype=release \
           -Dbuild-tests=true  \
           -Dboost-shared=true \
+          --libdir=/usr/lib   \
           ..
 
     return 0
