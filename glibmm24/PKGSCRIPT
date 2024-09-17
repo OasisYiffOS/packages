@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="glibmm24"
-VERSION="2.68.2"
-_MAJOR_VERSION="2.68"
+VERSION="2.82.0"
+_MAJOR_VERSION="2.82"
 EPOCH=1
 DESC="A set of C++ bindings for GLib."
 GRPS=("gnome")
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/glibmm/${_MAJOR_VERSION}/glibmm-${VERSION}.tar.xz")
 
 SUM_TYPE="sha256"
-SUM=("91e0a8618f7b82db4aaf2648932ea2bcfe626ad030068c18fa2d106fd838d8ad")
+SUM=("38684cff317273615c67b8fa9806f16299d51e5506d9b909bae15b589fa99cb6")
 
 # Prepare script
 function prepare() {
@@ -30,7 +30,7 @@ function prepare() {
     mkdir bld
     cd    bld
 
-    meson --prefix=/usr --buildtype=release -Dbuild-documentation=false -Dmaintainer-mode=false ..
+    meson --prefix=/usr --libdir=/usr/lib --buildtype=release -Dbuild-documentation=false -Dmaintainer-mode=false ..
 
     return 0
 }

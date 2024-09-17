@@ -1,6 +1,6 @@
 {
     "name": "glibmm24",
-    "version": "2.68.2",
+    "version": "2.82.0",
     "epoch": 1,
     "description": "A set of C++ bindings for GLib.",
     "groups": ["gnome"],
