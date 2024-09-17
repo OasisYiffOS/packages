@@ -3,12 +3,12 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="vulkan-headers"
-VERSION="1.3.211"
+VERSION="1.3.295"
 EPOCH=0
 DESC="Vulkan header files and API registry."
 GRPS=()
 URL="https://github.com/KhronosGroup/Vulkan-Headers"
-LICENSES=("Apache-2.0")
+LICENSES=("Apache-2.0" "MIT")
 DEPENDS=()
 OPT_DEPENDS=()
 MK_DEPENDS=("cmake")
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("95fb29ad5c79809506ce3587f974baf360d21d036995dd7297f966962380cd0504e9886a549ca34dfd5e051ccc2bf96bd0401eeac9c37ae76a2979d921572398")
+SUM=("031f0ce24f40d9d2571d6fd94d4726a23559484fb73eb314d7f9d41aff844571fdae4c6e57884315f3494b58be50b8ab2a2eb651ee8065023eeaf25a19970f47")
 
 # Prepare script
 function prepare() {
@@ -29,8 +29,9 @@ function prepare() {
     mkdir build
     cd    build
 
-    cmake -DCMAKE_INSTALL_PREFIX=/usr   \
-          -DCMAKE_BUILD_TYPE=Release    \
+    cmake -GNinja                     \
+          -DCMAKE_INSTALL_PREFIX=/usr \
+          -DCMAKE_BUILD_TYPE=Release  \
           ..
     
     return 0
@@ -40,7 +41,7 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/Vulkan-Headers-${VERSION}/build"
 
-    make
+    ninja
 
     return 0
 }
@@ -49,7 +50,7 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/Vulkan-Headers-${VERSION}/build"
 
-    DESTDIR="${BUILD_DATA_ROOT}" make install
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
 
     return 0
 }
