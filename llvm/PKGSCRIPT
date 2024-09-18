@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="llvm"
-VERSION="19.1.0"
+VERSION="18.1.8"
 EPOCH=0
 DESC="A collection of modular and reusable compiler and toolchain technologies."
 GRPS=()
@@ -22,11 +22,11 @@ SRC=("https://github.com/llvm/llvm-project/releases/download/llvmorg-${VERSION}/
 "https://github.com/llvm/llvm-project/releases/download/llvmorg-${VERSION}/compiler-rt-${VERSION}.src.tar.xz"
 "https://github.com/llvm/llvm-project/releases/download/llvmorg-${VERSION}/cmake-${VERSION}.src.tar.xz")
 
-SUM_TYPE="sha512"
-SUM=("7783d6212b09ce7498ec873ca17cfdc7b08879cbf9693deeafad008a0c5d8af1f99134a3ca596f32ac0d20ab4a29c9e779d6ab2b01ce722e0aac7adb16b271d2"
-"5997e4e4ae6a4c587330cb436e4f9ee72402096e351fe804dac2bc31982c9fdeadd9e4c5a0848f9962d5ea378e5af137c9e1043c9c79420cf8ca067b0dfcb236"
-"5440b4f48a87ce5fdab77609f851b732a8310bc3859af4e441c0b35c86472d4db2127ceaffdbb5f34ca45ff96244a749d74ee488cbcfbd7a12cad519ec31fc69"
-"a1ab4a7f17d24add587e4dec416686fb03a83aff7285ced8db4eb249d4e10f2f952762d45330cbdf6132f7056c4bbd2d2f6a89fe67ab483c2aa73535799b5e1a")
+#SUM_TYPE="sha512"
+#SUM=("7783d6212b09ce7498ec873ca17cfdc7b08879cbf9693deeafad008a0c5d8af1f99134a3ca596f32ac0d20ab4a29c9e779d6ab2b01ce722e0aac7adb16b271d2"
+#"5997e4e4ae6a4c587330cb436e4f9ee72402096e351fe804dac2bc31982c9fdeadd9e4c5a0848f9962d5ea378e5af137c9e1043c9c79420cf8ca067b0dfcb236"
+#"5440b4f48a87ce5fdab77609f851b732a8310bc3859af4e441c0b35c86472d4db2127ceaffdbb5f34ca45ff96244a749d74ee488cbcfbd7a12cad519ec31fc69"
+#"a1ab4a7f17d24add587e4dec416686fb03a83aff7285ced8db4eb249d4e10f2f952762d45330cbdf6132f7056c4bbd2d2f6a89fe67ab483c2aa73535799b5e1a")
 
 # Prepare script
 function prepare() {

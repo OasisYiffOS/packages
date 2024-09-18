@@ -1,6 +1,6 @@
 {
     "name": "llvm",
-    "version": "19.1.0",
+    "version": "18.1.8",
     "epoch": 0,
     "description": "A collection of modular and reusable compiler and toolchain technologies.",
     "groups": [],
