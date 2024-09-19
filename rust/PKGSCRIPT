@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="rust"
-VERSION="1.76.0"
+VERSION="1.81.0"
 EPOCH=0
 DESC="Memory-safe programming language without garbage collection."
 GRPS=()
@@ -21,18 +21,18 @@ SRC=("https://static.rust-lang.org/dist/rustc-${VERSION}-src.tar.gz"
 "llvm-tools-install.patch")
 
 SUM_TYPE="sha512"
-SUM=("28432d2863b1181bc55303b532d036b2de0922e1cd340bd12645fcdbc9b8b8fe02de3cfeb31e0878553975693493502d1b2ad6f23ada413086d848684425cdd9"
+SUM=("ea1f894b56085ab95ff1bdf9ef20e0756c134be8217c8e8934de44651f7cac6339829a198f8770d97050da79711527ff80fae184038fdb2962b741d0f99b71a1"
 "9ef4b57a75859e18d3b25f5d5ad0f7445551ecc3847a5087d70433c6d31c10d010117e5530adc5905365d1b1dcef3b3ad24eeeb2bf8b5cd77277c1b18c291d79")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}c-${VERSION}-src"
 
-    patch -Np1 -R -i ${WORKDIR}/llvm-tools-install.patch
+    #patch -Np1 -R -i ${WORKDIR}/llvm-tools-install.patch
 
 cat << EOF > config.toml
+change-id = 130110
 profile = "user"
-changelog-seen = 2
 
 [llvm]
 link-shared = true
