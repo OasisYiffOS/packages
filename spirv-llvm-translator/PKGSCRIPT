@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="spirv-llvm-translator"
-VERSION="16.0.4"
+VERSION="18.1.4"
 EPOCH=0
 DESC="Khronos LLVM to SPIRV Translator."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://github.com/KhronosGroup/SPIRV-LLVM-Translator/archive/refs/tags/v${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("02c3a4f443506a6a6015a1db7a57cf08242745d94cea27693929deb43bad6de18cf7152397454d295224818506b843fa7e537649d500e8f4b04fef9ec2333a4b")
+SUM=("f0f7e9c3e6544707bb20cbda523f6081be42f5acb513d99b326ed0753f8d285bfb301934fa7ea78fc60bcb5672306f0ffb8a7937cc731c2bb08b72f4b7f5ef61")
 
 # Prepare script
 function prepare() {
@@ -43,7 +43,7 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/SPIRV-LLVM-Translator-${VERSION}/build"
 
-    make llvm-spirv
+    make llvm-spirv -j$(nproc)
 
     return 0
 }

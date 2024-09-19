@@ -1,6 +1,6 @@
 {
     "name": "spirv-llvm-translator",
-    "version": "16.0.4",
+    "version": "18.1.4",
     "epoch": 0,
     "description": "Khronos LLVM to SPIRV Translator.",
     "groups": [],
