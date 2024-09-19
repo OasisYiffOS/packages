@@ -1,7 +1,7 @@
 {
     "name": "mesa",
-    "version": "22.3.7",
-    "epoch": 1,
+    "version": "24.2.3",
+    "epoch": 0,
     "description": "An open-source implementation of the OpenGL/CL/MAX and Vulkan specifications.",
     "groups": [],
     "url": "https://www.mesa3d.org",
