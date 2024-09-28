@@ -30,7 +30,7 @@ function prepare() {
     mkdir build
     cd    build
 
-    meson --prefix=/usr --buildtype=release ..
+    meson --prefix=/usr --libdir=/usr/lib --buildtype=release ..
 
     return 0
 }
