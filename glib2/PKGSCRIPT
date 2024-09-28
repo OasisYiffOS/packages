@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="glib2"
-VERSION="2.76.0"
-_MAJOR_VERSION="2.76"
+VERSION="2.82.1"
+_MAJOR_VERSION="2.82"
 EPOCH=0
 DESC="Low-level core library that forms the basis for projects such as GTK+ and GNOME."
 GRPS=("gnome")
@@ -22,7 +22,7 @@ SRC=("https://download.gnome.org/sources/glib/${_MAJOR_VERSION}/glib-${VERSION}.
 "glib-${VERSION}-skip_warnings-1.patch")
 
 SUM_TYPE="sha512"
-SUM=("812834ca6d840dd9c15c0689685d8bd96f4acd69a89213f807a75732d1aa5efadbed0e0073f05a56a09beb2d4f0be1b83a4642259682aac84302632da2d62370"
+SUM=("a176d00d2e2be0fb65b7084b2689fddb29cdfa8391ae4e5272b3205fbd4bc05f010b6dc81dff59581eb57cee28920b5f5147e2812725496c5abb5c7bf0937b12"
 "0f41e9b57606e430977c765af9ea78b1f7f79f69b108731c45a800e3b5f6046e4e162ebfdd297cc330a3647e21fa7c7ac7f57d0488c1d91b5cc46f3efd6cb5a7")
 
 # Prepare script
@@ -38,6 +38,7 @@ function prepare() {
     meson --prefix=/usr       \
           --buildtype=release \
           -Dman=false         \
+          --libdir=/usr/lib   \
           ..
 
     return 0
