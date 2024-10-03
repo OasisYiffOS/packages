@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="coreutils"
-VERSION="9.1"
+VERSION="9.5"
 EPOCH=0
 DESC="Basic Unix utilities"
 GRPS=("base")
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://ftp.gnu.org/gnu/coreutils/coreutils-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("a6ee2c549140b189e8c1b35e119d4289ec27244ec0ed9da0ac55202f365a7e33778b1dc7c4e64d1669599ff81a8297fe4f5adbcc8a3a2f75c919a43cd4b9bdfa")
+SUM=("2ca0deac4dc10a80fd0c6fd131252e99d457fd03b7bd626a6bc74fe5a0529c0a3d48ce1f5da1d3b3a7a150a1ce44f0fbb6b68a6ac543dfd5baa3e71f5d65401c")
 
 # Prepare script
 function prepare() {
