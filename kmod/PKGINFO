@@ -1,6 +1,6 @@
 {
     "name": "kmod",
-    "version": "29",
+    "version": "33",
     "epoch": 0,
     "description": "Set of tools to handle Linux kernel modules",
     "groups": [],
