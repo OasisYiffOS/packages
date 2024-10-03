@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="linux"
-VERSION="6.9.1"
-_FULL_VERSION="6.9.1"
+VERSION="6.9.12"
+_FULL_VERSION="6.9.12"
 _MAJOR_VERSION="6"
 EPOCH=0
 DESC="The Linux kernel"
@@ -24,7 +24,7 @@ SRC=("https://cdn.kernel.org/pub/linux/kernel/v${_MAJOR_VERSION}.x/linux-${VERSI
 "good_panic_message.patch")
 
 SUM_TYPE="sha512"
-SUM=("4958886d77e1f54293ec8be6cdcdf70eff29bf0a23aa8618fc88b24c2b535d0d5bd7bb3276c2749afecb7ce259372b93fa25f57939c7b150151791a514599519"
+SUM=("6b6c157625c4880a1c381d74fad636d4b57ef78068bc8e19387ab7dc97095b82cbd88287205472adeccaf322703a1aa30a1a45d6e82e9e70af969b8de433873f"
 "1356d8efffed065fd9bc0d3acc23b94a1b8c32015c5c6121daddbd6045d8fdc7911c2c010d0f27d315f0adb2181fe450ad566c3ed126a444c083d82ab2fe3f5e"
 "37f8574955ee8d440490dd756596fa256b08ea820cd85bb5844f9c1fa221731caf99d7770a362e9ff8dbb23bc4845db6a1fac2f838fb0a23748db74685b347cf")
 
@@ -45,9 +45,9 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    make
+    make -j$(nproc)
 
-    make check
+    make check -j$(nproc)
 
     return 0
 }
