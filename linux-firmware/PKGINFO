@@ -1,6 +1,6 @@
 {
     "name": "linux-firmware",
-    "version": "20240513",
+    "version": "20240909",
     "epoch": 0,
     "description": "Linux firmware images not allowed in the kernel.",
     "groups": [],
