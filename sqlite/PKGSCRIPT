@@ -3,9 +3,9 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="sqlite"
-VERSION="3.38.0"
-_DOWNLOAD_VERSION="3380000"
-_YEAR="2022"
+VERSION="3.46.1"
+_DOWNLOAD_VERSION="3460100"
+_YEAR="2024"
 EPOCH=0
 DESC="SQLite is an in-core database engine in C"
 GRPS=()
@@ -23,8 +23,8 @@ SRC=("https://sqlite.org/${_YEAR}/sqlite-autoconf-${_DOWNLOAD_VERSION}.tar.gz"
 "https://sqlite.org/${_YEAR}/sqlite-doc-${_DOWNLOAD_VERSION}.zip")
 
 SUM_TYPE="sha512"
-SUM=("30577730e54ac4f83acfe0ff2fac9cb2ba6eb917907d7584f2b18ca852382f2f4ff596e1e1cd4ce41fe90ac271501ee97b5e508b7e5072cda713855aae562d28" 
-"8e1f77504a1057cd23a8a6c2a285d63c5df50ceaf6ab84054a6f5422286dd868bdb3d5bd9be180b7834caba2b65ca185ffff60455bb504df30801157b62a62ef")
+SUM=("a5ba5af9c8d6440d39ba67e3d5903c165df3f1d111e299efbe7c1cca4876d4d5aecd722e0133670daa6eb5cbf8a85c6a3d9852ab507a393615fb5245a3e1a743" 
+"1ad7dfc938d182f69ea9367b4f5ead1d48b991626521249e8b58c9fb4c2553e348ce402de9cc81b0ad699d4c45c467de56a98ee39f9c3555c6fafff15fba41ce")
 
 # Prepare script
 function prepare() {

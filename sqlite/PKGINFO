@@ -1,6 +1,6 @@
 {
     "name": "sqlite",
-    "version": "3.38.0",
+    "version": "3.46.1",
     "epoch": 0,
     "description": "SQLite is an in-core database engine in C",
     "groups": [],
