@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="systemd"
-VERSION="256.4"
+VERSION="256.6"
 _MAJOR_VERSION="256"
 EPOCH=0
 DESC="System and service manager"
@@ -21,7 +21,7 @@ REPLACES=()
 SRC=("https://github.com/systemd/systemd/archive/refs/tags/v${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("0357f1b61a07e594aff118dec54bd7233f37b69ccdfa393b91f46f32f08238fa7dd44df70d1df858464c866e114868ae1bec66dc685703d425cbd4c86baddfb8")
+SUM=("99d0fad02cab3559e081dabc2797d1d66bbc21daf9aaec847aeb6bce289456ff9c8599a34563c9bfa3826db36ae9ab30836b09bae00bf1a410b54d0bad9bd4dc")
 
 # Prepare script
 function prepare() {
@@ -36,15 +36,17 @@ function prepare() {
           --sysconfdir=/etc                             \
           --localstatedir=/var                          \
           --buildtype=release                           \
-          -Dblkid=enabled                               \
+          --libdir=/usr/lib                             \
+          -Dblkid=true                                  \
           -Ddefault-dnssec=no                           \
           -Dfirstboot=false                             \
           -Dinstall-tests=false                         \
           -Dldconfig=false                              \
           -Drpmmacrosdir=no                             \
-          -Dman=disabled                                \
+          -Dman=false                                   \
           -Dmode=release                                \
-          -Defi=true			                     	\
+          -Dbootloader=true				\
+          -Defi=true                                    \
           -Ddocdir=/usr/share/doc/systemd-${VERSION}	\
           -Dfallback-hostname="yiffos"			\
           -Dsbat-distro="yiffos"			\
@@ -61,6 +63,8 @@ function build() {
     cd "${WORKDIR}/${NAME}-${VERSION}/build"
 
     LANG=en_US.UTF-8 ninja
+
+    ninja test
 
     return 0
 }

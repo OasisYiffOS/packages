@@ -1,6 +1,6 @@
 {
     "name": "systemd",
-    "version": "256.4",
+    "version": "256.6",
     "epoch": 0,
     "description": "System and service manager",
     "groups": ["base"],
