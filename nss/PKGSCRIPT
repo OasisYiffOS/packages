@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="nss"
-VERSION="3.103"
-_DOWNLOAD_VERSION="3_103"
+VERSION="3.105"
+_DOWNLOAD_VERSION="3_105"
 EPOCH=0
 DESC="A set of libraries supporting SSL, TLS, PKCS, S/MIME, X.509, and more."
 GRPS=()
@@ -23,7 +23,7 @@ SRC=("https://archive.mozilla.org/pub/security/nss/releases/NSS_${_DOWNLOAD_VERS
 "nss-${VERSION}-standalone-1.patch")
 
 SUM_TYPE="sha512"
-SUM=("bc7680fc34d84de7953b27f1a220681f3f5c5a501a82be210ec6134894313f6a2c9bfcc350f4802152a5e3a1fc2defc74d700445ade338d6c86a923ac8b4dc75"
+SUM=("1bee0945c9725a0022bc80de628d139bb6c6d93385005f2a4025214c650e9821e5a98117edb92d53749c74ff229f1c58e4c15b169f7946aaf6a51ba5147da554"
 "3bf13e8c94d941f7205141100feabb3759e37901a4ccec2e1e568a94687221ebeeb81ebe657a78ec6d9d3dd3f40382bce2a02a007c7505bdc566260c9cd2e6cb")
 
 # Prepare script
@@ -40,7 +40,8 @@ function prepare() {
          ZLIB_LIBS=-lz                                   \
          NSS_ENABLE_WERROR=0                             \
          NSS_USE_SYSTEM_SQLITE=1                         \
-         $([ $(uname -m) = x86_64 ] && echo USE_64=1)
+         $([ $(uname -m) = x86_64 ] && echo USE_64=1)    \
+         -j$(nproc)
 
     return 0
 }
