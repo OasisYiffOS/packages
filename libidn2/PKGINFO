@@ -1,6 +1,6 @@
 {
     "name": "libidn2",
-    "version": "2.3.2",
+    "version": "2.3.7",
     "epoch": 0,
     "description": "Internationalized Domain Name library",
     "groups": [],

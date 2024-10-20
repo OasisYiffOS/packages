@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libidn2"
-VERSION="2.3.2"
+VERSION="2.3.7"
 EPOCH=0
 DESC="Internationalized Domain Name library"
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=("")
 SRC=("https://ftp.gnu.org/gnu/libidn/libidn2-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("958dbf49a47a84c7627ac182f4cc8ea452696cec3f0d1ff102a6c48e89893e772b2aa81f75da8223dfc6326515cca3ae085268fbf997828de9330c3a351152f1")
+SUM=("eab5702bc0baed45492f8dde43a4d2ea3560ad80645e5f9e0cfa8d3b57bccd7fd782d04638e000ba07924a5d9f85e760095b55189188c4017b94705bef9b4a66")
 
 # Prepare script
 function prepare() {
