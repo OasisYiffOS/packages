@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="xz"
-VERSION="5.2.5"
+VERSION="5.6.3"
 EPOCH=0
 DESC="A compression program with high compression ratios, higher than both gzip or bzip2"
 GRPS=("base")
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://tukaani.org/xz/xz-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("59266068a51cb616eb31b67cd8f07ffeb2288d1391c61665ae2ec6814465afac80fec69248f6a2f2db45b44475af001296a99af6a32287226a9c41419173ccbb")
+SUM=("1449f3b55819fb7f46855e550e367e96d658f523531fc2a65c2e1f1b847de86bf2fa50f3909f42cbff94a56b0cf8b0b5cd278097622da980119548f61e245f0a")
 
 # Prepare script
 function prepare() {
