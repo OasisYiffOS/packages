@@ -1,6 +1,6 @@
 {
     "name": "p11-kit",
-    "version": "0.24.1",
+    "version": "0.25.5",
     "epoch": 0,
     "description": "Load and unload modules for PKCS#11",
     "groups": [],
