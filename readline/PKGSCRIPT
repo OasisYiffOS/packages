@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="readline"
-VERSION="8.1.2"
+VERSION="8.2.13"
 EPOCH=0
 DESC="A set of libraries for command-line editing"
 GRPS=()
@@ -20,7 +20,7 @@ SRC=("https://ftp.gnu.org/gnu/readline/readline-${VERSION}.tar.gz"
 "https://gitlab.com/yiffos/core/patches/-/raw/main/readline/fix-destdir.patch")
 
 SUM_TYPE="sha512"
-SUM=("b512275c8aa8b3b3178366c6d681f867676fc1c881e375134a88e9c860a448535e04ca43df727817fd0048261e48203e88bd1c086e86572022d1d65fb0350e4d"
+SUM=("53476c88fedcc8831bc4926c32943700dc6e99b1aa17b68fb1e59d885c609db9e335314428f98d962e4f06a1ef5433e763ec1b6fa41ee5580c05ec5380ba563a"
 "503cf980f5ee9870f56227ed7d366faba1f8405f85231fa9958f28e791cd798519b9d736c18a911fbfdc8a6d28f252515b94f5e7dba6ffd0901f2d222fc4a319")
 
 # Prepare script
