@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="acl"
-VERSION="2.3.1"
+VERSION="2.3.2"
 EPOCH=0
 DESC="Utility to control access permissions for files and directories"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://download.savannah.gnu.org/releases/acl/acl-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("7d02f05d17305f8587ab485395b00c7fdb8e44c1906d0d04b70a43a3020803e8b2b8c707abb6147f794867dfa87bd51769c2d3e11a3db55ecbd2006a6e6231dc")
+SUM=("c2d061dbfd28c00cecbc1ae614d67f3138202bf4d39b383f2df4c6a8b10b830f33acec620fb211f268478737dde4037d338a5823af445253cb088c48a135099b")
 
 # Prepare script
 function prepare() {

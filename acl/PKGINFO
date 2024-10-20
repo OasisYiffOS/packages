@@ -1,6 +1,6 @@
 {
     "name": "acl",
-    "version": "2.3.1",
+    "version": "2.3.2",
     "epoch": 0,
     "description": "Utility to control access permissions for files and directories",
     "groups": [],
