@@ -1,6 +1,6 @@
 {
     "name": "dbus",
-    "version": "1.14.6",
+    "version": "1.15.10",
     "epoch": 0,
     "description": "A message bus system",
     "groups": [],
@@ -8,7 +8,7 @@
     "license": ["GPL-2.0-or-later"],
     "depends": ["glibc", "expat", "systemd"],
     "optional_depends": [],
-    "make_depends": ["xmlto", "docbook-xml", "docbook-xsl"],
+    "make_depends": ["xmlto", "docbook-xml", "docbook-xsl", "meson", "ninja"],
     "provides": ["dbus"],
     "conflicts": [],
     "replaces": [],

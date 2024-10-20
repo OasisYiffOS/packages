@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="dbus"
-VERSION="1.14.6"
+VERSION="1.15.10"
 EPOCH=0
 DESC="A message bus system"
 GRPS=()
@@ -11,7 +11,7 @@ URL="https://www.freedesktop.org/wiki/Software/dbus"
 LICENSES=("GPL-2.0-or-later")
 DEPENDS=("glibc" "expat" "systemd")
 OPT_DEPENDS=()
-MK_DEPENDS=("xmlto" "docbook-xml" "docbook-xsl")
+MK_DEPENDS=("xmlto" "docbook-xml" "docbook-xsl" "meson" "ninja")
 PROVIDES=("dbus")
 CONFLICTS=()
 REPLACES=()
@@ -20,40 +20,41 @@ REPLACES=()
 SRC=("https://dbus.freedesktop.org/releases/dbus/dbus-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("eadf5dabc95f242a26350708e4d7b78e4bef68b056189741f1a330c5976e0ce08e8520a57518d60dea0576b76eb5955dd9d8ddaa01e4a305078641e47c8e600a")
+SUM=("15a4bb481c89b09273107cfbe54c5e95ca46ed8986bb2dd3d62cc6fc8a4be717799151700beaba8276ec4b270732975e853aa9f59cfaa81b140932950088f5ff")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
+    
+    mkdir build
+    cd build
 
-    ./configure --prefix=/usr                                   \
-                --sysconfdir=/etc                               \
-                --localstatedir=/var                            \
-                --disable-static                                \
-                --disable-doxygen-docs                          \
-                --enable-user-session                           \
-                --docdir=/usr/share/doc/dbus-${VERSION}         \
-                --with-console-auth-dir=/run/console            \
-                --with-system-pid-file=/run/dbus/pid            \
-                --with-system-socket=/run/dbus/system_bus_socket
+    meson setup .. --prefix=/usr                            \
+                --sysconfdir=/etc                           \
+                --localstatedir=/var                        \
+                -Ddoxygen_docs=disabled                     \
+                -Duser_session=true                         \
+                -Dsystem_pid_file=/run/dbus/pid             \
+                -Dsystem_socket=/run/dbus/system_bus_socket \
+                --libdir=/usr/lib
 
     return 0
 }
 
 # Build script
 function build() {
-    cd "${WORKDIR}/${NAME}-${VERSION}"
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
 
-    make
+    ninja
 
     return 0
 }
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/${NAME}-${VERSION}"
+    cd "${WORKDIR}/${NAME}-${VERSION}/build"
 
-    DESTDIR="${BUILD_DATA_ROOT}" make install
+    DESTDIR="${BUILD_DATA_ROOT}" ninja install
 
     # Ensure D-Bus and systemd will use the same machine id
     mkdir -pv ${BUILD_DATA_ROOT}/var/lib/dbus/
