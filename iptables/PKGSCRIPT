@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="iptables"
-VERSION="1.8.7"
+VERSION="1.8.9"
 EPOCH=0
 DESC="Userspace utility to configure the Linux packet filtering ruleset"
 GRPS=()
@@ -16,10 +16,10 @@ CONFLICTS=("nftables")
 REPLACES=()
 
 # Source information
-SRC=("http://www.netfilter.org/projects/iptables/files/iptables-${VERSION}.tar.bz2")
+SRC=("http://www.netfilter.org/projects/iptables/files/iptables-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("c0a33fafbf1139157a9f52860938ebedc282a1394a68dcbd58981159379eb525919f999b25925f2cb4d6b18089bd99a94b00b3e73cff5cb0a0e47bdff174ed75")
+SUM=("e367bf286135e39b7401e852de25c1ed06d44befdffd92ed1566eb2ae9704b48ac9196cb971f43c6c83c6ad4d910443d32064bcdf618cfcef6bcab113e31ff70")
 
 # Prepare script
 function prepare() {
