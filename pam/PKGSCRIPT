@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="pam"
-VERSION="1.5.2"
+VERSION="1.6.1"
 EPOCH=0
 DESC="Pluggable Authentication Modules"
 GRPS=()
@@ -20,8 +20,8 @@ SRC=("https://github.com/linux-pam/linux-pam/releases/download/v${VERSION}/Linux
 "https://github.com/linux-pam/linux-pam/releases/download/v${VERSION}/Linux-PAM-${VERSION}-docs.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("fa16350c132d3e5fb82b60d991768fb596582639841b8ece645c684705467305ccf1302a0147ec222ab78c01b2c9114c5496dc1ca565d2b56bf315f29a815144"
-"69bbb52b3855a1ff3066ffe3ae1890440516311260ddfb20a7a7ea7beeb42484ea085080e3206f23933edf4a695a13f2317e33dffcab2b29f6e9e210d493e1f0")
+SUM=("ddb5a5f296f564b76925324550d29f15d342841a97815336789c7bb922a8663e831edeb54f3dcd1eaf297e3325c9e2e6c14b8740def5c43cf3f160a8a14fa2ea"
+"c6054ec6832f604c0654cf074e4e241c44037fd41cd37cca7da94abe008ff72adc4466d31bd254517eda083c7ec3f6aefd37785b3ee3d0d4553250bd29963855")
 
 # Prepare script
 function prepare() {
