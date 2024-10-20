@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libcap"
-VERSION="2.63"
+VERSION="2.70"
 EPOCH=0
 DESC="User-space interface to the POSIX 1003.1e capabilities"
 GRPS=()
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/libcap-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("832842b71ca32db8f53ca5f1a3010f14e7f42693f62f29632e9948c860f990899bb094165c37307ce8b9e5bc5eb1c833e780ebca98442df3e6d900e4b238834b")
+SUM=("4e0bf0efeccb654c409afe9727b2b53c1d4da8190d7a0a9848fc52550ff3e13502add3eacde04a68a5b7bec09e91df487f64c5746ba987f873236a9e53b3d4e8")
 
 # Prepare script
 function prepare() {
