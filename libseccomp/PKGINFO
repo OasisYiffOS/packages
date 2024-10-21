@@ -1,6 +1,6 @@
 {
     "name": "libseccomp",
-    "version": "2.5.3",
+    "version": "2.5.5",
     "epoch": 0,
     "description": "Easy to use and portable interface to the Linux kernel's syscall filtering mechanism",
     "groups": [],
