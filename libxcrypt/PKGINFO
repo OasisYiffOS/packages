@@ -1,6 +1,6 @@
 {
     "name": "libxcrypt",
-    "version": "4.4.27",
+    "version": "4.4.36",
     "epoch": 0,
     "description": "Extended crypt library for descrypt, md5crypt, bcrypt, and others.",
     "groups": [],
