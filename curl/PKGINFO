@@ -1,6 +1,6 @@
 {
     "name": "curl",
-    "version": "7.88.1",
+    "version": "8.10.1",
     "epoch": 2,
     "description": "A command line tool and library for transferring data with URL syntax.",
     "groups": [],
