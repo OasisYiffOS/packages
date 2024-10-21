@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="gnutls"
-VERSION="3.8.0"
+VERSION="3.8.7"
 _MAJOR_VERSION="3.8"
 EPOCH=0
 DESC="Secure communications library implementing the SSL, TLS and DTLS protocols"
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://www.gnupg.org/ftp/gcrypt/gnutls/v${_MAJOR_VERSION}/gnutls-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("2507b3133423fdaf90fbd826ccb1142e9ff6fc90fcd5531720218f19ddf0e6bbb8267d23bad35c0954860e5a4179da74823e0c8357db56a14f252e6ec9d59629")
+SUM=("672d4085d950dbe4aecb105b398458745a1e5cec67b4171a7916daf87762f21db275f677fe048fb8323c52e201ea3da92efd02d20e4cae19a1fe6535723b2bc4")
 
 # Prepare script
 function prepare() {
