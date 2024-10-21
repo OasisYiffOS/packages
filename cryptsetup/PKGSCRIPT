@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="cryptsetup"
-VERSION="2.4.3"
-_MAJOR_VERSION="2.4"
+VERSION="2.7.5"
+_MAJOR_VERSION="2.7"
 EPOCH=0
 DESC="A tool used to set up transparent encryption of block devices using the kernel crypto API."
 GRPS=()
@@ -20,13 +20,13 @@ REPLACES=()
 SRC=("https://www.kernel.org/pub/linux/utils/cryptsetup/v${_MAJOR_VERSION}/cryptsetup-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("2d52498497be37a837126d9cdc9b6331236eccf857c3482fe3347eb88fccc3cd0fd3d8b4490569603e18cfaa462431ae194bce0328f3eafa8bfe3e02e135a26e")
+SUM=("bd363b8af9a88d462a03771eb827923a669269720f1d9f68a050e97878c198a148a0b2e1fd7136888c27efec789a5c7028c37dd920a9286328454a7d8c8ce0cf")
 
 # Prepare script
 function prepare() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    ./configure --prefix=/usr
+    ./configure --prefix=/usr --disable-asciidoc
 
     return 0
 }

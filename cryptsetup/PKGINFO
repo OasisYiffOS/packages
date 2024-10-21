@@ -1,6 +1,6 @@
 {
     "name": "cryptsetup",
-    "version": "2.4.3",
+    "version": "2.7.5",
     "epoch": 0,
     "description": "A tool used to set up transparent encryption of block devices using the kernel crypto API.",
     "groups": [],
