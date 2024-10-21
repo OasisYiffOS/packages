@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libpwquality"
-VERSION="1.4.4"
+VERSION="1.4.5"
 EPOCH=0
 DESC="Common functions for password quality checking and also scoring them based on their apparent randomness."
 GRPS=("gnome")
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("https://github.com/libpwquality/libpwquality/releases/download/libpwquality-${VERSION}/libpwquality-${VERSION}.tar.bz2")
 
 SUM_TYPE="sha512"
-SUM=("2d49b79105361663f009f7183fde9123e6f1e63bd678dfe5418143f611e763af8dd44374b826b3c22a00e721047c539741dc44d99a2289b9ab229791768d6e76")
+SUM=("91a6febbf40047e553b6051df727857df7932c816638f15118a46b8286527a80446ca4f6a050d2b1f4e33335bf4b75290751ce358fa477cb9d06fe89a450d647")
 
 # Prepare script
 function prepare() {

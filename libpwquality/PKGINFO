@@ -1,6 +1,6 @@
 {
     "name": "libpwquality",
-    "version": "1.4.4",
+    "version": "1.4.5",
     "epoch": 0,
     "description": "Common functions for password quality checking and also scoring them based on their apparent randomness.",
     "groups": ["gnome"],
