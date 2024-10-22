@@ -3,11 +3,11 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="dracut"
-VERSION="056"
+VERSION="105"
 EPOCH=0
 DESC="An event driven initramfs infrastructure"
 GRPS=()
-URL="https://dracut.wiki.kernel.org/index.php/Main_Page"
+URL="https://dracut-ng.github.io/"
 LICENSES=("GPL")
 DEPENDS=("cpio" "pcre" "grep")
 OPT_DEPENDS=()
@@ -16,10 +16,10 @@ CONFLICTS=("")
 REPLACES=("")
 
 # Source information
-SRC=("https://mirrors.edge.kernel.org/pub/linux/utils/boot/dracut/dracut-${VERSION}.tar.xz")
+SRC=("https://github.com/dracut-ng/dracut-ng/archive/refs/tags/${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("19268763e128984d20cab766bbdf2de12fe534ce2562fc688203099ef9b4cf83d0ccd2129499c70cdc6dd4ad53f0ffc2f3378eff5b8a15fda27c23b20f903df2")
+SUM=("1608fb31d6a53905ea25a279586573db5fc7e084b4f6ff06e52065cbcb4ff503c2d51c0a282345844228232b1b590382b482a224183e0c4ee16c9c9e6932b275")
 
 # Prepare script
 function prepare() {
@@ -28,19 +28,21 @@ function prepare() {
 
 # Build script
 function build() {
-    cd "${WORKDIR}/dracut-${VERSION}"
+    cd "${WORKDIR}/dracut-ng-${VERSION}"
 
-    ./configure --prefix=/usr         \
+    ./configure --prefix=/usr           \
+                --disable-documentation \
                 --disable-static
 
     make
+    #make prefix=/usr
 
     return 0
 }
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/dracut-${VERSION}"
+    cd "${WORKDIR}/dracut-ng-${VERSION}"
 
     DESTDIR="${BUILD_DATA_ROOT}" make install
 

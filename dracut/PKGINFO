@@ -1,10 +1,10 @@
 {
     "name": "dracut",
-    "version": "056",
+    "version": "105",
     "epoch": 0,
     "description": "An event driven initramfs infrastructure",
     "groups": [],
-    "url": "https://dracut.wiki.kernel.org/index.php/Main_Page",
+    "url": "https://dracut-ng.github.io/",
     "license": ["GPL"],
     "depends": ["cpio", "pcre", "grep"],
     "optional_depends": [],
