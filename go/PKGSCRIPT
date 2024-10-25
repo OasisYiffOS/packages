@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="go"
-VERSION="1.20.1"
+VERSION="1.23.2"
 EPOCH=0
 DESC="An open source programming language supported by Google."
 GRPS=()
@@ -21,8 +21,8 @@ SRC=("https://go.dev/dl/go${VERSION}.src.tar.gz"
 "https://go.dev/dl/go${VERSION}.linux-amd64.tar.gz|go-bin")
 
 SUM_TYPE="sha512"
-SUM=("57453419fafac8af10f4037b0162326555aab0e87cd1d246d5e977246c075a0504c23022d5c14bfcae9ca1c3250652ddd7c6fcf2209a926525e5f7d0d40ab52d"
-"d42fefe7c511309eb112b14b5ad13b08f251c16031953db474df853d001d63bb6b0f39c2ec9adaebd28e774af6c118ce8d02bffd2054924da1993e1109744acd")
+SUM=("e4f9d17ed7888b89b6a72966f8681bbacb5b8bebb7959e530dc058d2fa94012d45067d1884eccd352a0fc8279e6814a932260a46140b65593679d28598bf4d5c"
+"6a87113efbb4dc8e415467eab6347635ba75c3b2ea1e91190ecbab3b3c5eda9f85085ba377aeb47a8ce3ed27508e1951c7e7cfb58ca3f35fb5e91784b054b0f7")
 
 # Prepare script
 function prepare() {
