@@ -1,6 +1,6 @@
 {
     "name": "ffmpeg",
-    "version": "5.0",
+    "version": "7.1",
     "epoch": 0,
     "description": "A complete, cross-platform solution to record, convert and stream audio and video.",
     "groups": [],

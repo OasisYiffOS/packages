@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="ffmpeg"
-VERSION="5.0"
+VERSION="7.1"
 EPOCH=0
 DESC="A complete, cross-platform solution to record, convert and stream audio and video."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=("")
 SRC=("https://ffmpeg.org/releases/ffmpeg-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("112bdd566243927000c6f78dbb3a2ba045f66ec24150c691c993a73ef6da1ab3978b403af6f8149f95dbdcfd2d82b4e539b83ee39af89b0137638351c9f1bae7")
+SUM=("7282fff068452bf154b2bf814e7f20d44ed4d961687dffd841bd77b88f26d9eee2cf4cf02e9a60b48b50e77a0c34731580d9e7c0945e3bc14c8ace840d920cde")
 
 # Prepare script
 function prepare() {
@@ -52,7 +52,7 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    make
+    make -j$(nproc)
 
     gcc tools/qt-faststart.c -o tools/qt-faststart
 
