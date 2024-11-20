@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="pulseaudio"
-VERSION="15.0"
+VERSION="17.0"
 EPOCH=0
 DESC="A sound system for POSIX OSes, meaning that it is a proxy for sound applications."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://www.freedesktop.org/software/pulseaudio/releases/pulseaudio-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("352ef20384c76c631c0faa73b08e2318902a433712e0c086a5ac7a0ae58873c8d4be8f35879bdec71a93b19ae8e2ba073cacac4d56215bcf58375a0cd9d88833")
+SUM=("be0aec46204d9c9188a796fbe41b4cf6f0f5e6b16fa08ce359b8f0f51253f0ade364b89448bbf5faa2af7e59deb6c72194734c3233944250dcfd4f31968a5e97")
 
 # Prepare script
 function prepare() {
@@ -33,7 +33,10 @@ function prepare() {
           --buildtype=release \
           -Ddatabase=gdbm     \
           -Ddoxygen=false     \
-          -Dspeex=enabled
+          -Dspeex=enabled     \
+          -Dtests=false       \
+          -Dfftw=disabled     \
+          --libdir=/usr/lib
 
     return 0
 }

@@ -1,6 +1,6 @@
 {
     "name": "pulseaudio",
-    "version": "15.0",
+    "version": "17.0",
     "epoch": 0,
     "description": "A sound system for POSIX OSes, meaning that it is a proxy for sound applications.",
     "groups": [],
