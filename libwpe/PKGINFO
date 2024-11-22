@@ -1,6 +1,6 @@
 {
     "name": "libwpe",
-    "version": "1.12.0",
+    "version": "1.16.0",
     "epoch": 0,
     "description": "General-purpose library specifically developed for the WPE-flavored port of WebKit.",
     "groups": [],

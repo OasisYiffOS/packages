@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="libwpe"
-VERSION="1.12.0"
+VERSION="1.16.0"
 EPOCH=0
 DESC="General-purpose library specifically developed for the WPE-flavored port of WebKit."
 GRPS=()
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://wpewebkit.org/releases/libwpe-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("d85865fd6f2dd907589a4d2c1b956d9a2093f72f5b7f755ab2bef040f7f26a73ddadd47a607a78578dec6eb6d59f44e18fa8b96a71f7bd19f3d62073f3ca6fee")
+SUM=("48364388c5d25f584d2b05dd1194423b1df8e1ab9bd17b80c30dcbb3327fe89715bb472ffbe9159fb9856b6c6aaffad027bb5c396e43ce340ef76ee3e91e36c0")
 
 # Prepare script
 function prepare() {
