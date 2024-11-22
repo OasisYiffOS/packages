@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="vala"
-VERSION="0.56.4"
+VERSION="0.56.17"
 _MAJOR_VERSION="0.56"
 EPOCH=0
 DESC="An object-oriented programming language with a self-hosting compiler that generates C code and uses the GObject system."
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://download.gnome.org/sources/vala/${_MAJOR_VERSION}/vala-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("302e72a42fcb0cffc1c8eec28014f216c3848aaecec100acabc5e952d6f3ad2471b341e92a266f452c3335b8d1dde9cb0b1e6da62b754ffb4749b0aa862f24ba")
+SUM=("61df98ba6b15d589a1864598a6f69cc3bee9154ba65270fc3a2fb1d0c3a68c32c29b572bcc26d6616d3fa23d53fb41710af3636125507864dd17f47cf27d4723")
 
 # Prepare script
 function prepare() {
