@@ -3,7 +3,7 @@ MAINTAINERS=("Nathan Rystad <nrrystad@gmail.com>")
 
 # Package information
 NAME="uwufetch"
-VERSION="1.7"
+VERSION="2.1"
 EPOCH=0
 DESC="Meme system info tool for GNU/Linux"
 GRPS=("base")
@@ -16,10 +16,10 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://github.com/TheDarkBug/uwufetch/archive/refs/tags/1.7.tar.gz")
+SRC=("https://github.com/TheDarkBug/uwufetch/archive/refs/tags/${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("adfffe65cdbb574053d9c294b4316d216d9bf02fc0ea05ff61a4446e6e65c5cfa7f58f9ac695cce0b847db38f829867fbac81636872b5e6fd2ee1c92255712ee")
+SUM=("7e64d8a52f12e87be16994ffc45f1ffc85ddec230eacbaf25d29e3ddb8901fa4b2fbf3efa02d35b7d81b6a02fec42ec521a5cd80eeb0e1475fc6c59d17a0b381")
 
 # Prepare script
 function prepare() {
@@ -39,6 +39,8 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    DESTDIR="${BUILD_DATA_ROOT}" make install
+    mkdir -p ${BUILD_DATA_ROOT}/usr ${BUILD_DATA_ROOT}/usr/include
+
+    make install DESTDIR="${BUILD_DATA_ROOT}/usr" ETC_DIR="{BUILD_DATA_ROOT}/etc" INCDIR="include/"
     return 0
 }
