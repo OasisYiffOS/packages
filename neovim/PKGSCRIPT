@@ -1,0 +1,45 @@
+# Package Maintainers
+MAINTAINERS=("Stick <notnotastick@gmail.com>")
+
+# Package information
+NAME="neovim"
+VERSION="0.10.0"
+EPOCH=0
+DESC="Fork of Vim aiming to improve user experience, plugins, and GUIs"
+GRPS=("base")
+URL="https://github.com/neovim/neovim"
+LICENSES=("Apache 2.0")
+DEPENDS=("ninja" "cmake" "gcc" "glibc" "gettext" "unzip" "curl" "coreutils")
+OPT_DEPENDS=()
+PROVIDES=("neovim")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/neovim/neovim/archive/refs/tags/v${VERSION}.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("878cb58729a18179b38303bd9cf79e38997c87946665ac4e7b76d87e15f5d001028fd1454ce30b20773b20a4fe929dfa399fc2ec7f6db0774a4e864c9e8586c1")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    make CMAKE_BUILD_TYPE=Release
+
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+    return 0
+}

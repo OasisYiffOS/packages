@@ -1,0 +1,16 @@
+{
+    "name": "aardvark-dns",
+    "version": "1.7",
+    "epoch": 0,
+    "description": "Meme system info tool for GNU/Linux",
+    "groups": [],
+    "url": "https://github.com/TheDarkBug/uwufetch",
+    "license": ["GPL3.0"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["glibc"],
+    "provides": ["uwufetch"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Nathan Rystad <nrrystad@gmail.com>"]
+}

@@ -1,0 +1,44 @@
+# Package Maintainers
+MAINTAINERS=("Nathan Rystad <nrrystad@gmail.com>")
+
+# Package information
+NAME="uwufetch"
+VERSION="1.7"
+EPOCH=0
+DESC="Meme system info tool for GNU/Linux"
+GRPS=("base")
+URL="https://github.com/TheDarkBug/uwufetch"
+LICENSES=("GPL3.0")
+DEPENDS=("glibc")
+OPT_DEPENDS=()
+PROVIDES=("uwufetch")
+CONFLICTS=()
+REPLACES=()
+
+# Source information
+SRC=("https://github.com/TheDarkBug/uwufetch/archive/refs/tags/1.7.tar.gz")
+
+SUM_TYPE="sha512"
+SUM=("adfffe65cdbb574053d9c294b4316d216d9bf02fc0ea05ff61a4446e6e65c5cfa7f58f9ac695cce0b847db38f829867fbac81636872b5e6fd2ee1c92255712ee")
+
+# Prepare script
+function prepare() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    return 0
+}
+
+# Build script
+function build() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+    make build
+
+}
+
+# Post build script
+function postbuild() {
+    cd "${WORKDIR}/${NAME}-${VERSION}"
+
+    DESTDIR="${BUILD_DATA_ROOT}" make install
+    return 0
+}

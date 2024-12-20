@@ -1,0 +1,16 @@
+{
+    "name": "limine",
+    "version": "7.9.1",
+    "epoch": 0,
+    "description": "An advanced, portable, multiprotocol bootloader (BIOS Support)",
+    "groups": ["base"],
+    "url": "https://github.com/limine-bootloader/limine",
+    "license": ["BSD-2-Clause"],
+    "depends": ["glibc"],
+    "optional_depends": [],
+    "make_depends": ["glibc", "make", "clang", "mtools", "nasm"],
+    "provides": ["limine"],
+    "conflicts": [],
+    "replaces": [],
+    "maintainers": ["Stick <notnotastick@gmail.com>"]
+}
