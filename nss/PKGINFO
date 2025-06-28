@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS",
     "license": ["MPL"],
-    "depends": ["nspr", "sqlite", "p11-kit", "bash", "zlib"],
+    "depends": ["nspr", "sqlite", "p11-kit", "bash", "zlib", "lib32-glibc"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["nss"],
