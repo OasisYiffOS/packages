@@ -43,7 +43,7 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    make
+    make -j$(nproc)
 
     return 0
 }
