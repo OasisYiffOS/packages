@@ -3,7 +3,7 @@
     "version": "0.10.0",
     "epoch": 0,
     "description": "Fork of Vim aiming to improve user experience, plugins, and GUIs",
-    "groups": ["base"],
+    "groups": [],
     "url": "https://github.com/neovim/neovim",
     "license": ["Apache 2.0"],
     "depends": ["ninja", "cmake", "gcc", "glibc", "gettext", "unzip", "curl", "coreutils"],
