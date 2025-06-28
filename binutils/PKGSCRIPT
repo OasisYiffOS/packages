@@ -17,12 +17,10 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://ftp.gnu.org/gnu/binutils/binutils-${VERSION}.tar.xz"
-"https://www.linuxfromscratch.org/patches/lfs/development/binutils-2.38-lto_fix-1.patch")
+SRC=("https://ftp.gnu.org/gnu/binutils/binutils-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("8bf0b0d193c9c010e0518ee2b2e5a830898af206510992483b427477ed178396cd210235e85fd7bd99a96fc6d5eedbeccbd48317a10f752b7336ada8b2bb826d"
-"71ffe517119e217ef0ec827d74a289f901b4c8a5ca220942204e0733176289adc44412c1f85b31eb5103b8881c74518137bf3686d5e48c42a5368f9255385d31")
+SUM=("8bf0b0d193c9c010e0518ee2b2e5a830898af206510992483b427477ed178396cd210235e85fd7bd99a96fc6d5eedbeccbd48317a10f752b7336ada8b2bb826d")
 
 # Prepare script
 function prepare() {
@@ -40,7 +38,7 @@ function prepare() {
     $(expect -c "spawn ls" | grep -q "spawn ls") || exit
 
     # Apply a patch from upstream to fix an issue with building some packages
-    patch -Np1 -i "${WORKDIR}/binutils-2.38-lto_fix-1.patch"
+    #patch -Np1 -i "${WORKDIR}/binutils-2.38-lto_fix-1.patch"
 
     # Fix issue identified upstream when building some packages
     sed -e '/R_386_TLS_LE /i \   || (TYPE) == R_386_TLS_IE \\' \
