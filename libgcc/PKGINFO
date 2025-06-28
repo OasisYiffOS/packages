@@ -12,5 +12,5 @@
     "provides": ["libgcc"],
     "conflicts": [],
     "replaces": ["gcc-libs"],
-    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+    "maintainers": ["Helix Graziani <helix.graziani@hotmail.com>"]
 }

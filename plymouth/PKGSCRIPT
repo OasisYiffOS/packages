@@ -1,5 +1,5 @@
 # Package Maintainers
-MAINTAINERS=("Evie Viau <evie@eviee.gay>")
+MAINTAINERS=("Helix Graziani <helix.graziani@hotmail.com>")
 
 # Package information
 NAME="plymouth"

@@ -12,5 +12,5 @@
     "provides": ["db"],
     "conflicts": ["db18"],
     "replaces": [],
-    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+    "maintainers": ["Helix Graziani <helix.graziani@hotmail.com>"]
 }

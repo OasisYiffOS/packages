@@ -12,5 +12,5 @@
     "provides": ["extra-cmake-modules"],
     "conflicts": [],
     "replaces": [],
-    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+    "maintainers": ["Helix Graziani <helix.graziani@hotmail.com>"]
 }

@@ -12,5 +12,5 @@
     "provides": ["mariadb"],
     "conflicts": ["mysql"],
     "replaces": ["mysql"],
-    "maintainers": ["Evie Viau <evie@eviee.gay>"]
+    "maintainers": ["Helix Graziani <helix.graziani@hotmail.com>"]
 }
