@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://www.kernel.org/pub/linux/utils/cryptsetup/v${_MAJOR_VERSION}/cryptsetup-${VERSION}.tar.xz")
 
 SUM_TYPE="sha512"
-SUM=("bd363b8af9a88d462a03771eb827923a669269720f1d9f68a050e97878c198a148a0b2e1fd7136888c27efec789a5c7028c37dd920a9286328454a7d8c8ce0cf")
+SUM=("13eca93cdb00a143d2ca60b6f66ede5adc4072ca0c4bfebd8454a3541e69d269fcdb4afc97ad799e87a999b2bd46c1f31fa924a3d616d72a3337970b1e718d55")
 
 # Prepare script
 function prepare() {
