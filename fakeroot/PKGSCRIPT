@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="fakeroot"
-VERSION="1.36"
+VERSION="1.31"
 EPOCH=0
 DESC="Run a command appearing to be root without actually being root"
 GRPS=("devel")
@@ -19,7 +19,7 @@ REPLACES=()
 SRC=("http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_${VERSION}.orig.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("8c98b14fd4ab65649be54d9f6acf231f23bc0c1d04340bee0d3d26825f038623ab1a8ce211207d78a67e2c338fe115065068408dc42efd72579e206c11a0d3e9")
+SUM=("a66a3535c2088ba8c33e3afc18d2ab1a16a502b999a4efbea7542e345181aa172af2e0949989832cda69bf6753c80a4bfc12cc283f5da11de31aa0bee0e8b47b")
 
 # Prepare script
 function prepare() {
