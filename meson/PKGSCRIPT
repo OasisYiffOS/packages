@@ -3,8 +3,8 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="meson"
-VERSION="0.63.0"
-EPOCH=0
+VERSION="1.8.0"
+EPOCH=1
 DESC="Build system meant to be both extremely fast and extremely easy to use"
 GRPS=()
 URL="https://mesonbuild.com/"
@@ -20,7 +20,7 @@ REPLACES=()
 SRC=("https://github.com/mesonbuild/meson/releases/download/${VERSION}/meson-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("8d427261bb42d2bd1da7d4f7b5f53908044aa2cea6d020fb320b0ab9d9848e17cf28deb12ae6dc139807f9e377db0c8a546561e94301216b634bd77703f17cea")
+SUM=("345ca35b0c9219f42a46eb2dbda793b46277b2220912124a5054973390138ef1310004e1a90fde37c177d3e7103b209ebf539def2ae597f3d472c35c043bc46b")
 
 # Prepare script
 function prepare() {
@@ -31,7 +31,7 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    python3 setup.py build
+    #pip install .
 
     return 0
 }
@@ -40,7 +40,7 @@ function build() {
 function postbuild() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    python3 setup.py install --root="${BUILD_DATA_ROOT}" --skip-build
+    pip3 install . --root="${BUILD_DATA_ROOT}" --prefix=/usr
 
     install -vDm644 data/shell-completions/bash/meson ${BUILD_DATA_ROOT}/usr/share/bash-completion/completions/meson
     install -vDm644 data/shell-completions/zsh/_meson ${BUILD_DATA_ROOT}/usr/share/zsh/site-functions/_meson

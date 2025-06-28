@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://github.com/besser82/libxcrypt",
     "license": ["LGPL-2.1-or-later"],
-    "depends": ["glibc"],
+    "depends": [],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["libxcrypt"],

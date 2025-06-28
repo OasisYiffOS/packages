@@ -8,7 +8,7 @@
     "license": ["LGPL-2.0-or-later", "GPL-2.0-or-later"],
     "depends": [],
     "optional_depends": [],
-    "make_depends": [],
+    "make_depends": ["scdoc"],
     "provides": ["kmod"],
     "conflicts": [],
     "replaces": [],

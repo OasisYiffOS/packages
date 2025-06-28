@@ -8,7 +8,7 @@
     "license": ["LGPL-2.1"],
     "depends": ["tzdata", "libxcrypt"],
     "optional_depends": [],
-    "make_depends": [],
+    "make_depends": ["bison"],
     "provides": ["glibc"],
     "conflicts": [],
     "replaces": [],

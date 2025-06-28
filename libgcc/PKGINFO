@@ -8,7 +8,7 @@
     "license": ["GPL", "LGPL"],
     "depends": ["glibc"],
     "optional_depends": [],
-    "make_depends": [],
+    "make_depends": ["gcc", "make"],
     "provides": ["libgcc"],
     "conflicts": [],
     "replaces": ["gcc-libs"],

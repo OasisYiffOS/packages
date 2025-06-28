@@ -11,6 +11,7 @@ URL="https://invisible-island.net/ncurses/"
 LICENSES=("MIT")
 DEPENDS=("libgcc" "glibc")
 OPT_DEPENDS=()
+MK_DEPENDS=("gcc" "make")
 PROVIDES=("ncurses")
 CONFLICTS=()
 REPLACES=()
@@ -45,7 +46,7 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/${NAME}-${VERSION}"
 
-    make
+    make -j$(nproc)
 
     return 0
 }

@@ -10,6 +10,7 @@ GRPS=("base")
 URL="https://www.gnu.org/software/libc/"
 LICENSES=("LGPL-2.1")
 DEPENDS=("tzdata" "libxcrypt")
+MK_DEPENDS=("bison")
 OPT_DEPENDS=()
 PROVIDES=("glibc")
 CONFLICTS=()
@@ -64,7 +65,7 @@ function prepare() {
 function build() {
     cd "${WORKDIR}/glibc-${VERSION}/build"
 
-    make
+    make -j$(nproc)
 
     # DO NOT SKIP THE CHECK FOR GLIBC though some failures are exptected
     make check || true

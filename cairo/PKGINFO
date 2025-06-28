@@ -8,7 +8,7 @@
     "license": ["LGPL-2.1", "MPL-1.1"],
     "depends": ["glibc", "libpng", "pixman", "fontconfig", "glib2", "libxml2", "lzo", "libglvnd", "libxcb", "libx11", "libxext", "libxrender"],
     "optional_depends": [],
-    "make_depends": ["meson"],
+    "make_depends": ["meson", "ninja"],
     "provides": ["cairo"],
     "conflicts": [],
     "replaces": [],

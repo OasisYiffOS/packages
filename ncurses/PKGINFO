@@ -8,7 +8,7 @@
     "license": ["MIT"],
     "depends": ["libgcc", "glibc"],
     "optional_depends": [],
-    "make_depends": [],
+    "make_depends": ["gcc", "make"],
     "provides": ["ncurses"],
     "conflicts": [],
     "replaces": [],

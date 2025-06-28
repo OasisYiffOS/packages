@@ -8,7 +8,7 @@
     "license": ["MIT"],
     "depends": ["libxcb", "wayland", "wayland-protocols", "xkeyboard-config"],
     "optional_depends": [],
-    "make_depends": ["meson", "ninja"],
+    "make_depends": ["meson", "ninja", "bison"],
     "provides": ["libxkbcommon"],
     "conflicts": [],
     "replaces": [],
