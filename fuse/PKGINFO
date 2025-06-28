@@ -1,6 +1,6 @@
 {
     "name": "fuse",
-    "version": "3.10.5",
+    "version": "3.16.2",
     "epoch": 0,
     "description": "The reference implementation of the Linux FUSE (Filesystem in Userspace) interface.",
     "groups": [],

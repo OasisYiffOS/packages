@@ -3,7 +3,7 @@ MAINTAINERS=("Evie Viau <evie@eviee.gay>")
 
 # Package information
 NAME="fuse"
-VERSION="3.10.5"
+VERSION="3.16.2"
 EPOCH=0
 DESC="The reference implementation of the Linux FUSE (Filesystem in Userspace) interface."
 GRPS=()
@@ -17,10 +17,10 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://github.com/libfuse/libfuse/releases/download/fuse-${VERSION}/fuse-${VERSION}.tar.xz")
+SRC=("https://github.com/libfuse/libfuse/releases/download/fuse-${VERSION}/fuse-${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("da17788acc3fabef3dc7b736b7319c1638d7de27e163699f7dbc0fe9159aeba35964af6afa77a7654f1f321e2fc03ee167909f21516cbb585ead33cad95620fe")
+SUM=("3e8889863cd67dada67271f095f694dc9e5aaf2561fd1e2285aee95b5a54e692bb195ab8fce57fc2bdf08d0ea17b6d56ca4967b4e4371d639d6133907b2370d3")
 
 # Prepare script
 function prepare() {
