@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.nongnu.org/man-db/",
     "license": ["GPL-2.0-or-later"],
-    "depends": [],
+    "depends": ["man-pages,", "libpipeline"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["man-db"],

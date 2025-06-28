@@ -6,7 +6,7 @@
     "groups": [],
     "url": "https://www.kernel.org/doc/man-pages/",
     "license": ["custom", "GPL"],
-    "depends": [],
+    "depends": ["man-db,", "libpipeline"],
     "optional_depends": [],
     "make_depends": [],
     "provides": ["man-pages"],

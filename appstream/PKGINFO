@@ -8,7 +8,7 @@
     "license": ["LGPL-2.1"],
     "depends": ["glib2", "glibc", "curl", "libgcc", "libxml2", "libyaml", "zstd", "systemd", "libxmlb", "xz", "cairo"],
     "optional_depends": ["qt5"],
-    "make_depends": ["meson", "ninja", "vala", "gobject-introspection", "gperf", "python", "itstool", "docbook-xsl", "docbook-xml"],
+    "make_depends": ["meson", "ninja", "vala", "gobject-introspection", "gperf", "python", "itstool", "docbook-xsl", "docbook-xml", "gtk-doc"],
     "provides": ["appstream"],
     "conflicts": [],
     "replaces": [],

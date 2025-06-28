@@ -8,7 +8,7 @@
     "license": ["BSD-2-Clause"],
     "depends": [],
     "optional_depends": [],
-    "make_depends": ["llvm", "cmake", "python"],
+    "make_depends": ["llvm", "cmake", "python", "spirv-llvm-translator"],
     "provides": ["libclc"],
     "conflicts": [],
     "replaces": [],

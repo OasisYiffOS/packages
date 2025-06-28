@@ -8,7 +8,7 @@
     "license": ["BSD-1-Clause"],
     "depends": ["glibc", "pcre", "gdbm"],
     "optional_depends": [],
-    "make_depends": ["valgrind"],
+    "make_depends": ["valgrind", "texinfo"],
     "provides": ["zsh"],
     "conflicts": [],
     "replaces": [],
