@@ -30,6 +30,8 @@ function prepare() {
     ./configure ADJTIME_PATH=/var/lib/hwclock/adjtime           \
                 --libdir=/usr/lib                               \
                 --docdir=/usr/share/doc/util-linux-${VERSION}   \
+                --includedir=/usr/include                       \
+                --prefix=/usr                                   \
                 --disable-chfn-chsh                             \
                 --disable-login                                 \
                 --disable-nologin                               \
