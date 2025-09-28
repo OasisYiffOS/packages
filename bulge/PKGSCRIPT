@@ -3,7 +3,7 @@ MAINTAINERS=("Helix Graziani <helix.graziani@hotmail.com>")
 
 # Package information
 NAME="bulge"
-VERSION="0.1.1"
+VERSION="0.2.0"
 EPOCH=0
 DESC="The yiffOS package manager."
 GRPS=("base")
@@ -17,10 +17,10 @@ CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://gitlab.com/yiffos/packaging/bulge/-/archive/v${VERSION}/bulge-v${VERSION}.tar.gz")
+SRC=("https://github.com/OasisYiffOS/bulge/archive/refs/tags/v${VERSION}.tar.gz")
 
 SUM_TYPE="sha512"
-SUM=("818b9fd62760b318ebae97bde806ef848a6ed5abb0b4560e26852bb4529e06fbeb54c59d77dd16deaadc0d3ae02f198b8c11fe69ab3a2f24dcada048dde84e10")
+SUM=("73d4129e0a2507736c91ec1f93ce20597e291dabdb6ec066c332475ec3e729d789980a1dada000cb96add68b7d66b5b45b81c422f65b67b595c17cd0f783611e")
 
 # Prepare script
 function prepare() {
@@ -29,7 +29,7 @@ function prepare() {
 
 # Build script
 function build() {
-    cd "${WORKDIR}/${NAME}-v${VERSION}"
+    cd "${WORKDIR}/${NAME}-${VERSION}"
 
     cargo build --release
 
@@ -38,7 +38,7 @@ function build() {
 
 # Post build script
 function postbuild() {
-    cd "${WORKDIR}/${NAME}-v${VERSION}"
+    cd "${WORKDIR}/${NAME}-${VERSION}"
 
     mkdir -p ${BUILD_DATA_ROOT}/usr/bin
 
