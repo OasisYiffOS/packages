@@ -1,6 +1,6 @@
 {
     "name": "lib32-glibc",
-    "version": "2.38",
+    "version": "2.39",
     "epoch": 0,
     "description": "GNU C Library (32 bit version)",
     "groups": [],
@@ -8,7 +8,7 @@
     "license": ["LGPL-2.1"],
     "depends": ["tzdata", "glibc"],
     "optional_depends": [],
-    "make_depends": [],
+    "make_depends": ["bison"],
     "provides": ["lib32-glibc"],
     "conflicts": [],
     "replaces": [],

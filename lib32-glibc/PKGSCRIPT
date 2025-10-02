@@ -3,7 +3,7 @@ MAINTAINERS=("Helix Graziani <helix.graziani@hotmail.com>")
 
 # Package information
 NAME="lib32-glibc"
-VERSION="2.38"
+VERSION="2.39"
 EPOCH=0
 DESC="GNU C Library (32 bit version)"
 GRPS=()
@@ -11,16 +11,17 @@ URL="https://www.gnu.org/software/libc/"
 LICENSES=("LGPL-2.1")
 DEPENDS=("tzdata" "glibc")
 OPT_DEPENDS=()
+MK_DEPENDS=("bison")
 PROVIDES=("lib32-glibc")
 CONFLICTS=()
 REPLACES=()
 
 # Source information
-SRC=("https://ftp.gnu.org/gnu/glibc/glibc-${VERSION}.tar.xz"
+SRC=("https://mirror.csclub.uwaterloo.ca/gnu/glibc/glibc-${VERSION}.tar.xz"
 "https://gitlab.com/yiffos/core/patches/-/raw/main/glibc/fhs-runtime.patch")
 
 SUM_TYPE="sha512"
-SUM=("a6dd5e42dcd63d58e2820c783522c8c895890b6e8c8e6c83b025553de0cc77cdf227e7044e431ead98c89c68a9ce4dd63509b47e647775fb2075f011849c1900"
+SUM=("818f58172a52815b4338ea9f2a69ecaa3335492b9f8f64cbf8afb24c0d737982341968ecd79631cae3d3074ab0ae4bc6056fc4ba3ffe790849dc374835cd57e2"
 "5b24f292cc87a133f45d743a95a8e706884e05ccf68024a0a88c0605c437928e111498feebca0259581da12d1ddb8e24726a67428e590240a1cbae48f7c2cc35")
 
 # Prepare script
@@ -41,7 +42,6 @@ function prepare() {
                  --with-bugurl=https://yiffos.atlassian.net/jira/    \
                  --enable-add-ons                                    \
                  --enable-bind-now                                   \
-                 --enable-cet                                        \
                  --enable-kernel=4.4                                 \
                  --enable-lock-elision                               \
                  --enable-stack-protector=strong                     \
@@ -61,11 +61,11 @@ function build() {
     cd "${WORKDIR}/glibc-${VERSION}/build"
 
     CC="gcc -m32" CXX="g++ -m32" \
-    make
+    make -j$(nproc)
 
     # DO NOT SKIP THE CHECK FOR GLIBC though some failures are exptected
     CC="gcc -m32" CXX="g++ -m32" \
-    make check || true
+    make check -j$(nproc) || true
 
     return 0
 }

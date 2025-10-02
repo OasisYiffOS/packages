@@ -1,6 +1,6 @@
 {
     "name": "glibc",
-    "version": "2.38",
+    "version": "2.39",
     "epoch": 0,
     "description": "GNU C Library",
     "groups": ["base"],
@@ -8,7 +8,7 @@
     "license": ["LGPL-2.1"],
     "depends": ["tzdata", "libxcrypt"],
     "optional_depends": [],
-    "make_depends": ["bison"],
+    "make_depends": ["bison", "linux-headers"],
     "provides": ["glibc"],
     "conflicts": [],
     "replaces": [],
